@@ -3,110 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalConvert | Private & Instant File Converter</title>
+    <title>GlobalConvert | Secure AI-Powered File Converter</title>
+    <meta name="description" content="Free, private, and instant file converter. Convert PNG, JPG, WebP, and BMP locally in your browser. No server uploads.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .ad-space { background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.1); }
-        /* הסתרת סרגל התרגום המעצבן של גוגל */
-        .goog-te-banner-frame.skiptranslate { display: none !important; }
-        body { top: 0px !important; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        .drag-over { border-color: #3b82f6 !important; background: rgba(59, 130, 246, 0.1) !important; transform: scale(1.02); }
+        .loader { border-top-color: #3b82f6; animation: spinner 0.6s linear infinite; }
+        @keyframes spinner { to { transform: rotate(360deg); } }
+        .floating { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-200 min-h-screen flex flex-col">
+<body class="bg-[#020617] text-slate-200 min-h-screen flex flex-col">
 
-    <nav class="p-6 flex justify-between items-center border-b border-slate-900">
-        <div class="text-2xl font-black tracking-tighter text-white">GLOBAL<span class="text-blue-500">CONVERT</span></div>
-        <div id="google_translate_element" class="rounded-lg overflow-hidden"></div>
+    <nav class="p-6 flex justify-between items-center glass sticky top-0 z-50">
+        <div class="text-xl font-extrabold tracking-tighter text-white flex items-center gap-2">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">G</div>
+            GLOBAL<span class="text-blue-500">CONVERT</span>
+        </div>
+        <div id="google_translate_element"></div>
     </nav>
 
-    <div class="max-w-4xl mx-auto w-full mt-4 h-24 ad-space flex items-center justify-center text-slate-600 text-xs">
-        ADSPACE_TOP_728x90
-    </div>
-
-    <main class="flex-grow flex flex-col items-center justify-center p-6 text-center">
-        <div class="max-w-3xl w-full">
-            <h1 class="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight">
-                Privacy-First <span class="text-blue-500">Conversion</span>
+    <main class="flex-grow flex flex-col items-center py-12 px-6">
+        
+        <section class="max-w-4xl w-full text-center mb-12">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+                Privacy-First <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Instant Conversion</span>
             </h1>
-            <p class="text-lg text-slate-400 mb-10">
-                Fast, secure, and 100% in your browser. No servers. No uploads. No tracking. 
-                <br><span class="text-xs opacity-50">Supports: Spanish, French, Russian, Arabic, Hebrew & more.</span>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                The world's fastest local converter. Your files never leave your device. Secure, transparent, and built for speed.
             </p>
+        </section>
 
-            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 md:p-12 shadow-2xl">
-                <div id="drop-zone" class="border-2 border-dashed border-slate-700 rounded-2xl py-16 px-4 hover:border-blue-500 hover:bg-blue-500/5 transition-all cursor-pointer group">
-                    <input type="file" id="file-input" class="hidden" accept="image/*">
-                    <div class="mb-4 inline-block p-4 bg-slate-800 rounded-full group-hover:bg-blue-500/20 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+        <div class="max-w-3xl w-full glass rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative">
+            
+            <div class="mb-8 h-20 bg-slate-900/50 rounded-xl border border-slate-800 flex items-center justify-center text-slate-700 text-[10px] tracking-widest uppercase">
+                AD_SPACE_728x90
+            </div>
+
+            <div id="drop-zone" class="border-2 border-dashed border-slate-800 rounded-3xl py-20 px-4 transition-all duration-300 cursor-pointer flex flex-col items-center group relative overflow-hidden">
+                <input type="file" id="file-input" class="hidden" accept="image/*">
+                
+                <div id="idle-view" class="flex flex-col items-center">
+                    <div class="mb-6 p-5 bg-blue-600/10 rounded-2xl group-hover:bg-blue-600/20 transition-colors floating">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10 a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                         </svg>
                     </div>
-                    <p class="text-xl font-bold text-white">Drop your file here</p>
-                    <p class="text-slate-500 mt-2 italic">or click to browse from device</p>
+                    <p class="text-2xl font-bold text-white mb-2">Select or Drop Files</p>
+                    <p class="text-slate-500 italic">Unlimited size • 100% Local</p>
                 </div>
 
-                <div id="settings" class="hidden mt-8 space-y-4">
-                    <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
-                        <select id="format-select" class="bg-slate-800 text-white px-4 py-3 rounded-xl border border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full md:w-auto">
-                            <option value="image/webp">Convert to WebP (Best for Web)</option>
-                            <option value="image/jpeg">Convert to JPEG (Standard)</option>
-                            <option value="image/png">Convert to PNG (Lossless)</option>
+                <div id="file-info" class="hidden flex flex-col items-center">
+                    <div class="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <p id="file-name" class="text-white font-semibold text-lg"></p>
+                    <p id="file-size" class="text-slate-500 text-sm"></p>
+                </div>
+            </div>
+
+            <div id="settings" class="hidden mt-10 space-y-6 animate-in fade-in duration-500">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-bold text-slate-400 ml-1">Target Format</label>
+                        <select id="format-select" class="bg-slate-800 text-white px-4 py-4 rounded-2xl border border-slate-700 outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                            <option value="image/webp">WebP (Optimized for Web)</option>
+                            <option value="image/jpeg">JPEG (Universal)</option>
+                            <option value="image/png">PNG (High Quality)</option>
+                            <option value="image/bmp">BMP (Windows Bitmap)</option>
                         </select>
-                        <button id="convert-btn" class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-3 rounded-xl font-black transition-all shadow-lg shadow-blue-500/20 w-full md:w-auto">
-                            CONVERT NOW
+                    </div>
+                    <div class="flex items-end">
+                        <button id="convert-btn" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-4 rounded-2xl font-black text-lg transition-all shadow-xl shadow-blue-900/40 active:scale-95 flex items-center justify-center gap-3">
+                            <span id="btn-text">CONVERT NOW</span>
+                            <div id="btn-loader" class="hidden loader w-5 h-5 border-2 border-white rounded-full"></div>
                         </button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="mt-12 h-60 w-full ad-space flex items-center justify-center text-slate-600 text-xs rounded-xl">
-                ADSPACE_MIDDLE_336x280
+        <section class="max-w-4xl w-full mt-24">
+            <h2 class="text-3xl font-bold text-center mb-12">Supported <span class="text-blue-500">Formats</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="glass p-6 rounded-3xl text-center">
+                    <div class="text-blue-400 font-black mb-2 italic">INPUT</div>
+                    <div class="text-white text-sm">PNG, JPG, WebP, SVG, BMP, AVIF</div>
+                </div>
+                <div class="glass p-6 rounded-3xl text-center border-blue-500/20">
+                    <div class="text-emerald-400 font-black mb-2 italic">OUTPUT</div>
+                    <div class="text-white text-sm">WebP, JPEG, PNG, BMP</div>
+                </div>
+                <div class="glass p-6 rounded-3xl text-center col-span-2">
+                    <div class="text-yellow-400 font-black mb-2 italic">SECURITY</div>
+                    <div class="text-white text-sm">Private Local Sandbox Processing</div>
+                </div>
             </div>
+        </section>
 
-            <div class="mt-12 flex flex-col items-center">
-                <p class="text-slate-500 mb-4 text-sm">Saved you time? Consider supporting the project</p>
-                <a href="https://www.paypal.me/YOUR_ID/5" class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-full transition-all">
-                    <span>☕ Buy me a Coffee</span>
-                </a>
-            </div>
+        <div class="mt-20 text-center">
+            <p class="text-slate-500 mb-6 font-semibold uppercase tracking-widest text-xs">Help keep us free & private</p>
+            <a href="https://www.paypal.me/YOUR_USER" target="_blank" class="bg-white text-black px-8 py-4 rounded-full font-black hover:bg-blue-400 transition-all flex items-center gap-2 mx-auto w-fit">
+                ☕ BUY ME A COFFEE
+            </a>
         </div>
     </main>
 
-    <footer class="p-8 text-center text-slate-600 text-sm border-t border-slate-900">
-        &copy; 2026 GlobalConvert. Open Source. No Server Storage.
+    <footer class="p-10 border-t border-slate-900 text-center text-slate-600 text-sm">
+        <div class="mb-4 flex justify-center gap-6">
+            <a href="#" class="hover:text-blue-500">Privacy Policy</a>
+            <a href="#" class="hover:text-blue-500">Terms of Service</a>
+            <a href="mailto:contact@globalconvert.io" class="hover:text-blue-500">Contact Support</a>
+        </div>
+        <p>&copy; 2026 GlobalConvert - Local File Processing Engine.</p>
     </footer>
 
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'es,fr,ru,ar,iw', // ספרדית, צרפתית, רוסית, ערבית, עברית
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
     <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'es,fr,ru,ar,iw'}, 'google_translate_element');
+        }
+
         const fileInput = document.getElementById('file-input');
         const dropZone = document.getElementById('drop-zone');
+        const idleView = document.getElementById('idle-view');
+        const fileInfo = document.getElementById('file-info');
+        const fileName = document.getElementById('file-name');
+        const fileSize = document.getElementById('file-size');
         const settings = document.getElementById('settings');
         const convertBtn = document.getElementById('convert-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnLoader = document.getElementById('btn-loader');
+        
         let selectedFile;
 
+        // UI Interactions
         dropZone.onclick = () => fileInput.click();
         
-        fileInput.onchange = (e) => {
-            selectedFile = e.target.files[0];
-            if (selectedFile) {
-                settings.classList.remove('hidden');
-                dropZone.classList.add('border-blue-500', 'bg-blue-500/5');
-            }
-        };
+        ['dragenter', 'dragover'].forEach(name => {
+            dropZone.addEventListener(name, (e) => {
+                e.preventDefault();
+                dropZone.classList.add('drag-over');
+            });
+        });
+
+        ['dragleave', 'drop'].forEach(name => {
+            dropZone.addEventListener(name, (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('drag-over');
+            });
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            handleFiles(e.dataTransfer.files[0]);
+        });
+
+        fileInput.onchange = (e) => handleFiles(e.target.files[0]);
+
+        function handleFiles(file) {
+            if (!file) return;
+            selectedFile = file;
+            fileName.innerText = file.name;
+            fileSize.innerText = (file.size / 1024).toFixed(2) + ' KB';
+            
+            idleView.classList.add('hidden');
+            fileInfo.classList.remove('hidden');
+            settings.classList.remove('hidden');
+            
+            // Animation feedback
+            dropZone.classList.add('border-emerald-500/50');
+        }
 
         convertBtn.onclick = () => {
+            btnText.innerText = "PROCESSING...";
+            btnLoader.classList.remove('hidden');
+            convertBtn.classList.add('opacity-80', 'pointer-events-none');
+
             const reader = new FileReader();
             reader.onload = (event) => {
                 const img = new Image();
@@ -116,11 +194,24 @@
                     canvas.height = img.height;
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0);
+                    
                     const format = document.getElementById('format-select').value;
-                    const link = document.createElement('a');
-                    link.download = `globalconvert-${Date.now()}.${format.split('/')[1]}`;
-                    link.href = canvas.toDataURL(format);
-                    link.click();
+                    const extension = format.split('/')[1];
+                    
+                    // Simulate processing for better UX feedback
+                    setTimeout(() => {
+                        const link = document.createElement('a');
+                        link.download = `GlobalConvert-${Date.now()}.${extension}`;
+                        link.href = canvas.toDataURL(format, 0.9); // Quality set to 0.9
+                        link.click();
+                        
+                        btnText.innerText = "DONE! DOWNLOADED";
+                        btnLoader.classList.add('hidden');
+                        setTimeout(() => {
+                            btnText.innerText = "CONVERT AGAIN";
+                            convertBtn.classList.remove('opacity-80', 'pointer-events-none');
+                        }, 2000);
+                    }, 800);
                 };
                 img.src = event.target.result;
             };
