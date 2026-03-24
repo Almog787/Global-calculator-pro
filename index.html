@@ -12,11 +12,7 @@
         .section-card { background: white; border: 1px solid #e2e8f0; border-radius: 2rem; transition: all 0.3s ease; }
         .section-card:hover { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05); border-color: #cbd5e1; }
         .drop-zone { border: 2px dashed #e2e8f0; border-radius: 1.5rem; transition: all 0.2s; cursor: pointer; }
-        .drop-zone:hover { border-color: #3b82f6; background: #f1f5f9; }
-        .active-tab { border-bottom: 3px solid #3b82f6; color: #3b82f6; }
-        #google_translate_element { display: none; }
-        .goog-te-banner-frame { display: none !important; }
-        body { top: 0px !important; }
+        .drop-zone:hover, .drop-zone.dragover { border-color: #3b82f6; background: #f1f5f9; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -26,9 +22,8 @@
             <div class="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-blue-100">G</div>
             <span class="text-xl font-extrabold tracking-tight">GLOBAL<span class="text-blue-600">CONVERT</span></span>
         </div>
-        <div class="flex items-center gap-4">
-            <div id="google_translate_element"></div>
-            <button onclick="document.getElementById('google_translate_element').style.display='block'" class="text-sm font-semibold bg-slate-100 px-4 py-2 rounded-full hover:bg-slate-200 transition">🌐 Language</button>
+        <div class="flex items-center gap-4 text-sm font-semibold text-emerald-600 bg-emerald-50 px-4 py-2 rounded-full">
+            🔒 100% Local Processing
         </div>
     </nav>
 
@@ -43,6 +38,7 @@
 
     <main class="max-w-5xl mx-auto px-6 pb-24 space-y-12">
 
+        <!-- Image Section -->
         <section id="image-section" class="section-card p-8 md:p-12">
             <div class="flex items-center gap-4 mb-8">
                 <div class="p-3 bg-blue-50 text-blue-600 rounded-2xl">
@@ -50,15 +46,15 @@
                 </div>
                 <div>
                     <h2 class="text-2xl font-extrabold">Image Studio</h2>
-                    <p class="text-slate-500 text-sm italic">Lossless conversion for PNG, JPG, WebP & BMP</p>
+                    <p class="text-slate-500 text-sm italic">Strips EXIF data for privacy. Converts PNG, JPG, WebP</p>
                 </div>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="drop-zone p-12 text-center" onclick="triggerInput('image-input')">
+                <div id="image-drop" class="drop-zone p-12 text-center">
                     <input type="file" id="image-input" class="hidden" accept="image/*" onchange="handleFile(this, 'image')">
-                    <div class="text-slate-400 mb-2">Drag image here or click</div>
-                    <div id="image-file-name" class="text-blue-600 font-bold truncate"></div>
+                    <div class="text-slate-400 mb-2 pointer-events-none">Drag image here or click</div>
+                    <div id="image-file-name" class="text-blue-600 font-bold truncate mt-2 pointer-events-none"></div>
                 </div>
                 <div class="space-y-4">
                     <label class="block text-xs font-black text-slate-400 uppercase tracking-widest">Target Format</label>
@@ -67,15 +63,12 @@
                         <option value="jpeg">Standard JPEG</option>
                         <option value="png">High-Quality PNG</option>
                     </select>
-                    <button onclick="startConvert('image')" class="w-full bg-blue-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-blue-100 hover:bg-blue-700 transition active:scale-95">Convert Image</button>
+                    <button id="image-btn" onclick="startConvert('image')" class="w-full bg-blue-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-blue-100 hover:bg-blue-700 transition active:scale-95">Convert Image</button>
                 </div>
             </div>
         </section>
 
-        <div class="h-24 bg-slate-50 rounded-3xl border border-slate-100 flex items-center justify-center text-slate-300 text-xs tracking-widest uppercase italic">
-            Ad Unit - Quality Placement
-        </div>
-
+        <!-- Document Section -->
         <section id="doc-section" class="section-card p-8 md:p-12">
             <div class="flex items-center gap-4 mb-8">
                 <div class="p-3 bg-purple-50 text-purple-600 rounded-2xl">
@@ -88,22 +81,23 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="drop-zone p-12 text-center" onclick="triggerInput('doc-input')">
+                <div id="doc-drop" class="drop-zone p-12 text-center">
                     <input type="file" id="doc-input" class="hidden" accept=".docx,.txt" onchange="handleFile(this, 'doc')">
-                    <div class="text-slate-400 mb-2">Drop DOCX or TXT file</div>
-                    <div id="doc-file-name" class="text-purple-600 font-bold truncate"></div>
+                    <div class="text-slate-400 mb-2 pointer-events-none">Drop DOCX or TXT file here</div>
+                    <div id="doc-file-name" class="text-purple-600 font-bold truncate mt-2 pointer-events-none"></div>
                 </div>
                 <div class="space-y-4">
                     <label class="block text-xs font-black text-slate-400 uppercase tracking-widest">Output Option</label>
                     <select id="doc-format" class="w-full bg-slate-50 border border-slate-200 p-4 rounded-2xl outline-none focus:ring-2 focus:ring-purple-500">
-                        <option value="txt">Clean Text (.txt)</option>
-                        <option value="html">Web Ready (.html)</option>
+                        <option value="html">Web Ready (.html) - Keeps Styling</option>
+                        <option value="txt">Clean Text (.txt) - Text Only</option>
                     </select>
-                    <button onclick="startConvert('doc')" class="w-full bg-purple-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-purple-100 hover:bg-purple-700 transition active:scale-95">Convert Document</button>
+                    <button id="doc-btn" onclick="startConvert('doc')" class="w-full bg-purple-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-purple-100 hover:bg-purple-700 transition active:scale-95">Convert Document</button>
                 </div>
             </div>
         </section>
 
+        <!-- Audio Section -->
         <section id="audio-section" class="section-card p-8 md:p-12">
             <div class="flex items-center gap-4 mb-8">
                 <div class="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
@@ -111,22 +105,22 @@
                 </div>
                 <div>
                     <h2 class="text-2xl font-extrabold">Audio Suite</h2>
-                    <p class="text-slate-500 text-sm italic">WAV & MP3 local metadata extraction</p>
+                    <p class="text-slate-500 text-sm italic">True Local Decoding to WAV (Uncompressed)</p>
                 </div>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="drop-zone p-12 text-center" onclick="triggerInput('audio-input')">
+                <div id="audio-drop" class="drop-zone p-12 text-center">
                     <input type="file" id="audio-input" class="hidden" accept="audio/*" onchange="handleFile(this, 'audio')">
-                    <div class="text-slate-400 mb-2">Upload audio track</div>
-                    <div id="audio-file-name" class="text-emerald-600 font-bold truncate"></div>
+                    <div class="text-slate-400 mb-2 pointer-events-none">Drop audio track here</div>
+                    <div id="audio-file-name" class="text-emerald-600 font-bold truncate mt-2 pointer-events-none"></div>
                 </div>
                 <div class="space-y-4">
                     <label class="block text-xs font-black text-slate-400 uppercase tracking-widest">Process To</label>
                     <select id="audio-format" class="w-full bg-slate-50 border border-slate-200 p-4 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500">
-                        <option value="wav">Standard WAV</option>
+                        <option value="wav">Standard WAV (16-bit PCM)</option>
                     </select>
-                    <button onclick="startConvert('audio')" class="w-full bg-emerald-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition active:scale-95">Convert Audio</button>
+                    <button id="audio-btn" onclick="startConvert('audio')" class="w-full bg-emerald-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition active:scale-95">Convert Audio</button>
                 </div>
             </div>
         </section>
@@ -138,13 +132,39 @@
         <p>&copy; 2026 Professional Conversion Suite. No cookies, no tracking.</p>
     </footer>
 
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script>
-        function googleTranslateElementInit() { new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element'); }
-
         let activeFiles = { image: null, doc: null, audio: null };
 
-        function triggerInput(id) { document.getElementById(id).click(); }
+        // Setup Drag & Drop for all zones
+        function setupDragAndDrop(zoneId, inputId, type) {
+            const dropZone = document.getElementById(zoneId);
+            const input = document.getElementById(inputId);
+
+            dropZone.addEventListener('click', () => input.click());
+
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('dragover');
+            });
+
+            dropZone.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('dragover');
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('dragover');
+                if (e.dataTransfer.files.length) {
+                    input.files = e.dataTransfer.files;
+                    handleFile(input, type);
+                }
+            });
+        }
+
+        setupDragAndDrop('image-drop', 'image-input', 'image');
+        setupDragAndDrop('doc-drop', 'doc-input', 'doc');
+        setupDragAndDrop('audio-drop', 'audio-input', 'audio');
 
         function handleFile(input, type) {
             const file = input.files[0];
@@ -154,45 +174,129 @@
             }
         }
 
+        function setButtonState(type, isProcessing) {
+            const btn = document.getElementById(`${type}-btn`);
+            btn.disabled = isProcessing;
+            btn.innerText = isProcessing ? 'Converting...' : `Convert ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+            btn.style.opacity = isProcessing ? '0.7' : '1';
+        }
+
         async function startConvert(type) {
             const file = activeFiles[type];
-            if (!file) { alert('Please select a file first'); return; }
+            if (!file) { alert('Please select a file first.'); return; }
+            
             const format = document.getElementById(`${type}-format`).value;
+            setButtonState(type, true);
 
-            if (type === 'image') {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        canvas.width = img.width; canvas.height = img.height;
-                        canvas.getContext('2d').drawImage(img, 0, 0);
-                        download(canvas.toDataURL(`image/${format}`), `Converted.${format}`);
+            try {
+                if (type === 'image') {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const img = new Image();
+                        img.onload = () => {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = img.width; canvas.height = img.height;
+                            canvas.getContext('2d').drawImage(img, 0, 0);
+                            download(canvas.toDataURL(`image/${format}`), `Converted.${format}`);
+                            setButtonState(type, false);
+                        };
+                        img.src = e.target.result;
                     };
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            } 
-            else if (type === 'doc') {
-                const reader = new FileReader();
-                reader.onload = async (e) => {
-                    if (file.name.endsWith('.docx')) {
-                        const res = await mammoth.extractRawText({arrayBuffer: e.target.result});
-                        const content = format === 'txt' ? res.value : `<html><body>${res.value}</body></html>`;
-                        download(URL.createObjectURL(new Blob([content])), `Converted.${format}`);
-                    } else {
-                        download(URL.createObjectURL(new Blob([new TextDecoder().decode(e.target.result)])), 'Converted.txt');
-                    }
-                };
-                reader.readAsArrayBuffer(file);
-            }
-            else if (type === 'audio') {
-                download(URL.createObjectURL(new Blob([await file.arrayBuffer()], {type: 'audio/wav'})), 'Processed.wav');
+                    reader.readAsDataURL(file);
+                } 
+                else if (type === 'doc') {
+                    const reader = new FileReader();
+                    reader.onload = async (e) => {
+                        let blob;
+                        if (file.name.endsWith('.docx')) {
+                            if (format === 'html') {
+                                const res = await mammoth.convertToHtml({arrayBuffer: e.target.result});
+                                const htmlContent = `<!DOCTYPE html>\n<html lang="en">\n<head><meta charset="UTF-8"><title>Converted Document</title></head>\n<body>\n${res.value}\n</body>\n</html>`;
+                                blob = new Blob([htmlContent], {type: 'text/html'});
+                            } else {
+                                const res = await mammoth.extractRawText({arrayBuffer: e.target.result});
+                                blob = new Blob([res.value], {type: 'text/plain'});
+                            }
+                        } else {
+                            blob = new Blob([new TextDecoder().decode(e.target.result)], {type: 'text/plain'});
+                        }
+                        download(URL.createObjectURL(blob), `Converted.${format}`);
+                        setButtonState(type, false);
+                    };
+                    reader.readAsArrayBuffer(file);
+                }
+                else if (type === 'audio') {
+                    const wavBlob = await convertAudioToWav(file);
+                    download(URL.createObjectURL(wavBlob), 'Converted.wav');
+                    setButtonState(type, false);
+                }
+            } catch (error) {
+                console.error(error);
+                alert("An error occurred during conversion.");
+                setButtonState(type, false);
             }
         }
 
+        // True Client-Side Audio to WAV converter using AudioContext
+        async function convertAudioToWav(file) {
+            const arrayBuffer = await file.arrayBuffer();
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+            const numOfChan = audioBuffer.numberOfChannels;
+            const length = audioBuffer.length * numOfChan * 2 + 44;
+            const buffer = new ArrayBuffer(length);
+            const view = new DataView(buffer);
+            const channels =[];
+            let pos = 0;
+
+            // Write WAV Header
+            setUint32(0x46464952);                         // "RIFF"
+            setUint32(length - 8);                         // file length - 8
+            setUint32(0x45564157);                         // "WAVE"
+            setUint32(0x20746d66);                         // "fmt " chunk
+            setUint32(16);                                 // length = 16
+            setUint16(1);                                  // PCM (uncompressed)
+            setUint16(numOfChan);
+            setUint32(audioBuffer.sampleRate);
+            setUint32(audioBuffer.sampleRate * 2 * numOfChan); // avg. bytes/sec
+            setUint16(numOfChan * 2);                      // block-align
+            setUint16(16);                                 // 16-bit
+            setUint32(0x61746164);                         // "data" - chunk
+            setUint32(length - pos - 4);                   // chunk length
+
+            // Write interleaved data
+            for (let i = 0; i < audioBuffer.numberOfChannels; i++) {
+                channels.push(audioBuffer.getChannelData(i));
+            }
+
+            let offset = 0;
+            while (pos < length) {
+                for (let i = 0; i < numOfChan; i++) {
+                    let sample = Math.max(-1, Math.min(1, channels[i][offset])); 
+                    sample = (0.5 + sample < 0 ? sample * 32768 : sample * 32767) | 0; 
+                    view.setInt16(pos, sample, true); 
+                    pos += 2;
+                }
+                offset++;
+            }
+
+            function setUint16(data) { view.setUint16(pos, data, true); pos += 2; }
+            function setUint32(data) { view.setUint32(pos, data, true); pos += 4; }
+
+            return new Blob([buffer], { type: "audio/wav" });
+        }
+
         function download(url, name) {
-            const a = document.createElement('a'); a.href = url; a.download = name; a.click();
+            const a = document.createElement('a'); 
+            a.href = url; 
+            a.download = name; 
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            // Free up memory to prevent browser crash with large files
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
         }
     </script>
 </body>
