@@ -3,163 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalConvert | Professional Local File Suite</title>
+    <title>GlobalConvert | Ultimate Local File Suite</title>
     
     <!-- SEO & Social Meta Tags -->
-    <meta name="description" content="Professional, 100% private file converter for Images, Documents, and Audio. No server uploads - your files stay safe on your device.">
-    <meta name="keywords" content="file converter, private converter, docx to txt, png to webp, wav converter, local processing">
-    <meta property="og:title" content="GlobalConvert | Secure Local File Suite">
-    <meta property="og:description" content="Convert files without losing privacy. 100% browser-based.">
-    <meta property="og:type" content="website">
-
+    <meta name="description" content="Ultimate 100% private file converter. Convert Images, Documents, Data (CSV/JSON), and Media locally on your device.">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Mammoth (DOCX to HTML) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- html2pdf (HTML/TXT to PDF) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- PapaParse (CSV <-> JSON) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #1e293b; scroll-behavior: smooth; }
-        .section-card { background: white; border: 1px solid #e2e8f0; border-radius: 2rem; transition: all 0.3s ease; }
-        .section-card:hover { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05); border-color: #cbd5e1; }
-        .drop-zone { border: 2px dashed #e2e8f0; border-radius: 1.5rem; transition: all 0.2s; cursor: pointer; }
-        .drop-zone:hover, .drop-zone.dragover { border-color: #3b82f6; background: #f1f5f9; }
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #0f172a; }
+        .section-card { background: white; border: 1px solid #e2e8f0; border-radius: 1.5rem; transition: all 0.3s ease; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .section-card:hover { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: #cbd5e1; transform: translateY(-2px); }
+        .drop-zone { border: 2px dashed #cbd5e1; border-radius: 1rem; transition: all 0.2s; cursor: pointer; background: #f8fafc; }
+        .drop-zone:hover, .drop-zone.dragover { border-color: #3b82f6; background: #eff6ff; }
+        
+        /* Toast Notification System */
+        #toast-container { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999; display: flex; flex-direction: column; gap: 0.5rem; }
+        .toast { padding: 1rem 1.5rem; border-radius: 0.75rem; color: white; font-weight: 600; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); animation: slideIn 0.3s ease-out forwards; max-width: 350px; }
+        .toast.success { background-color: #10b981; }
+        .toast.error { background-color: #ef4444; }
+        .toast.info { background-color: #3b82f6; }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeOut { to { opacity: 0; transform: translateY(10px); } }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen pb-20">
 
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <div class="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-blue-100">G</div>
-            <span class="text-xl font-extrabold tracking-tight">GLOBAL<span class="text-blue-600">CONVERT</span></span>
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-slate-200 px-6 py-4 flex flex-wrap justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg">G</div>
+            <span class="text-2xl font-extrabold tracking-tight">GLOBAL<span class="text-blue-600">CONVERT</span> <span class="text-xs text-slate-400 font-normal uppercase tracking-widest ml-1">Universal</span></span>
         </div>
-        <div class="flex items-center gap-4 text-sm font-semibold text-emerald-600 bg-emerald-50 px-4 py-2 rounded-full">
-            🔒 100% Local Processing
+        <div class="flex items-center gap-2 text-sm font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-4 py-2 rounded-full shadow-sm">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2v-2a5 5 0 00-5-5zm3 7V7a3 3 0 00-6 0v2h6z" clip-rule="evenodd"></path></svg>
+            Zero-Server Privacy
         </div>
     </nav>
 
-    <header class="max-w-4xl mx-auto text-center py-16 px-6">
-        <h1 class="text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
-            Smart. Private. <span class="text-blue-600 font-black">Universal.</span>
+    <header class="max-w-5xl mx-auto text-center py-16 px-6">
+        <h1 class="text-4xl md:text-6xl font-black text-slate-900 tracking-tight mb-6 leading-tight">
+            The Ultimate Local <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Conversion Matrix</span>
         </h1>
-        <p class="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Experience military-grade privacy. All conversions happen 100% on your device. Choose your workspace below to get started.
+        <p class="text-slate-500 text-lg max-w-2xl mx-auto font-medium">
+            Images, Documents, Data, and Media. Converted entirely within your browser's memory. Fast, secure, and limitless.
         </p>
     </header>
 
-    <main class="max-w-5xl mx-auto px-6 pb-24 space-y-12">
+    <main class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-        <!-- Image Section -->
-        <section id="image-section" class="section-card p-8 md:p-12">
-            <div class="flex items-center gap-4 mb-8">
-                <div class="p-3 bg-blue-50 text-blue-600 rounded-2xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor font-bold"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
+        <!-- 1. IMAGE STUDIO -->
+        <section class="section-card p-8 flex flex-col">
+            <div class="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
+                <div class="p-3 bg-blue-100 text-blue-600 rounded-xl">🖼️</div>
                 <div>
-                    <h2 class="text-2xl font-extrabold">Image Studio</h2>
-                    <p class="text-slate-500 text-sm italic">Strips EXIF data for privacy. Converts PNG, JPG, WebP</p>
+                    <h2 class="text-xl font-bold text-slate-800">Image Studio</h2>
+                    <p class="text-slate-500 text-xs">JPG, PNG, WEBP, BMP &harr; JPG, PNG, WEBP, ICO</p>
                 </div>
             </div>
-
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div id="image-drop" class="drop-zone p-12 text-center">
-                    <input type="file" id="image-input" class="hidden" accept="image/*" onchange="handleFile(this, 'image')">
-                    <div class="text-slate-400 mb-2 pointer-events-none">Drag image here or click</div>
-                    <div id="image-file-name" class="text-blue-600 font-bold truncate mt-2 pointer-events-none"></div>
-                </div>
-                <div class="space-y-4">
-                    <label class="block text-xs font-black text-slate-400 uppercase tracking-widest">Target Format</label>
-                    <select id="image-format" class="w-full bg-slate-50 border border-slate-200 p-4 rounded-2xl outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="webp">Optimize to WebP (Recommended)</option>
-                        <option value="jpeg">Standard JPEG</option>
-                        <option value="png">High-Quality PNG</option>
-                    </select>
-                    <button id="image-btn" onclick="startConvert('image')" class="w-full bg-blue-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-blue-100 hover:bg-blue-700 transition active:scale-95">Convert Image</button>
-                </div>
+            <div id="image-drop" class="drop-zone p-8 text-center flex-grow flex flex-col justify-center mb-6">
+                <input type="file" id="image-input" class="hidden" accept="image/*" onchange="handleFile(this, 'image')">
+                <div class="text-slate-400 font-semibold pointer-events-none">Drop image here or click</div>
+                <div id="image-file-name" class="text-blue-600 font-bold text-sm truncate mt-3 pointer-events-none"></div>
+            </div>
+            <div class="space-y-3">
+                <select id="image-format" class="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl font-medium outline-none focus:border-blue-500">
+                    <option value="webp">Convert to WebP (Optimized)</option>
+                    <option value="jpeg">Convert to JPEG</option>
+                    <option value="png">Convert to PNG (Lossless)</option>
+                    <option value="x-icon">Convert to ICO (Icon)</option>
+                </select>
+                <button id="image-btn" onclick="processConversion('image')" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition active:scale-95">Convert Image</button>
             </div>
         </section>
 
-        <!-- Document Section -->
-        <section id="doc-section" class="section-card p-8 md:p-12">
-            <div class="flex items-center gap-4 mb-8">
-                <div class="p-3 bg-purple-50 text-purple-600 rounded-2xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
+        <!-- 2. DOCUMENT ENGINE -->
+        <section class="section-card p-8 flex flex-col">
+            <div class="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
+                <div class="p-3 bg-purple-100 text-purple-600 rounded-xl">📄</div>
                 <div>
-                    <h2 class="text-2xl font-extrabold">Doc Engine</h2>
-                    <p class="text-slate-500 text-sm italic">Word (DOCX) & Text Processor</p>
+                    <h2 class="text-xl font-bold text-slate-800">Doc Engine</h2>
+                    <p class="text-slate-500 text-xs">DOCX, TXT &harr; PDF, HTML, TXT</p>
                 </div>
             </div>
-
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div id="doc-drop" class="drop-zone p-12 text-center">
-                    <input type="file" id="doc-input" class="hidden" accept=".docx,.txt" onchange="handleFile(this, 'doc')">
-                    <div class="text-slate-400 mb-2 pointer-events-none">Drop DOCX or TXT file here</div>
-                    <div id="doc-file-name" class="text-purple-600 font-bold truncate mt-2 pointer-events-none"></div>
-                </div>
-                <div class="space-y-4">
-                    <label class="block text-xs font-black text-slate-400 uppercase tracking-widest">Output Option</label>
-                    <select id="doc-format" class="w-full bg-slate-50 border border-slate-200 p-4 rounded-2xl outline-none focus:ring-2 focus:ring-purple-500">
-                        <option value="html">Web Ready (.html) - Keeps Styling</option>
-                        <option value="txt">Clean Text (.txt) - Text Only</option>
-                    </select>
-                    <button id="doc-btn" onclick="startConvert('doc')" class="w-full bg-purple-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-purple-100 hover:bg-purple-700 transition active:scale-95">Convert Document</button>
-                </div>
+            <div id="doc-drop" class="drop-zone p-8 text-center flex-grow flex flex-col justify-center mb-6">
+                <input type="file" id="doc-input" class="hidden" accept=".docx,.txt" onchange="handleFile(this, 'doc')">
+                <div class="text-slate-400 font-semibold pointer-events-none">Drop DOCX / TXT here</div>
+                <div id="doc-file-name" class="text-purple-600 font-bold text-sm truncate mt-3 pointer-events-none"></div>
+            </div>
+            <div class="space-y-3">
+                <select id="doc-format" class="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl font-medium outline-none focus:border-purple-500">
+                    <option value="pdf">Convert to PDF (Secure)</option>
+                    <option value="html">Convert to HTML (Web)</option>
+                    <option value="txt">Extract Clean Text (.txt)</option>
+                </select>
+                <button id="doc-btn" onclick="processConversion('doc')" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl hover:bg-purple-700 transition active:scale-95">Convert Document</button>
             </div>
         </section>
 
-        <!-- Audio Section -->
-        <section id="audio-section" class="section-card p-8 md:p-12">
-            <div class="flex items-center gap-4 mb-8">
-                <div class="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
+        <!-- 3. DATA MATRIX -->
+        <section class="section-card p-8 flex flex-col">
+            <div class="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
+                <div class="p-3 bg-amber-100 text-amber-600 rounded-xl">📊</div>
                 <div>
-                    <h2 class="text-2xl font-extrabold">Audio Suite</h2>
-                    <p class="text-slate-500 text-sm italic">True Local Decoding to WAV (Uncompressed)</p>
+                    <h2 class="text-xl font-bold text-slate-800">Data Matrix</h2>
+                    <p class="text-slate-500 text-xs">Smart Parsing: CSV &harr; JSON</p>
                 </div>
             </div>
+            <div id="data-drop" class="drop-zone p-8 text-center flex-grow flex flex-col justify-center mb-6">
+                <input type="file" id="data-input" class="hidden" accept=".csv,.json" onchange="handleFile(this, 'data')">
+                <div class="text-slate-400 font-semibold pointer-events-none">Drop CSV or JSON here</div>
+                <div id="data-file-name" class="text-amber-600 font-bold text-sm truncate mt-3 pointer-events-none"></div>
+            </div>
+            <div class="space-y-3">
+                <select id="data-format" class="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl font-medium outline-none focus:border-amber-500">
+                    <option value="json">CSV to JSON</option>
+                    <option value="csv">JSON to CSV</option>
+                </select>
+                <button id="data-btn" onclick="processConversion('data')" class="w-full bg-amber-500 text-white font-bold py-3 rounded-xl hover:bg-amber-600 transition active:scale-95">Convert Data</button>
+            </div>
+        </section>
 
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div id="audio-drop" class="drop-zone p-12 text-center">
-                    <input type="file" id="audio-input" class="hidden" accept="audio/*" onchange="handleFile(this, 'audio')">
-                    <div class="text-slate-400 mb-2 pointer-events-none">Drop audio track here</div>
-                    <div id="audio-file-name" class="text-emerald-600 font-bold truncate mt-2 pointer-events-none"></div>
+        <!-- 4. MEDIA SUITE -->
+        <section class="section-card p-8 flex flex-col">
+            <div class="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
+                <div class="p-3 bg-emerald-100 text-emerald-600 rounded-xl">🎵</div>
+                <div>
+                    <h2 class="text-xl font-bold text-slate-800">Media Suite</h2>
+                    <p class="text-slate-500 text-xs">Video/Audio &rarr; Pure WAV Audio (Extract/Convert)</p>
                 </div>
-                <div class="space-y-4">
-                    <label class="block text-xs font-black text-slate-400 uppercase tracking-widest">Process To</label>
-                    <select id="audio-format" class="w-full bg-slate-50 border border-slate-200 p-4 rounded-2xl outline-none focus:ring-2 focus:ring-emerald-500">
-                        <option value="wav">Standard WAV (16-bit PCM)</option>
-                    </select>
-                    <button id="audio-btn" onclick="startConvert('audio')" class="w-full bg-emerald-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition active:scale-95">Convert Audio</button>
-                </div>
+            </div>
+            <div id="media-drop" class="drop-zone p-8 text-center flex-grow flex flex-col justify-center mb-6">
+                <input type="file" id="media-input" class="hidden" accept="audio/*,video/*" onchange="handleFile(this, 'media')">
+                <div class="text-slate-400 font-semibold pointer-events-none">Drop Audio or Video file here</div>
+                <div id="media-file-name" class="text-emerald-600 font-bold text-sm truncate mt-3 pointer-events-none"></div>
+            </div>
+            <div class="space-y-3">
+                <select id="media-format" class="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl font-medium outline-none focus:border-emerald-500">
+                    <option value="wav">Extract & Decode to WAV (Lossless Audio)</option>
+                </select>
+                <button id="media-btn" onclick="processConversion('media')" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl hover:bg-emerald-700 transition active:scale-95">Process Media</button>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-white border-t border-slate-200 py-12 text-center text-slate-400 text-sm px-6">
-        <p class="mb-2">Powered by GlobalConvert Engine &bull; Private Client-Side Processing</p>
-        <p>&copy; 2026 Professional Conversion Suite. No cookies, no tracking.</p>
-    </footer>
+    <!-- Hidden div for PDF Generation -->
+    <div id="pdf-container" style="display:none;"></div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
 
     <script>
-        let activeFiles = { image: null, doc: null, audio: null };
+        // --- State Management ---
+        const activeFiles = { image: null, doc: null, data: null, media: null };
 
-        // Setup Drag & Drop for all zones
-        function setupDragAndDrop(zoneId, inputId, type) {
-            const dropZone = document.getElementById(zoneId);
-            const input = document.getElementById(inputId);
+        // --- Toast System ---
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerText = message;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'fadeOut 0.5s ease forwards';
+                setTimeout(() => toast.remove(), 500);
+            }, 4000);
+        }
+
+        // --- Drag & Drop Setup ---
+        function setupDragAndDrop(type) {
+            const dropZone = document.getElementById(`${type}-drop`);
+            const input = document.getElementById(`${type}-input`);
 
             dropZone.addEventListener('click', () => input.click());
-
-            dropZone.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                dropZone.classList.add('dragover');
-            });
-
-            dropZone.addEventListener('dragleave', (e) => {
-                e.preventDefault();
-                dropZone.classList.remove('dragover');
-            });
-
+            dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+            dropZone.addEventListener('dragleave', (e) => { e.preventDefault(); dropZone.classList.remove('dragover'); });
             dropZone.addEventListener('drop', (e) => {
                 e.preventDefault();
                 dropZone.classList.remove('dragover');
@@ -170,87 +197,214 @@
             });
         }
 
-        setupDragAndDrop('image-drop', 'image-input', 'image');
-        setupDragAndDrop('doc-drop', 'doc-input', 'doc');
-        setupDragAndDrop('audio-drop', 'audio-input', 'audio');
+        ['image', 'doc', 'data', 'media'].forEach(setupDragAndDrop);
 
         function handleFile(input, type) {
             const file = input.files[0];
             if (file) {
                 activeFiles[type] = file;
-                document.getElementById(`${type}-file-name`).innerText = `Selected: ${file.name}`;
+                document.getElementById(`${type}-file-name`).innerText = file.name;
+                showToast(`Loaded: ${file.name}`, 'info');
             }
         }
 
-        function setButtonState(type, isProcessing) {
+        function setBtnState(type, isProcessing) {
             const btn = document.getElementById(`${type}-btn`);
             btn.disabled = isProcessing;
-            btn.innerText = isProcessing ? 'Converting...' : `Convert ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+            btn.innerText = isProcessing ? 'Processing...' : `Convert`;
             btn.style.opacity = isProcessing ? '0.7' : '1';
         }
 
-        async function startConvert(type) {
+        function downloadBlob(blob, filename) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(url), 2000);
+        }
+
+        // --- Main Router ---
+        async function processConversion(type) {
             const file = activeFiles[type];
-            if (!file) { alert('Please select a file first.'); return; }
+            if (!file) { 
+                showToast(`Please select a file for the ${type.toUpperCase()} module first.`, 'error'); 
+                return; 
+            }
             
             const format = document.getElementById(`${type}-format`).value;
-            setButtonState(type, true);
+            setBtnState(type, true);
 
             try {
-                if (type === 'image') {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        const img = new Image();
-                        img.onload = () => {
-                            const canvas = document.createElement('canvas');
-                            canvas.width = img.width; canvas.height = img.height;
-                            canvas.getContext('2d').drawImage(img, 0, 0);
-                            download(canvas.toDataURL(`image/${format}`), `Converted.${format}`);
-                            setButtonState(type, false);
-                        };
-                        img.src = e.target.result;
-                    };
-                    reader.readAsDataURL(file);
-                } 
-                else if (type === 'doc') {
-                    const reader = new FileReader();
-                    reader.onload = async (e) => {
-                        let blob;
-                        if (file.name.endsWith('.docx')) {
-                            if (format === 'html') {
-                                const res = await mammoth.convertToHtml({arrayBuffer: e.target.result});
-                                const htmlContent = `<!DOCTYPE html>\n<html lang="en">\n<head><meta charset="UTF-8"><title>Converted Document</title></head>\n<body>\n${res.value}\n</body>\n</html>`;
-                                blob = new Blob([htmlContent], {type: 'text/html'});
-                            } else {
-                                const res = await mammoth.extractRawText({arrayBuffer: e.target.result});
-                                blob = new Blob([res.value], {type: 'text/plain'});
-                            }
-                        } else {
-                            blob = new Blob([new TextDecoder().decode(e.target.result)], {type: 'text/plain'});
-                        }
-                        download(URL.createObjectURL(blob), `Converted.${format}`);
-                        setButtonState(type, false);
-                    };
-                    reader.readAsArrayBuffer(file);
-                }
-                else if (type === 'audio') {
-                    const wavBlob = await convertAudioToWav(file);
-                    download(URL.createObjectURL(wavBlob), 'Converted.wav');
-                    setButtonState(type, false);
-                }
+                if (type === 'image') await convertImage(file, format);
+                else if (type === 'doc') await convertDoc(file, format);
+                else if (type === 'data') await convertData(file, format);
+                else if (type === 'media') await convertMedia(file, format);
+                
+                showToast(`Conversion to ${format.toUpperCase()} successful!`, 'success');
             } catch (error) {
                 console.error(error);
-                alert("An error occurred during conversion.");
-                setButtonState(type, false);
+                showToast(`Error: ${error.message || 'Conversion failed'}`, 'error');
+            } finally {
+                setBtnState(type, false);
             }
         }
 
-        // True Client-Side Audio to WAV converter using AudioContext
-        async function convertAudioToWav(file) {
+        // --- 1. Image Logic ---
+        function convertImage(file, format) {
+            return new Promise((resolve, reject) => {
+                if (!file.type.startsWith('image/')) return reject(new Error('Invalid image file.'));
+                
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+                        
+                        // ICO specific rules (Scale to max 256x256)
+                        if (format === 'x-icon') {
+                            const size = Math.min(width, height, 256);
+                            width = size; height = size;
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        
+                        // Prevent transparent background becoming black in JPEG
+                        if (format === 'jpeg') {
+                            ctx.fillStyle = "#FFFFFF";
+                            ctx.fillRect(0, 0, width, height);
+                        }
+                        
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        canvas.toBlob((blob) => {
+                            if (!blob) reject(new Error('Canvas conversion failed.'));
+                            let ext = format === 'jpeg' ? 'jpg' : format === 'x-icon' ? 'ico' : format;
+                            downloadBlob(blob, `${file.name.split('.')[0]}_converted.${ext}`);
+                            resolve();
+                        }, `image/${format}`, 0.9);
+                    };
+                    img.onerror = () => reject(new Error('Failed to decode image.'));
+                    img.src = e.target.result;
+                };
+                reader.onerror = () => reject(new Error('Failed to read file.'));
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // --- 2. Document Logic ---
+        async function convertDoc(file, format) {
+            const isDocx = file.name.toLowerCase().endsWith('.docx');
+            const isTxt = file.name.toLowerCase().endsWith('.txt');
+            
+            if (!isDocx && !isTxt) throw new Error('Only DOCX or TXT files supported here.');
+
+            let htmlContent = "";
+            let textContent = "";
+
+            // Parse Input
+            if (isDocx) {
+                const arrayBuffer = await file.arrayBuffer();
+                const resultHtml = await mammoth.convertToHtml({arrayBuffer: arrayBuffer});
+                htmlContent = resultHtml.value;
+                const resultText = await mammoth.extractRawText({arrayBuffer: arrayBuffer});
+                textContent = resultText.value;
+            } else if (isTxt) {
+                textContent = await file.text();
+                // Basic TXT to HTML mapping
+                htmlContent = textContent.split('\n').map(line => `<p>${line}</p>`).join('');
+            }
+
+            const baseName = file.name.split('.')[0];
+
+            // Generate Output
+            if (format === 'html') {
+                const fullHtml = `<!DOCTYPE html>\n<html><head><meta charset="utf-8"><title>${baseName}</title></head><body style="font-family:sans-serif; padding:2rem;">\n${htmlContent}\n</body></html>`;
+                downloadBlob(new Blob([fullHtml], {type: 'text/html'}), `${baseName}.html`);
+            } 
+            else if (format === 'txt') {
+                downloadBlob(new Blob([textContent], {type: 'text/plain'}), `${baseName}.txt`);
+            } 
+            else if (format === 'pdf') {
+                showToast('Generating PDF... this may take a moment.', 'info');
+                const container = document.getElementById('pdf-container');
+                container.innerHTML = `<div style="padding: 20px; font-family: sans-serif; color: black;">${htmlContent}</div>`;
+                
+                const opt = {
+                    margin: 10,
+                    filename: `${baseName}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+                
+                await html2pdf().set(opt).from(container).save();
+                container.innerHTML = ''; // Clean up
+            }
+        }
+
+        // --- 3. Data Logic (CSV <-> JSON) ---
+        function convertData(file, format) {
+            return new Promise((resolve, reject) => {
+                const ext = file.name.split('.').pop().toLowerCase();
+                const baseName = file.name.split('.')[0];
+
+                Papa.parse(file, {
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: function(results) {
+                        try {
+                            if (format === 'json') {
+                                if (ext === 'json') return reject(new Error('File is already JSON.'));
+                                const jsonStr = JSON.stringify(results.data, null, 2);
+                                downloadBlob(new Blob([jsonStr], {type: 'application/json'}), `${baseName}.json`);
+                                resolve();
+                            } 
+                            else if (format === 'csv') {
+                                if (ext === 'csv') return reject(new Error('File is already CSV.'));
+                                // If input is JSON, PapaParse treats file as text, so we need to read it as JSON first
+                                const reader = new FileReader();
+                                reader.onload = (e) => {
+                                    try {
+                                        const jsonData = JSON.parse(e.target.result);
+                                        const csvStr = Papa.unparse(jsonData);
+                                        downloadBlob(new Blob([csvStr], {type: 'text/csv'}), `${baseName}.csv`);
+                                        resolve();
+                                    } catch (err) { reject(new Error('Invalid JSON format. Must be an array of objects.')); }
+                                };
+                                reader.readAsText(file);
+                            }
+                        } catch (err) { reject(err); }
+                    },
+                    error: function(err) { reject(new Error('Error parsing data file.')); }
+                });
+            });
+        }
+
+        // --- 4. Media Logic (Extract Audio to WAV) ---
+        async function convertMedia(file, format) {
+            if (format !== 'wav') throw new Error('Currently only WAV extraction is supported fully locally.');
+            if (!window.AudioContext) throw new Error('Your browser does not support AudioContext.');
+
+            showToast('Decoding media... this requires CPU power.', 'info');
+            
             const arrayBuffer = await file.arrayBuffer();
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+            let audioBuffer;
+            try {
+                // This magic function extracts audio tracks from BOTH Audio and Video files natively!
+                audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+            } catch (err) {
+                throw new Error('Unsupported media format or corrupted file.');
+            }
 
+            // Encode to WAV
             const numOfChan = audioBuffer.numberOfChannels;
             const length = audioBuffer.length * numOfChan * 2 + 44;
             const buffer = new ArrayBuffer(length);
@@ -258,22 +412,20 @@
             const channels =[];
             let pos = 0;
 
-            // Write WAV Header
             setUint32(0x46464952);                         // "RIFF"
             setUint32(length - 8);                         // file length - 8
             setUint32(0x45564157);                         // "WAVE"
             setUint32(0x20746d66);                         // "fmt " chunk
             setUint32(16);                                 // length = 16
-            setUint16(1);                                  // PCM (uncompressed)
+            setUint16(1);                                  // PCM
             setUint16(numOfChan);
             setUint32(audioBuffer.sampleRate);
-            setUint32(audioBuffer.sampleRate * 2 * numOfChan); // avg. bytes/sec
+            setUint32(audioBuffer.sampleRate * 2 * numOfChan);
             setUint16(numOfChan * 2);                      // block-align
             setUint16(16);                                 // 16-bit
-            setUint32(0x61746164);                         // "data" - chunk
+            setUint32(0x61746164);                         // "data" chunk
             setUint32(length - pos - 4);                   // chunk length
 
-            // Write interleaved data
             for (let i = 0; i < audioBuffer.numberOfChannels; i++) {
                 channels.push(audioBuffer.getChannelData(i));
             }
@@ -292,19 +444,8 @@
             function setUint16(data) { view.setUint16(pos, data, true); pos += 2; }
             function setUint32(data) { view.setUint32(pos, data, true); pos += 4; }
 
-            return new Blob([buffer], { type: "audio/wav" });
-        }
-
-        function download(url, name) {
-            const a = document.createElement('a'); 
-            a.href = url; 
-            a.download = name; 
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            
-            // Free up memory to prevent browser crash with large files
-            setTimeout(() => URL.revokeObjectURL(url), 1000);
+            const baseName = file.name.split('.')[0];
+            downloadBlob(new Blob([buffer], { type: "audio/wav" }), `${baseName}_audio.wav`);
         }
     </script>
 </body>
