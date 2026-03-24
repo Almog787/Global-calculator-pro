@@ -20,9 +20,6 @@
         .section-card:hover { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05); border-color: #cbd5e1; }
         .drop-zone { border: 2px dashed #e2e8f0; border-radius: 1.5rem; transition: all 0.2s; cursor: pointer; }
         .drop-zone:hover, .drop-zone.dragover { border-color: #3b82f6; background: #f1f5f9; }
-        #google_translate_element { display: none; }
-        .goog-te-banner-frame { display: none !important; }
-        body { top: 0px !important; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -36,8 +33,6 @@
             <div class="hidden md:block text-sm font-semibold text-emerald-600 bg-emerald-50 px-4 py-2 rounded-full">
                 🔒 100% Local Processing
             </div>
-            <div id="google_translate_element"></div>
-            <button onclick="document.getElementById('google_translate_element').style.display='block'" class="text-sm font-semibold bg-slate-100 text-slate-700 px-4 py-2 rounded-full hover:bg-slate-200 transition">🌐 Translate</button>
         </div>
     </nav>
 
@@ -52,10 +47,11 @@
 
     <main class="max-w-5xl mx-auto px-6 pb-24 space-y-12">
 
+        <!-- Image Studio -->
         <section id="image-section" class="section-card p-8 md:p-12">
             <div class="flex items-center gap-4 mb-8">
                 <div class="p-3 bg-blue-50 text-blue-600 rounded-2xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor font-bold"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                 </div>
                 <div>
                     <h2 class="text-2xl font-extrabold">Image Studio</h2>
@@ -81,10 +77,11 @@
             </div>
         </section>
 
+        <!-- Doc Engine -->
         <section id="doc-section" class="section-card p-8 md:p-12">
             <div class="flex items-center gap-4 mb-8">
                 <div class="p-3 bg-purple-50 text-purple-600 rounded-2xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                 </div>
                 <div>
                     <h2 class="text-2xl font-extrabold">Doc Engine</h2>
@@ -109,10 +106,11 @@
             </div>
         </section>
 
+        <!-- Audio Suite -->
         <section id="audio-section" class="section-card p-8 md:p-12">
             <div class="flex items-center gap-4 mb-8">
                 <div class="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
                 </div>
                 <div>
                     <h2 class="text-2xl font-extrabold">Audio Suite</h2>
@@ -148,12 +146,7 @@
         <p class="mt-4">&copy; 2026 Professional Conversion Suite. No cookies, no server tracking.</p>
     </footer>
 
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script>
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-        }
-
         let activeFiles = { image: null, doc: null, audio: null };
 
         // Setup Drag & Drop for all zones
@@ -216,15 +209,27 @@
                         const img = new Image();
                         img.onload = () => {
                             const canvas = document.createElement('canvas');
-                            canvas.width = img.width; canvas.height = img.height;
-                            canvas.getContext('2d').drawImage(img, 0, 0);
+                            canvas.width = img.width; 
+                            canvas.height = img.height;
+                            const ctx = canvas.getContext('2d');
                             
-                            // שיפור: הגדרת איכות גבוהה 0.92 עבור JPEG ו-WebP
-                            const mimeType = format === 'jpg' ? 'image/jpeg' : `image/${format}`;
-                            download(canvas.toDataURL(mimeType, 0.92), `Converted.${format}`);
+                            // תיקון רקע לבן עבור המרה ל-JPEG במקרה של תמונה שקופה
+                            if (format === 'jpeg') {
+                                ctx.fillStyle = '#FFFFFF';
+                                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                            }
                             
-                            setButtonState(type, false);
-                            resetInput(type);
+                            ctx.drawImage(img, 0, 0);
+                            
+                            const mimeType = format === 'jpeg' ? 'image/jpeg' : `image/${format}`;
+                            const extension = format === 'jpeg' ? 'jpg' : format;
+                            
+                            // שימוש ב-toBlob לביצועים וניהול זיכרון נכון בתמונות גדולות
+                            canvas.toBlob((blob) => {
+                                download(URL.createObjectURL(blob), `Converted.${extension}`);
+                                setButtonState(type, false);
+                                resetInput(type);
+                            }, mimeType, 0.92);
                         };
                         img.src = e.target.result;
                     };
@@ -262,6 +267,7 @@
                 console.error(error);
                 alert("An error occurred during conversion. Please try another file.");
                 setButtonState(type, false);
+                resetInput(type);
             }
         }
 
@@ -275,7 +281,7 @@
             const length = audioBuffer.length * numOfChan * 2 + 44;
             const buffer = new ArrayBuffer(length);
             const view = new DataView(buffer);
-            const channels = [];
+            const channels =[];
             let pos = 0;
 
             setUint32(0x46464952); // "RIFF"
@@ -297,7 +303,7 @@
             }
 
             let offset = 0;
-            // תוקן: הלולאה רצה על בסיס אורך ערוץ האודיו ולא ה-Buffer הכללי למניעת קריסה
+            // מניעת קריסות (Out of bounds) בלולאת האודיו
             while (offset < audioBuffer.length) {
                 for (let i = 0; i < numOfChan; i++) {
                     let sample = Math.max(-1, Math.min(1, channels[i][offset])); 
@@ -321,7 +327,7 @@
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            setTimeout(() => URL.revokeObjectURL(url), 1000);
+            setTimeout(() => URL.revokeObjectURL(url), 1000); // שחרור הזיכרון לאחר ההורדה
         }
 
         function resetInput(type) {
