@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalConvert | Professional Local File Suite</title>
+    <title>GlobalConvert | Local File Converter</title>
     
-    <meta name="description" content="100% Private local file converter. Convert images, docs, and audio directly in your browser without uploading to any server.">
-    <meta name="keywords" content="private converter, local file conversion, webp converter, docx to html, audio to wav">
-    <meta property="og:title" content="GlobalConvert | Secure Local File Suite">
-    <meta property="og:description" content="Military-grade privacy. No uploads, 100% browser-side processing.">
+    <meta name="description" content="A simple and private file converter. Convert images, documents, and audio files directly in your browser. No server uploads.">
+    <meta name="keywords" content="file converter, convert online, private converter, webp converter, docx to html, audio to wav">
+    <meta property="og:title" content="GlobalConvert | Simple & Secure File Conversion">
+    <meta property="og:description" content="Convert your files locally. No uploads needed, ensuring your data stays on your device.">
     <meta property="og:type" content="website">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -58,20 +58,20 @@
             Smart. Private. <span class="text-blue-600 font-black">Universal.</span>
         </h1>
         <p class="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Your files never leave your device. Military-grade privacy meets high-speed local processing.
+            Your files never leave your computer. All conversions happen directly in your browser for maximum privacy and speed.
         </p>
     </header>
 
     <main class="max-w-5xl mx-auto px-6 pb-24 space-y-12">
         <!-- Image Section -->
-        <section id="image-section" class="section-card p-8 md:p-12">
+        <section class="section-card p-8 md:p-12">
             <div class="flex items-center gap-4 mb-8">
                 <div class="p-3 bg-blue-50 text-blue-600 rounded-2xl">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                 </div>
                 <div>
-                    <h2 class="text-2xl font-extrabold">Image Studio</h2>
-                    <p class="text-slate-500 text-sm italic">Privacy-focused. Strips EXIF data automatically.</p>
+                    <h2 class="text-2xl font-extrabold">Image Converter</h2>
+                    <p class="text-slate-500 text-sm italic">Converts common image formats. Strips metadata for privacy.</p>
                 </div>
             </div>
 
@@ -94,14 +94,14 @@
         </section>
 
         <!-- Document Section -->
-        <section id="doc-section" class="section-card p-8 md:p-12">
+        <section class="section-card p-8 md:p-12">
             <div class="flex items-center gap-4 mb-8">
                 <div class="p-3 bg-purple-50 text-purple-600 rounded-2xl">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                 </div>
                 <div>
-                    <h2 class="text-2xl font-extrabold">Doc Engine</h2>
-                    <p class="text-slate-500 text-sm italic">Transform DOCX files into clean assets.</p>
+                    <h2 class="text-2xl font-extrabold">Document Converter</h2>
+                    <p class="text-slate-500 text-sm italic">Process DOCX and TXT files for web or text use.</p>
                 </div>
             </div>
 
@@ -123,14 +123,14 @@
         </section>
 
         <!-- Audio Section -->
-        <section id="audio-section" class="section-card p-8 md:p-12">
+        <section class="section-card p-8 md:p-12">
             <div class="flex items-center gap-4 mb-8">
                 <div class="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
                 </div>
                 <div>
-                    <h2 class="text-2xl font-extrabold">Audio Suite</h2>
-                    <p class="text-slate-500 text-sm italic">High-fidelity WAV decoding.</p>
+                    <h2 class="text-2xl font-extrabold">Audio Converter</h2>
+                    <p class="text-slate-500 text-sm italic">Converts audio files to the standard WAV format.</p>
                 </div>
             </div>
 
@@ -201,7 +201,7 @@
         // --- Modal Logic ---
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('modal-active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal(modalId) {
@@ -209,7 +209,6 @@
             document.body.style.overflow = '';
         }
 
-        // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target.classList.contains('fixed')) {
                 event.target.classList.remove('modal-active');
@@ -295,18 +294,17 @@
                     const reader = new FileReader();
                     reader.onload = async (e) => {
                         let blob;
+                        const buffer = e.target.result;
                         if (file.name.endsWith('.docx')) {
-                            const buffer = e.target.result;
                             if (format === 'html') {
                                 const res = await mammoth.convertToHtml({arrayBuffer: buffer});
                                 blob = new Blob([`<!DOCTYPE html><html><body style='font-family:sans-serif;padding:40px'>${res.value}</body></html>`], {type: 'text/html'});
                             } else {
-                                // כאן נחתך הקוד - הנה ההשלמה:
                                 const res = await mammoth.extractRawText({arrayBuffer: buffer});
                                 blob = new Blob([res.value], {type: 'text/plain'});
                             }
                         } else {
-                            blob = new Blob([new TextDecoder().decode(e.target.result)], {type: 'text/plain'});
+                            blob = new Blob([new TextDecoder().decode(buffer)], {type: 'text/plain'});
                         }
                         download(URL.createObjectURL(blob), `Converted.${format}`);
                         finalize(type);
@@ -325,7 +323,7 @@
             }
         }
 
-        // --- Highly Optimized Audio to WAV Converter ---
+        // --- Optimized Audio to WAV Converter ---
         async function convertAudioToWav(file) {
             const ctx = new (window.AudioContext || window.webkitAudioContext)();
             const audioBuf = await ctx.decodeAudioData(await file.arrayBuffer());
@@ -335,11 +333,10 @@
             const u16 = (d) => { view.setUint16(p, d, true); p += 2; };
             const u32 = (d) => { view.setUint32(p, d, true); p += 4; };
 
-            // Write WAV Header
             u32(0x46464952); u32(len - 8); u32(0x45564157); u32(0x20746d66); u32(16); u16(1); u16(nCh);
             u32(audioBuf.sampleRate); u32(audioBuf.sampleRate * 2 * nCh); u16(nCh * 2); u16(16); u32(0x61746164); u32(len - p - 4);
 
-            const channels =[];
+            const channels = [];
             for (let c = 0; c < nCh; c++) {
                 channels.push(audioBuf.getChannelData(c));
             }
@@ -350,4 +347,21 @@
                     view.setInt16(p, s < 0 ? s * 32768 : s * 32767, true); p += 2;
                 }
             }
-            return new Blob([buf]
+            return new Blob([buf], { type: "audio/wav" });
+        }
+
+        // --- Utility Functions ---
+        function download(url, name) {
+            const a = document.createElement('a'); a.href = url; a.download = name; a.click();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+
+        function finalize(type) {
+            setButtonState(type, false);
+            activeFiles[type] = null;
+            document.getElementById(`${type}-input`).value = "";
+            document.getElementById(`${type}-file-name`).innerText = "";
+        }
+    </script>
+</body>
+</html>
