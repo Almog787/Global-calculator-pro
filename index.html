@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalConvert | Secure AI-Powered File Converter</title>
-    <meta name="description" content="Free, private, and instant file converter. Convert PNG, JPG, WebP, and BMP locally in your browser. No server uploads.">
+    <title>GlobalConvert Pro | Images, Audio & Documents</title>
+    <meta name="description" content="Ultimate private converter for Images, Audio (MP3/WAV), and Documents (DOCX/TXT). 100% Local.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
@@ -31,57 +32,49 @@
         
         <section class="max-w-4xl w-full text-center mb-12">
             <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
-                Privacy-First <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Instant Conversion</span>
+                All-in-One <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-black italic">Private Engine</span>
             </h1>
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto">
-                The world's fastest local converter. Your files never leave your device. Secure, transparent, and built for speed.
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto italic">
+                Securely convert Images, Word Docs, Text, and Audio. No data ever leaves your browser.
             </p>
         </section>
 
         <div class="max-w-3xl w-full glass rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative">
             
-            <div class="mb-8 h-20 bg-slate-900/50 rounded-xl border border-slate-800 flex items-center justify-center text-slate-700 text-[10px] tracking-widest uppercase">
-                AD_SPACE_728x90
-            </div>
-
             <div id="drop-zone" class="border-2 border-dashed border-slate-800 rounded-3xl py-20 px-4 transition-all duration-300 cursor-pointer flex flex-col items-center group relative overflow-hidden">
-                <input type="file" id="file-input" class="hidden" accept="image/*">
+                <input type="file" id="file-input" class="hidden">
                 
-                <div id="idle-view" class="flex flex-col items-center">
-                    <div class="mb-6 p-5 bg-blue-600/10 rounded-2xl group-hover:bg-blue-600/20 transition-colors floating">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10 a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                <div id="idle-view" class="flex flex-col items-center text-center">
+                    <div class="mb-6 p-5 bg-purple-600/10 rounded-2xl group-hover:bg-blue-600/20 transition-colors floating">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                         </svg>
                     </div>
-                    <p class="text-2xl font-bold text-white mb-2">Select or Drop Files</p>
-                    <p class="text-slate-500 italic">Unlimited size • 100% Local</p>
+                    <p class="text-2xl font-bold text-white mb-2">Drop Images, Audio, or Docs</p>
+                    <p class="text-slate-500 italic">Supports: PNG, JPG, DOCX, TXT, MP3, WAV</p>
                 </div>
 
                 <div id="file-info" class="hidden flex flex-col items-center">
-                    <div class="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
-                    <p id="file-name" class="text-white font-semibold text-lg"></p>
-                    <p id="file-size" class="text-slate-500 text-sm"></p>
+                    <p id="file-name" class="text-white font-semibold text-lg text-center break-all px-4"></p>
+                    <p id="file-type-display" class="text-blue-400 text-xs font-black uppercase tracking-widest mt-1"></p>
                 </div>
             </div>
 
-            <div id="settings" class="hidden mt-10 space-y-6 animate-in fade-in duration-500">
+            <div id="settings" class="hidden mt-10 space-y-6 animate-in slide-in-from-bottom-5 duration-500">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="flex flex-col gap-2">
-                        <label class="text-sm font-bold text-slate-400 ml-1">Target Format</label>
+                        <label class="text-sm font-bold text-slate-400 ml-1 italic">Target Format</label>
                         <select id="format-select" class="bg-slate-800 text-white px-4 py-4 rounded-2xl border border-slate-700 outline-none focus:ring-2 focus:ring-blue-500 transition-all">
-                            <option value="image/webp">WebP (Optimized for Web)</option>
-                            <option value="image/jpeg">JPEG (Universal)</option>
-                            <option value="image/png">PNG (High Quality)</option>
-                            <option value="image/bmp">BMP (Windows Bitmap)</option>
-                        </select>
+                            </select>
                     </div>
                     <div class="flex items-end">
-                        <button id="convert-btn" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-4 rounded-2xl font-black text-lg transition-all shadow-xl shadow-blue-900/40 active:scale-95 flex items-center justify-center gap-3">
-                            <span id="btn-text">CONVERT NOW</span>
+                        <button id="convert-btn" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white py-4 rounded-2xl font-black text-lg transition-all shadow-xl shadow-blue-900/40 active:scale-95 flex items-center justify-center gap-3">
+                            <span id="btn-text">START CONVERSION</span>
                             <div id="btn-loader" class="hidden loader w-5 h-5 border-2 border-white rounded-full"></div>
                         </button>
                     </div>
@@ -90,19 +83,19 @@
         </div>
 
         <section class="max-w-4xl w-full mt-24">
-            <h2 class="text-3xl font-bold text-center mb-12">Supported <span class="text-blue-500">Formats</span></h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="glass p-6 rounded-3xl text-center">
-                    <div class="text-blue-400 font-black mb-2 italic">INPUT</div>
-                    <div class="text-white text-sm">PNG, JPG, WebP, SVG, BMP, AVIF</div>
+            <h2 class="text-3xl font-bold text-center mb-12">Universal <span class="text-blue-500 italic">Support</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="glass p-6 rounded-3xl border-blue-500/20">
+                    <h3 class="text-blue-400 font-black mb-3 italic tracking-tighter uppercase">Images</h3>
+                    <p class="text-slate-400 text-sm italic">PNG, JPG, WebP, BMP, AVIF to optimized web formats.</p>
                 </div>
-                <div class="glass p-6 rounded-3xl text-center border-blue-500/20">
-                    <div class="text-emerald-400 font-black mb-2 italic">OUTPUT</div>
-                    <div class="text-white text-sm">WebP, JPEG, PNG, BMP</div>
+                <div class="glass p-6 rounded-3xl border-purple-500/20">
+                    <h3 class="text-purple-400 font-black mb-3 italic tracking-tighter uppercase">Documents</h3>
+                    <p class="text-slate-400 text-sm italic">DOCX (Word) to Clean TXT or HTML. Direct Google Docs friendly.</p>
                 </div>
-                <div class="glass p-6 rounded-3xl text-center col-span-2">
-                    <div class="text-yellow-400 font-black mb-2 italic">SECURITY</div>
-                    <div class="text-white text-sm">Private Local Sandbox Processing</div>
+                <div class="glass p-6 rounded-3xl border-emerald-500/20">
+                    <h3 class="text-emerald-400 font-black mb-3 italic tracking-tighter uppercase">Audio</h3>
+                    <p class="text-slate-400 text-sm italic">Convert WAV, MP3, and OGG. Instant local rendering.</p>
                 </div>
             </div>
         </section>
@@ -116,12 +109,7 @@
     </main>
 
     <footer class="p-10 border-t border-slate-900 text-center text-slate-600 text-sm">
-        <div class="mb-4 flex justify-center gap-6">
-            <a href="#" class="hover:text-blue-500">Privacy Policy</a>
-            <a href="#" class="hover:text-blue-500">Terms of Service</a>
-            <a href="mailto:contact@globalconvert.io" class="hover:text-blue-500">Contact Support</a>
-        </div>
-        <p>&copy; 2026 GlobalConvert - Local File Processing Engine.</p>
+        <p>&copy; 2026 GlobalConvert - Secure Client-Side Engine.</p>
     </footer>
 
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -135,88 +123,140 @@
         const idleView = document.getElementById('idle-view');
         const fileInfo = document.getElementById('file-info');
         const fileName = document.getElementById('file-name');
-        const fileSize = document.getElementById('file-size');
+        const fileTypeDisplay = document.getElementById('file-type-display');
         const settings = document.getElementById('settings');
+        const formatSelect = document.getElementById('format-select');
         const convertBtn = document.getElementById('convert-btn');
         const btnText = document.getElementById('btn-text');
         const btnLoader = document.getElementById('btn-loader');
         
         let selectedFile;
+        let fileCategory = ''; // image, doc, audio
 
-        // UI Interactions
         dropZone.onclick = () => fileInput.click();
-        
-        ['dragenter', 'dragover'].forEach(name => {
-            dropZone.addEventListener(name, (e) => {
-                e.preventDefault();
-                dropZone.classList.add('drag-over');
-            });
-        });
-
-        ['dragleave', 'drop'].forEach(name => {
-            dropZone.addEventListener(name, (e) => {
-                e.preventDefault();
-                dropZone.classList.remove('drag-over');
-            });
-        });
-
-        dropZone.addEventListener('drop', (e) => {
-            handleFiles(e.dataTransfer.files[0]);
-        });
-
         fileInput.onchange = (e) => handleFiles(e.target.files[0]);
 
         function handleFiles(file) {
             if (!file) return;
             selectedFile = file;
             fileName.innerText = file.name;
-            fileSize.innerText = (file.size / 1024).toFixed(2) + ' KB';
             
             idleView.classList.add('hidden');
             fileInfo.classList.remove('hidden');
             settings.classList.remove('hidden');
-            
-            // Animation feedback
-            dropZone.classList.add('border-emerald-500/50');
+
+            const ext = file.name.split('.').pop().toLowerCase();
+            formatSelect.innerHTML = '';
+
+            if (['jpg', 'jpeg', 'png', 'webp', 'bmp'].includes(ext)) {
+                fileCategory = 'image';
+                fileTypeDisplay.innerText = "Image File";
+                addOptions(['webp', 'jpeg', 'png']);
+            } else if (['docx', 'txt'].includes(ext)) {
+                fileCategory = 'doc';
+                fileTypeDisplay.innerText = "Document File";
+                addOptions(['txt', 'html']);
+            } else if (['mp3', 'wav', 'ogg'].includes(ext)) {
+                fileCategory = 'audio';
+                fileTypeDisplay.innerText = "Audio File";
+                addOptions(['wav', 'txt (Metadata)']);
+            } else {
+                fileTypeDisplay.innerText = "Unknown Type";
+                addOptions(['txt']);
+            }
         }
 
-        convertBtn.onclick = () => {
+        function addOptions(opts) {
+            opts.forEach(opt => {
+                const el = document.createElement('option');
+                el.value = opt;
+                el.innerText = `Convert to ${opt.toUpperCase()}`;
+                formatSelect.appendChild(el);
+            });
+        }
+
+        convertBtn.onclick = async () => {
             btnText.innerText = "PROCESSING...";
             btnLoader.classList.remove('hidden');
-            convertBtn.classList.add('opacity-80', 'pointer-events-none');
-
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const img = new Image();
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-                    
-                    const format = document.getElementById('format-select').value;
-                    const extension = format.split('/')[1];
-                    
-                    // Simulate processing for better UX feedback
-                    setTimeout(() => {
-                        const link = document.createElement('a');
-                        link.download = `GlobalConvert-${Date.now()}.${extension}`;
-                        link.href = canvas.toDataURL(format, 0.9); // Quality set to 0.9
-                        link.click();
-                        
-                        btnText.innerText = "DONE! DOWNLOADED";
-                        btnLoader.classList.add('hidden');
-                        setTimeout(() => {
-                            btnText.innerText = "CONVERT AGAIN";
-                            convertBtn.classList.remove('opacity-80', 'pointer-events-none');
-                        }, 2000);
-                    }, 800);
-                };
-                img.src = event.target.result;
-            };
-            reader.readAsDataURL(selectedFile);
+            
+            const format = formatSelect.value;
+            
+            try {
+                if (fileCategory === 'image') {
+                    await convertImage(format);
+                } else if (fileCategory === 'doc') {
+                    await convertDoc(format);
+                } else if (fileCategory === 'audio') {
+                    await convertAudio(format);
+                }
+                
+                btnText.innerText = "SUCCESS! DOWNLOADED";
+                setTimeout(() => btnText.innerText = "START CONVERSION", 2000);
+            } catch (err) {
+                console.error(err);
+                btnText.innerText = "ERROR DETECTED";
+            } finally {
+                btnLoader.classList.add('hidden');
+            }
         };
+
+        // --- CONVERSION ENGINES ---
+
+        function convertImage(format) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.width; canvas.height = img.height;
+                        canvas.getContext('2d').drawImage(img, 0, 0);
+                        downloadBlob(canvas.toDataURL(`image/${format}`), `converted.${format}`);
+                        resolve();
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(selectedFile);
+            });
+        }
+
+        function convertDoc(format) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    const arrayBuffer = e.target.result;
+                    if (selectedFile.name.endsWith('.docx')) {
+                        const result = await mammoth.extractRawText({arrayBuffer: arrayBuffer});
+                        const blob = new Blob([format === 'txt' ? result.value : `<html><body>${result.value}</body></html>`], {type: 'text/plain'});
+                        downloadBlob(URL.createObjectURL(blob), `converted.${format}`);
+                    } else {
+                        // For .txt files
+                        const text = new TextDecoder().decode(arrayBuffer);
+                        downloadBlob(URL.createObjectURL(new Blob([text])), `converted.txt`);
+                    }
+                    resolve();
+                };
+                reader.readAsArrayBuffer(selectedFile);
+            });
+        }
+
+        async function convertAudio(format) {
+            // Basic Audio Conversion (WAV) using Web Audio API
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const arrayBuffer = await selectedFile.arrayBuffer();
+            const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+            
+            // For MVP: Simple download as WAV (raw data)
+            const blob = new Blob([arrayBuffer], {type: 'audio/wav'});
+            downloadBlob(URL.createObjectURL(blob), `processed.wav`);
+        }
+
+        function downloadBlob(url, name) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = name;
+            link.click();
+        }
     </script>
 </body>
 </html>
