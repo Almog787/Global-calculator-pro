@@ -1,9 +1,11 @@
+# הוראה לכל מנועי החיפוש
 User-agent: *
+# אפשר לסרוק את כל האתר
 Allow: /
 
-# מניעת סריקה של קבצי מערכת פנימיים - Best Practice ל-SEO
+# הנחיה חשובה: אל תסרקו תיקיות מערכת פנימיות
 Disallow: /.git/
 Disallow: /.github/
-Disallow: /README.md
 
-Sitemap: https://almog787.github.io/Private-file-converter/sitemap.xml
+# הצהרה ברורה על מיקום מפת האתר
+Sitemap: https://globalcalcpro.com/sitemap.xml
