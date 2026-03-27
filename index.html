@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Global Calc Hub | Free Finance & Math Tools</title>
-    <meta name="description" content="Free professional online calculators: Compound Interest, Percentages, and Unit Converters. Fast, accurate, and mobile-friendly tools for daily use.">
-    <meta name="keywords" content="compound interest calculator, percentage calculator, unit converter, finance tools, math calculators">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Global Calc Hub | Professional Precision Tools</title>
+    <meta name="description" content="High-end financial and unit calculators for professionals. Fast, ethereal design with precision results.">
     
     <link rel="canonical" href="https://almog787.github.io/Private-file-converter/" />
     
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%232563eb%22/><path d=%22M30 30h40v40H30z%22 fill=%22none%22 stroke=%22white%22 stroke-width=%228%22/><path d=%22M30 45h40M30 55h40M45 30v40M55 30v40%22 stroke=%22white%22 stroke-width=%224%22/></svg>">
 
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBS74DCCQ8"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -20,288 +24,230 @@
       gtag('config', 'G-VBS74DCCQ8');
     </script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
-
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#004ac6",
+              "surface": "#f6fafe",
+              "surface-container-low": "#f0f4f8",
+              "on-surface-variant": "#434655",
+              "tertiary": "#4338d9",
+              "outline": "#737686",
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Manrope"],
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
     <style>
-        :root {
-            --primary: #2563eb;
-            --secondary: #64748b;
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --text: #0f172a;
-            --accent: #10b981;
+        .material-symbols-outlined { vertical-align: middle; }
+        .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); }
+        .mesh-gradient-bg {
+            background: radial-gradient(at top left, rgba(0, 74, 198, 0.05) 0%, transparent 50%),
+                        radial-gradient(at bottom right, rgba(67, 56, 217, 0.05) 0%, transparent 50%);
         }
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            line-height: 1.5;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        header {
-            background: linear-gradient(135deg, #1e3a8a, var(--primary));
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .nav-btn {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-            font-weight: 600;
-        }
-
-        .nav-btn.active, .nav-btn:hover {
-            background: white;
-            color: var(--primary);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        main {
-            max-width: 800px;
-            margin: 2rem auto;
-            flex: 1;
-            width: 90%;
-        }
-
-        .calc-card {
-            background: var(--card);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
-            display: none;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        .calc-card.active { display: block; }
-
-        .calc-info {
-            background: #eff6ff;
-            padding: 1.2rem;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            color: #1e40af;
-            margin-bottom: 2rem;
-            border-left: 5px solid var(--primary);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .input-group { margin-bottom: 1.5rem; }
-        
-        label {
-            display: block;
-            margin-bottom: 0.6rem;
-            font-weight: 600;
-            color: var(--secondary);
-            font-size: 0.9rem;
-        }
-
-        input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 1rem;
-            box-sizing: border-box;
-            transition: border-color 0.2s;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .action-btn {
-            width: 100%;
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 1.2rem;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
-        }
-
-        .action-btn:hover { background: #1d4ed8; }
-        .action-btn:active { transform: scale(0.98); }
-
-        .result-box {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: #f0fdf4;
-            border-radius: 12px;
-            border: 1px solid #dcfce7;
-            color: #166534;
-            font-weight: bold;
-            font-size: 1.25rem;
-            text-align: center;
-        }
-
-        .ad-placeholder {
-            margin: 2.5rem 0;
-            background: #f1f5f9;
-            border: 2px dashed #cbd5e1;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem;
-            color: var(--secondary);
-            border-top: 1px solid #e2e8f0;
-            font-size: 0.9rem;
-        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body>
+<body class="mesh-gradient-bg min-h-screen font-body">
 
-<header>
-    <h1>Global Calc Hub</h1>
-    <p>Professional Online Tools for Wealth & Math</p>
-    <div class="nav-container">
-        <button class="nav-btn active" onclick="switchCalc('interest', this)">Compound Interest</button>
-        <button class="nav-btn" onclick="switchCalc('percent', this)">Percentage</button>
-        <button class="nav-btn" onclick="switchCalc('unit', this)">Unit Converter</button>
-    </div>
+<header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl shadow-sm">
+    <nav class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+        <div class="text-2xl font-bold text-slate-900 font-headline tracking-tight">Global Calc Hub</div>
+        <div class="hidden md:flex items-center gap-8 font-headline font-medium">
+            <a class="text-primary border-b-2 border-primary" href="#">Calculators</a>
+            <a class="text-slate-500 hover:text-primary transition-colors" href="#">Insights</a>
+            <a class="text-slate-500 hover:text-primary transition-colors" href="#">Tools</a>
+        </div>
+        <button class="p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors">
+            <span class="material-symbols-outlined text-slate-600">language</span>
+        </button>
+    </nav>
 </header>
 
-<main>
-    <div class="ad-placeholder">ADVERTISEMENT SPACE</div>
-
-    <section id="interest" class="calc-card active">
-        <h2>Compound Interest Calculator</h2>
-        <div class="calc-info">
-            <strong>What is Compound Interest?</strong> It is the interest on a loan or deposit calculated based on both the initial principal and the accumulated interest from previous periods. Over time, it helps your wealth grow exponentially.
+<main class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
+    <section class="mb-20 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.1] font-headline">
+                Precision <br/><span class="text-primary">Ethereal</span> Data.
+            </h1>
+            <p class="text-lg text-on-surface-variant max-w-lg mb-8 leading-relaxed">
+                High-end analytical tools for the modern professional. Fast, fluid, and visually stunning.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="document.getElementById('main-calc').scrollIntoView({behavior:'smooth'})" class="bg-primary text-white px-8 py-4 rounded-lg font-bold hover:shadow-lg transition-all">Start Calculating</button>
+            </div>
         </div>
-        <div class="input-group">
-            <label>Initial Investment ($)</label>
-            <input type="number" id="p" value="5000">
-        </div>
-        <div class="input-group">
-            <label>Annual Interest Rate (%)</label>
-            <input type="number" id="r" value="7">
-        </div>
-        <div class="input-group">
-            <label>Investment Period (Years)</label>
-            <input type="number" id="t" value="10">
-        </div>
-        <button class="action-btn" onclick="calcCompound()">Calculate Future Wealth</button>
-        <div id="res-interest" class="result-box" style="display:none;"></div>
-    </section>
-
-    <section id="percent" class="calc-card">
-        <h2>Percentage Calculator</h2>
-        <div class="calc-info">
-            Easily find the percentage of any total amount. Useful for calculating discounts, sales tax, tips at restaurants, or financial growth.
-        </div>
-        <div class="input-group">
-            <label>Find (%)</label>
-            <input type="number" id="perc-val" placeholder="e.g. 15">
-            <label style="margin-top: 15px;">Of Total Amount ($)</label>
-            <input type="number" id="perc-total" placeholder="e.g. 500">
-        </div>
-        <button class="action-btn" onclick="calcPercent()">Calculate Result</button>
-        <div id="res-percent" class="result-box" style="display:none;"></div>
-    </section>
-
-    <section id="unit" class="calc-card">
-        <h2>Weight Unit Converter</h2>
-        <div class="calc-info">
-            Instant and accurate conversion between Metric (Kilograms) and Imperial (Pounds) units. Perfect for international travel or shipping.
-        </div>
-        <div class="input-group">
-            <label>Kilograms (KG)</label>
-            <input type="number" id="kg" oninput="convertUnit('kg')" placeholder="Enter weight in KG">
-        </div>
-        <div class="input-group">
-            <label>Pounds (LBS)</label>
-            <input type="number" id="lbs" oninput="convertUnit('lbs')" placeholder="Enter weight in LBS">
+        <div class="hidden md:block relative">
+            <div class="relative z-10 p-8 glass-panel rounded-xl shadow-2xl border border-white/20">
+                <div class="flex justify-between items-end mb-8">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-outline uppercase block mb-1">PROJECTION</span>
+                        <div class="text-4xl font-headline font-bold text-primary">$18,740.00</div>
+                    </div>
+                </div>
+                <div class="h-24 flex items-end gap-2">
+                    <div class="flex-1 bg-primary/20 rounded-t-lg h-[30%]"></div>
+                    <div class="flex-1 bg-primary/20 rounded-t-lg h-[50%]"></div>
+                    <div class="flex-1 bg-primary/40 rounded-t-lg h-[75%]"></div>
+                    <div class="flex-1 bg-primary rounded-t-lg h-full"></div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="ad-placeholder">ADVERTISEMENT SPACE</div>
+    <div id="main-calc" class="lg:col-span-8 space-y-12 max-w-5xl mx-auto">
+        <div class="bg-white rounded-xl shadow-2xl overflow-hidden border border-slate-100">
+            <div class="flex bg-slate-50 p-2 gap-2">
+                <button id="btn-interest" onclick="switchTab('interest')" class="tab-btn flex-1 py-4 rounded-lg bg-white shadow-sm text-primary font-bold flex items-center justify-center gap-2 transition-all">
+                    <span class="material-symbols-outlined">account_balance</span> Compound
+                </button>
+                <button id="btn-percent" onclick="switchTab('percent')" class="tab-btn flex-1 py-4 rounded-lg text-slate-500 hover:bg-white/50 transition-all flex items-center justify-center gap-2 font-bold">
+                    <span class="material-symbols-outlined">percent</span> Percentage
+                </button>
+                <button id="btn-unit" onclick="switchTab('unit')" class="tab-btn flex-1 py-4 rounded-lg text-slate-500 hover:bg-white/50 transition-all flex items-center justify-center gap-2 font-bold">
+                    <span class="material-symbols-outlined">sync_alt</span> Converter
+                </button>
+            </div>
+
+            <div class="p-8 md:p-12">
+                <div id="tab-interest" class="tab-content active">
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div class="space-y-6">
+                            <div>
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Initial Investment ($)</label>
+                                <input id="p" type="number" value="10000" class="w-full bg-slate-50 border-none rounded-lg py-4 px-6 text-xl font-headline focus:ring-2 focus:ring-primary/20">
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Annual Rate (%)</label>
+                                <input id="r" type="number" value="7.5" class="w-full bg-slate-50 border-none rounded-lg py-4 px-6 text-xl font-headline focus:ring-2 focus:ring-primary/20">
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Years</label>
+                                <input id="t" type="number" value="5" class="w-full bg-slate-50 border-none rounded-lg py-4 px-6 text-xl font-headline focus:ring-2 focus:ring-primary/20">
+                            </div>
+                            <button onclick="calcCompound()" class="w-full bg-tertiary text-white rounded-lg py-4 font-bold text-lg hover:shadow-lg transition-all">Calculate Growth</button>
+                        </div>
+                        <div class="bg-primary/5 rounded-xl p-8 flex flex-col justify-center items-center text-center">
+                            <span class="text-xs font-bold text-primary uppercase tracking-[0.2em] mb-4">Future Value</span>
+                            <div id="res-interest-val" class="text-5xl md:text-6xl font-headline font-bold text-primary mb-2">$14,356</div>
+                            <div id="res-interest-gain" class="text-lg font-semibold text-tertiary">+$4,356.28 in interest</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-percent" class="tab-content">
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div class="space-y-6">
+                            <div>
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Percentage (%)</label>
+                                <input id="perc-val" type="number" placeholder="e.g. 20" class="w-full bg-slate-50 border-none rounded-lg py-4 px-6 text-xl font-headline focus:ring-2 focus:ring-primary/20">
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Of Total Amount</label>
+                                <input id="perc-total" type="number" placeholder="e.g. 1000" class="w-full bg-slate-50 border-none rounded-lg py-4 px-6 text-xl font-headline focus:ring-2 focus:ring-primary/20">
+                            </div>
+                            <button onclick="calcPercent()" class="w-full bg-primary text-white rounded-lg py-4 font-bold text-lg hover:shadow-lg transition-all">Get Result</button>
+                        </div>
+                        <div class="bg-slate-50 rounded-xl p-8 flex flex-col justify-center items-center text-center">
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Final Amount</span>
+                            <div id="res-percent-val" class="text-5xl md:text-6xl font-headline font-bold text-primary">$0.00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-unit" class="tab-content">
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div class="space-y-6">
+                            <div>
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Kilograms (KG)</label>
+                                <input id="kg" type="number" oninput="convertUnit('kg')" placeholder="0.00" class="w-full bg-slate-50 border-none rounded-lg py-4 px-6 text-xl font-headline focus:ring-2 focus:ring-primary/20">
+                            </div>
+                            <div class="flex justify-center"><span class="material-symbols-outlined text-slate-300">sync_alt</span></div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Pounds (LBS)</label>
+                                <input id="lbs" type="number" oninput="convertUnit('lbs')" placeholder="0.00" class="w-full bg-slate-50 border-none rounded-lg py-4 px-6 text-xl font-headline focus:ring-2 focus:ring-primary/20">
+                            </div>
+                        </div>
+                        <div class="bg-tertiary/5 rounded-xl p-8 flex flex-col justify-center items-center text-center">
+                            <h3 class="font-headline font-bold text-xl text-tertiary mb-2">Instant Conversion</h3>
+                            <p class="text-slate-500">Accurate metric to imperial conversion for weight.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slate-50 border-2 border-dashed border-slate-200 rounded-xl p-12 text-center">
+            <span class="text-[10px] font-bold text-slate-400 tracking-widest uppercase mb-2 block">ADVERTISEMENT</span>
+            <p class="text-slate-400 font-medium">Premium Financial Partner Integration</p>
+        </div>
+    </div>
 </main>
 
-<footer>
-    <p>&copy; 2026 Global Calc Hub. All calculations are performed locally on your device for maximum privacy and speed.</p>
+<footer class="bg-slate-900 text-slate-400 py-12 mt-20">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-white font-headline font-bold text-xl">Global Calc Hub</div>
+        <div class="flex gap-8 text-sm uppercase tracking-widest font-bold">
+            <a href="#" class="hover:text-white transition-colors">Privacy</a>
+            <a href="#" class="hover:text-white transition-colors">Terms</a>
+            <a href="#" class="hover:text-white transition-colors">Contact</a>
+        </div>
+        <div class="text-sm">© 2026 Precision Ethereal Design.</div>
+    </div>
 </footer>
 
 <script>
-    // Tab switching and Analytics tracking
-    function switchCalc(id, btn) {
-        document.querySelectorAll('.calc-card').forEach(c => c.classList.remove('active'));
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        btn.classList.add('active');
-        
-        // Track which calculator is being used
-        gtag('event', 'screen_view', { 'app_name': 'GlobalCalcHub', 'screen_name': id });
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => {
+            b.classList.remove('bg-white', 'shadow-sm', 'text-primary');
+            b.classList.add('text-slate-500');
+        });
+
+        document.getElementById('tab-' + tabId).classList.add('active');
+        const activeBtn = document.getElementById('btn-' + tabId);
+        activeBtn.classList.add('bg-white', 'shadow-sm', 'text-primary');
+        activeBtn.classList.remove('text-slate-500');
+
+        gtag('event', 'tab_switch', { 'tab': tabId });
     }
 
-    // Compound Interest Calculation
     function calcCompound() {
         const p = parseFloat(document.getElementById('p').value);
         const r = parseFloat(document.getElementById('r').value) / 100;
         const t = parseFloat(document.getElementById('t').value);
-        
         if(isNaN(p) || isNaN(r) || isNaN(t)) return;
 
         const amount = p * Math.pow((1 + r), t);
-        const resDiv = document.getElementById('res-interest');
-        resDiv.style.display = 'block';
-        resDiv.innerHTML = `Estimated Future Value: $${amount.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+        const gain = amount - p;
+
+        document.getElementById('res-interest-val').innerText = '$' + amount.toLocaleString(undefined, {maximumFractionDigits: 2});
+        document.getElementById('res-interest-gain').innerText = '+$' + gain.toLocaleString(undefined, {maximumFractionDigits: 2}) + ' in interest';
         
-        gtag('event', 'calculate_wealth', { 'value': amount });
+        gtag('event', 'calculate', { 'type': 'compound' });
     }
 
-    // Percentage Calculation
     function calcPercent() {
         const val = parseFloat(document.getElementById('perc-val').value);
         const total = parseFloat(document.getElementById('perc-total').value);
-        
         if(isNaN(val) || isNaN(total)) return;
 
         const result = (val / 100) * total;
-        const resDiv = document.getElementById('res-percent');
-        resDiv.style.display = 'block';
-        resDiv.innerText = `${val}% of $${total.toLocaleString()} is: $${result.toLocaleString()}`;
+        document.getElementById('res-percent-val').innerText = '$' + result.toLocaleString(undefined, {maximumFractionDigits: 2});
         
-        gtag('event', 'calculate_percentage');
+        gtag('event', 'calculate', { 'type': 'percentage' });
     }
 
-    // Unit Converter (Local-First)
     function convertUnit(type) {
         const kg = document.getElementById('kg');
         const lbs = document.getElementById('lbs');
@@ -311,6 +257,9 @@
             kg.value = lbs.value ? (lbs.value / 2.20462).toFixed(2) : "";
         }
     }
+
+    // Initial calc
+    calcCompound();
 </script>
 
 </body>
