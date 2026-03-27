@@ -6,15 +6,17 @@
     
     <title>Global Calc Hub | Professional Finance & Math Tools</title>
     <meta name="description" content="Free professional online calculators: Compound Interest, Percentages, and Unit Converters. Fast, accurate, and mobile-friendly tools for daily use.">
+    <meta name="keywords" content="compound interest calculator, percentage calculator, unit converter, finance tools, math calculators">
+    <link rel="canonical" href="https://almog787.github.io/Private-file-converter/" />
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%232563eb%22/><path d=%22M30 30h40v40H30z%22 fill=%22none%22 stroke=%22white%22 stroke-width=%228%22/><path d=%22M30 45h40M30 55h40M45 30v40M55 30v40%22 stroke=%22white%22 stroke-width=%224%22/></svg>">
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBS74DCCQ8"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
+      gtag('config', 'G-VBS74DCCQ8');
     </script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
@@ -133,7 +135,10 @@
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
+            transition: transform 0.2s;
         }
+
+        .action-btn:active { transform: scale(0.98); }
 
         .result-box {
             margin-top: 2rem;
@@ -143,6 +148,7 @@
             border: 1px solid #dcfce7;
             color: #166534;
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .ad-placeholder {
@@ -183,10 +189,10 @@
     <section id="interest" class="calc-card active">
         <h2>Compound Interest Calculator</h2>
         <div class="calc-info">
-            <strong>Compound Interest</strong> is the interest on a loan or deposit calculated based on both the initial principal and the accumulated interest from previous periods.
+            <strong>What is Compound Interest?</strong> It is the interest on a loan or deposit calculated based on both the initial principal and the accumulated interest from previous periods.
         </div>
         <div class="input-group">
-            <label>Initial Deposit ($)</label>
+            <label>Initial Investment ($)</label>
             <input type="number" id="p" value="5000">
         </div>
         <div class="input-group">
@@ -194,32 +200,32 @@
             <input type="number" id="r" value="7">
         </div>
         <div class="input-group">
-            <label>Duration (Years)</label>
-            <input type="number" id="t" value="5">
+            <label>Investment Period (Years)</label>
+            <input type="number" id="t" value="10">
         </div>
-        <button class="action-btn" onclick="calcCompound()">Calculate</button>
+        <button class="action-btn" onclick="calcCompound()">Calculate Future Wealth</button>
         <div id="res-interest" class="result-box" style="display:none;"></div>
     </section>
 
     <section id="percent" class="calc-card">
         <h2>Percentage Calculator</h2>
         <div class="calc-info">
-            Find the exact value of a percentage for discounts, tips, or tax calculations.
+            Quickly find the percentage of any total amount. Perfect for calculating discounts, sales tax, or tips.
         </div>
         <div class="input-group">
-            <label>What is</label>
+            <label>Find (%)</label>
             <input type="number" id="perc-val" placeholder="e.g. 15">
-            <label style="margin-top: 10px;">% of</label>
-            <input type="number" id="perc-total" placeholder="e.g. 200">
+            <label style="margin-top: 15px;">Of Total Amount ($)</label>
+            <input type="number" id="perc-total" placeholder="e.g. 500">
         </div>
-        <button class="action-btn" onclick="calcPercent()">Find Result</button>
+        <button class="action-btn" onclick="calcPercent()">Calculate Result</button>
         <div id="res-percent" class="result-box" style="display:none;"></div>
     </section>
 
     <section id="unit" class="calc-card">
-        <h2>Unit Converter (Weight)</h2>
+        <h2>Weight Unit Converter</h2>
         <div class="calc-info">
-            Instant conversion between Metric (KG) and Imperial (LBS).
+            Seamlessly convert between Metric (Kilograms) and Imperial (Pounds) units.
         </div>
         <div class="input-group">
             <label>Kilograms (KG)</label>
@@ -235,45 +241,61 @@
 </main>
 
 <footer>
-    <p>&copy; 2024 Global Calc Hub. All tools are free to use.</p>
+    <p>&copy; 2024 Global Calc Hub. All tools are free and secure.</p>
 </footer>
 
 <script>
+    // Tab switching logic
     function switchCalc(id, btn) {
         document.querySelectorAll('.calc-card').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(id).classList.add('active');
         btn.classList.add('active');
+        
+        // Tracking tab switch in Analytics
+        gtag('event', 'page_view', { 'page_title': id });
     }
 
+    // Compound Interest logic
     function calcCompound() {
         const p = parseFloat(document.getElementById('p').value);
         const r = parseFloat(document.getElementById('r').value) / 100;
         const t = parseFloat(document.getElementById('t').value);
+        
+        if(isNaN(p) || isNaN(r) || isNaN(t)) return;
+
         const amount = p * Math.pow((1 + r), t);
         const resDiv = document.getElementById('res-interest');
         resDiv.style.display = 'block';
         resDiv.innerHTML = `Future Value: $${amount.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
-        gtag('event', 'calculate_compound');
+        
+        // Track calculation
+        gtag('event', 'calculate', { 'method': 'compound_interest' });
     }
 
+    // Percentage logic
     function calcPercent() {
         const val = parseFloat(document.getElementById('perc-val').value);
         const total = parseFloat(document.getElementById('perc-total').value);
+        
+        if(isNaN(val) || isNaN(total)) return;
+
         const result = (val / 100) * total;
         const resDiv = document.getElementById('res-percent');
         resDiv.style.display = 'block';
-        resDiv.innerText = `${val}% of ${total} is: ${result.toFixed(2)}`;
-        gtag('event', 'calculate_percent');
+        resDiv.innerText = `${val}% of ${total} is: ${result.toLocaleString()}`;
+        
+        gtag('event', 'calculate', { 'method': 'percentage' });
     }
 
+    // Unit conversion logic
     function convertUnit(type) {
         const kg = document.getElementById('kg');
         const lbs = document.getElementById('lbs');
         if (type === 'kg') {
-            lbs.value = (kg.value * 2.20462).toFixed(2);
+            lbs.value = kg.value ? (kg.value * 2.20462).toFixed(2) : "";
         } else {
-            kg.value = (lbs.value / 2.20462).toFixed(2);
+            kg.value = lbs.value ? (lbs.value / 2.20462).toFixed(2) : "";
         }
     }
 </script>
