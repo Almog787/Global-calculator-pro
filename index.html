@@ -3,12 +3,34 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title id="dynamic-title">Global Calc Hub | Precision Financial Tools</title>
-    <meta name="description" content="Professional calculators for compound interest, percentages, and unit conversions. Fast, accurate, and mobile-friendly.">
     
+    <title id="dynamic-title">Global Calc Hub | Professional Precision Tools</title>
+    <meta name="description" content="High-end financial and unit calculators for professionals. Calculate compound interest, percentages, and convert units instantly.">
     <link rel="canonical" href="https://almog787.github.io/Private-file-converter/" />
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Global Calc Hub",
+      "url": "https://almog787.github.io/Private-file-converter/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "featureList": [
+        "Compound Interest Calculator",
+        "Percentage Calculator",
+        "Unit Converter (Weight, Length, Temperature)"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700" rel="stylesheet"/>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23004ac6%22/><path d=%22M30 30h40v40H30z%22 fill=%22none%22 stroke=%22white%22 stroke-width=%228%22/><path d=%22M30 45h40M30 55h40M45 30v40M55 30v40%22 stroke=%22white%22 stroke-width=%224%22/></svg>">
 
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
@@ -31,6 +53,7 @@
         }
       }
     </script>
+    
     <style>
         .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); }
         .mesh-gradient-bg { background: radial-gradient(at top left, rgba(0, 74, 198, 0.03) 0%, transparent 50%), radial-gradient(at bottom right, rgba(67, 56, 217, 0.03) 0%, transparent 50%); }
@@ -57,8 +80,8 @@
 
 <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
     <section class="mb-16 text-center">
-        <h1 class="text-5xl md:text-6xl font-bold font-headline mb-4 tracking-tight">Precision at Your <span class="text-primary">Fingertips.</span></h1>
-        <p class="text-slate-500 max-w-2xl mx-auto text-lg">Experience high-end analytical tools built for speed and accuracy.</p>
+        <h1 class="text-5xl md:text-6xl font-bold font-headline mb-4 tracking-tight">Ethereal <span class="text-primary">Precision.</span></h1>
+        <p class="text-slate-500 max-w-2xl mx-auto text-lg">Fast, accurate, and professional-grade calculation tools.</p>
     </section>
 
     <div class="max-w-4xl mx-auto">
@@ -126,11 +149,11 @@
                 <div id="tab-unit" class="tab-content">
                     <div class="space-y-8">
                         <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-b border-slate-100 pb-6">
-                            <h2 class="text-2xl font-bold font-headline text-center md:text-left">Multi-Unit Converter</h2>
+                            <h2 class="text-2xl font-bold font-headline">Universal Converter</h2>
                             <select id="unit-type" onchange="initUnitLabels()" class="bg-slate-100 border-none rounded-full px-6 py-2 font-bold text-primary focus:ring-2 focus:ring-primary/20">
-                                <option value="weight">Weight (KG/LBS)</option>
-                                <option value="length">Length (M/FT)</option>
-                                <option value="temp">Temp (C°/F°)</option>
+                                <option value="weight">Weight (KG / LBS)</option>
+                                <option value="length">Length (M / FT)</option>
+                                <option value="temp">Temperature (C° / F°)</option>
                             </select>
                         </div>
                         <div class="grid md:grid-cols-2 gap-8 items-center">
@@ -138,7 +161,7 @@
                                 <label id="label-1" class="text-xs font-bold text-slate-400 uppercase ml-2">Kilograms (KG)</label>
                                 <input id="input-1" type="number" oninput="convertMaster(1)" placeholder="0.00" class="w-full bg-slate-50 border-none rounded-xl p-5 text-2xl font-headline focus:ring-2 focus:ring-primary/20">
                             </div>
-                            <div class="hidden md:flex justify-center"><span class="material-symbols-outlined text-slate-300">sync_alt</span></div>
+                            <div class="hidden md:flex justify-center"><span class="material-symbols-outlined text-slate-300 text-4xl">sync_alt</span></div>
                             <div class="space-y-2">
                                 <label id="label-2" class="text-xs font-bold text-slate-400 uppercase ml-2">Pounds (LBS)</label>
                                 <input id="input-2" type="number" oninput="convertMaster(2)" placeholder="0.00" class="w-full bg-slate-50 border-none rounded-xl p-5 text-2xl font-headline focus:ring-2 focus:ring-primary/20">
@@ -151,20 +174,27 @@
     </div>
 </main>
 
-<footer class="text-center py-10 text-slate-400 text-sm border-t border-slate-100 mt-20">
-    <p>© 2026 Global Calc Hub | Precision Engineering</p>
+<footer class="text-center py-12 text-slate-400 text-sm border-t border-slate-100 mt-20">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="font-headline font-bold text-slate-900 text-lg">Global Calc Hub</div>
+        <p>© 2026 Precision Engineering. All rights reserved.</p>
+        <div class="flex gap-6">
+            <a href="#" class="hover:text-primary">Privacy</a>
+            <a href="#" class="hover:text-primary">Terms</a>
+        </div>
+    </div>
 </footer>
 
 <script>
-    // --- Routing & Tab Management ---
+    // --- Configuration & SEO Titles ---
     const tabs = {
         'interest': { title: 'Compound Interest Calculator', btn: 'btn-interest' },
         'percent': { title: 'Percentage Calculator', btn: 'btn-percent' },
-        'unit': { title: 'Advanced Unit Converter', btn: 'btn-unit' }
+        'unit': { title: 'Unit Converter (Weight, Length, Temp)', btn: 'btn-unit' }
     };
 
+    // --- Tab & Routing Logic ---
     function switchTab(id, updateHash = true) {
-        // Update UI
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.className = "tab-btn flex-1 py-4 rounded-2xl transition-all font-bold flex items-center justify-center gap-2 text-slate-400 hover:bg-slate-100");
         
@@ -172,23 +202,20 @@
         const activeBtn = document.getElementById('btn-' + id);
         activeBtn.className = "tab-btn flex-1 py-4 rounded-2xl transition-all font-bold flex items-center justify-center gap-2 bg-white shadow-md text-primary";
 
-        // Update SEO Title
         document.getElementById('dynamic-title').innerText = tabs[id].title + " | Global Calc Hub";
 
-        // Update URL Hash for Google Indexing
         if(updateHash) window.location.hash = id;
-
-        // Analytics
+        
+        // Track Virtual Page View
         gtag('event', 'page_view', { page_title: tabs[id].title, page_location: window.location.href });
     }
 
-    // Handle initial load and browser back/forward
     window.addEventListener('hashchange', () => {
         const hash = window.location.hash.replace('#', '');
         if (tabs[hash]) switchTab(hash, false);
     });
 
-    // --- Calculator Logic ---
+    // --- Calculator Functions ---
     function calcCompound() {
         const p = parseFloat(document.getElementById('p').value);
         const r = parseFloat(document.getElementById('r').value) / 100;
@@ -206,7 +233,7 @@
         document.getElementById('res-percent-val').innerText = '$' + ((v/100)*t).toLocaleString();
     }
 
-    // --- Unit Converter Master Logic ---
+    // --- Multi-Unit Converter Logic ---
     const unitConfigs = {
         weight: { l1: "Kilograms (KG)", l2: "Pounds (LBS)", ratio: 2.20462, mode: 'mult' },
         length: { l1: "Meters (M)", l2: "Feet (FT)", ratio: 3.28084, mode: 'mult' },
@@ -236,7 +263,7 @@
         }
     }
 
-    // Start Up
+    // On Load
     window.onload = () => {
         const hash = window.location.hash.replace('#', '');
         if (tabs[hash]) switchTab(hash, false);
