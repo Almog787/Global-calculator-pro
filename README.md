@@ -23,8 +23,3 @@ A high-end, professional web-based suite of financial and mathematical tools. De
 * **GitHub Pages:** Fast and reliable hosting.
 * **Material Symbols:** For a clean, intuitive iconography.
 
-## 🛠️ Installation & Local Development
-
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/almog787/Private-file-converter.git](https://github.com/almog787/Private-file-converter.git)
