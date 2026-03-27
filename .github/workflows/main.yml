@@ -1,7 +1,12 @@
-name: Generate Sitemap
+name: Generate XML Sitemap
+
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]  # ירוץ בכל פעם שתעשה Push לענף הראשי
+
+# הגדרת הרשאות כתיבה כדי למנוע שגיאת 403
+permissions:
+  contents: write
 
 jobs:
   sitemap_job:
@@ -9,19 +14,23 @@ jobs:
     name: Generate a sitemap
     steps:
     - name: Checkout the repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4 # גרסה מעודכנת ויציבה
       with:
         fetch-depth: 0 
-    
+
     - name: Generate Sitemap
       uses: cicirello/generate-sitemap@v1
       with:
-        base-url-path: https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/
+        base-url-path: https://almog787.github.io/Private-file-converter/
+        path-to-root: .
+        # מוציא קבצים לא רלוונטיים מהסריקה
+        additional-extensions: html
+        exclude-files: .github/** README.md
         
-    - name: Commit and push
+    - name: Commit and push if changed
       run: |
-        git config --global user.name "GitHub Action"
-        git config --global user.email "action@github.com"
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git add sitemap.xml
-        git commit -m "Automated sitemap update" || exit 0
-        git push
+        # יבצע Commit רק אם חל שינוי בקובץ
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Automated sitemap update" && git push)
