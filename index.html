@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>מחשבון פיננסי ומתמטי | מחשבון ריבית דריבית, אחוזים והמרת יחידות</title>
-    <meta name="description" content="מחשבון פיננסי מתקדם וחינמי: חישוב ריבית דריבית, אחוזים, והמרת יחידות. כלי עבודה מדויק ומהיר לסטודנטים, משקיעים ובעלי עסקים.">
-    <meta name="keywords" content="מחשבון ריבית דריבית, מחשבון אחוזים, המרת יחידות, מחשבון פיננסי, מחשבון מתמטי">
+    <title>Global Calc Hub | Free Financial & Math Calculators</title>
+    <meta name="description" content="Free professional online calculators: Compound Interest, Percentages, and Unit Converters. Fast, accurate, and mobile-friendly tools for daily use.">
+    <meta name="keywords" content="compound interest calculator, percentage calculator, unit converter, finance tools, math calculators">
     <link rel="canonical" href="https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/" />
     
-    <meta property="og:title" content="מחשבון פיננסי ומתמטי מקצועי">
-    <meta property="og:description" content="כל הכלים שאתה צריך במקום אחד: ריבית דריבית, המרות ואחוזים.">
+    <meta property="og:title" content="Global Calc Hub - Professional Online Tools">
+    <meta property="og:description" content="Calculate interest, percentages, and units instantly with our free tools.">
     <meta property="og:image" content="https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO-NAME/main/preview.png">
     <meta property="og:url" content="https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/">
     <meta property="og:type" content="website">
 
-    <meta name="google-site-verification" content="הכנס-כאן-את-הקוד-שתקבל-מגוגל-קונסול" />
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
@@ -29,220 +29,235 @@
 
     <style>
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #64748b;
-            --bg-color: #f1f5f9;
-            --card-bg: #ffffff;
-            --text-color: #1e293b;
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #0f172a;
             --accent: #10b981;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             margin: 0;
-            padding: 0;
+            line-height: 1.5;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary-color), #1e40af);
+            background: linear-gradient(135deg, #1e3a8a, var(--primary));
             color: white;
-            padding: 2rem 1rem;
+            padding: 3rem 1rem;
             text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .nav-container {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 1.5rem;
+            gap: 12px;
+            margin-top: 2rem;
             flex-wrap: wrap;
         }
 
         .nav-btn {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.15);
             border: 1px solid rgba(255,255,255,0.3);
             color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 30px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
+            transition: 0.3s;
+            font-weight: 600;
         }
 
         .nav-btn.active, .nav-btn:hover {
             background: white;
-            color: var(--primary-color);
-            transform: translateY(-2px);
+            color: var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         main {
-            max-width: 700px;
+            max-width: 800px;
             margin: 2rem auto;
             flex: 1;
             width: 90%;
         }
 
         .calc-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            background: var(--card);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
             display: none;
-            animation: slideUp 0.4s ease-out;
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         .calc-card.active { display: block; }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
+        .calc-info {
+            background: #eff6ff;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #1e40af;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .input-group { margin-bottom: 1.2rem; }
+        .input-group { margin-bottom: 1.5rem; }
         
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
-            font-size: 0.9rem;
+            color: var(--secondary);
         }
 
-        input, select {
+        input {
             width: 100%;
-            padding: 0.8rem;
+            padding: 0.9rem;
             border: 2px solid #e2e8f0;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 1rem;
             box-sizing: border-box;
-            transition: border-color 0.2s;
+            transition: 0.2s;
         }
 
         input:focus {
             outline: none;
-            border-color: var(--primary-color);
+            border-color: var(--primary);
+            background: #fff;
         }
 
         .action-btn {
             width: 100%;
-            background: var(--primary-color);
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 1rem;
-            border-radius: 8px;
+            padding: 1.1rem;
+            border-radius: 10px;
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 1rem;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
         }
 
         .result-box {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: #f8fafc;
-            border-radius: 8px;
-            border-right: 5px solid var(--accent);
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f0fdf4;
+            border-radius: 10px;
+            border: 1px solid #dcfce7;
+            color: #166534;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
-        .ad-slot {
-            margin: 2rem 0;
-            background: #f8fafc;
-            border: 1px dashed #cbd5e1;
-            min-height: 100px;
+        .ad-placeholder {
+            margin: 2.5rem 0;
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
             color: #94a3b8;
+            border-radius: 12px;
         }
 
         footer {
             text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-            color: var(--secondary-color);
+            padding: 3rem;
+            background: white;
+            color: var(--secondary);
+            border-top: 1px solid #e2e8f0;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Global Calculators Hub</h1>
-    <p>כלים פיננסיים ומתמטיים מהירים ומדויקים</p>
+    <h1>Global Calc Hub</h1>
+    <p>Fast, Reliable & Professional Online Tools</p>
     <div class="nav-container">
-        <button class="nav-btn active" onclick="switchCalc('interest', this)">ריבית דריבית</button>
-        <button class="nav-btn" onclick="switchCalc('percent', this)">מחשבון אחוזים</button>
-        <button class="nav-btn" onclick="switchCalc('unit', this)">המרת יחידות</button>
+        <button class="nav-btn active" onclick="switchCalc('interest', this)">Compound Interest</button>
+        <button class="nav-btn" onclick="switchCalc('percent', this)">Percentage</button>
+        <button class="nav-btn" onclick="switchCalc('unit', this)">Unit Converter</button>
     </div>
 </header>
 
 <main>
-    <div class="ad-slot">
-        פרסומת מותאמת
-    </div>
+    <div class="ad-placeholder">Advertisements</div>
 
     <section id="interest" class="calc-card active">
-        <h2>מחשבון ריבית דריבית</h2>
-        <div class="input-group">
-            <label>סכום הפקדה ראשוני (₪)</label>
-            <input type="number" id="p" value="10000">
+        <h2>Compound Interest Calculator</h2>
+        <div class="calc-info">
+            <strong>How it works:</strong> Compound interest is the interest on a loan or deposit calculated based on both the initial principal and the accumulated interest from previous periods.
         </div>
         <div class="input-group">
-            <label>ריבית שנתית באחוזים (%)</label>
-            <input type="number" id="r" value="5">
+            <label>Initial Deposit ($)</label>
+            <input type="number" id="p" value="5000">
         </div>
         <div class="input-group">
-            <label>תקופה בשנים</label>
-            <input type="number" id="t" value="10">
+            <label>Annual Interest Rate (%)</label>
+            <input type="number" id="r" value="7">
         </div>
-        <button class="action-btn" onclick="calcCompound()">חשב רווחים</button>
+        <div class="input-group">
+            <label>Duration (Years)</label>
+            <input type="number" id="t" value="5">
+        </div>
+        <button class="action-btn" onclick="calcCompound()">Calculate Wealth</button>
         <div id="res-interest" class="result-box" style="display:none;"></div>
     </section>
 
     <section id="percent" class="calc-card">
-        <h2>מחשבון אחוזים</h2>
-        <div class="input-group">
-            <label>כמה הם (%)</label>
-            <input type="number" id="perc-val" placeholder="למשל 10">
+        <h2>Percentage Calculator</h2>
+        <div class="calc-info">
+            <strong>Tip:</strong> Use this tool to find the value of a percentage or to calculate discounts and tips quickly.
         </div>
         <div class="input-group">
-            <label>מתוך סכום של:</label>
-            <input type="number" id="perc-total" placeholder="למשל 200">
+            <label>What is</label>
+            <input type="number" id="perc-val" placeholder="e.g. 15">
+            <label style="margin-top: 10px;">% of (Total Amount)</label>
+            <input type="number" id="perc-total" placeholder="e.g. 250">
         </div>
-        <button class="action-btn" onclick="calcPercent()">חשב אחוז</button>
+        <button class="action-btn" onclick="calcPercent()">Find Result</button>
         <div id="res-percent" class="result-box" style="display:none;"></div>
     </section>
 
     <section id="unit" class="calc-card">
-        <h2>המרת יחידות משקל</h2>
-        <div class="input-group">
-            <label>קילוגרם (KG)</label>
-            <input type="number" id="kg" oninput="convertUnit('kg')">
+        <h2>Unit Converter (Weight)</h2>
+        <div class="calc-info">
+            <strong>Note:</strong> This tool provides instant conversion between Metric (KG) and Imperial (LBS) systems.
         </div>
         <div class="input-group">
-            <label>פאונד (LBS)</label>
-            <input type="number" id="lbs" oninput="convertUnit('lbs')">
+            <label>Kilograms (KG)</label>
+            <input type="number" id="kg" oninput="convertUnit('kg')" placeholder="Enter weight in KG">
+        </div>
+        <div class="input-group">
+            <label>Pounds (LBS)</label>
+            <input type="number" id="lbs" oninput="convertUnit('lbs')" placeholder="Enter weight in LBS">
         </div>
     </section>
 
-    <div class="ad-slot">
-        פרסומת מותאמת
-    </div>
+    <div class="ad-placeholder">Advertisements</div>
 </main>
 
 <footer>
-    <p>&copy; 2024 Global Calculator Hub | הכלים החינמיים הטובים ברשת</p>
+    <p>&copy; 2024 Global Calc Hub. All tools are free to use.</p>
 </footer>
 
 <script>
-    // Navigation
     function switchCalc(id, btn) {
         document.querySelectorAll('.calc-card').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -250,7 +265,6 @@
         btn.classList.add('active');
     }
 
-    // Compound Interest Calculation: A = P(1 + r/n)^(nt)
     function calcCompound() {
         const p = parseFloat(document.getElementById('p').value);
         const r = parseFloat(document.getElementById('r').value) / 100;
@@ -262,13 +276,12 @@
         const resDiv = document.getElementById('res-interest');
         resDiv.style.display = 'block';
         resDiv.innerHTML = `
-            סכום סופי: ₪${amount.toLocaleString(undefined, {maximumFractionDigits: 2})}<br>
-            סך הריבית שנצברה: ₪${profit.toLocaleString(undefined, {maximumFractionDigits: 2})}
+            Future Value: $${amount.toLocaleString(undefined, {maximumFractionDigits: 2})}<br>
+            Total Interest: $${profit.toLocaleString(undefined, {maximumFractionDigits: 2})}
         `;
-        gtag('event', 'calculate', {'event_category': 'finance', 'event_label': 'compound_interest'});
+        gtag('event', 'calculate_compound');
     }
 
-    // Percentage Calculation
     function calcPercent() {
         const val = parseFloat(document.getElementById('perc-val').value);
         const total = parseFloat(document.getElementById('perc-total').value);
@@ -276,11 +289,10 @@
 
         const resDiv = document.getElementById('res-percent');
         resDiv.style.display = 'block';
-        resDiv.innerText = `${val}% מתוך ${total} הם: ${result}`;
-        gtag('event', 'calculate', {'event_category': 'math', 'event_label': 'percentage'});
+        resDiv.innerText = `${val}% of ${total} is: ${result.toFixed(2)}`;
+        gtag('event', 'calculate_percent');
     }
 
-    // Local-First Unit Conversion
     function convertUnit(type) {
         const kg = document.getElementById('kg');
         const lbs = document.getElementById('lbs');
