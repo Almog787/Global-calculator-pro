@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# מניעת סריקה של קבצי מערכת פנימיים - Best Practice ל-SEO
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /README.md
+
 Sitemap: https://almog787.github.io/Private-file-converter/sitemap.xml
