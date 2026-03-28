@@ -1,11 +1,6 @@
-# הוראה לכל מנועי החיפוש
 User-agent: *
-# אפשר לסרוק את כל האתר
 Allow: /
-
-# הנחיה חשובה: אל תסרקו תיקיות מערכת פנימיות
 Disallow: /.git/
 Disallow: /.github/
-
-# הצהרה ברורה על מיקום מפת האתר
+Disallow: /templates/
 Sitemap: https://globalcalcpro.com/sitemap.xml
