@@ -27,9 +27,8 @@
     </script>
     <style>
         .mesh-gradient-bg { background: radial-gradient(at top left, rgba(0, 74, 198, 0.03) 0%, transparent 50%), radial-gradient(at bottom right, rgba(67, 56, 217, 0.03) 0%, transparent 50%); }
-        /* אנימציית טעינה פשוטה */
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
-        .skeleton { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; background: #e2e8f0; border-radius: 1.5rem; height: 350px; }
+        .skeleton { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; background: #e2e8f0; border-radius: 1.5rem; height: 420px; }
     </style>
 </head>
 <body class="mesh-gradient-bg min-h-screen font-body text-slate-900 flex flex-col">
@@ -52,9 +51,7 @@
         <p class="text-slate-500 max-w-2xl mx-auto text-lg">Insights, guides, and tips to make you smarter with numbers.</p>
     </div>
 
-    <!-- כאן ה-JS ישתול את הכתבות -->
     <div id="blog-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- קוביות טעינה זמניות בזמן שה-JSON נטען -->
         <div class="skeleton"></div>
         <div class="skeleton"></div>
         <div class="skeleton"></div>
@@ -72,12 +69,10 @@
     </div>
 </footer>
 
-<!-- סקריפט משיכת הנתונים -->
 <script>
     async function loadArticles() {
         const grid = document.getElementById('blog-grid');
         try {
-            // הוספת Timestamp כדי למנוע שמירה בזיכרון מטמון (Cache)
             const response = await fetch('/posts.json?t=' + new Date().getTime());
             const posts = await response.json();
             
@@ -86,21 +81,23 @@
                 return;
             }
 
-            // יצירת הכרטיסיות אוטומטית
             grid.innerHTML = posts.map(post => {
-                // עיצוב התאריך לאנגלית יפה (למשל: March 28, 2026)
                 const formattedDate = new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
                 
+                const mediaContent = post.image 
+                    ? `<img src="${post.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="${post.title}">`
+                    : `<span class="material-symbols-outlined text-6xl text-slate-300">${post.icon}</span>`;
+
                 return `
                 <a href="${post.url}" class="bg-white rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all group block flex flex-col h-full">
                     <div class="h-48 bg-slate-50 flex items-center justify-center relative overflow-hidden shrink-0">
-                        <span class="material-symbols-outlined text-6xl text-slate-300 group-hover:scale-110 group-hover:text-primary transition-all">${post.icon}</span>
+                        ${mediaContent}
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <span class="text-xs font-bold text-primary uppercase tracking-wider mb-2 block">${post.tag}</span>
                         <h2 class="text-xl font-bold font-headline mb-3 text-slate-900 group-hover:text-primary transition-colors">${post.title}</h2>
                         <p class="text-slate-500 text-sm mb-4 line-clamp-3 flex-grow">${post.description}</p>
-                        <span class="text-xs text-slate-400 mt-auto pt-4 border-t border-slate-50 block">${formattedDate}</span>
+                        <span class="text-xs text-slate-400 mt-auto pt-4 border-t border-slate-100 block">${formattedDate}</span>
                     </div>
                 </a>
                 `;
@@ -112,9 +109,97 @@
         }
     }
     
-    // הפעלת הפונקציה בעת טעינת העמוד
     loadArticles();
 </script>
 
+</body>
+</html>
+```---
+### שלב 4: עדכון מאמר הריבית דריבית הקיים
+סוף סוף, בוא נעדכן את המאמר הראשון כדי שיכלול את תגית התמונה.
+
+**קובץ:** `articles/magic-of-compound-interest.html`
+```html
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    
+    <title>The Magic of Compound Interest: A Beginner's Guide | Global Calc Hub</title>
+    <meta name="description" content="Discover how compound interest works, why it's considered the 8th wonder of the world, and how to use it to accelerate your wealth building.">
+    <meta name="article:published_time" content="2026-03-28">
+    <meta name="article:tag" content="Finance">
+    <meta name="article:icon" content="trending_up">
+    <!-- הוספנו את תגית התמונה -->
+    <meta name="article:image" content="https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=1000&q=80">
+
+    <link rel="canonical" href="https://globalcalcpro.com/articles/magic-of-compound-interest.html" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBS74DCCQ8"></script>
+    <script>
+      window.dataLayer = window.dataLayer ||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VBS74DCCQ8');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    
+    <script>
+      tailwind.config = {
+        theme: { extend: { colors: { "primary": "#004ac6" }, fontFamily: { "headline": ["Space Grotesk"], "body": ["Manrope"] } } }
+      }
+    </script>
+    <style> body { background-color: #f8fafc; } </style>
+</head>
+<body class="font-body text-slate-900 flex flex-col min-h-screen">
+
+<header class="w-full bg-white border-b border-slate-100 py-4 sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-6 flex items-center justify-between">
+        <a href="/" class="text-xl font-bold font-headline text-primary transition-opacity hover:opacity-80">Global Calc Hub</a>
+        <a href="/blog.html" class="text-sm font-bold text-slate-500 hover:text-primary transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+        </a>
+    </div>
+</header>
+
+<main class="py-12 px-6 flex-grow">
+    <article class="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-100">
+        
+        <header class="mb-8 text-center">
+            <span class="text-sm font-bold text-primary uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full">Finance</span>
+            <h1 class="text-3xl md:text-5xl font-bold font-headline mt-6 mb-6 leading-tight">The Magic of Compound Interest: A Beginner's Guide</h1>
+            <div class="text-slate-400 text-sm flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-sm">calendar_today</span> March 28, 2026
+            </div>
+        </header>
+
+        <figure class="w-full mb-10 overflow-hidden rounded-2xl shadow-sm border border-slate-100 group">
+            <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=1000&q=80" alt="Wealth growth concept" class="w-full h-64 md:h-96 object-cover group-hover:scale-105 transition-transform duration-700">
+        </figure>
+
+        <div class="prose prose-lg prose-slate prose-a:text-primary prose-a:font-semibold max-w-none">
+            <p class="lead text-xl text-slate-600">
+                Albert Einstein famously stated, <em>"Compound interest is the eighth wonder of the world..."</em>
+            </p>
+            <!-- ... שאר תוכן המאמר נשאר אותו הדבר ... -->
+            <h2>Simple vs. Compound Interest</h2>
+            <p>To appreciate compound interest, you first need to understand simple interest...</p>
+            <div class="mt-10 text-center not-prose">
+                <a href="/compound-interest.html" class="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-xl font-bold no-underline hover:bg-blue-700 hover:shadow-lg hover:-translate-y-1 transition-all">
+                    <span class="material-symbols-outlined">calculate</span>
+                    Try Our Free Compound Interest Calculator
+                </a>
+            </div>
+        </div>
+    </article>
+</main>
+<footer class="text-center py-8 text-slate-400 text-sm mt-auto bg-white border-t border-slate-100">
+    ...
+</footer>
 </body>
 </html>
