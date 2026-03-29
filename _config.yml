@@ -1,0 +1,10 @@
+title: Global Calc Hub
+description: Professional Precision Tools for Finance and Units.
+url: "https://almog787.github.io"
+baseurl: "/Global-calculator-pro" # מותאם למאגר החדש שלך!
+
+permalink: /:title.html
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
