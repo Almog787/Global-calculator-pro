@@ -1,14 +1,45 @@
 ---
 layout: default
-title: "Compound Interest Calculator"
-description: "Calculate compound interest easily and accurately."
+title: "Free Compound Interest Calculator | Calculate Future Wealth"
+description: "Calculate compound interest easily. Find out how much your investment will grow over time with our free, fast, and accurate financial calculator."
 ---
+
+<!-- Schema Markup for Calculator & FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph":[
+    {
+      "@type": "WebApplication",
+      "name": "Compound Interest Calculator",
+      "applicationCategory": "FinanceApplication"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity":[{
+        "@type": "Question",
+        "name": "What is compound interest?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Compound interest is the interest on savings calculated on both the initial principal and the accumulated interest from previous periods."
+        }
+      }]
+    }
+  ]
+}
+</script>
+
 <main class="pt-12 pb-20 px-6 max-w-7xl mx-auto flex-grow w-full">
+    
     <div class="text-center mb-10">
         <h1 class="text-4xl md:text-5xl font-bold font-headline mb-4">Compound Interest Calculator</h1>
-        <p class="text-slate-500">Discover the magic of compounding.</p>
+        <p class="text-slate-500">Discover the magic of compounding and forecast your financial future.</p>
     </div>
 
+    <!-- AdSense In-feed Placeholder -->
+    <div class="w-full max-w-4xl mx-auto h-[90px] border-2 border-dashed border-slate-200 bg-slate-50 flex items-center justify-center text-slate-400 text-sm mb-8 rounded-xl">Ad Placement</div>
+
+    <!-- The Calculator UI -->
     <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl shadow-blue-900/5 overflow-hidden border border-slate-100 p-8 md:p-12 mb-16">
         <div class="grid md:grid-cols-2 gap-10">
             <div class="space-y-5">
@@ -24,7 +55,7 @@ description: "Calculate compound interest easily and accurately."
                     <label class="text-xs font-bold text-slate-400 uppercase mb-2 block">Time (Years)</label>
                     <input id="t" type="number" value="10" class="w-full bg-slate-50 border-none rounded-xl p-4 text-lg focus:ring-2 focus:ring-primary/20">
                 </div>
-                <button onclick="calcCompound()" class="w-full bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition-all shadow-lg shadow-primary/30">Calculate</button>
+                <button onclick="calcCompound()" class="w-full bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition-all shadow-lg shadow-primary/30">Calculate Yield</button>
             </div>
             <div class="bg-blue-50/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center">
                 <span class="text-sm font-bold text-primary uppercase mb-2">Estimated Total</span>
@@ -33,17 +64,51 @@ description: "Calculate compound interest easily and accurately."
             </div>
         </div>
     </div>
+
+    <!-- SEO & AdSense Content Area (CRITICAL) -->
+    <article class="max-w-3xl mx-auto mt-12 bg-white p-8 md:p-12 rounded-3xl border border-slate-100 shadow-sm prose prose-slate max-w-none">
+        <h2 class="text-3xl font-bold font-headline mb-6">How Compound Interest Works</h2>
+        <p class="text-slate-600 mb-6 leading-relaxed">
+            Albert Einstein reportedly called compound interest the "eighth wonder of the world." Unlike simple interest, which only calculates profit based on your initial deposit, compound interest calculates profit on both your initial deposit <strong>and</strong> the interest you've already accumulated. Over time, this creates a snowball effect that can drastically increase your wealth.
+        </p>
+
+        <!-- AdSense In-Article Placeholder -->
+        <div class="w-full h-[250px] border-2 border-dashed border-slate-200 bg-slate-50 flex items-center justify-center text-slate-400 text-sm my-8 rounded-xl">In-Article Ad Placement</div>
+
+        <h3 class="text-2xl font-bold font-headline mb-4 mt-8">The Compound Interest Formula</h3>
+        <p class="text-slate-600 mb-6">Our calculator uses the standard financial formula: <code>A = P(1 + r/n)^(nt)</code>. Where 'P' is the principal amount, 'r' is the annual interest rate, and 't' is the time in years. By automating this complex math, you get instant, error-free results.</p>
+
+        <h3 class="text-2xl font-bold font-headline mb-4 mt-8">Frequently Asked Questions</h3>
+        <div class="space-y-4 not-prose">
+            <div class="border-l-4 border-primary pl-4">
+                <h4 class="font-bold text-slate-900">What is a good interest rate?</h4>
+                <p class="text-slate-600 text-sm mt-1">Historically, the stock market (like the S&P 500) returns an average of 7% to 10% annually after inflation. High-yield savings accounts typically offer between 3% to 5%.</p>
+            </div>
+            <div class="border-l-4 border-primary pl-4 mt-4">
+                <h4 class="font-bold text-slate-900">Why does time matter so much?</h4>
+                <p class="text-slate-600 text-sm mt-1">Because compounding is exponential. The longer your money sits, the steeper the growth curve becomes. A 10-year investment will yield significantly less than a 20-year investment, even if the monthly contributions are the same.</p>
+            </div>
+        </div>
+    </article>
+
 </main>
+
 <script>
+    // JS specific ONLY to this calculator
     function calcCompound() {
         const p = parseFloat(document.getElementById('p').value);
         const r = parseFloat(document.getElementById('r').value) / 100;
         const t = parseFloat(document.getElementById('t').value);
         if(isNaN(p) || isNaN(r) || isNaN(t)) return;
         const amount = p * Math.pow((1 + r), t);
+        
         document.getElementById('res-interest-val').innerText = '$' + amount.toLocaleString(undefined, {maximumFractionDigits: 2});
         document.getElementById('res-interest-gain').innerText = '+$' + (amount - p).toLocaleString(undefined, {maximumFractionDigits: 0}) + ' in profit';
+        
+        // Google Analytics Event Tracking for engagement
         gtag('event', 'calculate', { 'event_category': 'Engagement', 'event_label': 'Compound Interest' });
     }
+
+    // Run on load to show initial demo values
     window.onload = calcCompound;
 </script>
