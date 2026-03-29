@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<main class="py-12 px-6 flex-grow w-full">
+    <article class="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-100">
+        
+        <header class="mb-8 text-center">
+            <span class="text-sm font-bold text-primary uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full">{{ page.tag }}</span>
+            <h1 class="text-3xl md:text-5xl font-bold font-headline mt-6 mb-6 leading-tight">{{ page.title }}</h1>
+            <div class="text-slate-400 text-sm flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-sm">calendar_today</span> {{ page.date | date: "%B %-d, %Y" }}
+            </div>
+        </header>
+
+        {% if page.image %}
+        <figure class="w-full mb-10 overflow-hidden rounded-2xl shadow-sm border border-slate-100 group">
+            <img src="{{ page.image }}" alt="{{ page.title }}" class="w-full h-64 md:h-96 object-cover group-hover:scale-105 transition-transform duration-700">
+        </figure>
+        {% endif %}
+
+        <div class="w-full h-[90px] border-2 border-dashed border-slate-200 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 text-sm mb-12">
+            AdSense Placement
+        </div>
+
+        <div class="prose prose-lg prose-slate prose-a:text-primary prose-a:font-semibold max-w-none">
+            {{ content }}
+        </div>
+
+    </article>
+</main>
