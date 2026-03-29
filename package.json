@@ -1,0 +1,38 @@
+{
+  "name": "global-calc-pro",
+  "version": "1.0.0",
+  "description": "Build process for site assets",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./_assets/css/style.css -o ./assets/css/style.css --minify"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^3.4.1"
+  },
+  "devDependencies": {
+     "@tailwindcss/typography": "^0.5.10",
+     "@tailwindcss/forms": "^0.5.7"
+  }
+}
+```2. **צור קובץ `tailwind.config.js` בתיקייה הראשית:**
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './**/*.html',
+    './_layouts/**/*.html',
+    './_posts/**/*.html'
+  ],
+  theme: {
+    extend: {
+      colors: { "primary": "#004ac6" },
+      fontFamily: { "headline": ["Space Grotesk"], "body": ["Manrope"] }
+    },
+  },
+  plugins: [
+     require('@tailwindcss/typography'),
+     require('@tailwindcss/forms'),
+  ],
+}
