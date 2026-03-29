@@ -1,231 +1,41 @@
-<!DOCTYPE html>
-<html class="light" lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    
-    <title>Free Percentage Calculator | Find Discounts, Markups & Ratios</title>
-    <meta name="description" content="Calculate percentages instantly. Find what percent one number is of another, calculate percentage increases/decreases, and solve everyday math problems.">
-    <link rel="canonical" href="https://globalcalcpro.com/percentage.html" />
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph":[
-        {
-          "@type": "WebApplication",
-          "name": "Percentage Calculator",
-          "applicationCategory": "FinanceApplication"
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity":[{
-            "@type": "Question",
-            "name": "How do you calculate the percentage of a number?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "To find the percentage of a number, multiply the number by the percentage fraction (e.g., 20% is 0.20). For example, 20% of 50 is 0.20 x 50 = 10."
-            }
-          }]
-        }
-      ]
-    }
-    </script>
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBS74DCCQ8"></script>
-    <script>
-      window.dataLayer = window.dataLayer ||[];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-VBS74DCCQ8');
-    </script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700" rel="stylesheet"/>
-    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-    
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: { colors: { "primary": "#004ac6" }, fontFamily: { "headline": ["Space Grotesk"], "body": ["Manrope"] } }
-        }
-      }
-    </script>
-    <style>
-        .mesh-gradient-bg { background: radial-gradient(at top left, rgba(0, 74, 198, 0.03) 0%, transparent 50%), radial-gradient(at bottom right, rgba(67, 56, 217, 0.03) 0%, transparent 50%); }
-        .ad-placeholder { border: 2px dashed #cbd5e1; background: #f8fafc; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 0.875rem; }
-    </style>
-</head>
-<body class="mesh-gradient-bg min-h-screen font-body text-slate-900 flex flex-col">
-
-<header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">
-    <nav class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-        <a href="/" class="text-2xl font-bold font-headline tracking-tighter text-primary">Global Calc Hub</a>
-        <div class="hidden md:flex gap-8 font-headline font-semibold text-sm">
-            <a href="compound-interest.html" class="hover:text-primary transition-colors">Compound Interest</a>
-            <a href="percentage.html" class="text-primary transition-colors">Percentage</a>
-            <a href="unit-converter.html" class="hover:text-primary transition-colors">Unit Converter</a>
-            <a href="/blog.html" class="hover:text-primary transition-colors">Blog</a>
-        </div>
-    </nav>
-</header>
-
-<main class="pt-32 pb-20 px-6 max-w-7xl mx-auto flex-grow">
-    
+---
+layout: default
+title: "Percentage Calculator"
+description: "Calculate percentages instantly. Find discounts and markups."
+---
+<main class="pt-12 pb-20 px-6 max-w-7xl mx-auto flex-grow w-full">
     <div class="text-center mb-10">
         <h1 class="text-4xl md:text-5xl font-bold font-headline mb-4">Percentage Calculator</h1>
-        <p class="text-slate-500">Quickly find percentages, discounts, markups, and ratios without the mental math.</p>
+        <p class="text-slate-500">Fast tool for everyday math.</p>
     </div>
-
-    <div class="w-full max-w-4xl mx-auto h-[90px] ad-placeholder mb-8 rounded-xl">Ad Placement</div>
 
     <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl shadow-blue-900/5 overflow-hidden border border-slate-100 p-8 md:p-12 mb-16">
         <div class="grid md:grid-cols-2 gap-10">
             <div class="space-y-5">
                 <div>
-                    <label class="text-xs font-bold text-slate-400 uppercase mb-2 block">What do you want to calculate?</label>
-                    <select id="calcType" onchange="updateLabels()" class="w-full bg-slate-50 border-none rounded-xl p-4 text-lg focus:ring-2 focus:ring-primary/20 font-medium">
-                        <option value="1">What is X % of Y?</option>
-                        <option value="2">X is what % of Y?</option>
-                        <option value="3">Percentage change from X to Y</option>
-                    </select>
+                    <label class="text-xs font-bold text-slate-400 uppercase mb-2 block">What is (%)</label>
+                    <input id="perc-val" type="number" placeholder="e.g. 15" class="w-full bg-slate-50 border-none rounded-xl p-4 text-lg focus:ring-2 focus:ring-primary/20">
                 </div>
                 <div>
-                    <label id="labelX" class="text-xs font-bold text-slate-400 uppercase mb-2 block">Percentage (%)</label>
-                    <input id="valX" type="number" value="20" class="w-full bg-slate-50 border-none rounded-xl p-4 text-lg focus:ring-2 focus:ring-primary/20">
+                    <label class="text-xs font-bold text-slate-400 uppercase mb-2 block">Of Total Amount</label>
+                    <input id="perc-total" type="number" placeholder="e.g. 500" class="w-full bg-slate-50 border-none rounded-xl p-4 text-lg focus:ring-2 focus:ring-primary/20">
                 </div>
-                <div>
-                    <label id="labelY" class="text-xs font-bold text-slate-400 uppercase mb-2 block">Of Amount</label>
-                    <input id="valY" type="number" value="150" class="w-full bg-slate-50 border-none rounded-xl p-4 text-lg focus:ring-2 focus:ring-primary/20">
-                </div>
-                <button onclick="calcPercentage()" class="w-full bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition-all shadow-lg shadow-primary/30">Calculate</button>
+                <button onclick="calcPercent()" class="w-full bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-blue-700 transition-all shadow-lg shadow-primary/30">Calculate</button>
             </div>
-            <div class="bg-blue-50/50 rounded-2xl p-8 flex flex-col justify-center items-center text-center">
-                <span class="text-sm font-bold text-primary uppercase mb-2">Result</span>
-                <div id="res-val" class="text-5xl font-headline font-bold text-slate-900 break-all">30</div>
-                <div id="res-sub" class="text-primary font-bold mt-4 text-lg">20% of 150 is 30</div>
+            <div class="bg-slate-50 rounded-2xl p-8 flex flex-col justify-center items-center text-center border border-slate-100">
+                <span class="text-sm font-bold text-slate-400 uppercase mb-2">Result</span>
+                <div id="res-percent-val" class="text-5xl font-headline font-bold text-primary">0.00</div>
             </div>
         </div>
     </div>
-
-    <article class="max-w-3xl mx-auto mt-12 bg-white p-8 md:p-12 rounded-3xl border border-slate-100 shadow-sm">
-        <h2 class="text-3xl font-bold font-headline mb-6">Mastering Percentages</h2>
-        <p class="text-slate-600 mb-6 leading-relaxed">
-            The word "percent" comes from the Latin <em>per centum</em>, meaning "by the hundred." Whether you are calculating a tip at a restaurant, figuring out a discount during a sale, or analyzing data for work, understanding how to find percentages is a crucial daily skill.
-        </p>
-
-        <div class="w-full h-[250px] ad-placeholder my-8 rounded-xl">In-Article Ad Placement</div>
-
-        <h3 class="text-2xl font-bold font-headline mb-4 mt-8">Common Percentage Formulas</h3>
-        <ul class="list-disc list-inside text-slate-600 mb-6 space-y-2">
-            <li><strong>Find P percent of X:</strong> (P / 100) × X</li>
-            <li><strong>Find what percent X is of Y:</strong> (X / Y) × 100</li>
-            <li><strong>Percentage change:</strong> ((New Value - Old Value) / |Old Value|) × 100</li>
-        </ul>
-
-        <h3 class="text-2xl font-bold font-headline mb-4 mt-8">Frequently Asked Questions</h3>
-        <div class="space-y-4">
-            <div class="border-l-4 border-primary pl-4">
-                <h4 class="font-bold text-slate-900">How do I calculate a 20% discount?</h4>
-                <p class="text-slate-600 text-sm mt-1">To find a 20% discount, simply multiply the original price by 0.20 to find the discount amount, then subtract it from the original price. Alternatively, multiply the price by 0.80 to get the final price instantly.</p>
-            </div>
-            <div class="border-l-4 border-primary pl-4">
-                <h4 class="font-bold text-slate-900">Are percentages reversible?</h4>
-                <p class="text-slate-600 text-sm mt-1">Yes! A fun math trick is that X% of Y is exactly the same as Y% of X. For example, 8% of 50 is the same as 50% of 8 (which is 4).</p>
-            </div>
-        </div>
-    </article>
-
 </main>
-
-<footer class="text-center py-12 text-slate-400 text-sm border-t border-slate-100 mt-auto bg-white">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="font-headline font-bold text-slate-900 text-lg">Global Calc Hub</div>
-        <p>© 2026 Precision Engineering. All rights reserved.</p>
-        <div class="flex gap-6">
-            <a href="privacy.html" class="hover:text-primary">Privacy Policy</a>
-            <a href="terms.html" class="hover:text-primary">Terms of Service</a>
-        </div>
-    </div>
-</footer>
-
 <script>
-    // Update input labels based on calculation type
-    function updateLabels() {
-        const type = document.getElementById('calcType').value;
-        const labelX = document.getElementById('labelX');
-        const labelY = document.getElementById('labelY');
-        
-        if(type === '1') {
-            labelX.innerText = 'Percentage (%)';
-            labelY.innerText = 'Of Amount';
-        } else if(type === '2') {
-            labelX.innerText = 'Amount (Part)';
-            labelY.innerText = 'Total Amount';
-        } else if(type === '3') {
-            labelX.innerText = 'Original Value';
-            labelY.innerText = 'New Value';
-        }
-        calcPercentage();
+    function calcPercent() {
+        const v = parseFloat(document.getElementById('perc-val').value);
+        const t = parseFloat(document.getElementById('perc-total').value);
+        if(isNaN(v) || isNaN(t)) return;
+        const result = (v / 100) * t;
+        document.getElementById('res-percent-val').innerText = result % 1 === 0 ? result.toLocaleString() : result.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        gtag('event', 'calculate', { 'event_category': 'Engagement', 'event_label': 'Percentage' });
     }
-
-    // Core Calculation Logic
-    function calcPercentage() {
-        const type = document.getElementById('calcType').value;
-        const x = parseFloat(document.getElementById('valX').value);
-        const y = parseFloat(document.getElementById('valY').value);
-        
-        if(isNaN(x) || isNaN(y)) return;
-
-        let result = '';
-        let subText = '';
-
-        if (type === '1') {
-            // What is X % of Y?
-            const calc = (x / 100) * y;
-            result = calc % 1 !== 0 ? calc.toFixed(2) : calc; // Format decimals only if needed
-            subText = `${x}% of ${y} is ${result}`;
-        } 
-        else if (type === '2') {
-            // X is what % of Y?
-            if (y === 0) {
-                result = 'Error';
-                subText = 'Cannot divide by zero';
-            } else {
-                const calc = (x / y) * 100;
-                result = (calc % 1 !== 0 ? calc.toFixed(2) : calc) + '%';
-                subText = `${x} is ${result} of ${y}`;
-            }
-        } 
-        else if (type === '3') {
-            // Percentage change from X to Y
-            if (x === 0) {
-                result = 'Error';
-                subText = 'Original value cannot be zero';
-            } else {
-                const calc = ((y - x) / Math.abs(x)) * 100;
-                const formattedCalc = calc % 1 !== 0 ? calc.toFixed(2) : calc;
-                result = formattedCalc + '%';
-                
-                if (calc > 0) {
-                    subText = `An increase of ${result}`;
-                } else if (calc < 0) {
-                    subText = `A decrease of ${Math.abs(formattedCalc)}%`;
-                } else {
-                    subText = 'No change (0%)';
-                }
-            }
-        }
-
-        document.getElementById('res-val').innerText = result;
-        document.getElementById('res-sub').innerText = subText;
-        
-        // Google Analytics Event Tracking
-        gtag('event', 'calculate', { 'event_category': 'Engagement', 'event_label': 'Percentage Calculator' });
-    }
-
-    // Run on load to show initial demo values
-    window.onload = calcPercentage;
 </script>
-</body>
-</html>
