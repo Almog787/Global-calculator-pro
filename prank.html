@@ -4,47 +4,46 @@ title: "Global Calc Hub | System Overload"
 description: "Warning: Critical Error."
 ---
 
-<!-- טעינת מנוע הפיזיקה (Matter.js) -->
+<!-- טעינת מנוע הפיזיקה -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
 
-<!-- כפתור מילוט שיציל את המשתמש -->
+<!-- כפתור מילוט -->
 <a href="{{ '/' | relative_url }}" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-red-600 text-white px-6 py-4 rounded-full font-bold shadow-2xl hover:bg-red-700 hover:scale-105 transition-all z-[99999] flex items-center gap-2 border-4 border-red-800" style="box-shadow: 0 0 20px rgba(220, 38, 38, 0.8);">
     <span class="material-symbols-outlined">warning</span>
     Abort System
 </a>
 
-<!-- אפקט אש בתחתית (יופיע אחרי המכה הראשונה) -->
+<!-- אפקט אש בתחתית המסך -->
 <div id="fire-pit" class="fixed bottom-0 left-0 w-full h-40 z-[9990] pointer-events-none opacity-0 transition-opacity duration-1000 flex items-end justify-center overflow-hidden">
     <div class="fire-bg w-full h-full absolute bottom-0 left-0"></div>
 </div>
 
-<main id="destructible-zone" class="pt-20 pb-20 px-6 max-w-7xl mx-auto flex-grow w-full relative transition-transform">
+<main id="destructible-zone" class="pt-20 pb-20 px-6 max-w-7xl mx-auto flex-grow w-full relative">
     
-    <!-- אלמנטים למטרה (Target Items) -->
-    <div class="target-item w-full max-w-4xl mx-auto h-[90px] border-2 border-dashed border-slate-200 bg-slate-50 flex items-center justify-center text-slate-400 text-sm mb-12 rounded-xl hidden md:flex">
+    <div class="target-item w-full max-w-4xl mx-auto h-[90px] border-2 border-dashed border-slate-200 bg-slate-50 flex items-center justify-center text-slate-400 text-sm mb-12 rounded-xl hidden md:flex relative overflow-hidden">
         AdSense Placement (728x90)
     </div>
 
     <section class="mb-16 text-center">
-        <h1 class="target-item inline-block text-5xl md:text-6xl font-bold font-headline mb-4 tracking-tight">Ethereal <span class="text-primary">Precision.</span></h1>
+        <h1 class="target-item relative overflow-hidden inline-block text-5xl md:text-6xl font-bold font-headline mb-4 tracking-tight">Ethereal <span class="text-primary">Precision.</span></h1>
         <br>
-        <p class="target-item inline-block text-slate-500 max-w-2xl mx-auto text-lg">Your primary source for professional calculators and free tools online. Fast, accurate, and designed for daily use.</p>
+        <p class="target-item relative overflow-hidden inline-block text-slate-500 max-w-2xl mx-auto text-lg">Your primary source for professional calculators and free tools online. Fast, accurate, and designed for daily use.</p>
     </section>
 
     <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-6 mb-20">
-        <div class="target-item bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col">
+        <div class="target-item relative overflow-hidden bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col">
             <span class="material-symbols-outlined text-4xl text-primary mb-4 block">payments</span>
             <h2 class="text-2xl font-bold font-headline mb-2">Compound Interest</h2>
             <p class="text-slate-500 text-sm">Visualize the compound interest formula in action. Calculate future wealth and growth.</p>
         </div>
 
-        <div class="target-item bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col">
+        <div class="target-item relative overflow-hidden bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col">
             <span class="material-symbols-outlined text-4xl text-primary mb-4 block">percent</span>
             <h2 class="text-2xl font-bold font-headline mb-2">Percentage Calculator</h2>
             <p class="text-slate-500 text-sm">A dedicated percentage calculator for money, discounts, and price increases.</p>
         </div>
 
-        <div class="target-item bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col">
+        <div class="target-item relative overflow-hidden bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 flex flex-col">
             <span class="material-symbols-outlined text-4xl text-primary mb-4 block">straighten</span>
             <h2 class="text-2xl font-bold font-headline mb-2">Unit Converter</h2>
             <p class="text-slate-500 text-sm">Handle global unit conversions instantly. Weight, length, and temperature.</p>
@@ -52,29 +51,22 @@ description: "Warning: Critical Error."
     </div>
 
     <article class="max-w-3xl mx-auto prose prose-slate max-w-none border-t border-slate-100 pt-16">
-        <h2 class="target-item inline-block text-3xl font-bold font-headline mb-6">Essential Financial Tools for a Smarter World</h2>
+        <h2 class="target-item relative overflow-hidden inline-block text-3xl font-bold font-headline mb-6">Essential Financial Tools for a Smarter World</h2>
         <br>
-        <p class="target-item inline-block text-slate-600 mb-4 leading-relaxed">
+        <p class="target-item relative overflow-hidden inline-block text-slate-600 mb-4 leading-relaxed">
             In an era of economic uncertainty, having access to reliable financial tools is more important than ever. Global Calc Hub was created to provide professionals and individuals with a suite of free tools online that simplify complex math.
-        </p>
-        <br>
-        <p class="target-item inline-block text-slate-600 mb-4 leading-relaxed">
-            Building wealth requires a deep understanding of how your money grows. Our compound interest calculator allows you to visualize your potential returns over decades.
         </p>
     </article>
 </main>
 
-<!-- המצלמה (איש הקו במרכז המסך קבוע) -->
-<div id="camera-center" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[10000] opacity-0 pointer-events-none">
-    <div id="the-destroyer" class="relative w-[60px] h-[100px] scale-150 transition-transform duration-200">
-        <!-- מבנה גוף איש הקו -->
-        <div class="sm-head absolute left-[19px] top-0 w-[22px] h-[22px] bg-slate-900 rounded-full shadow-[0_0_10px_rgba(0,0,0,0.5)] z-10 transition-all duration-200"></div>
-        <div class="sm-torso absolute left-[26px] top-[20px] w-[8px] h-[35px] bg-slate-900 rounded-md z-10 transition-all duration-200"></div>
-        <div class="sm-arm sm-left-arm absolute left-[26px] top-[22px] w-[8px] h-[32px] bg-slate-900 rounded-md origin-top z-0 transition-transform duration-200" style="transform: rotate(30deg);"></div>
-        <div class="sm-arm sm-right-arm absolute left-[26px] top-[22px] w-[8px] h-[32px] bg-slate-900 rounded-md origin-top z-20 transition-transform duration-200" style="transform: rotate(-30deg);"></div>
-        <div class="sm-leg sm-left-leg absolute left-[26px] top-[50px] w-[8px] h-[35px] bg-slate-900 rounded-md origin-top z-0 transition-transform duration-200" style="transform: rotate(20deg);"></div>
-        <div class="sm-leg sm-right-leg absolute left-[26px] top-[50px] w-[8px] h-[35px] bg-slate-900 rounded-md origin-top z-20 transition-transform duration-200" style="transform: rotate(-20deg);"></div>
-    </div>
+<!-- איש הקו (Stickman) - עכשיו משוחרר ורץ על המסך! -->
+<div id="the-destroyer" class="z-[10000]">
+    <div class="sm-head"></div>
+    <div class="sm-torso"></div>
+    <div class="sm-arm sm-left-arm"></div>
+    <div class="sm-arm sm-right-arm"></div>
+    <div class="sm-leg sm-left-leg"></div>
+    <div class="sm-leg sm-right-leg"></div>
 </div>
 
 <!-- CSS ייעודי לאנימציות, נזק, ואש -->
@@ -84,59 +76,64 @@ description: "Warning: Critical Error."
     /* רעידת מסך */
     @keyframes screenShake {
         0% { transform: translate(0, 0) rotate(0deg); }
-        25% { transform: translate(12px, 12px) rotate(2deg); }
-        50% { transform: translate(-12px, -6px) rotate(-2deg); }
-        75% { transform: translate(-6px, 12px) rotate(1deg); }
+        25% { transform: translate(15px, 15px) rotate(2deg); }
+        50% { transform: translate(-15px, -8px) rotate(-2deg); }
+        75% { transform: translate(-8px, 15px) rotate(1deg); }
         100% { transform: translate(0, 0) rotate(0deg); }
     }
     .shake-active { animation: screenShake 0.25s cubic-bezier(.36,.07,.19,.97) both; }
 
-    /* תרגילי קונג פו */
-    .move-kick { transform: translateX(20px) translateY(-10px) rotate(-15deg) scale(1.5) !important; }
+    /* איש הקו */
+    #the-destroyer { 
+        position: absolute; /* רץ בחופשיות על המסך */
+        width: 60px; height: 100px; 
+        transform: scale(1.5);
+        transition: top 0.3s ease-out, left 0.3s ease-out; /* אנימציית ריצה חלקה */
+        top: -200px; left: -200px;
+        pointer-events: none;
+    }
+    
+    .sm-head { width: 22px; height: 22px; background: #0f172a; border-radius: 50%; position: absolute; left: 19px; top: 0; box-shadow: 0 0 15px rgba(0,100,255,0.8); transition: transform 0.2s;}
+    .sm-torso { width: 8px; height: 35px; background: #0f172a; border-radius: 4px; position: absolute; left: 26px; top: 20px; transition: transform 0.2s;}
+    .sm-arm, .sm-leg { width: 8px; height: 32px; background: #0f172a; border-radius: 4px; position: absolute; transform-origin: top center; transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    
+    .sm-left-arm { left: 26px; top: 22px; transform: rotate(30deg); }
+    .sm-right-arm { left: 26px; top: 22px; transform: rotate(-30deg); }
+    .sm-left-leg { left: 26px; top: 50px; transform: rotate(20deg); }
+    .sm-right-leg { left: 26px; top: 50px; transform: rotate(-20deg); }
+
+    /* תרגילי קונג פו (משתלבים עם ה-scale הקיים) */
+    .move-kick { transform: scale(1.5) translateX(20px) translateY(-10px) rotate(-15deg) !important; }
     .move-kick .sm-right-leg { transform: rotate(-85deg) scaleY(1.1) !important; }
     .move-kick .sm-left-leg { transform: rotate(35deg) !important; }
     .move-kick .sm-right-arm { transform: rotate(-120deg) !important; }
     .move-kick .sm-left-arm { transform: rotate(80deg) !important; }
 
-    .move-punch { transform: translateX(15px) translateY(-5px) scale(1.5) !important; }
+    .move-punch { transform: scale(1.5) translateX(15px) translateY(-5px) !important; }
     .move-punch .sm-right-arm { transform: rotate(-90deg) scaleY(1.2) translateY(-5px) !important; }
     .move-punch .sm-left-arm { transform: rotate(45deg) !important; }
     .move-punch .sm-torso { transform: rotate(10deg) !important; }
 
-    .move-uppercut { transform: translateY(-30px) scale(1.5) !important; }
+    .move-uppercut { transform: scale(1.5) translateY(-30px) !important; }
     .move-uppercut .sm-right-arm { transform: rotate(-180deg) scaleY(1.3) !important; }
     .move-uppercut .sm-left-arm { transform: rotate(20deg) !important; }
     .move-uppercut .sm-left-leg { transform: rotate(5deg) !important; }
     .move-uppercut .sm-right-leg { transform: rotate(30deg) !important; }
 
-    /* --- מערכת נזק (Damage System) --- */
-    
-    /* 1. סדקים (Cracks) */
-    .cracked {
-        position: relative;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        border: 2px dashed #334155 !important;
-        background-color: #f8fafc !important;
-        overflow: visible !important;
-    }
-    .cracked::before, .cracked::after {
-        content: ''; position: absolute; background: #0f172a; z-index: 50;
-    }
-    .cracked::before {
-        top: -10%; left: 40%; width: 4px; height: 120%; transform: rotate(25deg);
-    }
-    .cracked::after {
-        top: 60%; left: -10%; width: 120%; height: 3px; transform: rotate(-15deg);
+    /* סדקים (Minor Cracks) למכות הראשונות */
+    .minor-crack {
+        position: absolute;
+        background-color: #0f172a;
+        z-index: 10;
+        pointer-events: none;
     }
 
-    /* 2. מצב שרוף/מפויח (Charred) */
+    /* מצב שרוף/מפויח */
     .charred {
         filter: brightness(0.2) contrast(1.5) sepia(1) hue-rotate(-50deg) saturate(3) !important;
         transition: filter 1s ease-in-out;
     }
 
-    /* עשן עולה מהשברים השרופים */
     @keyframes floatSmoke {
         0% { transform: translateY(0) scale(1); opacity: 0.8; }
         100% { transform: translateY(-60px) scale(2.5); opacity: 0; }
@@ -147,8 +144,8 @@ description: "Warning: Critical Error."
 
     /* אפקטי קומיקס */
     .comic-pow {
-        position: fixed; top: 50%; left: 50%; z-index: 10001;
-        font-family: 'Space Grotesk', sans-serif; font-weight: 900; font-style: italic; font-size: 80px;
+        position: absolute; z-index: 10001;
+        font-family: 'Space Grotesk', sans-serif; font-weight: 900; font-style: italic; font-size: 60px;
         color: #facc15; text-transform: uppercase;
         text-shadow: 4px 4px 0 #ef4444, -3px -3px 0 #ef4444, 3px -3px 0 #ef4444, -3px 3px 0 #ef4444, 8px 8px 0 #000;
         animation: powExplode 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; pointer-events: none;
@@ -159,60 +156,46 @@ description: "Warning: Critical Error."
         100% { opacity: 0; transform: translate(-20%, -70%) scale(1.5) rotate(25deg); }
     }
 
-    /* רקע האש התחתון */
+    /* רקע האש */
     .fire-bg {
         background: linear-gradient(to top, rgba(239, 68, 68, 0.95), rgba(245, 158, 11, 0.7), transparent);
         animation: fireFlicker 0.3s infinite alternate;
     }
-    @keyframes fireFlicker {
-        0% { opacity: 0.8; transform: scaleY(0.9); }
-        100% { opacity: 1; transform: scaleY(1.1); }
-    }
-    .flame-emoji {
-        font-size: 50px; animation: burn 0.8s infinite alternate; transform-origin: bottom;
-    }
-    @keyframes burn {
-        0% { transform: scaleY(0.8) rotate(-5deg); opacity: 0.8; }
-        100% { transform: scaleY(1.3) rotate(5deg); opacity: 1; }
-    }
+    @keyframes fireFlicker { 0% { opacity: 0.8; transform: scaleY(0.9); } 100% { opacity: 1; transform: scaleY(1.1); } }
+    .flame-emoji { font-size: 50px; animation: burn 0.8s infinite alternate; transform-origin: bottom; }
+    @keyframes burn { 0% { transform: scaleY(0.8) rotate(-5deg); opacity: 0.8; } 100% { transform: scaleY(1.3) rotate(5deg); opacity: 1; } }
 </style>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // יצירת אימוג'י של אש בתחתית (מחכים למכה הראשונה כדי להציג אותם)
+        // יצירת אימוג'י של אש
         const firePit = document.getElementById('fire-pit');
-        for(let j=0; j<30; j++) {
+        for(let j=0; j<35; j++) {
             let flame = document.createElement('div');
             flame.className = 'flame-emoji absolute bottom-0';
             flame.innerHTML = '🔥';
             flame.style.left = (Math.random() * 100) + '%';
             flame.style.animationDelay = (Math.random() * 1) + 's';
-            flame.style.fontSize = (30 + Math.random() * 50) + 'px';
+            flame.style.fontSize = (40 + Math.random() * 40) + 'px';
             firePit.appendChild(flame);
         }
 
-        // מתחילים את המתיחה אחרי 4 שניות
-        setTimeout(initPrank, 4000); 
+        setTimeout(initPrank, 3000); 
     });
 
     function initPrank() {
-        const mainZone = document.getElementById('destructible-zone');
-        const camera = document.getElementById('camera-center');
         const guy = document.getElementById('the-destroyer');
-        
-        // הופעת איש הקו
-        camera.style.opacity = '1';
+        guy.style.opacity = '1'; // חשיפת האיש
 
-        // הגדרת מנוע הפיזיקה של Matter.js
+        // הגדרת מנוע הפיזיקה
         const Engine = Matter.Engine, Runner = Matter.Runner, Bodies = Matter.Bodies, Composite = Matter.Composite, Body = Matter.Body;
         const engine = Engine.create();
-        const runner = Runner.create();
-        Runner.run(runner, engine);
+        Runner.run(Runner.create(), engine);
 
         const w = window.innerWidth;
         const h = window.innerHeight;
         
-        // יצירת רצפה (שתעצור את החלקים בתוך האש) וקירות בלתי נראים
+        // יצירת רצפה למטה (כדי שהחלקים ייפלו לתוך האש)
         const floor = Bodies.rectangle(w/2, h + 20, w + 200, 100, { isStatic: true, friction: 0.8, restitution: 0.2 });
         const leftWall = Bodies.rectangle(-50, h/2, 100, h * 3, { isStatic: true });
         const rightWall = Bodies.rectangle(w + 50, h/2, 100, h * 3, { isStatic: true });
@@ -221,26 +204,20 @@ description: "Warning: Critical Error."
         const targets = Array.from(document.querySelectorAll('.target-item'));
         const activeBodies =[];
 
-        // פונקציית עדכון מנוע הפיזיקה וזיהוי שריפה (רצה 60 פעמים בשנייה)
+        // פונקציית עדכון הפיזיקה (רצה כל הזמן ברקע)
         function updateDOM() {
             for (let i = 0; i < activeBodies.length; i++) {
                 let obj = activeBodies[i];
-                
-                // סנכרון מיקום וזווית
                 obj.dom.style.transform = `translate(${obj.body.position.x - obj.width/2}px, ${obj.body.position.y - obj.height/2}px) rotate(${obj.body.angle}rad)`;
 
-                // מנגנון שריפה: אם האלמנט הגיע לתחתית המסך (לתוך האש) והוא עדיין לא שרוף
-                if (obj.body.position.y > h - 150 && !obj.isBurnt) {
+                if (obj.body.position.y > h - 120 && !obj.isBurnt) {
                     obj.isBurnt = true;
-                    obj.dom.classList.add('charred'); // הופך לשחור שרוף
-                    
-                    // הוספת עשן עולה מהשברים
-                    if(obj.width > 30) {
+                    obj.dom.classList.add('charred'); // שרוף
+                    if(obj.width > 40) {
                         let smoke = document.createElement('div');
                         smoke.innerText = '💨';
                         smoke.className = 'smoke-particle';
-                        smoke.style.left = '40%';
-                        smoke.style.top = '10%';
+                        smoke.style.left = '50%'; smoke.style.top = '20%';
                         obj.dom.appendChild(smoke);
                     }
                 }
@@ -250,104 +227,150 @@ description: "Warning: Critical Error."
         requestAnimationFrame(updateDOM);
 
         const moves =['move-kick', 'move-punch', 'move-uppercut'];
-        const words =['BAM!', 'POW!', 'SMASH!', 'CRUNCH!', 'BOOM!'];
-        let currentIndex = 0;
+        const hitWords =['BAM!', 'CRACK!', 'WHACK!'];
+        const finalWords =['SMASH!', 'BOOM!', 'DESTROYED!'];
+        
+        let targetIndex = 0;
 
         function attackNext() {
-            if (currentIndex >= targets.length) {
-                guy.style.transform = "translateY(150vh) scale(1.5)"; // הנינג'ה נופל למטה
-                camera.style.opacity = '0';
-                setTimeout(() => alert("FATAL ERROR: The site has been totally destroyed and burned! 🔥 Click 'Abort System' to restore the matrix."), 1500);
+            if (targetIndex >= targets.length) {
+                guy.style.top = '150vh'; // בורח
+                setTimeout(() => alert("FATAL ERROR: System annihilated by unauthorized ninja. 🥷🔥 Click 'Abort System' to restore."), 1500);
                 return;
             }
 
-            const target = targets[currentIndex];
+            const target = targets[targetIndex];
             
-            // המצלמה רודפת אחרי המטרה
+            // הגדרת כמות "חיים" לאלמנט (3 מכות)
+            if (typeof target.health === 'undefined') {
+                target.health = 3;
+            }
+
+            // גלילה חלקה למטרה הנוכחית
             target.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-            // הדלקת האש (רק במכה הראשונה)
-            if (currentIndex === 0) document.getElementById('fire-pit').style.opacity = '1';
+            if (targetIndex === 0 && target.health === 3) {
+                document.getElementById('fire-pit').style.opacity = '1';
+            }
 
-            // המתנה לסיום הגלילה
             setTimeout(() => {
                 const rect = target.getBoundingClientRect();
-                const randomMove = moves[Math.floor(Math.random() * moves.length)];
                 
-                // 1. אנימציית קונג פו
-                guy.classList.add(randomMove);
+                // חישוב נקודת פגיעה אקראית *בתוך* האלמנט
+                const hitXRelative = Math.random() * rect.width;
+                const hitYRelative = Math.random() * rect.height;
                 
-                // 2. רעידת מסך
-                document.body.classList.add('shake-active');
-                setTimeout(() => document.body.classList.remove('shake-active'), 250);
+                // המיקום המוחלט במסמך
+                const absoluteHitX = rect.left + window.scrollX + hitXRelative;
+                const absoluteHitY = rect.top + window.scrollY + hitYRelative;
 
-                // 3. אפקט מילה קופצת מקומיקס
-                const pow = document.createElement('div');
-                pow.className = 'comic-pow';
-                pow.innerText = words[Math.floor(Math.random() * words.length)];
-                document.body.appendChild(pow);
-                setTimeout(() => pow.remove(), 600);
+                // הנינג'ה רץ פיזית לנקודת המכה! (קצת שמאלה ולמעלה כדי שיפגע עם היד/רגל)
+                guy.style.left = (absoluteHitX - 40) + 'px';
+                guy.style.top = (absoluteHitY - 50) + 'px';
 
-                // 4. החבאת האלמנט המקורי
-                target.style.visibility = 'hidden'; 
-                
-                // 5. יצירת השיבוט "השבור"
-                const clone = target.cloneNode(true);
-                clone.classList.remove('target-item');
-                clone.classList.add('cracked'); // שובר את האלמנט עם סדקים
-                clone.style.position = 'fixed';
-                clone.style.margin = '0';
-                clone.style.top = '0px'; clone.style.left = '0px';
-                clone.style.width = rect.width + 'px'; clone.style.height = rect.height + 'px';
-                clone.style.zIndex = '9995';
-                document.body.appendChild(clone);
-
-                // 6. יצירת הגוף הפיזי של האלמנט הראשי ב-Matter.js
-                const body = Bodies.rectangle(rect.left + rect.width/2, rect.top + rect.height/2, rect.width, rect.height, { 
-                    restitution: 0.3, friction: 0.5, density: 0.05
-                });
-                
-                // בעיטה שמעיפה אותו קצת למעלה ולצדדים
-                const forceMagnitude = 0.06 * body.mass;
-                Body.applyForce(body, body.position, { x: (Math.random() - 0.5) * forceMagnitude, y: -forceMagnitude * 1.2 });
-                Composite.add(engine.world, body);
-                
-                // הוספה למערך הסנכרון
-                activeBodies.push({ dom: clone, body: body, width: rect.width, height: rect.height, isBurnt: false });
-
-                // 7. יצירת רסיסים קטנים שעפים לכל עבר (Debris)
-                const colors =['#004ac6', '#cbd5e1', '#0f172a', '#ef4444'];
-                for(let d = 0; d < 4; d++) {
-                    const debrisSize = 15 + Math.random() * 25;
-                    const dDom = document.createElement('div');
-                    dDom.style.position = 'fixed';
-                    dDom.style.width = debrisSize + 'px';
-                    dDom.style.height = debrisSize + 'px';
-                    dDom.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    dDom.style.zIndex = '9996';
-                    document.body.appendChild(dDom);
-
-                    const dBody = Bodies.rectangle(rect.left + rect.width/2, rect.top + rect.height/2, debrisSize, debrisSize, {
-                        restitution: 0.6, friction: 0.1, density: 0.01
-                    });
-                    
-                    // כוח חזק יותר לרסיסים כדי שיעופו מהר
-                    Body.applyForce(dBody, dBody.position, { x: (Math.random() - 0.5) * 0.05, y: -0.05 - Math.random() * 0.05 });
-                    Composite.add(engine.world, dBody);
-                    activeBodies.push({ dom: dDom, body: dBody, width: debrisSize, height: debrisSize, isBurnt: false });
-                }
-
-                // 8. התאוששות למכה הבאה (האיש חוזר לעמידת מוצא ועובר הלאה)
+                // מחכים שהנינג'ה יגיע בריצה
                 setTimeout(() => {
-                    guy.classList.remove(randomMove);
-                    currentIndex++;
-                    setTimeout(attackNext, 300); 
-                }, 300); 
+                    const randomMove = moves[Math.floor(Math.random() * moves.length)];
+                    guy.classList.add(randomMove);
+                    
+                    document.body.classList.add('shake-active');
+                    setTimeout(() => document.body.classList.remove('shake-active'), 250);
 
-            }, 500); // המתנה לסיום הגלילה
+                    // יצירת טקסט קומיקס בנקודת המכה
+                    const pow = document.createElement('div');
+                    pow.className = 'comic-pow';
+                    
+                    target.health--;
+
+                    if (target.health > 0) {
+                        // מכה רגילה - יצירת סדק!
+                        pow.innerText = hitWords[Math.floor(Math.random() * hitWords.length)];
+                        pow.style.fontSize = '50px';
+                        
+                        // ציור סדק שחור על האלמנט עצמו
+                        const crack = document.createElement('div');
+                        crack.className = 'minor-crack';
+                        crack.style.left = hitXRelative + 'px';
+                        crack.style.top = hitYRelative + 'px';
+                        crack.style.width = (40 + Math.random() * 60) + 'px';
+                        crack.style.height = '3px';
+                        crack.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 360}deg)`;
+                        target.appendChild(crack);
+
+                        // מתאושש ומכה שוב את אותו אלמנט
+                        setTimeout(() => {
+                            guy.classList.remove(randomMove);
+                            setTimeout(attackNext, 300);
+                        }, 300);
+
+                    } else {
+                        // מכת המחץ! השמדת האלמנט!
+                        pow.innerText = finalWords[Math.floor(Math.random() * finalWords.length)];
+                        
+                        // העלמת המקור
+                        target.style.visibility = 'hidden'; 
+                        
+                        // יצירת שיבוט נופל
+                        const clone = target.cloneNode(true);
+                        clone.classList.remove('target-item');
+                        clone.style.position = 'fixed';
+                        clone.style.margin = '0';
+                        clone.style.top = '0px'; clone.style.left = '0px';
+                        clone.style.width = rect.width + 'px'; clone.style.height = rect.height + 'px';
+                        clone.style.zIndex = '9995';
+                        clone.style.border = '2px dashed #000'; // נראה שבור
+                        document.body.appendChild(clone);
+
+                        // פיזיקת Matter.js של האלמנט הגדול
+                        const body = Bodies.rectangle(rect.left + rect.width/2, rect.top + rect.height/2, rect.width, rect.height, { 
+                            restitution: 0.4, friction: 0.5, density: 0.05
+                        });
+                        
+                        // כוח הבעיטה האחרונה
+                        const forceMagnitude = 0.07 * body.mass;
+                        Body.applyForce(body, body.position, { x: (Math.random() - 0.5) * forceMagnitude, y: -forceMagnitude * 1.5 });
+                        Composite.add(engine.world, body);
+                        activeBodies.push({ dom: clone, body: body, width: rect.width, height: rect.height, isBurnt: false });
+
+                        // יצירת רסיסים שעפים!
+                        const colors =['#004ac6', '#64748b', '#0f172a', '#ef4444'];
+                        for(let d = 0; d < 5; d++) {
+                            const debrisSize = 10 + Math.random() * 20;
+                            const dDom = document.createElement('div');
+                            dDom.style.position = 'fixed';
+                            dDom.style.width = debrisSize + 'px'; dDom.style.height = debrisSize + 'px';
+                            dDom.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                            dDom.style.zIndex = '9996';
+                            document.body.appendChild(dDom);
+
+                            const dBody = Bodies.rectangle(absoluteHitX - window.scrollX, absoluteHitY - window.scrollY, debrisSize, debrisSize, {
+                                restitution: 0.7, friction: 0.1, density: 0.01
+                            });
+                            Body.applyForce(dBody, dBody.position, { x: (Math.random() - 0.5) * 0.08, y: -0.05 - Math.random() * 0.1 });
+                            Composite.add(engine.world, dBody);
+                            activeBodies.push({ dom: dDom, body: dBody, width: debrisSize, height: debrisSize, isBurnt: false });
+                        }
+
+                        // עוברים לאלמנט הבא
+                        setTimeout(() => {
+                            guy.classList.remove(randomMove);
+                            targetIndex++;
+                            setTimeout(attackNext, 400); 
+                        }, 300);
+                    }
+
+                    // הצגת הקומיקס במיקום המדויק
+                    pow.style.left = absoluteHitX + 'px';
+                    pow.style.top = absoluteHitY + 'px';
+                    document.body.appendChild(pow);
+                    setTimeout(() => pow.remove(), 500);
+
+                }, 300); // המתנה שהאיש ירוץ לנקודה
+
+            }, 300); // המתנה לגלילת המסך
         }
 
-        // מתחילים!
+        // התחלת המכות!
         attackNext();
     }
 </script>
