@@ -1,0 +1,125 @@
+---
+layout: default
+title: "Knowledge Base | Insights & Guides"
+description: "Master your finances and sharpen your mind with our latest insights on economy, finance and math."
+---
+
+<main class="pt-32 pb-20 px-6 max-w-7xl mx-auto flex-grow w-full">
+    <!-- כותרת העמוד -->
+    <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-6xl font-bold font-headline mb-4 tracking-tight">Knowledge <span class="text-primary">Base.</span></h1>
+        <p class="text-slate-500 max-w-2xl mx-auto text-lg">Master your finances and sharpen your mind with our latest insights.</p>
+    </div>
+
+    <!-- הצעה 2: מערכת סינון קטגוריות דינמית -->
+    <div class="flex flex-wrap justify-center gap-3 mb-16" id="category-filters">
+        <button onclick="filterCategory('all')" class="filter-btn active px-6 py-2 rounded-full font-bold transition-all shadow-md">
+            All Posts
+        </button>
+        {% assign tags = site.posts | map: 'tag' | uniq %}
+        {% for tag in tags %}
+        <button onclick="filterCategory('{{ tag }}')" class="filter-btn px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 font-semibold hover:border-primary hover:text-primary transition-all shadow-sm">
+            {{ tag }}
+        </button>
+        {% endfor %}
+    </div>
+
+    <!-- הצעה 1: גריד מאמרים הכולל מאמר נבחר -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="posts-grid">
+        {% for post in site.posts %}
+            {% if forloop.first %}
+                <!-- מאמר נבחר (Featured Post) - מופיע ראשון וגדול -->
+                <div class="post-card md:col-span-2 lg:col-span-3" data-category="{{ post.tag }}">
+                    <a href="{{ post.url | relative_url }}" class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 hover:shadow-2xl transition-all group flex flex-col lg:flex-row shadow-xl shadow-blue-900/5">
+                        <div class="lg:w-3/5 h-72 lg:h-auto overflow-hidden">
+                            {% if post.image %}
+                                <img src="{{ post.image }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="{{ post.title }}">
+                            {% else %}
+                                <div class="w-full h-full bg-slate-100 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-8xl text-slate-300">{{ post.icon }}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="p-8 lg:p-12 lg:w-2/5 flex flex-col justify-center">
+                            <span class="text-xs font-bold text-primary uppercase tracking-[0.2em] mb-4 block">{{ post.tag }}</span>
+                            <h2 class="text-3xl md:text-4xl font-bold font-headline mb-6 text-slate-900 group-hover:text-primary transition-colors leading-tight">{{ post.title }}</h2>
+                            <p class="text-slate-500 text-lg mb-8 line-clamp-3">{{ post.description }}</p>
+                            <div class="flex items-center justify-between text-sm text-slate-400">
+                                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span> {{ post.date | date: "%B %-d, %Y" }}</span>
+                                <span class="text-primary font-bold flex items-center gap-1">Read Article <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% else %}
+                <!-- מאמרים רגילים בגריד -->
+                <div class="post-card" data-category="{{ post.tag }}">
+                    <a href="{{ post.url | relative_url }}" class="bg-white rounded-[2rem] overflow-hidden border border-slate-100 hover:shadow-xl transition-all group shadow-sm flex flex-col h-full border border-slate-50">
+                        <div class="h-56 overflow-hidden relative">
+                            {% if post.image %}
+                                <img src="{{ post.image }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ post.title }}">
+                            {% else %}
+                                <div class="w-full h-full bg-slate-50 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-6xl text-slate-200">{{ post.icon }}</span>
+                                </div>
+                            {% endif %}
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-primary shadow-sm uppercase tracking-widest">{{ post.tag }}</span>
+                            </div>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h2 class="text-xl font-bold font-headline mb-4 text-slate-900 group-hover:text-primary transition-colors line-clamp-2">{{ post.title }}</h2>
+                            <p class="text-slate-500 text-sm mb-6 line-clamp-3 flex-grow">{{ post.description }}</p>
+                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-tight border-t border-slate-50 pt-4 block">{{ post.date | date: "%B %d, %Y" }}</span>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</main>
+
+<!-- עיצוב כפתורי הסינון -->
+<style>
+    .filter-btn.active {
+        background-color: #004ac6;
+        color: white;
+        border-color: #004ac6;
+    }
+    /* אנימציית כניסה למאמרים כשמסננים */
+    .post-card {
+        transition: all 0.4s ease-in-out;
+    }
+</style>
+
+<!-- סקריפט הסינון -->
+<script>
+    function filterCategory(category) {
+        const cards = document.querySelectorAll('.post-card');
+        const buttons = document.querySelectorAll('.filter-btn');
+
+        // עדכון עיצוב כפתורים
+        buttons.forEach(btn => {
+            btn.classList.remove('active', 'bg-primary', 'text-white');
+            btn.classList.add('bg-white', 'text-slate-600');
+            
+            if(btn.innerText.toLowerCase() === category.toLowerCase() || (category === 'all' && btn.innerText.includes('All'))) {
+                btn.classList.add('active', 'bg-primary', 'text-white');
+                btn.classList.remove('bg-white', 'text-slate-600');
+            }
+        });
+
+        // סינון הכרטיסיות
+        cards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            if (category === 'all' || cardCategory === category) {
+                card.style.display = 'block';
+                setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'scale(1)'; }, 10);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => { card.style.display = 'none'; }, 400);
+            }
+        });
+    }
+</script>
