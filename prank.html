@@ -1,0 +1,193 @@
+---
+layout: default
+title: "Global Calc Hub | Do Not Enter"
+description: "Warning: Something is wrong with this page."
+---
+<main id="destructible-zone" class="pt-20 pb-20 px-6 max-w-7xl mx-auto flex-grow w-full relative">
+    
+    <!-- AdSense Leaderboard Placeholder -->
+    <div class="target-item w-full max-w-4xl mx-auto h-[90px] border-2 border-dashed border-slate-200 bg-slate-50 flex items-center justify-center text-slate-400 text-sm mb-12 rounded-xl hidden md:flex">
+        AdSense Placement (728x90)
+    </div>
+
+    <section class="mb-16 text-center">
+        <h1 class="target-item text-5xl md:text-6xl font-bold font-headline mb-4 tracking-tight">Ethereal <span class="text-primary">Precision.</span></h1>
+        <p class="target-item text-slate-500 max-w-2xl mx-auto text-lg">Your primary source for **professional calculators** and **free tools online**. Fast, accurate, and designed for daily use.</p>
+    </section>
+
+    <!-- Calculators Grid -->
+    <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-6 mb-20">
+        <!-- Tool Card 1 -->
+        <div class="target-item bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 hover:-translate-y-2 transition-transform block">
+            <span class="material-symbols-outlined text-4xl text-primary mb-4 block">payments</span>
+            <h2 class="text-2xl font-bold font-headline mb-2">Compound Interest Calculator</h2>
+            <p class="text-slate-500 text-sm">Visualize the **compound interest formula** in action. Calculate future wealth and growth.</p>
+        </div>
+
+        <!-- Tool Card 2 -->
+        <div class="target-item bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 hover:-translate-y-2 transition-transform block">
+            <span class="material-symbols-outlined text-4xl text-primary mb-4 block">percent</span>
+            <h2 class="text-2xl font-bold font-headline mb-2">Percentage Calculator</h2>
+            <p class="text-slate-500 text-sm">A dedicated **percentage calculator for money**, discounts, and price **increases**.</p>
+        </div>
+
+        <!-- Tool Card 3 -->
+        <div class="target-item bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 hover:-translate-y-2 transition-transform block">
+            <span class="material-symbols-outlined text-4xl text-primary mb-4 block">straighten</span>
+            <h2 class="text-2xl font-bold font-headline mb-2">Universal Unit Converter</h2>
+            <p class="text-slate-500 text-sm">Handle **global unit conversions** instantly. Weight, length, and temperature.</p>
+        </div>
+    </div>
+
+    <!-- SEO Content Section -->
+    <article class="max-w-3xl mx-auto prose prose-slate max-w-none border-t border-slate-100 pt-16">
+        <h2 class="target-item text-3xl font-bold font-headline mb-6">Essential Financial Tools for a Smarter World</h2>
+        <p class="target-item text-slate-600 mb-4 leading-relaxed">
+            In an era of economic uncertainty, having access to reliable **financial tools** is more important than ever. Global Calc Hub was created to provide professionals and individuals with a suite of **free tools online** that simplify complex math.
+        </p>
+        
+        <h3 class="target-item text-xl font-bold text-slate-900 mb-4">Precision Planning</h3>
+        <p class="target-item text-slate-600 mb-4 leading-relaxed">
+            Building wealth requires a deep understanding of how your money grows. Our **compound interest calculator** allows you to visualize your potential returns over decades.
+        </p>
+    </article>
+</main>
+
+<!-- CSS לאנימציית ההרס -->
+<style>
+    /* הגדרות פיזיקה לאלמנטים שנופלים */
+    .fall-physics {
+        transition: transform 1.2s cubic-bezier(0.55, 0.085, 0.68, 0.53), opacity 1s ease-in;
+        transform-origin: center center;
+    }
+    
+    .is-falling {
+        transform: translateY(150vh) rotate(720deg) !important;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* איש ההרס (הנינג'ה) */
+    #the-destroyer {
+        position: absolute;
+        z-index: 10000;
+        font-size: 60px;
+        transition: top 0.4s ease-in-out, left 0.4s ease-in-out, transform 0.1s ease;
+        top: -200px;
+        left: -200px;
+        pointer-events: none;
+        filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.2));
+    }
+
+    /* אנימציית המכה */
+    .hitting {
+        transform: scale(1.5) rotate(-45deg) !important;
+    }
+
+    /* אפקט הפיצוץ */
+    .pow-effect {
+        position: absolute;
+        font-size: 50px;
+        z-index: 9999;
+        animation: fadeUp 0.5s ease-out forwards;
+        pointer-events: none;
+    }
+
+    @keyframes fadeUp {
+        0% { opacity: 1; transform: scale(0.5) translateY(0); }
+        100% { opacity: 0; transform: scale(2.5) translateY(-50px); }
+    }
+
+    body.chaos-mode {
+        overflow-x: hidden;
+    }
+</style>
+
+<!-- סקריפט ה-Easter Egg (מופעל אחרי 4 שניות) -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+            startDestruction();
+        }, 4000); // 4000 מילישניות = 4 שניות
+    });
+
+    function startDestruction() {
+        document.body.classList.add('chaos-mode');
+        
+        // 1. יצירת איש ההרס
+        const guy = document.createElement('div');
+        guy.id = 'the-destroyer';
+        guy.innerHTML = '🥷'; // אפשר לשנות לאימוג'י אחר כמו 👷‍♂️ או 👾
+        document.body.appendChild(guy);
+
+        // 2. איסוף כל המטרות להרס
+        const targets = Array.from(document.querySelectorAll('.target-item'));
+        
+        // הוספת יכולת "נפילה" לכל המטרות מראש
+        targets.forEach(t => t.classList.add('fall-physics'));
+
+        let i = 0;
+
+        function destroyNext() {
+            if (i >= targets.length) {
+                // סיום - האיש בורח מהמסך
+                guy.style.top = '120vh';
+                setTimeout(() => {
+                    alert("Oops... I think a ninja broke your website! 😅 Refresh the page to fix it.");
+                }, 1500);
+                return;
+            }
+
+            const target = targets[i];
+            
+            // גלילה אוטומטית כדי לראות אותו הורס (אם האלמנט מחוץ למסך)
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            setTimeout(() => {
+                const rect = target.getBoundingClientRect();
+                
+                // חישוב המיקום של האיש (ביחס למסמך המלא כולל גלילה)
+                const targetY = rect.top + window.scrollY + (rect.height / 2) - 30;
+                const targetX = rect.left + window.scrollX + (rect.width / 2) - 30;
+
+                // הזזת האיש למטרה
+                guy.style.top = targetY + 'px';
+                guy.style.left = targetX + 'px';
+
+                // לחכות שהוא יגיע ואז לתת מכה
+                setTimeout(() => {
+                    // אנימציית מכה של הנינג'ה
+                    guy.classList.add('hitting');
+                    
+                    // יצירת אפקט ה"בום"
+                    const pow = document.createElement('div');
+                    pow.className = 'pow-effect';
+                    pow.innerHTML = '💥';
+                    pow.style.top = targetY + 'px';
+                    pow.style.left = targetX + 'px';
+                    document.body.appendChild(pow);
+                    
+                    // מחיקת אפקט הבום אחרי חצי שנייה
+                    setTimeout(() => pow.remove(), 500);
+
+                    // הפלת האלמנט! (כיוון רנדומלי קצת)
+                    const randomRotation = (Math.random() > 0.5 ? 1 : -1) * (360 + Math.random() * 360);
+                    target.style.transform = `translateY(150vh) rotate(${randomRotation}deg)`;
+                    target.style.opacity = '0';
+                    target.style.pointerEvents = 'none';
+                    
+                    // חזרה למצב רגיל ומעבר למטרה הבאה
+                    setTimeout(() => {
+                        guy.classList.remove('hitting');
+                        i++;
+                        destroyNext();
+                    }, 250); // זמן ההתאוששות שלו בין מכה למכה
+                    
+                }, 400); // הזמן שלוקח לו לרוץ למטרה
+            }, 300); // זמן ההמתנה לגלילה של המסך
+        }
+
+        // תחילת הבלגן!
+        destroyNext();
+    }
+</script>
