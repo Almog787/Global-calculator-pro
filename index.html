@@ -1,23 +1,35 @@
 ---
 layout: default
-title: "Global Calc Hub | Professional Calculators & Financial Insights"
-description: "Access a suite of free tools online, precise calculators, and expert articles on global economy, finance, and math to empower your daily decisions."
+title: "Global Calc Hub | Financial Tools & Professional Calculators"
+description: "Access a suite of free tools online, including a precise mortgage calculator, compound interest calculator, percentage calculator, and universal unit converter."
 ---
 <main class="pt-20 pb-20 px-6 max-w-7xl mx-auto flex-grow w-full">
     
-    <!-- AdSense Leaderboard -->
+    <!-- AdSense Leaderboard Placeholder -->
     <div class="w-full max-w-4xl mx-auto h-[90px] border-2 border-dashed border-slate-200 bg-slate-50 flex items-center justify-center text-slate-400 text-sm mb-12 rounded-xl hidden md:flex">
         AdSense Placement (728x90)
     </div>
 
-    <!-- Hero Section קצר וקולע -->
-    <section class="mb-10 text-center">
+    <!-- Hero Section -->
+    <section class="mb-12 text-center">
         <h1 class="text-4xl md:text-6xl font-bold font-headline mb-4 tracking-tight">Ethereal <span class="text-primary">Precision.</span></h1>
         <p class="text-slate-500 max-w-2xl mx-auto text-lg">Professional-grade calculation tools & financial insights for a smarter world.</p>
     </section>
 
-    <!-- סרגל כלים קומפקטי (Quick Tools) -->
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 mb-20">
+    <!-- סרגל כלים קומפקטי (Quick Tools) - עכשיו עם 4 כלים -->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
+        <!-- Mortgage Calculator Card -->
+        <a href="{{ '/mortgage-calculator.html' | relative_url }}" class="bg-white p-5 rounded-2xl shadow-md shadow-blue-900/5 border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all flex items-center gap-4 group">
+            <div class="bg-blue-50 p-3 rounded-xl text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-3xl block">real_estate_agent</span>
+            </div>
+            <div>
+                <h3 class="font-bold font-headline text-slate-900">Mortgage Calculator</h3>
+                <p class="text-xs text-slate-500 line-clamp-1">Calculate monthly payments.</p>
+            </div>
+        </a>
+
+        <!-- Compound Interest Card -->
         <a href="{{ '/compound-interest.html' | relative_url }}" class="bg-white p-5 rounded-2xl shadow-md shadow-blue-900/5 border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all flex items-center gap-4 group">
             <div class="bg-blue-50 p-3 rounded-xl text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                 <span class="material-symbols-outlined text-3xl block">payments</span>
@@ -28,6 +40,7 @@ description: "Access a suite of free tools online, precise calculators, and expe
             </div>
         </a>
 
+        <!-- Percentage Calculator Card -->
         <a href="{{ '/percentage.html' | relative_url }}" class="bg-white p-5 rounded-2xl shadow-md shadow-blue-900/5 border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all flex items-center gap-4 group">
             <div class="bg-blue-50 p-3 rounded-xl text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                 <span class="material-symbols-outlined text-3xl block">percent</span>
@@ -38,6 +51,7 @@ description: "Access a suite of free tools online, precise calculators, and expe
             </div>
         </a>
 
+        <!-- Unit Converter Card -->
         <a href="{{ '/unit-converter.html' | relative_url }}" class="bg-white p-5 rounded-2xl shadow-md shadow-blue-900/5 border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all flex items-center gap-4 group">
             <div class="bg-blue-50 p-3 rounded-xl text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                 <span class="material-symbols-outlined text-3xl block">straighten</span>
@@ -50,118 +64,45 @@ description: "Access a suite of free tools online, precise calculators, and expe
     </div>
 
     <hr class="border-slate-100 mb-16 max-w-4xl mx-auto">
-
-    <!-- מדור התוכן (The Blog Hub) -->
-    <div class="flex flex-col items-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold font-headline mb-6 text-slate-900">Latest Insights</h2>
-        
-        <!-- כפתורי סינון דינמיים -->
-        <div class="flex flex-wrap justify-center gap-2" id="category-filters">
-            <button onclick="filterCategory('all')" class="filter-btn active px-5 py-1.5 text-sm rounded-full font-bold transition-all shadow-md bg-primary text-white border-primary">
-                All
-            </button>
-            {% assign tags = site.posts | map: 'tag' | uniq %}
-            {% for tag in tags %}
-            <button onclick="filterCategory('{{ tag }}')" class="filter-btn px-5 py-1.5 text-sm rounded-full bg-white border border-slate-200 text-slate-600 font-semibold hover:border-primary hover:text-primary transition-all shadow-sm">
-                {{ tag }}
-            </button>
-            {% endfor %}
+    
+    <!-- Latest Article Section (Featured Insight) -->
+    {% assign latest_post = site.posts.first %}
+    {% if latest_post %}
+    <section class="max-w-5xl mx-auto mb-20">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-2xl font-bold font-headline">Latest Insight</h2>
+            <a href="{{ '/blog.html' | relative_url }}" class="text-primary font-bold flex items-center gap-1 hover:underline">
+                View All Articles <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
         </div>
-    </div>
-
-    <!-- גריד המאמרים עם המאמר הנבחר (Featured Post) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto" id="posts-grid">
-        {% for post in site.posts %}
-            {% if forloop.first %}
-                <!-- מאמר נבחר - גדול ומושך -->
-                <div class="post-card md:col-span-2 lg:col-span-3" data-category="{{ post.tag }}">
-                    <a href="{{ post.url | relative_url }}" class="bg-white rounded-[2rem] overflow-hidden border border-slate-100 hover:shadow-2xl transition-all group flex flex-col lg:flex-row shadow-xl shadow-blue-900/5">
-                        <div class="lg:w-3/5 h-64 lg:h-auto overflow-hidden">
-                            {% if post.image %}
-                                <img src="{{ post.image }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="{{ post.title }}">
-                            {% else %}
-                                <div class="w-full h-full bg-slate-100 flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-8xl text-slate-300">{{ post.icon }}</span>
-                                </div>
-                            {% endif %}
-                        </div>
-                        <div class="p-8 lg:p-10 lg:w-2/5 flex flex-col justify-center">
-                            <span class="text-[10px] font-bold text-primary uppercase tracking-[0.2em] mb-3 block">{{ post.tag }}</span>
-                            <h3 class="text-2xl md:text-3xl font-bold font-headline mb-4 text-slate-900 group-hover:text-primary transition-colors leading-tight">{{ post.title }}</h3>
-                            <p class="text-slate-500 text-sm md:text-base mb-6 line-clamp-3">{{ post.description }}</p>
-                            <div class="flex items-center justify-between text-sm text-slate-400 mt-auto">
-                                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">calendar_today</span> {{ post.date | date: "%b %d, %Y" }}</span>
-                                <span class="text-primary font-bold flex items-center gap-1">Read <span class="material-symbols-outlined text-xs">arrow_forward</span></span>
-                            </div>
-                        </div>
-                    </a>
+        
+        <a href="{{ latest_post.url | relative_url }}" class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 hover:shadow-2xl transition-all group flex flex-col md:flex-row shadow-xl shadow-blue-900/5">
+            <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
+                {% if latest_post.image %}
+                    <img src="{{ latest_post.image }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="{{ latest_post.title }}">
+                {% else %}
+                    <div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-300">
+                        <span class="material-symbols-outlined text-8xl">{{ latest_post.icon }}</span>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="p-8 md:p-12 md:w-1/2 flex flex-col justify-center">
+                <span class="text-xs font-bold text-primary uppercase tracking-widest mb-4 block">{{ latest_post.tag }}</span>
+                <h3 class="text-3xl font-bold font-headline mb-4 text-slate-900 group-hover:text-primary transition-colors leading-tight">{{ latest_post.title }}</h3>
+                <p class="text-slate-500 mb-6 line-clamp-2">{{ latest_post.description }}</p>
+                <div class="flex items-center gap-4 text-sm text-slate-400 italic">
+                    <span>{{ latest_post.date | date: "%B %-d, %Y" }}</span>
                 </div>
-            {% else %}
-                <!-- שאר המאמרים ככרטיסיות רגילות -->
-                <div class="post-card" data-category="{{ post.tag }}">
-                    <a href="{{ post.url | relative_url }}" class="bg-white rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all group shadow-sm flex flex-col h-full border border-slate-50">
-                        <div class="h-48 overflow-hidden relative">
-                            {% if post.image %}
-                                <img src="{{ post.image }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ post.title }}">
-                            {% else %}
-                                <div class="w-full h-full bg-slate-50 flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-5xl text-slate-200">{{ post.icon }}</span>
-                                </div>
-                            {% endif %}
-                            <div class="absolute top-3 left-3">
-                                <span class="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-primary shadow-sm uppercase tracking-widest">{{ post.tag }}</span>
-                            </div>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-lg font-bold font-headline mb-3 text-slate-900 group-hover:text-primary transition-colors line-clamp-2">{{ post.title }}</h3>
-                            <p class="text-slate-500 text-xs mb-4 line-clamp-3 flex-grow">{{ post.description }}</p>
-                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-tight border-t border-slate-50 pt-4 block">{{ post.date | date: "%B %d, %Y" }}</span>
-                        </div>
-                    </a>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-
-    <!-- SEO & Pro-Tips Section -->
+            </div>
+        </a>
+    </section>
+    {% endif %}
+    
+    <!-- SEO Content Section -->
     <article class="max-w-3xl mx-auto prose prose-slate max-w-none border-t border-slate-100 pt-16 mt-20">
         <h2 class="text-2xl font-bold font-headline mb-4">Empowering Your Financial Decisions</h2>
         <p class="text-slate-600 mb-4 leading-relaxed">
-            At Global Calc Hub, we blend professional-grade <strong>financial tools online</strong> with deep geopolitical and economic insights. Whether you are using our <strong>compound interest calculator</strong> to plan your retirement, or reading up on how the global economy affects your <strong>gas prices today</strong>, our goal is to provide clarity in a complex world.
+            At Global Calc Hub, we blend professional-grade financial tools online with deep geopolitical and economic insights. Whether you are using our compound interest calculator to plan your retirement, or reading up on how the global economy affects your gas prices today, our goal is to provide clarity in a complex world.
         </p>
     </article>
 </main>
-
-<style>
-    .filter-btn.active { background-color: #004ac6; color: white; border-color: #004ac6; }
-    .post-card { transition: all 0.4s ease-in-out; }
-</style>
-
-<script>
-    function filterCategory(category) {
-        const cards = document.querySelectorAll('.post-card');
-        const buttons = document.querySelectorAll('.filter-btn');
-
-        buttons.forEach(btn => {
-            btn.classList.remove('active', 'bg-primary', 'text-white');
-            btn.classList.add('bg-white', 'text-slate-600');
-            
-            if(btn.innerText.toLowerCase() === category.toLowerCase() || (category === 'all' && btn.innerText.includes('All'))) {
-                btn.classList.add('active', 'bg-primary', 'text-white');
-                btn.classList.remove('bg-white', 'text-slate-600');
-            }
-        });
-
-        cards.forEach(card => {
-            const cardCategory = card.getAttribute('data-category');
-            if (category === 'all' || cardCategory === category) {
-                card.style.display = 'block';
-                setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'scale(1)'; }, 10);
-            } else {
-                card.style.opacity = '0';
-                card.style.transform = 'scale(0.95)';
-                setTimeout(() => { card.style.display = 'none'; }, 400);
-            }
-        });
-    }
-</script>
