@@ -3,6 +3,21 @@ layout: default
 title: "Global Calc Hub | Do Not Enter"
 description: "Warning: Something is wrong with this page."
 ---
+
+<!-- כפתור מילוט חסין-הריסה (מרחף בפינה הימנית התחתונה) -->
+<a href="{{ '/' | relative_url }}" class="fixed bottom-8 right-8 md:bottom-12 md:right-12 bg-red-600 text-white px-6 py-4 rounded-full font-bold shadow-2xl hover:bg-red-700 hover:scale-110 transition-all z-[99999] flex items-center gap-2 border-4 border-white cursor-pointer" style="animation: pulse-red 2s infinite;">
+    <span class="material-symbols-outlined">warning</span>
+    Back to Safety!
+</a>
+
+<style>
+    @keyframes pulse-red {
+        0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+        70% { box-shadow: 0 0 0 15px rgba(220, 38, 38, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+    }
+</style>
+
 <main id="destructible-zone" class="pt-20 pb-20 px-6 max-w-7xl mx-auto flex-grow w-full relative">
     
     <!-- AdSense Leaderboard Placeholder -->
@@ -17,22 +32,19 @@ description: "Warning: Something is wrong with this page."
 
     <!-- Calculators Grid -->
     <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-6 mb-20">
-        <!-- Tool Card 1 -->
-        <div class="target-item bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 hover:-translate-y-2 transition-transform block">
+        <div class="target-item bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 block">
             <span class="material-symbols-outlined text-4xl text-primary mb-4 block">payments</span>
             <h2 class="text-2xl font-bold font-headline mb-2">Compound Interest Calculator</h2>
             <p class="text-slate-500 text-sm">Visualize the **compound interest formula** in action. Calculate future wealth and growth.</p>
         </div>
 
-        <!-- Tool Card 2 -->
-        <div class="target-item bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 hover:-translate-y-2 transition-transform block">
+        <div class="target-item bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 block">
             <span class="material-symbols-outlined text-4xl text-primary mb-4 block">percent</span>
             <h2 class="text-2xl font-bold font-headline mb-2">Percentage Calculator</h2>
             <p class="text-slate-500 text-sm">A dedicated **percentage calculator for money**, discounts, and price **increases**.</p>
         </div>
 
-        <!-- Tool Card 3 -->
-        <div class="target-item bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 hover:-translate-y-2 transition-transform block">
+        <div class="target-item bg-white p-8 rounded-3xl shadow-xl shadow-blue-900/5 border border-slate-100 block">
             <span class="material-symbols-outlined text-4xl text-primary mb-4 block">straighten</span>
             <h2 class="text-2xl font-bold font-headline mb-2">Universal Unit Converter</h2>
             <p class="text-slate-500 text-sm">Handle **global unit conversions** instantly. Weight, length, and temperature.</p>
@@ -55,19 +67,11 @@ description: "Warning: Something is wrong with this page."
 
 <!-- CSS לאנימציית ההרס -->
 <style>
-    /* הגדרות פיזיקה לאלמנטים שנופלים */
     .fall-physics {
         transition: transform 1.2s cubic-bezier(0.55, 0.085, 0.68, 0.53), opacity 1s ease-in;
         transform-origin: center center;
     }
     
-    .is-falling {
-        transform: translateY(150vh) rotate(720deg) !important;
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    /* איש ההרס (הנינג'ה) */
     #the-destroyer {
         position: absolute;
         z-index: 10000;
@@ -79,12 +83,10 @@ description: "Warning: Something is wrong with this page."
         filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.2));
     }
 
-    /* אנימציית המכה */
     .hitting {
         transform: scale(1.5) rotate(-45deg) !important;
     }
 
-    /* אפקט הפיצוץ */
     .pow-effect {
         position: absolute;
         font-size: 50px;
@@ -108,58 +110,45 @@ description: "Warning: Something is wrong with this page."
     document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             startDestruction();
-        }, 4000); // 4000 מילישניות = 4 שניות
+        }, 4000); 
     });
 
     function startDestruction() {
         document.body.classList.add('chaos-mode');
         
-        // 1. יצירת איש ההרס
         const guy = document.createElement('div');
         guy.id = 'the-destroyer';
-        guy.innerHTML = '🥷'; // אפשר לשנות לאימוג'י אחר כמו 👷‍♂️ או 👾
+        guy.innerHTML = '🥷'; 
         document.body.appendChild(guy);
 
-        // 2. איסוף כל המטרות להרס
         const targets = Array.from(document.querySelectorAll('.target-item'));
-        
-        // הוספת יכולת "נפילה" לכל המטרות מראש
         targets.forEach(t => t.classList.add('fall-physics'));
 
         let i = 0;
 
         function destroyNext() {
             if (i >= targets.length) {
-                // סיום - האיש בורח מהמסך
                 guy.style.top = '120vh';
                 setTimeout(() => {
-                    alert("Oops... I think a ninja broke your website! 😅 Refresh the page to fix it.");
+                    alert("Oops... I think a ninja broke your website! 😅 Click 'Back to Safety' to escape.");
                 }, 1500);
                 return;
             }
 
             const target = targets[i];
-            
-            // גלילה אוטומטית כדי לראות אותו הורס (אם האלמנט מחוץ למסך)
             target.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
             setTimeout(() => {
                 const rect = target.getBoundingClientRect();
-                
-                // חישוב המיקום של האיש (ביחס למסמך המלא כולל גלילה)
                 const targetY = rect.top + window.scrollY + (rect.height / 2) - 30;
                 const targetX = rect.left + window.scrollX + (rect.width / 2) - 30;
 
-                // הזזת האיש למטרה
                 guy.style.top = targetY + 'px';
                 guy.style.left = targetX + 'px';
 
-                // לחכות שהוא יגיע ואז לתת מכה
                 setTimeout(() => {
-                    // אנימציית מכה של הנינג'ה
                     guy.classList.add('hitting');
                     
-                    // יצירת אפקט ה"בום"
                     const pow = document.createElement('div');
                     pow.className = 'pow-effect';
                     pow.innerHTML = '💥';
@@ -167,27 +156,23 @@ description: "Warning: Something is wrong with this page."
                     pow.style.left = targetX + 'px';
                     document.body.appendChild(pow);
                     
-                    // מחיקת אפקט הבום אחרי חצי שנייה
                     setTimeout(() => pow.remove(), 500);
 
-                    // הפלת האלמנט! (כיוון רנדומלי קצת)
                     const randomRotation = (Math.random() > 0.5 ? 1 : -1) * (360 + Math.random() * 360);
                     target.style.transform = `translateY(150vh) rotate(${randomRotation}deg)`;
                     target.style.opacity = '0';
                     target.style.pointerEvents = 'none';
                     
-                    // חזרה למצב רגיל ומעבר למטרה הבאה
                     setTimeout(() => {
                         guy.classList.remove('hitting');
                         i++;
                         destroyNext();
-                    }, 250); // זמן ההתאוששות שלו בין מכה למכה
+                    }, 250); 
                     
-                }, 400); // הזמן שלוקח לו לרוץ למטרה
-            }, 300); // זמן ההמתנה לגלילה של המסך
+                }, 400); 
+            }, 300); 
         }
 
-        // תחילת הבלגן!
         destroyNext();
     }
 </script>
