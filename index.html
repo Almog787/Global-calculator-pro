@@ -65,38 +65,40 @@ description: "Access a suite of free tools online, including a precise mortgage 
 
     <hr class="border-slate-100 mb-16 max-w-4xl mx-auto">
     
-    <!-- Latest Article Section (Featured Insight) -->
-    {% assign latest_post = site.posts.first %}
-    {% if latest_post %}
-    <section class="max-w-5xl mx-auto mb-20">
+    <!-- Latest Articles Section (מציג 2 מאמרים) -->
+    <section class="max-w-6xl mx-auto mb-20">
         <div class="flex items-center justify-between mb-8">
-            <h2 class="text-2xl font-bold font-headline">Latest Insight</h2>
+            <h2 class="text-2xl font-bold font-headline">Latest Insights</h2>
             <a href="{{ '/blog.html' | relative_url }}" class="text-primary font-bold flex items-center gap-1 hover:underline">
                 View All Articles <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
         </div>
         
-        <a href="{{ latest_post.url | relative_url }}" class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 hover:shadow-2xl transition-all group flex flex-col md:flex-row shadow-xl shadow-blue-900/5">
-            <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
-                {% if latest_post.image %}
-                    <img src="{{ latest_post.image }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="{{ latest_post.title }}">
-                {% else %}
-                    <div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-300">
-                        <span class="material-symbols-outlined text-8xl">{{ latest_post.icon }}</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- לולאה של Jekyll שלוקחת את 2 המאמרים האחרונים בלבד -->
+            {% for post in site.posts limit:2 %}
+            <a href="{{ post.url | relative_url }}" class="bg-white rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-all group shadow-sm flex flex-col h-full border border-slate-50">
+                <div class="h-56 overflow-hidden relative">
+                    {% if post.image %}
+                        <img src="{{ post.image }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ post.title }}">
+                    {% else %}
+                        <div class="w-full h-full bg-slate-50 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-5xl text-slate-200">{{ post.icon }}</span>
+                        </div>
+                    {% endif %}
+                    <div class="absolute top-3 left-3">
+                        <span class="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-primary shadow-sm uppercase tracking-widest">{{ post.tag }}</span>
                     </div>
-                {% endif %}
-            </div>
-            <div class="p-8 md:p-12 md:w-1/2 flex flex-col justify-center">
-                <span class="text-xs font-bold text-primary uppercase tracking-widest mb-4 block">{{ latest_post.tag }}</span>
-                <h3 class="text-3xl font-bold font-headline mb-4 text-slate-900 group-hover:text-primary transition-colors leading-tight">{{ latest_post.title }}</h3>
-                <p class="text-slate-500 mb-6 line-clamp-2">{{ latest_post.description }}</p>
-                <div class="flex items-center gap-4 text-sm text-slate-400 italic">
-                    <span>{{ latest_post.date | date: "%B %-d, %Y" }}</span>
                 </div>
-            </div>
-        </a>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold font-headline mb-3 text-slate-900 group-hover:text-primary transition-colors line-clamp-2">{{ post.title }}</h3>
+                    <p class="text-slate-500 text-sm mb-4 line-clamp-3 flex-grow">{{ post.description }}</p>
+                    <span class="text-[10px] text-slate-400 uppercase font-bold tracking-tight border-t border-slate-100 pt-4 block">{{ post.date | date: "%B %d, %Y" }}</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
     </section>
-    {% endif %}
     
     <!-- SEO Content Section -->
     <article class="max-w-3xl mx-auto prose prose-slate max-w-none border-t border-slate-100 pt-16 mt-20">
