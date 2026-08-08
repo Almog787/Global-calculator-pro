@@ -44,41 +44,13 @@
 
 © **Global Calc Pro** — Precision Mathematical Tools for Everyone.
 
-## 🧪 Automated Testing & QA Architecture
-
-### ❓ Why are there over 1,100 internal links checked in QA?
-**Global Calc Pro** is a multi-language, statically pre-rendered application supporting **5 languages** (English, Hebrew, Spanish, French, and Arabic) across **20+ calculators and pages**. 
-
-During the static pre-rendering build phase (`npm run prerender`), over **100 HTML files** are generated in `./dist`. Each page contains:
-1. **Header & Footer Navigation**: Global links to all calculators, about pages, and category indexes.
-2. **Language Selector Dropdown**: Direct links switching to the same page in all 5 languages (`/en/...`, `/he/...`, `/es/...`, `/fr/...`, `/ar/...`).
-3. **SEO Meta Tags (`<link rel="alternate">` & Canonical)**: `hreflang` tags pointing search engines to localized versions of every page.
-4. **Related Calculators Grid**: Contextual internal links between relevant calculators.
-
-Multiplying 100+ HTML files by ~10-15 internal links per page yields **over 1,100 links**. 
-
----
-
-### 🛡️ What QA Tests Are Executed in GitHub Actions?
-1. **🏗️ Application Build & Prerender (`npm run build`)**: 
-   - Compiles TypeScript and packages Vite frontend assets.
-   - Runs Playwright in a headless environment to pre-render full static HTML files into `./dist` for ultra-fast SEO loading.
-2. **🧹 Code Quality & Type Safety (`npm run test`)**:
-   - Runs `tsc --noEmit` to verify 100% strict TypeScript compliance.
-   - Runs `eslint` to enforce code quality, clean imports, and hook dependencies.
-3. **🔗 Deep Link Checking (`Lychee`)**:
-   - Scans every generated HTML file in `./dist/**/*.html`.
-   - Remaps production URLs (`https://globalcalcpro.com/*` ➔ `./dist/*`) to test all 1,100+ internal links directly against the generated static files locally without any external network dependency.
-4. **🚀 Automatic Search Engine Indexing (`Google Indexing API`)**:
-   - On deployment, notifies Google Search Console via JWT Service Account to instantly index new or updated calculator pages.
-
 <!-- QA_SUMMARY_START -->
 ## 📊 Automated QA & Test Report
 *This section is automatically updated by GitHub Actions during automated QA runs.*
 
 ### 🏗️ Build & Code Quality Status
-- **Application Build**: ✅ Success
-- **TypeScript & ESLint**: ✅ Passed without errors
+- **Application Build**: ✅ Success (הבנייה עברה בהצלחה)
+- **TypeScript & ESLint**: ✅ Passed without errors (בדיקות טיפוסים ו-Lint עברו)
 
 ### 🔗 Link Checker Summary (Lychee)
 #### 📋 Excluded Patterns & Rules / חוקים והחרגות:
@@ -86,6 +58,6 @@ Multiplying 100+ HTML files by ~10-15 internal links per page yields **over 1,10
 - `https://globalcalcpro.com/*`: **Remapped to `./dist/*`** - כל 1,100 הקישורים הפנימיים נבדקים מקומית מול הקבצים הממשיים בתיקיית הבנייה!
 
 #### 📝 Latest Lychee Report:
-_Run QA workflow to generate latest report._
-<!-- QA_SUMMARY_END -->
+[Full Github Actions output](https://github.com/Almog787/Global-calculator-pro/actions/runs/31277023490?check_suite_focus=true)
 
+<!-- QA_SUMMARY_END -->
