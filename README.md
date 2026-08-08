@@ -43,21 +43,3 @@
 * Decimal.js for precise financial math
 
 © **Global Calc Pro** — Precision Mathematical Tools for Everyone.
-
-<!-- QA_SUMMARY_START -->
-## 📊 Automated QA & Test Report
-*This section is automatically updated by GitHub Actions during automated QA runs.*
-
-### 🏗️ Build & Code Quality Status
-- **Application Build**: ✅ Success (הבנייה עברה בהצלחה)
-- **TypeScript & ESLint**: ✅ Passed without errors (בדיקות טיפוסים ו-Lint עברו)
-
-### 🔗 Link Checker Summary (Lychee)
-#### 📋 Excluded Patterns & Rules / חוקים והחרגות:
-- `fonts.googleapis.com` / `fonts.gstatic.com`: External Google Fonts (פונטים חיצוניים)
-- `https://globalcalcpro.com/*`: **Remapped to `./dist/*`** - כל 1,100 הקישורים הפנימיים נבדקים מקומית מול הקבצים הממשיים בתיקיית הבנייה!
-
-#### 📝 Latest Lychee Report:
-[Full Github Actions output](https://github.com/Almog787/Global-calculator-pro/actions/runs/31277023490?check_suite_focus=true)
-
-<!-- QA_SUMMARY_END -->
