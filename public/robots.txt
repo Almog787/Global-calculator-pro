@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://globalcalcpro.com/sitemap.xml
