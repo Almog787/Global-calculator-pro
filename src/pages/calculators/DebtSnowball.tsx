@@ -1,7 +1,10 @@
 import { useState, useDeferredValue, useEffect } from 'react';
 import SEO from '../../components/SEO';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useI18n } from '../../contexts/i18n';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const localDict = {
   en: {
@@ -77,7 +80,7 @@ const localDict = {
 };
 
 export default function DebtSnowball() {
-  const { lang, t: globalT } = useI18n();
+  const { lang } = useI18n();
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
   const [debts, setDebts] = useState([

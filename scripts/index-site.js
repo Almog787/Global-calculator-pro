@@ -124,6 +124,10 @@ async function indexSite() {
         console.log(`✅ Indexing requested: ${url} (Status: ${res.status})`);
       } catch (urlErr) {
         console.error(`⚠️ Indexing failed for ${url}:`, urlErr.message);
+        if (urlErr.message && urlErr.message.includes('Quota exceeded')) {
+          console.log('🛑 Quota exceeded. Stopping further indexing requests for today to prevent errors.');
+          break;
+        }
       }
     }
 

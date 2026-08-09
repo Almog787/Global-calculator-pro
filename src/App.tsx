@@ -133,9 +133,10 @@ function LocalizedRoutes() {
     if (urlLang && validLangs.includes(urlLang) && urlLang !== contextLang) {
       setLang(urlLang as any);
     } else if (urlLang && !validLangs.includes(urlLang)) {
-      navigate(`/en${location.pathname.replace(`/${urlLang}`, '')}`, { replace: true });
+      const targetLang = contextLang || 'en';
+      navigate(`/${targetLang}${location.pathname}${location.search}`, { replace: true });
     }
-  }, [urlLang, contextLang, setLang, navigate, location.pathname]);
+  }, [urlLang, contextLang, setLang, navigate, location.pathname, location.search]);
 
   return (
     <Routes>

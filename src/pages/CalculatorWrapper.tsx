@@ -1,35 +1,29 @@
 import { useParams } from 'react-router-dom';
-import { Suspense, lazy, useMemo } from 'react';
+import { Suspense, lazy } from 'react';
 import NotFound from './NotFound';
 import Breadcrumbs from '../components/Breadcrumbs';
 import RelatedCalculators from '../components/RelatedCalculators';
 import { calculators, getCalculatorTitle } from '../data/calculators';
 import SkeletonLoader from '../components/SkeletonLoader';
+import ErrorBoundary from '../components/ErrorBoundary';
 import { useI18n } from '../contexts/i18n';
 
 // Using Vite's import.meta.glob to dynamically discover all calculators in the folder.
 const modules = import.meta.glob('./calculators/*.tsx');
 
+const calculatorComponents: Record<string, React.LazyExoticComponent<any>> = {};
+
+Object.keys(modules).forEach((path) => {
+  const filename = path.split('/').pop()?.replace('.tsx', '').toLowerCase() || '';
+  calculatorComponents[filename] = lazy(modules[path] as any);
+});
+
 export default function CalculatorWrapper() {
   const { slug } = useParams<{ slug: string }>();
   const { t, lang } = useI18n();
 
-  const Component = useMemo(() => {
-    if (!slug) return null;
-    
-    // Find a file that matches the slug (e.g. 'auto-loan' -> 'AutoLoan.tsx')
-    const match = Object.keys(modules).find(path => {
-      const filename = path.split('/').pop()?.replace('.tsx', '').toLowerCase();
-      const cleanSlug = slug.replace(/-/g, '').toLowerCase();
-      return filename === cleanSlug;
-    });
-
-    if (match) {
-      return lazy(modules[match] as any);
-    }
-    
-    return null;
-  }, [slug]);
+  const cleanSlug = slug ? slug.replace(/-/g, '').toLowerCase() : '';
+  const Component = cleanSlug ? calculatorComponents[cleanSlug] : null;
 
   if (!Component) {
     return <NotFound />;
@@ -45,9 +39,11 @@ export default function CalculatorWrapper() {
         { label: calcData ? getCalculatorTitle(calcData, t, lang) : slug || 'Calculator' }
       ]} />
       
-      <Suspense fallback={<SkeletonLoader />}>
-        <Component />
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<SkeletonLoader />}>
+          <Component />
+        </Suspense>
+      </ErrorBoundary>
 
       <RelatedCalculators currentId={currentPath} />
     </div>

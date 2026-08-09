@@ -68,7 +68,7 @@ const localDict = {
 };
 
 export default function AutoLoan() {
-  const { lang, t: globalT } = useI18n();
+  const { lang } = useI18n();
   // Fallback to English if language not supported in local dictionary
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 

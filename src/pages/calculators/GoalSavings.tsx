@@ -62,7 +62,7 @@ const localDict = {
 };
 
 export default function GoalSavings() {
-  const { lang, t: globalT } = useI18n();
+  const { lang } = useI18n();
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
   const [goal, setGoal] = useState(50000);
