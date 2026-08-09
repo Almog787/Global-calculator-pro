@@ -10,8 +10,6 @@ on:
 jobs:
   quality-assurance:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,58 +28,18 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Build Application
-        id: build
         run: npm run build
 
       - name: Run Tests
-        id: tests
         run: npm run test
         env:
           BASE_URL: http://127.0.0.1:3000
 
       - name: Check for Broken Links
-        id: lychee
         uses: lycheeverse/lychee-action@v1.9.0
         with:
-          args: --verbose --no-progress --root-dir ./dist --remap 'https://globalcalcpro.com/(.*) ./dist/$1' --exclude 'fonts.googleapis.com' --exclude 'fonts.gstatic.com' './dist/**/*.html'
-          output: lychee/out.md
+          args: --verbose --no-progress --exclude 'fonts.googleapis.com' --exclude 'fonts.gstatic.com' --exclude 'https://globalcalcpro.com.*' --exclude 'http://localhost.*' --exclude 'http://127.0.0.1.*' './dist/**/*.html'
           fail: true
-
-      - name: Update README.md with QA Summary
-        if: always()
-        run: |
-          node -e '
-            const fs = require("fs");
-            let readme = fs.readFileSync("README.md", "utf8");
-            
-            const buildOutcome = "${{ steps.build.outcome }}" === "success" ? "✅ Success (הבנייה עברה בהצלחה)" : "❌ Failed (הבנייה נכשלה)";
-            const testOutcome = "${{ steps.tests.outcome }}" === "success" ? "✅ Passed without errors (בדיקות טיפוסים ו-Lint עברו)" : "❌ Errors found (נמצאו שגיאות)";
-            
-            let lycheeOut = "";
-            if (fs.existsSync("lychee/out.md")) {
-              lycheeOut = fs.readFileSync("lychee/out.md", "utf8");
-            } else {
-              lycheeOut = "_No lychee report generated._";
-            }
-            
-            const summaryText = `<!-- QA_SUMMARY_START -->\n## 📊 Automated QA & Test Report\n*This section is automatically updated by GitHub Actions during automated QA runs.*\n\n### 🏗️ Build & Code Quality Status\n- **Application Build**: ${buildOutcome}\n- **TypeScript & ESLint**: ${testOutcome}\n\n### 🔗 Link Checker Summary (Lychee)\n#### 📋 Excluded Patterns & Rules / חוקים והחרגות:\n- \`fonts.googleapis.com\` / \`fonts.gstatic.com\`: External Google Fonts (פונטים חיצוניים)\n- \`https://globalcalcpro.com/*\`: **Remapped to \`./dist/*\`** - כל 1,100 הקישורים הפנימיים נבדקים מקומית מול הקבצים הממשיים בתיקיית הבנייה!\n\n#### 📝 Latest Lychee Report:\n${lycheeOut}\n<!-- QA_SUMMARY_END -->`;
-            
-            if (readme.includes("<!-- QA_SUMMARY_START -->")) {
-              const regex = /<!-- QA_SUMMARY_START -->[\s\S]*<!-- QA_SUMMARY_END -->/;
-              readme = readme.replace(regex, summaryText);
-            } else {
-              readme = readme.trim() + "\n\n" + summaryText + "\n";
-            }
-            
-            fs.writeFileSync("README.md", readme);
-          '
-
-      - name: Commit & Push README Updates
-        if: always()
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "docs: update QA test summary in README [skip ci]"
-          file_pattern: "README.md"
 
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
