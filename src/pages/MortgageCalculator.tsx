@@ -12,6 +12,7 @@ import { Doughnut } from 'react-chartjs-2';
 import { useI18n } from '../contexts/i18n';
 import Breadcrumbs from '../components/Breadcrumbs';
 import RelatedCalculators from '../components/RelatedCalculators';
+import { getGuideData } from '../data/guideTranslations';
 
 ChartJS.register(
   ArcElement,
@@ -21,6 +22,7 @@ ChartJS.register(
 
 export default function MortgageCalculator() {
   const { t, lang } = useI18n();
+  const guide = getGuideData('mortgage', lang);
   const [principal, setPrincipal] = useState(300000);
   const [rate, setRate] = useState(6.5);
   const [years, setYears] = useState(30);
@@ -159,21 +161,34 @@ export default function MortgageCalculator() {
         </div>
       </div>
     </article>
-      
-      <FAQ items={[
-        {
-          question: lang === 'he' ? 'מהו החזר חודשי?' : 'What is a monthly payment?',
-          answer: lang === 'he' ? 'הסכום שתצטרך לשלם מדי חודש לבנק. הוא מורכב מקרן (הסכום שלווית) וריבית (העלות על ההלוואה).' : 'The amount you need to pay the bank each month. It consists of the principal (amount borrowed) and interest (cost of borrowing).'
-        },
-        {
-          question: lang === 'he' ? 'איך הריבית משפיעה על המשכנתא?' : 'How does the interest rate affect the mortgage?',
-          answer: lang === 'he' ? 'ככל שהריבית גבוהה יותר, תשלם יותר כסף לבנק לאורך חיי ההלוואה. הריבית נקבעת לפי סיכון הלווה ומדדי הכלכלה.' : 'The higher the interest rate, the more money you will pay the bank over the life of the loan. It is determined by borrower risk and economic indicators.'
-        },
-        {
-          question: lang === 'he' ? 'האם כדאי לקחת משכנתא ל-30 שנה?' : 'Should I take a 30-year mortgage?',
-          answer: lang === 'he' ? 'משכנתא ארוכה מקטינה את ההחזר החודשי אך מגדילה מאוד את סך הריבית שתשלם לבנק. מומלץ לקצר במידת האפשר.' : 'A longer mortgage reduces the monthly payment but significantly increases the total interest you will pay. It is recommended to shorten it if possible.'
-        }
-      ]} />
+
+      {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
+      <section className="w-full bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-xs border border-stone-200 mt-8 mb-8 space-y-8">
+        <div className="border-b border-stone-200 pb-6">
+          <h2 className="text-2xl sm:text-3xl font-headline font-bold text-stone-900 tracking-tight mb-3">
+            {guide.guideTitle}
+          </h2>
+          <p className="text-stone-600 leading-relaxed text-sm sm:text-base">
+            {guide.guideDesc}
+          </p>
+        </div>
+
+        {guide.formulaHeading && (
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold text-stone-900 flex items-center gap-2">
+              <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold">1</span>
+              {guide.formulaHeading}
+            </h3>
+            <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 font-mono text-xs sm:text-sm text-stone-800 space-y-2">
+              {guide.formulaLines?.map((line, idx) => (
+                <div key={idx}>{line}</div>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+
+      <FAQ items={guide.faq} />
       
       <RelatedCalculators currentId="mortgage" />
     </div>

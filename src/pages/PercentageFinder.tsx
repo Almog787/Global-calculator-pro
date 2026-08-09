@@ -7,9 +7,12 @@ import RelatedCalculators from '../components/RelatedCalculators';
 import CopyButton from '../components/CopyButton';
 import VisualRatioBar from '../components/VisualRatioBar';
 import PresetChips from '../components/PresetChips';
+import FAQ from '../components/FAQ';
+import { getGuideData } from '../data/guideTranslations';
 
 export default function PercentageFinder() {
   const { t, lang } = useI18n();
+  const guide = getGuideData('percentage', lang);
   const isHebrew = lang === 'he';
 
   // Active Mode: 'of' | 'isWhat' | 'change' | 'discount' | 'reverse'
@@ -115,9 +118,6 @@ export default function PercentageFinder() {
   }, [activeTab, val1A, val1B, val2A, val2B, val3A, val3B, val4Price, val4Discount, val5Part, val5Perc]);
 
   const numFormat = new Intl.NumberFormat(lang === 'en' ? 'en-US' : lang, { maximumFractionDigits: 4 });
-
-  // FAQ Accordion State
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const faqItems = [
     {
@@ -782,37 +782,9 @@ export default function PercentageFinder() {
           </div>
         </div>
 
-        {/* Section 5: FAQ Accordion Section */}
-        <div className="space-y-4 pt-4 border-t border-stone-200">
-          <h3 className="text-xl font-bold text-stone-900">
-            {isHebrew ? 'שאלות נפוצות (FAQ)' : 'Frequently Asked Questions (FAQ)'}
-          </h3>
-          <div className="space-y-2">
-            {faqItems.map((item, index) => {
-              const isOpen = openFaq === index;
-              return (
-                <div key={index} className="border border-stone-200 rounded-xl overflow-hidden transition-all">
-                  <button
-                    type="button"
-                    onClick={() => setOpenFaq(isOpen ? null : index)}
-                    className="w-full p-4 text-left flex justify-between items-center bg-stone-50 hover:bg-stone-100 transition-colors font-bold text-sm sm:text-base text-stone-900 cursor-pointer"
-                  >
-                    <span>{isHebrew ? item.qHe : item.qEn}</span>
-                    <span className="material-symbols-outlined text-stone-400">
-                      {isOpen ? 'expand_less' : 'expand_more'}
-                    </span>
-                  </button>
-                  {isOpen && (
-                    <div className="p-4 bg-white text-stone-600 text-xs sm:text-sm leading-relaxed border-t border-stone-100">
-                      {isHebrew ? item.aHe : item.aEn}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
       </section>
+
+      <FAQ items={guide.faq} />
 
       <RelatedCalculators currentId="percentage" />
     </div>

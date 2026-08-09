@@ -14,6 +14,7 @@ import { Bar } from 'react-chartjs-2';
 import { useI18n } from '../contexts/i18n';
 import Breadcrumbs from '../components/Breadcrumbs';
 import RelatedCalculators from '../components/RelatedCalculators';
+import { getGuideData } from '../data/guideTranslations';
 
 ChartJS.register(
   CategoryScale,
@@ -26,6 +27,7 @@ ChartJS.register(
 
 export default function SalaryCalculator() {
   const { t, lang } = useI18n();
+  const guide = getGuideData('salary', lang);
   const [amount, setAmount] = useState(50000);
   const [frequency, setFrequency] = useState('yearly');
   
@@ -194,6 +196,35 @@ export default function SalaryCalculator() {
         </div>
       </div>
     </article>
+
+      {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
+      <section className="w-full bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-xs border border-stone-200 mt-8 mb-8 space-y-8">
+        <div className="border-b border-stone-200 pb-6">
+          <h2 className="text-2xl sm:text-3xl font-headline font-bold text-stone-900 tracking-tight mb-3">
+            {guide.guideTitle}
+          </h2>
+          <p className="text-stone-600 leading-relaxed text-sm sm:text-base">
+            {guide.guideDesc}
+          </p>
+        </div>
+
+        {guide.formulaHeading && (
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold text-stone-900 flex items-center gap-2">
+              <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-indigo-100 text-indigo-700 text-xs font-bold">1</span>
+              {guide.formulaHeading}
+            </h3>
+            <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 font-mono text-xs sm:text-sm text-stone-800 space-y-2">
+              {guide.formulaLines?.map((line, idx) => (
+                <div key={idx}>{line}</div>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+
+      <FAQ items={guide.faq} />
+
       <RelatedCalculators currentId="salary" />
     </div>
   );

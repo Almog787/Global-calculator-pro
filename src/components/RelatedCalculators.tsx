@@ -12,7 +12,14 @@ export default function RelatedCalculators({
 
   if (related.length === 0) return null;
 
-  const sectionHeading = t.dir === 'rtl' ? 'מחשבונים קשורים' : 'Related Calculators';
+  const headings: Record<string, string> = {
+    en: 'Related Calculators',
+    he: 'מחשבונים קשורים',
+    es: 'Calculadoras Relacionadas',
+    fr: 'Calculatrices Associées',
+    ar: 'حاسبات ذات صلة'
+  };
+  const sectionHeading = headings[lang] || headings.en;
 
   return (
     <div className="mt-12 pt-8 border-t border-stone-200">
