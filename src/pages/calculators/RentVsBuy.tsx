@@ -112,9 +112,14 @@ export default function RentVsBuy() {
       
       // Rough equity after 10 years (amortization approximation)
       // FV of mortgage after 120 payments
-      const rateFactor10y = decRate.add(1).pow(months);
-      const balanceAfter10y = principal.mul(rateFactor10y).sub(mp.mul(rateFactor10y.sub(1)).div(decRate));
-      const equityGained = decPrice.sub(balanceAfter10y);
+      let balanceAfter10y = new Decimal(0);
+      if (decRate.isZero()) {
+        balanceAfter10y = Decimal.max(0, principal.sub(mp.mul(months)));
+      } else {
+        const rateFactor10y = decRate.add(1).pow(months);
+        balanceAfter10y = Decimal.max(0, principal.mul(rateFactor10y).sub(mp.mul(rateFactor10y.sub(1)).div(decRate)));
+      }
+      const equityGained = principal.sub(balanceAfter10y);
       
       // Assume 3% annual appreciation
       const futureHomeValue = decPrice.mul(Math.pow(1.03, 10));

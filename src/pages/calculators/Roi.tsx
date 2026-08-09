@@ -89,8 +89,12 @@ export default function Roi() {
       let annRoi = new Decimal(0);
       if (!decInvested.isZero() && !decYears.isZero()) {
         const ratio = decReturned.div(decInvested).toNumber();
-        const exponent = 1 / decYears.toNumber();
-        annRoi = new Decimal(Math.pow(ratio, exponent) - 1).mul(100);
+        if (ratio > 0) {
+          const exponent = 1 / decYears.toNumber();
+          annRoi = new Decimal(Math.pow(ratio, exponent) - 1).mul(100);
+        } else {
+          annRoi = new Decimal(-100);
+        }
       }
 
       setResults({

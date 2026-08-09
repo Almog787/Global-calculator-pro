@@ -20,6 +20,11 @@ export default function AgeCalculator() {
     const birthDate = new Date(dob);
     const today = new Date();
     
+    if (isNaN(birthDate.getTime()) || birthDate > today) {
+      setAge({ years: 0, months: 0, days: 0 });
+      return;
+    }
+    
     let years = today.getFullYear() - birthDate.getFullYear();
     let months = today.getMonth() - birthDate.getMonth();
     let days = today.getDate() - birthDate.getDate();
