@@ -1,0 +1,8 @@
+{
+  "name": "Global Calculator Pro",
+  "description": "Multi-lingual financial, mathematical, and health online calculators.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
