@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 export type Language = 'en' | 'he' | 'es' | 'fr' | 'ar';

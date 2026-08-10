@@ -1,3 +1,4 @@
+import FAQ from '../components/FAQ';
 import { useState, useEffect } from 'react';
 import SEO from '../components/SEO';
 import Decimal from 'decimal.js';

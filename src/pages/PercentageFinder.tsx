@@ -119,39 +119,6 @@ export default function PercentageFinder() {
 
   const numFormat = new Intl.NumberFormat(lang === 'en' ? 'en-US' : lang, { maximumFractionDigits: 4 });
 
-  const faqItems = [
-    {
-      qEn: "How do I calculate what percentage a number is of another?",
-      qHe: "איך מחשבים איזה אחוז מהווה מספר אחד ממספר אחר?",
-      aEn: "To find what percentage X is of Y, divide X by Y and multiply the result by 100. Formula: (X ÷ Y) × 100 = Percentage. For example, to find what percentage 25 is of 200: (25 ÷ 200) × 100 = 12.5%.",
-      aHe: "כדי למצוא איזה אחוז מהווה X מתוך Y, מחלקים את X ב-Y ומכפילים ב-100. נוסחה: (X ÷ Y) × 100 = אחוז. לדוגמה, 25 מתוך 200: (25 ÷ 200) × 100 = 12.5%."
-    },
-    {
-      qEn: "How to find a percentage of a number quickly?",
-      qHe: "איך מוצאים אחוז ממספר במהירות?",
-      aEn: "Multiply the number by the percentage, then divide by 100 (or convert the percentage to a decimal first). Formula: (Percentage ÷ 100) × Number. For example, 20% of 150 = (20 ÷ 100) × 150 = 0.20 × 150 = 30.",
-      aHe: "מכפילים את המספר באחוז ומחלקים ב-100. נוסחה: (אחוז ÷ 100) × מספר. לדוגמה, 20% מתוך 150 = 0.20 × 150 = 30."
-    },
-    {
-      qEn: "What is the formula for percentage increase or decrease?",
-      qHe: "מהי הנוסחה לחישוב אחוז שינוי (עלייה/ירידה)?",
-      aEn: "Subtract the original value from the new value, divide by the absolute original value, and multiply by 100. Formula: ((New Value - Original Value) ÷ Original Value) × 100. A positive result indicates a percentage increase, while a negative result indicates a decrease.",
-      aHe: "מחסרים את הערך המקורי מהערך החדש, מחלקים בערך המקורי ומכפילים ב-100. נוסחה: ((ערך חדש - ערך מקורי) ÷ ערך מקורי) × 100."
-    },
-    {
-      qEn: "How do you calculate percentage off (discount price)?",
-      qHe: "איך מחשבים הנחה באחוזים ומחיר סופי?",
-      aEn: "To calculate a discount: 1) Find the savings by multiplying the original price by the discount percentage divided by 100. 2) Subtract the savings from the original price to get the final sale price. Example: 25% off $80 = $20 saved, final price = $60.",
-      aHe: "כדי לחשב הנחה: 1) מכפילים את המחיר המקורי באחוז ההנחה ומחלקים ב-100. 2) מחסרים את סכום ההנחה מהמחיר המקורי. לדוגמה: 25% הנחה על 80 ₪ = 20 ₪ חיסכון, מחיר סופי = 60 ₪."
-    },
-    {
-      qEn: "What is reverse percentage and how do you calculate it?",
-      qHe: "מהו חישוב אחוז הפוך ואיך מחשבים אותו?",
-      aEn: "Reverse percentage calculates the original 100% total value when you only know a partial value and its corresponding percentage. Formula: Original Total = (Partial Value ÷ Percentage) × 100.",
-      aHe: "חישוב אחוז הפוך מוצא את הערך המקורי (100%) כשמכירים רק חלק מהסכום והאחוז שהוא מייצג. נוסחה: סכום מקורי = (ערך חלקי ÷ אחוז) × 100."
-    }
-  ];
-
   // Schema.org JSON-LD structured data for SEO
   const jsonLdData = {
     "@context": "https://schema.org",
@@ -189,12 +156,12 @@ export default function PercentageFinder() {
       },
       {
         "@type": "FAQPage",
-        "mainEntity": faqItems.map(item => ({
+        "mainEntity": guide.faq.map((item: any) => ({
           "@type": "Question",
-          "name": item.qEn,
+          "name": item.question,
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": item.aEn
+            "text": item.answer
           }
         }))
       }
@@ -654,14 +621,12 @@ export default function PercentageFinder() {
       {/* SEO ARTICLE & EDUCATIONAL GUIDE: "How to Find a Percentage" */}
       <section className="w-full bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-xs border border-stone-200/80 mb-10 space-y-8">
         <div className="border-b border-stone-200 pb-6">
-          <h2 className="text-2xl sm:text-3xl font-headline font-bold text-stone-900 tracking-tight mb-3">
-            {isHebrew ? 'איך לחשב אחוזים - מדריך מקיף ונוסחאות' : 'How to Find a Percentage – Step-by-Step Guide & Formulas'}
-          </h2>
-          <p className="text-stone-600 leading-relaxed text-sm sm:text-base">
-            {isHebrew
-              ? 'חישוב אחוזים הוא אחד הכלים המתמטיים השימושיים ביותר בחיי היומיום – החל מחישוב הנחות בקניות, דרך חישוב טיפ במסעדה ועד לבדיקת תשואות השקעה וריבית. להלן ההסברים והנוסחאות המלאות.'
-              : 'Calculating percentages is an essential daily math skill. Whether you need to figure out sales discounts, tax rates, test scores, or financial growth, this step-by-step guide explains exactly how to find a percentage with practical formulas.'}
-          </p>
+           <h2 className="text-2xl sm:text-3xl font-headline font-bold text-stone-900 tracking-tight mb-3">
+             {guide.guideTitle}
+           </h2>
+           <p className="text-stone-600 leading-relaxed text-sm sm:text-base">
+             {guide.guideDesc}
+           </p>
         </div>
 
         {/* Section 1: How to find percentage of a number */}
