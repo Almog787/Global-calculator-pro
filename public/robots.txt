@@ -1,3 +1,17 @@
 User-agent: *
-Allow: /
+Disallow: /*
+Allow: /$
+Allow: /en
+Allow: /he
+Allow: /es
+Allow: /fr
+Allow: /ar
+Allow: /assets/
+Allow: /sitemap.xml
+Allow: /robots.txt
+Allow: /favicon.svg
+Allow: /manifest.json
+Allow: /sw.js
+Allow: /ads.txt
+
 Sitemap: https://globalcalcpro.com/sitemap.xml

@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3000",
-    "build": "node scripts/generate-sitemap.js && node scripts/update-readme.js && vite build && cp dist/index.html dist/404.html && node scripts/prerender.js",
+    "build": "node scripts/generate-sitemap.js && node scripts/update-readme.js && vite build && cp dist/index.html dist/404.html && sed -i 's/<head>/<head><meta name=\"robots\" content=\"noindex\">/' dist/404.html && node scripts/prerender.js",
     "index-site": "node scripts/index-site.js",
     "index-pages": "node scripts/index-pages.js",
     "preview": "vite preview",

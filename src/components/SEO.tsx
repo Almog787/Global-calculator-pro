@@ -9,6 +9,7 @@ interface SEOProps {
   type?: 'website' | 'article' | 'profile' | 'product' | 'SoftwareApplication';
   structuredData?: Record<string, any>;
   image?: string;
+  noindex?: boolean;
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -18,7 +19,8 @@ const SEO: React.FC<SEOProps> = ({
   canonicalUrl,
   type = 'website',
   structuredData,
-  image = 'https://globalcalcpro.com/favicon.svg' // Fallback image, could be replaced with a real open graph image
+  image = 'https://globalcalcpro.com/favicon.svg',
+  noindex = false // Fallback image, could be replaced with a real open graph image
 }) => {
   const siteName = 'Global Calc Pro';
   const defaultTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
@@ -46,6 +48,7 @@ const SEO: React.FC<SEOProps> = ({
 
   return (
     <Helmet>
+      {noindex && <meta name="robots" content="noindex" />}
       {/* Primary Meta Tags */}
       <title>{defaultTitle}</title>
       <meta name="title" content={defaultTitle} />

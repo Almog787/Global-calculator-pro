@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useI18n } from '../contexts/i18n';
+import SEO from '../components/SEO';
 
 export default function NotFound() {
   const { t, lang } = useI18n();
@@ -23,6 +24,8 @@ export default function NotFound() {
   }, [navigate, lang]);
 
   return (
+    <>
+      <SEO title="404 - Page Not Found" description="The page you are looking for does not exist." noindex={true} />
     <div id="not-found-page" className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-12">
       <div id="not-found-card" className="bg-white border border-stone-200 shadow-sm rounded-2xl p-8 sm:p-12 max-w-md w-full flex flex-col items-center">
         {/* Visual Badge */}
@@ -60,5 +63,6 @@ export default function NotFound() {
         </p>
       </div>
     </div>
+    </>
   );
 }
