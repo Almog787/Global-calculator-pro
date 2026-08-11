@@ -215,7 +215,9 @@ export default function DebtSnowball() {
 
   return (
     <div>
-      <article className="w-full h-full flex flex-col lg:flex-row bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-stone-200 gap-10">
+      <article className="w-full h-full flex flex-col lg:flex-row gap-8 items-start relative">
+      {/* Input Form */}
+      <div className="flex-[1.5] w-full bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200 flex flex-col">
       <SEO
         title={t.title}
         description={t.description}
@@ -233,7 +235,7 @@ export default function DebtSnowball() {
 
       <div className="flex-[2] flex flex-col">
         <div className="mb-8">
-          <h1 className="text-2xl md:text-3xl font-headline text-stone-900 tracking-tight mb-3">{t.title}</h1>
+          <h1 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.title}</h1>
           <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-lg">{t.description}</p>
         </div>
 
@@ -242,15 +244,15 @@ export default function DebtSnowball() {
             <div key={i} className="flex flex-col md:flex-row gap-4 p-4 rounded-xl bg-stone-50 border border-stone-100">
               <div className="w-full md:w-1/3">
                 <label className="text-[10px] tracking-wider uppercase font-bold text-stone-600 mb-1 block">{label} - {t.balance}</label>
-                <input type="number" value={debts[i].bal} onChange={e => updateDebt(i, 'bal', Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-1 text-lg font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
+                <input type="number" value={debts[i].bal} onChange={e => updateDebt(i, 'bal', Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-1 text-lg font-black text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
               </div>
               <div className="w-full md:w-1/3">
                 <label className="text-[10px] tracking-wider uppercase font-bold text-stone-600 mb-1 block">{t.rate}</label>
-                <input type="number" value={debts[i].rate} onChange={e => updateDebt(i, 'rate', Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-1 text-lg font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
+                <input type="number" value={debts[i].rate} onChange={e => updateDebt(i, 'rate', Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-1 text-lg font-black text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
               </div>
               <div className="w-full md:w-1/3">
                 <label className="text-[10px] tracking-wider uppercase font-bold text-stone-600 mb-1 block">{t.minPayment}</label>
-                <input type="number" value={debts[i].min} onChange={e => updateDebt(i, 'min', Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-1 text-lg font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
+                <input type="number" value={debts[i].min} onChange={e => updateDebt(i, 'min', Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-1 text-lg font-black text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
               </div>
             </div>
           ))}
@@ -261,20 +263,21 @@ export default function DebtSnowball() {
           </div>
         </div>
       </div>
-
-      <div className="flex-1 flex flex-col justify-between border-t lg:border-t-0 lg:border-l lg:rtl:border-r lg:rtl:border-l-0 border-stone-200 pt-10 lg:pt-0 lg:pl-10 lg:rtl:pr-10 lg:rtl:pl-0">
+      </div>
+      {/* Sticky Results Dashboard */}
+      <div className="flex-1 w-full lg:w-[420px] shrink-0 lg:sticky lg:top-24 bg-stone-900 rounded-3xl p-8 shadow-2xl border border-stone-800 text-white flex flex-col justify-between">
         <div className="space-y-6 mb-8">
            <div>
-             <span className="text-xs tracking-wider uppercase font-bold text-stone-600 block mb-1">{t.snowballPayoff}</span>
+             <span className="text-xs tracking-wider uppercase font-bold text-stone-400 block mb-1">{t.snowballPayoff}</span>
              <div className="text-3xl font-headline text-blue-600" dir="ltr">{formatMonths(results.snowballMonths)}</div>
            </div>
            <div>
-             <span className="text-xs tracking-wider uppercase font-bold text-stone-600 block mb-1">{t.monthsSaved}</span>
-             <div className="text-2xl font-headline text-stone-900" dir="ltr">{results.baseMonths >= 1200 ? 'MAX' : Math.max(0, results.baseMonths - results.snowballMonths)} months</div>
+             <span className="text-xs tracking-wider uppercase font-bold text-stone-400 block mb-1">{t.monthsSaved}</span>
+             <div className="text-2xl font-black text-stone-900" dir="ltr">{results.baseMonths >= 1200 ? 'MAX' : Math.max(0, results.baseMonths - results.snowballMonths)} months</div>
            </div>
            <div>
-             <span className="text-xs tracking-wider uppercase font-bold text-stone-600 block mb-1">{t.interestSaved}</span>
-             <div className="text-2xl font-headline text-stone-900" dir="ltr">{currencyFormat.format(Math.max(0, results.baseInterest - results.snowballInterest))}</div>
+             <span className="text-xs tracking-wider uppercase font-bold text-stone-400 block mb-1">{t.interestSaved}</span>
+             <div className="text-2xl font-black text-stone-900" dir="ltr">{currencyFormat.format(Math.max(0, results.baseInterest - results.snowballInterest))}</div>
            </div>
         </div>
         <div className="w-full h-[220px]" dir="ltr">

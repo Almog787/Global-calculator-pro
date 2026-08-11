@@ -137,7 +137,9 @@ export default function Margin() {
 
   return (
     <div>
-      <article className="w-full h-full flex flex-col lg:flex-row bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-stone-200 gap-10">
+      <article className="w-full h-full flex flex-col lg:flex-row gap-8 items-start relative">
+      {/* Input Form */}
+      <div className="flex-[1.5] w-full bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200 flex flex-col">
       <SEO
         title={t.title}
         description={t.description}
@@ -155,41 +157,42 @@ export default function Margin() {
 
       <div className="flex-[1.5] flex flex-col">
         <div className="mb-10">
-          <h1 className="text-2xl md:text-3xl font-headline text-stone-900 tracking-tight mb-3">{t.title}</h1>
+          <h1 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.title}</h1>
           <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-md">{t.description}</p>
         </div>
 
         <div className="space-y-8">
-          <div>
-            <label className="text-xs tracking-wider uppercase font-bold text-stone-600 mb-1 block">{t.cost}</label>
-            <input type="number" value={cost} onChange={e => setCost(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
+          <div className="group">
+<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.cost}</label>
+            <input type="number" value={cost} onChange={e => setCost(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
           </div>
-          <div>
-            <label className="text-xs tracking-wider uppercase font-bold text-stone-600 mb-1 block">{t.revenue}</label>
-            <input type="number" value={revenue} onChange={e => setRevenue(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
+          <div className="group">
+<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.revenue}</label>
+            <input type="number" value={revenue} onChange={e => setRevenue(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
           </div>
-        </div>
+        </div></div>
+      </div>
+      {/* Sticky Results Dashboard */}
+      <div className="flex-1 w-full lg:w-[420px] shrink-0 lg:sticky lg:top-24 bg-stone-900 rounded-3xl p-8 shadow-2xl border border-stone-800 text-white flex flex-col justify-between">
 
-        <div className="mt-12 pt-8 border-t border-stone-200">
+        <div>
           <div className="grid grid-cols-2 gap-x-4 gap-y-8">
             <div>
-              <span className="text-xs tracking-wider uppercase font-bold text-stone-600 block mb-1">{t.margin}</span>
+              <span className="text-xs tracking-wider uppercase font-bold text-stone-400 block mb-1">{t.margin}</span>
               <div className="text-2xl md:text-3xl font-headline text-blue-600" dir="ltr">{percentFormat.format(results.margin)}%</div>
             </div>
             <div>
-              <span className="text-xs tracking-wider uppercase font-bold text-stone-600 block mb-1">{t.markup}</span>
-              <div className="text-xl md:text-2xl font-headline text-stone-900" dir="ltr">{percentFormat.format(results.markup)}%</div>
+              <span className="text-xs tracking-wider uppercase font-bold text-stone-400 block mb-1">{t.markup}</span>
+              <div className="text-xl md:text-2xl font-black text-stone-900" dir="ltr">{percentFormat.format(results.markup)}%</div>
             </div>
             <div>
-              <span className="text-xs tracking-wider uppercase font-bold text-stone-600 block mb-1">{t.grossProfit}</span>
-              <div className="text-xl md:text-2xl font-headline text-stone-900" dir="ltr">{currencyFormat.format(results.grossProfit)}</div>
+              <span className="text-xs tracking-wider uppercase font-bold text-stone-400 block mb-1">{t.grossProfit}</span>
+              <div className="text-xl md:text-2xl font-black text-stone-900" dir="ltr">{currencyFormat.format(results.grossProfit)}</div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="flex-1 flex flex-col justify-center items-center border-t lg:border-t-0 lg:border-l lg:rtl:border-r lg:rtl:border-l-0 border-stone-200 pt-10 lg:pt-0 lg:pl-10 lg:rtl:pr-10 lg:rtl:pl-0">
-        <div className="w-full h-[320px]" dir="ltr">
+      
+        <div className="w-full h-[240px] bg-white/5 p-4 rounded-2xl border border-white/10 mt-6" dir="ltr">
           <Doughnut data={deferredChartData} options={chartOptions} />
         </div>
       </div>

@@ -176,7 +176,9 @@ export default function RentVsBuy() {
 
   return (
     <div>
-      <article className="w-full h-full flex flex-col lg:flex-row bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-stone-200 gap-10">
+      <article className="w-full h-full flex flex-col lg:flex-row gap-8 items-start relative">
+      {/* Input Form */}
+      <div className="flex-[1.5] w-full bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200 flex flex-col">
       <SEO
         title={t.title}
         description={t.description}
@@ -194,37 +196,40 @@ export default function RentVsBuy() {
 
       <div className="flex-[1.5] flex flex-col">
         <div className="mb-10">
-          <h1 className="text-2xl md:text-3xl font-headline text-stone-900 tracking-tight mb-3">{t.title}</h1>
+          <h1 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.title}</h1>
           <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-md">{t.description}</p>
         </div>
 
         <div className="grid grid-cols-2 gap-8">
-          <div>
-            <label className="text-xs tracking-wider uppercase font-bold text-stone-600 mb-1 block">{t.homePrice}</label>
-            <input type="number" value={homePrice} onChange={e => setHomePrice(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
+          <div className="group">
+<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.homePrice}</label>
+            <input type="number" value={homePrice} onChange={e => setHomePrice(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
           </div>
-          <div>
-            <label className="text-xs tracking-wider uppercase font-bold text-stone-600 mb-1 block">{t.monthlyRent}</label>
-            <input type="number" value={rent} onChange={e => setRent(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
+          <div className="group">
+<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.monthlyRent}</label>
+            <input type="number" value={rent} onChange={e => setRent(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
           </div>
-          <div>
-            <label className="text-xs tracking-wider uppercase font-bold text-stone-600 mb-1 block">{t.downPayment}</label>
-            <input type="number" value={downPercent} onChange={e => setDownPercent(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
+          <div className="group">
+<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.downPayment}</label>
+            <input type="number" value={downPercent} onChange={e => setDownPercent(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
           </div>
-          <div>
-            <label className="text-xs tracking-wider uppercase font-bold text-stone-600 mb-1 block">{t.interestRate}</label>
-            <input type="number" value={rate} onChange={e => setRate(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
+          <div className="group">
+<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.interestRate}</label>
+            <input type="number" value={rate} onChange={e => setRate(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
           </div>
-        </div>
+        </div></div>
+      </div>
+      {/* Sticky Results Dashboard */}
+      <div className="flex-1 w-full lg:w-[420px] shrink-0 lg:sticky lg:top-24 bg-stone-900 rounded-3xl p-8 shadow-2xl border border-stone-800 text-white flex flex-col justify-between">
 
-        <div className="mt-12 pt-8 border-t border-stone-200">
+        <div>
           <div className="grid grid-cols-2 gap-x-4 gap-y-8">
             <div>
-              <span className="text-xs tracking-wider uppercase font-bold text-stone-600 block mb-1">{t.buyCost}</span>
+              <span className="text-xs tracking-wider uppercase font-bold text-stone-400 block mb-1">{t.buyCost}</span>
               <div className="text-3xl md:text-4xl font-headline text-blue-600" dir="ltr">{currencyFormat.format(results.buyTotal)}</div>
             </div>
             <div>
-              <span className="text-xs tracking-wider uppercase font-bold text-stone-600 block mb-1">{t.rentCost}</span>
+              <span className="text-xs tracking-wider uppercase font-bold text-stone-400 block mb-1">{t.rentCost}</span>
               <div className="text-3xl md:text-4xl font-headline text-rose-500" dir="ltr">{currencyFormat.format(results.rentTotal)}</div>
             </div>
           </div>
@@ -234,10 +239,8 @@ export default function RentVsBuy() {
             </span>
           </div>
         </div>
-      </div>
-
-      <div className="flex-1 flex flex-col justify-center items-center border-t lg:border-t-0 lg:border-l lg:rtl:border-r lg:rtl:border-l-0 border-stone-200 pt-10 lg:pt-0 lg:pl-10 lg:rtl:pr-10 lg:rtl:pl-0">
-        <div className="w-full h-[320px]" dir="ltr">
+      
+        <div className="w-full h-[240px] bg-white/5 p-4 rounded-2xl border border-white/10 mt-6" dir="ltr">
           <Doughnut data={deferredChartData} options={chartOptions} />
         </div>
       </div>
