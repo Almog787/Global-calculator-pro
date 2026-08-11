@@ -18,6 +18,12 @@ while ((match = pathRegex.exec(content)) !== null) {
 const staticPaths = [
   '/',
   '/all',
+  '/category/finance',
+  '/category/real-estate',
+  '/category/health',
+  '/category/math',
+  '/category/tech',
+  '/category/lifestyle',
   '/contact',
   '/privacy-policy',
   '/terms-of-service',

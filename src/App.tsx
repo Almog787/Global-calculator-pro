@@ -29,9 +29,9 @@ function App() {
 
 
   const navLinks = [
-    { id: 'finance', path: `/${lang}/all?category=finance`, label: t.catFinance },
-    { id: 'health', path: `/${lang}/all?category=health`, label: t.catHealth },
-    { id: 'tech', path: `/${lang}/all?category=tech`, label: t.catTech },
+    { id: 'finance', path: `/${lang}/category/finance`, label: t.catFinance },
+    { id: 'health', path: `/${lang}/category/health`, label: t.catHealth },
+    { id: 'tech', path: `/${lang}/category/tech`, label: t.catTech },
     { id: 'all', path: `/${lang}/all`, label: t.catAll },
     { id: 'about', path: `/${lang}/about`, label: t.aboutTitle },
   ];
@@ -142,6 +142,7 @@ function LocalizedRoutes() {
     <Routes>
       <Route path="/" element={<Navigate to="all" replace />} />
       <Route path="all" element={<AllCalculators />} />
+      <Route path="category/:categoryId" element={<AllCalculators />} />
       <Route path="mortgage-calculator" element={<MortgageCalculator />} />
       <Route path="compound-interest" element={<CompoundInterest />} />
       <Route path="percentage-finder" element={<PercentageFinder />} />

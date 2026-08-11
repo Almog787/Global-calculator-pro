@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import { calculators, getCalculatorTitle, getCalculatorDescription } from "../data/calculators";
 import SEO from "../components/SEO";
 import { useI18n } from "../contexts/i18n";
@@ -9,15 +9,22 @@ export default function AllCalculators() {
   const location = useLocation();
   const [activeCategory, setActiveCategory] = useState<string>("all");
 
+  const { categoryId } = useParams<{ categoryId: string }>();
+  const navigate = useNavigate();
+  
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const category = params.get("category");
-    if (category) {
-      setActiveCategory(category);
+    if (categoryId) {
+      setActiveCategory(categoryId);
     } else {
-      setActiveCategory("all");
+      const params = new URLSearchParams(location.search);
+      const queryCategory = params.get("category");
+      if (queryCategory) {
+        setActiveCategory(queryCategory);
+      } else {
+        setActiveCategory("all");
+      }
     }
-  }, [location.search]);
+  }, [categoryId, location.search]);
 
   const categories = [
     { id: "all", label: t.catAll },
@@ -105,7 +112,13 @@ export default function AllCalculators() {
             <button
               key={cat.id}
               type="button"
-              onClick={() => setActiveCategory(cat.id)}
+              onClick={() => {
+                if (cat.id === "all") {
+                  navigate(`/${lang}/all`);
+                } else {
+                  navigate(`/${lang}/category/${cat.id}`);
+                }
+              }}
               className={`px-6 py-2 rounded-full font-label-bold text-label-bold transition-all ${
                 activeCategory === cat.id
                   ? "bg-secondary text-on-secondary hover:shadow-md hover:-translate-y-0.5"
