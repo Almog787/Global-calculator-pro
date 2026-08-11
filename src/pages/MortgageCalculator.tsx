@@ -104,7 +104,7 @@ export default function MortgageCalculator() {
   return (
     <div className="w-full">
       <Breadcrumbs items={[{ label: t.catAll || 'Library', path: `/${lang}/all` }, { label: t.mortgageTitle }]} />
-      <article className="w-full h-full flex flex-col lg:flex-row bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-stone-200 gap-10">
+      <div className="w-full h-full flex flex-col lg:flex-row gap-8 items-start relative">
       <SEO
         title={t.mortgageTitle}
         description={t.mortgageDesc}
@@ -120,47 +120,47 @@ export default function MortgageCalculator() {
         }}
       />
       
-      <div className="flex-1 flex flex-col">
+      {/* Input Form */}
+      <div className="flex-1 w-full bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200 flex flex-col">
         <div className="mb-10">
-          <h2 className="text-2xl md:text-3xl font-headline text-stone-900 tracking-tight mb-3">{t.mortgageTitle}</h2>
+          <h2 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.mortgageTitle}</h2>
           <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-sm">{t.mortgageExplanation}</p>
         </div>
-
         <div className="flex-1 flex flex-col justify-between">
           <div className="space-y-8">
-            <div>
-              <label className="text-xs tracking-wider uppercase font-bold text-stone-600 mb-1 block">{t.loanAmount}</label>
-              <input type="number" value={principal} onChange={e => setPrincipal(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
+            <div className="group">
+              <label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.loanAmount}</label>
+              <input type="number" value={principal} onChange={e => setPrincipal(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
             </div>
-            <div>
-              <label className="text-xs tracking-wider uppercase font-bold text-stone-600 mb-1 block">{t.interestRate}</label>
-              <input type="number" value={rate} onChange={e => setRate(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
+            <div className="group">
+              <label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.interestRate}</label>
+              <input type="number" value={rate} onChange={e => setRate(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
             </div>
-            <div>
-              <label className="text-xs tracking-wider uppercase font-bold text-stone-600 mb-1 block">{t.loanTerm}</label>
-              <input type="number" value={years} onChange={e => setYears(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
-            </div>
-          </div>
-          
-          <div className="mt-12 pt-8 border-t border-stone-200">
-            <div className="mb-6">
-              <span className="text-xs tracking-wider uppercase font-bold text-stone-600 block mb-2">{t.monthlyPayment}</span>
-              <div className="text-4xl md:text-5xl font-headline font-bold text-stone-900 tracking-tight" dir="ltr">{currencyFormat.format(monthlyPayment)}</div>
-            </div>
-            <div>
-              <span className="text-xs tracking-wider uppercase font-bold text-stone-600 block mb-1">{t.totalInterest}</span>
-              <div className="text-lg md:text-xl font-headline text-stone-600" dir="ltr">{currencyFormat.format(totalInterest)}</div>
+            <div className="group">
+              <label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.loanTerm}</label>
+              <input type="number" value={years} onChange={e => setYears(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
             </div>
           </div>
         </div>
       </div>
-
-      <div className="flex-1 flex flex-col justify-center items-center border-t lg:border-t-0 lg:border-l lg:rtl:border-r lg:rtl:border-l-0 border-stone-200 pt-10 lg:pt-0 lg:pl-10 lg:rtl:pr-10 lg:rtl:pl-0">
-        <div className="w-full h-[320px]" dir="ltr">
+      
+      {/* Sticky Results Dashboard */}
+      <div className="w-full lg:w-[420px] shrink-0 lg:sticky lg:top-24 bg-stone-900 rounded-3xl p-8 shadow-2xl border border-stone-800 text-white flex flex-col">
+        <div className="mb-8">
+          <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block mb-3">{t.monthlyPayment}</span>
+          <div className="text-5xl font-black text-white tracking-tighter" dir="ltr">{currencyFormat.format(monthlyPayment)}</div>
+        </div>
+        
+        <div className="mb-8 p-5 bg-white/5 rounded-2xl border border-white/10">
+          <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block mb-1">{t.totalInterest}</span>
+          <div className="text-xl font-bold text-blue-400" dir="ltr">{currencyFormat.format(totalInterest)}</div>
+        </div>
+        
+        <div className="w-full h-[240px]" dir="ltr">
           <Doughnut data={deferredChartData} options={chartOptions} />
         </div>
       </div>
-    </article>
+    </div>
 
       {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
       <section className="w-full bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-xs border border-stone-200 mt-8 mb-8 space-y-8">

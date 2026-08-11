@@ -43,7 +43,7 @@ export default function BmiCalculator() {
   return (
     <div className="w-full">
       <Breadcrumbs items={[{ label: t.catAll || 'Library', path: `/${lang}/all` }, { label: t.bmiTitle }]} />
-      <article className="w-full h-full flex flex-col bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-stone-200">
+      <div className="w-full h-full flex flex-col lg:flex-row gap-8 items-start relative">
       <SEO
         title={t.bmiTitle}
         description={t.bmiDesc}
@@ -58,35 +58,40 @@ export default function BmiCalculator() {
           url: `https://globalcalcpro.com/${lang}/bmi-calculator`
         }}
       />
-      <div className="mb-10">
-        <h2 className="text-2xl md:text-3xl font-headline text-stone-900 tracking-tight mb-3">{t.bmiTitle}</h2>
-        <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-sm">{t.bmiExplanation}</p>
+      
+      {/* Input Form */}
+      <div className="flex-1 w-full bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200 flex flex-col">
+        <div className="mb-10">
+          <h2 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.bmiTitle}</h2>
+          <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-sm">{t.bmiExplanation}</p>
+        </div>
+        <div className="flex-1 flex flex-col justify-between">
+          <div className="space-y-8">
+            <div className="group">
+              <label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.height} (cm)</label>
+              <input type="number" value={height} onChange={e => setHeight(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
+            </div>
+            <div className="group">
+              <label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.weightBmi} (kg)</label>
+              <input type="number" value={weight} onChange={e => setWeight(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className="flex-1 flex flex-col justify-between">
-        <div className="space-y-8">
-          <div>
-            <label className="text-xs tracking-wider uppercase font-bold text-stone-600 mb-1 block">{t.height} (cm)</label>
-            <input type="number" value={height} onChange={e => setHeight(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
-          </div>
-          <div>
-            <label className="text-xs tracking-wider uppercase font-bold text-stone-600 mb-1 block">{t.weightBmi} (kg)</label>
-            <input type="number" value={weight} onChange={e => setWeight(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-headline text-stone-900 focus:ring-0 focus:border-stone-900 transition-colors" />
-          </div>
+      
+      {/* Sticky Results Dashboard */}
+      <div className="w-full lg:w-[420px] shrink-0 lg:sticky lg:top-24 bg-stone-900 rounded-3xl p-8 shadow-2xl border border-stone-800 text-white flex flex-col">
+        <div className="mb-8">
+          <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block mb-3">{t.bmiResult}</span>
+          <div className="text-5xl font-black text-white tracking-tighter" dir="ltr">{bmi.toFixed(1)}</div>
         </div>
         
-        <div className="mt-12 pt-8 border-t border-stone-200">
-          <div className="mb-6">
-            <span className="text-xs tracking-wider uppercase font-bold text-stone-600 block mb-2">{t.bmiResult}</span>
-            <div className="text-4xl md:text-5xl font-headline font-bold text-stone-900 tracking-tight" dir="ltr">{bmi.toFixed(1)}</div>
-          </div>
-          <div>
-            <span className="text-xs tracking-wider uppercase font-bold text-stone-600 block mb-1">{t.bmiCategory}</span>
-            <div className="text-lg md:text-xl font-headline text-stone-600">{getCategory()}</div>
-          </div>
+        <div className="mb-8 p-5 bg-white/5 rounded-2xl border border-white/10 flex items-center justify-between">
+          <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block">{t.bmiCategory}</span>
+          <div className="text-xl font-bold text-blue-400">{getCategory()}</div>
         </div>
       </div>
-    </article>
+    </div>
 
       {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
       <section className="w-full bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-xs border border-stone-200 mt-8 mb-8 space-y-8">

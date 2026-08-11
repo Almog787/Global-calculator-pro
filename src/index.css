@@ -5,6 +5,7 @@
 @layer base {
   body {
     @apply bg-[#F9FAFB] text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900;
+    font-variant-numeric: tabular-nums;
   }
 }
 

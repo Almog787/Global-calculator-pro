@@ -132,37 +132,51 @@ export default function AllCalculators() {
       </section>
 
       {/* Calculator Grid */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
-        {filtered.map((calc) => {
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[minmax(180px,auto)]">
+        {filtered.map((calc, index) => {
           const title = getCalculatorTitle(calc, t, lang);
           const description = getCalculatorDescription(calc, t, lang);
+          
+          // Bento Grid Logic: Feature specific items when viewing all
+          const isFeatured = activeCategory === "all" && (index === 0 || index === 5);
+          const gridSpan = isFeatured ? "md:col-span-2 md:row-span-2" : "col-span-1";
+          const titleSize = isFeatured ? "text-2xl md:text-3xl font-black tracking-tight" : "text-lg font-bold tracking-tight";
+          
           return (
             <Link
               key={calc.id}
               to={`/${lang}${calc.path}`}
-              className="group block bg-surface-container-lowest rounded-xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-outline-variant hover:border-secondary relative overflow-hidden flex flex-col h-full"
+              className={`group block bg-white rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-stone-200 hover:border-blue-500 relative overflow-hidden flex flex-col h-full ${gridSpan}`}
             >
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="font-headline-md text-headline-md text-on-surface group-hover:text-secondary transition-colors">
-                  {title}
-                </h3>
-                <span className="material-symbols-outlined text-outline-variant group-hover:text-secondary rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all">
-                  {t.dir === 'rtl' ? 'arrow_back' : 'arrow_forward'}
-                </span>
-              </div>
-              <p className="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">
-                {description}
-              </p>
-              <div className="flex flex-wrap gap-2 mt-auto">
-                {calc.tags.slice(0, 3).map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 bg-surface-container text-on-surface-variant rounded-full font-label-sm text-label-sm uppercase tracking-wider"
-                  >
-                    {tag}
+              <div className="flex flex-col h-full z-10 relative">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className={`${titleSize} text-stone-900 group-hover:text-blue-600 transition-colors`}>
+                    {title}
+                  </h3>
+                  <span className="material-symbols-outlined text-stone-300 group-hover:text-blue-600 rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-transform duration-300">
+                    {t.dir === 'rtl' ? 'arrow_back' : 'arrow_forward'}
                   </span>
-                ))}
+                </div>
+                <p className={`text-stone-500 mb-6 flex-grow leading-relaxed ${isFeatured ? 'md:text-lg max-w-sm' : 'text-sm'}`}>
+                  {description}
+                </p>
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {calc.tags.slice(0, isFeatured ? 5 : 2).map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-1 bg-stone-100 text-stone-600 rounded-md text-[11px] uppercase tracking-widest font-bold"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
+              
+              {isFeatured && (
+                <div className="absolute -bottom-8 -right-8 opacity-[0.03] group-hover:opacity-5 transition-opacity duration-500 pointer-events-none transform group-hover:scale-110 rtl:-left-8 rtl:right-auto">
+                  <span className="material-symbols-outlined text-[200px]">calculate</span>
+                </div>
+              )}
             </Link>
           );
         })}
