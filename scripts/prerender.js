@@ -17,6 +17,7 @@ const dynamicPaths = [];
 while ((match = pathRegex.exec(content)) !== null) {
   dynamicPaths.push(match[1]);
 }
+
 const staticPaths = [
   '/',
   '/all',
@@ -32,6 +33,7 @@ const staticPaths = [
   '/about',
   '/suggest'
 ];
+
 const rawPaths = Array.from(new Set([...staticPaths, ...dynamicPaths]));
 const languages = ['en', 'he', 'es', 'fr', 'ar'];
 
@@ -47,11 +49,9 @@ const server = http.createServer((req, res) => {
   let reqPath = req.url.split('?')[0];
   let filePath = path.join(distPath, reqPath);
   
-  // If it's a known static asset file, serve it directly
   if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-     // do nothing, we found it
+     // exists
   } else {
-     // Otherwise fallback to root index.html (SPA routing)
      filePath = path.join(distPath, 'index.html');
   }
 
@@ -67,7 +67,6 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': mimeTypes[ext] || 'text/plain' });
   const stream = fs.createReadStream(filePath);
   stream.on('error', (err) => {
-    console.error(`Stream error for ${filePath}:`, err);
     if (!res.headersSent) {
       res.writeHead(500);
       res.end('Server error');
@@ -89,7 +88,8 @@ server.listen(0, () => {
         console.log('Playwright chromium executable not found or failed to launch. Attempting auto-installation...');
         try {
           const { execSync } = await import('child_process');
-          execSync('npx playwright install --with-deps chromium', { stdio: 'inherit' });
+          // Removed --with-deps so it works in restricted environments
+          execSync('npx playwright install chromium', { stdio: 'inherit' });
           browser = await chromium.launch();
         } catch (installErr) {
           console.warn('Warning: Playwright browser could not be launched/installed for prerendering:', installErr.message);
@@ -99,30 +99,33 @@ server.listen(0, () => {
         }
       }
 
-      const context = await browser.newContext();
-      const page = await context.newPage();
+      console.log(`Prerendering ${allPaths.length} pages (with concurrency)...`);
       
-      console.log(`Prerendering ${allPaths.length} pages...`);
-      
-      for (const route of allPaths) {
-        const url = `http://localhost:${port}${route}`;
-        try {
-          await page.goto(url, { waitUntil: 'networkidle' });
-          // Remove any script tags if you want pure static (optional)
-          let html = await page.content();
-          // Clean up any absolute localhost/127.0.0.1 URLs generated during Playwright rendering
-          const portRegex = new RegExp(`http:\\/\\/(localhost|127\\.0\\.0\\.1):${port}`, 'g');
-          html = html.replace(portRegex, '');
-          
-          const routeDir = path.join(distPath, route);
-          if (!fs.existsSync(routeDir)) {
-            fs.mkdirSync(routeDir, { recursive: true });
+      const CONCURRENCY = 10;
+      for (let i = 0; i < allPaths.length; i += CONCURRENCY) {
+        const chunk = allPaths.slice(i, i + CONCURRENCY);
+        await Promise.all(chunk.map(async (route) => {
+          const context = await browser.newContext();
+          const page = await context.newPage();
+          const url = `http://localhost:${port}${route}`;
+          try {
+            await page.goto(url, { waitUntil: 'networkidle' });
+            let html = await page.content();
+            const portRegex = new RegExp(`http:\\/\\/(localhost|127\\.0\\.0\\.1):${port}`, 'g');
+            html = html.replace(portRegex, '');
+            
+            const routeDir = path.join(distPath, route);
+            if (!fs.existsSync(routeDir)) {
+              fs.mkdirSync(routeDir, { recursive: true });
+            }
+            fs.writeFileSync(path.join(routeDir, 'index.html'), html);
+          } catch (e) {
+            console.error(`Failed to prerender ${route}:`, e.message);
+          } finally {
+            await context.close();
           }
-          fs.writeFileSync(path.join(routeDir, 'index.html'), html);
-          console.log(`Prerendered ${route}`);
-        } catch (e) {
-          console.error(`Failed to prerender ${route}:`, e);
-        }
+        }));
+        console.log(`Prerendered batch ${Math.floor(i/CONCURRENCY) + 1} of ${Math.ceil(allPaths.length/CONCURRENCY)}`);
       }
       
       await browser.close();
