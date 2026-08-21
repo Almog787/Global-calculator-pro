@@ -11,6 +11,27 @@ export default function AllCalculators() {
 
   const { categoryId } = useParams<{ categoryId: string }>();
   const navigate = useNavigate();
+
+  const [isPwaPromoCollapsed, setIsPwaPromoCollapsed] = useState(false);
+
+  useEffect(() => {
+    const hiddenUntil = localStorage.getItem("pwaPromoHiddenUntil");
+    if (hiddenUntil && parseInt(hiddenUntil, 10) > Date.now()) {
+      setIsPwaPromoCollapsed(true);
+    }
+  }, []);
+
+  const handleCollapsePwa = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsPwaPromoCollapsed(true);
+    localStorage.setItem("pwaPromoHiddenUntil", (Date.now() + 24 * 60 * 60 * 1000).toString());
+  };
+
+  const handleExpandPwa = () => {
+    setIsPwaPromoCollapsed(false);
+    localStorage.setItem("pwaPromoHiddenUntil", "0");
+  };
+
   
   useEffect(() => {
     if (categoryId) {
@@ -73,7 +94,27 @@ export default function AllCalculators() {
       </section>
 
       {/* PWA Promotion Banner */}
+      {isPwaPromoCollapsed ? (
+        <section 
+          className="mb-stack-lg bg-surface-container-lowest text-on-surface rounded-2xl p-4 flex items-center justify-between shadow-sm border border-outline-variant hover:border-secondary transition-colors cursor-pointer" 
+          onClick={handleExpandPwa}
+          title={t.dir === 'rtl' ? 'הרחב' : 'Expand'}
+        >
+           <div className="flex items-center gap-3">
+             <span className="material-symbols-outlined text-secondary text-2xl">apps</span>
+             <h2 className="font-headline-sm text-primary m-0 text-sm md:text-base">{t.pwaPromoTitle}</h2>
+           </div>
+           <span className="material-symbols-outlined text-on-surface-variant">expand_more</span>
+        </section>
+      ) : (
       <section className="mb-stack-lg bg-surface-container-lowest text-on-surface rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 shadow-md border-2 border-secondary/20 hover:border-secondary/40 transition-colors relative overflow-hidden">
+        <button 
+          onClick={handleCollapsePwa}
+          className="absolute top-4 right-4 rtl:right-auto rtl:left-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-surface hover:bg-surface-container-highest text-on-surface-variant transition-colors border border-outline-variant shadow-sm cursor-pointer"
+          title={t.dir === 'rtl' ? 'צמצם' : 'Collapse'}
+        >
+          <span className="material-symbols-outlined text-lg">close</span>
+        </button>
         {/* Background Decoration */}
         <div className="absolute -top-12 -right-12 text-secondary opacity-5 pointer-events-none rtl:-left-12 rtl:right-auto">
           <span className="material-symbols-outlined text-[150px]">apps</span>
@@ -110,6 +151,7 @@ export default function AllCalculators() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Category Filters */}
       <section className="mb-stack-lg overflow-x-auto pb-4 scrollbar-hide">
