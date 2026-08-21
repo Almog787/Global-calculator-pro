@@ -1,7 +1,7 @@
 {
   "short_name": "GlobalCalcPro",
   "name": "Global Calc Pro - Free Online Calculators",
-  "description": "Free, fast, and accessible online calculation tools powered by Calc-E AI Assistant.",
+  "description": "Free, fast, and accessible online calculation tools with the interactive Calc-E Assistant.",
   "icons": [
     {
       "src": "/favicon.svg",

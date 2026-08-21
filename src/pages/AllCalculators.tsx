@@ -67,7 +67,7 @@ export default function AllCalculators() {
       <SEO
         title={t.libraryTitle}
         description={t.librarySubtitle}
-        keywords={['calculators', 'AI assistant', 'Calc-E', 'finance', 'health', 'math', 'tools']}
+        keywords={['calculators', 'assistant', 'Calc-E', 'finance', 'health', 'math', 'tools']}
         canonicalUrl={`/${lang}/all`}
         structuredData={{
           '@context': 'https://schema.org',

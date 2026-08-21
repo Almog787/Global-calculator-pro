@@ -15,7 +15,7 @@ const content: Record<Language, {
   en: {
     subtitle: 'Welcome to GlobalCalc Pro — your authoritative destination for accurate, transparent, and completely free financial, mathematical, and measurement calculation tools.',
     missionTitle: 'Our Mission & Vision',
-    missionDesc: 'Our core goal is to make complex calculations in personal finance, mortgage planning, compound interest, health metrics, and physics accessible, instantaneous, and transparent to everyone worldwide. We believe financial literacy and precision tools should be freely accessible without paywalls or account creation requirements.',
+    missionDesc: 'Our core goal is to make complex calculations in personal finance, mortgage planning, compound interest, health metrics, and physics accessible, instantaneous, and transparent to everyone worldwide. We believe financial literacy and precision tools should be freely accessible without paywalls or account creation requirements, guided by our interactive Calc-E assistant.',
     precisionTitle: 'Mathematical & Financial Precision',
     precisionDesc: 'All calculations utilize arbitrary-precision decimal libraries to eliminate floating-point rounding errors. Formulas are verified against industry standards, financial compounding algorithms, and peer-reviewed reference physics models.',
     transparencyTitle: 'Educational Transparency & E-E-A-T',
@@ -26,7 +26,7 @@ const content: Record<Language, {
   he: {
     subtitle: 'ברוכים הבאים ל-GlobalCalc Pro — הפלטפורמה המקיפה והאמינה ביותר למחשבונים פיננסיים, מתמטיים והמרות יחידות ללא עלות.',
     missionTitle: 'המשימה והחזון שלנו',
-    missionDesc: 'המטרה של GlobalCalc Pro היא להפוך חישובים מורכבים בניהול פיננסי, משכנתאות, השקעות, בריאות ומדע לזמינים, ברורים ומדויקים לכל אדם. אנו מאמינים שלכל משתמש מגיעה גישה מיידית לחישובים אמינים, בליווי אישי של העוזר החכם Calc-E, ללא צורך בהרשמה, תשלום או חשיפת מידע אישי.',
+    missionDesc: 'המטרה של GlobalCalc Pro היא להפוך חישובים מורכבים בניהול פיננסי, משכנתאות, השקעות, בריאות ומדע לזמינים, ברורים ומדויקים לכל אדם. אנו מאמינים שלכל משתמש מגיעה גישה מיידית לחישובים אמינים, בליווי אישי של העוזר האינטראקטיבי Calc-E, ללא צורך בהרשמה, תשלום או חשיפת מידע אישי.',
     precisionTitle: 'תקני הדיוק הפיננסי והמדע',
     precisionDesc: 'כל המחשבונים באתר נבנים ומתוחזקים תוך שימוש בספריות חישוב בעלות דיוק גבוה (Arbitrary-precision arithmetic) כדי למנוע שגיאות עיגול עשרוניות. הנוסחאות נבדקות בהתאמה לתקנים בנקאיים ומדעיים מקובלים.',
     transparencyTitle: 'שקיפות ומדריכים לימודיים',
@@ -37,7 +37,7 @@ const content: Record<Language, {
   es: {
     subtitle: 'Bienvenido a GlobalCalc Pro — su destino confiable para herramientas de cálculo financieras, matemáticas y de unidades precisas, transparentes y totalmente gratuitas.',
     missionTitle: 'Nuestra Misión y Visión',
-    missionDesc: 'Nuestro objetivo fundamental es hacer que los cálculos complejos en finanzas personales, hipotecas, interés compuesto, salud y física sean accesibles, instantáneos y transparentes para todos. Creemos que las herramientas de precisión y la orientación de IA a través de nuestro asistente inteligente Calc-E deben ser de libre acceso sin muros de pago.',
+    missionDesc: 'Nuestro objetivo fundamental es hacer que los cálculos complejos en finanzas personales, hipotecas, interés compuesto, salud y física sean accesibles, instantáneos y transparentes para todos. Creemos que las herramientas de precisión y la orientación interactiva a través de nuestro asistente inteligente Calc-E deben ser de libre acceso sin muros de pago.',
     precisionTitle: 'Precisión Matemática y Financiera',
     precisionDesc: 'Todos los cálculos utilizan librerías decimales de alta precisión para eliminar errores de redondeo. Las fórmulas están verificadas con estándares bancarios y modelos de física de referencia.',
     transparencyTitle: 'Transparencia Educativa',
@@ -48,7 +48,7 @@ const content: Record<Language, {
   fr: {
     subtitle: 'Bienvenue sur GlobalCalc Pro — votre destination de référence pour des outils de calcul financiers, mathématiques et de mesure précis, transparents et entièrement gratuits.',
     missionTitle: 'Notre Mission & Vision',
-    missionDesc: 'Notre objectif principal est de rendre les calculs complexes en finances personnelles, prêt immobilier, intérêt composé, santé et physique accessibles, instantanés et transparents pour tous. Nous croyons en un accès libre et sans frais à des outils de précision et aux conseils de notre assistant IA Calc-E.',
+    missionDesc: 'Notre objectif principal est de rendre les calculs complexes en finances personnelles, prêt immobilier, intérêt composé, santé et physique accessibles, instantanés et transparents pour tous. Nous croyons en un accès libre et sans frais à des outils de précision et aux conseils interactifs de notre assistant Calc-E.',
     precisionTitle: 'Précision Mathématique & Financière',
     precisionDesc: 'Tous les calculs utilisent des bibliothèques décimales de haute précision pour éliminer les erreurs d\'arrondi. Les formules sont vérifiées selon les normes bancaires et scientifiques.',
     transparencyTitle: 'Transparence Éducative',
@@ -59,7 +59,7 @@ const content: Record<Language, {
   ar: {
     subtitle: 'مرحبًا بك في GlobalCalc Pro — وجهتك الموثوقة لأدوات الحساب المالية والرياضية وقياس الوحدات الدقيقة والشفافة والمجانية تمامًا.',
     missionTitle: 'مهمتنا ورؤيتنا',
-    missionDesc: 'هدفنا الرئيسي هو جعل الحسابات المعقدة في التمويل الشخصي والرهن العقاري والفائدة المركبة والمقاييس الصحية والفيزياء متاحًة وفورية وشفافة للجميع. نؤمن بأن أدوات الدقة والتوجيه الذكي عبر مساعدنا Calc-E يجب أن تكون متاحة مجانًا بدون رسوم.',
+    missionDesc: 'هدفنا الرئيسي هو جعل الحسابات المعقدة في التمويل الشخصي والرهن العقاري والفائدة المركبة والمقاييس الصحية والفيزياء متاحًة وفورية وشفافة للجميع. نؤمن بأن أدوات الدقة والتوجيه الذكي عبر مساعدنا التفاعلي Calc-E يجب أن تكون متاحة مجانًا بدون رسوم.',
     precisionTitle: 'الدقة الرياضية والمالية',
     precisionDesc: 'تستخدم جميع الحسابات مكتبات عشرية عالية الدقة للتخلص من أخطاء التقريب. تم التحقق من الصيغ وفقًا للمعايير المصرفية والنماذج العلمية المعتمدة.',
     transparencyTitle: 'الشفافية التعليمية',
@@ -142,4 +142,3 @@ export default function AboutUs() {
     </article>
   );
 }
-
