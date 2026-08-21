@@ -1,3 +1,4 @@
+import VirtualAssistant from "./components/VirtualAssistant";
 import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Link, Navigate, useNavigate, useLocation, useParams } from 'react-router-dom';
 const MortgageCalculator = lazy(() => import('./pages/MortgageCalculator'));
@@ -27,6 +28,10 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [location.pathname]);
 
   const navLinks = [
     { id: 'finance', path: `/${lang}/category/finance`, label: t.catFinance },
@@ -115,7 +120,7 @@ function App() {
         </Suspense>
       </main>
 
-      <Footer />
+      <VirtualAssistant /><Footer />
     </div>
   );
 }
