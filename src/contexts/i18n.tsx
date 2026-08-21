@@ -253,7 +253,7 @@ export const translations: Translations = {
     termsTitle: 'Terms of Service',
     termsDesc: 'Read our terms and conditions for using GlobalCalc Pro.',
     aboutTitle: 'About Us',
-    aboutDesc: 'Discover GlobalCalc Pro - free, fast, and accessible online calculation tools.',
+    aboutDesc: 'Discover GlobalCalc Pro - free, fast, and accessible online calculation tools powered by Calc-E AI Assistant.',
 
     suggestionsTitle: 'Suggest a Feature',
     suggestionsDesc: 'Submit feature ideas and calculator requests for GlobalCalc Pro.',
@@ -292,7 +292,7 @@ export const translations: Translations = {
     pwaPromoStep2: 'Select "Add to Home Screen" or "Install App"',
 
     libraryTitle: 'Calculator Library',
-    librarySubtitle: 'Find the perfect tool for your calculations.',
+    librarySubtitle: 'Find the perfect tool for your calculations, or use Calc-E, our smart AI assistant, for guided recommendations.',
   },
   he: {
     dir: 'rtl',
@@ -390,7 +390,7 @@ export const translations: Translations = {
     termsTitle: 'תנאי שימוש',
     termsDesc: 'קרא את תנאי השימוש עבור GlobalCalc Pro.',
     aboutTitle: 'אודותינו',
-    aboutDesc: 'גלה את GlobalCalc Pro - כלי חישוב מקוונים חינמיים, מהירים ונגישים.',
+    aboutDesc: 'גלה את GlobalCalc Pro - כלי חישוב מקוונים חינמיים, מונעים על ידי העוזר החכם Calc-E.',
 
     suggestionsTitle: 'הצע תכונה',
     suggestionsDesc: 'שלח רעיונות לתכונות ובקשות למחשבונים עבור GlobalCalc Pro.',
@@ -429,7 +429,7 @@ export const translations: Translations = {
     pwaPromoStep2: 'בחר ״הוסף למסך הבית״ או ״התקן אפליקציה״',
 
     libraryTitle: 'ספריית המחשבונים',
-    librarySubtitle: 'מצא את הכלי המושלם לחישובים שלך.',
+    librarySubtitle: 'מצא את הכלי המושלם לחישובים שלך, או היעזר בעוזר החכם Calc-E למציאת המחשבון המדויק עבורך.',
   },
   es: {
     dir: 'ltr',
@@ -526,7 +526,7 @@ export const translations: Translations = {
     termsTitle: 'Términos de Servicio',
     termsDesc: 'Lea nuestros términos y condiciones de uso para GlobalCalc Pro.',
     aboutTitle: 'Sobre Nosotros',
-    aboutDesc: 'Descubra GlobalCalc Pro: herramientas de cálculo en línea gratuitas, rápidas y accesibles.',
+    aboutDesc: 'Descubra GlobalCalc Pro: herramientas de cálculo en línea gratuitas y rápidas con el asistente inteligente Calc-E.',
 
     suggestionsTitle: 'Sugerir una función',
     suggestionsDesc: 'Envíe ideas de funciones y solicitudes de calculadoras para GlobalCalc Pro.',
@@ -565,7 +565,7 @@ export const translations: Translations = {
     pwaPromoStep2: 'Selecciona "Agregar a la pantalla de inicio" o "Instalar aplicación"',
 
     libraryTitle: 'Biblioteca de Calculadoras',
-    librarySubtitle: 'Encuentre la herramienta perfecta para sus cálculos.',
+    librarySubtitle: 'Encuentre la herramienta perfecta, o utilice nuestro asistente inteligente Calc-E para obtener recomendaciones guiadas.',
     faqTitle: 'Preguntas Frecuentes',
   },
   fr: {
@@ -663,7 +663,7 @@ export const translations: Translations = {
     termsTitle: 'Conditions d\'Utilisation',
     termsDesc: 'Lisez nos conditions d\'utilisation pour GlobalCalc Pro.',
     aboutTitle: 'À Propos',
-    aboutDesc: 'Découvrez GlobalCalc Pro - des outils de calcul en ligne gratuits, rapides et accessibles.',
+    aboutDesc: 'Découvrez GlobalCalc Pro - des outils de calcul en ligne gratuits et rapides avec l\'assistant intelligent Calc-E.',
 
     suggestionsTitle: 'Suggérer une fonctionnalité',
     suggestionsDesc: 'Proposez des idées de fonctionnalités et de calculatrices pour GlobalCalc Pro.',
@@ -702,7 +702,7 @@ export const translations: Translations = {
     pwaPromoStep2: 'Sélectionnez "Ajouter à l\'écran d\'accueil" ou "Installer l\'application"',
 
     libraryTitle: 'Bibliothèque de calculatrices',
-    librarySubtitle: 'Trouvez l\'outil parfait pour vos calculs.',
+    librarySubtitle: 'Trouvez l\'outil parfait pour vos calculs, ou utilisez notre assistant intelligent Calc-E pour des recommandations guidées.',
     faqTitle: 'Foire Aux Questions',
   },
   ar: {
@@ -800,7 +800,7 @@ export const translations: Translations = {
     termsTitle: 'شروط الخدمة',
     termsDesc: 'اقرأ الشروط والأحكام الخاصة بنا لاستخدام GlobalCalc Pro.',
     aboutTitle: 'من نحن',
-    aboutDesc: 'اكتشف GlobalCalc Pro - أدوات حساب مجانية وسريعة وسهلة الاستخدام عبر الإنترنت.',
+    aboutDesc: 'اكتشف GlobalCalc Pro - أدوات حساب مجانية وسريعة مع المساعد الذكي Calc-E.',
 
     suggestionsTitle: 'اقتراح ميزة',
     suggestionsDesc: 'أرسل أفكار الميزات وطلبات الحاسبات لـ GlobalCalc Pro.',
@@ -839,7 +839,7 @@ export const translations: Translations = {
     pwaPromoStep2: 'حدد "إضافة إلى الشاشة الرئيسية" أو "تثبيت التطبيق"',
 
     libraryTitle: 'مكتبة الحاسبات',
-    librarySubtitle: 'اعثر على أداة الحساب المثالية لاحتياجاتك.',
+    librarySubtitle: 'اعثر على أداة الحساب المثالية لاحتياجاتك، أو استخدم مساعدنا الذكي Calc-E للحصول على توصيات موجهة.',
     faqTitle: 'الأسئلة الشائعة',
   }
 };

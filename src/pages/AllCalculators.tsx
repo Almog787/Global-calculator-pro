@@ -46,13 +46,19 @@ export default function AllCalculators() {
       <SEO
         title={t.libraryTitle}
         description={t.librarySubtitle}
+        keywords={['calculators', 'AI assistant', 'Calc-E', 'finance', 'health', 'math', 'tools']}
         canonicalUrl={`/${lang}/all`}
         structuredData={{
           '@context': 'https://schema.org',
-          '@type': 'CollectionPage',
-          name: t.libraryTitle,
+          '@type': 'WebSite',
+          name: t.title,
           description: t.librarySubtitle,
-          url: `https://globalcalcpro.com/${lang}/all`
+          url: `https://globalcalcpro.com/${lang}/all`,
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: `https://globalcalcpro.com/${lang}/all?search={search_term_string}`,
+            'query-input': 'required name=search_term_string'
+          }
         }}
       />
 
