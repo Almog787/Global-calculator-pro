@@ -35,128 +35,132 @@ function App() {
   }, [location.pathname]);
 
   const navLinks = [
-    { id: 'finance', path: `/${lang}/category/finance`, label: t.catFinance, icon: 'account_balance_wallet' },
-    { id: 'health', path: `/${lang}/category/health`, label: t.catHealth, icon: 'favorite' },
-    { id: 'tech', path: `/${lang}/category/tech`, label: t.catTech, icon: 'memory' },
-    { id: 'all', path: `/${lang}/all`, label: t.catAll, icon: 'grid_view' },
-    { id: 'about', path: `/${lang}/about`, label: t.aboutTitle, icon: 'info' },
+    { id: 'finance', path: `/${lang}/category/finance`, label: t.catFinance },
+    { id: 'real-estate', path: `/${lang}/category/real-estate`, label: t.catRealEstate },
+    { id: 'health', path: `/${lang}/category/health`, label: t.catHealth },
+    { id: 'math', path: `/${lang}/category/math`, label: t.catMath },
+    { id: 'all', path: `/${lang}/all`, label: t.catAll },
   ];
 
   return (
-    <div className={`min-h-screen bg-background text-on-surface antialiased flex flex-col font-body-md ${t.dir === 'rtl' ? 'rtl' : 'ltr'}`}>
-      <header className="bg-surface-container-lowest dark:bg-surface-container-lowest shadow-xs sticky w-full top-0 z-40 transition-all duration-200 border-b border-stone-200/70">
-        <div className="flex justify-between items-center px-4 sm:px-6 md:px-gutter py-3.5 w-full max-w-container-max mx-auto gap-3">
-          {/* Brand */}
-          <div className="flex items-center gap-3">
-            {/* Mobile Menu Toggle Button */}
+    <div className={`min-h-screen bg-surface-bg text-on-surface antialiased flex flex-col font-body-md ${t.dir === 'rtl' ? 'rtl' : 'ltr'}`}>
+      {/* TopNavBar */}
+      <nav className="bg-surface shadow-xs top-0 sticky z-50 border-b border-border-subtle">
+        <div className="flex justify-between items-center px-4 sm:px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+          {/* Brand & Mobile Menu Toggle */}
+          <div className="flex items-center gap-3 md:gap-4">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden w-10 h-10 rounded-xl bg-surface-container-low border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors cursor-pointer"
-              aria-label="Toggle navigation menu"
+              className="md:hidden w-10 h-10 rounded-lg border border-border-subtle bg-surface-container-lowest flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors cursor-pointer"
+              aria-label="Toggle menu"
             >
               <span className="material-symbols-outlined text-[22px]">
                 {isMobileMenuOpen ? 'close' : 'menu'}
               </span>
             </button>
 
-            <Link to={`/${lang}`} className="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim hover:text-secondary transition-colors duration-200 cursor-pointer active:scale-95 shrink-0 flex items-center gap-1.5">
+            <Link to={`/${lang}`} className="font-headline-md text-headline-md font-bold text-primary hover:text-secondary transition-colors duration-200 cursor-pointer flex items-center">
               <span>{t.title}</span><span className="text-secondary">.</span>
             </Link>
           </div>
 
-          {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-6" aria-label="Main Navigation">
+          {/* Navigation Links (Desktop) */}
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.id}
                 to={link.path}
-                className="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md cursor-pointer active:scale-95 whitespace-nowrap"
+                className="text-secondary hover:text-primary-container font-label-bold text-label-bold transition-colors cursor-pointer whitespace-nowrap"
               >
                 {link.label}
               </Link>
             ))}
-          </nav>
+          </div>
 
-          {/* Search & Actions */}
-          <div className="flex items-center gap-3">
-            <div className="hidden lg:block w-64">
+          {/* Trailing Action */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            {/* Search Bar */}
+            <div className="hidden lg:block w-48 xl:w-56">
               <SearchBar />
             </div>
-            
-            <div className="flex items-center gap-2">
-              <select 
-                value={lang} 
-                onChange={(e) => {
-                  const newLang = e.target.value as any;
-                  const currentPath = location.pathname;
-                  const match = currentPath.match(/^\/(en|he|es|fr|ar)(\/|$)/);
-                  let newPath: string;
-                  if (match) {
-                    newPath = currentPath.replace(/^\/[^/]+/, `/${newLang}`);
-                  } else {
-                    newPath = `/${newLang}${currentPath}`;
-                  }
-                  if (newPath === `/${newLang}/`) newPath = `/${newLang}`;
-                  setLang(newLang);
-                  navigate(newPath + location.search);
-                }}
-                aria-label="Select Language"
-                className="bg-surface-container-low border border-outline-variant text-on-surface text-xs sm:text-sm rounded-full px-3 py-1.5 sm:py-2 cursor-pointer focus:ring-1 focus:ring-secondary transition-colors font-medium h-9 sm:h-10"
-              >
-                <option value="he">עברית</option>
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="ar">العربية</option>
-              </select>
-              
-              <Link to={`/${lang}/suggest`} className="hidden sm:flex items-center gap-1.5 bg-secondary text-on-secondary px-4 sm:px-5 py-2 rounded-full font-label-bold text-xs sm:text-label-bold hover:bg-on-secondary-container hover:text-on-secondary transition-colors active:scale-95 h-9 sm:h-10 shrink-0">
-                <span className="material-symbols-outlined text-sm sm:text-base">add_circle</span>
-                <span>{t.suggestionsTitle || 'Suggest'}</span>
-              </Link>
-            </div>
+
+            {/* Language Selector */}
+            <select 
+              value={lang} 
+              onChange={(e) => {
+                const newLang = e.target.value as any;
+                const currentPath = location.pathname;
+                const match = currentPath.match(/^\/(en|he|es|fr|ar)(\/|$)/);
+                let newPath: string;
+                if (match) {
+                  newPath = currentPath.replace(/^\/[^/]+/, `/${newLang}`);
+                } else {
+                  newPath = `/${newLang}${currentPath}`;
+                }
+                if (newPath === `/${newLang}/`) newPath = `/${newLang}`;
+                setLang(newLang);
+                navigate(newPath + location.search);
+              }}
+              aria-label="Select Language"
+              className="bg-surface-container-lowest border border-border-subtle text-on-surface text-xs sm:text-sm rounded-lg px-2.5 py-2 cursor-pointer focus:outline-none focus:border-secondary transition-colors font-medium h-10"
+            >
+              <option value="he">עברית</option>
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="ar">العربية</option>
+            </select>
+
+            {/* Suggest Button */}
+            <Link 
+              to={`/${lang}/suggest`} 
+              className="font-label-bold text-xs sm:text-label-bold bg-secondary text-on-secondary px-3.5 sm:px-4 py-2 rounded-lg hover:bg-on-secondary-container transition-all duration-200 active:scale-95 border border-[#005144] whitespace-nowrap hidden sm:flex items-center gap-1.5 h-10"
+            >
+              <span className="material-symbols-outlined text-sm sm:text-base">add_circle</span>
+              <span>{t.suggestionsTitle || 'Suggest a Feature'}</span>
+            </Link>
           </div>
         </div>
-        
-        {/* Mobile Search */}
-        <div className="lg:hidden px-4 sm:px-margin-mobile pb-3 w-full max-w-container-max mx-auto">
+
+        {/* Mobile Search Bar */}
+        <div className="lg:hidden px-4 pb-3 w-full max-w-container-max mx-auto">
           <SearchBar />
         </div>
 
-        {/* Mobile Menu Dropdown */}
+        {/* Mobile Dropdown Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-stone-200 bg-white px-4 py-4 space-y-2 animate-fadeIn shadow-lg">
+          <div className="md:hidden border-t border-border-subtle bg-surface-container-lowest px-4 py-4 space-y-2 animate-fadeIn shadow-lg">
             <div className="grid grid-cols-1 gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.id}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-surface-container text-on-surface font-medium text-sm transition-colors"
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-container-low text-on-surface font-label-bold text-sm transition-colors"
                 >
-                  <span className="material-symbols-outlined text-stone-400 text-lg">{link.icon}</span>
                   <span>{link.label}</span>
                 </Link>
               ))}
               <Link
                 to={`/${lang}/suggest`}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-secondary/10 text-secondary font-bold text-sm transition-colors mt-2"
+                className="flex items-center gap-2 px-3 py-2.5 rounded-lg bg-secondary text-on-secondary font-label-bold text-sm transition-colors mt-2"
               >
-                <span className="material-symbols-outlined text-lg">add_circle</span>
-                <span>{t.suggestionsTitle || 'Suggest Feature'}</span>
+                <span className="material-symbols-outlined text-base">add_circle</span>
+                <span>{t.suggestionsTitle || 'Suggest a Feature'}</span>
               </Link>
             </div>
           </div>
         )}
-      </header>
+      </nav>
 
-      <main id="main-content" className="flex-grow w-full max-w-container-max mx-auto px-4 sm:px-margin-mobile md:px-gutter py-6 sm:py-stack-lg">
+      {/* Main Content */}
+      <main id="main-content" className="flex-grow w-full max-w-container-max mx-auto px-4 sm:px-margin-desktop py-6 sm:py-8 md:py-12">
         <Suspense fallback={<SkeletonLoader />}>
-        <Routes>
-          <Route path="/" element={<Navigate to={`/${lang}/all`} replace />} />
-          <Route path="/:urlLang/*" element={<LocalizedRoutes />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Navigate to={`/${lang}/all`} replace />} />
+            <Route path="/:urlLang/*" element={<LocalizedRoutes />} />
+          </Routes>
         </Suspense>
       </main>
 

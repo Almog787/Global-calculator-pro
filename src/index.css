@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-[#F9FAFB] text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900;
+    @apply bg-surface-bg text-on-surface font-body-md min-h-screen flex flex-col antialiased selection:bg-secondary/20 selection:text-secondary;
     font-variant-numeric: tabular-nums;
   }
 }
@@ -23,7 +23,57 @@
   direction: ltr;
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.ambient-shadow {
+  box-shadow: 0 4px 20px rgba(0, 27, 61, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ambient-shadow:hover {
+  box-shadow: 0 8px 30px rgba(0, 27, 61, 0.08);
+  transform: translateY(-2px);
+}
+
+.input-focus-ring:focus-within {
+  border-color: #006b5b;
+  box-shadow: 0 0 0 3px #00F5D433;
 }
 
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Custom Motion & Spring Animations for Calc-E */
+@keyframes popInSpring {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  80% { transform: scale(0.96); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-pop-in-spring {
+  animation: popInSpring 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes slideUpFade {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up-fade {
+  animation: slideUpFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pop-in-spring,
+  .animate-slide-up-fade {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
