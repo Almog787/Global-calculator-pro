@@ -49,14 +49,14 @@ export default function ThreeCharacterCanvas({
     container.appendChild(renderer.domElement);
 
     // 2. Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
     scene.add(ambientLight);
 
-    const dirLight = new THREE.DirectionalLight(0x26fedc, 2.0);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
     dirLight.position.set(5, 5, 5);
     scene.add(dirLight);
 
-    const backLight = new THREE.PointLight(0x00f5d4, 1.5, 10);
+    const backLight = new THREE.PointLight(0x00f5d4, 2.5, 10);
     backLight.position.set(-3, -2, 3);
     scene.add(backLight);
 
@@ -64,21 +64,37 @@ export default function ThreeCharacterCanvas({
     const characterGroup = new THREE.Group();
     scene.add(characterGroup);
 
-    // Head / Main Body
-    const headGeo = new THREE.SphereGeometry(1.0, 32, 32);
+    // Head / Main Body - High visibility vibrant cyan-blue metallic body
+    const headGeo = new THREE.SphereGeometry(1.0, 36, 36);
     const headMat = new THREE.MeshStandardMaterial({
-      color: 0x001b3d,
-      roughness: 0.15,
-      metalness: 0.7,
+      color: 0x0284c7, // Deep vibrant cyan-blue
+      roughness: 0.18,
+      metalness: 0.45,
+      emissive: 0x0369a1,
+      emissiveIntensity: 0.2,
     });
     const headMesh = new THREE.Mesh(headGeo, headMat);
     characterGroup.add(headMesh);
 
-    // Visor / Screen Face
+    // Outer Protective Glass Sheen (Futuristic Helmet Halo)
+    const glassGeo = new THREE.SphereGeometry(1.05, 32, 32);
+    const glassMat = new THREE.MeshPhysicalMaterial({
+      color: 0x38bdf8,
+      transparent: true,
+      opacity: 0.15,
+      roughness: 0.05,
+      transmission: 0.9,
+      thickness: 0.2,
+      clearcoat: 1.0,
+    });
+    const glassMesh = new THREE.Mesh(glassGeo, glassMat);
+    characterGroup.add(glassMesh);
+
+    // Visor / Screen Face - Glossy dark slate screen
     const visorGeo = new THREE.SphereGeometry(0.82, 32, 32);
     const visorMat = new THREE.MeshStandardMaterial({
-      color: 0x050d1a,
-      roughness: 0.1,
+      color: 0x090d16, // Obsidian glass screen
+      roughness: 0.05,
       metalness: 0.9,
     });
     const visorMesh = new THREE.Mesh(visorGeo, visorMat);
@@ -86,40 +102,70 @@ export default function ThreeCharacterCanvas({
     visorMesh.scale.set(1.0, 0.72, 0.9);
     characterGroup.add(visorMesh);
 
+    // Cute LED Blush cheeks on visor
+    const cheekGeo = new THREE.SphereGeometry(0.08, 16, 16);
+    const cheekMat = new THREE.MeshBasicMaterial({ color: 0xf43f5e }); // Soft rosy pink LED
+    
+    const leftCheek = new THREE.Mesh(cheekGeo, cheekMat);
+    leftCheek.position.set(-0.48, -0.16, 0.88);
+    leftCheek.scale.set(1.2, 0.6, 0.5);
+    characterGroup.add(leftCheek);
+
+    const rightCheek = new THREE.Mesh(cheekGeo, cheekMat);
+    rightCheek.position.set(0.48, -0.16, 0.88);
+    rightCheek.scale.set(1.2, 0.6, 0.5);
+    characterGroup.add(rightCheek);
+
     // Eyes Group
     const eyesGroup = new THREE.Group();
     eyesGroup.position.set(0, 0.08, 0.95);
     characterGroup.add(eyesGroup);
 
-    const eyeGeo = new THREE.SphereGeometry(0.18, 16, 16);
-    const eyeMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const eyeGeo = new THREE.SphereGeometry(0.19, 16, 16);
+    const eyeMat = new THREE.MeshBasicMaterial({ color: 0xffffff }); // Crisp pure white
 
-    const pupilGeo = new THREE.SphereGeometry(0.1, 16, 16);
-    const pupilMat = new THREE.MeshBasicMaterial({ color: 0x00f5d4 });
+    const pupilGeo = new THREE.SphereGeometry(0.11, 16, 16);
+    const pupilMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4 }); // Glowing cyan
 
-    // Left Eye & Pupil
+    // Catchlight (White shine reflection dot for expressive eyes)
+    const catchlightGeo = new THREE.SphereGeometry(0.04, 8, 8);
+    const catchlightMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+    // Left Eye & Pupil & Catchlight
     const leftEyeGroup = new THREE.Group();
     leftEyeGroup.position.set(-0.35, 0, 0);
     const leftEyeBg = new THREE.Mesh(eyeGeo, eyeMat);
     leftEyeGroup.add(leftEyeBg);
+    
     const leftPupil = new THREE.Mesh(pupilGeo, pupilMat);
     leftPupil.position.set(0, 0, 0.1);
+    
+    const leftShine = new THREE.Mesh(catchlightGeo, catchlightMat);
+    leftShine.position.set(0.04, 0.04, 0.11);
+    leftPupil.add(leftShine);
+    
     leftEyeGroup.add(leftPupil);
     eyesGroup.add(leftEyeGroup);
 
-    // Right Eye & Pupil
+    // Right Eye & Pupil & Catchlight
     const rightEyeGroup = new THREE.Group();
     rightEyeGroup.position.set(0.35, 0, 0);
     const rightEyeBg = new THREE.Mesh(eyeGeo, eyeMat);
     rightEyeGroup.add(rightEyeBg);
+    
     const rightPupil = new THREE.Mesh(pupilGeo, pupilMat);
     rightPupil.position.set(0, 0, 0.1);
+    
+    const rightShine = new THREE.Mesh(catchlightGeo, catchlightMat);
+    rightShine.position.set(0.04, 0.04, 0.11);
+    rightPupil.add(rightShine);
+    
     rightEyeGroup.add(rightPupil);
     eyesGroup.add(rightEyeGroup);
 
     // Eyebrows
     const eyebrowGeo = new THREE.BoxGeometry(0.26, 0.04, 0.04);
-    const eyebrowMat = new THREE.MeshBasicMaterial({ color: 0x26fedc });
+    const eyebrowMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8 }); // Sky blue eyebrows
 
     const leftEyebrow = new THREE.Mesh(eyebrowGeo, eyebrowMat);
     leftEyebrow.position.set(-0.35, 0.28, 0.98);
@@ -131,20 +177,20 @@ export default function ThreeCharacterCanvas({
 
     // Antenna
     const antennaStemGeo = new THREE.CylinderGeometry(0.025, 0.025, 0.38, 8);
-    const antennaStemMat = new THREE.MeshStandardMaterial({ color: 0x495f84, metalness: 0.8 });
+    const antennaStemMat = new THREE.MeshStandardMaterial({ color: 0xfbbf24, metalness: 0.9, roughness: 0.1 }); // Gold metallic stem
     const antennaStem = new THREE.Mesh(antennaStemGeo, antennaStemMat);
     antennaStem.position.set(0, 1.15, 0);
     characterGroup.add(antennaStem);
 
     const antennaBulbGeo = new THREE.SphereGeometry(0.12, 16, 16);
-    const antennaBulbMat = new THREE.MeshBasicMaterial({ color: 0x00f5d4 });
+    const antennaBulbMat = new THREE.MeshBasicMaterial({ color: 0xff007a }); // Glowing neon pink bulb
     const antennaBulb = new THREE.Mesh(antennaBulbGeo, antennaBulbMat);
     antennaBulb.position.set(0, 1.38, 0);
     characterGroup.add(antennaBulb);
 
     // Ears / Side Pods
     const podGeo = new THREE.CylinderGeometry(0.2, 0.2, 0.15, 16);
-    const podMat = new THREE.MeshStandardMaterial({ color: 0x006b5b, metalness: 0.6 });
+    const podMat = new THREE.MeshStandardMaterial({ color: 0x0284c7, metalness: 0.8, roughness: 0.2 }); // Metallic cyan pods
     
     const leftPod = new THREE.Mesh(podGeo, podMat);
     leftPod.rotation.z = Math.PI / 2;
@@ -158,7 +204,7 @@ export default function ThreeCharacterCanvas({
 
     // Ring Collar
     const ringGeo = new THREE.TorusGeometry(0.85, 0.05, 12, 32);
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0x26fedc });
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24 }); // Gold glowing ring
     const ringMesh = new THREE.Mesh(ringGeo, ringMat);
     ringMesh.rotation.x = Math.PI / 2;
     ringMesh.position.set(0, -0.85, 0);

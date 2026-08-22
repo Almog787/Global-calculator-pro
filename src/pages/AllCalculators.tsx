@@ -210,10 +210,6 @@ export default function AllCalculators() {
 
   const currText = bentoTexts[lang as keyof typeof bentoTexts] || bentoTexts.en;
 
-  const triggerAssistant = () => {
-    window.dispatchEvent(new CustomEvent("open-virtual-assistant"));
-  };
-
   return (
     <div className="w-full">
       <SEO
@@ -244,27 +240,11 @@ export default function AllCalculators() {
           {currText.heroSubtitle}
         </p>
 
-        {/* Search Hero with Floating Assistant Icon */}
+        {/* Search Hero */}
         <div className="relative max-w-2xl mx-auto flex items-center">
           <div className="w-full">
             <SearchBar isHero placeholder={currText.heroSearchPlaceholder} />
           </div>
-
-          {/* Floating Assistant Trigger */}
-          <button
-            onClick={triggerAssistant}
-            type="button"
-            className="absolute -left-3 sm:-left-12 rtl:-right-3 rtl:sm:-right-12 rtl:left-auto top-1/2 -translate-y-1/2 animate-bounce cursor-pointer group z-20"
-            title={currText.assistantTooltip}
-            aria-label={currText.assistantTooltip}
-          >
-            <div className="bg-primary-container text-on-primary w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-secondary transition-colors border-2 border-surface-container-lowest">
-              <span className="material-symbols-outlined filled text-xl sm:text-2xl">smart_toy</span>
-            </div>
-            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-md font-label-bold">
-              {currText.assistantTooltip}
-            </div>
-          </button>
         </div>
       </section>
 

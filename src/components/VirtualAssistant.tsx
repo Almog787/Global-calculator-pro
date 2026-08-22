@@ -197,19 +197,20 @@ export default function VirtualAssistant() {
     >
       {/* Floating Dialog / Speech Bubble Container */}
       <div
-        className={`bg-surface-container-lowest rounded-3xl shadow-2xl border border-border-subtle w-[calc(100vw-32px)] sm:w-[410px] overflow-hidden transition-all duration-300 ease-out origin-bottom-right rtl:origin-bottom-left pointer-events-auto flex flex-col max-h-[84vh] sm:max-h-[610px] mb-3.5 ${
+        className={`bg-slate-900/95 backdrop-blur-2xl text-slate-100 rounded-3xl shadow-[0_25px_60px_-15px_rgba(6,182,212,0.35)] border border-cyan-500/30 w-[calc(100vw-32px)] sm:w-[415px] overflow-hidden transition-all duration-300 ease-out origin-bottom-right rtl:origin-bottom-left pointer-events-auto flex flex-col max-h-[85vh] sm:max-h-[620px] mb-3.5 ${
           isOpen
             ? "animate-pop-in-spring opacity-100 translate-y-0"
             : "scale-0 opacity-0 pointer-events-none translate-y-6"
         }`}
       >
         {/* Assistant Header with 3D Canvas */}
-        <div className="bg-primary-container px-4 sm:px-5 py-3.5 flex justify-between items-center text-on-primary shrink-0 border-b border-primary-container relative overflow-hidden">
+        <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-cyan-950 px-4 sm:px-5 py-3.5 flex justify-between items-center text-white shrink-0 border-b border-cyan-500/20 relative overflow-hidden">
           {/* Animated decorative accent line */}
-          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-secondary-fixed via-secondary to-primary-fixed animate-pulse"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-500 via-sky-400 to-teal-400 animate-pulse"></div>
 
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-surface-container-lowest/10 border border-secondary-fixed/30 flex items-center justify-center shrink-0 shadow-inner overflow-hidden">
+            <div className="w-11 h-11 rounded-2xl bg-slate-950 border border-cyan-400/60 flex items-center justify-center shrink-0 shadow-lg shadow-cyan-500/20 overflow-hidden relative group">
+              <div className="absolute inset-0 bg-radial from-cyan-500/40 via-transparent to-transparent opacity-80"></div>
               <ThreeCharacterCanvas
                 state={assistantState}
                 mousePos={normalizedMousePos}
@@ -218,10 +219,14 @@ export default function VirtualAssistant() {
               />
             </div>
             <div>
-              <div className="font-bold text-sm tracking-wide flex items-center gap-1.5 text-on-primary">
-                {i18nTexts.title}
+              <div className="font-extrabold text-sm tracking-wide flex items-center gap-2 text-white">
+                <span>{i18nTexts.title}</span>
+                <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                  AI Active
+                </span>
               </div>
-              <p className="text-[11px] text-primary-fixed-dim leading-none mt-0.5">
+              <p className="text-[11px] text-cyan-200/70 leading-none mt-1">
                 {i18nTexts.subtitle}
               </p>
             </div>
@@ -230,26 +235,26 @@ export default function VirtualAssistant() {
           <div className="flex items-center gap-1">
             <button
               onClick={() => setIsOpen(false)}
-              className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-primary-fixed-dim hover:text-on-primary transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-full bg-slate-800/60 hover:bg-cyan-500/20 flex items-center justify-center text-slate-300 hover:text-cyan-300 transition-colors cursor-pointer border border-slate-700/50"
               title="Close"
               aria-label="Close Assistant"
             >
-              <span className="material-symbols-outlined text-[20px]">close</span>
+              <span className="material-symbols-outlined text-[18px]">close</span>
             </button>
           </div>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex border-b border-border-subtle bg-surface px-2 py-1.5 gap-1 shrink-0">
+        <div className="flex border-b border-slate-800/80 bg-slate-950/80 p-1.5 gap-1 shrink-0">
           <button
             onClick={() => {
               setActiveTab("quiz");
               triggerSuccessJump();
             }}
-            className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+            className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
               activeTab === "quiz"
-                ? "bg-surface-container-lowest text-secondary shadow-xs border border-border-subtle"
-                : "text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low"
+                ? "bg-gradient-to-r from-cyan-600 to-sky-600 text-white shadow-md shadow-cyan-500/25 border border-cyan-400/30"
+                : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
             }`}
           >
             <span className="material-symbols-outlined text-[15px]">explore</span>
@@ -260,10 +265,10 @@ export default function VirtualAssistant() {
               setActiveTab("quickCalc");
               triggerSuccessJump();
             }}
-            className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+            className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
               activeTab === "quickCalc"
-                ? "bg-surface-container-lowest text-secondary shadow-xs border border-border-subtle"
-                : "text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low"
+                ? "bg-gradient-to-r from-cyan-600 to-sky-600 text-white shadow-md shadow-cyan-500/25 border border-cyan-400/30"
+                : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
             }`}
           >
             <span className="material-symbols-outlined text-[15px]">bolt</span>
@@ -274,10 +279,10 @@ export default function VirtualAssistant() {
               setActiveTab("tips");
               triggerSuccessJump();
             }}
-            className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+            className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
               activeTab === "tips"
-                ? "bg-surface-container-lowest text-secondary shadow-xs border border-border-subtle"
-                : "text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low"
+                ? "bg-gradient-to-r from-cyan-600 to-sky-600 text-white shadow-md shadow-cyan-500/25 border border-cyan-400/30"
+                : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
             }`}
           >
             <span className="material-symbols-outlined text-[15px]">lightbulb</span>
@@ -288,10 +293,10 @@ export default function VirtualAssistant() {
               setActiveTab("search");
               setAssistantState("thinking");
             }}
-            className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+            className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
               activeTab === "search"
-                ? "bg-surface-container-lowest text-secondary shadow-xs border border-border-subtle"
-                : "text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low"
+                ? "bg-gradient-to-r from-cyan-600 to-sky-600 text-white shadow-md shadow-cyan-500/25 border border-cyan-400/30"
+                : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
             }`}
           >
             <span className="material-symbols-outlined text-[15px]">search</span>
@@ -306,19 +311,19 @@ export default function VirtualAssistant() {
             <div className="space-y-4 animate-fadeIn">
               {selectedResult ? (
                 /* Quiz Result Card */
-                <div className="bg-gradient-to-br from-secondary/10 via-surface to-surface-container-low p-4 rounded-2xl border border-secondary/30 space-y-3 animate-slide-up-fade">
+                <div className="bg-gradient-to-br from-cyan-950/80 via-slate-900 to-slate-900 p-4 rounded-2xl border border-cyan-500/40 space-y-3 animate-slide-up-fade shadow-lg">
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-secondary text-on-secondary flex items-center justify-center shrink-0 shadow-sm">
+                    <div className="w-10 h-10 rounded-xl bg-cyan-500 text-slate-950 flex items-center justify-center shrink-0 shadow-md font-bold">
                       <span className="material-symbols-outlined text-xl">{selectedResult.icon || "auto_awesome"}</span>
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-secondary">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-md border border-cyan-500/20">
                         {i18nTexts.recommended}
                       </span>
-                      <h4 className="font-bold text-base text-primary-container leading-tight">
+                      <h4 className="font-extrabold text-base text-white leading-tight mt-1">
                         {selectedResult.label?.[currentLang] || selectedResult.label?.en || ""}
                       </h4>
-                      <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
+                      <p className="text-xs text-slate-300 mt-1 leading-relaxed">
                         {selectedResult.desc?.[currentLang] || selectedResult.desc?.en || ""}
                       </p>
                     </div>
@@ -326,7 +331,7 @@ export default function VirtualAssistant() {
 
                   <button
                     onClick={() => handleNavigateToCalc(selectedResult.targetPath!)}
-                    className="w-full py-2.5 px-4 bg-secondary text-on-secondary rounded-xl font-bold text-xs hover:bg-on-secondary-container transition-all flex items-center justify-center gap-2 shadow-xs cursor-pointer active:scale-98"
+                    className="w-full py-2.5 px-4 bg-gradient-to-r from-cyan-500 to-sky-500 hover:from-cyan-400 hover:to-sky-400 text-slate-950 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 cursor-pointer active:scale-98"
                   >
                     <span>{i18nTexts.openCalculator}</span>
                     <span className="material-symbols-outlined text-sm rtl:rotate-180">arrow_forward</span>
@@ -334,7 +339,7 @@ export default function VirtualAssistant() {
 
                   <button
                     onClick={handleBack}
-                    className="w-full py-2 text-center text-xs text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
+                    className="w-full py-2 text-center text-xs text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
                   >
                     {i18nTexts.back}
                   </button>
@@ -342,12 +347,12 @@ export default function VirtualAssistant() {
               ) : (
                 /* Active Quiz Question */
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center text-xs text-on-surface-variant font-medium">
+                  <div className="flex justify-between items-center text-xs font-semibold text-cyan-200">
                     <span>{currentStep?.question?.[currentLang] || currentStep?.question?.en || ""}</span>
                     {stepHistory.length > 0 && (
                       <button
                         onClick={handleBack}
-                        className="text-secondary hover:underline flex items-center gap-0.5 cursor-pointer font-bold"
+                        className="text-cyan-400 hover:text-cyan-300 flex items-center gap-0.5 cursor-pointer font-bold"
                       >
                         <span className="material-symbols-outlined text-sm rtl:rotate-180">arrow_back</span>
                         <span>{i18nTexts.back}</span>
@@ -361,16 +366,16 @@ export default function VirtualAssistant() {
                         key={option.id}
                         onClick={() => handleOptionSelect(option)}
                         style={{ animationDelay: `${idx * 60}ms` }}
-                        className="w-full p-3 bg-surface-container-lowest hover:bg-surface-container-low border border-border-subtle hover:border-secondary/50 rounded-2xl text-right rtl:text-right ltr:text-left transition-all duration-200 group flex items-start gap-3 cursor-pointer shadow-xs animate-slide-up-fade"
+                        className="w-full p-3 bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 hover:border-cyan-400/60 rounded-2xl text-right rtl:text-right ltr:text-left transition-all duration-200 group flex items-start gap-3 cursor-pointer shadow-md animate-slide-up-fade"
                       >
-                        <span className="w-8 h-8 rounded-xl bg-surface-container-low text-secondary flex items-center justify-center shrink-0 group-hover:bg-secondary group-hover:text-on-secondary transition-colors text-sm">
+                        <span className="w-8 h-8 rounded-xl bg-slate-900 text-cyan-400 flex items-center justify-center shrink-0 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors text-sm font-bold border border-slate-700/60">
                           <span className="material-symbols-outlined text-lg">{option.icon || "chevron_right"}</span>
                         </span>
                         <div className="flex-grow min-w-0">
-                          <div className="font-bold text-xs text-primary-container group-hover:text-secondary transition-colors">
+                          <div className="font-bold text-xs text-slate-100 group-hover:text-cyan-300 transition-colors">
                             {option.label?.[currentLang] || option.label?.en || ""}
                           </div>
-                          <div className="text-[11px] text-on-surface-variant truncate mt-0.5">
+                          <div className="text-[11px] text-slate-400 truncate mt-0.5">
                             {option.desc?.[currentLang] || option.desc?.en || ""}
                           </div>
                         </div>
@@ -381,7 +386,7 @@ export default function VirtualAssistant() {
                   {stepHistory.length > 0 && (
                     <button
                       onClick={handleRestart}
-                      className="w-full py-1.5 text-center text-xs text-text-muted hover:text-on-surface transition-colors cursor-pointer flex items-center justify-center gap-1"
+                      className="w-full py-1.5 text-center text-xs text-slate-400 hover:text-slate-200 transition-colors cursor-pointer flex items-center justify-center gap-1"
                     >
                       <span className="material-symbols-outlined text-sm">refresh</span>
                       <span>{i18nTexts.restartQuiz}</span>
@@ -395,11 +400,11 @@ export default function VirtualAssistant() {
           {/* TAB 2: QUICK UTILITY CALCULATOR */}
           {activeTab === "quickCalc" && (
             <div className="space-y-4 animate-fadeIn">
-              <div className="flex rounded-xl bg-surface-container-low p-1 gap-1">
+              <div className="flex rounded-xl bg-slate-950/80 p-1 gap-1 border border-slate-800">
                 <button
                   onClick={() => setCalcMode("percent")}
                   className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    calcMode === "percent" ? "bg-surface-container-lowest text-secondary shadow-xs" : "text-on-surface-variant"
+                    calcMode === "percent" ? "bg-cyan-600 text-white shadow-sm" : "text-slate-400 hover:text-slate-200"
                   }`}
                 >
                   {i18nTexts.instantCalc}
@@ -407,7 +412,7 @@ export default function VirtualAssistant() {
                 <button
                   onClick={() => setCalcMode("discount")}
                   className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    calcMode === "discount" ? "bg-surface-container-lowest text-secondary shadow-xs" : "text-on-surface-variant"
+                    calcMode === "discount" ? "bg-cyan-600 text-white shadow-sm" : "text-slate-400 hover:text-slate-200"
                   }`}
                 >
                   {i18nTexts.calcDiscount}
@@ -415,7 +420,7 @@ export default function VirtualAssistant() {
                 <button
                   onClick={() => setCalcMode("rule72")}
                   className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    calcMode === "rule72" ? "bg-surface-container-lowest text-secondary shadow-xs" : "text-on-surface-variant"
+                    calcMode === "rule72" ? "bg-cyan-600 text-white shadow-sm" : "text-slate-400 hover:text-slate-200"
                   }`}
                 >
                   {i18nTexts.calcRule72}
@@ -423,35 +428,35 @@ export default function VirtualAssistant() {
               </div>
 
               {calcMode === "percent" && (
-                <div className="bg-surface-container-lowest p-4 rounded-2xl border border-border-subtle space-y-3 animate-slide-up-fade">
+                <div className="bg-slate-800/50 p-4 rounded-2xl border border-slate-700/60 space-y-3 animate-slide-up-fade">
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="text-[11px] font-medium text-on-surface-variant block mb-1">
+                      <label className="text-[11px] font-medium text-slate-300 block mb-1">
                         {i18nTexts.valueX}
                       </label>
                       <input
                         type="number"
                         value={percentX}
                         onChange={(e) => setPercentX(e.target.value)}
-                        className="w-full p-2 bg-surface border border-border-subtle rounded-xl text-xs font-mono-num font-bold text-primary-container focus:outline-none focus:border-secondary"
+                        className="w-full p-2 bg-slate-950 border border-slate-700 rounded-xl text-xs font-mono-num font-bold text-white focus:outline-none focus:border-cyan-400"
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] font-medium text-on-surface-variant block mb-1">
+                      <label className="text-[11px] font-medium text-slate-300 block mb-1">
                         {i18nTexts.valueY}
                       </label>
                       <input
                         type="number"
                         value={percentY}
                         onChange={(e) => setPercentY(e.target.value)}
-                        className="w-full p-2 bg-surface border border-border-subtle rounded-xl text-xs font-mono-num font-bold text-primary-container focus:outline-none focus:border-secondary"
+                        className="w-full p-2 bg-slate-950 border border-slate-700 rounded-xl text-xs font-mono-num font-bold text-white focus:outline-none focus:border-cyan-400"
                       />
                     </div>
                   </div>
 
-                  <div className="bg-primary-container text-on-primary p-3 rounded-xl flex items-center justify-between">
-                    <span className="text-xs text-primary-fixed-dim">{i18nTexts.result}</span>
-                    <span className="font-mono-num font-extrabold text-secondary-fixed text-lg">
+                  <div className="bg-gradient-to-r from-cyan-950 to-slate-900 border border-cyan-500/30 text-white p-3.5 rounded-xl flex items-center justify-between shadow-inner">
+                    <span className="text-xs font-bold text-cyan-300">{i18nTexts.result}</span>
+                    <span className="font-mono-num font-extrabold text-cyan-400 text-lg">
                       {percentResult}
                     </span>
                   </div>
@@ -459,40 +464,40 @@ export default function VirtualAssistant() {
               )}
 
               {calcMode === "discount" && (
-                <div className="bg-surface-container-lowest p-4 rounded-2xl border border-border-subtle space-y-3 animate-slide-up-fade">
+                <div className="bg-slate-800/50 p-4 rounded-2xl border border-slate-700/60 space-y-3 animate-slide-up-fade">
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="text-[11px] font-medium text-on-surface-variant block mb-1">
+                      <label className="text-[11px] font-medium text-slate-300 block mb-1">
                         {i18nTexts.originalPrice}
                       </label>
                       <input
                         type="number"
                         value={discountPrice}
                         onChange={(e) => setDiscountPrice(e.target.value)}
-                        className="w-full p-2 bg-surface border border-border-subtle rounded-xl text-xs font-mono-num font-bold text-primary-container focus:outline-none focus:border-secondary"
+                        className="w-full p-2 bg-slate-950 border border-slate-700 rounded-xl text-xs font-mono-num font-bold text-white focus:outline-none focus:border-cyan-400"
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] font-medium text-on-surface-variant block mb-1">
+                      <label className="text-[11px] font-medium text-slate-300 block mb-1">
                         {i18nTexts.discountPercent}
                       </label>
                       <input
                         type="number"
                         value={discountPct}
                         onChange={(e) => setDiscountPct(e.target.value)}
-                        className="w-full p-2 bg-surface border border-border-subtle rounded-xl text-xs font-mono-num font-bold text-primary-container focus:outline-none focus:border-secondary"
+                        className="w-full p-2 bg-slate-950 border border-slate-700 rounded-xl text-xs font-mono-num font-bold text-white focus:outline-none focus:border-cyan-400"
                       />
                     </div>
                   </div>
 
-                  <div className="bg-primary-container text-on-primary p-3 rounded-xl flex items-center justify-between">
+                  <div className="bg-gradient-to-r from-cyan-950 to-slate-900 border border-cyan-500/30 text-white p-3.5 rounded-xl flex items-center justify-between shadow-inner">
                     <div>
-                      <div className="text-[10px] text-primary-fixed-dim">{i18nTexts.savingsAmount}</div>
+                      <div className="text-[10px] text-slate-400">{i18nTexts.savingsAmount}</div>
                       <div className="text-xs font-bold text-emerald-400">₪{discountSavings.toFixed(2)}</div>
                     </div>
                     <div className="text-right rtl:text-right ltr:text-left">
-                      <div className="text-[10px] text-primary-fixed-dim">{i18nTexts.finalPrice}</div>
-                      <div className="font-mono-num font-extrabold text-secondary-fixed text-lg">
+                      <div className="text-[10px] text-slate-400">{i18nTexts.finalPrice}</div>
+                      <div className="font-mono-num font-extrabold text-cyan-400 text-lg">
                         ₪{discountFinal}
                       </div>
                     </div>
@@ -501,22 +506,22 @@ export default function VirtualAssistant() {
               )}
 
               {calcMode === "rule72" && (
-                <div className="bg-surface-container-lowest p-4 rounded-2xl border border-border-subtle space-y-3 animate-slide-up-fade">
+                <div className="bg-slate-800/50 p-4 rounded-2xl border border-slate-700/60 space-y-3 animate-slide-up-fade">
                   <div>
-                    <label className="text-[11px] font-medium text-on-surface-variant block mb-1">
+                    <label className="text-[11px] font-medium text-slate-300 block mb-1">
                       {i18nTexts.rateInput}
                     </label>
                     <input
                       type="number"
                       value={rule72Rate}
                       onChange={(e) => setRule72Rate(e.target.value)}
-                      className="w-full p-2 bg-surface border border-border-subtle rounded-xl text-xs font-mono-num font-bold text-primary-container focus:outline-none focus:border-secondary"
+                      className="w-full p-2 bg-slate-950 border border-slate-700 rounded-xl text-xs font-mono-num font-bold text-white focus:outline-none focus:border-cyan-400"
                     />
                   </div>
 
-                  <div className="bg-primary-container text-on-primary p-3 rounded-xl flex items-center justify-between">
-                    <span className="text-xs text-primary-fixed-dim">{i18nTexts.yearsToDouble}</span>
-                    <span className="font-mono-num font-extrabold text-secondary-fixed text-lg">
+                  <div className="bg-gradient-to-r from-cyan-950 to-slate-900 border border-cyan-500/30 text-white p-3.5 rounded-xl flex items-center justify-between shadow-inner">
+                    <span className="text-xs font-bold text-cyan-300">{i18nTexts.yearsToDouble}</span>
+                    <span className="font-mono-num font-extrabold text-cyan-400 text-lg">
                       {yearsToDoubleVal} {i18nTexts.yearsLabel}
                     </span>
                   </div>
@@ -535,8 +540,8 @@ export default function VirtualAssistant() {
                     onClick={() => setSelectedTipCategory(cat)}
                     className={`px-3 py-1 rounded-full text-[11px] font-bold whitespace-nowrap transition-all cursor-pointer ${
                       selectedTipCategory === cat
-                        ? "bg-secondary text-on-secondary"
-                        : "bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high"
+                        ? "bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20"
+                        : "bg-slate-800/70 text-slate-300 hover:bg-slate-700/70"
                     }`}
                   >
                     {cat === "all" ? i18nTexts.allCategories : cat.toUpperCase()}
@@ -549,15 +554,15 @@ export default function VirtualAssistant() {
                   <div
                     key={tip.id}
                     style={{ animationDelay: `${idx * 50}ms` }}
-                    className="p-3 bg-surface-container-lowest border border-border-subtle rounded-2xl space-y-1.5 shadow-xs hover:border-secondary/40 transition-colors animate-slide-up-fade"
+                    className="p-3.5 bg-slate-800/40 border border-slate-700/50 hover:border-cyan-500/40 border-l-4 border-l-cyan-400 rounded-2xl space-y-2 shadow-sm transition-all animate-slide-up-fade"
                   >
                     <div className="flex justify-between items-start gap-2">
-                      <h5 className="font-bold text-xs text-primary-container leading-snug">
+                      <h5 className="font-extrabold text-xs text-white leading-snug">
                         {tip.title[currentLang] || tip.title.en}
                       </h5>
                       <button
                         onClick={() => handleCopyTip(tip)}
-                        className="text-secondary hover:text-on-secondary-container p-1 rounded-lg hover:bg-secondary/10 transition-colors cursor-pointer shrink-0"
+                        className="text-cyan-400 hover:text-cyan-300 p-1 rounded-lg hover:bg-cyan-500/20 transition-colors cursor-pointer shrink-0"
                         title={i18nTexts.copyBtn}
                       >
                         <span className="material-symbols-outlined text-base">
@@ -566,14 +571,14 @@ export default function VirtualAssistant() {
                       </button>
                     </div>
 
-                    <p className="text-[11px] text-on-surface-variant leading-relaxed">
+                    <p className="text-[11px] text-slate-300 leading-relaxed">
                       {tip.summary[currentLang] || tip.summary.en}
                     </p>
 
                     {tip.formulaOrRule && (
-                      <div className="bg-surface p-2 rounded-xl border border-border-subtle text-[10px] font-mono-num font-semibold text-secondary flex items-center justify-between">
+                      <div className="bg-slate-950/80 p-2 rounded-xl border border-slate-800 text-[10px] font-mono-num font-semibold text-cyan-300 flex items-center justify-between">
                         <span>{tip.formulaOrRule}</span>
-                        <span className="text-[9px] uppercase tracking-wider text-text-muted">{tip.category}</span>
+                        <span className="text-[9px] uppercase tracking-wider text-slate-400">{tip.category}</span>
                       </div>
                     )}
                   </div>
@@ -586,7 +591,7 @@ export default function VirtualAssistant() {
           {activeTab === "search" && (
             <div className="space-y-3 animate-fadeIn">
               <div className="relative">
-                <span className="material-symbols-outlined absolute right-3 rtl:right-3 rtl:left-auto ltr:left-3 ltr:right-auto top-1/2 -translate-y-1/2 text-outline text-lg">
+                <span className="material-symbols-outlined absolute right-3 rtl:right-3 rtl:left-auto ltr:left-3 ltr:right-auto top-1/2 -translate-y-1/2 text-slate-400 text-lg">
                   search
                 </span>
                 <input
@@ -595,7 +600,7 @@ export default function VirtualAssistant() {
                   placeholder={i18nTexts.searchPlaceholder}
                   value={searchQuery}
                   onChange={handleSearchChange}
-                  className="w-full py-2 pr-9 pl-9 rtl:pr-9 rtl:pl-3 ltr:pl-9 ltr:pr-3 bg-surface-container-lowest border border-border-subtle rounded-xl text-xs text-on-surface focus:outline-none focus:border-secondary"
+                  className="w-full py-2 pr-9 pl-9 rtl:pr-9 rtl:pl-3 ltr:pl-9 ltr:pr-3 bg-slate-950 border border-slate-700/80 rounded-xl text-xs text-white focus:outline-none focus:border-cyan-400 placeholder:text-slate-500"
                 />
               </div>
 
@@ -606,24 +611,24 @@ export default function VirtualAssistant() {
                       key={calc.id}
                       onClick={() => handleNavigateToCalc(calc.path)}
                       style={{ animationDelay: `${idx * 40}ms` }}
-                      className="w-full p-2.5 bg-surface-container-lowest hover:bg-surface-container-low border border-border-subtle rounded-xl text-right rtl:text-right ltr:text-left transition-all flex items-center justify-between group cursor-pointer animate-slide-up-fade"
+                      className="w-full p-2.5 bg-slate-800/40 hover:bg-slate-800 border border-slate-700/50 hover:border-cyan-500/40 rounded-xl text-right rtl:text-right ltr:text-left transition-all flex items-center justify-between group cursor-pointer animate-slide-up-fade"
                     >
                       <div className="min-w-0 pr-2 rtl:pr-0 rtl:pl-2">
-                        <div className="font-bold text-xs text-primary-container group-hover:text-secondary truncate">
+                        <div className="font-bold text-xs text-white group-hover:text-cyan-300 truncate">
                           {getCalculatorTitle(calc, t, lang)}
                         </div>
-                        <div className="text-[11px] text-on-surface-variant truncate">
+                        <div className="text-[11px] text-slate-400 truncate mt-0.5">
                           {getCalculatorDescription(calc, t, lang)}
                         </div>
                       </div>
-                      <span className="material-symbols-outlined text-outline group-hover:text-secondary text-base shrink-0 rtl:rotate-180">
+                      <span className="material-symbols-outlined text-slate-400 group-hover:text-cyan-400 text-base shrink-0 rtl:rotate-180">
                         arrow_forward
                       </span>
                     </button>
                   ))
                 ) : (
-                  <div className="text-center py-6 text-xs text-text-muted">
-                    <span className="material-symbols-outlined text-2xl text-outline mb-1 block">search_off</span>
+                  <div className="text-center py-6 text-xs text-slate-400">
+                    <span className="material-symbols-outlined text-2xl text-slate-500 mb-1 block">search_off</span>
                     <span>{i18nTexts.noResults}</span>
                   </div>
                 )}
@@ -642,9 +647,9 @@ export default function VirtualAssistant() {
               setIsOpen(true);
               triggerSuccessJump();
             }}
-            className="absolute -top-10 right-0 rtl:right-auto rtl:left-0 bg-primary-container text-on-primary text-[11px] font-bold py-1 px-3 rounded-full shadow-lg whitespace-nowrap animate-bounce flex items-center gap-1.5 cursor-pointer hover:bg-secondary transition-colors border border-border-subtle"
+            className="absolute -top-10 right-0 rtl:right-auto rtl:left-0 bg-slate-950/90 text-cyan-300 text-[11px] font-extrabold py-1 px-3 rounded-full shadow-xl whitespace-nowrap animate-bounce flex items-center gap-1.5 cursor-pointer hover:bg-cyan-950 transition-colors border border-cyan-500/40"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-secondary-fixed animate-ping"></span>
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
             <span>{i18nTexts.badge}</span>
           </div>
         )}
@@ -655,14 +660,14 @@ export default function VirtualAssistant() {
             setIsOpen((prev) => !prev);
             triggerSuccessJump();
           }}
-          className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-primary-container text-on-primary shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center relative border-2 border-secondary/40 cursor-pointer overflow-hidden transform hover:scale-105 active:scale-95 ${
-            isOpen ? "ring-4 ring-secondary/40" : ""
+          className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-slate-950 via-slate-900 to-cyan-950 text-white shadow-[0_10px_30px_rgba(6,182,212,0.4)] hover:shadow-[0_15px_40px_rgba(6,182,212,0.6)] transition-all duration-300 flex items-center justify-center relative border-2 border-cyan-400 cursor-pointer overflow-hidden transform hover:scale-108 active:scale-95 ${
+            isOpen ? "ring-4 ring-cyan-400/50 shadow-cyan-500/60" : ""
           }`}
           title={i18nTexts.title}
           aria-label={i18nTexts.title}
         >
-          {/* Subtle Glow */}
-          <div className="absolute inset-0 bg-radial from-secondary/20 via-transparent to-transparent pointer-events-none"></div>
+          {/* Luminous Glow Behind Character */}
+          <div className="absolute inset-0 bg-radial from-cyan-400/40 via-sky-500/20 to-transparent pointer-events-none"></div>
 
           {/* Three.js 3D Character Canvas */}
           <ThreeCharacterCanvas
