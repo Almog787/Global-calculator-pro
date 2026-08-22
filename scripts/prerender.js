@@ -109,7 +109,11 @@ server.listen(0, () => {
           const page = await context.newPage();
           const url = `http://localhost:${port}${route}`;
           try {
-            await page.goto(url, { waitUntil: 'networkidle' });
+            await page.goto(url, { waitUntil: 'load', timeout: 5000 });
+            
+            // Wait an additional small amount for React to hydrate and render
+            await page.waitForTimeout(1000);
+
             let html = await page.content();
             const portRegex = new RegExp(`http:\\/\\/(localhost|127\\.0\\.0\\.1):${port}`, 'g');
             html = html.replace(portRegex, '');

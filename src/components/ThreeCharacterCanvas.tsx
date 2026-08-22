@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 interface ThreeCharacterCanvasProps {
-  state?: "idle" | "success" | "thinking" | "shake";
+  state?: "idle" | "success" | "thinking" | "shake" | "sleep" | "panic";
   mousePos?: { x: number; y: number };
   width?: number;
   height?: number;
@@ -216,6 +216,12 @@ export default function ThreeCharacterCanvas({
     let blinkTimer = 0;
     let isBlinking = false;
     let blinkProgress = 0;
+    
+    // Scroll tracking
+    let lastScrollY = window.scrollY;
+    let smoothedScrollVelocity = 0;
+    let nodProgress = 0;
+    let isNodding = false;
 
     // Reaction Animation Progress Timers
     let successStartTime = 0;
@@ -237,19 +243,48 @@ export default function ThreeCharacterCanvas({
       if (currentState === "shake" && prevActionState !== "shake") {
         shakeStartTime = elapsedTime;
       }
+      
+      // Update materials based on state
+      if (currentState === "panic") {
+        antennaBulbMat.color.setHex(0xff3333); // Red alarm
+      } else {
+        antennaBulbMat.color.setHex(0xff007a); // Normal pink
+      }
+      
       prevActionState = currentState;
+
+      // --- SCROLL VELOCITY TRACKING ---
+      const currentScrollY = window.scrollY;
+      const scrollVelocity = currentScrollY - lastScrollY;
+      lastScrollY = currentScrollY;
+      smoothedScrollVelocity += (scrollVelocity - smoothedScrollVelocity) * 0.1;
+      
+      // Check bottom nod
+      const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
+      if (isAtBottom && scrollVelocity > 5 && !isNodding) {
+        isNodding = true;
+        nodProgress = 0;
+      }
 
       // --- A. IDLE FLOATING & SWAY ---
       if (!prefersReducedMotion) {
-        characterGroup.position.y = Math.sin(elapsedTime * 2.2) * 0.12;
-        characterGroup.rotation.z = Math.sin(elapsedTime * 1.5) * 0.04;
+        if (currentState === "sleep") {
+          // Deep breathing float
+          characterGroup.position.y = Math.sin(elapsedTime * 0.8) * 0.18;
+          characterGroup.rotation.z = Math.sin(elapsedTime * 0.5) * 0.05;
+        } else {
+          // Normal idle
+          characterGroup.position.y = Math.sin(elapsedTime * 2.2) * 0.12;
+          characterGroup.rotation.z = Math.sin(elapsedTime * 1.5) * 0.04;
+        }
       } else {
         characterGroup.position.y = 0;
         characterGroup.rotation.z = 0;
       }
 
       // Antenna bulb pulsing
-      const bulbPulse = 1 + Math.sin(elapsedTime * 4.5) * 0.18;
+      const pulseSpeed = currentState === "panic" ? 15 : currentState === "sleep" ? 1.5 : 4.5;
+      const bulbPulse = 1 + Math.sin(elapsedTime * pulseSpeed) * (currentState === "panic" ? 0.3 : 0.18);
       antennaBulb.scale.set(bulbPulse, bulbPulse, bulbPulse);
 
       // --- B. MOUSE TRACKING (EYES & HEAD TILT) ---
@@ -258,37 +293,61 @@ export default function ThreeCharacterCanvas({
       const clampedMouseY = Math.max(-1, Math.min(1, mouse.y));
 
       // Pupils tracking
-      const targetPupilX = clampedMouseX * 0.07;
-      const targetPupilY = -clampedMouseY * 0.06;
+      const targetPupilX = currentState === "sleep" ? 0 : clampedMouseX * 0.07;
+      const targetPupilY = currentState === "sleep" ? 0 : -clampedMouseY * 0.06;
 
       leftPupil.position.x += (targetPupilX - leftPupil.position.x) * 0.15;
       leftPupil.position.y += (targetPupilY - leftPupil.position.y) * 0.15;
       rightPupil.position.x += (targetPupilX - rightPupil.position.x) * 0.15;
       rightPupil.position.y += (targetPupilY - rightPupil.position.y) * 0.15;
+      
+      // Hide pupils slightly in sleep
+      const pupilScale = currentState === "sleep" ? 0.1 : 1.0;
+      leftPupil.scale.set(pupilScale, pupilScale, pupilScale);
+      rightPupil.scale.set(pupilScale, pupilScale, pupilScale);
 
       // Head Tilt tracking
       const targetHeadRotY = clampedMouseX * 0.32;
-      const baseRotX = -clampedMouseY * 0.22;
+      let baseRotX = (-clampedMouseY * 0.22) + (smoothedScrollVelocity * 0.005); // Add wind resistance tilt
 
       // Combine head tilt with state animations
       let baseRotY = targetHeadRotY;
       let baseRotZ = 0;
-
-      // --- C. BLINKING LOGIC ---
-      blinkTimer += 0.016;
-      if (blinkTimer > 3.8 + Math.random() * 2.2) {
-        isBlinking = true;
-        blinkTimer = 0;
-        blinkProgress = 0;
+      let extraRotX = 0;
+      
+      if (isNodding) {
+        nodProgress += 0.05;
+        extraRotX = Math.sin(nodProgress * Math.PI * 2) * 0.2;
+        if (nodProgress >= 1) {
+          isNodding = false;
+        }
       }
 
-      if (isBlinking) {
-        blinkProgress += 0.12;
-        const blinkScale = Math.max(0.1, Math.abs(Math.cos(blinkProgress * Math.PI)));
-        eyesGroup.scale.y = blinkScale;
-        if (blinkProgress >= 1) {
-          isBlinking = false;
-          eyesGroup.scale.y = 1;
+      // --- C. BLINKING LOGIC ---
+      if (currentState === "sleep") {
+        // Eyes closed to slits
+        eyesGroup.scale.y += (0.1 - eyesGroup.scale.y) * 0.1;
+      } else if (currentState === "panic") {
+        // Eyes wide open
+        eyesGroup.scale.y += (1.4 - eyesGroup.scale.y) * 0.2;
+      } else {
+        blinkTimer += 0.016;
+        if (blinkTimer > 3.8 + Math.random() * 2.2) {
+          isBlinking = true;
+          blinkTimer = 0;
+          blinkProgress = 0;
+        }
+
+        if (isBlinking) {
+          blinkProgress += 0.12;
+          const blinkScale = Math.max(0.1, Math.abs(Math.cos(blinkProgress * Math.PI)));
+          eyesGroup.scale.y = blinkScale;
+          if (blinkProgress >= 1) {
+            isBlinking = false;
+            eyesGroup.scale.y = 1;
+          }
+        } else {
+          eyesGroup.scale.y += (1.0 - eyesGroup.scale.y) * 0.2;
         }
       }
 
@@ -315,6 +374,10 @@ export default function ThreeCharacterCanvas({
         if (progress < 1) {
           baseRotY += Math.sin(progress * Math.PI * 6) * 0.35;
         }
+      } else if (currentState === "panic") {
+        // Frantic shaking / jitter
+        baseRotX += (Math.random() - 0.5) * 0.1;
+        baseRotY += (Math.random() - 0.5) * 0.1;
       } else {
         // Reset eyebrows
         leftEyebrow.position.y = 0.28;
@@ -322,7 +385,7 @@ export default function ThreeCharacterCanvas({
       }
 
       // Apply rotations smoothly
-      characterGroup.rotation.x += (baseRotX - characterGroup.rotation.x) * 0.1;
+      characterGroup.rotation.x += (baseRotX + extraRotX - characterGroup.rotation.x) * 0.1;
       characterGroup.rotation.y += (baseRotY - characterGroup.rotation.y) * 0.1;
       if (currentState !== "idle" || prefersReducedMotion) {
         characterGroup.rotation.z += (baseRotZ - characterGroup.rotation.z) * 0.1;

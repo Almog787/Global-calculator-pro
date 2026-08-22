@@ -6,7 +6,7 @@ import { quizSteps, assistantTranslations, assistantTips, QuizOption, AssistantT
 import ThreeCharacterCanvas from "./ThreeCharacterCanvas";
 
 type AssistantTab = "quiz" | "quickCalc" | "tips" | "search";
-type AssistantState = "idle" | "success" | "thinking" | "shake";
+type AssistantState = "idle" | "success" | "thinking" | "shake" | "sleep" | "panic";
 
 export default function VirtualAssistant() {
   const { lang, t } = useI18n();
@@ -44,6 +44,68 @@ export default function VirtualAssistant() {
 
   const currentLang = (lang as "he" | "en" | "es" | "fr" | "ar") || "he";
   const i18nTexts = assistantTranslations[currentLang] || assistantTranslations.he;
+
+  // Global Calc-E API
+  useEffect(() => {
+    (window as any).CalcE = {
+      open: () => setIsOpen(true),
+      close: () => setIsOpen(false),
+      setTab: (tab: AssistantTab) => {
+        setActiveTab(tab);
+        setIsOpen(true);
+      },
+      triggerEmotion: (emotion: AssistantState) => {
+        setAssistantState(emotion);
+        if (emotion !== "sleep") {
+          setTimeout(() => setAssistantState("idle"), 1500);
+        }
+      }
+    };
+    return () => {
+      delete (window as any).CalcE;
+    };
+  }, []);
+
+  // Sleep & Panic Timers
+  useEffect(() => {
+    let idleTimer: NodeJS.Timeout;
+
+    const resetIdleTimer = () => {
+      if (assistantState === "sleep") {
+        setAssistantState("idle");
+      }
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        setAssistantState("sleep");
+      }, 45000); // 45s of inactivity triggers sleep
+    };
+
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 10) {
+        setAssistantState("panic");
+      }
+    };
+
+    const handleMouseEnter = () => {
+      if (assistantState === "panic") {
+        setAssistantState("idle");
+      }
+    };
+
+    window.addEventListener("mousemove", resetIdleTimer);
+    window.addEventListener("keydown", resetIdleTimer);
+    document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mouseenter", handleMouseEnter);
+    resetIdleTimer();
+
+    return () => {
+      clearTimeout(idleTimer);
+      window.removeEventListener("mousemove", resetIdleTimer);
+      window.removeEventListener("keydown", resetIdleTimer);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", handleMouseEnter);
+    };
+  }, [assistantState]);
 
   // Reactive animation triggers
   const triggerSuccessJump = useCallback(() => {
@@ -660,7 +722,16 @@ export default function VirtualAssistant() {
             setIsOpen((prev) => !prev);
             triggerSuccessJump();
           }}
-          className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-slate-950 via-slate-900 to-cyan-950 text-white shadow-[0_10px_30px_rgba(6,182,212,0.4)] hover:shadow-[0_15px_40px_rgba(6,182,212,0.6)] transition-all duration-300 flex items-center justify-center relative border-2 border-cyan-400 cursor-pointer overflow-hidden transform hover:scale-108 active:scale-95 ${
+          onPointerDown={(e) => {
+            e.currentTarget.style.transform = "scale(0.9) scaleY(0.85) scaleX(1.1)"; // Squash
+          }}
+          onPointerUp={(e) => {
+            e.currentTarget.style.transform = ""; // Revert stretch
+          }}
+          onPointerLeave={(e) => {
+            e.currentTarget.style.transform = "";
+          }}
+          className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-slate-950 via-slate-900 to-cyan-950 text-white shadow-[0_10px_30px_rgba(6,182,212,0.4)] hover:shadow-[0_15px_40px_rgba(6,182,212,0.6)] transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] flex items-center justify-center relative border-2 border-cyan-400 cursor-pointer overflow-hidden transform hover:-translate-y-1 ${
             isOpen ? "ring-4 ring-cyan-400/50 shadow-cyan-500/60" : ""
           }`}
           title={i18nTexts.title}
