@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://globalcalcpro.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://globalcalcpro.com/en"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://globalcalcpro.com/he"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://globalcalcpro.com/es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://globalcalcpro.com/fr"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://globalcalcpro.com/ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://globalcalcpro.com/en"/>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://globalcalcpro.com/en</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalcalcpro.com/en"/>
     <xhtml:link rel="alternate" hreflang="he" href="https://globalcalcpro.com/he"/>
