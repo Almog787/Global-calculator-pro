@@ -158,6 +158,34 @@ export const dynamicTranslations: Record<string, Record<string, { title: string;
     fr: { title: "Louer vs Acheter", description: "Comparez les coûts financiers et la valeur à terme entre louer et acheter." },
     ar: { title: "الإيجار مقابل الشراء", description: "قارن التكاليف المالية والقيمة طويلة الأجل بين الإيجار والشراء." },
   },
+  "currency-converter": {
+    en: { title: "Currency Converter", description: "Real-time foreign exchange rate calculator." },
+    he: { title: "מחשבון המרת מטבעות", description: "המרת מט\"ח בזמן אמת עם שערי חליפין מעודכנים." },
+    es: { title: "Conversor de Moneda", description: "Calculadora de tipo de cambio en tiempo real." },
+    fr: { title: "Convertisseur de Devises", description: "Calculatrice de taux de change en temps réel." },
+    ar: { title: "محول العملات", description: "حاسبة سعر الصرف في الوقت الحقيقي." },
+  },
+  "sleep-calculator": {
+    en: { title: "Sleep Calculator", description: "Find the best time to go to sleep or wake up based on sleep cycles." },
+    he: { title: "מחשבון שעות שינה", description: "חשב מתי כדאי ללכת לישון או לקום כדי להתעורר רענן בסוף מחזור שינה." },
+    es: { title: "Calculadora de Sueño", description: "Encuentra la mejor hora para dormir o despertar." },
+    fr: { title: "Calculatrice de Sommeil", description: "Trouvez le meilleur moment pour dormir ou vous réveiller." },
+    ar: { title: "حاسبة النوم", description: "ابحث عن أفضل وقت للنوم أو الاستيقاظ بناءً على دورات النوم." },
+  },
+  "cooking-timer": {
+    en: { title: "Cooking Timer", description: "Calculate optimal roasting time and temperature for meat." },
+    he: { title: "מחשבון זמני צלייה", description: "חשב את זמן הצלייה והטמפרטורה האופטימליים לבשר." },
+    es: { title: "Temporizador de Cocina", description: "Calcula el tiempo y temperatura óptima para asar carne." },
+    fr: { title: "Minuteur de Cuisson", description: "Calculez le temps et la température de cuisson optimaux pour la viande." },
+    ar: { title: "مؤقت الطبخ", description: "احسب وقت الطهي ودرجة الحرارة المثلى للحوم." },
+  },
+  "severance-pay": {
+    en: { title: "Severance Pay", description: "Calculate estimated severance pay based on tenure and salary." },
+    he: { title: "מחשבון פיצויי פיטורים", description: "חשב את סכום הפיצויים המוערך המגיע לך בהתבסס על ותק ושכר." },
+    es: { title: "Indemnización por Despido", description: "Calcula la indemnización estimada por despido." },
+    fr: { title: "Indemnité de Licenciement", description: "Calculez l'indemnité de licenciement estimée." },
+    ar: { title: "مكافأة نهاية الخدمة", description: "احسب مكافأة نهاية الخدمة المقدرة." },
+  },
 };
 
 export const calculators: CalculatorMeta[] = [
@@ -240,6 +268,38 @@ export const calculators: CalculatorMeta[] = [
     description: "Split restaurant bills and tips among friends.",
     category: "lifestyle",
     tags: ["restaurant","bill","split","tip","money","friends"],
+  },
+  {
+    id: "currency-converter",
+    path: "/calculators/currency-converter",
+    fallbackTitle: "Currency Converter",
+    description: "Real-time foreign exchange rate calculator.",
+    category: "finance",
+    tags: ["currency","money","exchange","forex","travel"],
+  },
+  {
+    id: "sleep-calculator",
+    path: "/calculators/sleep-calculator",
+    fallbackTitle: "Sleep Calculator",
+    description: "Find the best time to go to sleep or wake up.",
+    category: "health",
+    tags: ["sleep","health","lifestyle","cycles","time"],
+  },
+  {
+    id: "cooking-timer",
+    path: "/calculators/cooking-timer",
+    fallbackTitle: "Cooking Timer",
+    description: "Calculate optimal roasting time and temperature for meat.",
+    category: "lifestyle",
+    tags: ["cooking","food","meat","bbq","timer"],
+  },
+  {
+    id: "severance-pay",
+    path: "/calculators/severance-pay",
+    fallbackTitle: "Severance Pay",
+    description: "Calculate estimated severance pay based on tenure and salary.",
+    category: "finance",
+    tags: ["job","severance","salary","work","finance"],
   },
   // Static route calculators
   {

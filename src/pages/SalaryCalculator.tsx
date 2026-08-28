@@ -16,6 +16,9 @@ import { useI18n } from '../contexts/i18n';
 import Breadcrumbs from '../components/Breadcrumbs';
 import RelatedCalculators from '../components/RelatedCalculators';
 import { getGuideData } from '../data/guideTranslations';
+import { Link } from 'react-router-dom';
+import { useCalculatorState } from '../hooks/useCalculatorState';
+import ShareActions from '../components/ShareActions';
 
 ChartJS.register(
   CategoryScale,
@@ -29,8 +32,15 @@ ChartJS.register(
 export default function SalaryCalculator() {
   const { t, lang } = useI18n();
   const guide = getGuideData('salary', lang);
-  const [amount, setAmount] = useState(50000);
-  const [frequency, setFrequency] = useState('yearly');
+  
+  const { state, updateState, saveToHistory, loadFromHistory, getHistory } = useCalculatorState('salary', {
+    amount: 50000,
+    frequency: 'yearly'
+  });
+
+  const { amount, frequency } = state;
+  const setAmount = (v: number) => updateState({ amount: v });
+  const setFrequency = (v: string) => updateState({ frequency: v });
   
   const results = useMemo(() => {
     try {
@@ -168,26 +178,53 @@ export default function SalaryCalculator() {
             </div>
           </div>
         </div>
+
+        <ShareActions
+          onSaveHistory={saveToHistory}
+          historyEntries={getHistory()}
+          onLoadHistory={loadFromHistory}
+        />
       </div>
       
       {/* Sticky Results Dashboard */}
-      <div className="w-full lg:w-[420px] shrink-0 lg:sticky lg:top-24 bg-stone-900 rounded-3xl p-8 shadow-2xl border border-stone-800 text-white flex flex-col">
-        <div className="mb-8">
-          <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block mb-3">{t.yearly}</span>
-          <div className="text-5xl font-black text-white tracking-tighter" dir="ltr">{currencyFormat.format(results.yearly)}</div>
+      <div className="w-full lg:w-[420px] shrink-0 lg:sticky lg:top-24 flex flex-col gap-6">
+        <div className="bg-stone-900 rounded-3xl p-8 shadow-2xl border border-stone-800 text-white flex flex-col">
+          <div className="mb-8">
+            <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block mb-3">{t.yearly}</span>
+            <div className="text-5xl font-black text-white tracking-tighter" dir="ltr">{currencyFormat.format(results.yearly)}</div>
+          </div>
+          <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
+                <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block mb-1">{t.monthly}</span>
+                <div className="text-lg font-bold text-blue-400" dir="ltr">{currencyFormat.format(results.monthly)}</div>
+              </div>
+              <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
+                <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block mb-1">{t.weekly}</span>
+                <div className="text-lg font-bold text-blue-400" dir="ltr">{currencyFormat.format(results.weekly)}</div>
+              </div>
+          </div>
+          <div className="w-full h-[240px] bg-white/5 p-4 rounded-2xl border border-white/10" dir="ltr">
+            <Bar data={deferredChartData} options={chartOptions} />
+          </div>
         </div>
-        <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
-              <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block mb-1">{t.monthly}</span>
-              <div className="text-lg font-bold text-blue-400" dir="ltr">{currencyFormat.format(results.monthly)}</div>
-            </div>
-            <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
-              <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block mb-1">{t.weekly}</span>
-              <div className="text-lg font-bold text-blue-400" dir="ltr">{currencyFormat.format(results.weekly)}</div>
-            </div>
-        </div>
-        <div className="w-full h-[240px] bg-white/5 p-4 rounded-2xl border border-white/10" dir="ltr">
-          <Bar data={deferredChartData} options={chartOptions} />
+        
+        {/* Cross-Sell Box */}
+        <div className="bg-blue-50 border border-blue-100 rounded-3xl p-6 shadow-sm">
+          <h3 className="font-bold text-blue-900 text-lg mb-2">
+            {lang === 'he' ? 'קונים דירה בקרוב?' : 'Buying a home soon?'}
+          </h3>
+          <p className="text-blue-800/80 text-sm mb-4">
+            {lang === 'he' 
+              ? 'בדקו איזה תקציב דירה מתאים לשכר שלכם, עם מחשבון המשכנתא שלנו.'
+              : 'See how much house you can afford based on your salary with our Mortgage Calculator.'}
+          </p>
+          <Link 
+            to={`/${lang}/calculators/mortgage-affordability?income=${results.monthly}`}
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-5 rounded-xl transition-colors text-sm"
+          >
+            {lang === 'he' ? 'למחשבון המשכנתא' : 'To Mortgage Calculator'}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={lang === 'he' ? 'rotate-180' : ''}><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </Link>
         </div>
       </div>
     </div>
