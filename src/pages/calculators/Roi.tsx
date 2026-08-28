@@ -167,7 +167,7 @@ export default function Roi() {
       <SEO
         title={t.title}
         description={t.description}
-        canonicalUrl="/calculators/roi"
+        canonicalUrl={`/${lang}/calculators/roi`}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
@@ -175,7 +175,7 @@ export default function Roi() {
           description: t.description,
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${"/calculators/roi"}`
+          url: `https://globalcalcpro.com/${lang}/calculators/roi`
         }}
       />
 

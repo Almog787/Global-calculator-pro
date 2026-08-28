@@ -1,18 +1,19 @@
 User-agent: *
-Disallow: /*?*
-Disallow: /*
-Allow: /$
-Allow: /en
-Allow: /he
-Allow: /es
-Allow: /fr
-Allow: /ar
-Allow: /assets/
-Allow: /sitemap.xml
-Allow: /robots.txt
-Allow: /favicon.svg
-Allow: /manifest.json
-Allow: /sw.js
-Allow: /ads.txt
+Allow: /
+Disallow: /*?search=*
+Disallow: /*?q=*
+
+# AI Training Crawlers - Block
+User-agent: GPTBot
+User-agent: Google-Extended
+User-agent: CCBot
+User-agent: ClaudeBot
+Disallow: /
+
+# AI Answer / Search Engine Crawlers - Allow
+User-agent: OAI-SearchBot
+User-agent: PerplexityBot
+Allow: /
 
 Sitemap: https://globalcalcpro.com/sitemap.xml
+

@@ -133,7 +133,7 @@ export default function CapRate() {
       <SEO
         title={t.title}
         description={t.description}
-        canonicalUrl="/calculators/cap-rate"
+        canonicalUrl={`/${lang}/calculators/cap-rate`}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
@@ -141,7 +141,7 @@ export default function CapRate() {
           description: t.description,
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${"/calculators/cap-rate"}`
+          url: `https://globalcalcpro.com/${lang}/calculators/cap-rate`
         }}
       />
 

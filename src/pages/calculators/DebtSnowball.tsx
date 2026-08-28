@@ -221,7 +221,7 @@ export default function DebtSnowball() {
       <SEO
         title={t.title}
         description={t.description}
-        canonicalUrl="/calculators/debt-snowball"
+        canonicalUrl={`/${lang}/calculators/debt-snowball`}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
@@ -229,7 +229,7 @@ export default function DebtSnowball() {
           description: t.description,
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${"/calculators/debt-snowball"}`
+          url: `https://globalcalcpro.com/${lang}/calculators/debt-snowball`
         }}
       />
 

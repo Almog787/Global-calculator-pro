@@ -156,7 +156,7 @@ export default function PeltierCooling() {
       <SEO
         title={t.title}
         description={t.description}
-        canonicalUrl="/calculators/peltier-cooling"
+        canonicalUrl={`/${lang}/calculators/peltier-cooling`}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
@@ -164,7 +164,7 @@ export default function PeltierCooling() {
           description: t.description,
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${"/calculators/peltier-cooling"}`
+          url: `https://globalcalcpro.com/${lang}/calculators/peltier-cooling`
         }}
       />
 

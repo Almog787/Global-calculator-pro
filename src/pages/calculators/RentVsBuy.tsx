@@ -182,7 +182,7 @@ export default function RentVsBuy() {
       <SEO
         title={t.title}
         description={t.description}
-        canonicalUrl="/calculators/rent-vs-buy"
+        canonicalUrl={`/${lang}/calculators/rent-vs-buy`}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
@@ -190,7 +190,7 @@ export default function RentVsBuy() {
           description: t.description,
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${"/calculators/rent-vs-buy"}`
+          url: `https://globalcalcpro.com/${lang}/calculators/rent-vs-buy`
         }}
       />
 

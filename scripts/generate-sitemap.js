@@ -14,10 +14,17 @@ while ((match = pathRegex.exec(content)) !== null) {
   dynamicPaths.push(match[1]);
 }
 
-// Predefined general paths
+// Predefined general public-index paths (excluding /suggest and root redirect)
 const staticPaths = [
-  "/",
   "/all",
+  "/percentage-finder",
+  "/compound-interest",
+  "/mortgage-calculator",
+  "/unit-converter",
+  "/bmi-calculator",
+  "/tip-calculator",
+  "/salary-calculator",
+  "/age-calculator",
   "/category/finance",
   "/category/real-estate",
   "/category/health",
@@ -28,7 +35,6 @@ const staticPaths = [
   "/privacy-policy",
   "/terms-of-service",
   "/about",
-  "/suggest",
 ];
 
 const rawPaths = Array.from(new Set([...staticPaths, ...dynamicPaths]));
@@ -41,37 +47,21 @@ const urlEntries = [];
 
 for (const lang of languages) {
   for (const p of rawPaths) {
-    const loc = `${baseUrl}/${lang}${p === "/" ? "" : p}`;
+    const loc = `${baseUrl}/${lang}${p}`;
 
     // Generate hreflang links for this path
     let hreflangLinks = "";
     for (const altLang of languages) {
-      hreflangLinks += `\n    <xhtml:link rel="alternate" hreflang="${altLang}" href="${baseUrl}/${altLang}${p === "/" ? "" : p}"/>`;
+      hreflangLinks += `\n    <xhtml:link rel="alternate" hreflang="${altLang}" href="${baseUrl}/${altLang}${p}"/>`;
     }
-    hreflangLinks += `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/en${p === "/" ? "" : p}"/>`;
+    hreflangLinks += `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/en${p}"/>`;
 
     urlEntries.push(`  <url>
     <loc>${loc}</loc>${hreflangLinks}
     <lastmod>${lastmod}</lastmod>
-    <changefreq>${p === "/all" ? "weekly" : "monthly"}</changefreq>
-    <priority>${p === "/all" ? "1.0" : p.startsWith("/calculators") ? "0.8" : "0.9"}</priority>
   </url>`);
   }
 }
-
-// Add root domain as standalone entry
-let rootHreflangLinks = "";
-for (const altLang of languages) {
-  rootHreflangLinks += `\n    <xhtml:link rel="alternate" hreflang="${altLang}" href="${baseUrl}/${altLang}"/>`;
-}
-rootHreflangLinks += `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/en"/>`;
-
-urlEntries.unshift(`  <url>
-    <loc>${baseUrl}/</loc>${rootHreflangLinks}
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>`);
 
 const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -80,4 +70,5 @@ ${urlEntries.join("\n")}
 `;
 
 fs.writeFileSync(path.resolve("public/sitemap.xml"), sitemapContent);
-console.log(`Generated sitemap with ${urlEntries.length} URLs (Multilingual).`);
+console.log(`Generated sitemap with ${urlEntries.length} canonical URLs.`);
+

@@ -31,6 +31,7 @@ export default function SuggestFeature() {
         title={t.suggestionsTitle || 'Suggest a Feature'}
         description={t.suggestionsDesc || 'Submit feature ideas and calculator requests for GlobalCalc Pro.'}
         canonicalUrl="/suggest"
+        noindex={true}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',

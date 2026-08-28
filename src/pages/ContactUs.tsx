@@ -3,7 +3,7 @@ import SEO from '../components/SEO';
 import { useI18n } from '../contexts/i18n';
 
 export default function ContactUs() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
@@ -29,15 +29,13 @@ export default function ContactUs() {
       <SEO
         title={t.contactTitle}
         description={t.contactDesc}
-        canonicalUrl="/contact"
+        canonicalUrl={`/${lang}/contact`}
         structuredData={{
           '@context': 'https://schema.org',
-          '@type': 'WebApplication',
+          '@type': 'ContactPage',
           name: t.contactTitle,
           description: t.contactDesc,
-          applicationCategory: 'CalculatorApplication',
-          operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${"/contact"}`
+          url: `https://globalcalcpro.com/${lang}/contact`
         }}
       />
 

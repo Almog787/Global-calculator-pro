@@ -172,7 +172,7 @@ export default function DownloadTime() {
       <SEO
         title={t.title}
         description={t.description}
-        canonicalUrl="/calculators/download-time"
+        canonicalUrl={`/${lang}/calculators/download-time`}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
@@ -180,7 +180,7 @@ export default function DownloadTime() {
           description: t.description,
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${"/calculators/download-time"}`
+          url: `https://globalcalcpro.com/${lang}/calculators/download-time`
         }}
       />
 

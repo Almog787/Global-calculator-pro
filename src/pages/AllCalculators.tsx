@@ -523,26 +523,22 @@ export default function AllCalculators() {
       {/* Category Filter Pills */}
       <section className="mb-8 overflow-x-auto pb-3 scrollbar-hide">
         <div className="flex gap-3 min-w-max">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              type="button"
-              onClick={() => {
-                if (cat.id === "all") {
-                  navigate(`/${lang}/all`);
-                } else {
-                  navigate(`/${lang}/category/${cat.id}`);
-                }
-              }}
-              className={`px-5 py-2 rounded-full font-label-bold text-label-bold transition-all cursor-pointer ${
-                activeCategory === cat.id
-                  ? "bg-secondary text-on-secondary shadow-sm hover:shadow-md hover:-translate-y-0.5"
-                  : "bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface border border-border-subtle"
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
+          {categories.map((cat) => {
+            const path = cat.id === "all" ? `/${lang}/all` : `/${lang}/category/${cat.id}`;
+            return (
+              <Link
+                key={cat.id}
+                to={path}
+                className={`px-5 py-2 rounded-full font-label-bold text-label-bold transition-all cursor-pointer ${
+                  activeCategory === cat.id
+                    ? "bg-secondary text-on-secondary shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                    : "bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface border border-border-subtle"
+                }`}
+              >
+                {cat.label}
+              </Link>
+            );
+          })}
         </div>
       </section>
 

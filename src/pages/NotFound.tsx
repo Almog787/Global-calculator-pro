@@ -1,27 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useI18n } from '../contexts/i18n';
 import SEO from '../components/SEO';
 
 export default function NotFound() {
   const { t, lang } = useI18n();
-  const navigate = useNavigate();
-  const [countdown, setCountdown] = useState(7);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          navigate(`/${lang}`, { replace: true });
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [navigate, lang]);
 
   return (
     <>
@@ -48,19 +30,12 @@ export default function NotFound() {
         {/* Action Button */}
         <Link
           id="not-found-home-button"
-          to={`/${lang}`}
+          to={`/${lang}/all`}
           className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all shadow-sm hover:shadow-md text-sm cursor-pointer"
         >
           <span className="material-symbols-outlined text-lg">home</span>
           <span>{t.backToHome || 'Back to Home'}</span>
         </Link>
-
-        {/* Auto Redirect Notice */}
-        <p id="not-found-countdown" className="text-xs text-stone-600 mt-5">
-          {t.dir === 'rtl' 
-            ? `מעביר חזרה לדף הבית באופן אוטומטי תוך ${countdown} שניות...`
-            : `Redirecting to home page automatically in ${countdown}s...`}
-        </p>
       </div>
     </div>
     </>

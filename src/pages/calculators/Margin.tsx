@@ -143,7 +143,7 @@ export default function Margin() {
       <SEO
         title={t.title}
         description={t.description}
-        canonicalUrl="/calculators/margin"
+        canonicalUrl={`/${lang}/calculators/margin`}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
@@ -151,7 +151,7 @@ export default function Margin() {
           description: t.description,
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${"/calculators/margin"}`
+          url: `https://globalcalcpro.com/${lang}/calculators/margin`
         }}
       />
 

@@ -157,7 +157,7 @@ export default function FuelSplit() {
       <SEO
         title={t.title}
         description={t.description}
-        canonicalUrl="/calculators/fuel-split"
+        canonicalUrl={`/${lang}/calculators/fuel-split`}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
@@ -165,7 +165,7 @@ export default function FuelSplit() {
           description: t.description,
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${"/calculators/fuel-split"}`
+          url: `https://globalcalcpro.com/${lang}/calculators/fuel-split`
         }}
       />
 

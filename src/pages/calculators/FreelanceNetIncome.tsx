@@ -143,7 +143,7 @@ export default function FreelanceNetIncome() {
       <SEO
         title={t.title}
         description={t.description}
-        canonicalUrl="/calculators/freelance-net-income"
+        canonicalUrl={`/${lang}/calculators/freelance-net-income`}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
@@ -151,7 +151,7 @@ export default function FreelanceNetIncome() {
           description: t.description,
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${"/calculators/freelance-net-income"}`
+          url: `https://globalcalcpro.com/${lang}/calculators/freelance-net-income`
         }}
       />
 

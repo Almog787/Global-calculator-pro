@@ -78,13 +78,13 @@ export default function AboutUs() {
       <SEO
         title={t.aboutTitle}
         description={t.aboutDesc}
-        canonicalUrl="/about"
+        canonicalUrl={`/${lang}/about`}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'AboutPage',
           name: t.aboutTitle,
           description: t.aboutDesc,
-          url: 'https://globalcalcpro.com/about',
+          url: `https://globalcalcpro.com/${lang}/about`,
           publisher: {
             '@type': 'Organization',
             name: 'GlobalCalc Pro',

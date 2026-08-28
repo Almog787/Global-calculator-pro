@@ -185,7 +185,7 @@ export default function GoalSavings() {
       <SEO
         title={t.title}
         description={t.description}
-        canonicalUrl="/calculators/goal-savings"
+        canonicalUrl={`/${lang}/calculators/goal-savings`}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
@@ -193,7 +193,7 @@ export default function GoalSavings() {
           description: t.description,
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${"/calculators/goal-savings"}`
+          url: `https://globalcalcpro.com/${lang}/calculators/goal-savings`
         }}
       />
 

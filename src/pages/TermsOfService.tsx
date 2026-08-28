@@ -2,14 +2,14 @@ import SEO from '../components/SEO';
 import { useI18n } from '../contexts/i18n';
 
 export default function TermsOfService() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   return (
     <article className="w-full bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-stone-200 max-w-3xl mx-auto space-y-6 text-stone-700">
       <SEO
         title={t.termsTitle}
         description={t.termsDesc}
-        canonicalUrl="/terms-of-service"
+        canonicalUrl={`/${lang}/terms-of-service`}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
@@ -17,7 +17,7 @@ export default function TermsOfService() {
           description: t.termsDesc,
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${"/terms-of-service"}`
+          url: `https://globalcalcpro.com/${lang}/terms-of-service`
         }}
       />
 

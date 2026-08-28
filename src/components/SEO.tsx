@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
 interface SEOProps {
   title: string;
@@ -20,35 +21,94 @@ const SEO: React.FC<SEOProps> = ({
   type = 'website',
   structuredData,
   image = 'https://globalcalcpro.com/favicon.svg',
-  noindex = false // Fallback image, could be replaced with a real open graph image
+  noindex = false
 }) => {
+  const location = useLocation();
   const siteName = 'Global Calc Pro';
   const defaultTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
   const baseUrl = 'https://globalcalcpro.com';
-  const finalCanonicalUrl = canonicalUrl ? (canonicalUrl.startsWith('http') ? canonicalUrl : `${baseUrl}${canonicalUrl}`) : baseUrl;
 
-  // Default WebSite structured data if none is provided
-  const schemaOrgJSONLD = structuredData || {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    url: baseUrl,
-    name: siteName,
-    description: description,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${baseUrl}/all?search={search_term_string}`,
-      'query-input': 'required name=search_term_string'
+  // Determine current pathname safely
+  const currentPath = location ? location.pathname : '/en/all';
+  const hasSearchParams = location ? (location.search.includes('search=') || location.search.includes('q=')) : false;
+  const isNoIndex = noindex || hasSearchParams;
+
+  // Extract language or fallback to 'en'
+  const pathParts = currentPath.split('/').filter(Boolean);
+  const validLangs = ['en', 'he', 'es', 'fr', 'ar'];
+  const currentLang = pathParts.length > 0 && validLangs.includes(pathParts[0]) ? pathParts[0] : 'en';
+
+  // Calculate canonical URL
+  let resolvedCanonicalPath = canonicalUrl || currentPath;
+  if (!resolvedCanonicalPath.startsWith('http')) {
+    if (!resolvedCanonicalPath.startsWith('/')) {
+      resolvedCanonicalPath = `/${resolvedCanonicalPath}`;
     }
-  };
+    // Ensure language prefix exists on relative canonical
+    const firstSegment = resolvedCanonicalPath.split('/')[1];
+    if (!validLangs.includes(firstSegment)) {
+      resolvedCanonicalPath = `/${currentLang}${resolvedCanonicalPath}`;
+    }
+  }
+
+  const finalCanonicalUrl = resolvedCanonicalPath.startsWith('http') 
+    ? resolvedCanonicalPath 
+    : `${baseUrl}${resolvedCanonicalPath}`;
 
   const rawPath = finalCanonicalUrl.replace(baseUrl, '');
   const pathWithoutLang = rawPath.replace(/^\/(en|he|es|fr|ar)(\/|$)/, '$2');
   const normalizedPath = pathWithoutLang.startsWith('/') ? pathWithoutLang : `/${pathWithoutLang}`;
   const subPath = normalizedPath === '/' ? '' : normalizedPath;
 
+  // Baseline WebPage + BreadcrumbList JSON-LD
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${finalCanonicalUrl}#webpage`,
+    url: finalCanonicalUrl,
+    name: defaultTitle,
+    description: description,
+    inLanguage: currentLang,
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': `${baseUrl}/#website`,
+      url: baseUrl,
+      name: siteName
+    }
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: `${baseUrl}/${currentLang}/all`
+      },
+      ...(subPath ? [
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: title.replace(` | ${siteName}`, ''),
+          item: finalCanonicalUrl
+        }
+      ] : [])
+    ]
+  };
+
+  const schemasToEmit = [
+    webPageSchema,
+    breadcrumbSchema,
+    ...(structuredData ? [structuredData] : [])
+  ];
+
   return (
     <Helmet>
-      {noindex && <meta name="robots" content="noindex" />}
+      {isNoIndex && <meta name="robots" content="noindex, follow" />}
+      {!isNoIndex && <meta name="robots" content="index, follow" />}
+
       {/* Primary Meta Tags */}
       <title>{defaultTitle}</title>
       <meta name="title" content={defaultTitle} />
@@ -73,9 +133,9 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={image} />
 
-      {/* Structured Data */}
+      {/* Structured Data Graph */}
       <script type="application/ld+json">
-        {JSON.stringify(schemaOrgJSONLD)}
+        {JSON.stringify(schemasToEmit)}
       </script>
     
       {/* hreflang tags for i18n */}
@@ -90,3 +150,4 @@ const SEO: React.FC<SEOProps> = ({
 };
 
 export default SEO;
+

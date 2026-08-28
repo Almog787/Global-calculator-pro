@@ -164,7 +164,7 @@ export default function AutoLoan() {
       <SEO
         title={t.title}
         description={t.description}
-        canonicalUrl="/calculators/auto-loan"
+        canonicalUrl={`/${lang}/calculators/auto-loan`}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
@@ -172,7 +172,7 @@ export default function AutoLoan() {
           description: t.description,
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${"/calculators/auto-loan"}`
+          url: `https://globalcalcpro.com/${lang}/calculators/auto-loan`
         }}
       />
 
