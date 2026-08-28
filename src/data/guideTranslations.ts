@@ -1544,82 +1544,133 @@ export const guideTranslations: Record<string, Record<Language, GuideData>> = {
 
   percentage: {
     en: {
-      guideTitle: 'Percentage Calculations, Increases, & Discount Guide',
-      guideDesc: 'Percentages express proportions as fractions of 100, used everywhere from sales discounts to rate changes.',
-      formulaHeading: 'Core Percentage Formulas',
+      guideTitle: 'Percent Finder & How to Calculate Percentages Guide',
+      guideDesc: 'Percentages express proportions as fractions of 100. Learn how to find a percentage of any number, calculate percentage changes, and how to use the percent key on any calculator.',
+      formulaHeading: 'Core Percentage Formulas & Formulas',
       formulaLines: [
-        'Percentage Value = Total × (Percentage ÷ 100)',
+        'Finding X% of Y = Total (Y) × [ Percentage (X) ÷ 100 ]',
+        'X is what % of Y = (Part ÷ Total) × 100',
         'Percentage Change (%) = [(New Value - Original Value) ÷ Original Value] × 100',
-        'Discount Price = Original Price × [ 1 - (Discount % ÷ 100) ]'
+        'Discount Sale Price = Original Price × [ 1 - (Discount % ÷ 100) ]',
+        'Reverse Percentage (Original Total) = Partial Amount ÷ (Percentage ÷ 100)'
       ],
       faq: [
         {
-          question: 'How do you calculate a percentage increase?',
-          answer: 'Subtract the old value from the new value, divide by the old value, and multiply by 100.'
+          question: 'How can I find the percentage of a number?',
+          answer: 'To find a percentage of a number, divide the percentage by 100 to convert it into a decimal rate, then multiply it by the total number. For example, to find 20% of 150: 20 ÷ 100 = 0.20, then 0.20 × 150 = 30.'
+        },
+        {
+          question: 'How do you use the percent (%) key on a calculator?',
+          answer: 'On standard handheld or mobile calculators: 1) To find X% of Y, type Y × X % (e.g. 150 × 20 % outputs 30). 2) To add a percentage (like tax or tip), type Price + Rate % = (e.g. 100 + 15 % = 115). 3) To apply a discount, type Price - Discount % = (e.g. 80 - 25 % = 60).'
+        },
+        {
+          question: 'What is a Percent Finder tool?',
+          answer: 'A Percent Finder is an all-in-one calculator that solves multiple percentage calculations: finding a percentage of a total, calculating what percentage one number is of another, calculating percentage increase/decrease, finding discount prices, and solving reverse percentage problems.'
+        },
+        {
+          question: 'How do we find the percentage increase or decrease between two numbers?',
+          answer: 'Subtract the original value from the new value, divide the difference by the original value, and multiply by 100. A positive result indicates a percentage increase, while a negative result indicates a percentage decrease.'
+        },
+        {
+          question: 'How do I find what percentage one number is of another?',
+          answer: 'Divide the specific part by the total whole, then multiply by 100. For example, if you got 45 questions right out of 60 on a test: (45 ÷ 60) × 100 = 0.75 × 100 = 75%.'
         }
       ]
     },
     he: {
-      guideTitle: 'מדריך חישובי אחוזים, שינוי באחוזים והנחות',
-      guideDesc: 'חישוב אחוזים מבטא חלק מתוך שלם בערכים של מאיות (100/X) ומשמש לחישוב הנחות, מיסים וגידול באחוזים.',
+      guideTitle: 'מדריך למציאת אחוזים, חישוב שינוי והנחות',
+      guideDesc: 'אחוזים מבטאים חלק מתוך שלם בערכים של מאיות (100/X). למדו איך למצוא אחוז מכל מספר, לחשב שינוי באחוזים ואיך להשתמש במקש האחוזים במחשבון.',
       formulaHeading: 'נוסחאות אחוזים מרכזיות',
       formulaLines: [
-        'ערך האחוז = סך הכל × (אחוז ÷ 100)',
+        'מציאת X% מתוך Y = סך הכל (Y) × [ אחוז (X) ÷ 100 ]',
+        'X הוא איזה % מתוך Y = (חלק ÷ שלם) × 100',
         'שינוי באחוזים (%) = [(ערך חדש - ערך מקורי) ÷ ערך מקורי] × 100',
-        'מחיר לאחר הנחה = מחיר מקורי × [ 1 - (אחוז הנחה ÷ 100) ]'
+        'מחיר לאחר הנחה = מחיר מקורי × [ 1 - (אחוז הנחה ÷ 100) ]',
+        'אחוז הפוך (השלם המקורי) = סכום חלקי ÷ (אחוז ÷ 100)'
       ],
       faq: [
         {
-          question: 'איך מחשבים אחוז ענייה או שינוי באחוזים?',
-          answer: 'מחסרים את הערך הישן מהערך החדש, מחלקים בערך הישן ומכפילים ב-100.'
+          question: 'איך מחשבים אחוז מתוך מספר?',
+          answer: 'כדי למצוא אחוז מתוך מספר, מחלקים את האחוז ב-100 כדי להמירו לשבר עשרוני, ואז מכפילים במספר השלם. לדוגמה, 20% מתוך 150: מחשבים 20 ÷ 100 = 0.20, ולאחר מכן 0.20 × 150 = 30.'
+        },
+        {
+          question: 'איך משתמשים במקש האחוזים (%) במחשבון?',
+          answer: 'במחשבון רגיל או בטלפון הנייד: 1) למציאת אחוז ממספר, הקלידו Y × X % (לדוגמה: 150 × 20 % יציג 30). 2) להוספת אחוז (כמו מע"מ או טיפ), הקלידו מחיר + אחוז % = (לדוגמה: 100 + 15 % = 115). 3) להפחתת הנחה, הקלידו מחיר - הנחה % = (לדוגמה: 80 - 25 % = 60).'
+        },
+        {
+          question: 'איך לחשב איזה אחוז מספר אחד מהווה ממספר אחר?',
+          answer: 'מחלקים את החלק במספר השלם ומכפילים ב-100. לדוגמה, אם קיבלתם 45 נקודות מתוך 60 במבחן: (45 ÷ 60) × 100 = 0.75 × 100 = 75%.'
+        },
+        {
+          question: 'איך מחשבים אחוז עלייה או ירידה בין שני מספרים?',
+          answer: 'מחסרים את הערך המקורי מהערך החדש, מחלקים את ההפרש בערך המקורי ומכפילים ב-100. תוצאה חיובית מצביעה על עלייה, ותוצאה שלילית על ירידה.'
         }
       ]
     },
     es: {
-      guideTitle: 'Guía de Cálculos de Porcentajes, Aumentos y Descuentos',
-      guideDesc: 'Los porcentajes expresan proporciones como fracciones de 100, usados en descuentos e incrementos.',
-      formulaHeading: 'Fórmulas de Porcentajes',
+      guideTitle: 'Buscador de Porcentajes y Guía de Cálculo',
+      guideDesc: 'Los porcentajes expresan proporciones como fracciones de 100. Aprende a calcular porcentajes de cualquier número, aumentos, descuentos y cómo usar la tecla de porcentaje en una calculadora.',
+      formulaHeading: 'Fórmulas Principales de Porcentajes',
       formulaLines: [
-        'Valor = Total × (Porcentaje ÷ 100)',
-        'Cambio (%) = [(Valor Nuevo - Valor Original) ÷ Valor Original] × 100',
+        'Calcular X% de Y = Total (Y) × [ Porcentaje (X) ÷ 100 ]',
+        'X es qué % de Y = (Parte ÷ Total) × 100',
+        'Cambio Porcentual (%) = [(Valor Nuevo - Valor Original) ÷ Valor Original] × 100',
         'Precio con Descuento = Precio Original × [ 1 - (Descuento % ÷ 100) ]'
       ],
       faq: [
         {
-          question: '¿Cómo calcular un incremento porcentual?',
-          answer: 'Reste el valor anterior del nuevo, divídalo entre el anterior y multiplique por 100.'
+          question: '¿Cómo calcular el porcentaje de un número?',
+          answer: 'Divida el porcentaje entre 100 para convertirlo en decimal y multiplíquelo por el número total. Ejemplo: para el 20% de 150, calcule 0.20 × 150 = 30.'
+        },
+        {
+          question: '¿Cómo usar la tecla de porcentaje (%) en una calculadora?',
+          answer: 'En una calculadora estándar: 1) Para X% de Y: escriba Y × X % (ej. 150 × 20 % = 30). 2) Para aplicar descuento: Precio - Descuento % = (ej. 80 - 25 % = 60). 3) Para agregar impuesto/propina: Precio + Tasa % = (ej. 100 + 15 % = 115).'
+        },
+        {
+          question: '¿Cómo calcular un incremento o disminución porcentual?',
+          answer: 'Reste el valor original del nuevo, divida el resultado entre el valor original y multiplique por 100.'
         }
       ]
     },
     fr: {
-      guideTitle: 'Guide de Calcul de Pourcentages, Augmentations et Remises',
-      guideDesc: 'Les pourcentages expriment des proportions sur 100, utilisés pour les soldes et les taux.',
+      guideTitle: 'Calculateur de Pourcentage et Guide Pratique',
+      guideDesc: 'Apprenez à calculer un pourcentage d\'un nombre, la variation en pourcentage, les remises et comment utiliser la touche % sur une calculatrice.',
       formulaHeading: 'Formules de Pourcentages',
       formulaLines: [
-        'Valeur du Pourcentage = Total × (Pourcentage ÷ 100)',
+        'X% de Y = Total (Y) × [ Pourcentage (X) ÷ 100 ]',
+        'X représente quel % de Y = (Partie ÷ Total) × 100',
         'Variation (%) = [(Nouvelle Valeur - Valeur Initiale) ÷ Valeur Initiale] × 100',
         'Prix Remisé = Prix Initial × [ 1 - (Remise % ÷ 100) ]'
       ],
       faq: [
         {
-          question: 'Comment calculer une augmentation en pourcentage ?',
-          answer: 'Soustrayez l\'ancienne valeur de la nouvelle, divisez par l\'ancienne et multipliez par 100.'
+          question: 'Comment calculer le pourcentage d\'un nombre ?',
+          answer: 'Divisez le pourcentage par 100 puis multipliez par le nombre total. Exemple : 20% de 150 = (20 ÷ 100) × 150 = 0,20 × 150 = 30.'
+        },
+        {
+          question: 'Comment utiliser la touche pourcentage (%) sur une calculatrice ?',
+          answer: 'Sur une calculatrice standard : 1) Pour trouver X% de Y : tapez Y × X % (ex. 150 × 20 % = 30). 2) Pour appliquer une remise : Prix - Remise % = (ex. 80 - 25 % = 60). 3) Pour ajouter une taxe : Prix + Taux % = (ex. 100 + 15 % = 115).'
         }
       ]
     },
     ar: {
-      guideTitle: 'دليل حساب النسب المئوية والزيادة والخصومات',
-      guideDesc: 'تعبر النسب المئوية عن أجزاء من 100، وتستخدم في الخصومات والتغيرات النسبية.',
+      guideTitle: 'دليل حساب النسب المئوية واستخدام مفتاح %',
+      guideDesc: 'تعبر النسب المئوية عن أجزاء من 100. تعلم كيفية إيجاد النسبة المئوية من أي رقم وحساب التغير والخصومات واستخدام مفتاح % في الآلة الحاسبة.',
       formulaHeading: 'الصيغ الأساسية للنسب المئوية',
       formulaLines: [
-        'قيمة النسبة = الإجمالي × (النسبة ÷ 100)',
+        'إيجاد X% من Y = الإجمالي (Y) × [ النسبة (X) ÷ 100 ]',
+        'X تمثل أي % من Y = (الجزء ÷ الإجمالي) × 100',
         'التغير المئوي (%) = [(القيمة الجديدة - القيمة الأصلية) ÷ القيمة الأصلية] × 100',
         'السعر بعد الخصم = السعر الأصلي × [ 1 - (نسبة الخصم ÷ 100) ]'
       ],
       faq: [
         {
-          question: 'كيف تحسب نسبة الزيادة المئوية؟',
-          answer: 'اطرح القيمة القديمة من الجديدة، اقسم الناتج على القيمة القديمة ثم اضرب في 100.'
+          question: 'كيف يمكنني حساب النسبة المئوية من رقم؟',
+          answer: 'اقسم النسبة على 100 لتحويلها إلى عدد عشري، ثم اضرب في الرقم الكلي. مثال: 20% من 150 = 0.20 × 150 = 30.'
+        },
+        {
+          question: 'كيف أستخدم زر النسبة المئوية (%) في الآلة الحاسبة؟',
+          answer: 'في الآلة الحاسبة: 1) لإيجاد X% من Y: اكتب Y × X % (مثال: 150 × 20 % يعطي 30). 2) لحساب الخصم: السعر - الخصم % = (مثال: 80 - 25 % = 60). 3) لإضافة ضريبة: السعر + النسبة % = (مثال: 100 + 15 % = 115).'
         }
       ]
     }

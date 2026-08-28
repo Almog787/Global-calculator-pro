@@ -8,6 +8,7 @@ import CopyButton from '../components/CopyButton';
 import VisualRatioBar from '../components/VisualRatioBar';
 import PresetChips from '../components/PresetChips';
 import FAQ from '../components/FAQ';
+import ShareActions from '../components/ShareActions';
 import { getGuideData } from '../data/guideTranslations';
 
 export default function PercentageFinder() {
@@ -17,6 +18,9 @@ export default function PercentageFinder() {
 
   // Active Mode: 'of' | 'isWhat' | 'change' | 'discount' | 'reverse'
   const [activeTab, setActiveTab] = useState<'of' | 'isWhat' | 'change' | 'discount' | 'reverse'>('of');
+
+  // Calculator % key interactive guide active scenario
+  const [keyScenario, setKeyScenario] = useState<'find' | 'add' | 'discount' | 'margin'>('find');
 
   // Mode 1: What is X% of Y?
   const [val1A, setVal1A] = useState<number | ''>(20);
@@ -125,12 +129,12 @@ export default function PercentageFinder() {
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "GlobalCalc Pro Percentage Finder & Calculator",
+        "name": "GlobalCalc Pro Percent Finder & Percentage Calculator",
         "url": "https://globalcalcpro.com/percentage-finder",
         "applicationCategory": "EducationalApplication",
         "operatingSystem": "All",
         "browserRequirements": "Requires JavaScript",
-        "description": "Free online percentage calculator. Learn how to find a percentage of a number, calculate percentage change, discount sale price, and reverse percentage easily with step-by-step formulas.",
+        "description": "Free online percent finder & percentage calculator. Learn how to find a percentage of a number, calculate percentage changes, discounts, and how to use the percent key on a calculator.",
       },
       {
         "@type": "HowTo",
@@ -155,6 +159,28 @@ export default function PercentageFinder() {
         ]
       },
       {
+        "@type": "HowTo",
+        "name": "How to Use the Percent Key on a Calculator",
+        "description": "Learn how to use the % key on standard physical calculators and mobile phones to find percentages, calculate discounts, and add taxes.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Finding Percentage of a Number",
+            "text": "Type Base Number, press multiply [×], type Percentage rate, then press [%]. For example, 150 × 20 % = 30."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Adding a Percentage (Tax / Tip)",
+            "text": "Type Base Number, press plus [+], type Percentage rate, then press [%] and [=]. For example, 100 + 15 % = 115."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Subtracting a Percentage (Discount)",
+            "text": "Type Original Price, press minus [-], type Discount %, then press [%] and [=]. For example, 80 - 25 % = 60."
+          }
+        ]
+      },
+      {
         "@type": "FAQPage",
         "mainEntity": guide.faq.map((item: any) => ({
           "@type": "Question",
@@ -173,12 +199,16 @@ export default function PercentageFinder() {
       <Breadcrumbs items={[{ label: t.catAll || 'Library', path: `/${lang}/all` }, { label: t.percFinderTitle }]} />
 
       <SEO
-        title={isHebrew ? 'מחשבון אחוזים - איך לחשב אחוזים בקלות' : 'Percentage Calculator - How to Find a Percentage Easily'}
+        title={
+          isHebrew
+            ? 'מחשבון אחוזים ומציאת אחוזים - איך לחשב אחוזים בקלות'
+            : 'Percent Finder & Percentage Calculator - How to Find a Percentage Online'
+        }
         description={
-            isHebrew
-              ? 'מחשבון אחוזים חינמי ומדויק. למדו איך לחשב אחוזים, שינוי באחוזים, הנחות ומחיר סופי עם נוסחאות והסברים שלב אחר שלב.'
-              : 'Free online percentage calculator. Calculate percentage of a number, percentage change, discount prices, and learn how to find percentages with formulas and examples.'
-          }
+          isHebrew
+            ? 'מחשבון אחוזים חינמי ומדויק. למדו איך למצוא אחוז מתוך מספר, איך להשתמש במקש האחוזים (%) במחשבון, ולחשב שינוי באחוזים והנחות עם נוסחאות והסברים.'
+            : 'Free online Percent Finder & Percentage Calculator. Learn how to find a percentage of any number, calculate percentage changes, and how to use the percent (%) key on a calculator.'
+        }
         canonicalUrl={`/${lang}/percentage-finder`}
         structuredData={jsonLdData}
       />
@@ -191,12 +221,12 @@ export default function PercentageFinder() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h1 className="text-2xl sm:text-3xl font-headline font-bold text-stone-900 tracking-tight">
-                {isHebrew ? 'מחשבון אחוזים מתקדם' : 'Percentage Calculator'}
+                {isHebrew ? 'מחשבון אחוזים ומציאת אחוזים (Percent Finder)' : 'Percent Finder & Calculator'}
               </h1>
               <p className="text-stone-500 text-sm sm:text-base mt-1">
                 {isHebrew
-                  ? 'כלי מהיר ונוח לחישוב אחוז מתוך מספר, אחוז שינוי, הנחות, וחישוב אחוז הפוך.'
-                  : 'Fast and ergonomic tool to calculate percentages, percentage change, sales discounts, and reverse percentages.'}
+                  ? 'כלי מהיר ומדויק למציאת אחוז מתוך מספר, אחוז שינוי, הנחות, וחישוב אחוז הפוך.'
+                  : 'Fast, comprehensive calculator to find percentage of a number, percentage change, sales discounts, and reverse percentages.'}
               </p>
             </div>
             <div className="flex items-center gap-2 self-start sm:self-auto">
@@ -616,7 +646,169 @@ export default function PercentageFinder() {
             </div>
           </div>
         )}
+
+        <ShareActions />
       </article>
+
+      {/* SPECIAL INTERACTIVE SECTION: "How to Use the Percent (%) Key on a Calculator" */}
+      <section className="w-full bg-gradient-to-br from-stone-900 to-stone-800 text-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-md border border-stone-700 mb-10 space-y-6">
+        <div className="border-b border-stone-700 pb-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30 mb-3">
+            <span className="material-symbols-outlined text-[14px]">calculate</span>
+            {isHebrew ? 'מדריך שימוש במקש האחוזים' : 'Calculator Guide'}
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-headline font-bold text-white tracking-tight">
+            {isHebrew ? 'איך להשתמש במקש האחוזים (%) במחשבון?' : 'How to Use the Percent (%) Key on a Calculator'}
+          </h2>
+          <p className="text-stone-300 text-sm sm:text-base mt-2 max-w-3xl leading-relaxed">
+            {isHebrew
+              ? 'מקש ה-% במחשבון שולחני רגיל ובמחשבון הסמארטפון חוסך חישובים ידניים. בחרו את הפעולה שברצונכם לבצע כדי לראות את סדר הלחיצות המדויק:'
+              : 'The % key on standard physical calculators and smartphone apps automates percentage math. Select a calculation goal below to see the exact sequence of keys to press:'}
+          </p>
+        </div>
+
+        {/* Keystroke Scenario Selector */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <button
+            type="button"
+            onClick={() => setKeyScenario('find')}
+            className={`p-3 rounded-xl text-xs sm:text-sm font-bold text-center transition-all cursor-pointer border ${
+              keyScenario === 'find'
+                ? 'bg-blue-600 text-white border-blue-400 shadow-sm'
+                : 'bg-stone-800/90 text-stone-300 border-stone-700 hover:bg-stone-700 hover:text-white'
+            }`}
+          >
+            {isHebrew ? '1. אחוז ממספר' : '1. Find % of Number'}
+          </button>
+          <button
+            type="button"
+            onClick={() => setKeyScenario('discount')}
+            className={`p-3 rounded-xl text-xs sm:text-sm font-bold text-center transition-all cursor-pointer border ${
+              keyScenario === 'discount'
+                ? 'bg-rose-600 text-white border-rose-400 shadow-sm'
+                : 'bg-stone-800/90 text-stone-300 border-stone-700 hover:bg-stone-700 hover:text-white'
+            }`}
+          >
+            {isHebrew ? '2. הפחתת הנחה' : '2. Subtract Discount'}
+          </button>
+          <button
+            type="button"
+            onClick={() => setKeyScenario('add')}
+            className={`p-3 rounded-xl text-xs sm:text-sm font-bold text-center transition-all cursor-pointer border ${
+              keyScenario === 'add'
+                ? 'bg-emerald-600 text-white border-emerald-400 shadow-sm'
+                : 'bg-stone-800/90 text-stone-300 border-stone-700 hover:bg-stone-700 hover:text-white'
+            }`}
+          >
+            {isHebrew ? '3. הוספת מע"מ / טיפ' : '3. Add Tax / Tip'}
+          </button>
+          <button
+            type="button"
+            onClick={() => setKeyScenario('margin')}
+            className={`p-3 rounded-xl text-xs sm:text-sm font-bold text-center transition-all cursor-pointer border ${
+              keyScenario === 'margin'
+                ? 'bg-amber-600 text-white border-amber-400 shadow-sm'
+                : 'bg-stone-800/90 text-stone-300 border-stone-700 hover:bg-stone-700 hover:text-white'
+            }`}
+          >
+            {isHebrew ? '4. חישוב מרווח רווח' : '4. Markup / Margin'}
+          </button>
+        </div>
+
+        {/* Keystroke Visual Display */}
+        <div className="bg-stone-950 p-5 sm:p-6 rounded-2xl border border-stone-800 space-y-4">
+          <div className="text-xs uppercase tracking-wider text-amber-400 font-bold">
+            {keyScenario === 'find' && (isHebrew ? 'תרחיש: מציאת 20% מתוך 150' : 'Scenario: Find 20% of 150')}
+            {keyScenario === 'discount' && (isHebrew ? 'תרחיש: הנחה של 25% על פריט שעולה $80' : 'Scenario: 25% Discount on an $80 Item')}
+            {keyScenario === 'add' && (isHebrew ? 'תרחיש: הוספת 15% טיפ או מע"מ על חשבון של $100' : 'Scenario: Add 15% Tax or Tip to a $100 Bill')}
+            {keyScenario === 'margin' && (isHebrew ? 'תרחיש: תמחור עם מרווח רווח של 20% על עלות $200' : 'Scenario: Pricing for a 20% Profit Margin on $200 Cost')}
+          </div>
+
+          {/* Interactive Calculator Keys Sequence */}
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 py-2" dir="ltr">
+            {keyScenario === 'find' && (
+              <>
+                <span className="px-3.5 py-2 bg-stone-800 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-stone-700 shadow-inner">150</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-blue-600 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-blue-500">×</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-stone-800 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-stone-700 shadow-inner">20</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-amber-500 text-stone-950 font-mono font-extrabold text-sm sm:text-base rounded-lg border border-amber-400 ring-2 ring-amber-400/50">%</span>
+                <span className="text-stone-400 font-bold">=</span>
+                <span className="px-4 py-2 bg-emerald-700 text-white font-mono font-extrabold text-lg sm:text-xl rounded-lg border border-emerald-500">30</span>
+              </>
+            )}
+            {keyScenario === 'discount' && (
+              <>
+                <span className="px-3.5 py-2 bg-stone-800 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-stone-700 shadow-inner">80</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-rose-600 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-rose-500">-</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-stone-800 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-stone-700 shadow-inner">25</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-amber-500 text-stone-950 font-mono font-extrabold text-sm sm:text-base rounded-lg border border-amber-400 ring-2 ring-amber-400/50">%</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-stone-700 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-stone-600">=</span>
+                <span className="text-stone-400 font-bold">=</span>
+                <span className="px-4 py-2 bg-emerald-700 text-white font-mono font-extrabold text-lg sm:text-xl rounded-lg border border-emerald-500">60</span>
+              </>
+            )}
+            {keyScenario === 'add' && (
+              <>
+                <span className="px-3.5 py-2 bg-stone-800 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-stone-700 shadow-inner">100</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-emerald-600 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-emerald-500">+</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-stone-800 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-stone-700 shadow-inner">15</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-amber-500 text-stone-950 font-mono font-extrabold text-sm sm:text-base rounded-lg border border-amber-400 ring-2 ring-amber-400/50">%</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-stone-700 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-stone-600">=</span>
+                <span className="text-stone-400 font-bold">=</span>
+                <span className="px-4 py-2 bg-emerald-700 text-white font-mono font-extrabold text-lg sm:text-xl rounded-lg border border-emerald-500">115</span>
+              </>
+            )}
+            {keyScenario === 'margin' && (
+              <>
+                <span className="px-3.5 py-2 bg-stone-800 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-stone-700 shadow-inner">200</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-amber-600 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-amber-500">÷</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-stone-800 text-white font-mono font-bold text-sm sm:text-base rounded-lg border border-stone-700 shadow-inner">80</span>
+                <span className="text-stone-400 font-bold">→</span>
+                <span className="px-3.5 py-2 bg-amber-500 text-stone-950 font-mono font-extrabold text-sm sm:text-base rounded-lg border border-amber-400 ring-2 ring-amber-400/50">%</span>
+                <span className="text-stone-400 font-bold">=</span>
+                <span className="px-4 py-2 bg-emerald-700 text-white font-mono font-extrabold text-lg sm:text-xl rounded-lg border border-emerald-500">250</span>
+              </>
+            )}
+          </div>
+
+          <div className="text-stone-300 text-xs sm:text-sm bg-stone-900 p-3.5 rounded-xl border border-stone-800">
+            <strong>{isHebrew ? 'הסבר שלב-אחר-שלב:' : 'How it works under the hood:'}</strong>{' '}
+            {keyScenario === 'find' && (
+              isHebrew
+                ? 'לחיצה על מקש ה-% מחלקת את המספר האחרון שהוזן (20) ב-100 ומכפילה אותו במספר הראשון (150). התוצאה המיידית היא 30.'
+                : 'Pressing % converts the second input (20) into a 0.20 rate and multiplies it with the initial base (150), immediately displaying 30.'
+            )}
+            {keyScenario === 'discount' && (
+              isHebrew
+                ? 'המחשבון מחשב את סכום ההנחה (25% מתוך $80 = $20), ולחיצה על = מחסרת את הסכום ממחיר הבסיס ומציגה מחיר סופי של $60.'
+                : 'The calculator calculates the 25% discount portion ($20), and pressing = subtracts it directly from the $80 base to display $60.'
+            )}
+            {keyScenario === 'add' && (
+              isHebrew
+                ? 'המחשבון מחשב 15% מתוך $100 ($15), ולחיצה על = מוסיפה את הסכום לבסיס ומציגה סה"כ של $115.'
+                : 'The % key calculates 15% of $100 ($15), and pressing = adds it automatically to the subtotal to give $115.'
+            )}
+            {keyScenario === 'margin' && (
+              isHebrew
+                ? 'חילוק העלות ב-(100 פחות אחוז המרווח הרצוי) באמצעות מקש ה-% מחשב מיידית את מחיר המכירה הדרוש לקבלת שולי הרווח.'
+                : 'Dividing cost by (100 minus target margin percentage) with the % key calculates the exact target retail sales price.'
+            )}
+          </div>
+        </div>
+      </section>
 
       {/* SEO ARTICLE & EDUCATIONAL GUIDE: "How to Find a Percentage" */}
       <section className="w-full bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-xs border border-stone-200/80 mb-10 space-y-8">
