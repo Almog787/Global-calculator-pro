@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Home } from 'lucide-react';
-import { useI18n } from '../../contexts/i18n';
 
 export default function MortgageAffordability() {
-  const { t } = useI18n();
   const [income, setIncome] = useState<number>(15000);
   const [debts, setDebts] = useState<number>(2000);
   const [downPayment, setDownPayment] = useState<number>(300000);

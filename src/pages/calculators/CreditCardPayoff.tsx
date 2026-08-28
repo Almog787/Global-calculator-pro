@@ -9,7 +9,7 @@ export default function CreditCardPayoff() {
   const calculatePayoff = () => {
     const monthlyRate = rate / 100 / 12;
     if (payment <= balance * monthlyRate) {
-      return { months: Infinity, interest: Infinity };
+      return { months: Infinity, interest: Infinity, total: Infinity };
     }
     
     // Formula: N = -log(1 - iA/P) / log(1 + i)

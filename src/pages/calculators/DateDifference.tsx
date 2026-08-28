@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Calendar } from 'lucide-react';
 
 export default function DateDifference() {
-  const [date1, setDate1] = useState<string>(new Date().toISOString().split('T')[0]);
-  const [date2, setDate2] = useState<string>(
+  const [date1, setDate1] = useState<string>(() => new Date().toISOString().split('T')[0]);
+  const [date2, setDate2] = useState<string>(() =>
     new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
   );
 
