@@ -7,6 +7,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useI18n } from '../../contexts/i18n';
 import { getGuideData } from '../../data/guideTranslations';
+import { useMeasurementSystem } from '../../hooks/useMeasurementSystem';
+import MeasurementToggle from '../../components/MeasurementToggle';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -15,7 +17,7 @@ const localDict = {
     title: 'Fuel Split Calculator',
     description: 'Calculate and split travel costs fairly among passengers.',
     distance: 'Trip Distance',
-    fuelEfficiency: 'Fuel Economy (per 100 distance)',
+    fuelEfficiency: 'Fuel Economy',
     fuelPrice: 'Fuel Price',
     passengers: 'Number of People',
     tolls: 'Tolls / Extra Costs',
@@ -26,8 +28,8 @@ const localDict = {
     title: 'מחשבון השתתפות בדלק',
     description: 'חשב וחלק את עלויות הנסיעה (דלק, כבישי אגרה) באופן שווה בין הנוסעים.',
     distance: 'מרחק הנסיעה',
-    fuelEfficiency: 'צריכת דלק (ליטר ל-100 ק"מ)',
-    fuelPrice: 'מחיר ליטר דלק',
+    fuelEfficiency: 'צריכת דלק',
+    fuelPrice: 'מחיר דלק',
     passengers: 'מספר נוסעים',
     tolls: 'כבישי אגרה / הוצאות נוספות',
     totalCost: 'עלות נסיעה כוללת',
@@ -37,7 +39,7 @@ const localDict = {
     title: 'Calculadora de División de Combustible',
     description: 'Calcula y divide los costos de viaje equitativamente entre los pasajeros.',
     distance: 'Distancia del Viaje',
-    fuelEfficiency: 'Consumo de Combustible (L/100km)',
+    fuelEfficiency: 'Consumo de Combustible',
     fuelPrice: 'Precio del Combustible',
     passengers: 'Número de Personas',
     tolls: 'Peajes / Costos Extras',
@@ -48,7 +50,7 @@ const localDict = {
     title: 'Calculatrice de Partage de Carburant',
     description: 'Calculez et partagez équitablement les frais de trajet entre passagers.',
     distance: 'Distance du Trajet',
-    fuelEfficiency: 'Consommation (L/100km)',
+    fuelEfficiency: 'Consommation',
     fuelPrice: 'Prix du Carburant',
     passengers: 'Nombre de Personnes',
     tolls: 'Péages / Frais Annexes',
@@ -59,7 +61,7 @@ const localDict = {
     title: 'حاسبة تقاسم الوقود',
     description: 'احسب وقسّم تكاليف السفر بالتساوي بين الركاب.',
     distance: 'مسافة الرحلة',
-    fuelEfficiency: 'استهلاك الوقود (لتر لكل 100 كم)',
+    fuelEfficiency: 'استهلاك الوقود',
     fuelPrice: 'سعر الوقود',
     passengers: 'عدد الأشخاص',
     tolls: 'رسوم المرور / تكاليف إضافية',
@@ -72,9 +74,10 @@ export default function FuelSplit() {
   const { lang } = useI18n();
   const guide = getGuideData('fuel-split', lang);
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
+  const { system, setSystem } = useMeasurementSystem();
 
   const [distance, setDistance] = useState(150);
-  const [fuelEfficiency, setFuelEfficiency] = useState(7.5);
+  const [fuelEfficiency, setFuelEfficiency] = useState(7.5); // L/100km or MPG
   const [fuelPrice, setFuelPrice] = useState(7.50);
   const [tolls, setTolls] = useState(30);
   const [passengers, setPassengers] = useState(3);
@@ -89,8 +92,19 @@ export default function FuelSplit() {
       const decTolls = new Decimal(tolls || 0);
       const decPass = new Decimal(Math.max(1, passengers || 1));
 
-      // (Distance / 100) * Efficiency * Price
-      const fuelCost = decDist.div(100).mul(decEff).mul(decPrice);
+      let fuelCost;
+      if (system === 'metric') {
+        // (Distance / 100) * Efficiency(L/100km) * Price(per L)
+        fuelCost = decDist.div(100).mul(decEff).mul(decPrice);
+      } else {
+        // Distance(miles) / Efficiency(MPG) * Price(per Gallon)
+        if (decEff.isZero()) {
+          fuelCost = new Decimal(0);
+        } else {
+          fuelCost = decDist.div(decEff).mul(decPrice);
+        }
+      }
+
       const totalCost = fuelCost.add(decTolls);
       const costPerPerson = totalCost.div(decPass);
 
@@ -102,7 +116,7 @@ export default function FuelSplit() {
     } catch {
       setResults({ totalCost: 0, costPerPerson: 0, fuelCost: 0 });
     }
-  }, [distance, fuelEfficiency, fuelPrice, tolls, passengers]);
+  }, [distance, fuelEfficiency, fuelPrice, tolls, passengers, system]);
 
   const defaultCurrency = lang === 'he' ? 'ILS' : 'USD';
   const currencyFormat = new Intl.NumberFormat(lang === 'en' ? 'en-US' : lang, { 
@@ -156,22 +170,25 @@ export default function FuelSplit() {
       />
 
       <div className="flex-[1.5] flex flex-col">
-        <div className="mb-10">
-          <h1 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.title}</h1>
-          <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-md">{t.description}</p>
+        <div className="mb-8 flex justify-between items-start flex-col sm:flex-row gap-4">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.title}</h1>
+            <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-md">{t.description}</p>
+          </div>
+          <MeasurementToggle system={system} onChange={setSystem} />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="group">
-<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.distance}</label>
+<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.distance} ({system === 'metric' ? 'km' : 'miles'})</label>
             <input type="number" value={distance} onChange={e => setDistance(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
           </div>
           <div className="group">
-<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.fuelEfficiency}</label>
+<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.fuelEfficiency} ({system === 'metric' ? 'L/100km' : 'MPG'})</label>
             <input type="number" value={fuelEfficiency} onChange={e => setFuelEfficiency(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
           </div>
           <div className="group">
-<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.fuelPrice}</label>
+<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.fuelPrice} ({system === 'metric' ? 'per L' : 'per Gallon'})</label>
             <input type="number" value={fuelPrice} onChange={e => setFuelPrice(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
           </div>
           <div className="group">

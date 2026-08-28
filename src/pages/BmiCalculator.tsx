@@ -5,13 +5,29 @@ import { useI18n } from '../contexts/i18n';
 import Breadcrumbs from '../components/Breadcrumbs';
 import RelatedCalculators from '../components/RelatedCalculators';
 import { getGuideData } from '../data/guideTranslations';
+import { useMeasurementSystem } from '../hooks/useMeasurementSystem';
+import MeasurementToggle from '../components/MeasurementToggle';
 
 export default function BmiCalculator() {
   const { t, lang } = useI18n();
   const guide = getGuideData('bmi', lang);
-  const [height, setHeight] = useState(175);
-  const [weight, setWeight] = useState(70);
+  const { system, setSystem } = useMeasurementSystem();
+  
+  const [height, setHeight] = useState(175); // Always in cm
+  const [weight, setWeight] = useState(70);  // Always in kg
   const [bmi, setBmi] = useState(0);
+
+  // Conversion helpers for inputs
+  const displayHeight = system === 'metric' ? height : (height / 2.54); // cm to inches
+  const displayWeight = system === 'metric' ? weight : (weight * 2.20462); // kg to lbs
+
+  const handleHeightChange = (val: number) => {
+    setHeight(system === 'metric' ? val : (val * 2.54));
+  };
+
+  const handleWeightChange = (val: number) => {
+    setWeight(system === 'metric' ? val : (val / 2.20462));
+  };
 
   useEffect(() => {
     if (height > 0 && weight > 0) {
@@ -61,19 +77,36 @@ export default function BmiCalculator() {
       
       {/* Input Form */}
       <div className="flex-1 w-full bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200 flex flex-col">
-        <div className="mb-10">
-          <h2 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.bmiTitle}</h2>
-          <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-sm">{t.bmiExplanation}</p>
+        <div className="mb-8 flex justify-between items-start flex-col sm:flex-row gap-4">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.bmiTitle}</h2>
+            <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-sm">{t.bmiExplanation}</p>
+          </div>
+          <MeasurementToggle system={system} onChange={setSystem} />
         </div>
         <div className="flex-1 flex flex-col justify-between">
           <div className="space-y-8">
             <div className="group">
-              <label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.height} (cm)</label>
-              <input type="number" value={height} onChange={e => setHeight(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
+              <label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">
+                {t.height} ({system === 'metric' ? 'cm' : 'inches'})
+              </label>
+              <input 
+                type="number" 
+                value={Math.round(displayHeight * 10) / 10} 
+                onChange={e => handleHeightChange(Number(e.target.value))} 
+                className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" 
+              />
             </div>
             <div className="group">
-              <label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.weightBmi} (kg)</label>
-              <input type="number" value={weight} onChange={e => setWeight(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
+              <label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">
+                {t.weightBmi} ({system === 'metric' ? 'kg' : 'lbs'})
+              </label>
+              <input 
+                type="number" 
+                value={Math.round(displayWeight * 10) / 10} 
+                onChange={e => handleWeightChange(Number(e.target.value))} 
+                className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" 
+              />
             </div>
           </div>
         </div>

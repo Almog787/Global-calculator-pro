@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
 import { Activity } from 'lucide-react';
+import { useMeasurementSystem } from '../../hooks/useMeasurementSystem';
+import MeasurementToggle from '../../components/MeasurementToggle';
 
 export default function Bmr() {
+  const { system, setSystem } = useMeasurementSystem();
+  
   const [age, setAge] = useState<number>(30);
   const [gender, setGender] = useState<'male' | 'female'>('male');
-  const [weight, setWeight] = useState<number>(75);
-  const [height, setHeight] = useState<number>(175);
+  const [weight, setWeight] = useState<number>(75); // Always in kg
+  const [height, setHeight] = useState<number>(175); // Always in cm
   const [activity, setActivity] = useState<number>(1.2);
+
+  const displayHeight = system === 'metric' ? height : (height / 2.54);
+  const displayWeight = system === 'metric' ? weight : (weight * 2.20462);
+
+  const handleHeightChange = (val: number) => {
+    setHeight(system === 'metric' ? val : (val * 2.54));
+  };
+
+  const handleWeightChange = (val: number) => {
+    setWeight(system === 'metric' ? val : (val / 2.20462));
+  };
 
   // Mifflin-St Jeor Equation
   const baseBmr = (10 * weight) + (6.25 * height) - (5 * age);
@@ -15,13 +30,16 @@ export default function Bmr() {
 
   return (
     <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 bg-white dark:bg-slate-900 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800">
-      <div className="flex items-center gap-4 mb-8">
-        <div className="w-12 h-12 bg-teal-100 dark:bg-teal-900/30 rounded-2xl flex items-center justify-center text-teal-600 dark:text-teal-400">
-          <Activity className="w-6 h-6" />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 bg-teal-100 dark:bg-teal-900/30 rounded-2xl flex items-center justify-center text-teal-600 dark:text-teal-400">
+            <Activity className="w-6 h-6" />
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+            Daily Calorie Needs
+          </h1>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
-          Daily Calorie Needs
-        </h1>
+        <MeasurementToggle system={system} onChange={setSystem} />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="space-y-6">
@@ -40,12 +58,12 @@ export default function Bmr() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Weight (kg)</label>
-              <input type="number" value={weight || ''} onChange={e => setWeight(Number(e.target.value))} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-teal-500" />
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Weight ({system === 'metric' ? 'kg' : 'lbs'})</label>
+              <input type="number" value={Math.round(displayWeight * 10) / 10 || ''} onChange={e => handleWeightChange(Number(e.target.value))} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-teal-500" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Height (cm)</label>
-              <input type="number" value={height || ''} onChange={e => setHeight(Number(e.target.value))} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-teal-500" />
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Height ({system === 'metric' ? 'cm' : 'inches'})</label>
+              <input type="number" value={Math.round(displayHeight * 10) / 10 || ''} onChange={e => handleHeightChange(Number(e.target.value))} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-teal-500" />
             </div>
           </div>
           <div>
