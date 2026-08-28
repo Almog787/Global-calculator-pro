@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 /**
@@ -15,12 +15,10 @@ export function useCalculatorState<T extends Record<string, any>>(
   // Initialize state from URL params if they exist, otherwise fallback to default
   const [state, setState] = useState<T>(() => {
     const initialState = { ...defaultState };
-    let hasParams = false;
     
     for (const key of Object.keys(defaultState)) {
       const val = searchParams.get(key);
       if (val !== null) {
-        hasParams = true;
         // Parse numbers/booleans appropriately based on default state type
         if (typeof defaultState[key] === 'number') {
           (initialState as any)[key] = Number(val);
@@ -87,7 +85,7 @@ export function useCalculatorState<T extends Record<string, any>>(
     try {
       const existing = localStorage.getItem(key);
       return existing ? JSON.parse(existing) : [];
-    } catch (e) {
+    } catch {
       return [];
     }
   };

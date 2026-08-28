@@ -33,7 +33,7 @@ const COOKING_DATA: Record<MeatType, Record<string, CookingRule>> = {
 };
 
 export default function CookingTimer() {
-  const { lang, t } = useI18n();
+  const { lang } = useI18n();
   const { system, setSystem } = useMeasurementSystem();
   
   const [meatType, setMeatType] = useState<MeatType>('beef');
@@ -47,7 +47,6 @@ export default function CookingTimer() {
 
   // Safe fallback if doneness doesn't exist for a meat type
   const currentRule = COOKING_DATA[meatType][doneness] || COOKING_DATA[meatType]['well_done'] || Object.values(COOKING_DATA[meatType])[0];
-
   const totalMinutes = system === 'metric' 
     ? (weight * currentRule.minutesPerKg) + currentRule.baseMinutes
     : ((weight * 2.20462) * currentRule.minutesPerLb) + currentRule.baseMinutes;
@@ -81,7 +80,7 @@ export default function CookingTimer() {
   const renderDonenessOptions = () => {
     if (meatType === 'chicken') return null; // Chicken is always well done
     
-    let options = [];
+    let options: { id: string; he: string; en: string }[] = [];
     if (meatType === 'beef') {
       options = [
         { id: 'rare', he: 'רייר (נא)', en: 'Rare' },

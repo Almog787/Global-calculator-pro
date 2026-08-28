@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Share2, Printer, Link as LinkIcon, Check, Clock, ChevronDown } from 'lucide-react';
+import { Printer, Link as LinkIcon, Check, Clock, ChevronDown } from 'lucide-react';
 import { useI18n } from '../contexts/i18n';
 
 interface ShareActionsProps {

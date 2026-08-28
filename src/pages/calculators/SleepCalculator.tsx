@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Moon, Sun, Clock } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import { useI18n } from '../../contexts/i18n';
 import ShareActions from '../../components/ShareActions';
 

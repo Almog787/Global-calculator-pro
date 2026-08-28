@@ -4,7 +4,7 @@ import { useI18n } from '../../contexts/i18n';
 import ShareActions from '../../components/ShareActions';
 
 export default function SeverancePay() {
-  const { lang, t } = useI18n();
+  const { lang } = useI18n();
   const [salary, setSalary] = useState<number>(15000);
   const [years, setYears] = useState<number>(3);
   const [months, setMonths] = useState<number>(0);
@@ -12,7 +12,6 @@ export default function SeverancePay() {
   const totalYears = years + (months / 12);
   const severance = salary * totalYears;
 
-  const isRtl = t.dir === 'rtl';
   const defaultCurrency = lang === 'he' ? '₪' : '$';
 
   return (

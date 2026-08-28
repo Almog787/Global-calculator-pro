@@ -8,7 +8,7 @@ const commonCurrencies = [
 ];
 
 export default function CurrencyConverter() {
-  const { lang, t } = useI18n();
+  const { lang } = useI18n();
   const [amount, setAmount] = useState<number>(100);
   const [fromCurrency, setFromCurrency] = useState<string>('USD');
   const [toCurrency, setToCurrency] = useState<string>(lang === 'he' ? 'ILS' : 'EUR');
@@ -35,7 +35,7 @@ export default function CurrencyConverter() {
         const data = await response.json();
         setExchangeRate(data.rates[toCurrency]);
         setLastUpdated(data.date);
-      } catch (err) {
+      } catch {
         setError(lang === 'he' ? 'שגיאה בטעינת שערי חליפין' : 'Error loading exchange rates');
         setExchangeRate(null);
       } finally {
@@ -52,8 +52,6 @@ export default function CurrencyConverter() {
   };
 
   const convertedAmount = exchangeRate ? amount * exchangeRate : 0;
-
-  const isRtl = t.dir === 'rtl';
 
   return (
     <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-8 bg-surface-container-lowest rounded-3xl shadow-sm border border-border-subtle">

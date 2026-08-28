@@ -19,7 +19,9 @@
 - **[Break Even Calculator](https://globalcalcpro.com/calculators/break-even)** - Free online break even calculator for precise calculations.
 - **[Cap Rate Calculator](https://globalcalcpro.com/calculators/cap-rate)** - Calculate the Capitalization Rate and Net Operating Income (NOI) for real estate investments.
 - **[Compound Interest Calculator](https://globalcalcpro.com/compound-interest)** - Forecast investment growth over time.
+- **[Cooking Timer Calculator](https://globalcalcpro.com/calculators/cooking-timer)** - Free online cooking timer calculator for precise calculations.
 - **[Credit Card Payoff Calculator](https://globalcalcpro.com/calculators/credit-card-payoff)** - Free online credit card payoff calculator for precise calculations.
+- **[Currency Converter Calculator](https://globalcalcpro.com/calculators/currency-converter)** - Free online currency converter calculator for precise calculations.
 - **[Date Difference Calculator](https://globalcalcpro.com/calculators/date-difference)** - Free online date difference calculator for precise calculations.
 - **[Debt Snowball Calculator](https://globalcalcpro.com/calculators/debt-snowball)** - Calculate how fast you can become debt-free by paying extra toward your smallest debts first.
 - **[Download Time Calculator](https://globalcalcpro.com/calculators/download-time)** - Calculate exactly how long it will take to download or upload a file based on your internet speed.
@@ -36,6 +38,8 @@
 - **[Rent vs Buy Calculator](https://globalcalcpro.com/calculators/rent-vs-buy)** - Compare the financial costs of renting versus buying a home over 10 years.
 - **[ROI Calculator](https://globalcalcpro.com/calculators/roi)** - Calculate Return on Investment (ROI) and annualized ROI for your investments.
 - **[Salary Calculator](https://globalcalcpro.com/salary-calculator)** - Convert hourly wage to annual salary.
+- **[Severance Pay Calculator](https://globalcalcpro.com/calculators/severance-pay)** - Free online severance pay calculator for precise calculations.
+- **[Sleep Calculator Calculator](https://globalcalcpro.com/calculators/sleep-calculator)** - Free online sleep calculator calculator for precise calculations.
 - **[Tip & Bill Splitter](https://globalcalcpro.com/tip-calculator)** - Calculate tip and split the bill among friends.
 - **[Unit Converter](https://globalcalcpro.com/unit-converter)** - Convert between different units of measurement.
 - **[Vat Calculator](https://globalcalcpro.com/calculators/vat)** - Free online vat calculator for precise calculations.
