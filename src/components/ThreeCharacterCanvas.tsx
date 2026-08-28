@@ -212,7 +212,7 @@ export default function ThreeCharacterCanvas({
 
     // 4. Animation Variables & States
     let animationFrameId: number;
-    const clock = new THREE.Clock();
+    const startTime = performance.now();
     let blinkTimer = 0;
     let isBlinking = false;
     let blinkProgress = 0;
@@ -231,7 +231,7 @@ export default function ThreeCharacterCanvas({
     // 5. Render Loop
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
-      const elapsedTime = clock.getElapsedTime();
+      const elapsedTime = (performance.now() - startTime) / 1000;
 
       const currentState = stateRef.current;
       const mouse = mousePosRef.current;
