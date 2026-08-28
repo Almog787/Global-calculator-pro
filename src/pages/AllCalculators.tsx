@@ -556,27 +556,35 @@ export default function AllCalculators() {
             <Link
               key={calc.id}
               to={`/${lang}${calc.path}`}
-              className="group bg-surface-container-lowest border border-border-subtle rounded-2xl p-6 ambient-shadow flex flex-col justify-between hover:border-secondary transition-all cursor-pointer relative overflow-hidden h-full"
+              className="group bg-surface-container-lowest border border-border-subtle rounded-xl p-6 flex flex-col h-full hover:border-secondary hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
             >
-              <div className="flex flex-col h-full">
-                <div className="flex justify-between items-start mb-3 gap-2">
-                  <h3 className="font-headline-md text-lg font-bold text-primary-container group-hover:text-secondary transition-colors leading-snug">
-                    {title}
-                  </h3>
-                  <span className="material-symbols-outlined text-outline-variant group-hover:text-secondary rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-transform shrink-0">
+              <div className="absolute top-0 ltr:right-0 rtl:left-0 w-32 h-32 bg-secondary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -mt-12 ltr:-mr-12 rtl:-ml-12" />
+
+              <div className="flex flex-col h-full relative z-10">
+                <div className="flex justify-between items-start mb-4 gap-4">
+                  <div className="bg-surface-container-low px-2.5 py-1 rounded-md border border-border-subtle/50">
+                    <span className="text-[11px] font-label-bold uppercase tracking-wider text-secondary whitespace-nowrap">
+                      {calc.category}
+                    </span>
+                  </div>
+                  <span className="material-symbols-outlined text-outline-variant group-hover:text-secondary rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-transform duration-300 shrink-0">
                     {isRtl ? 'arrow_back' : 'arrow_forward'}
                   </span>
                 </div>
                 
-                <p className="font-body-md text-sm text-on-surface-variant mb-6 flex-grow leading-relaxed line-clamp-3">
+                <h3 className="font-headline-md text-xl font-bold text-on-surface group-hover:text-primary transition-colors leading-snug mb-3">
+                  {title}
+                </h3>
+                
+                <p className="font-body-md text-[15px] text-on-surface-variant leading-relaxed line-clamp-3 mb-6 flex-grow">
                   {description}
                 </p>
 
-                <div className="flex flex-wrap gap-1.5 mt-auto">
+                <div className="flex flex-wrap gap-x-3 gap-y-2 mt-auto pt-4 border-t border-border-subtle/50">
                   {calc.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-1 bg-surface-container-low text-on-surface-variant rounded-md font-label-sm text-[11px] font-semibold"
+                      className="font-label-sm text-[12px] font-medium text-outline-variant before:content-['#'] before:opacity-50 before:mr-0.5 rtl:before:ml-0.5 rtl:before:mr-0 whitespace-nowrap"
                     >
                       {tag}
                     </span>
