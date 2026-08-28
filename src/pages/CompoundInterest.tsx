@@ -221,32 +221,9 @@ export default function CompoundInterest() {
 
       {/* Amortization / Growth Schedule Table */}
       <section className="w-full bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-sm border border-stone-200 mt-8 space-y-6">
-        <div className="border-b border-stone-200 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-headline font-bold text-stone-900">{lang === 'he' ? 'טבלת צמיחה שנתית' : 'Yearly Growth Schedule'}</h2>
-            <p className="text-stone-500 text-sm">{lang === 'he' ? 'פירוט ההון והריבית לאורך השנים' : 'Breakdown of principal and interest over time'}</p>
-          </div>
-          <button 
-            onClick={() => {
-              const csv = ['Year,Total Contributions,Total Interest,Total Balance'];
-              scheduleData.forEach(row => {
-                csv.push(`${row.year},${row.contributions},${row.interest},${row.total}`);
-              });
-              const blob = new Blob([csv.join('\\n')], { type: 'text/csv' });
-              const url = window.URL.createObjectURL(blob);
-              const a = document.createElement('a');
-              a.setAttribute('hidden', '');
-              a.setAttribute('href', url);
-              a.setAttribute('download', 'compound_interest_schedule.csv');
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-            }}
-            className="flex items-center gap-2 px-4 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-lg text-sm font-medium transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            {lang === 'he' ? 'הורד כ-CSV' : 'Download CSV'}
-          </button>
+        <div className="border-b border-stone-200 pb-4">
+          <h2 className="text-xl sm:text-2xl font-headline font-bold text-stone-900">{lang === 'he' ? 'טבלת צמיחה שנתית' : 'Yearly Growth Schedule'}</h2>
+          <p className="text-stone-500 text-sm mt-1">{lang === 'he' ? 'פירוט ההון והריבית לאורך השנים' : 'Breakdown of principal and interest over time'}</p>
         </div>
         
         <div className="overflow-x-auto">

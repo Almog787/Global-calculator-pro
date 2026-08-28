@@ -22,6 +22,7 @@ import { useI18n } from './contexts/i18n';
 import Footer from './components/Footer';
 import SearchBar from './components/SearchBar';
 import SkeletonLoader from './components/SkeletonLoader';
+import { getCanonicalRedirect } from './utils/legacyRedirects';
 
 function App() {
   const { lang, setLang, t } = useI18n();
@@ -30,9 +31,16 @@ function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    // 301-equivalent redirect for legacy WordPress blog URLs, .html extensions, and trailing slashes
+    const redirectPath = getCanonicalRedirect(location.pathname, lang);
+    if (redirectPath && redirectPath !== location.pathname) {
+      navigate(redirectPath + location.search, { replace: true });
+      return;
+    }
+
     window.scrollTo({ top: 0, behavior: "instant" });
     setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+  }, [location.pathname, location.search, lang, navigate]);
 
   const navLinks = [
     { id: 'finance', path: `/${lang}/category/finance`, label: t.catFinance },
@@ -159,6 +167,32 @@ function App() {
         <Suspense fallback={<SkeletonLoader />}>
           <Routes>
             <Route path="/" element={<Navigate to={`/${lang}/all`} replace />} />
+
+            {/* Direct unlocalized root redirects to language prefix */}
+            <Route path="/all" element={<Navigate to={`/${lang}/all`} replace />} />
+            <Route path="/percentage" element={<Navigate to={`/${lang}/percentage-finder`} replace />} />
+            <Route path="/percent" element={<Navigate to={`/${lang}/percentage-finder`} replace />} />
+            <Route path="/percentage-calculator" element={<Navigate to={`/${lang}/percentage-finder`} replace />} />
+            <Route path="/percent-finder" element={<Navigate to={`/${lang}/percentage-finder`} replace />} />
+            <Route path="/percentage-finder" element={<Navigate to={`/${lang}/percentage-finder`} replace />} />
+            <Route path="/compound-interest" element={<Navigate to={`/${lang}/compound-interest`} replace />} />
+            <Route path="/mortgage-calculator" element={<Navigate to={`/${lang}/mortgage-calculator`} replace />} />
+            <Route path="/unit-converter" element={<Navigate to={`/${lang}/unit-converter`} replace />} />
+            <Route path="/bmi-calculator" element={<Navigate to={`/${lang}/bmi-calculator`} replace />} />
+            <Route path="/tip-calculator" element={<Navigate to={`/${lang}/tip-calculator`} replace />} />
+            <Route path="/salary-calculator" element={<Navigate to={`/${lang}/salary-calculator`} replace />} />
+            <Route path="/age-calculator" element={<Navigate to={`/${lang}/age-calculator`} replace />} />
+            <Route path="/privacy" element={<Navigate to={`/${lang}/privacy-policy`} replace />} />
+            <Route path="/privacy-policy" element={<Navigate to={`/${lang}/privacy-policy`} replace />} />
+            <Route path="/terms" element={<Navigate to={`/${lang}/terms-of-service`} replace />} />
+            <Route path="/terms-of-service" element={<Navigate to={`/${lang}/terms-of-service`} replace />} />
+            <Route path="/about" element={<Navigate to={`/${lang}/about`} replace />} />
+            <Route path="/about-us" element={<Navigate to={`/${lang}/about`} replace />} />
+            <Route path="/contact" element={<Navigate to={`/${lang}/contact`} replace />} />
+            <Route path="/contact-us" element={<Navigate to={`/${lang}/contact`} replace />} />
+            <Route path="/suggest" element={<Navigate to={`/${lang}/suggest`} replace />} />
+
+            {/* Localized Routing */}
             <Route path="/:urlLang/*" element={<LocalizedRoutes />} />
           </Routes>
         </Suspense>
@@ -184,7 +218,12 @@ function LocalizedRoutes() {
       setLang(urlLang as any);
     } else if (urlLang && !validLangs.includes(urlLang)) {
       const targetLang = contextLang || 'en';
-      navigate(`/${targetLang}${location.pathname}${location.search}`, { replace: true });
+      const redirect = getCanonicalRedirect(location.pathname, targetLang);
+      if (redirect && redirect !== location.pathname) {
+        navigate(redirect + location.search, { replace: true });
+      } else {
+        navigate(`/${targetLang}${location.pathname}${location.search}`, { replace: true });
+      }
     }
   }, [urlLang, contextLang, setLang, navigate, location.pathname, location.search]);
 
@@ -196,6 +235,13 @@ function LocalizedRoutes() {
       <Route path="mortgage-calculator" element={<MortgageCalculator />} />
       <Route path="compound-interest" element={<CompoundInterest />} />
       <Route path="percentage-finder" element={<PercentageFinder />} />
+
+      {/* Aliases inside language prefix */}
+      <Route path="percentage" element={<Navigate to="../percentage-finder" replace />} />
+      <Route path="percent" element={<Navigate to="../percentage-finder" replace />} />
+      <Route path="percentage-calculator" element={<Navigate to="../percentage-finder" replace />} />
+      <Route path="percent-finder" element={<Navigate to="../percentage-finder" replace />} />
+
       <Route path="unit-converter" element={<UnitConverter />} />
       <Route path="bmi-calculator" element={<BmiCalculator />} />
       <Route path="tip-calculator" element={<TipCalculator />} />
@@ -203,9 +249,13 @@ function LocalizedRoutes() {
       <Route path="age-calculator" element={<AgeCalculator />} />
       <Route path="calculators/:slug" element={<CalculatorWrapper />} />
       <Route path="contact" element={<ContactUs />} />
+      <Route path="contact-us" element={<Navigate to="../contact" replace />} />
       <Route path="privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="privacy" element={<Navigate to="../privacy-policy" replace />} />
       <Route path="terms-of-service" element={<TermsOfService />} />
+      <Route path="terms" element={<Navigate to="../terms-of-service" replace />} />
       <Route path="about" element={<AboutUs />} />
+      <Route path="about-us" element={<Navigate to="../about" replace />} />
       <Route path="suggest" element={<SuggestFeature />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

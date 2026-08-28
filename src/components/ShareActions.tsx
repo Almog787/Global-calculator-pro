@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Printer, Link as LinkIcon, Check, Clock, ChevronDown } from 'lucide-react';
+import { Link as LinkIcon, Check, Clock, ChevronDown } from 'lucide-react';
 import { useI18n } from '../contexts/i18n';
 
 interface ShareActionsProps {
@@ -21,10 +21,6 @@ export default function ShareActions({ onSaveHistory, historyEntries = [], onLoa
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handlePrint = () => {
-    window.print();
-  };
-
   const hasHistory = historyEntries && historyEntries.length > 0;
 
   return (
@@ -32,18 +28,10 @@ export default function ShareActions({ onSaveHistory, historyEntries = [], onLoa
       <div className="flex gap-2">
         <button
           onClick={handleCopyLink}
-          className="flex items-center gap-2 px-4 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-lg transition-colors font-medium text-sm border border-border-subtle"
+          className="flex items-center gap-2 px-4 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-lg transition-colors font-medium text-sm border border-border-subtle cursor-pointer"
         >
           {copied ? <Check className="w-4 h-4 text-green-500" /> : <LinkIcon className="w-4 h-4 text-on-surface-variant" />}
-          <span className="hidden sm:inline">{lang === 'he' ? 'העתק קישור' : 'Copy Link'}</span>
-        </button>
-
-        <button
-          onClick={handlePrint}
-          className="flex items-center gap-2 px-4 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-lg transition-colors font-medium text-sm border border-border-subtle"
-        >
-          <Printer className="w-4 h-4 text-on-surface-variant" />
-          <span className="hidden sm:inline">{lang === 'he' ? 'הדפס / PDF' : 'Print / PDF'}</span>
+          <span>{lang === 'he' ? 'העתק קישור' : 'Copy Link'}</span>
         </button>
       </div>
 
