@@ -26,11 +26,14 @@ export function initWebMCP() {
         },
         required: ['principal', 'rate', 'years'],
       },
-      execute: ({ principal, rate, years }: { principal: number; rate: number; years: number }) => {
+      execute: (args: Record<string, unknown>) => {
+        const principal = Number(args.principal) || 0;
+        const rate = Number(args.rate) || 0;
+        const years = Number(args.years) || 0;
         const monthlyRate = rate / 100 / 12;
         const totalPayments = years * 12;
         if (monthlyRate === 0) {
-          return { monthlyPayment: principal / totalPayments, totalInterest: 0, totalPayment: principal };
+          return { monthlyPayment: totalPayments > 0 ? principal / totalPayments : 0, totalInterest: 0, totalPayment: principal };
         }
         const monthlyPayment =
           (principal * monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) /
@@ -53,7 +56,11 @@ export function initWebMCP() {
         },
         required: ['principal', 'rate', 'years'],
       },
-      execute: ({ principal, contribution = 0, rate, years }: { principal: number; contribution: number; rate: number; years: number }) => {
+      execute: (args: Record<string, unknown>) => {
+        const principal = Number(args.principal) || 0;
+        const contribution = Number(args.contribution) || 0;
+        const rate = Number(args.rate) || 0;
+        const years = Number(args.years) || 0;
         const months = years * 12;
         const monthlyRate = rate / 100 / 12;
         let futureValue = principal;
@@ -78,9 +85,11 @@ export function initWebMCP() {
         },
         required: ['weightKg', 'heightCm'],
       },
-      execute: ({ weightKg, heightCm }: { weightKg: number; heightCm: number }) => {
+      execute: (args: Record<string, unknown>) => {
+        const weightKg = Number(args.weightKg) || 0;
+        const heightCm = Number(args.heightCm) || 0;
         const heightM = heightCm / 100;
-        const bmi = weightKg / (heightM * heightM);
+        const bmi = heightM > 0 ? weightKg / (heightM * heightM) : 0;
         let category = 'Normal';
         if (bmi < 18.5) category = 'Underweight';
         else if (bmi >= 25 && bmi < 30) category = 'Overweight';
