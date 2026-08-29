@@ -282,7 +282,7 @@ export default function AllCalculators() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow items-center">
               {/* Controls */}
-              <div className="space-y-4" onClick={(e) => e.stopPropagation()}>
+              <form toolname="quick_mortgage_calculator" tooldescription="Quick mortgage estimation form for principal loan amount and interest rate" onSubmit={(e) => e.preventDefault()} className="space-y-4" onClick={(e) => e.stopPropagation()}>
                 <div>
                   <label htmlFor="quick-mortgage-amount" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
                     {currText.loanAmountLabel}
@@ -292,6 +292,7 @@ export default function AllCalculators() {
                     <input
                       id="quick-mortgage-amount"
                       aria-label={currText.loanAmountLabel}
+                      toolparamdescription="Loan principal amount in ILS currency"
                       type="number"
                       value={mortgageAmount}
                       onChange={(e) => setMortgageAmount(Number(e.target.value) || 0)}
@@ -310,6 +311,7 @@ export default function AllCalculators() {
                   <input
                     id="quick-mortgage-rate"
                     aria-label={currText.interestLabel}
+                    toolparamdescription="Annual mortgage interest rate percentage"
                     type="range"
                     min="1"
                     max="10"
@@ -319,7 +321,7 @@ export default function AllCalculators() {
                     className="w-full accent-secondary cursor-pointer h-2 bg-surface-variant rounded-lg"
                   />
                 </div>
-              </div>
+              </form>
 
               {/* Result Preview */}
               <div className="bg-primary-container rounded-xl p-5 flex flex-col justify-center items-center text-center shadow-inner relative overflow-hidden">

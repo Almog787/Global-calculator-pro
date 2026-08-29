@@ -23,11 +23,16 @@ import Footer from './components/Footer';
 import SearchBar from './components/SearchBar';
 import SkeletonLoader from './components/SkeletonLoader';
 import { getCanonicalRedirect } from './utils/legacyRedirects';
+import { initWebMCP } from './lib/webmcp';
 
 function App() {
   const { lang, setLang, t } = useI18n();
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    initWebMCP();
+  }, []);
   const prevPath = useRef(location.pathname);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

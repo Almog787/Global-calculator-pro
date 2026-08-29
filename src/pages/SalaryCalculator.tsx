@@ -161,15 +161,15 @@ export default function SalaryCalculator() {
           <h2 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.salaryTitle}</h2>
           <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-sm">{t.salaryExplanation}</p>
         </div>
-        <div className="flex-1 flex flex-col justify-between">
+        <form toolname="salary_calculator" tooldescription="Convert pay frequency to gross and net annual salary projections" onSubmit={e => e.preventDefault()} className="flex-1 flex flex-col justify-between">
           <div className="space-y-8">
             <div className="group">
               <label htmlFor="sal-amount" className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.salaryAmount}</label>
-              <input id="sal-amount" aria-label={t.salaryAmount} type="number" value={amount} onChange={e => setAmount(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
+              <input id="sal-amount" aria-label={t.salaryAmount} toolparamdescription="Salary rate or payment amount" type="number" value={amount} onChange={e => setAmount(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
             </div>
             <div className="group">
               <label htmlFor="sal-freq" className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.salaryFrequency}</label>
-              <select id="sal-freq" aria-label={t.salaryFrequency} value={frequency} onChange={e => setFrequency(e.target.value)} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors cursor-pointer">
+              <select id="sal-freq" aria-label={t.salaryFrequency} toolparamdescription="Payment frequency interval" value={frequency} onChange={e => setFrequency(e.target.value)} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors cursor-pointer">
                 <option value="hourly">{t.hourly}</option>
                 <option value="weekly">{t.weekly}</option>
                 <option value="monthly">{t.monthly}</option>
@@ -177,7 +177,7 @@ export default function SalaryCalculator() {
               </select>
             </div>
           </div>
-        </div>
+        </form>
 
         <ShareActions
           onSaveHistory={saveToHistory}

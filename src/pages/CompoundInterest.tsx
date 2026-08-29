@@ -139,28 +139,26 @@ export default function CompoundInterest() {
           <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-sm">{t.compoundExplanation}</p>
         
         </div>
-        <div className="flex-1 flex flex-col justify-between">
+        <form toolname="compound_interest_calculator" tooldescription="Calculate investment growth, total contributions, and compounding interest return over time" onSubmit={e => e.preventDefault()} className="flex-1 flex flex-col justify-between">
           <div className="space-y-8">
-            
             <div className="group">
               <label htmlFor="ci-principal" className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.initialInvestment}</label>
-              <input id="ci-principal" aria-label={t.initialInvestment} type="number" value={principal} onChange={e => setPrincipal(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
+              <input id="ci-principal" aria-label={t.initialInvestment} toolparamdescription="Initial principal deposit amount" type="number" value={principal} onChange={e => setPrincipal(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
             </div>
             <div className="group">
               <label htmlFor="ci-contribution" className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.monthlyContribution}</label>
-              <input id="ci-contribution" aria-label={t.monthlyContribution} type="number" value={contribution} onChange={e => setContribution(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
+              <input id="ci-contribution" aria-label={t.monthlyContribution} toolparamdescription="Monthly recurring contribution amount" type="number" value={contribution} onChange={e => setContribution(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
             </div>
             <div className="group">
               <label htmlFor="ci-rate" className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.interestRate}</label>
-              <input id="ci-rate" aria-label={t.interestRate} type="number" value={rate} onChange={e => setRate(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
+              <input id="ci-rate" aria-label={t.interestRate} toolparamdescription="Expected annual return percentage rate" type="number" value={rate} onChange={e => setRate(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
             </div>
             <div className="group">
               <label htmlFor="ci-years" className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.yearsToGrow}</label>
-              <input id="ci-years" aria-label={t.yearsToGrow} type="number" value={years} onChange={e => setYears(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
+              <input id="ci-years" aria-label={t.yearsToGrow} toolparamdescription="Investment growth period in years" type="number" value={years} onChange={e => setYears(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
             </div>
-          
           </div>
-        </div>
+        </form>
 
         <ShareActions
           onSaveHistory={saveToHistory}

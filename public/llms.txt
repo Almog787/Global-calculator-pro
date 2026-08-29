@@ -1,29 +1,27 @@
-# GlobalCalc Pro - Fast, Accurate, Multi-Language Online Calculators
+# GlobalCalc Pro
 
-> GlobalCalc Pro provides free, high-precision financial, health, real estate, and mathematical calculators. Optimized for human users and AI agents (WebMCP compatible).
+> GlobalCalc Pro provides free, high-precision financial, health, real estate, and mathematical calculators.
 
-## Core Capabilities
+GlobalCalc Pro offers over 20+ specialized calculators for financial planning, loan amortization, health metrics, and unit conversions, optimized for human users and AI agents.
 
-- **Financial Calculators**: Mortgage Payment, Compound Interest, Salary & Tax, Credit Card Payoff, Inflation Impact, Freelance Net Income, Rent vs Buy, Auto Loan.
-- **Health & Fitness**: BMI Calculator, BMR & Daily Calories, Water Intake, Sleep Optimization.
-- **Math & Utilities**: Unit Converter (Length, Weight, Temp), Percentage Finder, Tip & Bill Splitter, Date Difference.
+## Core Calculators
 
-## API & WebMCP Navigation
+- [All Calculators](https://globalcalcpro.com/en/all): Browse all financial, health, and math calculators
+- [Mortgage Calculator](https://globalcalcpro.com/en/mortgage-calculator): Calculate monthly mortgage payments, interest, and loan terms
+- [Compound Interest Calculator](https://globalcalcpro.com/en/compound-interest): Compute investment growth with monthly contributions
+- [Percentage Finder](https://globalcalcpro.com/en/percentage-finder): Find percentages, percentage change, and discounts
+- [Unit Converter](https://globalcalcpro.com/en/unit-converter): Convert length, weight, temperature, area, and speed
+- [BMI Calculator](https://globalcalcpro.com/en/bmi-calculator): Calculate Body Mass Index and healthy weight range
+- [Salary Calculator](https://globalcalcpro.com/en/salary-calculator): Convert hourly pay to annual salary and net take-home
+- [Tip & Bill Splitter](https://globalcalcpro.com/en/tip-calculator): Split restaurant bills and calculate gratuity
 
-All calculator tools are rendered as accessible SPA routes:
-- All Calculators List: `https://globalcalcpro.com/{lang}/all`
-- Mortgage Calculator: `https://globalcalcpro.com/{lang}/mortgage-calculator`
-- Compound Interest: `https://globalcalcpro.com/{lang}/compound-interest`
-- Percentage Finder: `https://globalcalcpro.com/{lang}/percentage-finder`
-- Unit Converter: `https://globalcalcpro.com/{lang}/unit-converter`
-- BMI Calculator: `https://globalcalcpro.com/{lang}/bmi-calculator`
-- Salary Calculator: `https://globalcalcpro.com/{lang}/salary-calculator`
-- Tip Calculator: `https://globalcalcpro.com/{lang}/tip-calculator`
+## Supported Languages
 
-Supported languages: `he` (Hebrew), `en` (English), `es` (Spanish), `ar` (Arabic).
+- [English Calculators](https://globalcalcpro.com/en/all): English version of all tools
+- [Hebrew Calculators](https://globalcalcpro.com/he/all): Hebrew (RTL) version of all tools
+- [Spanish Calculators](https://globalcalcpro.com/es/all): Spanish version of all tools
+- [Arabic Calculators](https://globalcalcpro.com/ar/all): Arabic (RTL) version of all tools
 
-## Usage Guidelines for AI Agents
+## Optional
 
-1. Form inputs are equipped with explicit `<label>` tags and `aria-label` attributes.
-2. Calculations run locally using IEEE-754 double precision floating-point / exact decimal arithmetic.
-3. Structured metadata is provided via JSON-LD schema on all routes.
+- [Full Documentation](https://globalcalcpro.com/llms-full.txt): Complete detailed guide and parameters for all calculators
