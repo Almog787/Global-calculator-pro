@@ -234,7 +234,7 @@ export default function AllCalculators() {
       {/* Hero Section */}
       <section className="text-center mb-12 sm:mb-16 relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-border-subtle p-8 md:p-16 shadow-sm">
         <img 
-          src="/images/hero-banner.jpg" 
+          src="/images/hero-banner.webp" 
           alt="GlobalCalc Pro" 
           className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none mix-blend-multiply dark:mix-blend-lighten" 
         />
@@ -319,7 +319,7 @@ export default function AllCalculators() {
 
               {/* Result Preview */}
               <div className="bg-primary-container rounded-xl p-5 flex flex-col justify-center items-center text-center shadow-inner relative overflow-hidden">
-                <img src="/images/cat-finance.jpg" alt="Finance" className="absolute inset-0 w-full h-full object-cover opacity-15 mix-blend-overlay pointer-events-none" />
+                <img src="/images/cat-finance.webp" alt="Finance" className="absolute inset-0 w-full h-full object-cover opacity-15 mix-blend-overlay pointer-events-none" />
                 <div className="relative z-10">
                   <span className="font-label-sm text-label-sm text-primary-fixed-dim mb-1">
                     {currText.monthlyEstLabel}
@@ -354,7 +354,7 @@ export default function AllCalculators() {
             </div>
 
             <div className="flex-grow flex flex-col items-center justify-center py-2 relative">
-              <img src="/images/cat-health.jpg" alt="Health" className="absolute inset-0 w-full h-full object-cover opacity-[0.03] pointer-events-none rounded-xl" />
+              <img src="/images/cat-health.webp" alt="Health" className="absolute inset-0 w-full h-full object-cover opacity-[0.03] pointer-events-none rounded-xl" />
               <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-surface-variant flex items-center justify-center relative shadow-xs bg-surface/50 backdrop-blur-sm">
                 <svg className="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                   <circle
@@ -400,7 +400,7 @@ export default function AllCalculators() {
             onClick={() => navigate(`/${lang}/calculators/cap-rate`)}
             className="md:col-span-6 bg-surface-container-lowest border border-border-subtle rounded-2xl p-6 sm:p-8 ambient-shadow flex flex-col cursor-pointer group hover:border-secondary transition-all relative overflow-hidden"
           >
-            <img src="/images/cat-real-estate.jpg" alt="Real Estate" className="absolute top-0 rtl:left-0 ltr:right-0 w-48 h-48 object-cover opacity-[0.04] pointer-events-none mix-blend-multiply rounded-bl-3xl rtl:rounded-br-3xl rtl:rounded-bl-none z-0" />
+            <img src="/images/cat-real-estate.webp" alt="Real Estate" className="absolute top-0 rtl:left-0 ltr:right-0 w-48 h-48 object-cover opacity-[0.04] pointer-events-none mix-blend-multiply rounded-bl-3xl rtl:rounded-br-3xl rtl:rounded-bl-none z-0" />
             
             <div className="flex justify-between items-start mb-3 relative z-10">
               <div>
