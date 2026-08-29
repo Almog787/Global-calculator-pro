@@ -25,8 +25,7 @@
     "react-helmet-async": "^3.0.0",
     "react-router-dom": "^7.18.2",
     "recharts": "^3.10.1",
-    "tailwindcss": "^3.4.1",
-    "three": "^0.185.1"
+    "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

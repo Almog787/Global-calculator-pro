@@ -232,18 +232,25 @@ export default function AllCalculators() {
       />
 
       {/* Hero Section */}
-      <section className="text-center mb-12 sm:mb-16 relative">
-        <h1 className="font-display-xl text-3xl sm:text-4xl md:text-display-xl text-primary-container mb-4 font-extrabold tracking-tight">
-          {currText.heroTitle}
-        </h1>
-        <p className="font-body-lg text-base sm:text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-          {currText.heroSubtitle}
-        </p>
-
-        {/* Search Hero */}
-        <div className="relative max-w-2xl mx-auto flex items-center">
-          <div className="w-full">
-            <SearchBar isHero placeholder={currText.heroSearchPlaceholder} />
+      <section className="text-center mb-12 sm:mb-16 relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-border-subtle p-8 md:p-16 shadow-sm">
+        <img 
+          src="/images/hero-banner.jpg" 
+          alt="GlobalCalc Pro" 
+          className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none mix-blend-multiply dark:mix-blend-lighten" 
+        />
+        <div className="relative z-10">
+          <h1 className="font-display-xl text-3xl sm:text-4xl md:text-display-xl text-primary-container mb-4 font-extrabold tracking-tight">
+            {currText.heroTitle}
+          </h1>
+          <p className="font-body-lg text-base sm:text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">
+            {currText.heroSubtitle}
+          </p>
+  
+          {/* Search Hero */}
+          <div className="relative max-w-2xl mx-auto flex items-center">
+            <div className="w-full">
+              <SearchBar isHero placeholder={currText.heroSearchPlaceholder} />
+            </div>
           </div>
         </div>
       </section>
@@ -311,13 +318,16 @@ export default function AllCalculators() {
               </div>
 
               {/* Result Preview */}
-              <div className="bg-primary-container rounded-xl p-5 flex flex-col justify-center items-center text-center shadow-inner">
-                <span className="font-label-sm text-label-sm text-primary-fixed-dim mb-1">
-                  {currText.monthlyEstLabel}
-                </span>
-                <div className="font-display-xl text-3xl sm:text-display-xl text-secondary-fixed font-extrabold tracking-tight">
-                  <span className="text-xl sm:text-2xl mr-1 rtl:ml-1">₪</span>
-                  {estimatedMonthly.toLocaleString()}
+              <div className="bg-primary-container rounded-xl p-5 flex flex-col justify-center items-center text-center shadow-inner relative overflow-hidden">
+                <img src="/images/cat-finance.jpg" alt="Finance" className="absolute inset-0 w-full h-full object-cover opacity-15 mix-blend-overlay pointer-events-none" />
+                <div className="relative z-10">
+                  <span className="font-label-sm text-label-sm text-primary-fixed-dim mb-1">
+                    {currText.monthlyEstLabel}
+                  </span>
+                  <div className="font-display-xl text-3xl sm:text-display-xl text-secondary-fixed font-extrabold tracking-tight">
+                    <span className="text-xl sm:text-2xl mr-1 rtl:ml-1">₪</span>
+                    {estimatedMonthly.toLocaleString()}
+                  </div>
                 </div>
               </div>
             </div>
@@ -343,8 +353,9 @@ export default function AllCalculators() {
               </span>
             </div>
 
-            <div className="flex-grow flex flex-col items-center justify-center py-2">
-              <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-surface-variant flex items-center justify-center relative shadow-xs">
+            <div className="flex-grow flex flex-col items-center justify-center py-2 relative">
+              <img src="/images/cat-health.jpg" alt="Health" className="absolute inset-0 w-full h-full object-cover opacity-[0.03] pointer-events-none rounded-xl" />
+              <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-surface-variant flex items-center justify-center relative shadow-xs bg-surface/50 backdrop-blur-sm">
                 <svg className="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                   <circle
                     className="opacity-90 transition-all duration-500"
@@ -387,9 +398,11 @@ export default function AllCalculators() {
           {/* Real Estate (Medium Card - 6 Cols) */}
           <div 
             onClick={() => navigate(`/${lang}/calculators/cap-rate`)}
-            className="md:col-span-6 bg-surface-container-lowest border border-border-subtle rounded-2xl p-6 sm:p-8 ambient-shadow flex flex-col cursor-pointer group hover:border-secondary transition-all"
+            className="md:col-span-6 bg-surface-container-lowest border border-border-subtle rounded-2xl p-6 sm:p-8 ambient-shadow flex flex-col cursor-pointer group hover:border-secondary transition-all relative overflow-hidden"
           >
-            <div className="flex justify-between items-start mb-3">
+            <img src="/images/cat-real-estate.jpg" alt="Real Estate" className="absolute top-0 rtl:left-0 ltr:right-0 w-48 h-48 object-cover opacity-[0.04] pointer-events-none mix-blend-multiply rounded-bl-3xl rtl:rounded-br-3xl rtl:rounded-bl-none z-0" />
+            
+            <div className="flex justify-between items-start mb-3 relative z-10">
               <div>
                 <div className="flex items-center gap-2 text-secondary mb-1">
                   <span className="material-symbols-outlined filled text-xl">real_estate_agent</span>
@@ -404,11 +417,11 @@ export default function AllCalculators() {
               </span>
             </div>
             
-            <p className="font-body-md text-sm text-on-surface-variant mb-6 leading-relaxed">
+            <p className="font-body-md text-sm text-on-surface-variant mb-6 leading-relaxed relative z-10">
               {currText.realEstateDesc}
             </p>
 
-            <div className="mt-auto">
+            <div className="mt-auto relative z-10">
               <button 
                 type="button"
                 onClick={(e) => {
