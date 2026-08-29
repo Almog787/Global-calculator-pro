@@ -52,27 +52,6 @@ if (!fs.existsSync(baseHtmlPath)) {
 
 let baseHtml = fs.readFileSync(baseHtmlPath, "utf8");
 
-// Make CSS stylesheet links non-render-blocking for Lighthouse 100 FCP/LCP score
-baseHtml = baseHtml.replace(
-  /<link rel="stylesheet"([^>]*href="\/assets\/[^"]+\.css"[^>]*)>/gi,
-  (match, p1) => {
-    return `<link rel="preload"${p1} as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet"${p1}></noscript>`;
-  }
-);
-fs.writeFileSync(baseHtmlPath, baseHtml);
-
-const base404Path = path.join(distPath, "404.html");
-if (fs.existsSync(base404Path)) {
-  let content404 = fs.readFileSync(base404Path, "utf8");
-  content404 = content404.replace(
-    /<link rel="stylesheet"([^>]*href="\/assets\/[^"]+\.css"[^>]*)>/gi,
-    (match, p1) => {
-      return `<link rel="preload"${p1} as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet"${p1}></noscript>`;
-    }
-  );
-  fs.writeFileSync(base404Path, content404);
-}
-
 console.log(
   `Generating static HTML entry points for ${allPaths.length} routes...`,
 );

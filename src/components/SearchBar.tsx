@@ -53,6 +53,8 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
             search
           </span>
           <input
+            id="hero-search-input"
+            aria-label={defaultPlaceholder}
             type="text"
             className="w-full bg-transparent border-none py-4 pr-14 pl-14 rtl:pr-14 rtl:pl-4 ltr:pl-14 ltr:pr-4 text-lg text-on-surface placeholder:text-text-muted focus:outline-none focus:ring-0 rounded-xl"
             placeholder={defaultPlaceholder}
@@ -107,6 +109,8 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
           <span className="material-symbols-outlined text-[18px]">search</span>
         </span>
         <input
+          id="header-search-input"
+          aria-label={defaultPlaceholder}
           type="text"
           className="w-full pr-10 pl-10 rtl:pr-10 rtl:pl-3 ltr:pl-10 ltr:pr-3 py-2 bg-surface-container-lowest border border-border-subtle rounded-lg font-body-md text-sm text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all h-10 placeholder:text-text-muted"
           placeholder={defaultPlaceholder}

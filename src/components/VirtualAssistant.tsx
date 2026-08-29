@@ -497,10 +497,12 @@ export default function VirtualAssistant() {
                 <div className="bg-slate-800/50 p-4 rounded-2xl border border-slate-700/60 space-y-3 animate-slide-up-fade">
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="text-[11px] font-medium text-slate-300 block mb-1">
+                      <label htmlFor="assistant-percent-x" className="text-[11px] font-medium text-slate-300 block mb-1">
                         {i18nTexts.valueX}
                       </label>
                       <input
+                        id="assistant-percent-x"
+                        aria-label={i18nTexts.valueX}
                         type="number"
                         value={percentX}
                         onChange={(e) => setPercentX(e.target.value)}
@@ -508,10 +510,12 @@ export default function VirtualAssistant() {
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] font-medium text-slate-300 block mb-1">
+                      <label htmlFor="assistant-percent-y" className="text-[11px] font-medium text-slate-300 block mb-1">
                         {i18nTexts.valueY}
                       </label>
                       <input
+                        id="assistant-percent-y"
+                        aria-label={i18nTexts.valueY}
                         type="number"
                         value={percentY}
                         onChange={(e) => setPercentY(e.target.value)}
@@ -533,10 +537,12 @@ export default function VirtualAssistant() {
                 <div className="bg-slate-800/50 p-4 rounded-2xl border border-slate-700/60 space-y-3 animate-slide-up-fade">
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="text-[11px] font-medium text-slate-300 block mb-1">
+                      <label htmlFor="assistant-discount-price" className="text-[11px] font-medium text-slate-300 block mb-1">
                         {i18nTexts.originalPrice}
                       </label>
                       <input
+                        id="assistant-discount-price"
+                        aria-label={i18nTexts.originalPrice}
                         type="number"
                         value={discountPrice}
                         onChange={(e) => setDiscountPrice(e.target.value)}
@@ -544,10 +550,12 @@ export default function VirtualAssistant() {
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] font-medium text-slate-300 block mb-1">
+                      <label htmlFor="assistant-discount-pct" className="text-[11px] font-medium text-slate-300 block mb-1">
                         {i18nTexts.discountPercent}
                       </label>
                       <input
+                        id="assistant-discount-pct"
+                        aria-label={i18nTexts.discountPercent}
                         type="number"
                         value={discountPct}
                         onChange={(e) => setDiscountPct(e.target.value)}
@@ -574,10 +582,12 @@ export default function VirtualAssistant() {
               {calcMode === "rule72" && (
                 <div className="bg-slate-800/50 p-4 rounded-2xl border border-slate-700/60 space-y-3 animate-slide-up-fade">
                   <div>
-                    <label className="text-[11px] font-medium text-slate-300 block mb-1">
+                    <label htmlFor="assistant-rule72-rate" className="text-[11px] font-medium text-slate-300 block mb-1">
                       {i18nTexts.rateInput}
                     </label>
                     <input
+                      id="assistant-rule72-rate"
+                      aria-label={i18nTexts.rateInput}
                       type="number"
                       value={rule72Rate}
                       onChange={(e) => setRule72Rate(e.target.value)}
@@ -662,6 +672,8 @@ export default function VirtualAssistant() {
                 </span>
                 <input
                   ref={searchInputRef}
+                  id="assistant-search-input"
+                  aria-label={i18nTexts.searchPlaceholder}
                   type="text"
                   placeholder={i18nTexts.searchPlaceholder}
                   value={searchQuery}

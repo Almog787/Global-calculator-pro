@@ -284,12 +284,14 @@ export default function AllCalculators() {
               {/* Controls */}
               <div className="space-y-4" onClick={(e) => e.stopPropagation()}>
                 <div>
-                  <label className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
+                  <label htmlFor="quick-mortgage-amount" className="font-label-sm text-label-sm text-on-surface-variant block mb-1">
                     {currText.loanAmountLabel}
                   </label>
                   <div className="input-focus-ring flex items-center border border-border-subtle rounded-lg bg-surface py-2 px-3">
                     <span className="text-text-muted font-bold ml-1.5 ltr:mr-1.5 ltr:ml-0">₪</span>
                     <input
+                      id="quick-mortgage-amount"
+                      aria-label={currText.loanAmountLabel}
                       type="number"
                       value={mortgageAmount}
                       onChange={(e) => setMortgageAmount(Number(e.target.value) || 0)}
@@ -300,12 +302,14 @@ export default function AllCalculators() {
 
                 <div>
                   <div className="flex justify-between items-center mb-1">
-                    <label className="font-label-sm text-label-sm text-on-surface-variant">
+                    <label htmlFor="quick-mortgage-rate" className="font-label-sm text-label-sm text-on-surface-variant">
                       {currText.interestLabel}
                     </label>
                     <span className="font-mono-num text-sm text-primary-container font-bold">{mortgageRate}%</span>
                   </div>
                   <input
+                    id="quick-mortgage-rate"
+                    aria-label={currText.interestLabel}
                     type="range"
                     min="1"
                     max="10"

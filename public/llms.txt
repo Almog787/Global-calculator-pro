@@ -1,0 +1,29 @@
+# GlobalCalc Pro - Fast, Accurate, Multi-Language Online Calculators
+
+> GlobalCalc Pro provides free, high-precision financial, health, real estate, and mathematical calculators. Optimized for human users and AI agents (WebMCP compatible).
+
+## Core Capabilities
+
+- **Financial Calculators**: Mortgage Payment, Compound Interest, Salary & Tax, Credit Card Payoff, Inflation Impact, Freelance Net Income, Rent vs Buy, Auto Loan.
+- **Health & Fitness**: BMI Calculator, BMR & Daily Calories, Water Intake, Sleep Optimization.
+- **Math & Utilities**: Unit Converter (Length, Weight, Temp), Percentage Finder, Tip & Bill Splitter, Date Difference.
+
+## API & WebMCP Navigation
+
+All calculator tools are rendered as accessible SPA routes:
+- All Calculators List: `https://globalcalcpro.com/{lang}/all`
+- Mortgage Calculator: `https://globalcalcpro.com/{lang}/mortgage-calculator`
+- Compound Interest: `https://globalcalcpro.com/{lang}/compound-interest`
+- Percentage Finder: `https://globalcalcpro.com/{lang}/percentage-finder`
+- Unit Converter: `https://globalcalcpro.com/{lang}/unit-converter`
+- BMI Calculator: `https://globalcalcpro.com/{lang}/bmi-calculator`
+- Salary Calculator: `https://globalcalcpro.com/{lang}/salary-calculator`
+- Tip Calculator: `https://globalcalcpro.com/{lang}/tip-calculator`
+
+Supported languages: `he` (Hebrew), `en` (English), `es` (Spanish), `ar` (Arabic).
+
+## Usage Guidelines for AI Agents
+
+1. Form inputs are equipped with explicit `<label>` tags and `aria-label` attributes.
+2. Calculations run locally using IEEE-754 double precision floating-point / exact decimal arithmetic.
+3. Structured metadata is provided via JSON-LD schema on all routes.
