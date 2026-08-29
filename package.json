@@ -13,10 +13,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.7.0",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
     "chart.js": "^4.5.1",
     "decimal.js": "^10.6.0",
+    "framer-motion": "^13.1.1",
     "googleapis": "^173.0.0",
     "lucide-react": "^1.35.0",
     "react": "^19.2.8",
@@ -25,7 +28,8 @@
     "react-helmet-async": "^3.0.0",
     "react-router-dom": "^7.18.2",
     "recharts": "^3.10.1",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

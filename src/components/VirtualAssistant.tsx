@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { useI18n } from "../contexts/i18n";
 import { calculators, getCalculatorTitle, getCalculatorDescription } from "../data/calculators";
 import { quizSteps, assistantTranslations, assistantTips, QuizOption, AssistantTip } from "../data/assistantQuiz";
+
+const ThreeCharacterCanvas = React.lazy(() => import("./ThreeCharacterCanvas"));
 
 type AssistantTab = "quiz" | "quickCalc" | "tips" | "search";
 type AssistantState = "idle" | "success" | "thinking" | "shake" | "sleep" | "panic";
@@ -16,6 +18,7 @@ export default function VirtualAssistant() {
   
   // Character Animation State
   const [assistantState, setAssistantState] = useState<AssistantState>("idle");
+  const [normalizedMousePos, setNormalizedMousePos] = useState({ x: 0, y: 0 });
 
   // Quiz State
   const [currentStepId, setCurrentStepId] = useState<string>("root");
@@ -114,6 +117,18 @@ export default function VirtualAssistant() {
   const triggerShakeNo = useCallback(() => {
     setAssistantState("shake");
     setTimeout(() => setAssistantState("idle"), 800);
+  }, []);
+
+  // Global mouse tracking for Three.js 3D eye tracking
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // Throttle for performance, or just use rAF if necessary. Let's do simple basic for now.
+      const normX = (e.clientX / window.innerWidth) * 2 - 1;
+      const normY = -(e.clientY / window.innerHeight) * 2 + 1;
+      setNormalizedMousePos({ x: normX, y: normY });
+    };
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   // Event listener to open assistant from anywhere
@@ -258,11 +273,16 @@ export default function VirtualAssistant() {
           <div className="flex items-center gap-3">
             <div className="w-11 h-11 rounded-2xl bg-slate-950 border border-cyan-400/60 flex items-center justify-center shrink-0 shadow-lg shadow-cyan-500/20 overflow-hidden relative group">
               <div className="absolute inset-0 bg-radial from-cyan-500/40 via-transparent to-transparent opacity-80"></div>
-              <img 
-                src="/icon-192.jpg" 
-                alt="Calc-E Assistant" 
-                className="w-full h-full object-cover" 
-              />
+              <Suspense fallback={<img src="/icon-192.jpg" alt="Calc-E Assistant" className="w-full h-full object-cover" />}>
+                <ThreeCharacterCanvas
+                  state={assistantState}
+                  mousePos={normalizedMousePos}
+                  width={44}
+                  height={44}
+                  className="hidden sm:block"
+                />
+                <img src="/icon-192.jpg" alt="Calc-E Assistant" className="w-full h-full object-cover sm:hidden" />
+              </Suspense>
             </div>
             <div>
               <div className="font-extrabold text-sm tracking-wide flex items-center gap-2 text-white">
@@ -724,12 +744,17 @@ export default function VirtualAssistant() {
           {/* Luminous Glow Behind Character */}
           <div className="absolute inset-0 bg-radial from-cyan-400/40 via-sky-500/20 to-transparent pointer-events-none"></div>
 
-          {/* Static Image Replacement for 3D Character Canvas */}
-          <img 
-            src="/icon-192.jpg" 
-            alt="Calc-E Assistant" 
-            className="w-10 h-10 object-cover rounded-full shadow-inner pointer-events-none" 
-          />
+          {/* 3D Character Canvas */}
+          <Suspense fallback={<img src="/icon-192.jpg" alt="Calc-E Assistant" className="w-10 h-10 object-cover rounded-full shadow-inner pointer-events-none" />}>
+            <ThreeCharacterCanvas
+              state={assistantState}
+              mousePos={normalizedMousePos}
+              width={64}
+              height={64}
+              className="pointer-events-none hidden sm:block"
+            />
+            <img src="/icon-192.jpg" alt="Calc-E Assistant" className="w-10 h-10 object-cover rounded-full shadow-inner pointer-events-none sm:hidden" />
+          </Suspense>
         </button>
       </div>
     </div>
