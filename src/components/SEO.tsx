@@ -20,7 +20,7 @@ const SEO: React.FC<SEOProps> = ({
   canonicalUrl,
   type = 'website',
   structuredData,
-  image = 'https://globalcalcpro.com/favicon.svg',
+  image = 'https://globalcalcpro.com/og-image.jpg',
   noindex = false
 }) => {
   const location = useLocation();
