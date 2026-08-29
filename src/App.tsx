@@ -1,5 +1,5 @@
 import VirtualAssistant from "./components/VirtualAssistant";
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState, useRef } from 'react';
 import { Routes, Route, Link, Navigate, useNavigate, useLocation, useParams } from 'react-router-dom';
 const MortgageCalculator = lazy(() => import('./pages/MortgageCalculator'));
 const CompoundInterest = lazy(() => import('./pages/CompoundInterest'));
@@ -28,17 +28,54 @@ function App() {
   const { lang, setLang, t } = useI18n();
   const navigate = useNavigate();
   const location = useLocation();
+  const prevPath = useRef(location.pathname);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    const currentPath = location.pathname;
+
     // 301-equivalent redirect for legacy WordPress blog URLs, .html extensions, and trailing slashes
-    const redirectPath = getCanonicalRedirect(location.pathname, lang);
-    if (redirectPath && redirectPath !== location.pathname) {
+    const redirectPath = getCanonicalRedirect(currentPath, lang);
+    if (redirectPath && redirectPath !== currentPath) {
       navigate(redirectPath + location.search, { replace: true });
       return;
     }
 
-    window.scrollTo({ top: 0, behavior: "instant" });
+    // Scroll to relevant section logic
+    const isCategoryView = currentPath.includes('/category/');
+    const isAllView = currentPath.endsWith('/all');
+    const wasCategoryOrAll = prevPath.current.includes('/category/') || prevPath.current.endsWith('/all');
+
+    if (prevPath.current !== currentPath) {
+      if ((isCategoryView || isAllView) && wasCategoryOrAll) {
+        // Navigating between categories: Scroll to filters so they stay in view
+        setTimeout(() => {
+          const filterEl = document.getElementById('category-filters');
+          if (filterEl) {
+            const y = filterEl.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          } else {
+            window.scrollTo({ top: 0, behavior: "instant" });
+          }
+        }, 10);
+      } else if (isCategoryView && !wasCategoryOrAll) {
+        // Came from a calculator to a specific category: scroll to filters
+        setTimeout(() => {
+          const filterEl = document.getElementById('category-filters');
+          if (filterEl) {
+            const y = filterEl.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          } else {
+            window.scrollTo({ top: 0, behavior: "instant" });
+          }
+        }, 100); // slightly longer timeout to allow page render
+      } else {
+        // General page transitions (e.g. going to a calculator, or going to /all from calculator)
+        window.scrollTo({ top: 0, behavior: "instant" });
+      }
+    }
+
+    prevPath.current = currentPath;
     setIsMobileMenuOpen(false);
   }, [location.pathname, location.search, lang, navigate]);
 

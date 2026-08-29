@@ -17,7 +17,7 @@ function RobotFace({ state = "idle", mousePos = { x: 0, y: 0 } }: { state?: stri
   const leftEye = useRef<THREE.Mesh>(null);
   const rightEye = useRef<THREE.Mesh>(null);
 
-  useFrame((stateCtx, delta) => {
+  useFrame((stateCtx) => {
     if (!group.current) return;
     
     // Look at mouse pointer

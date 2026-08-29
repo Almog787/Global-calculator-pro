@@ -534,7 +534,7 @@ export default function AllCalculators() {
       )}
 
       {/* Category Filter Pills */}
-      <section className="mb-8 overflow-x-auto pb-3 scrollbar-hide">
+      <section id="category-filters" className="mb-8 overflow-x-auto pb-3 scrollbar-hide">
         <div className="flex gap-3 min-w-max">
           {categories.map((cat) => {
             const path = cat.id === "all" ? `/${lang}/all` : `/${lang}/category/${cat.id}`;
