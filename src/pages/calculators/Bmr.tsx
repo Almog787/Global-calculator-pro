@@ -6,11 +6,11 @@ import MeasurementToggle from '../../components/MeasurementToggle';
 export default function Bmr() {
   const { system, setSystem } = useMeasurementSystem();
   
-  const [age, setAge] = useState<number>(30);
-  const [gender, setGender] = useState<'male' | 'female'>('male');
-  const [weight, setWeight] = useState<number>(75); // Always in kg
-  const [height, setHeight] = useState<number>(175); // Always in cm
-  const [activity, setActivity] = useState<number>(1.2);
+  const [age, setAge] = useUrlState<number>('age', 30);
+  const [gender, setGender] = useUrlState<'male' | 'female'>('gender', 'male');
+  const [weight, setWeight] = useUrlState<number>('weight', 75); // Always in kg
+  const [height, setHeight] = useUrlState<number>('height', 175); // Always in cm
+  const [activity, setActivity] = useUrlState<number>('activity', 1.2);
 
   const displayHeight = system === 'metric' ? height : (height / 2.54);
   const displayWeight = system === 'metric' ? weight : (weight * 2.20462);

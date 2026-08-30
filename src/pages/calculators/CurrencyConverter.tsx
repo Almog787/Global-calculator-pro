@@ -9,14 +9,14 @@ const commonCurrencies = [
 
 export default function CurrencyConverter() {
   const { lang } = useI18n();
-  const [amount, setAmount] = useState<number>(100);
-  const [fromCurrency, setFromCurrency] = useState<string>('USD');
-  const [toCurrency, setToCurrency] = useState<string>(lang === 'he' ? 'ILS' : 'EUR');
+  const [amount, setAmount] = useUrlState<number>('amount', 100);
+  const [fromCurrency, setFromCurrency] = useUrlState<string>('fromCurrency', 'USD');
+  const [toCurrency, setToCurrency] = useUrlState<string>('toCurrency', lang === 'he' ? 'ILS' : 'EUR');
   
-  const [exchangeRate, setExchangeRate] = useState<number | null>(null);
-  const [lastUpdated, setLastUpdated] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [exchangeRate, setExchangeRate] = useUrlState<number | null>('exchangeRate', null);
+  const [lastUpdated, setLastUpdated] = useUrlState<string>('lastUpdated', '');
+  const [loading, setLoading] = useUrlState<boolean>('loading', false);
+  const [error, setError] = useUrlState<string | null>('error', null);
 
   useEffect(() => {
     const fetchRate = async () => {

@@ -1,4 +1,5 @@
-import { useState, useDeferredValue, useEffect } from 'react';
+import { useDeferredValue, useEffect } from 'react';
+import { useUrlState } from '../../hooks/useUrlState';
 import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
 import RelatedCalculators from '../../components/RelatedCalculators';
@@ -78,11 +79,11 @@ export default function DownloadTime() {
   const guide = getGuideData('download-time', lang);
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
-  const [fileSize, setFileSize] = useState(50);
-  const [fileUnit, setFileUnit] = useState('GB');
+  const [fileSize, setFileSize] = useUrlState('fileSize', 50);
+  const [fileUnit, setFileUnit] = useUrlState('fileUnit', 'GB');
   
-  const [speed, setSpeed] = useState(100);
-  const [speedUnit, setSpeedUnit] = useState('Mbps'); // Megabits per second
+  const [speed, setSpeed] = useUrlState('speed', 100);
+  const [speedUnit, setSpeedUnit] = useUrlState('speedUnit', 'Mbps'); // Megabits per second
 
   const [results, setResults] = useState({ totalSeconds: 0, formatted: '' });
 

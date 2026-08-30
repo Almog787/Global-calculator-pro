@@ -5,8 +5,8 @@ import MeasurementToggle from '../../components/MeasurementToggle';
 
 export default function WaterIntake() {
   const { system, setSystem } = useMeasurementSystem();
-  const [weight, setWeight] = useState<number>(70); // kg
-  const [exerciseMins, setExerciseMins] = useState<number>(30);
+  const [weight, setWeight] = useUrlState<number>('weight', 70); // kg
+  const [exerciseMins, setExerciseMins] = useUrlState<number>('exerciseMins', 30);
   
   const displayWeight = system === 'metric' ? weight : (weight * 2.20462);
   const handleWeightChange = (val: number) => {

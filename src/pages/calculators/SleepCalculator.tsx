@@ -5,8 +5,8 @@ import ShareActions from '../../components/ShareActions';
 
 export default function SleepCalculator() {
   const { lang } = useI18n();
-  const [mode, setMode] = useState<'wake' | 'sleep'>('wake');
-  const [time, setTime] = useState<string>('07:00');
+  const [mode, setMode] = useUrlState<'wake' | 'sleep'>('mode', 'wake');
+  const [time, setTime] = useUrlState<string>('time', '07:00');
 
   // Parse HH:mm to minutes from midnight
   const parseTime = (timeStr: string) => {

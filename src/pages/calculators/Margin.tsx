@@ -1,4 +1,5 @@
-import { useState, useDeferredValue, useEffect } from 'react';
+import { useDeferredValue, useEffect } from 'react';
+import { useUrlState } from '../../hooks/useUrlState';
 import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
 import RelatedCalculators from '../../components/RelatedCalculators';
@@ -63,8 +64,8 @@ export default function Margin() {
   const guide = getGuideData('margin', lang);
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
-  const [cost, setCost] = useState(50);
-  const [revenue, setRevenue] = useState(120);
+  const [cost, setCost] = useUrlState('cost', 50);
+  const [revenue, setRevenue] = useUrlState('revenue', 120);
 
   const [results, setResults] = useState({
     grossProfit: 0,

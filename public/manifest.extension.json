@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Global Calc Pro Assistant",
+  "version": "1.0",
+  "description": "Quickly access over 20+ smart calculators with the Calc-E 3D Assistant directly from your browser.",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Open Global Calc Pro"
+  },
+  "icons": {
+    "16": "icon-192.jpg",
+    "48": "icon-192.jpg",
+    "128": "icon-512.jpg"
+  }
+}

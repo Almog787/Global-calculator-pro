@@ -36,9 +36,9 @@ export default function CookingTimer() {
   const { lang } = useI18n();
   const { system, setSystem } = useMeasurementSystem();
   
-  const [meatType, setMeatType] = useState<MeatType>('beef');
-  const [doneness, setDoneness] = useState<Doneness>('medium');
-  const [weight, setWeight] = useState<number>(1.5); // Stored as kg initially
+  const [meatType, setMeatType] = useUrlState<MeatType>('meatType', 'beef');
+  const [doneness, setDoneness] = useUrlState<Doneness>('doneness', 'medium');
+  const [weight, setWeight] = useUrlState<number>('weight', 1.5); // Stored as kg initially
 
   const displayWeight = system === 'metric' ? weight : weight * 2.20462;
   const handleWeightChange = (val: number) => {

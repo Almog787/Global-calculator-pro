@@ -1,4 +1,5 @@
-import { useState, useDeferredValue, useEffect } from 'react';
+import { useDeferredValue, useEffect } from 'react';
+import { useUrlState } from '../../hooks/useUrlState';
 import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
 import RelatedCalculators from '../../components/RelatedCalculators';
@@ -92,7 +93,7 @@ export default function DebtSnowball() {
     { id: 2, bal: 10000, rate: 12, min: 250 },
     { id: 3, bal: 25000, rate: 7, min: 400 },
   ]);
-  const [extraPayment, setExtraPayment] = useState(500);
+  const [extraPayment, setExtraPayment] = useUrlState('extraPayment', 500);
 
   const [results, setResults] = useState({ 
     baseMonths: 0, 

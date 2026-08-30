@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Target } from 'lucide-react';
 
 export default function BreakEven() {
-  const [fixedCosts, setFixedCosts] = useState<number>(10000);
-  const [pricePerUnit, setPricePerUnit] = useState<number>(50);
-  const [variableCostPerUnit, setVariableCostPerUnit] = useState<number>(20);
+  const [fixedCosts, setFixedCosts] = useUrlState<number>('fixedCosts', 10000);
+  const [pricePerUnit, setPricePerUnit] = useUrlState<number>('pricePerUnit', 50);
+  const [variableCostPerUnit, setVariableCostPerUnit] = useUrlState<number>('variableCostPerUnit', 20);
 
   const contributionMargin = pricePerUnit - variableCostPerUnit;
   const contributionMarginRatio = pricePerUnit > 0 ? contributionMargin / pricePerUnit : 0;

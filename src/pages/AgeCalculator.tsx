@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import SEO from '../components/SEO';
 import { useI18n } from '../contexts/i18n';
 import Breadcrumbs from '../components/Breadcrumbs';

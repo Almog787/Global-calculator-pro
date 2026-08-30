@@ -1,5 +1,6 @@
 import FAQ from '../components/FAQ';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useUrlState } from '../hooks/useUrlState';
 import SEO from '../components/SEO';
 import { useI18n } from '../contexts/i18n';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -13,9 +14,9 @@ export default function BmiCalculator() {
   const guide = getGuideData('bmi', lang);
   const { system, setSystem } = useMeasurementSystem();
   
-  const [height, setHeight] = useState(175); // Always in cm
-  const [weight, setWeight] = useState(70);  // Always in kg
-  const [bmi, setBmi] = useState(0);
+  const [height, setHeight] = useUrlState('height', 175); // Always in cm
+  const [weight, setWeight] = useUrlState('weight', 70);  // Always in kg
+  const [bmi, setBmi] = useUrlState('bmi', 0);
 
   // Conversion helpers for inputs
   const displayHeight = system === 'metric' ? height : (height / 2.54); // cm to inches

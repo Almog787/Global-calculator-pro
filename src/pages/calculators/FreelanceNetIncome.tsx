@@ -1,4 +1,5 @@
-import { useState, useDeferredValue, useEffect } from 'react';
+import { useDeferredValue, useEffect } from 'react';
+import { useUrlState } from '../../hooks/useUrlState';
 import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
 import RelatedCalculators from '../../components/RelatedCalculators';
@@ -73,10 +74,10 @@ export default function FreelanceNetIncome() {
   const guide = getGuideData('freelance-net-income', lang);
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
-  const [gross, setGross] = useState(120000);
-  const [expenses, setExpenses] = useState(20000);
-  const [incomeTax, setIncomeTax] = useState(15);
-  const [seTax, setSeTax] = useState(12);
+  const [gross, setGross] = useUrlState('gross', 120000);
+  const [expenses, setExpenses] = useUrlState('expenses', 20000);
+  const [incomeTax, setIncomeTax] = useUrlState('incomeTax', 15);
+  const [seTax, setSeTax] = useUrlState('seTax', 12);
 
   const [results, setResults] = useState({ net: 0, taxes: 0, taxableIncome: 0 });
 

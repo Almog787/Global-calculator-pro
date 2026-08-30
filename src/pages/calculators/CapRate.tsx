@@ -1,4 +1,5 @@
-import { useState, useDeferredValue, useEffect } from 'react';
+import { useDeferredValue, useEffect } from 'react';
+import { useUrlState } from '../../hooks/useUrlState';
 import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
 import RelatedCalculators from '../../components/RelatedCalculators';
@@ -63,9 +64,9 @@ export default function CapRate() {
   const guide = getGuideData('cap-rate', lang);
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
-  const [propertyValue, setPropertyValue] = useState(500000);
-  const [grossIncome, setGrossIncome] = useState(60000);
-  const [operatingExpenses, setOperatingExpenses] = useState(15000);
+  const [propertyValue, setPropertyValue] = useUrlState('propertyValue', 500000);
+  const [grossIncome, setGrossIncome] = useUrlState('grossIncome', 60000);
+  const [operatingExpenses, setOperatingExpenses] = useUrlState('operatingExpenses', 15000);
 
   const [results, setResults] = useState({ noi: 0, capRate: 0 });
 

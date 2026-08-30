@@ -1,4 +1,5 @@
-import { useState, useDeferredValue, useEffect } from 'react';
+import { useDeferredValue, useEffect } from 'react';
+import { useUrlState } from '../../hooks/useUrlState';
 import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
 import RelatedCalculators from '../../components/RelatedCalculators';
@@ -78,11 +79,11 @@ export default function PeltierCooling() {
   const guide = getGuideData('peltier-cooling', lang);
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
-  const [qmax, setQmax] = useState(60);
-  const [deltaTmax, setDeltaTmax] = useState(67);
-  const [operatingDeltaT, setOperatingDeltaT] = useState(20);
-  const [voltage, setVoltage] = useState(12);
-  const [current, setCurrent] = useState(5);
+  const [qmax, setQmax] = useUrlState('qmax', 60);
+  const [deltaTmax, setDeltaTmax] = useUrlState('deltaTmax', 67);
+  const [operatingDeltaT, setOperatingDeltaT] = useUrlState('operatingDeltaT', 20);
+  const [voltage, setVoltage] = useUrlState('voltage', 12);
+  const [current, setCurrent] = useUrlState('current', 5);
 
   const [results, setResults] = useState({ capacity: 0, power: 0, cop: 0 });
 

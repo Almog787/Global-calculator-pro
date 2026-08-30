@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { PiggyBank } from 'lucide-react';
 
 export default function Refinance() {
-  const [currentBalance, setCurrentBalance] = useState<number>(300000);
-  const [currentRate, setCurrentRate] = useState<number>(5.5);
-  const [remainingYears, setRemainingYears] = useState<number>(25);
+  const [currentBalance, setCurrentBalance] = useUrlState<number>('currentBalance', 300000);
+  const [currentRate, setCurrentRate] = useUrlState<number>('currentRate', 5.5);
+  const [remainingYears, setRemainingYears] = useUrlState<number>('remainingYears', 25);
   
-  const [newRate, setNewRate] = useState<number>(4.0);
-  const [newYears, setNewYears] = useState<number>(25);
-  const [closingCosts, setClosingCosts] = useState<number>(3000);
+  const [newRate, setNewRate] = useUrlState<number>('newRate', 4.0);
+  const [newYears, setNewYears] = useUrlState<number>('newYears', 25);
+  const [closingCosts, setClosingCosts] = useUrlState<number>('closingCosts', 3000);
 
   const calcPayment = (principal: number, rate: number, years: number) => {
     const monthlyRate = rate / 100 / 12;

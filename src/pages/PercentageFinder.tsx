@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useUrlState } from '../hooks/useUrlState';
 import SEO from '../components/SEO';
 import Decimal from 'decimal.js';
 import { useI18n } from '../contexts/i18n';
@@ -17,14 +18,14 @@ export default function PercentageFinder() {
   const isHebrew = lang === 'he';
 
   // Active Mode: 'of' | 'isWhat' | 'change' | 'discount' | 'reverse'
-  const [activeTab, setActiveTab] = useState<'of' | 'isWhat' | 'change' | 'discount' | 'reverse'>('of');
+  const [activeTab, setActiveTab] = useUrlState<'of' | 'isWhat' | 'change' | 'discount' | 'reverse'>('activeTab', 'of');
 
   // Calculator % key interactive guide active scenario
-  const [keyScenario, setKeyScenario] = useState<'find' | 'add' | 'discount' | 'margin'>('find');
+  const [keyScenario, setKeyScenario] = useUrlState<'find' | 'add' | 'discount' | 'margin'>('keyScenario', 'find');
 
   // Mode 1: What is X% of Y?
-  const [val1A, setVal1A] = useState<number | ''>(20);
-  const [val1B, setVal1B] = useState<number | ''>(150);
+  const [val1A, setVal1A] = useUrlState<number | ''>('val1A', 20);
+  const [val1B, setVal1B] = useUrlState<number | ''>('val1B', 150);
 
   const res1 = (() => {
     try {
@@ -37,8 +38,8 @@ export default function PercentageFinder() {
   })();
 
   // Mode 2: X is what % of Y?
-  const [val2A, setVal2A] = useState<number | ''>(50);
-  const [val2B, setVal2B] = useState<number | ''>(200);
+  const [val2A, setVal2A] = useUrlState<number | ''>('val2A', 50);
+  const [val2B, setVal2B] = useUrlState<number | ''>('val2B', 200);
 
   const res2 = (() => {
     try {
@@ -51,8 +52,8 @@ export default function PercentageFinder() {
   })();
 
   // Mode 3: Percentage Change (From X to Y)
-  const [val3A, setVal3A] = useState<number | ''>(100);
-  const [val3B, setVal3B] = useState<number | ''>(125);
+  const [val3A, setVal3A] = useUrlState<number | ''>('val3A', 100);
+  const [val3B, setVal3B] = useUrlState<number | ''>('val3B', 125);
 
   const res3 = (() => {
     try {
@@ -66,8 +67,8 @@ export default function PercentageFinder() {
   })();
 
   // Mode 4: Discount (Price - Discount% = Sale Price & Saved)
-  const [val4Price, setVal4Price] = useState<number | ''>(80);
-  const [val4Discount, setVal4Discount] = useState<number | ''>(25);
+  const [val4Price, setVal4Price] = useUrlState<number | ''>('val4Price', 80);
+  const [val4Discount, setVal4Discount] = useUrlState<number | ''>('val4Discount', 25);
 
   const res4Savings = (() => {
     try {
@@ -89,8 +90,8 @@ export default function PercentageFinder() {
   })();
 
   // Mode 5: Reverse Percentage (X is Y% of what number?)
-  const [val5Part, setVal5Part] = useState<number | ''>(40);
-  const [val5Perc, setVal5Perc] = useState<number | ''>(20);
+  const [val5Part, setVal5Part] = useUrlState<number | ''>('val5Part', 40);
+  const [val5Perc, setVal5Perc] = useUrlState<number | ''>('val5Perc', 20);
 
   const res5Total = (() => {
     try {

@@ -5,9 +5,9 @@ import ShareActions from '../../components/ShareActions';
 
 export default function SeverancePay() {
   const { lang } = useI18n();
-  const [salary, setSalary] = useState<number>(15000);
-  const [years, setYears] = useState<number>(3);
-  const [months, setMonths] = useState<number>(0);
+  const [salary, setSalary] = useUrlState<number>('salary', 15000);
+  const [years, setYears] = useUrlState<number>('years', 3);
+  const [months, setMonths] = useUrlState<number>('months', 0);
 
   const totalYears = years + (months / 12);
   const severance = salary * totalYears;

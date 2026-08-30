@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Calculator } from 'lucide-react';
 
 export default function Vat() {
-  const [amount, setAmount] = useState<number>(100);
-  const [rate, setRate] = useState<number>(17); // Default IL VAT
+  const [amount, setAmount] = useUrlState<number>('amount', 100);
+  const [rate, setRate] = useUrlState<number>('rate', 17); // Default IL VAT
   
   const taxAmountAdd = amount * (rate / 100);
   const totalAdd = amount + taxAmountAdd;

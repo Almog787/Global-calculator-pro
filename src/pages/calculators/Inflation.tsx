@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { TrendingDown } from 'lucide-react';
 
 export default function Inflation() {
-  const [amount, setAmount] = useState<number>(10000);
-  const [rate, setRate] = useState<number>(3.5);
-  const [years, setYears] = useState<number>(10);
+  const [amount, setAmount] = useUrlState<number>('amount', 10000);
+  const [rate, setRate] = useUrlState<number>('rate', 3.5);
+  const [years, setYears] = useUrlState<number>('years', 10);
 
   const futureValue = amount * Math.pow(1 + rate / 100, years);
   const purchasingPower = amount / Math.pow(1 + rate / 100, years);

@@ -1,5 +1,6 @@
 import FAQ from '../components/FAQ';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useUrlState } from '../hooks/useUrlState';
 import SEO from '../components/SEO';
 import { useI18n } from '../contexts/i18n';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -27,9 +28,9 @@ const conversions: Record<string, Record<string, (v: number) => number>> = {
 export default function UnitConverter() {
   const { t, lang } = useI18n();
   const guide = getGuideData('unit', lang);
-  const [val, setVal] = useState<number | ''>(1);
-  const [cat, setCat] = useState('length');
-  const [type, setType] = useState('m-ft');
+  const [val, setVal] = useUrlState<number | ''>('val', 1);
+  const [cat, setCat] = useUrlState('cat', 'length');
+  const [type, setType] = useUrlState('type', 'm-ft');
 
   const numericVal = typeof val === 'number' ? val : 0;
   const res = conversions[cat]?.[type]?.(numericVal) || 0;

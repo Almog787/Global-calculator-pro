@@ -1,14 +1,15 @@
-import { useState, FormEvent } from 'react';
+import { FormEvent } from 'react';
+import { useUrlState } from '../hooks/useUrlState';
 import SEO from '../components/SEO';
 import { useI18n } from '../contexts/i18n';
 
 export default function SuggestFeature() {
   const { t } = useI18n();
-  const [category, setCategory] = useState('New Calculator');
-  const [title, setTitle] = useState('');
-  const [details, setDetails] = useState('');
-  const [submitter, setSubmitter] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [category, setCategory] = useUrlState('category', 'New Calculator');
+  const [title, setTitle] = useUrlState('title', '');
+  const [details, setDetails] = useUrlState('details', '');
+  const [submitter, setSubmitter] = useUrlState('submitter', '');
+  const [isSubmitted, setIsSubmitted] = useUrlState('isSubmitted', false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

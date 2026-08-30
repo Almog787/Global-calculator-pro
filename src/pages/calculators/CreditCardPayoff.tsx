@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { CreditCard } from 'lucide-react';
 
 export default function CreditCardPayoff() {
-  const [balance, setBalance] = useState<number>(5000);
-  const [rate, setRate] = useState<number>(18.9);
-  const [payment, setPayment] = useState<number>(150);
+  const [balance, setBalance] = useUrlState<number>('balance', 5000);
+  const [rate, setRate] = useUrlState<number>('rate', 18.9);
+  const [payment, setPayment] = useUrlState<number>('payment', 150);
 
   const calculatePayoff = () => {
     const monthlyRate = rate / 100 / 12;

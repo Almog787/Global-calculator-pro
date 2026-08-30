@@ -1,5 +1,6 @@
 import FAQ from '../components/FAQ';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useUrlState } from '../hooks/useUrlState';
 import SEO from '../components/SEO';
 import Decimal from 'decimal.js';
 import { useI18n } from '../contexts/i18n';
@@ -12,12 +13,12 @@ import { getGuideData } from '../data/guideTranslations';
 export default function TipCalculator() {
   const { t, lang } = useI18n();
   const guide = getGuideData('tip', lang);
-  const [bill, setBill] = useState<number | ''>(100);
-  const [tipPercent, setTipPercent] = useState<number | ''>(15);
-  const [people, setPeople] = useState<number | ''>(1);
+  const [bill, setBill] = useUrlState<number | ''>('bill', 100);
+  const [tipPercent, setTipPercent] = useUrlState<number | ''>('tipPercent', 15);
+  const [people, setPeople] = useUrlState<number | ''>('people', 1);
 
-  const [tipAmount, setTipAmount] = useState(0);
-  const [totalPerPerson, setTotalPerPerson] = useState(0);
+  const [tipAmount, setTipAmount] = useUrlState('tipAmount', 0);
+  const [totalPerPerson, setTotalPerPerson] = useUrlState('totalPerPerson', 0);
 
   useEffect(() => {
     try {

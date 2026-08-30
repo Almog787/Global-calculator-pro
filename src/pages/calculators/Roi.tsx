@@ -1,4 +1,5 @@
-import { useState, useDeferredValue, useEffect } from 'react';
+import { useDeferredValue, useEffect } from 'react';
+import { useUrlState } from '../../hooks/useUrlState';
 import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
 import RelatedCalculators from '../../components/RelatedCalculators';
@@ -68,9 +69,9 @@ export default function Roi() {
   const guide = getGuideData('roi', lang);
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
-  const [invested, setInvested] = useState(10000);
-  const [returned, setReturned] = useState(15000);
-  const [years, setYears] = useState(5);
+  const [invested, setInvested] = useUrlState('invested', 10000);
+  const [returned, setReturned] = useUrlState('returned', 15000);
+  const [years, setYears] = useUrlState('years', 5);
 
   const [results, setResults] = useState({
     gain: 0,

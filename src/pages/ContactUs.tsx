@@ -1,14 +1,15 @@
-import { useState, FormEvent } from 'react';
+import { FormEvent } from 'react';
+import { useUrlState } from '../hooks/useUrlState';
 import SEO from '../components/SEO';
 import { useI18n } from '../contexts/i18n';
 
 export default function ContactUs() {
   const { t, lang } = useI18n();
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [fullName, setFullName] = useUrlState('fullName', '');
+  const [email, setEmail] = useUrlState('email', '');
+  const [subject, setSubject] = useUrlState('subject', '');
+  const [message, setMessage] = useUrlState('message', '');
+  const [isSubmitted, setIsSubmitted] = useUrlState('isSubmitted', false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

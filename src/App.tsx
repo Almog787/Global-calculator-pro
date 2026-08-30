@@ -134,10 +134,13 @@ function App() {
     { id: 'all', path: `/${lang}/all`, label: t.catAll },
   ];
 
+  const isEmbed = new URLSearchParams(location.search).get('embed') === 'true';
+
   return (
-    <div className={`min-h-screen bg-surface-bg text-on-surface antialiased flex flex-col font-body-md ${t.dir === 'rtl' ? 'rtl' : 'ltr'}`}>
+    <div className={`min-h-screen bg-surface-bg text-on-surface antialiased flex flex-col font-body-md ${t.dir === 'rtl' ? 'rtl' : 'ltr'} ${isEmbed ? 'is-embed-mode' : ''}`}>
       {/* TopNavBar */}
-      <nav className="bg-surface shadow-xs top-0 sticky z-50 border-b border-border-subtle">
+      {!isEmbed && (
+        <nav className="bg-surface shadow-xs top-0 sticky z-50 border-b border-border-subtle">
         <div className="flex justify-between items-center px-4 sm:px-margin-desktop py-4 w-full max-w-container-max mx-auto">
           {/* Brand & Mobile Menu Toggle */}
           <div className="flex items-center gap-3 md:gap-4">
@@ -245,9 +248,10 @@ function App() {
           </div>
         )}
       </nav>
+      )}
 
       {/* Main Content */}
-      <main id="main-content" className="flex-grow w-full max-w-container-max mx-auto px-4 sm:px-margin-desktop py-6 sm:py-8 md:py-12">
+      <main id="main-content" className={`flex-grow w-full max-w-container-max mx-auto px-4 sm:px-margin-desktop py-6 sm:py-8 md:py-12 ${isEmbed ? 'pb-16' : ''}`}>
         <Suspense fallback={<SkeletonLoader />}>
           <Routes>
             <Route path="/" element={<Navigate to={`/${lang}/all`} replace />} />
@@ -282,8 +286,17 @@ function App() {
         </Suspense>
       </main>
 
-      <VirtualAssistant />
-      <Footer />
+      {!isEmbed && <VirtualAssistant />}
+      {!isEmbed && <Footer />}
+
+      {isEmbed && (
+        <div className="fixed bottom-0 left-0 w-full bg-surface border-t border-border-subtle p-2 text-center text-xs font-semibold z-50">
+           <a href={`https://globalcalc.pro/${lang}/all`} target="_blank" rel="noopener noreferrer" className="text-secondary hover:underline flex items-center justify-center gap-1">
+             Powered by GlobalCalc
+             <span className="material-symbols-outlined text-[14px]">open_in_new</span>
+           </a>
+        </div>
+      )}
     </div>
   );
 }

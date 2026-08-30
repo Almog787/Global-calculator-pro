@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect } from 'react';
+import { useUrlState } from '../hooks/useUrlState';
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import { calculators, getCalculatorTitle, getCalculatorDescription } from "../data/calculators";
 import SEO from "../components/SEO";
@@ -9,12 +10,12 @@ export default function AllCalculators() {
   const { t, lang } = useI18n();
   const location = useLocation();
   const navigate = useNavigate();
-  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [activeCategory, setActiveCategory] = useUrlState<string>('activeCategory', "all");
   const { categoryId } = useParams<{ categoryId: string }>();
 
   // Interactive Mortgage Mini-Card State in Bento Grid
-  const [mortgageAmount, setMortgageAmount] = useState<number>(1200000);
-  const [mortgageRate, setMortgageRate] = useState<number>(4.5);
+  const [mortgageAmount, setMortgageAmount] = useUrlState<number>('mortgageAmount', 1200000);
+  const [mortgageRate, setMortgageRate] = useUrlState<number>('mortgageRate', 4.5);
   const mortgageYears = 25;
 
   // Compute live monthly payment estimate
@@ -28,7 +29,7 @@ export default function AllCalculators() {
   );
 
   // PWA Promo State
-  const [isPwaPromoCollapsed, setIsPwaPromoCollapsed] = useState(false);
+  const [isPwaPromoCollapsed, setIsPwaPromoCollapsed] = useUrlState('isPwaPromoCollapsed', false);
 
   useEffect(() => {
     const hiddenUntil = localStorage.getItem("pwaPromoHiddenUntil");

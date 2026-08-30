@@ -1,4 +1,5 @@
-import { useState, useDeferredValue, useEffect, useMemo } from 'react';
+import { useDeferredValue, useEffect, useMemo } from 'react';
+import { useUrlState } from '../hooks/useUrlState';
 import SEO from '../components/SEO';
 import FAQ from '../components/FAQ';
 import Decimal from 'decimal.js';
@@ -23,9 +24,9 @@ ChartJS.register(
 export default function MortgageCalculator() {
   const { t, lang } = useI18n();
   const guide = getGuideData('mortgage', lang);
-  const [principal, setPrincipal] = useState(300000);
-  const [rate, setRate] = useState(6.5);
-  const [years, setYears] = useState(30);
+  const [principal, setPrincipal] = useUrlState('principal', 300000);
+  const [rate, setRate] = useUrlState('rate', 6.5);
+  const [years, setYears] = useUrlState('years', 30);
 
   const { monthlyPayment, totalInterest } = useMemo(() => {
     try {

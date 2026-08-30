@@ -1,4 +1,5 @@
-import { useState, useDeferredValue, useEffect, useMemo } from 'react';
+import { useDeferredValue, useEffect, useMemo } from 'react';
+import { useUrlState } from '../../hooks/useUrlState';
 import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
 import RelatedCalculators from '../../components/RelatedCalculators';
@@ -69,10 +70,10 @@ export default function GoalSavings() {
   const guide = getGuideData('goal-savings', lang);
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
-  const [goal, setGoal] = useState(50000);
-  const [initial, setInitial] = useState(5000);
-  const [years, setYears] = useState(5);
-  const [rate, setRate] = useState(4);
+  const [goal, setGoal] = useUrlState('goal', 50000);
+  const [initial, setInitial] = useUrlState('initial', 5000);
+  const [years, setYears] = useUrlState('years', 5);
+  const [rate, setRate] = useUrlState('rate', 4);
 
   const [results, setResults] = useState({ monthly: 0, totalInterest: 0 });
 

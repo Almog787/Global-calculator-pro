@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link as LinkIcon, Check, Clock, ChevronDown } from 'lucide-react';
+import { Link as LinkIcon, Check, Clock, ChevronDown, Code } from 'lucide-react';
 import { useI18n } from '../contexts/i18n';
 
 interface ShareActionsProps {
@@ -11,6 +11,7 @@ interface ShareActionsProps {
 export default function ShareActions({ onSaveHistory, historyEntries = [], onLoadHistory }: ShareActionsProps) {
   const { t, lang } = useI18n();
   const [copied, setCopied] = useState(false);
+  const [embedCopied, setEmbedCopied] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
 
   const isRtl = t.dir === 'rtl';
@@ -19,6 +20,15 @@ export default function ShareActions({ onSaveHistory, historyEntries = [], onLoa
     navigator.clipboard.writeText(window.location.href);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleCopyEmbed = () => {
+    const embedUrl = new URL(window.location.href);
+    embedUrl.searchParams.set('embed', 'true');
+    const iframeCode = `<iframe src="${embedUrl.toString()}" width="100%" height="600" frameborder="0" style="border:1px solid #eee; border-radius:12px;"></iframe>`;
+    navigator.clipboard.writeText(iframeCode);
+    setEmbedCopied(true);
+    setTimeout(() => setEmbedCopied(false), 2000);
   };
 
   const hasHistory = historyEntries && historyEntries.length > 0;
@@ -32,6 +42,13 @@ export default function ShareActions({ onSaveHistory, historyEntries = [], onLoa
         >
           {copied ? <Check className="w-4 h-4 text-green-500" /> : <LinkIcon className="w-4 h-4 text-on-surface-variant" />}
           <span>{lang === 'he' ? 'העתק קישור' : 'Copy Link'}</span>
+        </button>
+        <button
+          onClick={handleCopyEmbed}
+          className="flex items-center gap-2 px-4 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-lg transition-colors font-medium text-sm border border-border-subtle cursor-pointer"
+        >
+          {embedCopied ? <Check className="w-4 h-4 text-green-500" /> : <Code className="w-4 h-4 text-on-surface-variant" />}
+          <span>{lang === 'he' ? 'הטמע (Embed)' : 'Embed Code'}</span>
         </button>
       </div>
 

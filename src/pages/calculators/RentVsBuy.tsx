@@ -1,4 +1,5 @@
-import { useState, useDeferredValue, useEffect } from 'react';
+import { useDeferredValue, useEffect } from 'react';
+import { useUrlState } from '../../hooks/useUrlState';
 import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
 import RelatedCalculators from '../../components/RelatedCalculators';
@@ -73,10 +74,10 @@ export default function RentVsBuy() {
   const guide = getGuideData('rent-vs-buy', lang);
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
-  const [homePrice, setHomePrice] = useState(400000);
-  const [rent, setRent] = useState(2000);
-  const [downPercent, setDownPercent] = useState(20);
-  const [rate, setRate] = useState(5.5);
+  const [homePrice, setHomePrice] = useUrlState('homePrice', 400000);
+  const [rent, setRent] = useUrlState('rent', 2000);
+  const [downPercent, setDownPercent] = useUrlState('downPercent', 20);
+  const [rate, setRate] = useUrlState('rate', 5.5);
 
   const [results, setResults] = useState({ buyTotal: 0, rentTotal: 0, isBuyBetter: true });
 

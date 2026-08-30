@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Users } from 'lucide-react';
 
 export default function BillSplitter() {
-  const [totalBill, setTotalBill] = useState<number>(250);
-  const [tipPercentage, setTipPercentage] = useState<number>(15);
-  const [numPeople, setNumPeople] = useState<number>(4);
+  const [totalBill, setTotalBill] = useUrlState<number>('totalBill', 250);
+  const [tipPercentage, setTipPercentage] = useUrlState<number>('tipPercentage', 15);
+  const [numPeople, setNumPeople] = useUrlState<number>('numPeople', 4);
 
   const tipAmount = totalBill * (tipPercentage / 100);
   const grandTotal = totalBill + tipAmount;

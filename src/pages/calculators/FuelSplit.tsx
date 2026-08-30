@@ -1,4 +1,5 @@
-import { useState, useDeferredValue, useEffect } from 'react';
+import { useDeferredValue, useEffect } from 'react';
+import { useUrlState } from '../../hooks/useUrlState';
 import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
 import RelatedCalculators from '../../components/RelatedCalculators';
@@ -76,11 +77,11 @@ export default function FuelSplit() {
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
   const { system, setSystem } = useMeasurementSystem();
 
-  const [distance, setDistance] = useState(150);
-  const [fuelEfficiency, setFuelEfficiency] = useState(7.5); // L/100km or MPG
-  const [fuelPrice, setFuelPrice] = useState(7.50);
-  const [tolls, setTolls] = useState(30);
-  const [passengers, setPassengers] = useState(3);
+  const [distance, setDistance] = useUrlState('distance', 150);
+  const [fuelEfficiency, setFuelEfficiency] = useUrlState('fuelEfficiency', 7.5); // L/100km or MPG
+  const [fuelPrice, setFuelPrice] = useUrlState('fuelPrice', 7.50);
+  const [tolls, setTolls] = useUrlState('tolls', 30);
+  const [passengers, setPassengers] = useUrlState('passengers', 3);
 
   const [results, setResults] = useState({ totalCost: 0, costPerPerson: 0, fuelCost: 0 });
 

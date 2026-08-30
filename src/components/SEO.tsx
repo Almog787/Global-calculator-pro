@@ -77,6 +77,21 @@ const SEO: React.FC<SEOProps> = ({
     }
   };
 
+  const softwareSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: defaultTitle,
+    description: description,
+    url: finalCanonicalUrl,
+    applicationCategory: 'CalculatorApplication',
+    operatingSystem: 'Any',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD'
+    }
+  };
+
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -101,6 +116,7 @@ const SEO: React.FC<SEOProps> = ({
   const schemasToEmit = [
     webPageSchema,
     breadcrumbSchema,
+    softwareSchema,
     ...(structuredData ? [structuredData] : [])
   ];
 

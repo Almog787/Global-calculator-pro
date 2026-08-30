@@ -1,4 +1,5 @@
-import { useState, useDeferredValue, useEffect } from 'react';
+import { useDeferredValue, useEffect } from 'react';
+import { useUrlState } from '../../hooks/useUrlState';
 import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
 import RelatedCalculators from '../../components/RelatedCalculators';
@@ -77,10 +78,10 @@ export default function AutoLoan() {
   // Fallback to English if language not supported in local dictionary
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
-  const [price, setPrice] = useState(30000);
-  const [downPayment, setDownPayment] = useState(5000);
-  const [rate, setRate] = useState(5);
-  const [term, setTerm] = useState(60);
+  const [price, setPrice] = useUrlState('price', 30000);
+  const [downPayment, setDownPayment] = useUrlState('downPayment', 5000);
+  const [rate, setRate] = useUrlState('rate', 5);
+  const [term, setTerm] = useUrlState('term', 60);
 
   const [results, setResults] = useState({
     monthlyPayment: 0,
