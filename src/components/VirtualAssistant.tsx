@@ -119,16 +119,62 @@ export default function VirtualAssistant() {
     setTimeout(() => setAssistantState("idle"), 800);
   }, []);
 
-  // Global mouse tracking for Three.js 3D eye tracking
+  // Global pointer & scroll tracking for Three.js 3D character
+  const [scrollVelocity, setScrollVelocity] = useState(0);
+
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      // Throttle for performance, or just use rAF if necessary. Let's do simple basic for now.
-      const normX = (e.clientX / window.innerWidth) * 2 - 1;
-      const normY = -(e.clientY / window.innerHeight) * 2 + 1;
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const handlePointerMove = (e: MouseEvent | TouchEvent) => {
+      let clientX, clientY;
+      if ('touches' in e) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+      
+      const normX = (clientX / window.innerWidth) * 2 - 1;
+      const normY = -(clientY / window.innerHeight) * 2 + 1;
       setNormalizedMousePos({ x: normX, y: normY });
     };
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const delta = currentScrollY - lastScrollY;
+          // Normalize scroll velocity roughly between -1 and 1
+          const velocity = Math.max(-1, Math.min(1, delta / 50));
+          setScrollVelocity(velocity);
+          
+          lastScrollY = currentScrollY;
+          ticking = false;
+          
+          // Gradually reset scroll velocity
+          setTimeout(() => {
+            if (window.scrollY === lastScrollY) {
+              setScrollVelocity(0);
+            }
+          }, 150);
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("mousemove", handlePointerMove, { passive: true });
+    window.addEventListener("touchmove", handlePointerMove, { passive: true });
+    window.addEventListener("touchstart", handlePointerMove, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener("mousemove", handlePointerMove);
+      window.removeEventListener("touchmove", handlePointerMove);
+      window.removeEventListener("touchstart", handlePointerMove);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   // Event listener to open assistant from anywhere
@@ -277,11 +323,11 @@ export default function VirtualAssistant() {
                 <ThreeCharacterCanvas
                   state={assistantState}
                   mousePos={normalizedMousePos}
+                  scrollVelocity={scrollVelocity}
                   width={44}
                   height={44}
-                  className="hidden sm:block"
+                  className="block"
                 />
-                <img src="/icon-192.jpg" alt="Calc-E Assistant" className="w-full h-full object-cover sm:hidden" />
               </Suspense>
             </div>
             <div>
@@ -761,11 +807,11 @@ export default function VirtualAssistant() {
             <ThreeCharacterCanvas
               state={assistantState}
               mousePos={normalizedMousePos}
+              scrollVelocity={scrollVelocity}
               width={64}
               height={64}
-              className="pointer-events-none hidden sm:block"
+              className="pointer-events-none block"
             />
-            <img src="/icon-192.jpg" alt="Calc-E Assistant" className="w-10 h-10 object-cover rounded-full shadow-inner pointer-events-none sm:hidden" />
           </Suspense>
         </button>
       </div>
