@@ -10,10 +10,17 @@ export default function CopyButton({ textToCopy, label = 'Copy', className = '' 
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(textToCopy);
+    const onSuccess = () => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      if (typeof window !== 'undefined' && (window as any).CalcE) {
+        (window as any).CalcE.triggerEmotion('success', 'הועתק בהצלחה!');
+      }
+    };
+
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      onSuccess();
     } catch {
       // Fallback
       const textArea = document.createElement('textarea');
@@ -22,8 +29,7 @@ export default function CopyButton({ textToCopy, label = 'Copy', className = '' 
       textArea.select();
       document.execCommand('copy');
       document.body.removeChild(textArea);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      onSuccess();
     }
   };
 

@@ -18,6 +18,7 @@ export default function VirtualAssistant() {
   
   // Character Animation State
   const [assistantState, setAssistantState] = useState<AssistantState>("idle");
+  const [assistantMessage, setAssistantMessage] = useState<string | undefined>();
   const [normalizedMousePos, setNormalizedMousePos] = useState({ x: 0, y: 0 });
 
   // Quiz State
@@ -55,10 +56,15 @@ export default function VirtualAssistant() {
         setActiveTab(tab);
         setIsOpen(true);
       },
-      triggerEmotion: (emotion: AssistantState) => {
+      triggerEmotion: (emotion: AssistantState, message?: string) => {
         setAssistantState(emotion);
+        if (message) setAssistantMessage(message);
+        
         if (emotion !== "sleep") {
-          setTimeout(() => setAssistantState("idle"), 1500);
+          setTimeout(() => {
+            setAssistantState("idle");
+            setAssistantMessage(undefined);
+          }, 2000);
         }
       }
     };
@@ -324,6 +330,7 @@ export default function VirtualAssistant() {
                   state={assistantState}
                   mousePos={normalizedMousePos}
                   scrollVelocity={scrollVelocity}
+                  message={assistantMessage}
                   width={44}
                   height={44}
                   className="block"
@@ -808,6 +815,7 @@ export default function VirtualAssistant() {
               state={assistantState}
               mousePos={normalizedMousePos}
               scrollVelocity={scrollVelocity}
+              message={assistantMessage}
               width={64}
               height={64}
               className="pointer-events-none block"
