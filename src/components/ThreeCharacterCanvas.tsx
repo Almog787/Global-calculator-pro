@@ -31,9 +31,10 @@ function RobotFace({ state = "idle", mousePos = { x: 0, y: 0 }, scrollVelocity =
     if (!innerGroup.current) return;
     
     // Look at mouse pointer (Head rotation)
-    // Inverted axis to correctly follow the cursor
-    const targetRotY = (-mousePos.x * Math.PI) / 3;
-    const targetRotX = (mousePos.y * Math.PI) / 4;
+    // Positive Y turns face to the right (+X)
+    // Negative X tilts face upwards (+Y)
+    const targetRotY = (mousePos.x * Math.PI) / 3;
+    const targetRotX = (-mousePos.y * Math.PI) / 4;
     
     // Smoothly interpolate head rotation
     innerGroup.current.rotation.y = THREE.MathUtils.lerp(innerGroup.current.rotation.y, targetRotY, 0.08);
@@ -54,8 +55,8 @@ function RobotFace({ state = "idle", mousePos = { x: 0, y: 0 }, scrollVelocity =
     // Eye tracking and animations
     if (leftEye.current && rightEye.current) {
       // Eyes shift slightly further in the direction of the mouse for a parallax effect
-      const eyeTargetX = -mousePos.x * 0.1;
-      const eyeTargetY = mousePos.y * 0.1;
+      const eyeTargetX = mousePos.x * 0.08;
+      const eyeTargetY = mousePos.y * 0.08;
 
       // Base eye positions
       const leftBaseX = -0.3;

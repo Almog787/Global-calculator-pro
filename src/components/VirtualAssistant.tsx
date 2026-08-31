@@ -46,6 +46,7 @@ export default function VirtualAssistant() {
 
   const currentLang = (lang as "he" | "en" | "es" | "fr" | "ar") || "he";
   const i18nTexts = assistantTranslations[currentLang] || assistantTranslations.he;
+  const currencySymbol = currentLang === 'he' ? '₪' : (currentLang === 'fr' || currentLang === 'es' ? '€' : '$');
 
   // Global Calc-E API
   useEffect(() => {
@@ -132,18 +133,19 @@ export default function VirtualAssistant() {
     let lastScrollY = window.scrollY;
     let ticking = false;
 
-    const handlePointerMove = (e: MouseEvent | TouchEvent) => {
-      let clientX, clientY;
-      if ('touches' in e) {
+    const handlePointerMove = (e: MouseEvent | TouchEvent | PointerEvent) => {
+      let clientX = 0;
+      let clientY = 0;
+      if ('touches' in e && e.touches.length > 0) {
         clientX = e.touches[0].clientX;
         clientY = e.touches[0].clientY;
-      } else {
-        clientX = e.clientX;
-        clientY = e.clientY;
+      } else if ('clientX' in e) {
+        clientX = (e as MouseEvent).clientX;
+        clientY = (e as MouseEvent).clientY;
       }
       
-      const normX = (clientX / window.innerWidth) * 2 - 1;
-      const normY = -(clientY / window.innerHeight) * 2 + 1;
+      const normX = Math.max(-1, Math.min(1, (clientX / window.innerWidth) * 2 - 1));
+      const normY = Math.max(-1, Math.min(1, -(clientY / window.innerHeight) * 2 + 1));
       setNormalizedMousePos({ x: normX, y: normY });
     };
 
@@ -170,13 +172,19 @@ export default function VirtualAssistant() {
       }
     };
 
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    window.addEventListener("pointerdown", handlePointerMove, { passive: true });
     window.addEventListener("mousemove", handlePointerMove, { passive: true });
+    window.addEventListener("mousedown", handlePointerMove, { passive: true });
     window.addEventListener("touchmove", handlePointerMove, { passive: true });
     window.addEventListener("touchstart", handlePointerMove, { passive: true });
     window.addEventListener("scroll", handleScroll, { passive: true });
     
     return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerdown", handlePointerMove);
       window.removeEventListener("mousemove", handlePointerMove);
+      window.removeEventListener("mousedown", handlePointerMove);
       window.removeEventListener("touchmove", handlePointerMove);
       window.removeEventListener("touchstart", handlePointerMove);
       window.removeEventListener("scroll", handleScroll);
@@ -620,12 +628,12 @@ export default function VirtualAssistant() {
                   <div className="bg-gradient-to-r from-cyan-950 to-slate-900 border border-cyan-500/30 text-white p-3.5 rounded-xl flex items-center justify-between shadow-inner">
                     <div>
                       <div className="text-[10px] text-slate-400">{i18nTexts.savingsAmount}</div>
-                      <div className="text-xs font-bold text-emerald-400">₪{discountSavings.toFixed(2)}</div>
+                      <div className="text-xs font-bold text-emerald-400">{currencySymbol}{discountSavings.toFixed(2)}</div>
                     </div>
                     <div className="text-right rtl:text-right ltr:text-left">
                       <div className="text-[10px] text-slate-400">{i18nTexts.finalPrice}</div>
                       <div className="font-mono-num font-extrabold text-cyan-400 text-lg">
-                        ₪{discountFinal}
+                        {currencySymbol}{discountFinal}
                       </div>
                     </div>
                   </div>
