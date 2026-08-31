@@ -1,5 +1,5 @@
 import VirtualAssistant from "./components/VirtualAssistant";
-import { lazy, Suspense, useEffect, useState, useRef } from 'react';
+import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { Routes, Route, Link, Navigate, useNavigate, useLocation, useParams } from 'react-router-dom';
 const MortgageCalculator = lazy(() => import('./pages/MortgageCalculator'));
 const CompoundInterest = lazy(() => import('./pages/CompoundInterest'));

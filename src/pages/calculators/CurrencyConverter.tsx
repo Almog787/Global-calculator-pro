@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useUrlState } from '../../hooks/useUrlState';
+import React, { useEffect, useState } from 'react';
 import { Coins, ArrowRightLeft } from 'lucide-react';
 import { useI18n } from '../../contexts/i18n';
 import ShareActions from '../../components/ShareActions';
@@ -13,10 +14,10 @@ export default function CurrencyConverter() {
   const [fromCurrency, setFromCurrency] = useUrlState<string>('fromCurrency', 'USD');
   const [toCurrency, setToCurrency] = useUrlState<string>('toCurrency', lang === 'he' ? 'ILS' : 'EUR');
   
-  const [exchangeRate, setExchangeRate] = useUrlState<number | null>('exchangeRate', null);
-  const [lastUpdated, setLastUpdated] = useUrlState<string>('lastUpdated', '');
-  const [loading, setLoading] = useUrlState<boolean>('loading', false);
-  const [error, setError] = useUrlState<string | null>('error', null);
+  const [exchangeRate, setExchangeRate] = useState<number | null>(null);
+  const [lastUpdated, setLastUpdated] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchRate = async () => {

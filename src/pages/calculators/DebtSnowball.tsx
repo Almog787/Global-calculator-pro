@@ -1,4 +1,4 @@
-import { useDeferredValue, useEffect } from 'react';
+import { useDeferredValue, useEffect, useState } from 'react';
 import { useUrlState } from '../../hooks/useUrlState';
 import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
@@ -83,12 +83,19 @@ const localDict = {
   }
 };
 
+interface DebtItem {
+  id: number;
+  bal: number;
+  rate: number;
+  min: number;
+}
+
 export default function DebtSnowball() {
   const { lang } = useI18n();
   const guide = getGuideData('debt-snowball', lang);
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
-  const [debts, setDebts] = useState([
+  const [debts, setDebts] = useState<DebtItem[]>([
     { id: 1, bal: 5000, rate: 18, min: 150 },
     { id: 2, bal: 10000, rate: 12, min: 250 },
     { id: 3, bal: 25000, rate: 7, min: 400 },
@@ -102,7 +109,7 @@ export default function DebtSnowball() {
     snowballInterest: 0
   });
 
-  const updateDebt = (index: number, field: string, value: number) => {
+  const updateDebt = (index: number, field: keyof Omit<DebtItem, 'id'>, value: number) => {
     const newDebts = [...debts];
     newDebts[index] = { ...newDebts[index], [field]: value };
     setDebts(newDebts);
@@ -111,10 +118,10 @@ export default function DebtSnowball() {
   useEffect(() => {
     const simulatePayoff = (isSnowball: boolean) => {
       // deep copy
-      const simDebts = debts.map(d => ({ ...d, bal: d.bal || 0, rate: (d.rate || 0)/100/12, min: d.min || 0 }))
+      const simDebts: DebtItem[] = debts.map(d => ({ ...d, bal: d.bal || 0, rate: (d.rate || 0)/100/12, min: d.min || 0 }))
                           .filter(d => d.bal > 0);
       
-      simDebts.sort((a, b) => a.bal - b.bal); // Sort smallest to largest (Snowball)
+      simDebts.sort((a: DebtItem, b: DebtItem) => a.bal - b.bal); // Sort smallest to largest (Snowball)
       
       let totalInterest = 0;
       let months = 0;

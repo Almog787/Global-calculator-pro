@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback, Suspense } from "react";
+import React, { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useI18n } from "../contexts/i18n";
 import { calculators, getCalculatorTitle, getCalculatorDescription } from "../data/calculators";

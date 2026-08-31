@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useUrlState } from '../../hooks/useUrlState';
+import React from 'react';
 import { Briefcase, Calendar } from 'lucide-react';
 import { useI18n } from '../../contexts/i18n';
 import ShareActions from '../../components/ShareActions';
