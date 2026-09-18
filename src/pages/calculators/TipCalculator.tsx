@@ -1,14 +1,14 @@
-import FAQ from '../components/FAQ';
+import FAQ from '../../components/FAQ';
 import { useEffect } from 'react';
-import { useUrlState } from '../hooks/useUrlState';
-import SEO from '../components/SEO';
+import { useUrlState } from '../../hooks/useUrlState';
+import SEO from '../../components/SEO';
 import Decimal from 'decimal.js';
-import { useI18n } from '../contexts/i18n';
-import Breadcrumbs from '../components/Breadcrumbs';
-import RelatedCalculators from '../components/RelatedCalculators';
-import CopyButton from '../components/CopyButton';
-import PresetChips from '../components/PresetChips';
-import { getGuideData } from '../data/guideTranslations';
+import { useI18n } from '../../contexts/i18n';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedCalculators from '../../components/RelatedCalculators';
+import CopyButton from '../../components/CopyButton';
+import PresetChips from '../../components/PresetChips';
+import { getGuideData } from '../../data/guideTranslations';
 
 export default function TipCalculator() {
   const { t, lang } = useI18n();

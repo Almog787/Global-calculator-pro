@@ -7,6 +7,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useI18n } from '../../contexts/i18n';
 import { getGuideData } from '../../data/guideTranslations';
+import { calculateDebtSnowball, DebtItem } from '../../lib/math/finance';
+
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -83,12 +85,7 @@ const localDict = {
   }
 };
 
-interface DebtItem {
-  id: number;
-  bal: number;
-  rate: number;
-  min: number;
-}
+
 
 export default function DebtSnowball() {
   const { lang } = useI18n();
@@ -116,71 +113,7 @@ export default function DebtSnowball() {
   };
 
   useEffect(() => {
-    const simulatePayoff = (isSnowball: boolean) => {
-      // deep copy
-      const simDebts: DebtItem[] = debts.map(d => ({ ...d, bal: d.bal || 0, rate: (d.rate || 0)/100/12, min: d.min || 0 }))
-                          .filter(d => d.bal > 0);
-      
-      simDebts.sort((a: DebtItem, b: DebtItem) => a.bal - b.bal); // Sort smallest to largest (Snowball)
-      
-      let totalInterest = 0;
-      let months = 0;
-      
-      // Safety break at 1200 months (100 years)
-      while (simDebts.some(d => d.bal > 0) && months < 1200) {
-        months++;
-        let currentExtra = isSnowball ? (extraPayment || 0) : 0;
-        
-        // Add interest
-        simDebts.forEach(d => {
-          if (d.bal > 0) {
-            const interest = d.bal * d.rate;
-            totalInterest += interest;
-            d.bal += interest;
-          }
-        });
-
-        // Make min payments
-        simDebts.forEach(d => {
-          if (d.bal > 0) {
-            const payment = Math.min(d.bal, d.min);
-            d.bal -= payment;
-            if (isSnowball && payment < d.min) {
-              // Debt paid off this month, remainder of min payment roles into snowball
-              currentExtra += (d.min - payment);
-            } else if (isSnowball && d.bal <= 0) {
-              // Paid off in previous months, full min payment rolls into snowball
-              currentExtra += d.min;
-            }
-          } else if (isSnowball) {
-            // Already paid off, min payment rolls into snowball
-            currentExtra += d.min;
-          }
-        });
-
-        // Apply snowball extra to smallest remaining
-        if (isSnowball && currentExtra > 0) {
-          for (const d of simDebts) {
-            if (d.bal > 0 && currentExtra > 0) {
-              const payment = Math.min(d.bal, currentExtra);
-              d.bal -= payment;
-              currentExtra -= payment;
-            }
-          }
-        }
-      }
-      return { months, totalInterest };
-    };
-
-    const base = simulatePayoff(false);
-    const snowball = simulatePayoff(true);
-
-    setResults({
-      baseMonths: base.months,
-      baseInterest: base.totalInterest,
-      snowballMonths: snowball.months,
-      snowballInterest: snowball.totalInterest
-    });
+    setResults(calculateDebtSnowball(debts, extraPayment));
   }, [debts, extraPayment]);
 
   const defaultCurrency = lang === 'he' ? 'ILS' : 'USD';

@@ -1,8 +1,7 @@
 import { useDeferredValue, useEffect, useMemo } from 'react';
-import { useUrlState } from '../hooks/useUrlState';
-import SEO from '../components/SEO';
-import FAQ from '../components/FAQ';
-import Decimal from 'decimal.js';
+import { useUrlState } from '../../hooks/useUrlState';
+import SEO from '../../components/SEO';
+import FAQ from '../../components/FAQ';
 import {
   Chart as ChartJS,
   ArcElement,
@@ -10,10 +9,12 @@ import {
   Legend,
 } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import { useI18n } from '../contexts/i18n';
-import Breadcrumbs from '../components/Breadcrumbs';
-import RelatedCalculators from '../components/RelatedCalculators';
-import { getGuideData } from '../data/guideTranslations';
+import { useI18n } from '../../contexts/i18n';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedCalculators from '../../components/RelatedCalculators';
+import { getGuideData } from '../../data/guideTranslations';
+import { calculateMortgage } from '../../lib/math/finance';
+
 
 ChartJS.register(
   ArcElement,
@@ -29,30 +30,7 @@ export default function MortgageCalculator() {
   const [years, setYears] = useUrlState('years', 30);
 
   const { monthlyPayment, totalInterest } = useMemo(() => {
-    try {
-      const decP = new Decimal(principal || 0);
-      const decR = new Decimal(rate || 0).div(100).div(12);
-      const decN = new Decimal(years || 0).mul(12);
-
-      let mp = new Decimal(0);
-
-      if (decR.isZero()) {
-        mp = decN.isZero() ? new Decimal(0) : decP.div(decN);
-      } else if (!decN.isZero()) {
-        const rateFactor = decR.add(1).pow(decN.toNumber());
-        mp = decP.mul(decR.mul(rateFactor)).div(rateFactor.sub(1));
-      }
-
-      const totalPaid = mp.mul(decN);
-      const ti = totalPaid.sub(decP);
-
-      return {
-        monthlyPayment: mp.isFinite() ? mp.toNumber() : 0,
-        totalInterest: ti.isFinite() ? ti.toNumber() : 0
-      };
-    } catch {
-      return { monthlyPayment: 0, totalInterest: 0 };
-    }
+    return calculateMortgage(principal, rate, years);
   }, [principal, rate, years]);
 
   useEffect(() => {

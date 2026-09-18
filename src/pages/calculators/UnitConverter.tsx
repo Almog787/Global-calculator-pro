@@ -1,12 +1,12 @@
-import FAQ from '../components/FAQ';
+import FAQ from '../../components/FAQ';
 import { useEffect } from 'react';
-import { useUrlState } from '../hooks/useUrlState';
-import SEO from '../components/SEO';
-import { useI18n } from '../contexts/i18n';
-import Breadcrumbs from '../components/Breadcrumbs';
-import RelatedCalculators from '../components/RelatedCalculators';
-import CopyButton from '../components/CopyButton';
-import { getGuideData } from '../data/guideTranslations';
+import { useUrlState } from '../../hooks/useUrlState';
+import SEO from '../../components/SEO';
+import { useI18n } from '../../contexts/i18n';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedCalculators from '../../components/RelatedCalculators';
+import CopyButton from '../../components/CopyButton';
+import { getGuideData } from '../../data/guideTranslations';
 
 const conversions: Record<string, Record<string, (v: number) => number>> = {
   length: {

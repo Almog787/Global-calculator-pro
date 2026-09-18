@@ -1,6 +1,6 @@
-import FAQ from '../components/FAQ';
+import FAQ from '../../components/FAQ';
 import { useDeferredValue, useEffect, useMemo } from 'react';
-import SEO from '../components/SEO';
+import SEO from '../../components/SEO';
 import Decimal from 'decimal.js';
 import {
   Chart as ChartJS,
@@ -12,13 +12,13 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { useI18n } from '../contexts/i18n';
-import Breadcrumbs from '../components/Breadcrumbs';
-import RelatedCalculators from '../components/RelatedCalculators';
-import { getGuideData } from '../data/guideTranslations';
+import { useI18n } from '../../contexts/i18n';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedCalculators from '../../components/RelatedCalculators';
+import { getGuideData } from '../../data/guideTranslations';
 import { Link } from 'react-router-dom';
-import { useCalculatorState } from '../hooks/useCalculatorState';
-import ShareActions from '../components/ShareActions';
+import { useCalculatorState } from '../../hooks/useCalculatorState';
+import ShareActions from '../../components/ShareActions';
 
 ChartJS.register(
   CategoryScale,

@@ -1,13 +1,13 @@
-import FAQ from '../components/FAQ';
+import FAQ from '../../components/FAQ';
 import { useEffect } from 'react';
-import { useUrlState } from '../hooks/useUrlState';
-import SEO from '../components/SEO';
-import { useI18n } from '../contexts/i18n';
-import Breadcrumbs from '../components/Breadcrumbs';
-import RelatedCalculators from '../components/RelatedCalculators';
-import { getGuideData } from '../data/guideTranslations';
-import { useMeasurementSystem } from '../hooks/useMeasurementSystem';
-import MeasurementToggle from '../components/MeasurementToggle';
+import { useUrlState } from '../../hooks/useUrlState';
+import SEO from '../../components/SEO';
+import { useI18n } from '../../contexts/i18n';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedCalculators from '../../components/RelatedCalculators';
+import { getGuideData } from '../../data/guideTranslations';
+import { useMeasurementSystem } from '../../hooks/useMeasurementSystem';
+import MeasurementToggle from '../../components/MeasurementToggle';
 
 export default function BmiCalculator() {
   const { t, lang } = useI18n();

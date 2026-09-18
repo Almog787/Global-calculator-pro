@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import SEO from '../components/SEO';
-import { useI18n } from '../contexts/i18n';
-import Breadcrumbs from '../components/Breadcrumbs';
-import RelatedCalculators from '../components/RelatedCalculators';
-import FAQ from '../components/FAQ';
-import { getGuideData } from '../data/guideTranslations';
+import SEO from '../../components/SEO';
+import { useI18n } from '../../contexts/i18n';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedCalculators from '../../components/RelatedCalculators';
+import FAQ from '../../components/FAQ';
+import { getGuideData } from '../../data/guideTranslations';
 
 export default function AgeCalculator() {
   const { t, lang } = useI18n();

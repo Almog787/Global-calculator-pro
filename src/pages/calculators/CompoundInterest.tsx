@@ -1,14 +1,15 @@
-import FAQ from '../components/FAQ';
+import FAQ from '../../components/FAQ';
 import { useMemo } from 'react';
-import SEO from '../components/SEO';
-import Decimal from 'decimal.js';
+import SEO from '../../components/SEO';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { useI18n } from '../contexts/i18n';
-import Breadcrumbs from '../components/Breadcrumbs';
-import RelatedCalculators from '../components/RelatedCalculators';
-import { getGuideData } from '../data/guideTranslations';
-import ShareActions from '../components/ShareActions';
-import { useCalculatorState } from '../hooks/useCalculatorState';
+import { useI18n } from '../../contexts/i18n';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedCalculators from '../../components/RelatedCalculators';
+import { getGuideData } from '../../data/guideTranslations';
+import ShareActions from '../../components/ShareActions';
+import { useCalculatorState } from '../../hooks/useCalculatorState';
+import { calculateCompoundInterest } from '../../lib/math/finance';
+
 
 export default function CompoundInterest() {
   const { t, lang } = useI18n();
@@ -29,58 +30,7 @@ export default function CompoundInterest() {
   const setContribution = (v: number) => updateState({ contribution: v });
 
   const { futureValue, totalContributions, totalInterest, scheduleData } = useMemo(() => {
-    try {
-      const decP = new Decimal(principal || 0);
-      const decRate = new Decimal(rate || 0).div(100).div(12);
-      const decN = new Decimal(years || 0).mul(12);
-      const decContr = new Decimal(contribution || 0);
-
-      let fv;
-      if (decRate.isZero()) {
-        fv = decP.add(decContr.mul(decN));
-      } else {
-        const rateFactor = decRate.add(1).pow(decN.toNumber());
-        const pGrowth = decP.mul(rateFactor);
-        const cGrowth = decContr.mul(rateFactor.sub(1)).div(decRate);
-        fv = pGrowth.add(cGrowth);
-      }
-
-      const tc = decP.add(decContr.mul(decN));
-      const ti = fv.sub(tc);
-
-      // Generate schedule data for recharts & table
-      const schedule = [];
-      for (let i = 0; i <= years; i++) {
-        const n = i * 12;
-        let yrFv;
-        if (decRate.isZero()) {
-          yrFv = decP.add(decContr.mul(n));
-        } else {
-          const rf = decRate.add(1).pow(n);
-          const pg = decP.mul(rf);
-          const cg = decContr.mul(rf.sub(1)).div(decRate);
-          yrFv = pg.add(cg);
-        }
-        const yrTc = decP.add(decContr.mul(n));
-        const yrTi = yrFv.sub(yrTc);
-
-        schedule.push({
-          year: i,
-          contributions: Math.round(yrTc.toNumber()),
-          interest: Math.round(yrTi.toNumber()),
-          total: Math.round(yrFv.toNumber())
-        });
-      }
-
-      return {
-        futureValue: fv.isFinite() ? fv.toNumber() : 0,
-        totalContributions: tc.isFinite() ? tc.toNumber() : 0,
-        totalInterest: ti.isFinite() ? ti.toNumber() : 0,
-        scheduleData: schedule
-      };
-    } catch {
-      return { futureValue: 0, totalContributions: 0, totalInterest: 0, scheduleData: [] };
-    }
+    return calculateCompoundInterest(principal, rate, years, contribution);
   }, [principal, rate, years, contribution]);
 
   const defaultCurrency = lang === 'he' ? 'ILS' : lang === 'fr' || lang === 'es' ? 'EUR' : 'USD';
