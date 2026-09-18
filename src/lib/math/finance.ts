@@ -11,6 +11,10 @@ export function calculateMortgage(principal: number, annualRate: number, years: 
     const decR = new Decimal(annualRate || 0).div(100).div(12);
     const decN = new Decimal(years || 0).mul(12);
 
+    if (decP.isZero() || decN.isZero()) {
+      return { monthlyPayment: 0, totalInterest: 0 };
+    }
+
     let mp = new Decimal(0);
 
     if (decR.isZero()) {
