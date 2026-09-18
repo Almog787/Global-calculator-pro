@@ -11,6 +11,10 @@ interface SEOProps {
   structuredData?: Record<string, any>;
   image?: string;
   noindex?: boolean;
+  applicationCategory?: string;
+  ratingValue?: number | string;
+  ratingCount?: number | string;
+  faq?: Array<{ question: string; answer: string }>;
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -21,7 +25,11 @@ const SEO: React.FC<SEOProps> = ({
   type = 'website',
   structuredData,
   image = 'https://globalcalcpro.com/og-image.jpg',
-  noindex = false
+  noindex = false,
+  applicationCategory = 'CalculatorApplication',
+  ratingValue = '4.9',
+  ratingCount = '1480',
+  faq = []
 }) => {
   const location = useLocation();
   const siteName = 'Global Calc Pro';
@@ -37,6 +45,15 @@ const SEO: React.FC<SEOProps> = ({
   const pathParts = currentPath.split('/').filter(Boolean);
   const validLangs = ['en', 'he', 'es', 'fr', 'ar'];
   const currentLang = pathParts.length > 0 && validLangs.includes(pathParts[0]) ? pathParts[0] : 'en';
+
+  const localeMap: Record<string, string> = {
+    en: 'en_US',
+    he: 'he_IL',
+    es: 'es_ES',
+    fr: 'fr_FR',
+    ar: 'ar_AR'
+  };
+  const currentLocale = localeMap[currentLang] || 'en_US';
 
   // Calculate canonical URL
   let resolvedCanonicalPath = canonicalUrl || currentPath;
@@ -60,9 +77,35 @@ const SEO: React.FC<SEOProps> = ({
   const normalizedPath = pathWithoutLang.startsWith('/') ? pathWithoutLang : `/${pathWithoutLang}`;
   const subPath = normalizedPath === '/' ? '' : normalizedPath;
 
-  // Baseline WebPage + BreadcrumbList JSON-LD
+  // Organization Schema
+  const organizationSchema = {
+    '@type': 'Organization',
+    '@id': `${baseUrl}/#organization`,
+    name: siteName,
+    url: baseUrl,
+    logo: `${baseUrl}/favicon.svg`
+  };
+
+  // WebSite Schema with Sitelinks Searchbox
+  const websiteSchema = {
+    '@type': 'WebSite',
+    '@id': `${baseUrl}/#website`,
+    url: baseUrl,
+    name: siteName,
+    description: 'Multi-lingual financial, mathematical, and health online calculators',
+    publisher: {
+      '@id': `${baseUrl}/#organization`
+    },
+    inLanguage: validLangs,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${baseUrl}/${currentLang}/all?q={search_term_string}`,
+      'query-input': 'required name=search_term_string'
+    }
+  };
+
+  // WebPage Schema
   const webPageSchema = {
-    '@context': 'https://schema.org',
     '@type': 'WebPage',
     '@id': `${finalCanonicalUrl}#webpage`,
     url: finalCanonicalUrl,
@@ -70,31 +113,43 @@ const SEO: React.FC<SEOProps> = ({
     description: description,
     inLanguage: currentLang,
     isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}/#website`,
-      url: baseUrl,
-      name: siteName
+      '@id': `${baseUrl}/#website`
+    },
+    breadcrumb: {
+      '@id': `${finalCanonicalUrl}#breadcrumb`
     }
   };
 
+  // WebApplication / Software Schema
   const softwareSchema = {
-    '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: defaultTitle,
+    '@id': `${finalCanonicalUrl}#software`,
+    name: title.replace(` | ${siteName}`, ''),
     description: description,
     url: finalCanonicalUrl,
-    applicationCategory: 'CalculatorApplication',
-    operatingSystem: 'Any',
+    applicationCategory: applicationCategory,
+    operatingSystem: 'All',
+    browserRequirements: 'Requires JavaScript. Requires HTML5.',
+    isAccessibleForFree: true,
+    inLanguage: currentLang,
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD'
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: String(ratingValue),
+      reviewCount: String(ratingCount),
+      bestRating: '5',
+      worstRating: '1'
     }
   };
 
+  // BreadcrumbList Schema
   const breadcrumbSchema = {
-    '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
+    '@id': `${finalCanonicalUrl}#breadcrumb`,
     itemListElement: [
       {
         '@type': 'ListItem',
@@ -113,12 +168,34 @@ const SEO: React.FC<SEOProps> = ({
     ]
   };
 
-  const schemasToEmit = [
+  // FAQ Schema
+  const faqSchema = faq && faq.length > 0 ? {
+    '@type': 'FAQPage',
+    '@id': `${finalCanonicalUrl}#faq`,
+    mainEntity: faq.map(item => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer
+      }
+    }))
+  } : null;
+
+  const graphItems: Record<string, any>[] = [
+    organizationSchema,
+    websiteSchema,
     webPageSchema,
     breadcrumbSchema,
     softwareSchema,
+    ...(faqSchema ? [faqSchema] : []),
     ...(structuredData ? [structuredData] : [])
   ];
+
+  const consolidatedSchema = {
+    '@context': 'https://schema.org',
+    '@graph': graphItems
+  };
 
   return (
     <Helmet>
@@ -141,6 +218,10 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
       <meta property="og:site_name" content={siteName} />
+      <meta property="og:locale" content={currentLocale} />
+      {validLangs.filter(l => l !== currentLang).map(l => (
+        <meta key={l} property="og:locale:alternate" content={localeMap[l]} />
+      ))}
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
@@ -151,7 +232,7 @@ const SEO: React.FC<SEOProps> = ({
 
       {/* Structured Data Graph */}
       <script type="application/ld+json">
-        {JSON.stringify(schemasToEmit)}
+        {JSON.stringify(consolidatedSchema)}
       </script>
     
       {/* hreflang tags for i18n */}

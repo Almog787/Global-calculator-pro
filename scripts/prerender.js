@@ -56,6 +56,92 @@ console.log(
   `Generating static HTML entry points for ${allPaths.length} routes...`,
 );
 
+// Load all locales for meta tag injection
+const locales = {
+  en: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/en.json"), "utf8")),
+  he: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/he.json"), "utf8")),
+  es: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/es.json"), "utf8")),
+  fr: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/fr.json"), "utf8")),
+  ar: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/ar.json"), "utf8")),
+};
+
+// Route to title / description resolver
+function getRouteMetadata(route, lang) {
+  const t = locales[lang]?.ui || locales.en.ui;
+  const siteName = "GlobalCalc Pro";
+  const unlocalizedPath = route.replace(new RegExp(`^\\/${lang}`), "") || "/";
+
+  // Static routes
+  if (unlocalizedPath === "/") {
+    const titles = {
+      en: "GlobalCalc Pro - Free Online Smart Calculators [2026]",
+      he: "GlobalCalc Pro - מחשבונים אונליין בחינם לכל מטרה [2026]",
+      es: "GlobalCalc Pro - Calculadoras Online Gratuitas [2026]",
+      fr: "GlobalCalc Pro - Calculatrices en Ligne Gratuites [2026]",
+      ar: "GlobalCalc Pro - حاسبات مجانية ذكية عبر الإنترنت [2026]",
+    };
+    const descs = {
+      en: "Free online calculators for finance, health, math, and daily life. Accurate, fast, and easy to use.",
+      he: "מגוון מחשבונים חכמים בחינם: מחשבון משכנתא, ריבית דריבית, אחוזים, BMI, המרת מידות ועוד בדיוק מושלם.",
+      es: "Calculadoras online gratuitas para finanzas, salud, matemáticas y vida cotidiana. Rápidas y precisas.",
+      fr: "Calculatrices en ligne gratuites pour les finances, la santé, les maths et le quotidien. Rapide et précis.",
+      ar: "حاسبات مجانية عبر الإنترنت للمال، الصحة، الرياضيات والحياة اليومية. سريعة ودقيقة ومجانية.",
+    };
+    return { title: titles[lang] || titles.en, description: descs[lang] || descs.en };
+  }
+
+  const staticCalcMap = {
+    "/mortgage-calculator": { titleKey: "mortgageTitle", descKey: "mortgageDesc" },
+    "/compound-interest": { titleKey: "compoundTitle", descKey: "compoundDesc" },
+    "/percentage-finder": { titleKey: "percFinderTitle", descKey: "percFinderDesc" },
+    "/unit-converter": { titleKey: "unitConvTitle", descKey: "unitConvDesc" },
+    "/bmi-calculator": { titleKey: "bmiTitle", descKey: "bmiDesc" },
+    "/tip-calculator": { titleKey: "tipTitle", descKey: "tipDesc" },
+    "/salary-calculator": { titleKey: "salaryTitle", descKey: "salaryDesc" },
+    "/age-calculator": { titleKey: "ageTitle", descKey: "ageDesc" },
+  };
+
+  if (staticCalcMap[unlocalizedPath]) {
+    const map = staticCalcMap[unlocalizedPath];
+    const pageTitle = t[map.titleKey] || map.titleKey;
+    const pageDesc = t[map.descKey] || "";
+    return {
+      title: `${pageTitle} | ${siteName}`,
+      description: pageDesc,
+    };
+  }
+
+  // Dynamic calculators: /calculators/:id
+  const calcMatch = unlocalizedPath.match(/^\/calculators\/([a-zA-Z0-9-]+)/);
+  if (calcMatch) {
+    const calcId = calcMatch[1];
+    // Read from dynamicTranslations inside calculators.ts
+    const dynRegex = new RegExp(`"${calcId}":\\s*{[\\s\\S]*?${lang}:\\s*{\\s*title:\\s*"([^"]+)",\\s*description:\\s*"([^"]+)"`, "m");
+    const dynMatch = dynRegex.exec(fs.readFileSync(calculatorsPath, "utf8"));
+    if (dynMatch) {
+      return {
+        title: `${dynMatch[1]} | ${siteName}`,
+        description: dynMatch[2],
+      };
+    }
+  }
+
+  // Categories
+  const catMatch = unlocalizedPath.match(/^\/category\/([a-zA-Z0-9-]+)/);
+  if (catMatch) {
+    const catName = catMatch[1].charAt(0).toUpperCase() + catMatch[1].slice(1);
+    return {
+      title: `${catName} Calculators | ${siteName}`,
+      description: `Explore all ${catName.toLowerCase()} calculators and tools on GlobalCalc Pro.`,
+    };
+  }
+
+  return {
+    title: `${siteName} - Smart Online Calculators`,
+    description: "Free, instant online tools and calculators.",
+  };
+}
+
 for (const route of allPaths) {
   const routeDir = path.join(distPath, route);
   if (!fs.existsSync(routeDir)) {
@@ -66,13 +152,61 @@ for (const route of allPaths) {
   const langMatch = route.match(/^\/([a-z]{2})/);
   const lang = langMatch ? langMatch[1] : "en";
   const isRtl = lang === "he" || lang === "ar";
+  const canonicalUrl = `https://globalcalcpro.com${route}`;
+  const unlocalizedPath = route.replace(new RegExp(`^\\/${lang}`), "") || "/";
+  const { title, description } = getRouteMetadata(route, lang);
 
   let customHtml = baseHtml;
+
   // Update html lang and dir attribute
   customHtml = customHtml.replace(
     /<html[^>]*>/i,
     `<html lang="${lang}" dir="${isRtl ? "rtl" : "ltr"}">`,
   );
+
+  // Update title
+  customHtml = customHtml.replace(
+    /<title>[^<]*<\/title>/i,
+    `<title>${title}</title>`,
+  );
+
+  // Update description meta tag
+  if (customHtml.includes('<meta name="description"')) {
+    customHtml = customHtml.replace(
+      /<meta name="description" content="[^"]*"/i,
+      `<meta name="description" content="${description}"`,
+    );
+  }
+
+  // Update OpenGraph tags
+  customHtml = customHtml.replace(
+    /<meta property="og:title" content="[^"]*"/i,
+    `<meta property="og:title" content="${title}"`,
+  );
+  customHtml = customHtml.replace(
+    /<meta property="og:description" content="[^"]*"/i,
+    `<meta property="og:description" content="${description}"`,
+  );
+  customHtml = customHtml.replace(
+    /<meta property="og:url" content="[^"]*"/i,
+    `<meta property="og:url" content="${canonicalUrl}"`,
+  );
+
+  // Inject canonical and hreflang tags if not present
+  const hreflangTags = languages
+    .map(
+      (l) =>
+        `  <link rel="alternate" hreflang="${l}" href="https://globalcalcpro.com/${l}${unlocalizedPath === "/" ? "" : unlocalizedPath}" />`,
+    )
+    .concat(
+      `  <link rel="alternate" hreflang="x-default" href="https://globalcalcpro.com/en${unlocalizedPath === "/" ? "" : unlocalizedPath}" />`,
+    )
+    .join("\n");
+
+  const canonicalTag = `  <link rel="canonical" href="${canonicalUrl}" />\n${hreflangTags}`;
+  if (!customHtml.includes('rel="canonical"')) {
+    customHtml = customHtml.replace("</head>", `${canonicalTag}\n</head>`);
+  }
 
   fs.writeFileSync(path.join(routeDir, "index.html"), customHtml);
 }
