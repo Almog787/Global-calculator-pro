@@ -5,13 +5,12 @@ import SEO from '../../components/SEO';
 import { useI18n } from '../../contexts/i18n';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import RelatedCalculators from '../../components/RelatedCalculators';
-import { getGuideData } from '../../data/guideTranslations';
 import { useMeasurementSystem } from '../../hooks/useMeasurementSystem';
 import MeasurementToggle from '../../components/MeasurementToggle';
 
 export default function BmiCalculator() {
-  const { t, lang } = useI18n();
-  const guide = getGuideData('bmi', lang);
+  const { t, lang, guides } = useI18n();
+  const guide = guides['bmi'] || { guideTitle: 'Guide & Formulas', guideDesc: 'Comprehensive calculation breakdown and FAQs.', faq: [] };
   const { system, setSystem } = useMeasurementSystem();
   
   const [height, setHeight] = useUrlState('height', 175); // Always in cm
@@ -145,7 +144,7 @@ export default function BmiCalculator() {
               {guide.formulaHeading}
             </h3>
             <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 font-mono text-xs sm:text-sm text-stone-800 space-y-2">
-              {guide.formulaLines?.map((line, idx) => (
+              {guide.formulaLines?.map((line: string, idx: number) => (
                 <div key={idx}>{line}</div>
               ))}
             </div>

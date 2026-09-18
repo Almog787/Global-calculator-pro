@@ -2,7 +2,7 @@ import React, { Suspense, useCallback, useEffect, useRef, useState } from 'react
 import { useNavigate } from "react-router-dom";
 import { useI18n } from "../contexts/i18n";
 import { calculators, getCalculatorTitle, getCalculatorDescription } from "../data/calculators";
-import { quizSteps, assistantTranslations, assistantTips, QuizOption, AssistantTip } from "../data/assistantQuiz";
+import { QuizOption, AssistantTip, QuizStep } from "../types/assistant";
 
 const ThreeCharacterCanvas = React.lazy(() => import("./ThreeCharacterCanvas"));
 
@@ -10,7 +10,7 @@ type AssistantTab = "quiz" | "quickCalc" | "tips" | "search";
 type AssistantState = "idle" | "success" | "thinking" | "shake" | "sleep" | "panic";
 
 export default function VirtualAssistant() {
-  const { lang, t } = useI18n();
+  const { lang, t, assistant: i18nTexts, tips: assistantTips, quiz: quizSteps } = useI18n();
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -44,9 +44,7 @@ export default function VirtualAssistant() {
   const buttonRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const currentLang = (lang as "he" | "en" | "es" | "fr" | "ar") || "he";
-  const i18nTexts = assistantTranslations[currentLang] || assistantTranslations.he;
-  const currencySymbol = currentLang === 'he' ? '₪' : (currentLang === 'fr' || currentLang === 'es' ? '€' : '$');
+    const currencySymbol = lang === 'he' ? '₪' : (lang === 'fr' || lang === 'es' ? '€' : '$');
 
   // Global Calc-E API
   useEffect(() => {
@@ -275,7 +273,7 @@ export default function VirtualAssistant() {
   };
 
   const handleCopyTip = (tip: AssistantTip) => {
-    const textToCopy = `${tip.title[currentLang] || tip.title.en}\n${tip.summary[currentLang] || tip.summary.en}${tip.formulaOrRule ? `\n${i18nTexts.ruleFormula} ${tip.formulaOrRule}` : ""}`;
+    const textToCopy = `${tip.title[lang] || tip.title}\n${tip.summary[lang] || tip.summary}${tip.summary ? `\n${i18nTexts.ruleFormula} ${tip.summary}` : ""}`;
     navigator.clipboard?.writeText(textToCopy);
     setCopiedTipId(tip.id);
     triggerSuccessJump();
@@ -296,7 +294,7 @@ export default function VirtualAssistant() {
   // Filtered Tips
   const filteredTips = selectedTipCategory === "all"
     ? assistantTips
-    : assistantTips.filter((tip) => tip.category === selectedTipCategory);
+    : assistantTips.filter((tip: AssistantTip) => tip.category === selectedTipCategory);
 
   // Quick calculations
   const numX = parseFloat(percentX) || 0;
@@ -448,10 +446,10 @@ export default function VirtualAssistant() {
                         {i18nTexts.recommended}
                       </span>
                       <h4 className="font-extrabold text-base text-white leading-tight mt-1">
-                        {selectedResult.label?.[currentLang] || selectedResult.label?.en || ""}
+                        {selectedResult.label?.[lang] || selectedResult.label?.en || ""}
                       </h4>
                       <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                        {selectedResult.desc?.[currentLang] || selectedResult.desc?.en || ""}
+                        {selectedResult.desc?.[lang] || selectedResult.desc?.en || ""}
                       </p>
                     </div>
                   </div>
@@ -475,7 +473,7 @@ export default function VirtualAssistant() {
                 /* Active Quiz Question */
                 <div className="space-y-3">
                   <div className="flex justify-between items-center text-xs font-semibold text-cyan-200">
-                    <span>{currentStep?.question?.[currentLang] || currentStep?.question?.en || ""}</span>
+                    <span>{currentStep?.question?.[lang] || currentStep?.question?.en || ""}</span>
                     {stepHistory.length > 0 && (
                       <button
                         onClick={handleBack}
@@ -500,10 +498,10 @@ export default function VirtualAssistant() {
                         </span>
                         <div className="flex-grow min-w-0">
                           <div className="font-bold text-xs text-slate-100 group-hover:text-cyan-300 transition-colors">
-                            {option.label?.[currentLang] || option.label?.en || ""}
+                            {option.label?.[lang] || option.label?.en || ""}
                           </div>
                           <div className="text-[11px] text-slate-400 truncate mt-0.5">
-                            {option.desc?.[currentLang] || option.desc?.en || ""}
+                            {option.desc?.[lang] || option.desc?.en || ""}
                           </div>
                         </div>
                       </button>
@@ -695,7 +693,7 @@ export default function VirtualAssistant() {
                   >
                     <div className="flex justify-between items-start gap-2">
                       <h5 className="font-extrabold text-xs text-white leading-snug">
-                        {tip.title[currentLang] || tip.title.en}
+                        {tip.title[lang] || tip.title}
                       </h5>
                       <button
                         onClick={() => handleCopyTip(tip)}
@@ -709,12 +707,12 @@ export default function VirtualAssistant() {
                     </div>
 
                     <p className="text-[11px] text-slate-300 leading-relaxed">
-                      {tip.summary[currentLang] || tip.summary.en}
+                      {tip.summary[lang] || tip.summary}
                     </p>
 
-                    {tip.formulaOrRule && (
+                    {tip.summary && (
                       <div className="bg-slate-950/80 p-2 rounded-xl border border-slate-800 text-[10px] font-mono-num font-semibold text-cyan-300 flex items-center justify-between">
-                        <span>{tip.formulaOrRule}</span>
+                        <span>{tip.summary}</span>
                         <span className="text-[9px] uppercase tracking-wider text-slate-400">{tip.category}</span>
                       </div>
                     )}

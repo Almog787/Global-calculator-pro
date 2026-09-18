@@ -10,11 +10,10 @@ import VisualRatioBar from '../../components/VisualRatioBar';
 import PresetChips from '../../components/PresetChips';
 import FAQ from '../../components/FAQ';
 import ShareActions from '../../components/ShareActions';
-import { getGuideData } from '../../data/guideTranslations';
 
 export default function PercentageFinder() {
-  const { t, lang } = useI18n();
-  const guide = getGuideData('percentage', lang);
+  const { t, lang, guides } = useI18n();
+  const guide = guides['percentage'] || { guideTitle: 'Guide & Formulas', guideDesc: 'Comprehensive calculation breakdown and FAQs.', faq: [] };
   const isHebrew = lang === 'he';
 
   // Active Mode: 'of' | 'isWhat' | 'change' | 'discount' | 'reverse'

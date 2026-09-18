@@ -6,7 +6,6 @@ import RelatedCalculators from '../../components/RelatedCalculators';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useI18n } from '../../contexts/i18n';
-import { getGuideData } from '../../data/guideTranslations';
 import { calculateDebtSnowball, DebtItem } from '../../lib/math/finance';
 
 
@@ -88,8 +87,8 @@ const localDict = {
 
 
 export default function DebtSnowball() {
-  const { lang } = useI18n();
-  const guide = getGuideData('debt-snowball', lang);
+  const { lang, guides } = useI18n();
+  const guide = guides['debt-snowball'] || { guideTitle: 'Guide & Formulas', guideDesc: 'Comprehensive calculation breakdown and FAQs.', faq: [] };
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
   const [debts, setDebts] = useState<DebtItem[]>([
@@ -245,7 +244,7 @@ export default function DebtSnowball() {
               {guide.formulaHeading}
             </h3>
             <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 font-mono text-xs sm:text-sm text-stone-800 space-y-2">
-              {guide.formulaLines?.map((line, idx) => (
+              {guide.formulaLines?.map((line: string, idx: number) => (
                 <div key={idx}>{line}</div>
               ))}
             </div>

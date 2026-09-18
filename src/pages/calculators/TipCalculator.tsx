@@ -8,11 +8,10 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 import RelatedCalculators from '../../components/RelatedCalculators';
 import CopyButton from '../../components/CopyButton';
 import PresetChips from '../../components/PresetChips';
-import { getGuideData } from '../../data/guideTranslations';
 
 export default function TipCalculator() {
-  const { t, lang } = useI18n();
-  const guide = getGuideData('tip', lang);
+  const { t, lang, guides } = useI18n();
+  const guide = guides['tip'] || { guideTitle: 'Guide & Formulas', guideDesc: 'Comprehensive calculation breakdown and FAQs.', faq: [] };
   const [bill, setBill] = useUrlState<number | ''>('bill', 100);
   const [tipPercent, setTipPercent] = useUrlState<number | ''>('tipPercent', 15);
   const [people, setPeople] = useUrlState<number | ''>('people', 1);
@@ -155,7 +154,7 @@ export default function TipCalculator() {
               {guide.formulaHeading}
             </h3>
             <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 font-mono text-xs sm:text-sm text-stone-800 space-y-2">
-              {guide.formulaLines?.map((line, idx) => (
+              {guide.formulaLines?.map((line: string, idx: number) => (
                 <div key={idx}>{line}</div>
               ))}
             </div>

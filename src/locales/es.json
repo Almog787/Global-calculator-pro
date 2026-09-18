@@ -1,0 +1,793 @@
+{
+  "ui": {
+    "dir": "ltr",
+    "title": "GlobalCalc",
+    "calculate": "Calcular",
+    "result": "Resultado",
+    "allTools": "Todas las herramientas",
+    "percFinderTitle": "Calculadora de Porcentajes",
+    "percFinderDesc": "Cálculos de porcentajes rápidos y precisos para necesidades diarias.",
+    "percFinderExplanation": "Utilice esta calculadora para encontrar porcentajes, calcular descuentos o determinar la diferencia porcentual entre dos números.",
+    "whatIs": "¿Cuánto es el",
+    "percOf": "% de",
+    "isWhatPercOf": "es qué % de",
+    "percChange": "Cambio Porcentual",
+    "from": "De",
+    "to": "a",
+    "unitConvTitle": "Convertidor de Unidades",
+    "unitConvDesc": "Convierte rápidamente longitudes, pesos y temperaturas.",
+    "unitConvExplanation": "Seleccione la categoría y las unidades que desea convertir, luego ingrese un valor para ver el resultado al instante.",
+    "length": "Longitud",
+    "weight": "Peso",
+    "temp": "Temp",
+    "mortgageTitle": "Calculadora de Hipotecas",
+    "mortgageDesc": "Estima tu pago mensual y el costo total de los intereses.",
+    "mortgageExplanation": "Ingrese el monto del préstamo, la tasa de interés y el plazo para ver su pago mensual estimado y el interés total que pagará durante la vigencia del préstamo.",
+    "loanAmount": "Monto del Préstamo ($)",
+    "interestRate": "Tasa de Interés Anual (%)",
+    "loanTerm": "Plazo del Préstamo (Años)",
+    "monthlyPayment": "Pago Mensual",
+    "totalInterest": "Total de Intereses Pagados",
+    "compoundTitle": "Interés Compuesto",
+    "compoundDesc": "Calcula el valor futuro de tus inversiones.",
+    "compoundExplanation": "Vea cómo su dinero puede crecer con el tiempo con interés compuesto ingresando su inversión inicial, contribuciones regulares y tasa de retorno esperada.",
+    "initialInvestment": "Inversión Inicial ($)",
+    "monthlyContribution": "Contribución Mensual ($)",
+    "yearsToGrow": "Años de Crecimiento",
+    "futureValue": "Valor Futuro",
+    "totalContributions": "Contribuciones Totales",
+    "totalInterestEarned": "Total de Intereses Ganados",
+    "bmiTitle": "Calculadora de IMC",
+    "bmiDesc": "Comprueba tu Índice de Masa Corporal.",
+    "bmiExplanation": "Ingresa tu altura y peso para calcular tu IMC y ver en qué categoría te encuentras.",
+    "height": "Altura",
+    "weightBmi": "Peso",
+    "bmiResult": "Tu IMC",
+    "bmiCategory": "Categoría",
+    "tipTitle": "Calculadora de Propinas",
+    "tipDesc": "Calcula propinas y divide cuentas fácilmente.",
+    "tipExplanation": "Ingresa el monto de la cuenta y el porcentaje de propina para calcular el total y cuánto debe pagar cada persona.",
+    "billAmount": "Monto de la Cuenta",
+    "tipPercentage": "% de Propina",
+    "numberOfPeople": "Número de Personas",
+    "tipAmount": "Monto de Propina",
+    "totalPerPerson": "Total por Persona",
+    "salaryTitle": "Calculadora de Salario",
+    "salaryDesc": "Convierte salarios por hora, semanales, mensuales y anuales.",
+    "salaryExplanation": "Ingresa tu salario en cualquier frecuencia para ver el monto equivalente en otras frecuencias.",
+    "salaryAmount": "Monto del Salario",
+    "salaryFrequency": "Frecuencia",
+    "hourly": "Por Hora",
+    "weekly": "Semanal",
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "ageTitle": "Calculadora de Edad",
+    "ageDesc": "Calcula tu edad exacta en años, meses y días.",
+    "ageExplanation": "Ingresa tu fecha de nacimiento para descubrir exactamente cuántos años tienes hoy.",
+    "dateOfBirth": "Fecha de Nacimiento",
+    "exactAge": "Edad Exacta",
+    "yearsOld": "Años",
+    "monthsOld": "Meses",
+    "daysOld": "Días",
+    "contactTitle": "Contacto",
+    "contactDesc": "Póngase en contacto con el equipo de GlobalCalc Pro.",
+    "contactExplanation": "¿Tiene preguntas, comentarios o sugerencias? Envíenos un mensaje con el formulario.",
+    "fullName": "Nombre Completo",
+    "emailAddress": "Correo Electrónico",
+    "subject": "Asunto",
+    "message": "Mensaje",
+    "sendMessage": "Enviar Mensaje",
+    "messageSentSuccess": "¡Gracias! Su mensaje ha sido enviado con éxito.",
+    "contactInfoNote": "Los detalles de contacto se actualizarán pronto. Puede utilizar el formulario anterior para cualquier consulta.",
+    "privacyTitle": "Política de Privacidad",
+    "privacyDesc": "Aprenda cómo GlobalCalc Pro protege su privacidad y sus datos.",
+    "termsTitle": "Términos de Servicio",
+    "termsDesc": "Lea nuestros términos y condiciones de uso para GlobalCalc Pro.",
+    "aboutTitle": "Sobre Nosotros",
+    "aboutDesc": "Descubra GlobalCalc Pro: herramientas de cálculo en línea gratuitas y rápidas con el asistente inteligente Calc-E.",
+    "suggestionsTitle": "Sugerir una función",
+    "suggestionsDesc": "Envíe ideas de funciones y solicitudes de calculadoras para GlobalCalc Pro.",
+    "suggestionsExplanation": "¿Tiene una idea para una nueva calculadora o función? Comparta su sugerencia con nosotros.",
+    "suggestionSuccess": "¡Muchas gracias por su sugerencia!",
+    "suggestionType": "Categoría",
+    "suggestionTypeCalc": "Solicitud de nueva calculadora",
+    "suggestionTypeFeature": "Función / Mejora",
+    "suggestionTypeBug": "Reporte de error",
+    "suggestionTitleField": "Título de la sugerencia",
+    "suggestionDetailsField": "Descripción detallada",
+    "submitGithubIssue": "Enviar sugerencia",
+    "footerCalculators": "Calculadoras",
+    "footerLegal": "Información y Legal",
+    "footerRights": "Todos los derechos reservados.",
+    "footerDisclaimer": "Los cálculos proporcionados son solo para fines informativos.",
+    "notFoundTitle": "Página no encontrada",
+    "notFoundDesc": "La página que buscas no existe o ha sido movida.",
+    "backToHome": "Volver al Inicio",
+    "catAll": "Todas las herramientas",
+    "catFinance": "Finanzas y Dinero",
+    "catRealEstate": "Bienes Raíces",
+    "catHealth": "Salud y Cuerpo",
+    "catMath": "Matemáticas y Conversiones",
+    "catTech": "Tecnología e Ingeniería",
+    "catLifestyle": "Estilo de vida",
+    "pwaPromoTitle": "Instala Nuestra App",
+    "pwaPromoDesc": "Puedes instalar nuestras calculadoras directamente en tu teléfono o PC para un acceso rápido en cualquier momento.",
+    "pwaPromoBen1": "Carga rápida y acceso sin conexión",
+    "pwaPromoBen2": "No requiere tienda de aplicaciones",
+    "pwaPromoBen3": "Ocupa muy poco espacio de almacenamiento",
+    "pwaPromoStep1": "Toca el menú del navegador (⋮) o el botón de compartir",
+    "pwaPromoStep2": "Selecciona \"Agregar a la pantalla de inicio\" o \"Instalar aplicación\"",
+    "libraryTitle": "Biblioteca de Calculadoras",
+    "librarySubtitle": "Encuentre la herramienta perfecta, o utilice nuestro asistente inteligente Calc-E para obtener recomendaciones guiadas.",
+    "faqTitle": "Preguntas Frecuentes"
+  },
+  "guides": {
+    "auto-loan": {
+      "guideTitle": "Cómo funcionan los préstamos de autos y pagos mensuales",
+      "guideDesc": "Los préstamos de autos utilizan tablas de amortización donde cada pago mensual se divide entre capital e intereses.",
+      "formulaHeading": "Fórmula de pago mensual de auto",
+      "formulaLines": [
+        "Pago Mensual (M) = P × [ r(1+r)^n ÷ ((1+r)^n - 1) ]",
+        "P = Capital del préstamo (Precio del auto menos Enganche)",
+        "r = Tasa de interés mensual (Tasa anual ÷ 12)",
+        "n = Número total de pagos (Años × 12)"
+      ],
+      "faq": [
+        {
+          "question": "¿Cómo afecta el pago inicial (enganche) al préstamo?",
+          "answer": "Un enganche mayor reduce directamente el capital financiado, disminuyendo el pago mensual y los intereses totales."
+        },
+        {
+          "question": "¿Es mejor un plazo de 48 o 72 meses?",
+          "answer": "Plazos más cortos tienen pagos mensuales más altos pero ahorran intereses. Plazos más largos reducen la cuota mensual pero aumentan el costo total."
+        }
+      ]
+    },
+    "roi": {
+      "guideTitle": "Cómo calcular el Retorno de Inversión (ROI)",
+      "guideDesc": "El ROI evalúa la eficiencia y rentabilidad de una inversión en relación con su costo inicial.",
+      "formulaHeading": "Fórmulas de ROI Básico y Anualizado",
+      "formulaLines": [
+        "ROI Básico (%) = [(Ganancia Neta) ÷ (Costo de Inversión)] × 100",
+        "Ganancia Neta = Valor Final - Costo Inicial",
+        "ROI Anualizado (%) = [(1 + ROI Básico)^(1 ÷ Años) - 1] × 100"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué es el ROI anualizado?",
+          "answer": "El ROI anualizado mide la tasa de crecimiento promedio anual, permitiendo comparar inversiones de distintos períodos de tiempo."
+        }
+      ]
+    },
+    "margin": {
+      "guideTitle": "Cómo calcular Margen de Ganancia y Markup",
+      "guideDesc": "El margen calcula el beneficio sobre los ingresos totales, mientras que el markup lo calcula sobre el costo del producto.",
+      "formulaHeading": "Fórmulas de Margen vs Markup",
+      "formulaLines": [
+        "Ganancia Bruta = Ingresos - Costo",
+        "Margen de Ganancia (%) = (Ganancia Bruta ÷ Ingresos) × 100",
+        "Markup (%) = (Ganancia Bruta ÷ Costo) × 100"
+      ],
+      "faq": [
+        {
+          "question": "¿Cuál es la diferencia clave entre Margen y Markup?",
+          "answer": "El Margen toma los ingresos de venta como denominador, mientras que el Markup toma el costo inicial."
+        }
+      ]
+    },
+    "cap-rate": {
+      "guideTitle": "Cómo calcular la Tasa de Capitalización (Cap Rate)",
+      "guideDesc": "La Tasa de Capitalización refleja el retorno neto esperado generado por una propiedad inmobiliaria.",
+      "formulaHeading": "Fórmula de Cap Rate",
+      "formulaLines": [
+        "Cap Rate (%) = (Ingreso Operativo Neto ÷ Valor del Inmueble) × 100",
+        "Ingreso Operativo Neto (NOI) = Ingresos por Renta - Gastos Operativos"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué se considera un buen Cap Rate?",
+          "answer": "Generalmente un Cap Rate entre 4% y 10% se considera saludable según la ubicación y el riesgo de la propiedad."
+        }
+      ]
+    },
+    "freelance-net-income": {
+      "guideTitle": "Cómo calcular el ingreso neto para autónomos y freelancers",
+      "guideDesc": "El cálculo del ingreso neto requiere restar los gastos deducibles de los ingresos brutos, y luego aplicar los impuestos correspondientes.",
+      "formulaHeading": "Fórmula de ingreso neto freelance",
+      "formulaLines": [
+        "Ganancia Imponible = Ingreso Bruto - Gastos Deducibles",
+        "Ingreso Neto = Ganancia Imponible - Impuestos Totales"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué gastos se pueden deducir?",
+          "answer": "Todos los gastos directos necesarios para operar su negocio, como software, contabilidad y equipamiento de oficina."
+        }
+      ]
+    },
+    "debt-snowball": {
+      "guideTitle": "Cómo la estrategia Bola de Nieve elimina deudas",
+      "guideDesc": "El método de Bola de Nieve prioriza el pago de las deudas del saldo más pequeño al más grande para generar impulso psicológico.",
+      "formulaHeading": "Pasos del Método Bola de Nieve",
+      "formulaLines": [
+        "1. Ordene las deudas del saldo menor al mayor",
+        "2. Pague el mínimo en todas excepto en la más pequeña",
+        "3. Destine todo el dinero sobrante a liquidar la menor",
+        "4. Al terminar, sume ese pago al siguiente saldo"
+      ],
+      "faq": [
+        {
+          "question": "¿Diferencia entre Bola de Nieve y Avalancha?",
+          "answer": "Bola de nieve busca victorias psicológicas rápidas; Avalancha ataca la deuda con mayor tasa de interés para ahorrar más."
+        }
+      ]
+    },
+    "fuel-split": {
+      "guideTitle": "Cómo calcular costos de gasolina y división de viajes",
+      "guideDesc": "Los cálculos de viaje combinan distancia, consumo del vehículo, precio del combustible y peajes.",
+      "formulaHeading": "Fórmula de costo de combustible",
+      "formulaLines": [
+        "Litros Necesarios = Distancia ÷ Eficiencia (km/L)",
+        "Costo Total = (Litros × Precio) + Peajes",
+        "Costo Por Persona = Costo Total ÷ Pasajeros"
+      ],
+      "faq": [
+        {
+          "question": "¿Cómo se dividen los peajes?",
+          "answer": "Los peajes se suman al gasto total y se dividen en partes iguales entre todos los pasajeros."
+        }
+      ]
+    },
+    "goal-savings": {
+      "guideTitle": "Cómo calcular el ahorro mensual para alcanzar una meta",
+      "guideDesc": "Alcanzar una meta financiera requiere calcular los depósitos mensuales considerando el capital inicial y el interés compuesto.",
+      "formulaHeading": "Fórmula de aporte mensual",
+      "formulaLines": [
+        "Valor Futuro del Capital Inicial = Saldo Inicial × (1 + r)^n",
+        "Brecha Restante = Meta Deseada - Valor Futuro Inicial",
+        "Depósito Mensual = Brecha × [ r ÷ ((1 + r)^n - 1) ]"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué pasa si la tasa de interés cambia?",
+          "answer": "La herramienta asume un rendimiento fijo. Se recomienda recalcular anualmente según los resultados reales."
+        }
+      ]
+    },
+    "download-time": {
+      "guideTitle": "Cómo calcular el tiempo de descarga según la velocidad",
+      "guideDesc": "El tiempo de descarga depende del tamaño del archivo y la velocidad real de transmisión de red.",
+      "formulaHeading": "Fórmula de tiempo de descarga",
+      "formulaLines": [
+        "1 Byte = 8 Bits",
+        "Velocidad en Bytes/s = Mbps × 1,000,000 ÷ 8",
+        "Tiempo (segundos) = Tamaño de archivo ÷ Velocidad (Bytes/s)"
+      ],
+      "faq": [
+        {
+          "question": "Diferencia entre Mbps y MB/s",
+          "answer": "Mbps mide el ancho de banda comercial, mientras que MB/s mide el tamaño de archivos. Divida Mbps entre 8 para obtener MB/s."
+        }
+      ]
+    },
+    "peltier-cooling": {
+      "guideTitle": "Guía de refrigeración termoeléctrica Peltier (TEC) y COP",
+      "guideDesc": "Los módulos Peltier transfieren calor mediante el efecto Peltier. La capacidad de enfriamiento y el COP dependen del voltaje y la corriente.",
+      "formulaHeading": "Ecuaciones Termoeléctricas",
+      "formulaLines": [
+        "Consumo de Energía (Pin) = Voltaje (V) × Corriente (I)",
+        "Coeficiente de Rendimiento (COP) = Capacidad Enfriamiento (Qc) ÷ Pin"
+      ],
+      "faq": [
+        {
+          "question": "¿Cuál es el COP típico de un módulo Peltier?",
+          "answer": "Suele oscilar entre 0.3 y 0.8. Aunque son menos eficientes que los compresores, ofrecen refrigeración silenciosa sin partes móviles."
+        }
+      ]
+    },
+    "rent-vs-buy": {
+      "guideTitle": "Guía de Análisis Financiero: Alquilar vs. Comprar Vivienda",
+      "guideDesc": "Comparar comprar vs alquilar evalúa la acumulación de patrimonio y apreciación frente a alquiler e intereses no recuperables.",
+      "formulaHeading": "Desglose de Comparación Financiera",
+      "formulaLines": [
+        "Costos no recuperables de compra = Intereses + Impuestos + Mantenamiento",
+        "Patrimonio Neto = Valor Inmobiliario - Saldo Hipotecario",
+        "Costo Total Alquiler = Renta Acumulada - Rendimiento de Inversión del Enganche"
+      ],
+      "faq": [
+        {
+          "question": "¿Comprar es siempre mejor que alquilar?",
+          "answer": "No siempre. Alquilar puede ser superior si el capital del enganche se invierte en activos de alto rendimiento."
+        }
+      ]
+    },
+    "mortgage": {
+      "guideTitle": "Guía de Pagos Hipotecarios y Tabla de Amortización",
+      "guideDesc": "La hipoteca divide los pagos mensuales entre reducción de principal, intereses, impuestos y seguros.",
+      "formulaHeading": "Fórmula de Amortización Hipotecaria",
+      "formulaLines": [
+        "M = P × [ r(1+r)^n ÷ ((1+r)^n - 1) ]",
+        "P = Monto del Principal",
+        "r = Tasa de Interés Mensual (Anual ÷ 12)",
+        "n = Número de Pagos (Años × 12)"
+      ],
+      "faq": [
+        {
+          "question": "¿Cómo afectan los pagos adicionales al principal?",
+          "answer": "Hacer pagos adicionales al capital reduce el plazo total del préstamo y ahorra miles en intereses."
+        }
+      ]
+    },
+    "compound": {
+      "guideTitle": "Cómo el Interés Compuesto Hace Crecer su Capital",
+      "guideDesc": "El interés compuesto calcula intereses sobre el capital inicial y sobre los intereses acumulados previamente.",
+      "formulaHeading": "Fórmula de Interés Compuesto",
+      "formulaLines": [
+        "A = P(1 + r/n)^(nt) + PMT × [ ((1 + r/n)^(nt) - 1) ÷ (r/n) ]",
+        "P = Capital Inicial",
+        "PMT = Aporte Mensual",
+        "r = Tasa de Interés Anual",
+        "t = Tiempo en Años"
+      ],
+      "faq": [
+        {
+          "question": "¿Por qué importa la frecuencia de capitalización?",
+          "answer": "Capitalizaciones más frecuentes hacen crecer el interés sobre el interés con mayor rapidez."
+        }
+      ]
+    },
+    "unit": {
+      "guideTitle": "Guía de Conversión de Unidades Métricas e Imperiales",
+      "guideDesc": "La conversión de unidades estandariza mediciones entre el sistema métrico internacional y el sistema imperial.",
+      "formulaHeading": "Factores de Conversión",
+      "formulaLines": [
+        "Longitud: 1 Pulgada = 2.54 cm | 1 Metro = 3.28084 Pies",
+        "Peso: 1 Kilogramo = 2.20462 Libras",
+        "Temperatura: °F = (°C × 9/5) + 32"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué precisión tienen las conversiones?",
+          "answer": "Todas las conversiones cumplen con los factores oficiales de organismos de estándares internacionales."
+        }
+      ]
+    },
+    "bmi": {
+      "guideTitle": "Guía de Índice de Masa Corporal (IMC) y Salud",
+      "guideDesc": "El IMC mide la masa corporal en relación con la estatura, según los parámetros de la OMS.",
+      "formulaHeading": "Fórmula de IMC",
+      "formulaLines": [
+        "IMC = Peso (kg) ÷ [Estatura (m)]²",
+        "Bajo peso: < 18.5 | Peso Normal: 18.5 - 24.9",
+        "Sobrepeso: 25.0 - 29.9 | Obesidad: ≥ 30.0"
+      ],
+      "faq": [
+        {
+          "question": "¿Es preciso el IMC para atletas?",
+          "answer": "El IMC no distingue entre masa muscular y grasa, por lo que personas musculosas pueden mostrar IMC elevado."
+        }
+      ]
+    },
+    "tip": {
+      "guideTitle": "Guía de Propinas y División de Cuentas",
+      "guideDesc": "El cálculo de propina aplica un porcentaje sobre la cuenta y la divide equitativamente entre los comensales.",
+      "formulaHeading": "Fórmulas de Propina",
+      "formulaLines": [
+        "Monto Propina = Cuenta × (Porcentaje ÷ 100)",
+        "Total = Cuenta + Propina",
+        "Por Persona = Total ÷ Número de Personas"
+      ],
+      "faq": [
+        {
+          "question": "¿La propina se calcula antes o después de impuestos?",
+          "answer": "La etiqueta estándar sugiere calcular la propina sobre el subtotal antes de impuestos."
+        }
+      ]
+    },
+    "salary": {
+      "guideTitle": "Guía de Conversión de Salario Horario, Mensual y Anual",
+      "guideDesc": "Convierte tarifas por hora en remuneración semanal, mensual y anual bruta.",
+      "formulaHeading": "Fórmulas de Conversión Salarial",
+      "formulaLines": [
+        "Salario Anual = Tarifa por Hora × Horas/Semana × 52",
+        "Salario Mensual = Salario Anual ÷ 12",
+        "Salario Semanal = Salario Anual ÷ 52"
+      ],
+      "faq": [
+        {
+          "question": "¿Cómo se consideran los días de vacaciones pagadas?",
+          "answer": "El cálculo estándar asume 52 semanas pagadas al año incluyendo vacaciones pagadas."
+        }
+      ]
+    },
+    "age": {
+      "guideTitle": "Guía de Cálculo de Edad Exacta y Diferencia de Fechas",
+      "guideDesc": "Calcula la edad exacta en años, meses, días y horas considerando años bisiestos.",
+      "formulaHeading": "Métricas de Intervalo de Fechas",
+      "formulaLines": [
+        "Años = Año Actual - Año de Nacimiento",
+        "Días Totales = Diferencia en días de calendario incluyendo bisiestos"
+      ],
+      "faq": [
+        {
+          "question": "¿Cómo se manejan los años bisiestos?",
+          "answer": "Los años bisiestos añaden el 29 de febrero, garantizando el recuento exacto de días."
+        }
+      ]
+    },
+    "percentage": {
+      "guideTitle": "Buscador de Porcentajes y Guía de Cálculo",
+      "guideDesc": "Los porcentajes expresan proporciones como fracciones de 100. Aprende a calcular porcentajes de cualquier número, aumentos, descuentos y cómo usar la tecla de porcentaje en una calculadora.",
+      "formulaHeading": "Fórmulas Principales de Porcentajes",
+      "formulaLines": [
+        "Calcular X% de Y = Total (Y) × [ Porcentaje (X) ÷ 100 ]",
+        "X es qué % de Y = (Parte ÷ Total) × 100",
+        "Cambio Porcentual (%) = [(Valor Nuevo - Valor Original) ÷ Valor Original] × 100",
+        "Precio con Descuento = Precio Original × [ 1 - (Descuento % ÷ 100) ]"
+      ],
+      "faq": [
+        {
+          "question": "¿Cómo calcular el porcentaje de un número?",
+          "answer": "Divida el porcentaje entre 100 para convertirlo en decimal y multiplíquelo por el número total. Ejemplo: para el 20% de 150, calcule 0.20 × 150 = 30."
+        },
+        {
+          "question": "¿Cómo usar la tecla de porcentaje (%) en una calculadora?",
+          "answer": "En una calculadora estándar: 1) Para X% de Y: escriba Y × X % (ej. 150 × 20 % = 30). 2) Para aplicar descuento: Precio - Descuento % = (ej. 80 - 25 % = 60). 3) Para agregar impuesto/propina: Precio + Tasa % = (ej. 100 + 15 % = 115)."
+        },
+        {
+          "question": "¿Cómo calcular un incremento o disminución porcentual?",
+          "answer": "Reste el valor original del nuevo, divida el resultado entre el valor original y multiplique por 100."
+        }
+      ]
+    }
+  },
+  "assistant": {
+    "title": "Calc-E Asistente Interactivo",
+    "badge": "Ayuda y Consejos",
+    "subtitle": "Navegación y Cálculo Rápido",
+    "guidedQuizTab": "Guía Interactiva",
+    "quickCalcTab": "Cálculo Rápido",
+    "tipsTab": "Consejos Clave",
+    "searchTab": "Búsqueda",
+    "startQuiz": "🎯 Encuentra tu calculadora",
+    "restartQuiz": "🔄 Reiniciar cuestionario",
+    "back": "Atrás",
+    "recommended": "Recomendado para ti:",
+    "openCalculator": "Abrir Calculadora",
+    "searchPlaceholder": "Buscar calculadoras...",
+    "noResults": "No se encontraron calculadoras",
+    "quickTip": "Consejo: ¡Elige un tema para encontrar la calculadora adecuada!",
+    "allCalculators": "Todas las calculadoras",
+    "filterTips": "Filtrar por tema:",
+    "allCategories": "Todos",
+    "ruleFormula": "Regla / Fórmula:",
+    "goToTool": "Abrir herramienta",
+    "instantCalc": "Cálculo de % instantáneo",
+    "calcXofY": "¿Cuánto es X% de Y?",
+    "calcDiscount": "Calcular precio con descuento",
+    "calcRule72": "Regla del 72 (Duplicar capital)",
+    "rateInput": "Tasa anual (%)",
+    "yearsToDouble": "Años para duplicar capital",
+    "yearsLabel": "Años",
+    "valueX": "Porcentaje (%)",
+    "valueY": "Monto (Y)",
+    "originalPrice": "Precio original",
+    "discountPercent": "Descuento (%)",
+    "result": "Resultado",
+    "finalPrice": "Precio final",
+    "savingsAmount": "Monto ahorrado",
+    "copyBtn": "Copiar consejo",
+    "rule72Explain": "Aproximación: 72 dividido por la tasa de interés anual indica los años requeridos para duplicar tu dinero."
+  },
+  "tips": [
+    {
+      "id": "rule_72",
+      "category": "finance",
+      "icon": "trending_up",
+      "title": "Regla del 72 para Inversiones",
+      "content": "¿Quieres saber cuándo se duplica tu dinero? Divide 72 entre la tasa de interés anual."
+    },
+    {
+      "id": "rule_50_30_20",
+      "category": "finance",
+      "icon": "pie_chart",
+      "title": "Regla Presupuestaria 50/30/20",
+      "content": "Divide tus ingresos netos: 50% necesidades, 30% deseos y 20% ahorro e inversión."
+    },
+    {
+      "id": "mortgage_30_rule",
+      "category": "real-estate",
+      "icon": "home",
+      "title": "Regla del 30% para Hipotecas",
+      "content": "El pago mensual no debería superar el 30%-35% de los ingresos netos del hogar."
+    },
+    {
+      "id": "car_20_4_10",
+      "category": "finance",
+      "icon": "directions_car",
+      "title": "Regla 20/4/10 para Comprar Auto",
+      "content": "20% enganche, financiar máximo 4 años, y gastos de auto menores al 10% del ingreso."
+    },
+    {
+      "id": "mbps_to_mbs",
+      "category": "tech",
+      "icon": "speed",
+      "title": "Velocidad de Internet: Mbps a MB/s",
+      "content": "Los proveedores venden en Megabits (Mb). Divide entre 8 para saber la velocidad real en MB/s."
+    },
+    {
+      "id": "mental_percent_tip",
+      "category": "math",
+      "icon": "psychology",
+      "title": "Truco Mental para Porcentajes",
+      "content": "Mueve el punto 1 lugar a la izquierda para el 10%, duplica para el 20% o suma la mitad para el 15%."
+    }
+  ],
+  "quiz": {
+    "root": {
+      "id": "root",
+      "question": "¿Qué tipo de cálculo necesitas hoy?",
+      "subtitle": "Selecciona una categoría principal:",
+      "options": [
+        {
+          "id": "finance",
+          "icon": "account_balance_wallet",
+          "label": "Finanzas y Ahorro",
+          "desc": "Interés compuesto, metas de ahorro, deudas",
+          "nextStepId": "step_finance"
+        },
+        {
+          "id": "real_estate",
+          "icon": "home",
+          "label": "Bienes Raíces y Vivienda",
+          "desc": "Hipoteca, alquilar vs comprar, tasa cap",
+          "nextStepId": "step_real_estate"
+        },
+        {
+          "id": "business_salary",
+          "icon": "payments",
+          "label": "Trabajo, Salario y Negocios",
+          "desc": "Conversión de salario, freelance, margen de ganancia, ROI",
+          "nextStepId": "step_business"
+        },
+        {
+          "id": "auto_travel",
+          "icon": "directions_car",
+          "label": "Autos, Combustible y Viajes",
+          "desc": "Préstamo de auto, dividir gasolina en viajes",
+          "nextStepId": "step_auto_travel"
+        },
+        {
+          "id": "math_conv",
+          "icon": "calculate",
+          "label": "Matemáticas y Conversión",
+          "desc": "Porcentajes, descuentos, unidades métricas",
+          "nextStepId": "step_math_conv"
+        },
+        {
+          "id": "health_lifestyle",
+          "icon": "favorite",
+          "label": "Salud y Estilo de Vida",
+          "desc": "Índice IMC, propinas de restaurante, calculadora de edad",
+          "nextStepId": "step_health_lifestyle"
+        },
+        {
+          "id": "tech_science",
+          "icon": "memory",
+          "label": "Tech & Science",
+          "desc": "Tiempo de descarga, refrigeración Peltier",
+          "nextStepId": "step_tech_science"
+        }
+      ]
+    },
+    "step_finance": {
+      "id": "step_finance",
+      "question": "¿Cuál es tu meta financiera?",
+      "subtitle": "Elige el cálculo que necesitas:",
+      "options": [
+        {
+          "id": "opt_compound",
+          "icon": "trending_up",
+          "label": "Interés Compuesto y Crecimiento",
+          "desc": "Calcula el crecimiento de tu dinero con el tiempo",
+          "targetPath": "/compound-interest",
+          "calculatorId": "compound"
+        },
+        {
+          "id": "opt_goal_savings",
+          "icon": "savings",
+          "label": "Planificador de Metas de Ahorro",
+          "desc": "Descubre cuánto depositar mensualmente para alcanzar tu meta",
+          "targetPath": "/calculators/goal-savings",
+          "calculatorId": "goal-savings"
+        },
+        {
+          "id": "opt_debt_snowball",
+          "icon": "ac_unit",
+          "label": "Eliminación de Deudas Bola de Nieve",
+          "desc": "Planifica el pago de préstamos ordenado de menor a mayor",
+          "targetPath": "/calculators/debt-snowball",
+          "calculatorId": "debt-snowball"
+        },
+        {
+          "id": "opt_roi",
+          "icon": "query_stats",
+          "label": "Retorno de Inversión (ROI)",
+          "desc": "Calcula el porcentaje de ganancia o pérdida",
+          "targetPath": "/calculators/roi",
+          "calculatorId": "roi"
+        }
+      ]
+    },
+    "step_real_estate": {
+      "id": "step_real_estate",
+      "question": "¿Qué cálculo inmobiliario necesitas?",
+      "subtitle": "Selecciona tu situación:",
+      "options": [
+        {
+          "id": "opt_mortgage",
+          "icon": "real_estate_agent",
+          "label": "Calculadora de Hipoteca",
+          "desc": "Calcula cuota mensual, intereses totales y amortización",
+          "targetPath": "/mortgage-calculator",
+          "calculatorId": "mortgage"
+        },
+        {
+          "id": "opt_rent_vs_buy",
+          "icon": "balance",
+          "label": "Alquilar vs Comprar Casa",
+          "desc": "Descubre qué opción es más rentable financieramente",
+          "targetPath": "/calculators/rent-vs-buy",
+          "calculatorId": "rent-vs-buy"
+        },
+        {
+          "id": "opt_cap_rate",
+          "icon": "domain",
+          "label": "Tasa de Capitalización (Cap Rate)",
+          "desc": "Evalúa el rendimiento neto de propiedades en alquiler",
+          "targetPath": "/calculators/cap-rate",
+          "calculatorId": "cap-rate"
+        }
+      ]
+    },
+    "step_business": {
+      "id": "step_business",
+      "question": "¿Qué herramienta laboral o de negocio buscas?",
+      "subtitle": "Selecciona el tipo de cálculo:",
+      "options": [
+        {
+          "id": "opt_salary",
+          "icon": "badge",
+          "label": "Conversor de Salario y Sueldo por Hora",
+          "desc": "Convierte entre tarifas por hora, mensual y anual",
+          "targetPath": "/salary-calculator",
+          "calculatorId": "salary"
+        },
+        {
+          "id": "opt_freelance",
+          "icon": "laptop_mac",
+          "label": "Calculadora de Ingreso Neto Freelance",
+          "desc": "Calcula lo que ganas en mano tras impuestos y gastos",
+          "targetPath": "/calculators/freelance-net-income",
+          "calculatorId": "freelance-net-income"
+        },
+        {
+          "id": "opt_margin",
+          "icon": "point_of_sale",
+          "label": "Calculadora de Margen de Ganancia y Markup",
+          "desc": "Calcula márgenes brutos y precios de venta ideales",
+          "targetPath": "/calculators/margin",
+          "calculatorId": "margin"
+        },
+        {
+          "id": "opt_roi_biz",
+          "icon": "insights",
+          "label": "Calculadora de ROI de Negocios",
+          "desc": "Evalúa la rentabilidad de proyectos y campañas",
+          "targetPath": "/calculators/roi",
+          "calculatorId": "roi"
+        }
+      ]
+    },
+    "step_auto_travel": {
+      "id": "step_auto_travel",
+      "question": "¿Qué cálculo de vehículo o viaje necesitas?",
+      "subtitle": "Elige la opción adecuada:",
+      "options": [
+        {
+          "id": "opt_auto_loan",
+          "icon": "directions_car",
+          "label": "Calculadora de Préstamo de Auto",
+          "desc": "Calcula mensualidad, tasa de interés y costo total del vehículo",
+          "targetPath": "/calculators/auto-loan",
+          "calculatorId": "auto-loan"
+        },
+        {
+          "id": "opt_fuel_split",
+          "icon": "local_gas_station",
+          "label": "Calculadora de Gasolina Compartida",
+          "desc": "Divide el gasto de combustible equitativamente entre los pasajeros",
+          "targetPath": "/calculators/fuel-split",
+          "calculatorId": "fuel-split"
+        }
+      ]
+    },
+    "step_math_conv": {
+      "id": "step_math_conv",
+      "question": "¿Qué cálculo matemático deseas resolver?",
+      "subtitle": "Selecciona el tipo de operación:",
+      "options": [
+        {
+          "id": "opt_percentage",
+          "icon": "percent",
+          "label": "Calculadora de Porcentajes y Descuentos",
+          "desc": "Calcula porcentajes de números, aumentos y rebajas",
+          "targetPath": "/percentage-finder",
+          "calculatorId": "percentage"
+        },
+        {
+          "id": "opt_unit_converter",
+          "icon": "swap_horiz",
+          "label": "Conversor Universal de Unidades",
+          "desc": "Convierte longitud, peso, temperatura, volumen y más",
+          "targetPath": "/unit-converter",
+          "calculatorId": "unit"
+        }
+      ]
+    },
+    "step_health_lifestyle": {
+      "id": "step_health_lifestyle",
+      "question": "¿Qué herramienta de salud o estilo de vida necesitas?",
+      "subtitle": "Elige la herramienta deseada:",
+      "options": [
+        {
+          "id": "opt_bmi",
+          "icon": "monitor_weight",
+          "label": "Calculadora de IMC (Índice de Masa Corporal)",
+          "desc": "Comprueba si tu peso está en rango saludable",
+          "targetPath": "/bmi-calculator",
+          "calculatorId": "bmi"
+        },
+        {
+          "id": "opt_tip",
+          "icon": "restaurant",
+          "label": "Calculadora de Propinas y División de Cuenta",
+          "desc": "Calcula la propina justa y divide el total por comensal",
+          "targetPath": "/tip-calculator",
+          "calculatorId": "tip"
+        },
+        {
+          "id": "opt_age",
+          "icon": "cake",
+          "label": "Calculadora de Edad Exacta y Fechas",
+          "desc": "Descubre tu edad exacta en días, meses y próximo cumpleaños",
+          "targetPath": "/age-calculator",
+          "calculatorId": "age"
+        }
+      ]
+    },
+    "step_tech_science": {
+      "id": "step_tech_science",
+      "question": "¿Qué cálculo técnico o de ingeniería deseas?",
+      "subtitle": "Elige el tema:",
+      "options": [
+        {
+          "id": "opt_download_time",
+          "icon": "download",
+          "label": "Calculadora de Tiempo de Descarga",
+          "desc": "Calcula el tiempo de bajada según el peso y tu velocidad",
+          "targetPath": "/calculators/download-time",
+          "calculatorId": "download-time"
+        },
+        {
+          "id": "opt_peltier",
+          "icon": "ac_unit",
+          "label": "Calculadora de Refrigeración Peltier TEC",
+          "desc": "Calcula capacidad frigorífica, consumo y coeficiente COP",
+          "targetPath": "/calculators/peltier-cooling",
+          "calculatorId": "peltier-cooling"
+        }
+      ]
+    }
+  }
+}

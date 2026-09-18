@@ -9,7 +9,6 @@ import { useI18n } from '../../contexts/i18n';
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
-import { getGuideData } from '../../data/guideTranslations';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -73,8 +72,8 @@ const localDict = {
 };
 
 export default function AutoLoan() {
-  const { lang } = useI18n();
-  const guide = getGuideData('auto-loan', lang);
+  const { lang, guides } = useI18n();
+  const guide = guides['auto-loan'] || { guideTitle: 'Guide & Formulas', guideDesc: 'Comprehensive calculation breakdown and FAQs.', faq: [] };
   // Fallback to English if language not supported in local dictionary
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
@@ -242,7 +241,7 @@ export default function AutoLoan() {
               {guide.formulaHeading}
             </h3>
             <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 font-mono text-xs sm:text-sm text-stone-800 space-y-2">
-              {guide.formulaLines?.map((line, idx) => (
+              {guide.formulaLines?.map((line: string, idx: number) => (
                 <div key={idx}>{line}</div>
               ))}
             </div>

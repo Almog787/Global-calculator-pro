@@ -6,7 +6,6 @@ import { useI18n } from '../../contexts/i18n';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import RelatedCalculators from '../../components/RelatedCalculators';
 import CopyButton from '../../components/CopyButton';
-import { getGuideData } from '../../data/guideTranslations';
 
 const conversions: Record<string, Record<string, (v: number) => number>> = {
   length: {
@@ -26,8 +25,8 @@ const conversions: Record<string, Record<string, (v: number) => number>> = {
 };
 
 export default function UnitConverter() {
-  const { t, lang } = useI18n();
-  const guide = getGuideData('unit', lang);
+  const { t, lang, guides } = useI18n();
+  const guide = guides['unit'] || { guideTitle: 'Guide & Formulas', guideDesc: 'Comprehensive calculation breakdown and FAQs.', faq: [] };
   const [val, setVal] = useUrlState<number | ''>('val', 1);
   const [cat, setCat] = useUrlState('cat', 'length');
   const [type, setType] = useUrlState('type', 'm-ft');
@@ -158,7 +157,7 @@ export default function UnitConverter() {
               {guide.formulaHeading}
             </h3>
             <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 font-mono text-xs sm:text-sm text-stone-800 space-y-2">
-              {guide.formulaLines?.map((line, idx) => (
+              {guide.formulaLines?.map((line: string, idx: number) => (
                 <div key={idx}>{line}</div>
               ))}
             </div>

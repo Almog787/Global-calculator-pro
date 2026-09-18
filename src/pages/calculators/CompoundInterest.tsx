@@ -5,15 +5,14 @@ import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'rec
 import { useI18n } from '../../contexts/i18n';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import RelatedCalculators from '../../components/RelatedCalculators';
-import { getGuideData } from '../../data/guideTranslations';
 import ShareActions from '../../components/ShareActions';
 import { useCalculatorState } from '../../hooks/useCalculatorState';
 import { calculateCompoundInterest } from '../../lib/math/finance';
 
 
 export default function CompoundInterest() {
-  const { t, lang } = useI18n();
-  const guide = getGuideData('compound', lang);
+  const { t, lang, guides } = useI18n();
+  const guide = guides['compound'] || { guideTitle: 'Guide & Formulas', guideDesc: 'Comprehensive calculation breakdown and FAQs.', faq: [] };
   
   const { state, updateState, saveToHistory, loadFromHistory, getHistory } = useCalculatorState('compound-interest', {
     principal: 10000,
@@ -216,7 +215,7 @@ export default function CompoundInterest() {
               {guide.formulaHeading}
             </h3>
             <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 font-mono text-xs sm:text-sm text-stone-800 space-y-2">
-              {guide.formulaLines?.map((line, idx) => (
+              {guide.formulaLines?.map((line: string, idx: number) => (
                 <div key={idx}>{line}</div>
               ))}
             </div>

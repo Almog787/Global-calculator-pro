@@ -1,0 +1,809 @@
+{
+  "ui": {
+    "dir": "ltr",
+    "title": "GlobalCalc",
+    "calculate": "Calculate",
+    "result": "Result",
+    "allTools": "All Tools",
+    "faqTitle": "Frequently Asked Questions",
+    "percFinderTitle": "Percentage Finder",
+    "percFinderDesc": "Fast and precise percentage calculations for everyday needs.",
+    "percFinderExplanation": "Use this calculator to find percentages, calculate discounts, or determine the percentage difference between two numbers.",
+    "whatIs": "What is",
+    "percOf": "% of",
+    "isWhatPercOf": "is what % of",
+    "percChange": "Percentage Change",
+    "from": "From",
+    "to": "to",
+    "unitConvTitle": "Unit Converter",
+    "unitConvDesc": "Quickly convert lengths, weights, and temperatures.",
+    "unitConvExplanation": "Select the category and units you want to convert from and to, then enter a value to instantly see the result.",
+    "length": "Length",
+    "weight": "Weight",
+    "temp": "Temp",
+    "mortgageTitle": "Mortgage Calculator",
+    "mortgageDesc": "Estimate your monthly payment and total interest cost.",
+    "mortgageExplanation": "Enter your loan amount, interest rate, and term to see your estimated monthly payment and the total interest you will pay over the life of the loan.",
+    "loanAmount": "Loan Amount ($)",
+    "interestRate": "Annual Interest Rate (%)",
+    "loanTerm": "Loan Term (Years)",
+    "monthlyPayment": "Monthly Payment",
+    "totalInterest": "Total Interest Paid",
+    "compoundTitle": "Compound Interest",
+    "compoundDesc": "Calculate the future value of your investments.",
+    "compoundExplanation": "See how your money can grow over time with compound interest by inputting your initial investment, regular contributions, and expected return rate.",
+    "initialInvestment": "Initial Investment ($)",
+    "monthlyContribution": "Monthly Contribution ($)",
+    "yearsToGrow": "Years to Grow",
+    "futureValue": "Future Value",
+    "totalContributions": "Total Contributions",
+    "totalInterestEarned": "Total Interest Earned",
+    "bmiTitle": "BMI Calculator",
+    "bmiDesc": "Check your Body Mass Index.",
+    "bmiExplanation": "Enter your height and weight to calculate your BMI and see which category you fall into.",
+    "height": "Height",
+    "weightBmi": "Weight",
+    "bmiResult": "Your BMI",
+    "bmiCategory": "Category",
+    "tipTitle": "Tip Calculator",
+    "tipDesc": "Calculate tips and split bills easily.",
+    "tipExplanation": "Enter the bill amount and tip percentage to calculate the total and how much each person should pay.",
+    "billAmount": "Bill Amount",
+    "tipPercentage": "Tip %",
+    "numberOfPeople": "Number of People",
+    "tipAmount": "Tip Amount",
+    "totalPerPerson": "Total per Person",
+    "salaryTitle": "Salary Calculator",
+    "salaryDesc": "Convert hourly, weekly, monthly, and annual salaries.",
+    "salaryExplanation": "Enter your salary in any frequency to see the equivalent amount in other frequencies.",
+    "salaryAmount": "Salary Amount",
+    "salaryFrequency": "Frequency",
+    "hourly": "Hourly",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "ageTitle": "Age Calculator",
+    "ageDesc": "Calculate your exact age in years, months, and days.",
+    "ageExplanation": "Enter your date of birth to find out exactly how old you are today.",
+    "dateOfBirth": "Date of Birth",
+    "exactAge": "Exact Age",
+    "yearsOld": "Years",
+    "monthsOld": "Months",
+    "daysOld": "Days",
+    "contactTitle": "Contact Us",
+    "contactDesc": "Get in touch with the GlobalCalc Pro team.",
+    "contactExplanation": "Have a question, feedback, or suggestion? Send us a message using the form below.",
+    "fullName": "Full Name",
+    "emailAddress": "Email Address",
+    "subject": "Subject",
+    "message": "Message",
+    "sendMessage": "Send Message",
+    "messageSentSuccess": "Thank you! Your message has been sent successfully.",
+    "contactInfoNote": "Contact details will be updated soon. You can use the form above for any inquiries.",
+    "privacyTitle": "Privacy Policy",
+    "privacyDesc": "Learn how GlobalCalc Pro protects your privacy and data.",
+    "termsTitle": "Terms of Service",
+    "termsDesc": "Read our terms and conditions for using GlobalCalc Pro.",
+    "aboutTitle": "About Us",
+    "aboutDesc": "Discover GlobalCalc Pro - free, fast, and accessible online calculation tools powered by Calc-E AI Assistant.",
+    "suggestionsTitle": "Suggest a Feature",
+    "suggestionsDesc": "Submit feature ideas and calculator requests for GlobalCalc Pro.",
+    "suggestionsExplanation": "Have an idea for a new calculator or feature? Share your suggestion with us.",
+    "suggestionSuccess": "Thank you for your suggestion!",
+    "suggestionType": "Category",
+    "suggestionTypeCalc": "New Calculator Request",
+    "suggestionTypeFeature": "Feature / Improvement",
+    "suggestionTypeBug": "Bug / Issue Report",
+    "suggestionTitleField": "Suggestion Title",
+    "suggestionDetailsField": "Detailed Description",
+    "submitGithubIssue": "Submit Suggestion",
+    "footerCalculators": "Calculators",
+    "footerLegal": "Legal & Info",
+    "footerRights": "All rights reserved.",
+    "footerDisclaimer": "Calculations provided on this site are for informational purposes only.",
+    "notFoundTitle": "Page Not Found",
+    "notFoundDesc": "The page you are looking for does not exist or has been moved.",
+    "backToHome": "Back to Home",
+    "catAll": "All Tools",
+    "catFinance": "Finance & Money",
+    "catRealEstate": "Real Estate",
+    "catHealth": "Health & Body",
+    "catMath": "Math & Conversions",
+    "catTech": "Tech & Engineering",
+    "catLifestyle": "Lifestyle & Everyday",
+    "pwaPromoTitle": "Install Our App",
+    "pwaPromoDesc": "You can install our calculators directly to your phone or desktop for quick access anytime.",
+    "pwaPromoBen1": "Fast loading & offline access",
+    "pwaPromoBen2": "No app store required",
+    "pwaPromoBen3": "Takes up minimal storage space",
+    "pwaPromoStep1": "Tap the share menu or browser menu (⋮)",
+    "pwaPromoStep2": "Select \"Add to Home Screen\" or \"Install App\"",
+    "libraryTitle": "Calculator Library",
+    "librarySubtitle": "Find the perfect tool for your calculations, or use Calc-E, our smart AI assistant, for guided recommendations."
+  },
+  "guides": {
+    "auto-loan": {
+      "guideTitle": "How Auto Loan Financing & Monthly Payments Work",
+      "guideDesc": "Auto loans use amortization calculations where every monthly payment is divided between principal reduction and interest charges.",
+      "formulaHeading": "Monthly Loan Payment Formula",
+      "formulaLines": [
+        "Monthly Payment (M) = P × [ r(1+r)^n ÷ ((1+r)^n - 1) ]",
+        "P = Loan Principal (Vehicle Price minus Down Payment)",
+        "r = Monthly Interest Rate (Annual Rate ÷ 12)",
+        "n = Total Number of Monthly Payments (Loan Term in Years × 12)"
+      ],
+      "faq": [
+        {
+          "question": "How does a down payment affect an auto loan?",
+          "answer": "A larger down payment directly reduces the financed principal amount, lowering both your monthly payment and the total interest accrued over the life of the loan."
+        },
+        {
+          "question": "Should I choose a 48-month or 72-month loan term?",
+          "answer": "Shorter terms (e.g. 48 months) have higher monthly payments but save significant money on overall interest. Longer terms lower monthly costs but increase total borrowing costs."
+        }
+      ]
+    },
+    "roi": {
+      "guideTitle": "How to Calculate Return on Investment (ROI) & Profitability",
+      "guideDesc": "Return on Investment evaluates the efficiency and profitability of an investment relative to its initial cost.",
+      "formulaHeading": "Basic & Annualized ROI Formulas",
+      "formulaLines": [
+        "Basic ROI (%) = [(Net Profit) ÷ (Cost of Investment)] × 100",
+        "Net Profit = Final Investment Value - Initial Investment Cost",
+        "Annualized ROI (%) = [(1 + Basic ROI)^(1 ÷ Years) - 1] × 100"
+      ],
+      "faq": [
+        {
+          "question": "What is Annualized ROI?",
+          "answer": "Annualized ROI measures the average geometric annual growth rate of an investment, allowing fair comparison across different time periods."
+        },
+        {
+          "question": "Can ROI be negative?",
+          "answer": "Yes, a negative ROI indicates that the investment incurred a net financial loss relative to its initial outlay."
+        }
+      ]
+    },
+    "margin": {
+      "guideTitle": "How Profit Margin & Markup Pricing Are Calculated",
+      "guideDesc": "Profit Margin calculates profit relative to revenue, while Markup calculates profit relative to product cost.",
+      "formulaHeading": "Margin vs Markup Formulas",
+      "formulaLines": [
+        "Gross Profit = Revenue - Cost",
+        "Profit Margin (%) = (Gross Profit ÷ Revenue) × 100",
+        "Markup (%) = (Gross Profit ÷ Cost) × 100"
+      ],
+      "faq": [
+        {
+          "question": "What is the main difference between Margin and Markup?",
+          "answer": "Margin uses total sales revenue as the denominator, whereas Markup uses initial cost as the denominator."
+        }
+      ]
+    },
+    "cap-rate": {
+      "guideTitle": "How Capitalization Rate (Cap Rate) Is Calculated in Real Estate",
+      "guideDesc": "Cap Rate reflects the expected net rate of return produced by a commercial or residential real estate property.",
+      "formulaHeading": "Cap Rate Formula",
+      "formulaLines": [
+        "Cap Rate (%) = (Net Operating Income ÷ Current Market Property Value) × 100",
+        "Net Operating Income (NOI) = Gross Rental Income - Operating Expenses"
+      ],
+      "faq": [
+        {
+          "question": "What is considered a good Cap Rate?",
+          "answer": "Typically, a Cap Rate between 4% and 10% is common depending on market location, property risk, and asset condition."
+        }
+      ]
+    },
+    "freelance-net-income": {
+      "guideTitle": "How Freelance Net Income & Tax Deductions Are Calculated",
+      "guideDesc": "Calculating net take-home earnings for independent contractors requires deducting business expenses from gross revenues, followed by self-employment and income taxes.",
+      "formulaHeading": "Net Freelance Income Formula",
+      "formulaLines": [
+        "Taxable Profit = Gross Revenue - Eligible Business Expenses",
+        "Total Tax Liability = Income Tax + Self-Employment Tax",
+        "Net Take-Home Pay = Taxable Profit - Total Tax Liability"
+      ],
+      "faq": [
+        {
+          "question": "What are eligible deductible business expenses?",
+          "answer": "Ordinary and necessary operating expenses incurred directly to run your business, such as software subscriptions, accounting fees, and office supplies."
+        }
+      ]
+    },
+    "debt-snowball": {
+      "guideTitle": "How the Debt Snowball Strategy Eliminates Debt",
+      "guideDesc": "The Debt Snowball method prioritizes paying off debts from smallest balance to largest balance to build momentum through quick psychological wins.",
+      "formulaHeading": "Debt Snowball Method Steps",
+      "formulaLines": [
+        "1. List all debts ordered by remaining balance (smallest first)",
+        "2. Pay minimum required payments on all debts except the smallest",
+        "3. Roll all remaining extra budget into paying off the smallest debt",
+        "4. Once cleared, roll that entire monthly payment into the next debt"
+      ],
+      "faq": [
+        {
+          "question": "How does Debt Snowball compare to Debt Avalanche?",
+          "answer": "Debt Snowball targets the smallest balance for psychological motivation, while Debt Avalanche targets the highest interest rate debt first to minimize total interest paid."
+        }
+      ]
+    },
+    "fuel-split": {
+      "guideTitle": "How Road Trip Fuel Costs & Passenger Bill Splits Are Calculated",
+      "guideDesc": "Trip fuel calculations combine distance, vehicle fuel efficiency, fuel price per unit, and optional toll fees.",
+      "formulaHeading": "Fuel Cost Formula",
+      "formulaLines": [
+        "Fuel Needed (L) = Distance (km) ÷ Fuel Efficiency (km/L)",
+        "Total Trip Cost = (Fuel Needed × Fuel Price) + Tolls",
+        "Cost Per Person = Total Trip Cost ÷ Number of Passengers"
+      ],
+      "faq": [
+        {
+          "question": "How should toll fees be split among passengers?",
+          "answer": "Tolls are added into the aggregate trip expenditure pool and divided equally among all carpool participants."
+        }
+      ]
+    },
+    "goal-savings": {
+      "guideTitle": "How to Calculate Required Monthly Savings for Financial Goals",
+      "guideDesc": "Reaching a future financial target requires calculating monthly deposits accounting for initial capital and compound interest.",
+      "formulaHeading": "Sinking Fund Monthly Formula",
+      "formulaLines": [
+        "Future Value of Initial Capital = Initial Balance × (1 + r)^n",
+        "Remaining Target Gap = Goal Target Amount - Future Value of Initial",
+        "Monthly Contribution = Target Gap × [ r ÷ ((1 + r)^n - 1) ]"
+      ],
+      "faq": [
+        {
+          "question": "What if interest rates fluctuate over time?",
+          "answer": "The calculator assumes a fixed return rate. Recalibrate your monthly target annually based on actual portfolio performance."
+        }
+      ]
+    },
+    "download-time": {
+      "guideTitle": "How File Download Times Are Calculated Based on Network Speed",
+      "guideDesc": "Download duration depends on total file size, internet transfer speed, and network overhead losses.",
+      "formulaHeading": "Download Time Formula",
+      "formulaLines": [
+        "1 Byte = 8 Bits (Conversion factor)",
+        "Speed in Bytes/sec = Speed in Mbps × 1,000,000 ÷ 8",
+        "Download Time (seconds) = File Size (Bytes) ÷ Speed (Bytes/sec)"
+      ],
+      "faq": [
+        {
+          "question": "What is the difference between Mbps and MB/s?",
+          "answer": "Mbps (Megabits per second) measures bandwidth speed provided by ISPs, whereas MB/s (Megabytes per second) measures saved file size. Divide Mbps by 8 to convert to MB/s."
+        }
+      ]
+    },
+    "peltier-cooling": {
+      "guideTitle": "Thermoelectric Cooling (Peltier/TEC) & COP Formula Guide",
+      "guideDesc": "Thermoelectric coolers transfer heat via the Peltier effect. Cooling capacity (Qc) and Coefficient of Performance (COP) depend on current, voltage, and delta temperature.",
+      "formulaHeading": "Thermoelectric Equations",
+      "formulaLines": [
+        "Power Consumption (Pin) = Voltage (V) × Current (I)",
+        "Coefficient of Performance (COP) = Cooling Capacity (Qc) ÷ Power Input (Pin)"
+      ],
+      "faq": [
+        {
+          "question": "What is a typical Peltier COP?",
+          "answer": "Peltier COP usually ranges between 0.3 and 0.8 depending on delta-T. While less efficient than vapor compression, TECs provide silent solid-state cooling."
+        }
+      ]
+    },
+    "rent-vs-buy": {
+      "guideTitle": "Renting vs. Buying Real Estate Financial Analysis Guide",
+      "guideDesc": "Comparing renting versus buying a home evaluates equity accumulation and property appreciation against unrecoverable rent, interest, and maintenance costs.",
+      "formulaHeading": "Financial Comparison Breakdown",
+      "formulaLines": [
+        "Total Ownership Expense = Mortgage Interest + Property Taxes + Maintenance + HOA + Closing Costs",
+        "Home Equity Wealth = Property Market Value Growth - Remaining Mortgage Principal Balance",
+        "Total Renting Expense = Monthly Rent Paid + Rent Inflation + Renter Insurance - Investment Yields on Down Payment"
+      ],
+      "faq": [
+        {
+          "question": "Is buying always better than renting long-term?",
+          "answer": "Not always. Renting can be financially superior if the unallocated down payment capital is invested in high-yielding index funds and property appreciation is modest."
+        }
+      ]
+    },
+    "mortgage": {
+      "guideTitle": "Mortgage Payment & Home Financing Amortization Guide",
+      "guideDesc": "A mortgage divides monthly payments into principal reduction, interest, property taxes, and homeowners insurance.",
+      "formulaHeading": "Standard Mortgage Amortization Formula",
+      "formulaLines": [
+        "M = P × [ r(1+r)^n ÷ ((1+r)^n - 1) ]",
+        "P = Loan Principal Amount",
+        "r = Monthly Interest Rate (Annual Rate ÷ 12)",
+        "n = Total Amortization Payments (Years × 12)"
+      ],
+      "faq": [
+        {
+          "question": "How do extra principal payments affect a mortgage?",
+          "answer": "Making additional payments toward your loan principal shortens your overall payoff timeline and drastically reduces total interest expense."
+        }
+      ]
+    },
+    "compound": {
+      "guideTitle": "How Compound Interest Exponentially Grows Investment Wealth",
+      "guideDesc": "Compound interest earns interest on both the initial principal and the accumulated interest from prior periods.",
+      "formulaHeading": "Compound Interest Formula with Monthly Deposits",
+      "formulaLines": [
+        "Total Future Value A = P(1 + r/n)^(nt) + PMT × [ ((1 + r/n)^(nt) - 1) ÷ (r/n) ]",
+        "P = Initial Principal",
+        "PMT = Regular Monthly Contribution",
+        "r = Annual Interest Rate",
+        "n = Compounding Frequency per year",
+        "t = Time Horizon in Years"
+      ],
+      "faq": [
+        {
+          "question": "Why is compounding frequency important?",
+          "answer": "More frequent compounding periods (e.g. daily vs annual) allow interest to generate additional yields faster over time."
+        }
+      ]
+    },
+    "unit": {
+      "guideTitle": "Metric & Imperial Unit Conversions Guide",
+      "guideDesc": "Unit conversion standardizes physical measurements across international system units (SI) and imperial systems.",
+      "formulaHeading": "Standard Conversion Factors",
+      "formulaLines": [
+        "Length: 1 Inch = 2.54 cm | 1 Meter = 3.28084 Feet",
+        "Mass: 1 Kilogram = 2.20462 Pounds",
+        "Temperature: °F = (°C × 9/5) + 32"
+      ],
+      "faq": [
+        {
+          "question": "How accurate are these unit conversions?",
+          "answer": "All conversions utilize high-precision floating-point factors verified by international standards organizations (NIST / ISO)."
+        }
+      ]
+    },
+    "bmi": {
+      "guideTitle": "Body Mass Index (BMI) & Weight Status Categories Guide",
+      "guideDesc": "BMI measures body mass relative to height, serving as a general health screening metric defined by WHO.",
+      "formulaHeading": "BMI Calculation Formula",
+      "formulaLines": [
+        "Metric: BMI = Weight (kg) ÷ [Height (m)]²",
+        "Underweight: < 18.5 | Normal Weight: 18.5 - 24.9",
+        "Overweight: 25.0 - 29.9 | Obese: ≥ 30.0"
+      ],
+      "faq": [
+        {
+          "question": "Is BMI accurate for athletes and bodybuilders?",
+          "answer": "BMI does not differentiate muscle mass from fat mass, so athletic individuals with high muscle density may score in the overweight category despite low body fat."
+        }
+      ]
+    },
+    "tip": {
+      "guideTitle": "Restaurant Tip & Bill Splitting Guide",
+      "guideDesc": "Tip calculation applies a gratuity percentage to the pre-tax bill total and splits expenses evenly across group members.",
+      "formulaHeading": "Tip & Split Formulas",
+      "formulaLines": [
+        "Tip Amount = Bill Amount × (Tip Percentage ÷ 100)",
+        "Total Bill = Bill Amount + Tip Amount",
+        "Per Person Share = Total Bill ÷ Number of People"
+      ],
+      "faq": [
+        {
+          "question": "Should tips be calculated before or after tax?",
+          "answer": "Standard etiquette recommends calculating gratuity on the pre-tax subtotal amount."
+        }
+      ]
+    },
+    "salary": {
+      "guideTitle": "Hourly, Monthly, & Annual Salary Conversion Guide",
+      "guideDesc": "Converting pay frequency translates hourly rates into weekly, bi-weekly, monthly, and annual gross compensation.",
+      "formulaHeading": "Salary Conversion Formulas",
+      "formulaLines": [
+        "Annual Pay = Hourly Rate × Hours per Week × 52 Weeks",
+        "Monthly Pay = Annual Pay ÷ 12 Months",
+        "Weekly Pay = Annual Pay ÷ 52 Weeks"
+      ],
+      "faq": [
+        {
+          "question": "How are paid vacation days accounted for?",
+          "answer": "The standard calculation assumes 52 paid weeks per year, including accrued paid time off (PTO)."
+        }
+      ]
+    },
+    "age": {
+      "guideTitle": "Exact Calendar Age & Time Difference Guide",
+      "guideDesc": "Calculating exact age computes elapsed calendar years, months, days, hours, and seconds accounting for leap years.",
+      "formulaHeading": "Date Interval Metrics",
+      "formulaLines": [
+        "Total Years = Target Year - Birth Year (adjusted for month/day)",
+        "Total Days = Calendar Days difference including Leap Days",
+        "Leap Year Rule: Extra day added for years divisible by 4 (except century years not ÷ 400)"
+      ],
+      "faq": [
+        {
+          "question": "How are leap years handled in age calculations?",
+          "answer": "Leap years add a 29th day to February, ensuring day counts between two calendar dates remain astronomically precise."
+        }
+      ]
+    },
+    "percentage": {
+      "guideTitle": "Percent Finder & How to Calculate Percentages Guide",
+      "guideDesc": "Percentages express proportions as fractions of 100. Learn how to find a percentage of any number, calculate percentage changes, and how to use the percent key on any calculator.",
+      "formulaHeading": "Core Percentage Formulas & Formulas",
+      "formulaLines": [
+        "Finding X% of Y = Total (Y) × [ Percentage (X) ÷ 100 ]",
+        "X is what % of Y = (Part ÷ Total) × 100",
+        "Percentage Change (%) = [(New Value - Original Value) ÷ Original Value] × 100",
+        "Discount Sale Price = Original Price × [ 1 - (Discount % ÷ 100) ]",
+        "Reverse Percentage (Original Total) = Partial Amount ÷ (Percentage ÷ 100)"
+      ],
+      "faq": [
+        {
+          "question": "How can I find the percentage of a number?",
+          "answer": "To find a percentage of a number, divide the percentage by 100 to convert it into a decimal rate, then multiply it by the total number. For example, to find 20% of 150: 20 ÷ 100 = 0.20, then 0.20 × 150 = 30."
+        },
+        {
+          "question": "How do you use the percent (%) key on a calculator?",
+          "answer": "On standard handheld or mobile calculators: 1) To find X% of Y, type Y × X % (e.g. 150 × 20 % outputs 30). 2) To add a percentage (like tax or tip), type Price + Rate % = (e.g. 100 + 15 % = 115). 3) To apply a discount, type Price - Discount % = (e.g. 80 - 25 % = 60)."
+        },
+        {
+          "question": "What is a Percent Finder tool?",
+          "answer": "A Percent Finder is an all-in-one calculator that solves multiple percentage calculations: finding a percentage of a total, calculating what percentage one number is of another, calculating percentage increase/decrease, finding discount prices, and solving reverse percentage problems."
+        },
+        {
+          "question": "How do we find the percentage increase or decrease between two numbers?",
+          "answer": "Subtract the original value from the new value, divide the difference by the original value, and multiply by 100. A positive result indicates a percentage increase, while a negative result indicates a percentage decrease."
+        },
+        {
+          "question": "How do I find what percentage one number is of another?",
+          "answer": "Divide the specific part by the total whole, then multiply by 100. For example, if you got 45 questions right out of 60 on a test: (45 ÷ 60) × 100 = 0.75 × 100 = 75%."
+        }
+      ]
+    }
+  },
+  "assistant": {
+    "title": "Calc-E Interactive Assistant",
+    "badge": "Help & Tips",
+    "subtitle": "Navigation & Instant Tools",
+    "guidedQuizTab": "Guided Quiz",
+    "quickCalcTab": "Quick Calc",
+    "tipsTab": "Golden Tips",
+    "searchTab": "Search",
+    "startQuiz": "🎯 Find Calculator via Quiz",
+    "restartQuiz": "🔄 Restart Quiz",
+    "back": "Back",
+    "recommended": "Recommended for you:",
+    "openCalculator": "Open Calculator",
+    "searchPlaceholder": "Search calculators or tools...",
+    "noResults": "No matching calculators found",
+    "quickTip": "Tip: Select a topic to quickly reach the right calculator!",
+    "allCalculators": "All Calculators",
+    "filterTips": "Filter by topic:",
+    "allCategories": "All",
+    "ruleFormula": "Rule / Formula:",
+    "goToTool": "Open dedicated tool",
+    "instantCalc": "Instant % Calculation",
+    "calcXofY": "What is X% of Y?",
+    "calcDiscount": "Discount price calculation",
+    "calcRule72": "Rule of 72 (Doubling Time)",
+    "rateInput": "Annual Interest Rate (%)",
+    "yearsToDouble": "Years to double wealth",
+    "yearsLabel": "Years",
+    "valueX": "Percentage (%)",
+    "valueY": "Amount (Y)",
+    "originalPrice": "Original Price",
+    "discountPercent": "Discount (%)",
+    "result": "Result",
+    "finalPrice": "Final Price",
+    "savingsAmount": "Savings Amount",
+    "copyBtn": "Copy tip",
+    "rule72Explain": "Approximate: 72 divided by the annual rate gives the years to double your initial capital."
+  },
+  "tips": [
+    {
+      "id": "rule_72",
+      "category": "finance",
+      "icon": "trending_up",
+      "title": "The Rule of 72 for Investments",
+      "content": "Want to know when your money doubles? Divide 72 by the annual interest rate."
+    },
+    {
+      "id": "rule_50_30_20",
+      "category": "finance",
+      "icon": "pie_chart",
+      "title": "The 50/30/20 Budget Rule",
+      "content": "Split net income: 50% for needs, 30% for wants, and 20% for savings & investments."
+    },
+    {
+      "id": "mortgage_30_rule",
+      "category": "real-estate",
+      "icon": "home",
+      "title": "The 30% Mortgage Rule",
+      "content": "Monthly mortgage payments should not exceed 30%-35% of household net monthly income."
+    },
+    {
+      "id": "car_20_4_10",
+      "category": "finance",
+      "icon": "directions_car",
+      "title": "The 20/4/10 Auto Rule",
+      "content": "20% down payment, finance for max 4 years, total monthly auto costs under 10% income."
+    },
+    {
+      "id": "mbps_to_mbs",
+      "category": "tech",
+      "icon": "speed",
+      "title": "Internet Speed: Mbps to MB/s",
+      "content": "ISPs sell speeds in Megabits (Mb). Divide by 8 to get real download speed in Megabytes (MB/s)."
+    },
+    {
+      "id": "mental_percent_tip",
+      "category": "math",
+      "icon": "psychology",
+      "title": "Fast Mental Tip & % Calculation",
+      "content": "Move decimal 1 spot left for 10%, then double for 20% or add half for 15%."
+    }
+  ],
+  "quiz": {
+    "root": {
+      "id": "root",
+      "question": "What type of calculation do you need today?",
+      "subtitle": "Select a primary category:",
+      "options": [
+        {
+          "id": "finance",
+          "icon": "account_balance_wallet",
+          "label": "Finance & Savings",
+          "desc": "Compound interest, savings goals, debt payoff",
+          "nextStepId": "step_finance"
+        },
+        {
+          "id": "real_estate",
+          "icon": "home",
+          "label": "Real Estate & Housing",
+          "desc": "Mortgage, rent vs buy, cap rate",
+          "nextStepId": "step_real_estate"
+        },
+        {
+          "id": "business_salary",
+          "icon": "payments",
+          "label": "Work, Salary & Business",
+          "desc": "Salary conversion, freelance net, profit margin, ROI",
+          "nextStepId": "step_business"
+        },
+        {
+          "id": "auto_travel",
+          "icon": "directions_car",
+          "label": "Auto, Fuel & Travel",
+          "desc": "Car loans, fuel split for road trips",
+          "nextStepId": "step_auto_travel"
+        },
+        {
+          "id": "math_conv",
+          "icon": "calculate",
+          "label": "Math & Unit Conversions",
+          "desc": "Percentages, discounts, length/weight/temp conversion",
+          "nextStepId": "step_math_conv"
+        },
+        {
+          "id": "health_lifestyle",
+          "icon": "favorite",
+          "label": "Health & Lifestyle",
+          "desc": "BMI index, restaurant tip split, exact age calculator",
+          "nextStepId": "step_health_lifestyle"
+        },
+        {
+          "id": "tech_science",
+          "icon": "memory",
+          "label": "Tech & Science",
+          "desc": "Download time calculation, Peltier cooling efficiency",
+          "nextStepId": "step_tech_science"
+        }
+      ]
+    },
+    "step_finance": {
+      "id": "step_finance",
+      "question": "What is your financial goal?",
+      "subtitle": "Choose the calculation you need:",
+      "options": [
+        {
+          "id": "opt_compound",
+          "icon": "trending_up",
+          "label": "Compound Interest & Investment Growth",
+          "desc": "See how your investment compounds over years",
+          "targetPath": "/compound-interest",
+          "calculatorId": "compound"
+        },
+        {
+          "id": "opt_goal_savings",
+          "icon": "savings",
+          "label": "Savings Goal Planner",
+          "desc": "Find out monthly deposits needed to reach your target",
+          "targetPath": "/calculators/goal-savings",
+          "calculatorId": "goal-savings"
+        },
+        {
+          "id": "opt_debt_snowball",
+          "icon": "ac_unit",
+          "label": "Debt Snowball Payoff Calculator",
+          "desc": "Create a debt payoff plan starting from smallest balances",
+          "targetPath": "/calculators/debt-snowball",
+          "calculatorId": "debt-snowball"
+        },
+        {
+          "id": "opt_roi",
+          "icon": "query_stats",
+          "label": "Return on Investment (ROI)",
+          "desc": "Calculate profit or loss percentage on any venture",
+          "targetPath": "/calculators/roi",
+          "calculatorId": "roi"
+        }
+      ]
+    },
+    "step_real_estate": {
+      "id": "step_real_estate",
+      "question": "What housing or real estate calculation do you need?",
+      "subtitle": "Select your scenario:",
+      "options": [
+        {
+          "id": "opt_mortgage",
+          "icon": "real_estate_agent",
+          "label": "Mortgage Payment Calculator",
+          "desc": "Calculate monthly payment, total interest and amortization",
+          "targetPath": "/mortgage-calculator",
+          "calculatorId": "mortgage"
+        },
+        {
+          "id": "opt_rent_vs_buy",
+          "icon": "balance",
+          "label": "Rent vs Buy Calculator",
+          "desc": "Compare total cost and equity over 5, 10, or 30 years",
+          "targetPath": "/calculators/rent-vs-buy",
+          "calculatorId": "rent-vs-buy"
+        },
+        {
+          "id": "opt_cap_rate",
+          "icon": "domain",
+          "label": "Capitalization Rate (Cap Rate)",
+          "desc": "Calculate net rental yield and property investment returns",
+          "targetPath": "/calculators/cap-rate",
+          "calculatorId": "cap-rate"
+        }
+      ]
+    },
+    "step_business": {
+      "id": "step_business",
+      "question": "What employment or business tool do you need?",
+      "subtitle": "Select calculation type:",
+      "options": [
+        {
+          "id": "opt_salary",
+          "icon": "badge",
+          "label": "Salary & Hourly Wage Converter",
+          "desc": "Convert easily between hourly, weekly, monthly and annual pay",
+          "targetPath": "/salary-calculator",
+          "calculatorId": "salary"
+        },
+        {
+          "id": "opt_freelance",
+          "icon": "laptop_mac",
+          "label": "Freelance Net Income Calculator",
+          "desc": "Calculate take-home net pay after business expenses and taxes",
+          "targetPath": "/calculators/freelance-net-income",
+          "calculatorId": "freelance-net-income"
+        },
+        {
+          "id": "opt_margin",
+          "icon": "point_of_sale",
+          "label": "Profit Margin & Markup Calculator",
+          "desc": "Calculate gross margin, markup percentage and revenue profit",
+          "targetPath": "/calculators/margin",
+          "calculatorId": "margin"
+        },
+        {
+          "id": "opt_roi_biz",
+          "icon": "insights",
+          "label": "Business ROI Calculator",
+          "desc": "Evaluate profitability of campaigns, assets or projects",
+          "targetPath": "/calculators/roi",
+          "calculatorId": "roi"
+        }
+      ]
+    },
+    "step_auto_travel": {
+      "id": "step_auto_travel",
+      "question": "What vehicle or travel calculation do you need?",
+      "subtitle": "Choose the right option:",
+      "options": [
+        {
+          "id": "opt_auto_loan",
+          "icon": "directions_car",
+          "label": "Auto Loan Calculator",
+          "desc": "Calculate monthly payment, interest rate and total car cost",
+          "targetPath": "/calculators/auto-loan",
+          "calculatorId": "auto-loan"
+        },
+        {
+          "id": "opt_fuel_split",
+          "icon": "local_gas_station",
+          "label": "Fuel Split & Road Trip Calculator",
+          "desc": "Split gas costs fairly among passengers based on distance & consumption",
+          "targetPath": "/calculators/fuel-split",
+          "calculatorId": "fuel-split"
+        }
+      ]
+    },
+    "step_math_conv": {
+      "id": "step_math_conv",
+      "question": "What math problem would you like to solve?",
+      "subtitle": "Select the operation type:",
+      "options": [
+        {
+          "id": "opt_percentage",
+          "icon": "percent",
+          "label": "Percentage & Discount Calculator",
+          "desc": "Find what percentage X is of Y, percentage increase or discounts",
+          "targetPath": "/percentage-finder",
+          "calculatorId": "percentage"
+        },
+        {
+          "id": "opt_unit_converter",
+          "icon": "swap_horiz",
+          "label": "Universal Unit Converter",
+          "desc": "Convert length, mass/weight, temperature, area and volume",
+          "targetPath": "/unit-converter",
+          "calculatorId": "unit"
+        }
+      ]
+    },
+    "step_health_lifestyle": {
+      "id": "step_health_lifestyle",
+      "question": "Which lifestyle or health tool do you need?",
+      "subtitle": "Choose the tool you want:",
+      "options": [
+        {
+          "id": "opt_bmi",
+          "icon": "monitor_weight",
+          "label": "BMI Calculator (Body Mass Index)",
+          "desc": "Check healthy weight categories according to WHO standards",
+          "targetPath": "/bmi-calculator",
+          "calculatorId": "bmi"
+        },
+        {
+          "id": "opt_tip",
+          "icon": "restaurant",
+          "label": "Restaurant Tip & Bill Splitter",
+          "desc": "Calculate tip percentage and split the check per person",
+          "targetPath": "/tip-calculator",
+          "calculatorId": "tip"
+        },
+        {
+          "id": "opt_age",
+          "icon": "cake",
+          "label": "Exact Age & Date Calculator",
+          "desc": "Find exact age in years, months, days and next birthday countdown",
+          "targetPath": "/age-calculator",
+          "calculatorId": "age"
+        }
+      ]
+    },
+    "step_tech_science": {
+      "id": "step_tech_science",
+      "question": "What tech or engineering calculation do you need?",
+      "subtitle": "Choose the topic:",
+      "options": [
+        {
+          "id": "opt_download_time",
+          "icon": "download",
+          "label": "File Download Time Calculator",
+          "desc": "Estimate transfer time based on file size and internet bandwidth",
+          "targetPath": "/calculators/download-time",
+          "calculatorId": "download-time"
+        },
+        {
+          "id": "opt_peltier",
+          "icon": "ac_unit",
+          "label": "Peltier Thermoelectric Cooling Calculator",
+          "desc": "Calculate cooling capacity, electrical power and COP",
+          "targetPath": "/calculators/peltier-cooling",
+          "calculatorId": "peltier-cooling"
+        }
+      ]
+    }
+  }
+}

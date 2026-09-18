@@ -7,7 +7,6 @@ import Decimal from 'decimal.js';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { useI18n } from '../../contexts/i18n';
-import { getGuideData } from '../../data/guideTranslations';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -65,8 +64,8 @@ const localDict = {
 };
 
 export default function Roi() {
-  const { lang } = useI18n();
-  const guide = getGuideData('roi', lang);
+  const { lang, guides } = useI18n();
+  const guide = guides['roi'] || { guideTitle: 'Guide & Formulas', guideDesc: 'Comprehensive calculation breakdown and FAQs.', faq: [] };
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
   const [invested, setInvested] = useUrlState('invested', 10000);
@@ -245,7 +244,7 @@ export default function Roi() {
               {guide.formulaHeading}
             </h3>
             <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 font-mono text-xs sm:text-sm text-stone-800 space-y-2">
-              {guide.formulaLines?.map((line, idx) => (
+              {guide.formulaLines?.map((line: string, idx: number) => (
                 <div key={idx}>{line}</div>
               ))}
             </div>
