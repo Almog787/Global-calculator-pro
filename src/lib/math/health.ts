@@ -12,8 +12,8 @@ export function calculateBmi(weightKg: number, heightCm: number): BmiResult {
   const heightM = heightCm / 100;
   const bmi = weightKg / (heightM * heightM);
 
-  let status: BmiResult['status'] = 'normal';
-  let color = 'gray';
+  let status: BmiResult['status'];
+  let color: string;
 
   if (bmi < 18.5) {
     status = 'underweight';
@@ -57,7 +57,7 @@ export function calculateBmr(
     };
   }
 
-  let bmr = 0;
+  let bmr: number;
 
   if (equation === 'mifflin') {
     // Mifflin-St Jeor

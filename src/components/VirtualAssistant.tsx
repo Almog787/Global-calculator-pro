@@ -2,7 +2,7 @@ import React, { Suspense, useCallback, useEffect, useRef, useState } from 'react
 import { useNavigate } from "react-router-dom";
 import { useI18n } from "../contexts/i18n";
 import { calculators, getCalculatorTitle, getCalculatorDescription } from "../data/calculators";
-import { QuizOption, AssistantTip, QuizStep } from "../types/assistant";
+import { QuizOption, AssistantTip } from "../types/assistant";
 
 const ThreeCharacterCanvas = React.lazy(() => import("./ThreeCharacterCanvas"));
 
@@ -685,7 +685,7 @@ export default function VirtualAssistant() {
               </div>
 
               <div className="space-y-2.5 max-h-[360px] overflow-y-auto pr-1">
-                {filteredTips.map((tip, idx) => (
+                {filteredTips.map((tip: AssistantTip, idx: number) => (
                   <div
                     key={tip.id}
                     style={{ animationDelay: `${idx * 50}ms` }}

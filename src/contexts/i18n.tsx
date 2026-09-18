@@ -1,6 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
-import SkeletonLoader from '../components/SkeletonLoader';
 
 export type Language = 'en' | 'he' | 'es' | 'fr' | 'ar';
 
