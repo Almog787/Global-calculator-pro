@@ -124,8 +124,22 @@ async function indexSite() {
         console.log(`✅ Indexing requested: ${url} (Status: ${res.status})`);
       } catch (urlErr) {
         console.error(`⚠️ Indexing failed for ${url}:`, urlErr.message);
+
+        // Check for fatal errors that affect all URLs
+        if (urlErr.message && urlErr.message.includes('has been deleted')) {
+          console.error('\n🛑 FATAL ERROR: The Google Cloud Project associated with this Service Account has been deleted.');
+          console.error('👉 To fix this:\n 1. Restore the project in Google Cloud Console (IAM & Admin -> Manage Resources -> Pending Deletion), OR\n 2. Create a new Service Account in an active Google Cloud Project with the Indexing API enabled and update your GOOGLE_SERVICE_ACCOUNT_KEY.');
+          break;
+        }
+
+        if (urlErr.message && (urlErr.message.includes('invalid_grant') || urlErr.message.includes('Permission denied') || urlErr.message.includes('has not been used in project'))) {
+          console.error('\n🛑 FATAL AUTH/PERMISSIONS ERROR:', urlErr.message);
+          console.error('👉 Verify that the Indexing API is enabled and the Service Account has Owner permissions in Google Search Console.');
+          break;
+        }
+
         if (urlErr.message && urlErr.message.includes('Quota exceeded')) {
-          console.log('🛑 Quota exceeded. Stopping further indexing requests for today to prevent errors.');
+          console.log('\n🛑 Quota exceeded. Stopping further indexing requests for today to prevent errors.');
           break;
         }
       }
