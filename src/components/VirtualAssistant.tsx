@@ -273,7 +273,7 @@ export default function VirtualAssistant() {
   };
 
   const handleCopyTip = (tip: AssistantTip) => {
-    const textToCopy = `${tip.title[lang] || tip.title}\n${tip.summary[lang] || tip.summary}${tip.summary ? `\n${i18nTexts.ruleFormula} ${tip.summary}` : ""}`;
+    const textToCopy = `${tip.title}\n${tip.summary}${tip.summary ? `\n${i18nTexts.ruleFormula} ${tip.summary}` : ""}`;
     navigator.clipboard?.writeText(textToCopy);
     setCopiedTipId(tip.id);
     triggerSuccessJump();
@@ -446,10 +446,10 @@ export default function VirtualAssistant() {
                         {i18nTexts.recommended}
                       </span>
                       <h4 className="font-extrabold text-base text-white leading-tight mt-1">
-                        {selectedResult.label?.[lang] || selectedResult.label?.en || ""}
+                        {selectedResult.label || ""}
                       </h4>
                       <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                        {selectedResult.desc?.[lang] || selectedResult.desc?.en || ""}
+                        {selectedResult.desc || ""}
                       </p>
                     </div>
                   </div>
@@ -473,7 +473,7 @@ export default function VirtualAssistant() {
                 /* Active Quiz Question */
                 <div className="space-y-3">
                   <div className="flex justify-between items-center text-xs font-semibold text-cyan-200">
-                    <span>{currentStep?.question?.[lang] || currentStep?.question?.en || ""}</span>
+                    <span>{currentStep?.question || ""}</span>
                     {stepHistory.length > 0 && (
                       <button
                         onClick={handleBack}
@@ -486,7 +486,7 @@ export default function VirtualAssistant() {
                   </div>
 
                   <div className="grid grid-cols-1 gap-2">
-                    {currentStep?.options?.map((option, idx) => (
+                    {currentStep?.options?.map((option: QuizOption, idx: number) => (
                       <button
                         key={option.id}
                         onClick={() => handleOptionSelect(option)}
@@ -498,10 +498,10 @@ export default function VirtualAssistant() {
                         </span>
                         <div className="flex-grow min-w-0">
                           <div className="font-bold text-xs text-slate-100 group-hover:text-cyan-300 transition-colors">
-                            {option.label?.[lang] || option.label?.en || ""}
+                            {option.label || ""}
                           </div>
                           <div className="text-[11px] text-slate-400 truncate mt-0.5">
-                            {option.desc?.[lang] || option.desc?.en || ""}
+                            {option.desc || ""}
                           </div>
                         </div>
                       </button>
@@ -693,7 +693,7 @@ export default function VirtualAssistant() {
                   >
                     <div className="flex justify-between items-start gap-2">
                       <h5 className="font-extrabold text-xs text-white leading-snug">
-                        {tip.title[lang] || tip.title}
+                        {tip.title}
                       </h5>
                       <button
                         onClick={() => handleCopyTip(tip)}
@@ -707,7 +707,7 @@ export default function VirtualAssistant() {
                     </div>
 
                     <p className="text-[11px] text-slate-300 leading-relaxed">
-                      {tip.summary[lang] || tip.summary}
+                      {tip.summary}
                     </p>
 
                     {tip.summary && (
