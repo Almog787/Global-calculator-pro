@@ -28,6 +28,7 @@
 - **[Date Difference Calculator](https://globalcalcpro.com/calculators/date-difference)** - Free online date difference calculator for precise calculations.
 - **[Debt Snowball Calculator](https://globalcalcpro.com/calculators/debt-snowball)** - Calculate how fast you can become debt-free by paying extra toward your smallest debts first.
 - **[Download Time Calculator](https://globalcalcpro.com/calculators/download-time)** - Calculate exactly how long it will take to download or upload a file based on your internet speed.
+- **[Employer Cost vs Employee Net Salary Calculator](https://globalcalcpro.com/calculators/employer-cost)** - Calculate total cost of employment for Israeli employers alongside employee net take-home salary, national insurance, income tax brackets, pension, and study fund contributions.
 - **[Freelance Net Income Calculator](https://globalcalcpro.com/calculators/freelance-net-income)** - Calculate your actual take-home pay after business expenses and estimated taxes.
 - **[Fuel Split Calculator](https://globalcalcpro.com/calculators/fuel-split)** - Calculate and split travel costs fairly among passengers.
 - **[Goal Savings Calculator](https://globalcalcpro.com/calculators/goal-savings)** - Calculate how much you need to save monthly to reach your financial goal.
@@ -39,6 +40,7 @@
 - **[Peltier Cooling Calculator](https://globalcalcpro.com/calculators/peltier-cooling)** - Calculate the expected cooling capacity and efficiency (COP) of a Thermoelectric Cooler.
 - **[Percentage Calculator](https://globalcalcpro.com/percentage-finder)** - Solve complex percentage calculations instantly.
 - **[Percentage Finder Calculator](https://globalcalcpro.com/calculators/percentage-finder)** - Free online percentage finder calculator for precise calculations.
+- **[Real Estate Purchase & Appreciation Tax Calculator](https://globalcalcpro.com/calculators/purchase-appreciation-tax)** - Calculate official Israel real estate purchase tax brackets (single home vs additional investor home) and linear property appreciation tax with deductible expenses and exemptions.
 - **[Refinance Calculator](https://globalcalcpro.com/calculators/refinance)** - Free online refinance calculator for precise calculations.
 - **[Rent vs Buy Calculator](https://globalcalcpro.com/calculators/rent-vs-buy)** - Compare the financial costs of renting versus buying a home over 10 years.
 - **[ROI Calculator](https://globalcalcpro.com/calculators/roi)** - Calculate Return on Investment (ROI) and annualized ROI for your investments.
@@ -46,6 +48,7 @@
 - **[Salary Calculator Calculator](https://globalcalcpro.com/calculators/salary-calculator)** - Free online salary calculator calculator for precise calculations.
 - **[Severance Pay Calculator](https://globalcalcpro.com/calculators/severance-pay)** - Free online severance pay calculator for precise calculations.
 - **[Sleep Calculator Calculator](https://globalcalcpro.com/calculators/sleep-calculator)** - Free online sleep calculator calculator for precise calculations.
+- **[Stock Options & RSU Calculator](https://globalcalcpro.com/calculators/stock-options-rsu)** - Calculate net proceeds, 4-year vesting schedule, capital gains tax under Section 102, dilution impact, and exit scenarios for startup equity and tech compensation.
 - **[Tip & Bill Splitter](https://globalcalcpro.com/tip-calculator)** - Calculate tip and split the bill among friends.
 - **[Tip Calculator Calculator](https://globalcalcpro.com/calculators/tip-calculator)** - Free online tip calculator calculator for precise calculations.
 - **[Unit Converter](https://globalcalcpro.com/unit-converter)** - Convert between different units of measurement.
