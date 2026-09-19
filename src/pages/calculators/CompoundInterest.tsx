@@ -10,6 +10,7 @@ import ShareActions from '../../components/ShareActions';
 import ScenarioPresets from '../../components/ScenarioPresets';
 import ScenarioComparator, { ComparisonMetric } from '../../components/ScenarioComparator';
 import { useCalculatorState } from '../../hooks/useCalculatorState';
+import { useRecordCalculation } from '../../hooks/useRecordCalculation';
 import { calculateCompoundInterest, calculateTargetSavings, compareCompoundInterest } from '../../lib/math/finance';
 
 
@@ -73,6 +74,42 @@ export default function CompoundInterest() {
   const defaultCurrency = lang === 'he' ? 'ILS' : lang === 'fr' || lang === 'es' ? 'EUR' : 'USD';
   const currencyFormat = new Intl.NumberFormat(lang === 'en' ? 'en-US' : lang, { style: 'currency', currency: defaultCurrency, minimumFractionDigits: 0, maximumFractionDigits: 0 });
   const compactFormat = new Intl.NumberFormat(lang === 'en' ? 'en-US' : lang, { style: 'currency', currency: defaultCurrency, notation: 'compact', compactDisplay: 'short' });
+
+  // Record calculation to Recent History Drawer
+  useRecordCalculation(
+    mode !== 'compare'
+      ? {
+          calculatorId: 'compound-interest',
+          title: {
+            en: 'Compound Interest Calculator',
+            he: 'מחשבון ריבית דריבית',
+            es: 'Calculadora de Interés Compuesto',
+            fr: 'Intérêts Composés',
+            ar: 'حاسبة الفائدة المركبة',
+          },
+          summary: {
+            en: mode === 'growth'
+              ? `${currencyFormat.format(principal)} + ${currencyFormat.format(contribution)}/mo @ ${rate}% (${years} yrs)`
+              : `Goal ${currencyFormat.format(targetGoal)} in ${years} yrs @ ${rate}%`,
+            he: mode === 'growth'
+              ? `קרן ${currencyFormat.format(principal)} + ${currencyFormat.format(contribution)}/חודש ב-${rate}% (${years} שנה)`
+              : `יעד ${currencyFormat.format(targetGoal)} ל-${years} שנה בריבית ${rate}%`,
+            es: `${currencyFormat.format(principal)} + ${currencyFormat.format(contribution)}/mes al ${rate}% (${years} años)`,
+            fr: `${currencyFormat.format(principal)} + ${currencyFormat.format(contribution)}/mois à ${rate}% (${years} ans)`,
+            ar: `رأس المال ${currencyFormat.format(principal)} بفائدة ${rate}% (${years} سنة)`,
+          },
+          result: {
+            en: `Future Value: ${currencyFormat.format(activeFutureValue)}`,
+            he: `שווי עתידי: ${currencyFormat.format(activeFutureValue)}`,
+            es: `Valor futuro: ${currencyFormat.format(activeFutureValue)}`,
+            fr: `Valeur future : ${currencyFormat.format(activeFutureValue)}`,
+            ar: `القيمة المستقبلية: ${currencyFormat.format(activeFutureValue)}`,
+          },
+          path: `/${lang}/compound-interest-calculator?mode=${mode}&principal=${principal}&rate=${rate}&years=${years}&contribution=${contribution}`,
+          badge: `${years}Y @ ${rate}%`,
+        }
+      : null
+  );
 
   const presets = [
     {

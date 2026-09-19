@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App.tsx';
 import { I18nProvider } from './contexts/i18n';
+import { HistoryProvider } from './contexts/HistoryContext';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
@@ -11,7 +12,9 @@ createRoot(document.getElementById('root')!).render(
     <HelmetProvider>
       <BrowserRouter>
         <I18nProvider>
-          <App />
+          <HistoryProvider>
+            <App />
+          </HistoryProvider>
         </I18nProvider>
       </BrowserRouter>
     </HelmetProvider>

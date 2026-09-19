@@ -17,6 +17,10 @@ import ShareActions from '../../components/ShareActions';
 import ScenarioPresets from '../../components/ScenarioPresets';
 import ScenarioComparator, { ComparisonMetric } from '../../components/ScenarioComparator';
 import { calculateMortgage, calculateReverseMortgage, compareMortgages } from '../../lib/math/finance';
+import { useRecordCalculation } from '../../hooks/useRecordCalculation';
+import { MORTGAGE_REGIMES, MortgageRegimeId } from '../../lib/regimes/mortgageRegimes';
+import PopularScenarios from '../../components/PopularScenarios';
+import { POPULAR_MORTGAGE_SCENARIOS, getProgrammaticFaqs } from '../../lib/seo/programmaticScenarios';
 
 
 ChartJS.register(
@@ -30,10 +34,13 @@ export default function MortgageCalculator() {
   const guide = guides['mortgage'] || { guideTitle: 'Guide & Formulas', guideDesc: 'Comprehensive calculation breakdown and FAQs.', faq: [] };
   
   const [mode, setMode] = useUrlState<'standard' | 'reverse' | 'compare'>('mode', 'standard');
+  const [regimeId, setRegimeId] = useUrlState<MortgageRegimeId>('regime', lang === 'he' ? 'IL' : 'US');
   const [principal, setPrincipal] = useUrlState('principal', 300000);
   const [targetPayment, setTargetPayment] = useUrlState('targetPayment', 1900);
   const [rate, setRate] = useUrlState('rate', 6.5);
   const [years, setYears] = useUrlState('years', 30);
+
+  const currentRegime = MORTGAGE_REGIMES[regimeId] || MORTGAGE_REGIMES.IL;
 
   // Scenario B parameters for comparison
   const [principalB, setPrincipalB] = useUrlState('principalB', 300000);
@@ -74,8 +81,45 @@ export default function MortgageCalculator() {
     return () => clearTimeout(handler);
   }, [mode, activePrincipal, rate, years]);
 
-  const defaultCurrency = lang === 'he' ? 'ILS' : lang === 'fr' || lang === 'es' ? 'EUR' : 'USD';
-  const currencyFormat = new Intl.NumberFormat(lang === 'en' ? 'en-US' : lang, { style: 'currency', currency: defaultCurrency, minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  const defaultCurrency = currentRegime?.currency || (lang === 'he' ? 'ILS' : lang === 'fr' || lang === 'es' ? 'EUR' : 'USD');
+  const currencyFormat = new Intl.NumberFormat(lang === 'en' ? 'en-US' : lang, {
+    style: 'currency',
+    currency: defaultCurrency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  });
+
+  // Automatically record calculation to recent history drawer
+  useRecordCalculation(
+    mode !== 'compare'
+      ? {
+          calculatorId: 'mortgage',
+          title: {
+            en: 'Mortgage Calculator',
+            he: 'מחשבון משכנתא',
+            es: 'Calculadora de Hipotecas',
+            fr: 'Prêt Immobilier',
+            ar: 'حاسبة الرهن العقاري',
+          },
+          summary: {
+            en: `${currencyFormat.format(activePrincipal)} at ${rate}% for ${years} yrs (${currentRegime.countryCode})`,
+            he: `${currencyFormat.format(activePrincipal)} בריבית ${rate}% ל-${years} שנה (${currentRegime.countryCode})`,
+            es: `${currencyFormat.format(activePrincipal)} al ${rate}% por ${years} años`,
+            fr: `${currencyFormat.format(activePrincipal)} à ${rate}% sur ${years} ans`,
+            ar: `${currencyFormat.format(activePrincipal)} بفائدة ${rate}% لـ ${years} سنة`,
+          },
+          result: {
+            en: `Payment: ${currencyFormat.format(activeMonthlyPayment)} / mo`,
+            he: `החזר חודשי: ${currencyFormat.format(activeMonthlyPayment)}`,
+            es: `Cuota: ${currencyFormat.format(activeMonthlyPayment)} / mes`,
+            fr: `Mensualité : ${currencyFormat.format(activeMonthlyPayment)} / mois`,
+            ar: `القسط: ${currencyFormat.format(activeMonthlyPayment)} شهריاً`,
+          },
+          path: `/${lang}/mortgage-calculator?mode=${mode}&principal=${activePrincipal}&rate=${rate}&years=${years}&regime=${regimeId}`,
+          badge: `${years}Y @ ${rate}%`,
+        }
+      : null
+  );
 
   const chartData = {
     labels: [t.loanAmount, t.totalInterest],
@@ -251,6 +295,20 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
     }
   ];
 
+  const programmaticTitle = useMemo(() => {
+    if (principal === 1000000 && years === 30) {
+      return lang === 'he'
+        ? 'מחשבון משכנתא 1,000,000 ש״ח ל-30 שנה: החזר חודשי 5,368 ₪ ולוח שפיצר'
+        : '$1,000,000 Mortgage Calculator for 30 Years: $5,368/mo & Amortization';
+    }
+    if (principal === 800000 && years === 25) {
+      return lang === 'he'
+        ? 'מחשבון משכנתא 800,000 ש״ח ל-25 שנה: החזר חודשי 4,583 ₪ וריבית'
+        : '$800,000 Mortgage Calculator for 25 Years: Payment & Schedule';
+    }
+    return t.mortgageTitle;
+  }, [principal, years, lang, t.mortgageTitle]);
+
   return (
     <div className="w-full">
       <Breadcrumbs items={[{ label: t.catAll || 'Library', path: `/${lang}/all` }, { label: t.mortgageTitle }]} />
@@ -268,13 +326,14 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
 
       <div className="w-full h-full flex flex-col lg:flex-row gap-8 items-start relative">
       <SEO
-        title={t.mortgageTitle}
+        title={programmaticTitle}
         description={t.mortgageDesc}
         canonicalUrl={`/${lang}/mortgage-calculator`}
+        faq={getProgrammaticFaqs('mortgage')}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
-          name: t.mortgageTitle,
+          name: programmaticTitle,
           description: t.mortgageDesc,
           applicationCategory: 'CalculatorApplication',
           operatingSystem: 'Any',
@@ -285,7 +344,7 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
       {/* Input Form */}
       <div className="flex-1 w-full bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200 flex flex-col">
         {/* Mode Selector Tabs */}
-        <div className="flex flex-wrap gap-2 p-1.5 bg-stone-100 rounded-2xl mb-8 border border-stone-200">
+        <div className="flex flex-wrap gap-2 p-1.5 bg-stone-100 rounded-2xl mb-6 border border-stone-200">
           <button
             type="button"
             onClick={() => setMode('standard')}
@@ -320,6 +379,89 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
             <span className="material-symbols-outlined text-[18px]">compare_arrows</span>
             <span>{modeLabels.compare}</span>
           </button>
+        </div>
+
+        {/* Local Market & Regime Selector */}
+        <div className="mb-6 p-4 rounded-2xl bg-stone-50/80 border border-stone-200/90">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3">
+            <span className="text-xs font-bold uppercase tracking-wider text-stone-600 flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-[16px]">public</span>
+              <span>{lang === 'he' ? 'שוק ומשטר ריבית מקומי:' : 'Market & Mortgage Regime:'}</span>
+            </span>
+
+            <div className="flex items-center gap-1.5 flex-wrap">
+              {(['IL', 'US', 'EU', 'UK', 'CUSTOM'] as MortgageRegimeId[]).map((rId) => {
+                const regime = MORTGAGE_REGIMES[rId];
+                const isSelected = regimeId === rId;
+                return (
+                  <button
+                    key={rId}
+                    type="button"
+                    onClick={() => {
+                      setRegimeId(rId);
+                      if (regime.tracks[0]) {
+                        setRate(regime.tracks[0].defaultRate);
+                        setYears(regime.tracks[0].defaultYears);
+                        if (mode === 'standard') {
+                          setPrincipal(regime.defaultPrincipal);
+                        }
+                      }
+                    }}
+                    className={`px-2.5 py-1 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                      isSelected
+                        ? 'bg-blue-600 text-white shadow-xs'
+                        : 'bg-white text-stone-700 hover:bg-stone-200 border border-stone-200'
+                    }`}
+                  >
+                    <span>{regime.flag}</span>
+                    <span>{regime.countryCode}</span>
+                    <span className="opacity-70 text-[10px]">({regime.currencySymbol})</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Regime Tracks Bar */}
+          {currentRegime && currentRegime.tracks.length > 0 && (
+            <div className="pt-2.5 border-t border-stone-200">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-[11px] font-bold text-stone-500">
+                  {lang === 'he' ? `מסלולים מובילים (${currentRegime.name.he}):` : `Standard Tracks (${currentRegime.name.en}):`}
+                </span>
+                <span className="text-[11px] text-stone-400 font-medium">
+                  {currentRegime.currency} ({currentRegime.currencySymbol})
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {currentRegime.tracks.map((track) => {
+                  const trackName = track.name[lang as keyof typeof track.name] || track.name.en;
+                  const isCurrentTrack = Math.abs(rate - track.defaultRate) < 0.05 && years === track.defaultYears;
+                  return (
+                    <button
+                      key={track.id}
+                      type="button"
+                      onClick={() => {
+                        setRate(track.defaultRate);
+                        setYears(track.defaultYears);
+                      }}
+                      className={`px-3 py-1.5 rounded-xl text-xs transition-all cursor-pointer flex items-center gap-1.5 ${
+                        isCurrentTrack
+                          ? 'bg-blue-100 text-blue-900 border border-blue-300 font-bold shadow-2xs'
+                          : 'bg-white text-stone-700 hover:bg-stone-100 border border-stone-200 font-medium'
+                      }`}
+                      title={track.description[lang as keyof typeof track.description] || track.description.en}
+                    >
+                      <span>{trackName}</span>
+                      <span className="text-[10px] px-1.5 py-0.2 rounded-md bg-stone-100 text-stone-600 font-bold" dir="ltr">
+                        {track.defaultRate}% • {track.defaultYears}{lang === 'he' ? 'ש' : 'y'}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="mb-8">
@@ -583,6 +725,19 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
         </div>
       </div>
     </div>
+
+      {/* SEO Programmatic Scenarios & Popular Long-tail Queries */}
+      <PopularScenarios
+        scenarios={POPULAR_MORTGAGE_SCENARIOS}
+        currentPrincipal={principal}
+        onSelectScenario={(params) => {
+          if (params.mode) setMode(params.mode);
+          if (params.principal !== undefined) setPrincipal(Number(params.principal));
+          if (params.rate !== undefined) setRate(Number(params.rate));
+          if (params.years !== undefined) setYears(Number(params.years));
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+      />
 
       {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
       <CalculatorGuide

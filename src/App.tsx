@@ -20,6 +20,8 @@ const WidgetsHub = lazy(() => import('./pages/WidgetsHub'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 import { useI18n } from './contexts/i18n';
+import { useHistory } from './contexts/HistoryContext';
+import HistoryDrawer from './components/HistoryDrawer';
 import Footer from './components/Footer';
 import SearchBar from './components/SearchBar';
 import SkeletonLoader from './components/SkeletonLoader';
@@ -28,6 +30,7 @@ import { initWebMCP } from './lib/webmcp';
 
 function App() {
   const { lang, setLang, t } = useI18n();
+  const { toggleDrawer, recentCount } = useHistory();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -207,6 +210,22 @@ function App() {
               <option value="ar">العربية</option>
             </select>
 
+            {/* History Drawer Trigger */}
+            <button
+              type="button"
+              onClick={toggleDrawer}
+              aria-label={lang === 'he' ? 'היסטוריית חישובים' : 'Calculation History'}
+              title={lang === 'he' ? 'היסטוריית חישובים אחרונה' : 'Recent Calculations'}
+              className="relative flex items-center justify-center w-10 h-10 rounded-lg border border-border-subtle bg-surface-container-lowest hover:bg-surface-container text-on-surface transition-all cursor-pointer shrink-0"
+            >
+              <span className="material-symbols-outlined text-[20px]">history</span>
+              {recentCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-on-primary text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
+                  {recentCount > 9 ? '9+' : recentCount}
+                </span>
+              )}
+            </button>
+
             {/* Suggest Button */}
             <Link 
               to={`/${lang}/suggest`} 
@@ -219,8 +238,23 @@ function App() {
         </div>
 
         {/* Mobile Search Bar */}
-        <div className="lg:hidden px-4 pb-3 w-full max-w-container-max mx-auto">
-          <SearchBar />
+        <div className="lg:hidden px-4 pb-3 w-full max-w-container-max mx-auto flex items-center gap-2">
+          <div className="flex-1">
+            <SearchBar />
+          </div>
+          <button
+            type="button"
+            onClick={toggleDrawer}
+            aria-label={lang === 'he' ? 'היסטוריית חישובים' : 'Calculation History'}
+            className="relative flex items-center justify-center w-10 h-10 rounded-lg border border-border-subtle bg-surface-container-lowest hover:bg-surface-container text-on-surface transition-all cursor-pointer shrink-0"
+          >
+            <span className="material-symbols-outlined text-[20px]">history</span>
+            {recentCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-primary text-on-primary text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
+                {recentCount > 9 ? '9+' : recentCount}
+              </span>
+            )}
+          </button>
         </div>
 
         {/* Mobile Dropdown Navigation */}
@@ -290,6 +324,7 @@ function App() {
 
       {!isEmbed && <VirtualAssistant />}
       {!isEmbed && <Footer />}
+      <HistoryDrawer />
 
       {isEmbed && (
         <div className="fixed bottom-0 left-0 w-full bg-surface/95 backdrop-blur-xs border-t border-border-subtle py-2 px-4 flex items-center justify-between text-xs font-semibold z-50">
