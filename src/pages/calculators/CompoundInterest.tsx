@@ -587,6 +587,11 @@ ${lang === 'he' ? 'הפרש ורווח עודף' : 'Difference & Extra Returns'}
           onSaveHistory={saveToHistory}
           historyEntries={getHistory()}
           onLoadHistory={loadFromHistory}
+          shareMessage={
+            lang === 'he'
+              ? `חישוב ריבית דריבית מגלובל קאלק פרו:\nהפקדה ראשונית: ${currencyFormat.format(principal)}\nהפקדה חודשית: ${currencyFormat.format(contribution)}\nתשואה שנתית: ${rate}%\nתקופה: ${years} שנים\nשווי עתידי משוער: ${currencyFormat.format(activeFutureValue)}`
+              : `Compound Interest Calculation:\nPrincipal: ${currencyFormat.format(principal)}\nMonthly Contribution: ${currencyFormat.format(contribution)}\nAnnual Rate: ${rate}%\nTerm: ${years} Years\nFuture Value: ${currencyFormat.format(activeFutureValue)}`
+          }
         />
       </div>
       </div>

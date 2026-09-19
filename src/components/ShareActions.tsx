@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link as LinkIcon, Check, Clock, ChevronDown, Code } from 'lucide-react';
+import { Link as LinkIcon, Check, Clock, ChevronDown, Code, Printer, Share2 } from 'lucide-react';
 import { useI18n } from '../contexts/i18n';
 import EmbedModal from './EmbedModal';
 
@@ -9,6 +9,7 @@ interface ShareActionsProps {
   onLoadHistory?: (index: number) => void;
   calculatorTitle?: string;
   calculatorPath?: string;
+  shareMessage?: string;
 }
 
 export default function ShareActions({
@@ -17,6 +18,7 @@ export default function ShareActions({
   onLoadHistory,
   calculatorTitle,
   calculatorPath,
+  shareMessage,
 }: ShareActionsProps) {
   const { t, lang } = useI18n();
   const [copied, setCopied] = useState(false);
@@ -31,32 +33,69 @@ export default function ShareActions({
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleWhatsAppShare = () => {
+    const text = shareMessage
+      ? `${shareMessage}\n\n${window.location.href}`
+      : `${calculatorTitle || 'GlobalCalc Pro'}\n${window.location.href}`;
+    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const handlePrint = () => {
+    window.print();
+  };
+
   const hasHistory = historyEntries && historyEntries.length > 0;
 
   const labels = {
-    en: { copyLink: 'Copy Link', embed: 'Embed Widget', saveResult: 'Save Result', history: 'Recent Calculations' },
-    he: { copyLink: 'העתק קישור', embed: 'הטמע באתר (Embed)', saveResult: 'שמור חישוב', history: 'היסטוריית חישובים' },
-    es: { copyLink: 'Copiar Enlace', embed: 'Insertar Widget', saveResult: 'Guardar Resultado', history: 'Cálculos Recientes' },
-    fr: { copyLink: 'Copier le Lien', embed: 'Intégrer le Widget', saveResult: 'Sauvegarder', history: 'Historique des Calculs' },
-    ar: { copyLink: 'نسخ الرابط', embed: 'تضمين في موقعك', saveResult: 'حفظ الحساب', history: 'سجل الحسابات' },
-  }[lang] || { copyLink: 'Copy Link', embed: 'Embed Widget', saveResult: 'Save Result', history: 'Recent Calculations' };
+    en: { copyLink: 'Copy Link', whatsapp: 'Share via WhatsApp', print: 'Print / Save PDF', embed: 'Embed Widget', saveResult: 'Save Result', history: 'Recent Calculations' },
+    he: { copyLink: 'העתק קישור', whatsapp: 'שתף ב-WhatsApp', print: 'הדפס / שמור כ-PDF', embed: 'הטמע באתר (Embed)', saveResult: 'שמור חישוב', history: 'היסטוריית חישובים' },
+    es: { copyLink: 'Copiar Enlace', whatsapp: 'Compartir en WhatsApp', print: 'Imprimir / PDF', embed: 'Insertar Widget', saveResult: 'Guardar Resultado', history: 'Cálculos Recientes' },
+    fr: { copyLink: 'Copier le Lien', whatsapp: 'Partager sur WhatsApp', print: 'Imprimer / PDF', embed: 'Intégrer le Widget', saveResult: 'Sauvegarder', history: 'Historique des Calculs' },
+    ar: { copyLink: 'نسخ الرابط', whatsapp: 'مشاركة عبر WhatsApp', print: 'طباعة / حفظ PDF', embed: 'تضمين في موقعك', saveResult: 'حفظ الحساب', history: 'سجل الحسابات' },
+  }[lang] || { copyLink: 'Copy Link', whatsapp: 'Share via WhatsApp', print: 'Print / Save PDF', embed: 'Embed Widget', saveResult: 'Save Result', history: 'Recent Calculations' };
 
   return (
     <>
-      <div className="mt-8 pt-6 border-t border-border-subtle flex flex-wrap items-center gap-3 justify-between sm:justify-start">
-        <div className="flex gap-2">
+      <div className="mt-8 pt-6 border-t border-border-subtle flex flex-wrap items-center gap-2.5 justify-between sm:justify-start print:hidden">
+        <div className="flex flex-wrap gap-2">
+          {/* Copy Link */}
           <button
             type="button"
             onClick={handleCopyLink}
-            className="flex items-center gap-2 px-4 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-lg transition-colors font-medium text-sm border border-border-subtle cursor-pointer"
+            className="flex items-center gap-2 px-3.5 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-lg transition-colors font-medium text-xs sm:text-sm border border-border-subtle cursor-pointer"
           >
             {copied ? <Check className="w-4 h-4 text-green-500" /> : <LinkIcon className="w-4 h-4 text-on-surface-variant" />}
             <span>{labels.copyLink}</span>
           </button>
+
+          {/* WhatsApp Share */}
+          <button
+            type="button"
+            onClick={handleWhatsAppShare}
+            className="flex items-center gap-2 px-3.5 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-lg transition-colors font-medium text-xs sm:text-sm border border-emerald-200 cursor-pointer"
+            title={labels.whatsapp}
+          >
+            <Share2 className="w-4 h-4 text-emerald-600" />
+            <span>{labels.whatsapp}</span>
+          </button>
+
+          {/* Print / Save PDF */}
+          <button
+            type="button"
+            onClick={handlePrint}
+            className="flex items-center gap-2 px-3.5 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-lg transition-colors font-medium text-xs sm:text-sm border border-border-subtle cursor-pointer"
+            title={labels.print}
+          >
+            <Printer className="w-4 h-4 text-on-surface-variant" />
+            <span>{labels.print}</span>
+          </button>
+
+          {/* Embed Widget */}
           <button
             type="button"
             onClick={() => setIsEmbedModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-surface-container-low hover:bg-blue-50 text-on-surface hover:text-blue-700 rounded-lg transition-colors font-medium text-sm border border-border-subtle hover:border-blue-300 cursor-pointer"
+            className="flex items-center gap-2 px-3.5 py-2 bg-surface-container-low hover:bg-blue-50 text-on-surface hover:text-blue-700 rounded-lg transition-colors font-medium text-xs sm:text-sm border border-border-subtle hover:border-blue-300 cursor-pointer"
           >
             <Code className="w-4 h-4 text-blue-600" />
             <span>{labels.embed}</span>
@@ -73,7 +112,7 @@ export default function ShareActions({
                   setCopied(true);
                   setTimeout(() => setCopied(false), 2000);
                 }}
-                className="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary hover:opacity-90 rounded-lg transition-opacity font-medium text-sm shadow-sm"
+                className="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary hover:opacity-90 rounded-lg transition-opacity font-medium text-xs sm:text-sm shadow-xs"
               >
                 <Clock className="w-4 h-4" />
                 <span>{labels.saveResult}</span>
@@ -126,3 +165,4 @@ export default function ShareActions({
     </>
   );
 }
+

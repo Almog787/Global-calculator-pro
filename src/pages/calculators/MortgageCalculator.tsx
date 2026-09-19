@@ -721,7 +721,15 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
         </div>
 
         <div className="mt-6 pt-4 border-t border-white/10">
-          <ShareActions calculatorTitle={t.mortgageTitle} calculatorPath="/mortgage-calculator" />
+          <ShareActions
+            calculatorTitle={t.mortgageTitle}
+            calculatorPath="/mortgage-calculator"
+            shareMessage={
+              lang === 'he'
+                ? `חישוב משכנתא מגלובל קאלק פרו:\nסכום הלוואה: ${currencyFormat.format(activePrincipal)}\nריבית: ${rate}%\nתקופה: ${years} שנים\nהחזר חודשי: ${currencyFormat.format(activeMonthlyPayment)}`
+                : `Mortgage Calculation:\nLoan: ${currencyFormat.format(activePrincipal)}\nRate: ${rate}%\nTerm: ${years} Years\nMonthly Payment: ${currencyFormat.format(activeMonthlyPayment)}`
+            }
+          />
         </div>
       </div>
     </div>

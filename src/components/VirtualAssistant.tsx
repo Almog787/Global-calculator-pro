@@ -313,11 +313,11 @@ export default function VirtualAssistant() {
 
   return (
     <div
-      className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 rtl:right-auto rtl:left-4 sm:rtl:left-6 z-50 flex flex-col items-end rtl:items-start select-none pointer-events-none`}
+      className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end select-none pointer-events-none`}
     >
       {/* Floating Dialog / Speech Bubble Container */}
       <div
-        className={`bg-slate-900/95 backdrop-blur-2xl text-slate-100 rounded-3xl shadow-[0_25px_60px_-15px_rgba(6,182,212,0.35)] border border-cyan-500/30 w-[calc(100vw-32px)] sm:w-[415px] overflow-hidden transition-all duration-300 ease-out origin-bottom-right rtl:origin-bottom-left pointer-events-auto flex flex-col max-h-[85vh] sm:max-h-[620px] mb-3.5 ${
+        className={`bg-slate-900/95 backdrop-blur-2xl text-slate-100 rounded-3xl shadow-[0_25px_60px_-15px_rgba(6,182,212,0.35)] border border-cyan-500/30 w-[calc(100vw-32px)] sm:w-[415px] overflow-hidden transition-all duration-300 ease-out origin-bottom-right pointer-events-auto flex flex-col max-h-[85vh] sm:max-h-[620px] mb-3.5 ${
           isOpen
             ? "animate-pop-in-spring opacity-100 translate-y-0"
             : "scale-0 opacity-0 pointer-events-none translate-y-6"
@@ -784,7 +784,7 @@ export default function VirtualAssistant() {
               setIsOpen(true);
               triggerSuccessJump();
             }}
-            className="absolute -top-10 right-0 rtl:right-auto rtl:left-0 bg-slate-950/90 text-cyan-300 text-[11px] font-extrabold py-1 px-3 rounded-full shadow-xl whitespace-nowrap animate-bounce flex items-center gap-1.5 cursor-pointer hover:bg-cyan-950 transition-colors border border-cyan-500/40"
+            className="absolute -top-10 right-0 bg-slate-950/90 text-cyan-300 text-[11px] font-extrabold py-1 px-3 rounded-full shadow-xl whitespace-nowrap animate-bounce flex items-center gap-1.5 cursor-pointer hover:bg-cyan-950 transition-colors border border-cyan-500/40"
           >
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
             <span>{i18nTexts.badge}</span>
