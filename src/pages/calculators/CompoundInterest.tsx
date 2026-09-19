@@ -12,6 +12,8 @@ import ScenarioComparator, { ComparisonMetric } from '../../components/ScenarioC
 import { useCalculatorState } from '../../hooks/useCalculatorState';
 import { useRecordCalculation } from '../../hooks/useRecordCalculation';
 import { calculateCompoundInterest, calculateTargetSavings, compareCompoundInterest } from '../../lib/math/finance';
+import { exportCompoundToExcel } from '../../lib/export/excelExport';
+import AnimatedNumber from '../../components/AnimatedNumber';
 
 
 export default function CompoundInterest() {
@@ -587,6 +589,20 @@ ${lang === 'he' ? 'הפרש ורווח עודף' : 'Difference & Extra Returns'}
           onSaveHistory={saveToHistory}
           historyEntries={getHistory()}
           onLoadHistory={loadFromHistory}
+          onExportExcel={() => {
+            exportCompoundToExcel({
+              principal,
+              rate,
+              years,
+              contribution,
+              futureValue: activeFutureValue,
+              totalContributions: activeTotalContributions,
+              totalInterest: activeTotalInterest,
+              currencySymbol: lang === 'he' ? '₪' : '$',
+              lang,
+              schedule: growthResult.scheduleData
+            });
+          }}
           shareMessage={
             lang === 'he'
               ? `חישוב ריבית דריבית מגלובל קאלק פרו:\nהפקדה ראשונית: ${currencyFormat.format(principal)}\nהפקדה חודשית: ${currencyFormat.format(contribution)}\nתשואה שנתית: ${rate}%\nתקופה: ${years} שנים\nשווי עתידי משוער: ${currencyFormat.format(activeFutureValue)}`
@@ -608,9 +624,15 @@ ${lang === 'he' ? 'הפרש ורווח עודף' : 'Difference & Extra Returns'}
               : (lang === 'he' ? 'הפרש בהון הסופי' : 'Extra Future Wealth')}
           </span>
           <div className="text-4xl sm:text-5xl font-black text-white tracking-tight" dir="ltr">
-            {mode === 'compare'
-              ? `${comparisonResult.diffFutureValue >= 0 ? '+' : ''}${currencyFormat.format(comparisonResult.diffFutureValue)}`
-              : currencyFormat.format(mode === 'growth' ? activeFutureValue : activeContribution)}
+            {mode === 'compare' ? (
+              `${comparisonResult.diffFutureValue >= 0 ? '+' : ''}${currencyFormat.format(comparisonResult.diffFutureValue)}`
+            ) : (
+              <AnimatedNumber
+                value={Math.round(mode === 'growth' ? activeFutureValue : activeContribution)}
+                prefix={lang === 'he' ? '₪ ' : '$ '}
+                locale={lang === 'he' ? 'he-IL' : 'en-US'}
+              />
+            )}
           </div>
         </div>
 
@@ -622,9 +644,15 @@ ${lang === 'he' ? 'הפרש ורווח עודף' : 'Difference & Extra Returns'}
                 : (mode === 'growth' ? t.totalContributions : (lang === 'he' ? 'יעד הון סופי' : 'Target Goal'))}
             </span>
             <div className={`text-lg md:text-xl font-headline ${mode === 'compare' && comparisonResult.diffInterest >= 0 ? 'text-emerald-400' : 'text-stone-300'}`} dir="ltr">
-              {mode === 'compare'
-                ? `${comparisonResult.diffInterest >= 0 ? '+' : ''}${currencyFormat.format(comparisonResult.diffInterest)}`
-                : currencyFormat.format(mode === 'growth' ? activeTotalContributions : activeFutureValue)}
+              {mode === 'compare' ? (
+                `${comparisonResult.diffInterest >= 0 ? '+' : ''}${currencyFormat.format(comparisonResult.diffInterest)}`
+              ) : (
+                <AnimatedNumber
+                  value={Math.round(mode === 'growth' ? activeTotalContributions : activeFutureValue)}
+                  prefix={lang === 'he' ? '₪ ' : '$ '}
+                  locale={lang === 'he' ? 'he-IL' : 'en-US'}
+                />
+              )}
             </div>
           </div>
           <div className="p-4 sm:p-5 bg-white/5 rounded-2xl border border-white/10">
@@ -634,9 +662,15 @@ ${lang === 'he' ? 'הפרש ורווח עודף' : 'Difference & Extra Returns'}
                 : t.totalInterestEarned}
             </span>
             <div className="text-lg md:text-xl font-bold text-blue-400" dir="ltr">
-              {mode === 'compare'
-                ? `${comparisonResult.gainPercentage >= 0 ? '+' : ''}${comparisonResult.gainPercentage}%`
-                : `+${currencyFormat.format(activeTotalInterest)}`}
+              {mode === 'compare' ? (
+                `${comparisonResult.gainPercentage >= 0 ? '+' : ''}${comparisonResult.gainPercentage}%`
+              ) : (
+                <AnimatedNumber
+                  value={Math.round(activeTotalInterest)}
+                  prefix={(lang === 'he' ? '+₪ ' : '+$ ')}
+                  locale={lang === 'he' ? 'he-IL' : 'en-US'}
+                />
+              )}
             </div>
           </div>
         </div>

@@ -5,7 +5,8 @@ import {
   calculateDebtSnowball,
   calculateReverseMortgage,
   calculateTargetSavings,
-  calculateGrossFromNet
+  calculateGrossFromNet,
+  generateMortgageAmortizationSchedule
 } from './finance';
 
 describe('Financial Math Engine', () => {
@@ -110,6 +111,22 @@ describe('Financial Math Engine', () => {
       const result = calculateDebtSnowball([], 100);
       expect(result.baseMonths).toBe(0);
       expect(result.snowballMonths).toBe(0);
+    });
+  });
+
+  describe('generateMortgageAmortizationSchedule', () => {
+    it('should generate accurate monthly breakdown with declining balance', () => {
+      const schedule = generateMortgageAmortizationSchedule(120000, 5, 10);
+      expect(schedule.length).toBe(120);
+      expect(schedule[0].period).toBe(1);
+      expect(schedule[0].balance).toBeLessThan(120000);
+      expect(schedule[119].balance).toBe(0);
+      expect(schedule[119].cumulativeInterest).toBeGreaterThan(30000);
+    });
+
+    it('should return empty schedule for zero principal or zero years', () => {
+      expect(generateMortgageAmortizationSchedule(0, 5, 10)).toEqual([]);
+      expect(generateMortgageAmortizationSchedule(100000, 5, 0)).toEqual([]);
     });
   });
 });

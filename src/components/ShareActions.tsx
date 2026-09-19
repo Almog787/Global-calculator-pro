@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link as LinkIcon, Check, Clock, ChevronDown, Code, Printer, Share2 } from 'lucide-react';
+import { Link as LinkIcon, Check, Clock, ChevronDown, Code, Printer, Share2, FileSpreadsheet } from 'lucide-react';
 import { useI18n } from '../contexts/i18n';
 import EmbedModal from './EmbedModal';
 
@@ -10,6 +10,7 @@ interface ShareActionsProps {
   calculatorTitle?: string;
   calculatorPath?: string;
   shareMessage?: string;
+  onExportExcel?: () => void;
 }
 
 export default function ShareActions({
@@ -19,6 +20,7 @@ export default function ShareActions({
   calculatorTitle,
   calculatorPath,
   shareMessage,
+  onExportExcel,
 }: ShareActionsProps) {
   const { t, lang } = useI18n();
   const [copied, setCopied] = useState(false);
@@ -48,12 +50,12 @@ export default function ShareActions({
   const hasHistory = historyEntries && historyEntries.length > 0;
 
   const labels = {
-    en: { copyLink: 'Copy Link', whatsapp: 'Share via WhatsApp', print: 'Print / Save PDF', embed: 'Embed Widget', saveResult: 'Save Result', history: 'Recent Calculations' },
-    he: { copyLink: 'העתק קישור', whatsapp: 'שתף ב-WhatsApp', print: 'הדפס / שמור כ-PDF', embed: 'הטמע באתר (Embed)', saveResult: 'שמור חישוב', history: 'היסטוריית חישובים' },
-    es: { copyLink: 'Copiar Enlace', whatsapp: 'Compartir en WhatsApp', print: 'Imprimir / PDF', embed: 'Insertar Widget', saveResult: 'Guardar Resultado', history: 'Cálculos Recientes' },
-    fr: { copyLink: 'Copier le Lien', whatsapp: 'Partager sur WhatsApp', print: 'Imprimer / PDF', embed: 'Intégrer le Widget', saveResult: 'Sauvegarder', history: 'Historique des Calculs' },
-    ar: { copyLink: 'نسخ الرابط', whatsapp: 'مشاركة عبر WhatsApp', print: 'طباعة / حفظ PDF', embed: 'تضمين في موقعك', saveResult: 'حفظ الحساب', history: 'سجل الحسابات' },
-  }[lang] || { copyLink: 'Copy Link', whatsapp: 'Share via WhatsApp', print: 'Print / Save PDF', embed: 'Embed Widget', saveResult: 'Save Result', history: 'Recent Calculations' };
+    en: { copyLink: 'Copy Link', whatsapp: 'Share via WhatsApp', print: 'Print / Save PDF', excel: 'Export to Excel', embed: 'Embed Widget', saveResult: 'Save Result', history: 'Recent Calculations' },
+    he: { copyLink: 'העתק קישור', whatsapp: 'שתף ב-WhatsApp', print: 'הדפס / שמור כ-PDF', excel: 'ייצוא ל-Excel', embed: 'הטמע באתר (Embed)', saveResult: 'שמור חישוב', history: 'היסטוריית חישובים' },
+    es: { copyLink: 'Copiar Enlace', whatsapp: 'Compartir en WhatsApp', print: 'Imprimir / PDF', excel: 'Exportar a Excel', embed: 'Insertar Widget', saveResult: 'Guardar Resultado', history: 'Cálculos Recientes' },
+    fr: { copyLink: 'Copier le Lien', whatsapp: 'Partager sur WhatsApp', print: 'Imprimer / PDF', excel: 'Exporter vers Excel', embed: 'Intégrer le Widget', saveResult: 'Sauvegarder', history: 'Historique des Calculs' },
+    ar: { copyLink: 'نسخ الرابط', whatsapp: 'مشاركة عبر WhatsApp', print: 'طباعة / حفظ PDF', excel: 'تصدير إلى Excel', embed: 'تضمين في موقعك', saveResult: 'حفظ الحساب', history: 'سجل الحسابات' },
+  }[lang] || { copyLink: 'Copy Link', whatsapp: 'Share via WhatsApp', print: 'Print / Save PDF', excel: 'Export to Excel', embed: 'Embed Widget', saveResult: 'Save Result', history: 'Recent Calculations' };
 
   return (
     <>
@@ -79,6 +81,19 @@ export default function ShareActions({
             <Share2 className="w-4 h-4 text-emerald-600" />
             <span>{labels.whatsapp}</span>
           </button>
+
+          {/* Excel Export */}
+          {onExportExcel && (
+            <button
+              type="button"
+              onClick={onExportExcel}
+              className="flex items-center gap-2 px-3.5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg transition-colors font-medium text-xs sm:text-sm shadow-xs cursor-pointer"
+              title={labels.excel}
+            >
+              <FileSpreadsheet className="w-4 h-4 text-emerald-100" />
+              <span>{labels.excel}</span>
+            </button>
+          )}
 
           {/* Print / Save PDF */}
           <button
@@ -165,4 +180,3 @@ export default function ShareActions({
     </>
   );
 }
-

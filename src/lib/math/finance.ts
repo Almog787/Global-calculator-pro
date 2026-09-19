@@ -1,5 +1,77 @@
 import Decimal from 'decimal.js';
 
+export interface MortgageAmortizationRow {
+  period: number;
+  payment: number;
+  principal: number;
+  interest: number;
+  balance: number;
+  cumulativeInterest: number;
+  cumulativePrincipal: number;
+}
+
+export function generateMortgageAmortizationSchedule(
+  principal: number,
+  annualRate: number,
+  years: number,
+  maxPeriods: number = 360
+): MortgageAmortizationRow[] {
+  try {
+    const decP = new Decimal(principal || 0);
+    const decR = new Decimal(annualRate || 0).div(100).div(12);
+    const totalMonths = Math.min(maxPeriods, (years || 0) * 12);
+
+    if (decP.isZero() || totalMonths === 0) return [];
+
+    let mp = new Decimal(0);
+    if (decR.isZero()) {
+      mp = decP.div(totalMonths);
+    } else {
+      const rateFactor = decR.add(1).pow(totalMonths);
+      mp = decP.mul(decR.mul(rateFactor)).div(rateFactor.sub(1));
+    }
+
+    const schedule: MortgageAmortizationRow[] = [];
+    let currentBalance = new Decimal(decP);
+    let cumulativeInterest = new Decimal(0);
+    let cumulativePrincipal = new Decimal(0);
+
+    for (let month = 1; month <= totalMonths; month++) {
+      const interestPayment = decR.isZero() ? new Decimal(0) : currentBalance.mul(decR);
+      let principalPayment = mp.sub(interestPayment);
+
+      if (principalPayment.gt(currentBalance)) {
+        principalPayment = new Decimal(currentBalance);
+      }
+
+      currentBalance = currentBalance.sub(principalPayment);
+      if (currentBalance.lt(0.0001) || month === totalMonths) {
+        currentBalance = new Decimal(0);
+      }
+
+      cumulativeInterest = cumulativeInterest.add(interestPayment);
+      cumulativePrincipal = cumulativePrincipal.add(principalPayment);
+
+      schedule.push({
+        period: month,
+        payment: mp.toDecimalPlaces(2).toNumber(),
+        principal: principalPayment.toDecimalPlaces(2).toNumber(),
+        interest: interestPayment.toDecimalPlaces(2).toNumber(),
+        balance: currentBalance.toDecimalPlaces(2).toNumber(),
+        cumulativeInterest: cumulativeInterest.toDecimalPlaces(2).toNumber(),
+        cumulativePrincipal: cumulativePrincipal.toDecimalPlaces(2).toNumber()
+      });
+
+      if (currentBalance.isZero()) break;
+    }
+
+    return schedule;
+  } catch {
+    return [];
+  }
+}
+
+
 export interface MortgageResult {
   monthlyPayment: number;
   totalInterest: number;

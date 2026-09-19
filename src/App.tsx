@@ -25,6 +25,8 @@ import HistoryDrawer from './components/HistoryDrawer';
 import Footer from './components/Footer';
 import SearchBar from './components/SearchBar';
 import SkeletonLoader from './components/SkeletonLoader';
+import { PWAInstallButton } from './components/PWAInstallButton';
+import { OfflineIndicator } from './components/OfflineIndicator';
 import { getCanonicalRedirect } from './utils/legacyRedirects';
 import { initWebMCP } from './lib/webmcp';
 
@@ -183,6 +185,9 @@ function App() {
               <SearchBar />
             </div>
 
+            {/* PWA Install Action */}
+            <PWAInstallButton />
+
             {/* Language Selector */}
             <select 
               value={lang} 
@@ -325,6 +330,7 @@ function App() {
       {!isEmbed && <VirtualAssistant />}
       {!isEmbed && <Footer />}
       <HistoryDrawer />
+      <OfflineIndicator />
 
       {isEmbed && (
         <div className="fixed bottom-0 left-0 w-full bg-surface/95 backdrop-blur-xs border-t border-border-subtle py-2 px-4 flex items-center justify-between text-xs font-semibold z-50">

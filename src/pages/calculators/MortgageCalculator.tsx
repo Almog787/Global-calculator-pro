@@ -16,11 +16,13 @@ import CalculatorGuide from '../../components/CalculatorGuide';
 import ShareActions from '../../components/ShareActions';
 import ScenarioPresets from '../../components/ScenarioPresets';
 import ScenarioComparator, { ComparisonMetric } from '../../components/ScenarioComparator';
-import { calculateMortgage, calculateReverseMortgage, compareMortgages } from '../../lib/math/finance';
+import { calculateMortgage, calculateReverseMortgage, compareMortgages, generateMortgageAmortizationSchedule } from '../../lib/math/finance';
+import { exportMortgageToExcel } from '../../lib/export/excelExport';
 import { useRecordCalculation } from '../../hooks/useRecordCalculation';
 import { MORTGAGE_REGIMES, MortgageRegimeId } from '../../lib/regimes/mortgageRegimes';
 import PopularScenarios from '../../components/PopularScenarios';
 import { POPULAR_MORTGAGE_SCENARIOS, getProgrammaticFaqs } from '../../lib/seo/programmaticScenarios';
+import AnimatedNumber from '../../components/AnimatedNumber';
 
 
 ChartJS.register(
@@ -683,9 +685,15 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
               : (lang === 'he' ? 'הפרש בהחזר חודשי' : 'Monthly Payment Diff')}
           </span>
           <div className="text-4xl sm:text-5xl font-black text-white tracking-tighter" dir="ltr">
-            {mode === 'compare'
-              ? `${comparisonResult.diffMonthly >= 0 ? '+' : ''}${currencyFormat.format(comparisonResult.diffMonthly)}`
-              : currencyFormat.format(mode === 'standard' ? activeMonthlyPayment : activePrincipal)}
+            {mode === 'compare' ? (
+              `${comparisonResult.diffMonthly >= 0 ? '+' : ''}${currencyFormat.format(comparisonResult.diffMonthly)}`
+            ) : (
+              <AnimatedNumber
+                value={Math.round(mode === 'standard' ? activeMonthlyPayment : activePrincipal)}
+                prefix={currentRegime.currencySymbol + ' '}
+                locale={lang === 'he' ? 'he-IL' : 'en-US'}
+              />
+            )}
           </div>
         </div>
         
@@ -697,9 +705,15 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
                 : (mode === 'standard' ? t.totalInterest : t.monthlyPayment)}
             </span>
             <div className={`text-lg font-bold ${mode === 'compare' && comparisonResult.diffTotalInterest <= 0 ? 'text-emerald-400' : 'text-blue-400'}`} dir="ltr">
-              {mode === 'compare'
-                ? `${comparisonResult.diffTotalInterest <= 0 ? '-' : '+'}${currencyFormat.format(Math.abs(comparisonResult.diffTotalInterest))}`
-                : currencyFormat.format(mode === 'standard' ? activeTotalInterest : activeMonthlyPayment)}
+              {mode === 'compare' ? (
+                `${comparisonResult.diffTotalInterest <= 0 ? '-' : '+'}${currencyFormat.format(Math.abs(comparisonResult.diffTotalInterest))}`
+              ) : (
+                <AnimatedNumber
+                  value={Math.round(mode === 'standard' ? activeTotalInterest : activeMonthlyPayment)}
+                  prefix={currentRegime.currencySymbol + ' '}
+                  locale={lang === 'he' ? 'he-IL' : 'en-US'}
+                />
+              )}
             </div>
           </div>
           <div className="flex justify-between items-center pt-2 border-t border-white/10">
@@ -709,9 +723,15 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
                 : (mode === 'standard' ? (lang === 'he' ? 'סה"כ לתשלום' : 'Total Paid') : t.totalInterest)}
             </span>
             <div className="text-sm font-semibold text-stone-300" dir="ltr">
-              {mode === 'compare'
-                ? `${comparisonResult.interestSavingsPercent}%`
-                : currencyFormat.format(mode === 'standard' ? activePrincipal + activeTotalInterest : activeTotalInterest)}
+              {mode === 'compare' ? (
+                `${comparisonResult.interestSavingsPercent}%`
+              ) : (
+                <AnimatedNumber
+                  value={Math.round(mode === 'standard' ? activePrincipal + activeTotalInterest : activeTotalInterest)}
+                  prefix={currentRegime.currencySymbol + ' '}
+                  locale={lang === 'he' ? 'he-IL' : 'en-US'}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -724,6 +744,19 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
           <ShareActions
             calculatorTitle={t.mortgageTitle}
             calculatorPath="/mortgage-calculator"
+            onExportExcel={() => {
+              const schedule = generateMortgageAmortizationSchedule(activePrincipal, rate, years);
+              exportMortgageToExcel({
+                principal: activePrincipal,
+                rate,
+                years,
+                monthlyPayment: activeMonthlyPayment,
+                totalInterest: activeTotalInterest,
+                currencySymbol: currentRegime.currencySymbol || (lang === 'he' ? '₪' : '$'),
+                lang,
+                schedule
+              });
+            }}
             shareMessage={
               lang === 'he'
                 ? `חישוב משכנתא מגלובל קאלק פרו:\nסכום הלוואה: ${currencyFormat.format(activePrincipal)}\nריבית: ${rate}%\nתקופה: ${years} שנים\nהחזר חודשי: ${currencyFormat.format(activeMonthlyPayment)}`
