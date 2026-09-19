@@ -141,10 +141,21 @@ const SEO: React.FC<SEOProps> = ({
     description: description,
     url: finalCanonicalUrl,
     applicationCategory: applicationCategory,
+    applicationSubCategory: 'FinancialCalculator',
     operatingSystem: 'All',
     browserRequirements: 'Requires JavaScript. Requires HTML5.',
     isAccessibleForFree: true,
     inLanguage: currentLang,
+    softwareVersion: '2.0.0',
+    featureList: [
+      'High-Precision Decimal Arithmetic (Decimal.js)',
+      'Excel (.xlsx) Multi-Sheet Export with Amortization Schedule',
+      'Offline-First Progressive Web App (PWA) Capability',
+      'Side-by-Side Financial Scenario Comparison',
+      'Embeddable Responsive Widgets',
+      'Multilingual Support (EN, HE, ES, FR, AR)',
+      'Real-time Animated Visualizations'
+    ],
     offers: {
       '@type': 'Offer',
       price: '0',

@@ -29,6 +29,7 @@ import { PWAInstallButton } from './components/PWAInstallButton';
 import { OfflineIndicator } from './components/OfflineIndicator';
 import { getCanonicalRedirect } from './utils/legacyRedirects';
 import { initWebMCP } from './lib/webmcp';
+import { trackPageView, trackLanguageChange } from './lib/analytics';
 
 function App() {
   const { lang, setLang, t } = useI18n();
@@ -128,6 +129,9 @@ function App() {
       }
     }
 
+    // Track Virtual Pageview in GA4 and GTM on route change
+    trackPageView(currentPath + location.search, document.title, lang);
+
     prevPath.current = currentPath;
     setIsMobileMenuOpen(false);
   }, [location.pathname, location.search, lang, navigate]);
@@ -202,6 +206,7 @@ function App() {
                   newPath = `/${newLang}${currentPath}`;
                 }
                 if (newPath === `/${newLang}/`) newPath = `/${newLang}`;
+                trackLanguageChange(lang, newLang);
                 setLang(newLang);
                 navigate(newPath + location.search);
               }}

@@ -2,6 +2,7 @@ import { FormEvent } from 'react';
 import { useUrlState } from '../hooks/useUrlState';
 import SEO from '../components/SEO';
 import { useI18n } from '../contexts/i18n';
+import { trackFormSubmission } from '../lib/analytics';
 
 export default function SuggestFeature() {
   const { t } = useI18n();
@@ -15,13 +16,7 @@ export default function SuggestFeature() {
     e.preventDefault();
     if (!title || !details) return;
 
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'suggestion_submit', {
-        event_category: 'Feedback',
-        category,
-        title
-      });
-    }
+    trackFormSubmission('suggest_feature', true);
 
     setIsSubmitted(true);
   };

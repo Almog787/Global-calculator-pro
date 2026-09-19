@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Download, Smartphone, X, CheckCircle2 } from 'lucide-react';
 import { usePWAInstall } from '../hooks/usePWAInstall';
 import { useI18n } from '../contexts/i18n';
+import { trackPWAEvent } from '../lib/analytics';
 
 export const PWAInstallButton: React.FC = () => {
   const { isInstallable, isInstalled, isIOS, install } = usePWAInstall();
@@ -66,7 +67,10 @@ export const PWAInstallButton: React.FC = () => {
     return (
       <button
         type="button"
-        onClick={install}
+        onClick={() => {
+          trackPWAEvent('install_click');
+          install();
+        }}
         className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold shadow-xs transition-all cursor-pointer"
         title={labels.install}
       >
@@ -81,7 +85,10 @@ export const PWAInstallButton: React.FC = () => {
       <>
         <button
           type="button"
-          onClick={() => setShowIOSGuide(true)}
+          onClick={() => {
+            trackPWAEvent('ios_guide_viewed');
+            setShowIOSGuide(true);
+          }}
           className="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-low hover:bg-surface-container-high border border-border-subtle text-on-surface rounded-xl text-xs font-medium transition-colors cursor-pointer"
           title={labels.installIOS}
         >

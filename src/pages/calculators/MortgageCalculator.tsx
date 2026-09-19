@@ -23,6 +23,7 @@ import { MORTGAGE_REGIMES, MortgageRegimeId } from '../../lib/regimes/mortgageRe
 import PopularScenarios from '../../components/PopularScenarios';
 import { POPULAR_MORTGAGE_SCENARIOS, getProgrammaticFaqs } from '../../lib/seo/programmaticScenarios';
 import AnimatedNumber from '../../components/AnimatedNumber';
+import { trackCalculation, trackExcelExport, trackScenarioComparison } from '../../lib/analytics';
 
 
 ChartJS.register(
@@ -70,18 +71,23 @@ export default function MortgageCalculator() {
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'calculate', {
-          event_category: 'Mortgage Calculator',
-          mode,
-          principal: activePrincipal,
-          rate,
-          years
+      trackCalculation('mortgage', {
+        mode,
+        principal: activePrincipal,
+        rate,
+        years,
+        regime: regimeId
+      });
+      if (mode === 'compare') {
+        trackScenarioComparison('mortgage', {
+          diffMonthly: comparisonResult.diffMonthly,
+          diffTotalInterest: comparisonResult.diffTotalInterest,
+          interestSavingsPercent: comparisonResult.interestSavingsPercent
         });
       }
     }, 2000);
     return () => clearTimeout(handler);
-  }, [mode, activePrincipal, rate, years]);
+  }, [mode, activePrincipal, rate, years, regimeId, comparisonResult]);
 
   const defaultCurrency = currentRegime?.currency || (lang === 'he' ? 'ILS' : lang === 'fr' || lang === 'es' ? 'EUR' : 'USD');
   const currencyFormat = new Intl.NumberFormat(lang === 'en' ? 'en-US' : lang, {
@@ -746,6 +752,12 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
             calculatorPath="/mortgage-calculator"
             onExportExcel={() => {
               const schedule = generateMortgageAmortizationSchedule(activePrincipal, rate, years);
+              trackExcelExport('mortgage', lang, {
+                principal: activePrincipal,
+                rate,
+                years,
+                monthlyPayment: activeMonthlyPayment
+              });
               exportMortgageToExcel({
                 principal: activePrincipal,
                 rate,

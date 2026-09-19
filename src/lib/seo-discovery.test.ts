@@ -55,6 +55,14 @@ describe('SEO & AI Knowledge Discovery Suite', () => {
       expect(llmsFullContent).toContain('compareCompoundInterest');
     });
 
+    it('should document Excel export and Decimal.js precision engine in llms.txt and llms-full.txt', () => {
+      expect(llmsContent).toContain('Excel (.xlsx)');
+      expect(llmsContent).toContain('Decimal.js');
+      expect(llmsFullContent).toContain('exportMortgageToExcel');
+      expect(llmsFullContent).toContain('exportCompoundToExcel');
+      expect(llmsFullContent).toContain('High-Precision Decimal Arithmetic Engine');
+    });
+
     it('should document iframe embed format and widget slugs in llms-full.txt', () => {
       expect(llmsFullContent).toContain('Embeddable Widgets & Calculators Hub');
       expect(llmsFullContent).toContain('?embed=true');

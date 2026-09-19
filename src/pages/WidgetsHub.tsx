@@ -25,6 +25,7 @@ import {
   buildEmbedUrl,
   buildCanonicalUrl
 } from '../lib/widgets/widgetsConfig';
+import { trackWidgetInteraction } from '../lib/analytics';
 
 export default function WidgetsHub() {
   const { lang, t } = useI18n();
@@ -66,6 +67,7 @@ export default function WidgetsHub() {
 
   const copyToClipboard = (text: string, format: 'iframe' | 'react' | 'wp') => {
     navigator.clipboard.writeText(text);
+    trackWidgetInteraction('copy_code', selectedWidget.slug, format, theme);
     setCopiedFormat(format);
     setTimeout(() => setCopiedFormat(null), 2500);
   };

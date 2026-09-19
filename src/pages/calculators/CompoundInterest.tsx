@@ -1,5 +1,5 @@
 import FAQ from '../../components/FAQ';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import SEO from '../../components/SEO';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useI18n } from '../../contexts/i18n';
@@ -14,6 +14,7 @@ import { useRecordCalculation } from '../../hooks/useRecordCalculation';
 import { calculateCompoundInterest, calculateTargetSavings, compareCompoundInterest } from '../../lib/math/finance';
 import { exportCompoundToExcel } from '../../lib/export/excelExport';
 import AnimatedNumber from '../../components/AnimatedNumber';
+import { trackCalculation, trackExcelExport, trackScenarioComparison } from '../../lib/analytics';
 
 
 export default function CompoundInterest() {
@@ -66,6 +67,26 @@ export default function CompoundInterest() {
   const activeFutureValue = mode === 'growth' ? growthResult.futureValue : targetResult.totalSaved;
   const activeTotalContributions = mode === 'growth' ? growthResult.totalContributions : targetResult.totalContributions;
   const activeTotalInterest = mode === 'growth' ? growthResult.totalInterest : targetResult.totalInterest;
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      trackCalculation('compound_interest', {
+        mode,
+        principal,
+        rate,
+        years,
+        contribution
+      });
+      if (mode === 'compare') {
+        trackScenarioComparison('compound_interest', {
+          diffFutureValue: comparisonResult.diffFutureValue,
+          diffInterest: comparisonResult.diffInterest,
+          gainPercentage: comparisonResult.gainPercentage
+        });
+      }
+    }, 2000);
+    return () => clearTimeout(handler);
+  }, [mode, principal, rate, years, contribution, comparisonResult]);
 
   const activeScheduleData = useMemo(() => {
     if (mode === 'growth') return growthResult.scheduleData;
@@ -590,6 +611,13 @@ ${lang === 'he' ? 'הפרש ורווח עודף' : 'Difference & Extra Returns'}
           historyEntries={getHistory()}
           onLoadHistory={loadFromHistory}
           onExportExcel={() => {
+            trackExcelExport('compound', lang, {
+              principal,
+              rate,
+              years,
+              contribution,
+              futureValue: activeFutureValue
+            });
             exportCompoundToExcel({
               principal,
               rate,

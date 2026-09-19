@@ -1,10 +1,18 @@
 # GlobalCalc Pro - Multi-Tool Calculation Suite
 
-> GlobalCalc Pro (https://globalcalcpro.com) provides free, high-precision financial, real estate, health, math, and lifestyle calculation engines with full internationalization (English, Hebrew, Spanish, French, Arabic).
+> GlobalCalc Pro (https://globalcalcpro.com) provides free, high-precision financial, real estate, health, math, and lifestyle calculation engines with full internationalization (English, Hebrew, Spanish, French, Arabic), professional Excel export, and offline PWA capability.
 
 ## Overview
 
-GlobalCalc Pro is engineered for human users and AI agents (ChatGPT Search, Perplexity, Gemini, Claude, Copilot). All calculators execute high-precision arithmetic (via Decimal.js) with real-time responsive visualization, benchmark tables, and structured data.
+GlobalCalc Pro is engineered for human users and AI engines (ChatGPT Search, Perplexity, Gemini, Claude, Copilot). All calculators execute high-precision arithmetic (via Decimal.js) with real-time responsive visualization, instant Excel (.xlsx) amortization downloads, benchmark tables, and structured data.
+
+## Core Capabilities Added
+
+- **Excel (.xlsx) Multi-Sheet Export**: Instant generation of localized executive summaries and month-by-month / year-by-year amortization schedules for Mortgages and Compound Interest in English, Hebrew, Spanish, French, and Arabic.
+- **High-Precision Decimal Engine**: Elimination of IEEE 754 floating-point inaccuracies over long-term (20-30 year) schedules using Decimal.js arbitrary arithmetic.
+- **Offline Progressive Web App (PWA)**: 100% client-side operation with zero latency and full offline support when installed on desktop, iOS, or Android devices.
+- **Side-by-Side Scenario Comparison**: Interactive Plan A vs Plan B comparisons for Mortgages and Compound Interest with instant differential calculation.
+- **Embeddable Widgets Hub**: Customizable iframe, WordPress, and React widget snippets with dark/light themes and 5 languages.
 
 ## Supported Languages & Base URLs
 
@@ -16,11 +24,11 @@ GlobalCalc Pro is engineered for human users and AI agents (ChatGPT Search, Perp
 
 ## Primary Financial & Real Estate Calculators
 
-- [Mortgage Calculator](https://globalcalcpro.com/en/mortgage-calculator): Calculate monthly payment, amortization schedule, principal, total interest, and side-by-side mortgage scenario comparison (Plan A vs Plan B).
+- [Mortgage Calculator](https://globalcalcpro.com/en/mortgage-calculator): Calculate monthly payment, amortization schedule, principal, total interest, side-by-side mortgage scenario comparison (Plan A vs Plan B), and export to Excel (.xlsx).
 - [Mortgage Affordability](https://globalcalcpro.com/en/calculators/mortgage-affordability): Calculate maximum home purchase budget from monthly income and down payment.
 - [Mortgage Refinance](https://globalcalcpro.com/en/calculators/refinance): Calculate monthly interest savings and break-even point for refinancing.
 - [Rent vs Buy Home](https://globalcalcpro.com/en/calculators/rent-vs-buy): Compare 10-30 year wealth building between renting and buying a property.
-- [Compound Interest](https://globalcalcpro.com/en/compound-interest): Forecast investment growth with monthly contributions, reverse retirement target calculation, and comparative scenario modeling.
+- [Compound Interest](https://globalcalcpro.com/en/compound-interest): Forecast investment growth with monthly contributions, reverse retirement target calculation, comparative scenario modeling, and Excel export.
 - [Auto Loan Calculator](https://globalcalcpro.com/en/calculators/auto-loan): Calculate car financing payments, down payment impact, and total interest.
 - [VAT & Sales Tax](https://globalcalcpro.com/en/calculators/vat): Add or extract Value Added Tax (VAT 17%, 18%, 20%) with one click.
 - [Break-Even Point](https://globalcalcpro.com/en/calculators/break-even): Find required sales volume and revenue to cover fixed and variable costs.

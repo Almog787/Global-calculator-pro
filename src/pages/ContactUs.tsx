@@ -2,6 +2,7 @@ import { FormEvent } from 'react';
 import { useUrlState } from '../hooks/useUrlState';
 import SEO from '../components/SEO';
 import { useI18n } from '../contexts/i18n';
+import { trackFormSubmission } from '../lib/analytics';
 
 export default function ContactUs() {
   const { t, lang } = useI18n();
@@ -15,12 +16,7 @@ export default function ContactUs() {
     e.preventDefault();
     if (!email || !message) return;
 
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'contact_form_submit', {
-        event_category: 'Contact',
-        subject: subject || 'General Inquiry'
-      });
-    }
+    trackFormSubmission('contact', true);
 
     setIsSubmitted(true);
   };

@@ -11,11 +11,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Global Calculator Pro – Free Financial, Mortgage & Math Suite</title>
-    <meta name="description" content="Multi-lingual financial, mortgage, compound interest, health, and math online calculators with scenario comparisons and embeddable widgets." />
+    <meta name="description" content="Multi-lingual financial, mortgage, compound interest, health, and math online calculators with high-precision Decimal math, Excel export, offline PWA, and embeddable widgets." />
     <meta property="og:title" content="Global Calculator Pro – Free Financial, Mortgage & Math Suite" />
-    <meta property="og:description" content="Multi-lingual financial, mortgage, compound interest, health, and math online calculators with scenario comparisons and embeddable widgets." />
+    <meta property="og:description" content="Multi-lingual financial, mortgage, compound interest, health, and math online calculators with high-precision Decimal math, Excel export, offline PWA, and embeddable widgets." />
     <meta name="twitter:title" content="Global Calculator Pro – Free Financial, Mortgage & Math Suite" />
-    <meta name="twitter:description" content="Multi-lingual financial, mortgage, compound interest, health, and math online calculators with scenario comparisons and embeddable widgets." />
+    <meta name="twitter:description" content="Multi-lingual financial, mortgage, compound interest, health, and math online calculators with high-precision Decimal math, Excel export, offline PWA, and embeddable widgets." />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#2563eb" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -26,24 +26,14 @@
     <link rel="stylesheet" href="/fonts/fonts.css" />
     
     <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBS74DCCQ8"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-VBS74DCCQ8');
-
-      window.addEventListener('load', function() {
-        var loadGtag = function() {
-          var s = document.createElement('script');
-          s.async = true;
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-VBS74DCCQ8';
-          document.head.appendChild(s);
-        };
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadGtag);
-        } else {
-          setTimeout(loadGtag, 1500);
-        }
+      gtag('config', 'G-VBS74DCCQ8', {
+        send_page_view: true,
+        cookie_flags: 'SameSite=None;Secure'
       });
     </script>
   </head>
