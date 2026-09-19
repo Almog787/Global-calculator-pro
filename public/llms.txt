@@ -41,6 +41,9 @@ GlobalCalc Pro is engineered for human users and AI engines (ChatGPT Search, Per
 - [Debt Snowball](https://globalcalcpro.com/en/calculators/debt-snowball): Multi-debt repayment acceleration and timeline.
 - [Freelance Net Income](https://globalcalcpro.com/en/calculators/freelance-net-income): Self-employed net take-home pay after taxes and deductions.
 - [Severance Pay Calculator](https://globalcalcpro.com/en/calculators/severance-pay): Calculate statutory severance pay and notice compensation.
+- [Stock Options & RSU Calculator](https://globalcalcpro.com/en/calculators/stock-options-rsu): 4-year vesting schedule, Section 102 capital gains tax (25%), dilution impact, and startup exit/IPO scenarios.
+- [Real Estate Purchase & Appreciation Tax](https://globalcalcpro.com/en/calculators/purchase-appreciation-tax): Tiered Israel purchase tax brackets (single vs additional home) and linear appreciation tax with expense deductions.
+- [Employer Cost vs Net Salary](https://globalcalcpro.com/en/calculators/employer-cost): Comprehensive breakdown of employer social security, pension, study fund, severance, income tax, and net take-home pay.
 - [Live Currency Converter](https://globalcalcpro.com/en/calculators/currency-converter): Real-time currency conversions for USD, EUR, ILS, GBP, and more.
 
 ## Health & Lifestyle Calculators

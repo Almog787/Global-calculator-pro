@@ -463,3 +463,490 @@ export function calculateDebtSnowball(debts: DebtItem[], extraPayment: number): 
     snowballInterest: snowball.totalInterest
   };
 }
+
+// -------------------------------------------------------------
+// STOCK OPTIONS & RSU CALCULATOR MATH
+// -------------------------------------------------------------
+
+export interface OptionsRsuParams {
+  grantType: 'options' | 'rsu';
+  quantity: number;
+  strikePrice: number;
+  currentPrice: number;
+  exitPrice: number;
+  vestingYears: number;
+  cliffMonths: number;
+  monthsElapsed: number;
+  dilutionPercent: number;
+  taxRoute: 'section102_capital' | 'section102_income' | 'standard_capital';
+  marginalTaxRate?: number;
+}
+
+export interface VestingSchedulePoint {
+  month: number;
+  year: number;
+  vestedShares: number;
+  vestedPercent: number;
+  vestedGrossValue: number;
+}
+
+export interface OptionsRsuResult {
+  totalShares: number;
+  vestedShares: number;
+  unvestedShares: number;
+  vestedPercent: number;
+  effectiveExitPrice: number;
+  grossProceedsCurrent: number;
+  grossProceedsExit: number;
+  exerciseCostTotal: number;
+  exerciseCostVested: number;
+  taxEstimatedCurrent: number;
+  taxEstimatedExit: number;
+  netProceedsCurrent: number;
+  netProceedsExit: number;
+  effectiveTaxRate: number;
+  vestingSchedule: VestingSchedulePoint[];
+  exitScenarios: { multiplier: number; sharePrice: number; grossGain: number; netGain: number }[];
+}
+
+export function calculateStockOptionsRsu(params: OptionsRsuParams): OptionsRsuResult {
+  const {
+    grantType,
+    quantity = 0,
+    strikePrice = 0,
+    currentPrice = 0,
+    exitPrice = 0,
+    vestingYears = 4,
+    cliffMonths = 12,
+    monthsElapsed = 0,
+    dilutionPercent = 0,
+    taxRoute = 'section102_capital',
+    marginalTaxRate = 47
+  } = params;
+
+  const totalMonths = Math.max(1, (vestingYears || 4) * 12);
+  const effectiveStrike = grantType === 'rsu' ? 0 : Math.max(0, strikePrice);
+  const totalShares = Math.max(0, quantity);
+
+  // Vesting calculation with cliff
+  let vestedShares = 0;
+  if (monthsElapsed >= cliffMonths) {
+    if (monthsElapsed >= totalMonths) {
+      vestedShares = totalShares;
+    } else {
+      vestedShares = Math.floor((totalShares * monthsElapsed) / totalMonths);
+    }
+  }
+
+  const unvestedShares = totalShares - vestedShares;
+  const vestedPercent = totalShares > 0 ? (vestedShares / totalShares) * 100 : 0;
+
+  // Dilution impact on share price at exit
+  const effectiveExitPrice = dilutionPercent > 0
+    ? exitPrice * (1 - dilutionPercent / 100)
+    : exitPrice;
+
+  // Exercise Costs
+  const exerciseCostTotal = totalShares * effectiveStrike;
+  const exerciseCostVested = vestedShares * effectiveStrike;
+
+  // Gross Gains
+  const gainPerShareCurrent = Math.max(0, currentPrice - effectiveStrike);
+  const gainPerShareExit = Math.max(0, effectiveExitPrice - effectiveStrike);
+
+  const grossProceedsCurrent = vestedShares * gainPerShareCurrent;
+  const grossProceedsExit = totalShares * gainPerShareExit;
+
+  // Tax Rate Determination (Section 102 Israel: 25% capital gains track vs marginal income)
+  let effectiveTaxRate = 0.25; // default 25% capital gains
+  if (taxRoute === 'section102_income') {
+    effectiveTaxRate = (marginalTaxRate || 47) / 100;
+  } else if (taxRoute === 'standard_capital') {
+    effectiveTaxRate = 0.25;
+  }
+
+  const taxEstimatedCurrent = grossProceedsCurrent * effectiveTaxRate;
+  const taxEstimatedExit = grossProceedsExit * effectiveTaxRate;
+
+  const netProceedsCurrent = Math.max(0, grossProceedsCurrent - taxEstimatedCurrent);
+  const netProceedsExit = Math.max(0, grossProceedsExit - taxEstimatedExit);
+
+  // Generate 48-month Vesting Schedule Points
+  const vestingSchedule: VestingSchedulePoint[] = [];
+  for (let m = 1; m <= totalMonths; m++) {
+    let shares = 0;
+    if (m >= cliffMonths) {
+      shares = m >= totalMonths ? totalShares : Math.floor((totalShares * m) / totalMonths);
+    }
+    const percent = totalShares > 0 ? (shares / totalShares) * 100 : 0;
+    const value = shares * Math.max(0, currentPrice - effectiveStrike);
+
+    if (m % 3 === 0 || m === cliffMonths || m === totalMonths || m === monthsElapsed) {
+      vestingSchedule.push({
+        month: m,
+        year: Math.ceil(m / 12),
+        vestedShares: shares,
+        vestedPercent: Number(percent.toFixed(1)),
+        vestedGrossValue: Math.round(value)
+      });
+    }
+  }
+
+  // Sensitivity exit scenarios
+  const multipliers = [0.5, 1, 1.5, 2, 3, 5, 10];
+  const exitScenarios = multipliers.map((mult) => {
+    const sp = currentPrice * mult * (1 - dilutionPercent / 100);
+    const gross = totalShares * Math.max(0, sp - effectiveStrike);
+    const net = gross * (1 - effectiveTaxRate);
+    return {
+      multiplier: mult,
+      sharePrice: Number(sp.toFixed(2)),
+      grossGain: Math.round(gross),
+      netGain: Math.round(net)
+    };
+  });
+
+  return {
+    totalShares,
+    vestedShares,
+    unvestedShares,
+    vestedPercent: Number(vestedPercent.toFixed(1)),
+    effectiveExitPrice: Number(effectiveExitPrice.toFixed(2)),
+    grossProceedsCurrent: Math.round(grossProceedsCurrent),
+    grossProceedsExit: Math.round(grossProceedsExit),
+    exerciseCostTotal: Math.round(exerciseCostTotal),
+    exerciseCostVested: Math.round(exerciseCostVested),
+    taxEstimatedCurrent: Math.round(taxEstimatedCurrent),
+    taxEstimatedExit: Math.round(taxEstimatedExit),
+    netProceedsCurrent: Math.round(netProceedsCurrent),
+    netProceedsExit: Math.round(netProceedsExit),
+    effectiveTaxRate: effectiveTaxRate * 100,
+    vestingSchedule,
+    exitScenarios
+  };
+}
+
+// -------------------------------------------------------------
+// REAL ESTATE PURCHASE & APPRECIATION TAX MATH (ISRAEL 2026)
+// -------------------------------------------------------------
+
+export interface PurchaseTaxBracket {
+  from: number;
+  to: number;
+  rate: number;
+  taxableInBracket: number;
+  taxInBracket: number;
+}
+
+export interface PurchaseTaxResult {
+  propertyPrice: number;
+  buyerType: 'single_home' | 'additional_home' | 'foreign_resident' | 'commercial' | 'oleh_disabled';
+  totalTax: number;
+  effectiveTaxRate: number;
+  brackets: PurchaseTaxBracket[];
+}
+
+export function calculatePurchaseTax(
+  price: number,
+  buyerType: 'single_home' | 'additional_home' | 'foreign_resident' | 'commercial' | 'oleh_disabled' = 'single_home'
+): PurchaseTaxResult {
+  const p = Math.max(0, price || 0);
+
+  // Official tax brackets (NIS - Israel Tax Authority standard)
+  let bracketDefinitions: { upTo: number; rate: number }[] = [];
+
+  if (buyerType === 'single_home') {
+    bracketDefinitions = [
+      { upTo: 1978745, rate: 0.0 },
+      { upTo: 2347040, rate: 0.035 },
+      { upTo: 6055070, rate: 0.05 },
+      { upTo: 20183565, rate: 0.08 },
+      { upTo: Infinity, rate: 0.10 }
+    ];
+  } else if (buyerType === 'additional_home' || buyerType === 'foreign_resident') {
+    bracketDefinitions = [
+      { upTo: 6055070, rate: 0.08 },
+      { upTo: Infinity, rate: 0.10 }
+    ];
+  } else if (buyerType === 'commercial') {
+    bracketDefinitions = [
+      { upTo: Infinity, rate: 0.06 }
+    ];
+  } else if (buyerType === 'oleh_disabled') {
+    bracketDefinitions = [
+      { upTo: 1978745, rate: 0.005 },
+      { upTo: Infinity, rate: 0.05 }
+    ];
+  }
+
+  const brackets: PurchaseTaxBracket[] = [];
+  let totalTax = 0;
+  let prevLimit = 0;
+
+  for (const b of bracketDefinitions) {
+    if (p > prevLimit) {
+      const taxable = Math.min(p, b.upTo) - prevLimit;
+      const tax = taxable * b.rate;
+      totalTax += tax;
+
+      brackets.push({
+        from: prevLimit,
+        to: b.upTo === Infinity ? -1 : b.upTo,
+        rate: b.rate * 100,
+        taxableInBracket: Math.round(taxable),
+        taxInBracket: Math.round(tax)
+      });
+
+      prevLimit = b.upTo;
+    } else {
+      break;
+    }
+  }
+
+  const effectiveTaxRate = p > 0 ? (totalTax / p) * 100 : 0;
+
+  return {
+    propertyPrice: p,
+    buyerType,
+    totalTax: Math.round(totalTax),
+    effectiveTaxRate: Number(effectiveTaxRate.toFixed(2)),
+    brackets
+  };
+}
+
+export interface AppreciationTaxParams {
+  purchasePrice: number;
+  sellingPrice: number;
+  purchaseYear: number;
+  sellingYear: number;
+  isSingleHomeExempt: boolean;
+  renovationExpenses?: number;
+  lawyerAndAgentFees?: number;
+  purchaseTaxPaid?: number;
+  mortgageRealInterest?: number;
+  improvementLevy?: number; // היטל השבחה
+}
+
+export interface AppreciationTaxResult {
+  totalAppreciationGross: number;
+  totalDeductions: number;
+  netAppreciation: number;
+  isExempt: boolean;
+  exemptionReason?: string;
+  linearBefore2014Fraction: number;
+  linearAfter2014Fraction: number;
+  taxableAppreciation: number;
+  totalTax: number;
+  netProfit: number;
+  effectiveTaxRate: number;
+}
+
+export function calculateAppreciationTax(params: AppreciationTaxParams): AppreciationTaxResult {
+  const {
+    purchasePrice = 0,
+    sellingPrice = 0,
+    purchaseYear = 2010,
+    sellingYear = 2026,
+    isSingleHomeExempt = false,
+    renovationExpenses = 0,
+    lawyerAndAgentFees = 0,
+    purchaseTaxPaid = 0,
+    mortgageRealInterest = 0,
+    improvementLevy = 0
+  } = params;
+
+  const grossAppreciation = Math.max(0, sellingPrice - purchasePrice);
+  const totalDeductions =
+    (renovationExpenses || 0) +
+    (lawyerAndAgentFees || 0) +
+    (purchaseTaxPaid || 0) +
+    (mortgageRealInterest || 0) +
+    (improvementLevy || 0);
+
+  const netAppreciation = Math.max(0, grossAppreciation - totalDeductions);
+
+  // Single home exemption under section 49b(2) up to ~4,846,000 NIS selling ceiling
+  const exemptionCeiling = 4846000;
+  if (isSingleHomeExempt && sellingPrice <= exemptionCeiling) {
+    return {
+      totalAppreciationGross: grossAppreciation,
+      totalDeductions,
+      netAppreciation,
+      isExempt: true,
+      exemptionReason: 'פטור מלא לדירת מגורים יחידה מזכה (סעיף 49ב(2) לחוק מיסוי מקרקעין)',
+      linearBefore2014Fraction: 0,
+      linearAfter2014Fraction: 0,
+      taxableAppreciation: 0,
+      totalTax: 0,
+      netProfit: netAppreciation,
+      effectiveTaxRate: 0
+    };
+  }
+
+  // Linear calculation (Reform from 1.1.2014 - appreciation before 2014 is exempt/0%, after 2014 is 25%)
+  const totalHoldingYears = Math.max(1, sellingYear - purchaseYear);
+  const yearsAfter2014 = Math.max(0, sellingYear - Math.max(purchaseYear, 2014));
+  const linearAfter2014Fraction = purchaseYear < 2014 ? yearsAfter2014 / totalHoldingYears : 1.0;
+  const linearBefore2014Fraction = 1.0 - linearAfter2014Fraction;
+
+  const taxableAppreciation = netAppreciation * linearAfter2014Fraction;
+  const totalTax = Math.round(taxableAppreciation * 0.25);
+  const netProfit = Math.max(0, netAppreciation - totalTax);
+  const effectiveTaxRate = netAppreciation > 0 ? (totalTax / netAppreciation) * 100 : 0;
+
+  return {
+    totalAppreciationGross: grossAppreciation,
+    totalDeductions,
+    netAppreciation,
+    isExempt: false,
+    linearBefore2014Fraction: Number(linearBefore2014Fraction.toFixed(3)),
+    linearAfter2014Fraction: Number(linearAfter2014Fraction.toFixed(3)),
+    taxableAppreciation: Math.round(taxableAppreciation),
+    totalTax,
+    netProfit: Math.round(netProfit),
+    effectiveTaxRate: Number(effectiveTaxRate.toFixed(2))
+  };
+}
+
+// -------------------------------------------------------------
+// EMPLOYER TOTAL COST VS EMPLOYEE NET SALARY MATH
+// -------------------------------------------------------------
+
+export interface EmployerCostParams {
+  grossSalary: number;
+  creditPoints?: number;
+  pensionEmployerPercent?: number; // default 6.5%
+  severancePercent?: number; // default 8.33% or 6.0%
+  studyFundEmployerPercent?: number; // default 7.5%
+  studyFundEmployeePercent?: number; // default 2.5%
+  recuperationMonthly?: number; // דמי הבראה יחסי חודשי
+  vacationSickProvision?: number; // חופשה ומחלה
+  wellnessAndPerks?: number; // תן ביס, רכב, ביטוח בריאות נוסף
+}
+
+export interface EmployerCostResult {
+  grossSalary: number;
+  employerPension: number;
+  employerSeverance: number;
+  employerStudyFund: number;
+  employerNationalInsurance: number;
+  employerPerksAndProvisions: number;
+  totalEmployerCost: number;
+  employerCostPercentage: number;
+  incomeTax: number;
+  employeeNationalInsurance: number;
+  employeePension: number;
+  employeeStudyFund: number;
+  totalEmployeeDeductions: number;
+  netSalary: number;
+  netPercentageOfGross: number;
+  costToNetMultiplier: number;
+}
+
+export function calculateEmployerCost(params: EmployerCostParams): EmployerCostResult {
+  const {
+    grossSalary = 0,
+    creditPoints = 2.25,
+    pensionEmployerPercent = 6.5,
+    severancePercent = 8.33,
+    studyFundEmployerPercent = 7.5,
+    studyFundEmployeePercent = 2.5,
+    recuperationMonthly = 180,
+    vacationSickProvision = 0,
+    wellnessAndPerks = 0
+  } = params;
+
+  const gross = Math.max(0, grossSalary);
+
+  // 1. Employer Provisions
+  const employerPension = (gross * pensionEmployerPercent) / 100;
+  const employerSeverance = (gross * severancePercent) / 100;
+
+  // Study fund ceiling for tax exemption is 15,712 NIS
+  const studyFundCappedGross = Math.min(gross, 15712);
+  const employerStudyFund = (studyFundCappedGross * studyFundEmployerPercent) / 100;
+
+  // National insurance employer part: 3.55% up to 7,522 NIS, 7.6% above up to 49,030 NIS
+  const niThreshold = 7522;
+  const niMaxCeiling = 49030;
+  const niSubjectGross = Math.min(gross, niMaxCeiling);
+
+  const employerNationalInsurance = niSubjectGross <= niThreshold
+    ? niSubjectGross * 0.0355
+    : niThreshold * 0.0355 + (niSubjectGross - niThreshold) * 0.076;
+
+  const employerPerksAndProvisions = (recuperationMonthly || 0) + (vacationSickProvision || 0) + (wellnessAndPerks || 0);
+  const totalEmployerCost = gross + employerPension + employerSeverance + employerStudyFund + employerNationalInsurance + employerPerksAndProvisions;
+  const employerCostPercentage = gross > 0 ? (totalEmployerCost / gross) * 100 : 100;
+
+  // 2. Employee Deductions
+  // Income Tax Brackets (Monthly):
+  // 0 - 7,010: 10%
+  // 7,011 - 10,060: 14%
+  // 10,061 - 16,150: 20%
+  // 16,151 - 22,440: 31%
+  // 22,441 - 46,690: 35%
+  // 46,691 - 60,130: 47%
+  // 60,131+: 50%
+  const taxBrackets = [
+    { upTo: 7010, rate: 0.10 },
+    { upTo: 10060, rate: 0.14 },
+    { upTo: 16150, rate: 0.20 },
+    { upTo: 22440, rate: 0.31 },
+    { upTo: 46690, rate: 0.35 },
+    { upTo: 60130, rate: 0.47 },
+    { upTo: Infinity, rate: 0.50 }
+  ];
+
+  let calculatedTax = 0;
+  let prevTaxLimit = 0;
+  for (const b of taxBrackets) {
+    if (gross > prevTaxLimit) {
+      const taxable = Math.min(gross, b.upTo) - prevTaxLimit;
+      calculatedTax += taxable * b.rate;
+      prevTaxLimit = b.upTo;
+    } else {
+      break;
+    }
+  }
+
+  // Credit Points deduction: 242 NIS per credit point monthly
+  const creditDiscount = (creditPoints || 2.25) * 242;
+  const incomeTax = Math.max(0, calculatedTax - creditDiscount);
+
+  // Employee National Insurance & Health Tax:
+  // Up to 7,522 NIS: 3.5%
+  // 7,522 to 49,030 NIS: 12%
+  const employeeNationalInsurance = niSubjectGross <= niThreshold
+    ? niSubjectGross * 0.035
+    : niThreshold * 0.035 + (niSubjectGross - niThreshold) * 0.12;
+
+  // Employee Pension (6%) & Study Fund (2.5%)
+  const employeePension = (gross * 0.06);
+  const employeeStudyFund = (studyFundCappedGross * (studyFundEmployeePercent || 2.5)) / 100;
+
+  const totalEmployeeDeductions = incomeTax + employeeNationalInsurance + employeePension + employeeStudyFund;
+  const netSalary = Math.max(0, gross - totalEmployeeDeductions);
+  const netPercentageOfGross = gross > 0 ? (netSalary / gross) * 100 : 0;
+  const costToNetMultiplier = netSalary > 0 ? totalEmployerCost / netSalary : 0;
+
+  return {
+    grossSalary: Math.round(gross),
+    employerPension: Math.round(employerPension),
+    employerSeverance: Math.round(employerSeverance),
+    employerStudyFund: Math.round(employerStudyFund),
+    employerNationalInsurance: Math.round(employerNationalInsurance),
+    employerPerksAndProvisions: Math.round(employerPerksAndProvisions),
+    totalEmployerCost: Math.round(totalEmployerCost),
+    employerCostPercentage: Number(employerCostPercentage.toFixed(1)),
+    incomeTax: Math.round(incomeTax),
+    employeeNationalInsurance: Math.round(employeeNationalInsurance),
+    employeePension: Math.round(employeePension),
+    employeeStudyFund: Math.round(employeeStudyFund),
+    totalEmployeeDeductions: Math.round(totalEmployeeDeductions),
+    netSalary: Math.round(netSalary),
+    netPercentageOfGross: Number(netPercentageOfGross.toFixed(1)),
+    costToNetMultiplier: Number(costToNetMultiplier.toFixed(2))
+  };
+}
+

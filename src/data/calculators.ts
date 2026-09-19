@@ -186,6 +186,27 @@ export const dynamicTranslations: Record<string, Record<string, { title: string;
     fr: { title: "Calculateur d'Indemnité de Licenciement", description: "Calculez le montant légal estimé de votre indemnité de licenciement selon votre salaire et ancienneté." },
     ar: { title: "حاسبة مكافأة نهاية الخدمة والتعويضات", description: "احسب مكافأة نهاية الخدمة المستحقة ومستحقات إنهاء العمل بناءً على مدة الخدمة والراتب." },
   },
+  "stock-options-rsu": {
+    en: { title: "Stock Options & RSU Calculator", description: "Calculate 4-year vesting schedules, Section 102 capital gains tax (25%), dilution impact, and exit scenarios." },
+    he: { title: "מחשבון שווי אופציות ו-RSU (הייטק ושכר)", description: "חישוב מס סעיף 102 (25%), מדרגות הבשלה (Vesting Schedule), תרחישי אקזיט ודילול מניות בהייטק." },
+    es: { title: "Calculadora de Opciones sobre Acciones y RSU", description: "Calcula el cronograma de consolidación (vesting), impuestos sobre plusvalías, dilución y escenarios de salida." },
+    fr: { title: "Calculateur Stock-Options et RSU", description: "Calculez l'échéancier d'acquisition (vesting), la fiscalité des plus-values, la dilution et les gains de sortie." },
+    ar: { title: "حاسبة خيارات الأسهم والأسهم المقيدة (RSU)", description: "احسب جدول الاستحقاق الزمني، ضريبة الأرباح الرأسمالية (25%)، وتوقعات العائد المالي في التخارج." },
+  },
+  "purchase-appreciation-tax": {
+    en: { title: "Real Estate Purchase & Appreciation Tax Calculator", description: "Tiered Israel purchase tax brackets and linear property appreciation tax with deductible expenses." },
+    he: { title: "מחשבון מס רכישה ומס שבח מדורג (נדל\"ן)", description: "עדכון אוטומטי לפי מדרגות המס הרשמיות של רשות המיסים לדירה יחידה / דירה נוספת ומס שבח ליניארי מוטב." },
+    es: { title: "Calculadora de Impuesto de Compra y Plusvalía Inmobiliaria", description: "Tramos fiscales progresivos de compra de vivienda e impuesto sobre plusvalía con deducciones." },
+    fr: { title: "Calculateur Droits de Mutation & Plus-Value Immobilière", description: "Barème progressif des droits d'acquisition et impôt sur la plus-value immobilière linéaire." },
+    ar: { title: "حاسبة ضريبة الشراء وضريبة الأرباح العقارية", description: "حساب ضريبة الشراء المتدرجة وضريبة تحسين العقار (الشبح) مع خصم كافة المصروفات والإعفاءات." },
+  },
+  "employer-cost": {
+    en: { title: "Employer Total Cost vs Net Salary Calculator", description: "Comprehensive breakdown of employer social security, pension, severance, study fund, and income taxes." },
+    he: { title: "מחשבון עלות מעסיק מול שכר נטו לעובד", description: "פירוט מלא של ביטוח לאומי, מס הכנסה, קרן השתלמות, הפרשות סוציאליות ופנסיה למעביד ולעובד." },
+    es: { title: "Calculadora de Coste de Empresa vs Sueldo Neto", description: "Desglose completo de cotizaciones patronales, seguridad social, IRPF, pensiones y retenciones salariales." },
+    fr: { title: "Calculateur Coût Total Employeur vs Salaire Net", description: "Détail complet des charges patronales, cotisations salariales, retraite, prévoyance et impôt sur le revenu." },
+    ar: { title: "حاسبة تكلفة صاحب العمل مقابل الراتب الصافي", description: "تفصيل شامل للتأمينات الاجتماعية، ضريبة الدخل، صناديق التقاعد والاستكمال للمشغل والموظف." },
+  },
 };
 
 export const calculators: CalculatorMeta[] = [
@@ -472,6 +493,30 @@ export const calculators: CalculatorMeta[] = [
     description: "Compare the costs of renting vs buying a home.",
     category: "real-estate",
     tags: ["home", "house", "rent", "mortgage", "buy"],
+  },
+  {
+    id: "stock-options-rsu",
+    path: "/calculators/stock-options-rsu",
+    fallbackTitle: "Stock Options & RSU Calculator",
+    description: "Calculate vesting schedules, Section 102 tax, dilution, and exit scenarios.",
+    category: "finance",
+    tags: ["options", "rsu", "equity", "vesting", "102", "tax", "hitech", "salary", "exit", "startup"],
+  },
+  {
+    id: "purchase-appreciation-tax",
+    path: "/calculators/purchase-appreciation-tax",
+    fallbackTitle: "Purchase & Appreciation Tax Calculator",
+    description: "Calculate Israel tiered purchase tax brackets and linear appreciation tax.",
+    category: "real-estate",
+    tags: ["real estate", "purchase tax", "appreciation", "mas rechisha", "mas shevach", "property", "tax", "apartment"],
+  },
+  {
+    id: "employer-cost",
+    path: "/calculators/employer-cost",
+    fallbackTitle: "Employer Total Cost vs Net Salary",
+    description: "Calculate total employer cost, pension, study fund, taxes, and net take-home pay.",
+    category: "finance",
+    tags: ["employer", "salary", "net", "gross", "cost", "pension", "taxes", "payroll", "social security"],
   },
 ];
 
