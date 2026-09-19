@@ -3,6 +3,7 @@ import SEO from '../../components/SEO';
 import { useI18n } from '../../contexts/i18n';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import RelatedCalculators from '../../components/RelatedCalculators';
+import ShareActions from '../../components/ShareActions';
 import FAQ from '../../components/FAQ';
 
 export default function AgeCalculator() {
@@ -118,6 +119,10 @@ export default function AgeCalculator() {
                 <div className="text-4xl md:text-5xl font-headline font-bold text-white tracking-tight mb-1" dir="ltr">{age.days}</div>
                 <div className="text-sm font-medium text-stone-400 uppercase tracking-wider">{t.daysOld}</div>
               </div>
+            </div>
+
+            <div className="pt-4 mt-6 border-t border-white/10">
+              <ShareActions calculatorTitle={t.ageTitle} calculatorPath="/age-calculator" />
             </div>
           </div>
         

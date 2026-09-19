@@ -13,6 +13,7 @@ import { useI18n } from '../../contexts/i18n';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import RelatedCalculators from '../../components/RelatedCalculators';
 import CalculatorGuide from '../../components/CalculatorGuide';
+import ShareActions from '../../components/ShareActions';
 import { calculateMortgage } from '../../lib/math/finance';
 
 
@@ -137,6 +138,10 @@ export default function MortgageCalculator() {
         
         <div className="w-full h-[240px]" dir="ltr">
           <Doughnut data={deferredChartData} options={chartOptions} />
+        </div>
+
+        <div className="mt-6 pt-4 border-t border-white/10">
+          <ShareActions calculatorTitle={t.mortgageTitle} calculatorPath="/mortgage-calculator" />
         </div>
       </div>
     </div>

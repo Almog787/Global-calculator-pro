@@ -6,6 +6,7 @@ import { useI18n } from '../../contexts/i18n';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import RelatedCalculators from '../../components/RelatedCalculators';
 import CalculatorGuide from '../../components/CalculatorGuide';
+import ShareActions from '../../components/ShareActions';
 import { useMeasurementSystem } from '../../hooks/useMeasurementSystem';
 import MeasurementToggle from '../../components/MeasurementToggle';
 
@@ -123,6 +124,10 @@ export default function BmiCalculator() {
         <div className="mb-8 p-5 bg-white/5 rounded-2xl border border-white/10 flex items-center justify-between">
           <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block">{t.bmiCategory}</span>
           <div className="text-xl font-bold text-blue-400">{getCategory()}</div>
+        </div>
+
+        <div className="pt-4 border-t border-white/10">
+          <ShareActions calculatorTitle={t.bmiTitle} calculatorPath="/bmi-calculator" />
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ export interface BenchmarkRow {
 export interface BenchmarkData {
   title: Record<string, string>;
   description: Record<string, string>;
+  directAnswer?: Record<string, string>; // Concise AI Answer & Featured Snippet extract
   headers: Record<string, string[]>;
   rows: BenchmarkRow[];
   expertTip?: Record<string, string>;
@@ -30,6 +31,13 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       es: "Pagos mensuales estimados e interés total para montos de préstamos comunes.",
       fr: "Estimation des mensualités et du coût total des intérêts selon le montant du prêt.",
       ar: "تقدير الدفعات الشهرية وإجمالي الفائدة لمبالغ القروض الشائعة.",
+    },
+    directAnswer: {
+      en: "On a standard 30-year fixed mortgage at 6.5% interest rate, the monthly payment is approximately $6.32 per $1,000 borrowed (or ₪6,321/month per ₪1,000,000 borrowed). Total interest over 30 years typically exceeds 127% of the original principal amount.",
+      he: "במשכנתא סטנדרטית בריבית שנתית של 6.5% ל-30 שנה, ההחזר החודשי עומד על כ-6,321 ₪ לכל 1,000,000 ₪ הלוואה. סך הריבית המצטברת לאורך 30 שנה עומד על כ-1,275,445 ₪ (יותר מ-127% מסכום הקרן המקורי).",
+      es: "En una hipoteca fija a 30 años al 6.5% de interés, la cuota mensual es de unos $6.32 por cada $1,000 prestados. El interés total acumulado supera el 127% del capital original.",
+      fr: "Pour un prêt immobilier sur 30 ans à un taux de 6,5 %, la mensualité est d'environ 6,32 € par tranche de 1 000 € empruntés. Le coût total des intérêts dépasse 127 % du capital initial.",
+      ar: "في رهن عقاري قياسي مدته 30 عاماً بفائدة 6.5%، تبلغ الدفعة الشهرية حوالي 6.32 دولار لكل 1000 دولار مقترض. ويتجاوز إجمالي الفائدة المدفوعة 127% من أصل القرض.",
     },
     headers: {
       en: ["Loan Amount", "Monthly Payment", "Total Interest", "Total Cost"],
@@ -68,6 +76,13 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       fr: "Découvrez la croissance de versements mensuels réguliers sur 10, 20 et 30 ans.",
       ar: "شاهد كيف تتضاعف الإيداعات الشهرية المنتظمة على مدار 10 و20 و30 عاماً.",
     },
+    directAnswer: {
+      en: "With an average annual return of 8%, investing $500 (₪2,000) per month grows to $91,473 (₪365,900) after 10 years, $294,510 (₪1,178,040) after 20 years, and reaches $745,180 (₪2,980,720) in 30 years.",
+      he: "בתשואה שנתית ממוצעת של 8%, הפקדה קבועה של 2,000 ₪ בחודש מגיעה לכ-365,900 ₪ לאחר 10 שנים, לכ-1,178,040 ₪ לאחר 20 שנה, ולכ-2,980,720 ₪ לאחר 30 שנה (מתוכם מעל 2.2 מיליון ₪ רווחי ריבית נקיים).",
+      es: "Con un rendimiento anual del 8%, invertir $500 al mes acumula $91,473 en 10 años, $294,510 en 20 años y alcanza $745,180 en 30 años.",
+      fr: "Avec un rendement annuel moyen de 8 %, épargner 500 € par mois permet d'accumuler 91 473 € au bout de 10 ans, 294 510 € après 20 ans et 745 180 € après 30 ans.",
+      ar: "بعائد سنوي قدره 8%، فإن استثمار 500 دولار شهرياً ينمو إلى 91,473 دولار بعد 10 سنوات، و294,510 دولار بعد 20 سنة، ويصل إلى 745,180 دولار خلال 30 عاماً.",
+    },
     headers: {
       en: ["Monthly Deposit", "After 10 Years", "After 20 Years", "After 30 Years"],
       he: ["הפקדה חודשית", "לאחר 10 שנים", "לאחר 20 שנה", "לאחר 30 שנה"],
@@ -103,6 +118,13 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       es: "Rangos de peso estándar para adultos y riesgos para la salud asociados.",
       fr: "Intervalles de poids standards pour adultes et niveau de risque pour la santé.",
       ar: "الفئات القياسية للبالغين ومستوى المخاطر الصحية المرتبطة بها.",
+    },
+    directAnswer: {
+      en: "A healthy, normal BMI for adults is between 18.5 and 24.9 kg/m². A score under 18.5 is considered underweight, 25.0–29.9 is overweight, and 30.0 or higher is classified as obesity.",
+      he: "טווח ה-BMI התקין והבריא לאדם בוגר לפי ארגון הבריאות העולמי (WHO) נע בין 18.5 ל-24.9 ק\"ג/מ\"ר. מדד מתחת ל-18.5 מוגדר כתת-משקל, בין 25.0 ל-29.9 כעודף משקל, ומעל 30.0 כהשמנה.",
+      es: "Un IMC saludable para adultos oscila entre 18.5 y 24.9 kg/m². Menos de 18.5 indica bajo peso, de 25.0 a 29.9 sobrepeso y 30.0 o más obesidad.",
+      fr: "Un IMC sain pour un adulte se situe entre 18,5 et 24,9 kg/m². En dessous de 18,5 il s'agit d'une insuffisance pondérale, entre 25,0 et 29,9 d'un surpoids et à partir de 30 d'obésité.",
+      ar: "يتراوح مؤشر كتلة الجسم (BMI) الصحي والطبيعي للبالغين بين 18.5 و 24.9 كغ/م². يُعتبر أقل من 18.5 نقصاً في الوزن، ومن 25 إلى 29.9 زيادة في الوزن، و30 فما فوق سمنة.",
     },
     headers: {
       en: ["Category", "BMI Range (kg/m²)", "Health Risk Level", "Recommended Action"],
@@ -140,6 +162,13 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       es: "Equivalencias decimales y fraccionarias para cálculos rápidos de descuentos.",
       fr: "Équivalences décimales et fractions pour calculer rapidement les remises.",
       ar: "المكافئات العشرية والكسرية لحساب الخصومات والتسوق بسرعة.",
+    },
+    directAnswer: {
+      en: "To find X% of Y, multiply Y by (X / 100). For quick mental discounts: 10% is moving the decimal left by one place, 20% is 10% multiplied by 2, and 50% is dividing by 2.",
+      he: "לחישוב X% מתוך Y, כופלים את המספר Y ב-(X חלקי 100). לחישוב מנטלי מהיר של הנחה: 10% שווה להזזת הנקודה העשרונית מקום אחד שמאלה, 20% שווה להכפלת ה-10% פי 2, ו-50% שווה לחלוקה ב-2.",
+      es: "Para calcular el X% de Y, multiplica Y por (X / 100). Para descuentos rápidos: 10% es mover la coma un lugar a la izquierda, 20% es duplicar el 10% y 50% es dividir entre 2.",
+      fr: "Pour trouver X% de Y, multipliez Y par (X / 100). Pour un calcul mental rapide : 10% équivaut à décaler la virgule d'un rang vers la gauche et 50% à diviser par 2.",
+      ar: "لحساب X% من القيمة Y، اضرب Y في (X ÷ 100). للحساب الذهني السريع للخصم: 10% تعني تحريك الفاصلة العشرية خانة واحدة لليسار، و20% تعني مضاعفة الـ 10%، و50% تعني القسمة على 2.",
     },
     headers: {
       en: ["Percentage", "Decimal Multiplier", "Fraction Equivalent", "Example on $100 / ₪100"],
@@ -179,6 +208,13 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       fr: "Équivalents salariaux bruts basés sur un temps plein standard annuel.",
       ar: "مقارنة الرواتب الإجمالية استناداً إلى 52 أسبوع عمل في السنة.",
     },
+    directAnswer: {
+      en: "A full-time hourly wage of $25/hour equals roughly $4,333 per month and $52,000 per year gross (based on 2,080 working hours annually). An hourly wage of ₪50/hr in Israel translates to approximately ₪8,667 gross per month.",
+      he: "שכר שעתי של 50 ₪ לשעה במשרה מלאה שווה לכ-8,667 ₪ ברוטו בחודש ו-104,000 ₪ בשנה (לפי 173.33 שעות חודשיות ו-2,080 שעות עבודה שנתיות). שכר של 100 ₪ לשעה מתרגם ל-17,333 ₪ ברוטו לחודש.",
+      es: "Un salario de $25/hora a tiempo completo equivale a aproximadamente $4,333 brutos al mes y $52,000 al año (2.080 horas anuales).",
+      fr: "Un taux horaire brut de 25 € à temps plein (35h-40h) équivaut à environ 4 333 € brut par mois et 52 000 € brut par an.",
+      ar: "أجر 25 دولاراً في الساعة بدوام كامل يعادل حوالي 4,333 دولار شهرياً و52,000 دولار سنوياً قبل خصم الضرائب (بناءً على 2080 ساعة عمل سنوياً).",
+    },
     headers: {
       en: ["Hourly Wage", "Daily (8h)", "Monthly (~173h)", "Annual Gross"],
       he: ["שכר שעתי", "יומי (8 שעות)", "חודשי ממוצע", "שנתי ברוטו"],
@@ -207,7 +243,7 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       he: "השוואת הון מצטבר: קנייה מול שכירות (אופק 10 שנים)",
       es: "Comparativa Alquilar vs Comprar a 10 Años",
       fr: "Comparatif Location vs Achat Immobilier sur 10 Ans",
-      ar: "مقارنة بناء الثרוة: الإيجار مقابل الشراء على مدار 10 سنوات",
+      ar: "مقارنة بناء الثروة: الإيجار مقابل الشراء على مدار 10 سنوات",
     },
     description: {
       en: "How buying with home appreciation compares to renting and investing the down payment in index funds.",
@@ -215,6 +251,13 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       es: "Comparación entre la revalorización de la vivienda y la inversión del enganche en bolsa.",
       fr: "Comparaison du patrimoine net entre achat immobilier et investissement boursier de l'apport.",
       ar: "مقارنة بين نمو قيمة العقار المشتري مقابل استثمار رأس المال في الأسهم.",
+    },
+    directAnswer: {
+      en: "Buying a home generally builds more long-term wealth when staying for 5+ years due to forced equity buildup and property appreciation, whereas renting wins in the short term (<4 years) due to high transaction taxes and closing costs.",
+      he: "רכישת דירה נוטה לייצר הון מצטבר גבוה יותר כאשר מתכננים להתגורר בנכס מעל 5-7 שנים (בשל בניית הון בנכס ועליית ערך), בעוד ששכירות עדיפה לטווח קצר (עד 4 שנים) בשל חיסכון בעלויות עסקה כבדות (מס רכישה, עו\"ד, תיווך ושיפוץ).",
+      es: "Comprar vivienda suele generar mayor patrimonio neto a partir del 5º o 7º año, mientras que alquilar resulta más ventajoso a corto plazo por el ahorro en gastos de compra.",
+      fr: "L'achat immobilier permet de créer plus de patrimoine à partir de 5 à 7 ans de détention, tandis que la location est financièrement plus souple sur le court terme.",
+      ar: "شراء العقار يحقق ثروة صافية أكبر عند الاستقرار لمدة تزيد عن 5 إلى 7 سنوات بفضل تراكم الأصول ونمو الأسعار، بينما يعد الإيجار أفضل مالياً للمدد القصيرة.",
     },
     headers: {
       en: ["Scenario", "Initial Capital", "Monthly Outlay", "Estimated 10-Yr Net Worth"],
@@ -249,6 +292,13 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       es: "Pago mensual estimado e interés total según el valor del vehículo.",
       fr: "Mensualité estimée et coût total des intérêts selon le prix du véhicule.",
       ar: "الدفعة الشهرية المقدرة وإجمالي الفائدة لمختلف أسعار السيارات.",
+    },
+    directAnswer: {
+      en: "On a 5-year (60-month) car loan with 20% down payment at a 7% interest rate, financing a $35,000 (₪130,000) car results in a monthly payment of ~$554 (₪2,059) and total interest of ~$5,265 (₪19,550).",
+      he: "בהלוואת רכב ל-5 שנים (60 חודשים) עם מקדמה של 20% ובריבית 7%, מימון רכב בשווי 130,000 ₪ מניב החזר חודשי של כ-2,059 ₪ וסך ריבית של כ-19,550 ₪ לאורך תקופת ההלוואה.",
+      es: "En un préstamo de auto a 5 años al 7% con 20% de enganche, financiar un coche de $35,000 supone una cuota de unos $554/mes y $5,265 de interés total.",
+      fr: "Pour un prêt auto sur 5 ans à 7 % avec 20 % d'apport, financer un véhicule de 35 000 € revient à une mensualité d'environ 554 € et 5 265 € d'intérêts totaux.",
+      ar: "لقرض سيارة مدته 5 سنوات بفائدة 7% ودفعة أولى 20%، فإن تمويل سيارة بقيمة 35,000 دولار ينتج عنه قسط شهري قدره 554 دولار وإجمالي فائدة 5,265 دولار.",
     },
     headers: {
       en: ["Vehicle Price", "Down Payment (20%)", "Monthly Payment (60 mo)", "Total Interest"],
@@ -285,6 +335,13 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       es: "Cálculo rápido de propinas para diferentes montos de factura.",
       fr: "Tableau de calcul rapide pour le pourboire sur vos additions.",
       ar: "حساب سريع للإكرامية لمختلف مبالغ الفواتير والخدمات.",
+    },
+    directAnswer: {
+      en: "A standard restaurant tip ranges between 15% and 20% in the US and Canada, and between 10% and 15% in Israel and Europe. On a $100 (₪400) restaurant bill, a 15% tip is $15 (₪60) and an 18% tip is $18 (₪72).",
+      he: "טיפ סטנדרטי במסעדות ובתי קפה בישראל עומד על 12% עד 15%, ובארה\"ב על 18% עד 20%. על חשבון של 400 ₪, טיפ של 12% הוא 48 ₪, טיפ של 15% הוא 60 ₪, וטיפ של 18% עומד על 72 ₪.",
+      es: "La propina habitual en restaurantes se sitúa entre el 10% y el 15% en Europa/Latinoamérica, y el 18-20% en EE.UU. En una cuenta de $100, el 15% son $15.",
+      fr: "Le pourboire standard se situe entre 10% et 15% en Europe et entre 18% et 20% en Amérique du Nord. Sur une addition de 100 €, un pourboire de 15% équivaut à 15 €.",
+      ar: "تتراوح الإكرامية القياسية في المطاعم بين 10% و 15% في الشرق الأوسط وأوروبا، وبين 18% و 20% في أمريكا الشمالية. على فاتورة بقيمة 100 دولار، تكون الإكرامية بنسبة 15% هي 15 دولاراً.",
     },
     headers: {
       en: ["Bill Amount", "12% Tip", "15% Standard", "18% Great Service", "20% Exceptional"],

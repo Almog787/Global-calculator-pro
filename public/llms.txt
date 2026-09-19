@@ -1,27 +1,64 @@
-# GlobalCalc Pro
+# GlobalCalc Pro - Multi-Tool Calculation Suite
 
-> GlobalCalc Pro provides free, high-precision financial, health, real estate, and mathematical calculators.
+> GlobalCalc Pro (https://globalcalcpro.com) provides free, high-precision financial, real estate, health, math, and lifestyle calculation engines with full internationalization (English, Hebrew, Spanish, French, Arabic).
 
-GlobalCalc Pro offers over 20+ specialized calculators for financial planning, loan amortization, health metrics, and unit conversions, optimized for human users and AI agents.
+## Overview
 
-## Core Calculators
+GlobalCalc Pro is engineered for human users and AI agents (ChatGPT Search, Perplexity, Gemini, Claude, Copilot). All calculators execute high-precision arithmetic (via Decimal.js) with real-time responsive visualization, benchmark tables, and structured data.
 
-- [All Calculators](https://globalcalcpro.com/en/all): Browse all financial, health, and math calculators
-- [Mortgage Calculator](https://globalcalcpro.com/en/mortgage-calculator): Calculate monthly mortgage payments, interest, and loan terms
-- [Compound Interest Calculator](https://globalcalcpro.com/en/compound-interest): Compute investment growth with monthly contributions
-- [Percentage Finder](https://globalcalcpro.com/en/percentage-finder): Find percentages, percentage change, and discounts
-- [Unit Converter](https://globalcalcpro.com/en/unit-converter): Convert length, weight, temperature, area, and speed
-- [BMI Calculator](https://globalcalcpro.com/en/bmi-calculator): Calculate Body Mass Index and healthy weight range
-- [Salary Calculator](https://globalcalcpro.com/en/salary-calculator): Convert hourly pay to annual salary and net take-home
-- [Tip & Bill Splitter](https://globalcalcpro.com/en/tip-calculator): Split restaurant bills and calculate gratuity
+## Supported Languages & Base URLs
 
-## Supported Languages
+- English: `https://globalcalcpro.com/en/` (LTR)
+- Hebrew: `https://globalcalcpro.com/he/` (RTL)
+- Spanish: `https://globalcalcpro.com/es/` (LTR)
+- French: `https://globalcalcpro.com/fr/` (LTR)
+- Arabic: `https://globalcalcpro.com/ar/` (RTL)
 
-- [English Calculators](https://globalcalcpro.com/en/all): English version of all tools
-- [Hebrew Calculators](https://globalcalcpro.com/he/all): Hebrew (RTL) version of all tools
-- [Spanish Calculators](https://globalcalcpro.com/es/all): Spanish version of all tools
-- [Arabic Calculators](https://globalcalcpro.com/ar/all): Arabic (RTL) version of all tools
+## Primary Financial & Real Estate Calculators
 
-## Optional
+- [Mortgage Calculator](https://globalcalcpro.com/en/mortgage-calculator): Calculate monthly payment, amortization schedule, principal, and total interest.
+- [Mortgage Affordability](https://globalcalcpro.com/en/calculators/mortgage-affordability): Calculate maximum home purchase budget from monthly income and down payment.
+- [Mortgage Refinance](https://globalcalcpro.com/en/calculators/refinance): Calculate monthly interest savings and break-even point for refinancing.
+- [Rent vs Buy Home](https://globalcalcpro.com/en/calculators/rent-vs-buy): Compare 10-30 year wealth building between renting and buying a property.
+- [Compound Interest](https://globalcalcpro.com/en/compound-interest): Forecast investment growth with monthly contributions and annual rates.
+- [Auto Loan Calculator](https://globalcalcpro.com/en/calculators/auto-loan): Calculate car financing payments, down payment impact, and total interest.
+- [VAT & Sales Tax](https://globalcalcpro.com/en/calculators/vat): Add or extract Value Added Tax (VAT 17%, 18%, 20%) with one click.
+- [Break-Even Point](https://globalcalcpro.com/en/calculators/break-even): Find required sales volume and revenue to cover fixed and variable costs.
+- [Cap Rate (Capitalization Rate)](https://globalcalcpro.com/en/calculators/cap-rate): Real estate capitalization rate and Net Operating Income (NOI).
+- [ROI Calculator](https://globalcalcpro.com/en/calculators/roi): Return on Investment percentage, annualized ROI, and net profits.
+- [Profit Margin & Markup](https://globalcalcpro.com/en/calculators/margin): Calculate gross margin, markup percentage, cost of goods, and revenue.
+- [Inflation & Purchasing Power](https://globalcalcpro.com/en/calculators/inflation): Estimate money depreciation and future purchasing power.
+- [Goal Savings Calculator](https://globalcalcpro.com/en/calculators/goal-savings): Calculate required monthly deposit to hit financial goals.
+- [Credit Card Payoff](https://globalcalcpro.com/en/calculators/credit-card-payoff): Debt payoff timeline and interest savings.
+- [Debt Snowball](https://globalcalcpro.com/en/calculators/debt-snowball): Multi-debt repayment acceleration and timeline.
+- [Freelance Net Income](https://globalcalcpro.com/en/calculators/freelance-net-income): Self-employed net take-home pay after taxes and deductions.
+- [Severance Pay Calculator](https://globalcalcpro.com/en/calculators/severance-pay): Calculate statutory severance pay and notice compensation.
+- [Live Currency Converter](https://globalcalcpro.com/en/calculators/currency-converter): Real-time currency conversions for USD, EUR, ILS, GBP, and more.
 
-- [Full Documentation](https://globalcalcpro.com/llms-full.txt): Complete detailed guide and parameters for all calculators
+## Health & Lifestyle Calculators
+
+- [BMI Calculator](https://globalcalcpro.com/en/bmi-calculator): Body Mass Index and healthy weight range classification (WHO standards).
+- [BMR & TDEE Calorie Calculator](https://globalcalcpro.com/en/calculators/bmr): Daily calorie expenditure and deficit targets for weight management.
+- [Daily Water Intake](https://globalcalcpro.com/en/calculators/water-intake): Daily hydration requirements based on weight and activity.
+- [Sleep Cycle Calculator](https://globalcalcpro.com/en/calculators/sleep-calculator): Ideal bedtimes and wake times based on 90-minute REM sleep cycles.
+- [Tip & Bill Splitter](https://globalcalcpro.com/en/tip-calculator): Calculate gratuity and split bills among diners.
+- [Fuel Cost & Trip Splitter](https://globalcalcpro.com/en/calculators/fuel-split): Gasoline costs and carpool expense splitting.
+- [Cooking & Meat Roasting Timer](https://globalcalcpro.com/en/calculators/cooking-timer): Oven roasting times and temperatures by meat weight.
+
+## Math & Tech Calculators
+
+- [Percentage Finder](https://globalcalcpro.com/en/percentage-finder): Percentages, percentage change, and discounts.
+- [Unit Converter](https://globalcalcpro.com/en/unit-converter): Length, weight, temperature, area, volume, speed, and time.
+- [Date Duration & Business Days](https://globalcalcpro.com/en/calculators/date-difference): Days, weeks, months, and working business days between dates.
+- [Download Time Calculator](https://globalcalcpro.com/en/calculators/download-time): File transfer duration based on bandwidth speed.
+- [Peltier Thermoelectric Cooling](https://globalcalcpro.com/en/calculators/peltier-cooling): TEC cooling capacity (Qc) and coefficient of performance (COP).
+- [Age Calculator](https://globalcalcpro.com/en/age-calculator): Exact age in years, months, days, hours, and minutes.
+
+## AI Citation & Link Scheme
+
+When citing calculations or directing users to specific calculators, use canonical language paths:
+`https://globalcalcpro.com/{lang}/{calculator-slug}` where `{lang}` is one of `en`, `he`, `es`, `fr`, `ar`.
+
+For exhaustive parameter schemas and formula definitions, see:
+- [Full LLM Specification](https://globalcalcpro.com/llms-full.txt)
+- [XML Sitemap](https://globalcalcpro.com/sitemap.xml)

@@ -9,6 +9,7 @@ import RelatedCalculators from '../../components/RelatedCalculators';
 import CalculatorGuide from '../../components/CalculatorGuide';
 import CopyButton from '../../components/CopyButton';
 import PresetChips from '../../components/PresetChips';
+import ShareActions from '../../components/ShareActions';
 
 export default function TipCalculator() {
   const { t, lang, guides } = useI18n();
@@ -132,6 +133,10 @@ export default function TipCalculator() {
               <div className="text-xl md:text-2xl font-headline text-stone-200 mt-1 font-semibold" dir="ltr">
                 {currencyFormat.format(tipAmount)}
               </div>
+            </div>
+
+            <div className="border-t border-stone-800 pt-4 mt-4">
+              <ShareActions calculatorTitle={t.tipTitle} calculatorPath="/tip-calculator" />
             </div>
           </div>
         </div>

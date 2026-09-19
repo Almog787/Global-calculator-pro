@@ -290,11 +290,17 @@ function App() {
       {!isEmbed && <Footer />}
 
       {isEmbed && (
-        <div className="fixed bottom-0 left-0 w-full bg-surface border-t border-border-subtle p-2 text-center text-xs font-semibold z-50">
-           <a href={`https://globalcalc.pro/${lang}/all`} target="_blank" rel="noopener noreferrer" className="text-secondary hover:underline flex items-center justify-center gap-1">
-             Powered by GlobalCalc
-             <span className="material-symbols-outlined text-[14px]">open_in_new</span>
-           </a>
+        <div className="fixed bottom-0 left-0 w-full bg-surface/95 backdrop-blur-xs border-t border-border-subtle py-2 px-4 flex items-center justify-between text-xs font-semibold z-50">
+          <span className="text-on-surface-variant font-medium">GlobalCalc Pro</span>
+          <a
+            href={`https://globalcalcpro.com${location.pathname}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-secondary hover:underline flex items-center gap-1 font-bold"
+          >
+            <span>{lang === 'he' ? 'פתח במחשבון המלא' : lang === 'es' ? 'Calculadora completa' : lang === 'fr' ? 'Calculatrice complète' : lang === 'ar' ? 'الآلة الحاسبة الكاملة' : 'Full Calculator'}</span>
+            <span className="material-symbols-outlined text-[14px]">open_in_new</span>
+          </a>
         </div>
       )}
     </div>

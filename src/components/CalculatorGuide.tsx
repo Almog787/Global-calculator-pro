@@ -38,11 +38,13 @@ export default function CalculatorGuide({ guideKey, onApplyPreset }: CalculatorG
 
   const tableTitle = benchmark?.title[lang] || benchmark?.title.en || '';
   const tableDesc = benchmark?.description[lang] || benchmark?.description.en || '';
+  const directAnswerText = benchmark?.directAnswer?.[lang] || benchmark?.directAnswer?.en || '';
   const headers = benchmark?.headers[lang] || benchmark?.headers.en || [];
   const expertTip = benchmark?.expertTip?.[lang] || benchmark?.expertTip?.en || '';
 
   const labels = {
     en: {
+      directAnswer: 'Direct Answer & Key Summary',
       quickReference: 'Benchmark Reference Table',
       formula: 'Mathematical Formula & Calculation Method',
       expertAdvice: 'Expert Insight & Best Practices',
@@ -50,6 +52,7 @@ export default function CalculatorGuide({ guideKey, onApplyPreset }: CalculatorG
       applyPreset: 'Test Scenario',
     },
     he: {
+      directAnswer: 'תשובה ישירה ותקציר החישוב',
       quickReference: 'טבלת נתונים ותרחישי השוואה',
       formula: 'נוסחת החישוב והסבר מתמטי מפורט',
       expertAdvice: 'תובנות מומחה וכללי אצבע',
@@ -57,6 +60,7 @@ export default function CalculatorGuide({ guideKey, onApplyPreset }: CalculatorG
       applyPreset: 'בדוק תרחיש זה',
     },
     es: {
+      directAnswer: 'Respuesta Directa y Resumen Clave',
       quickReference: 'Tabla de Referencia y Comparación',
       formula: 'Fórmula Matemática y Método de Cálculo',
       expertAdvice: 'Consejos de Expertos y Buenas Prácticas',
@@ -64,6 +68,7 @@ export default function CalculatorGuide({ guideKey, onApplyPreset }: CalculatorG
       applyPreset: 'Probar este escenario',
     },
     fr: {
+      directAnswer: 'Réponse Directe et Points Clés',
       quickReference: 'Tableau de Référence et Exemples',
       formula: 'Formule Mathématique et Méthode de Calcul',
       expertAdvice: 'Conseils d\'Experts et Bonnes Pratiques',
@@ -71,6 +76,7 @@ export default function CalculatorGuide({ guideKey, onApplyPreset }: CalculatorG
       applyPreset: 'Tester ce scénario',
     },
     ar: {
+      directAnswer: 'الإجابة المباشرة والملخص السريع',
       quickReference: 'جدول البيانات والمقارنات القياسية',
       formula: 'المعادلة الرياضية وطريقة الحساب',
       expertAdvice: 'نصائح الخبراء وأفضل الممارسات',
@@ -78,6 +84,7 @@ export default function CalculatorGuide({ guideKey, onApplyPreset }: CalculatorG
       applyPreset: 'اختبر هذا السيناريو',
     },
   }[lang] || {
+    directAnswer: 'Direct Answer & Key Summary',
     quickReference: 'Benchmark Reference Table',
     formula: 'Mathematical Formula & Calculation Method',
     expertAdvice: 'Expert Insight & Best Practices',
@@ -85,8 +92,46 @@ export default function CalculatorGuide({ guideKey, onApplyPreset }: CalculatorG
     applyPreset: 'Test Scenario',
   };
 
+  // Generate structured schema for Google Dataset & HowTo rich results
+  const datasetSchema = benchmark ? {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: tableTitle,
+    description: tableDesc || tableTitle,
+    inLanguage: lang,
+    isAccessibleForFree: true,
+    creator: {
+      '@type': 'Organization',
+      name: 'Global Calc Pro',
+      url: 'https://globalcalcpro.com'
+    },
+    variableMeasured: headers
+  } : null;
+
+  const howToSchema = guide && guide.formulaLines && guide.formulaLines.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: guide.guideTitle,
+    description: guide.guideDesc,
+    inLanguage: lang,
+    step: guide.formulaLines.map((line: string, idx: number) => ({
+      '@type': 'HowToStep',
+      position: idx + 1,
+      name: `Step ${idx + 1}`,
+      text: line
+    }))
+  } : null;
+
   return (
     <section className="w-full bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-xs border border-stone-200 mt-8 mb-8 space-y-8">
+      {/* Structured Data JSON-LD for Dataset & HowTo */}
+      {datasetSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetSchema) }} />
+      )}
+      {howToSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      )}
+
       {/* Title & Overview */}
       {guide && (
         <div className="border-b border-stone-200 pb-6">
@@ -96,6 +141,17 @@ export default function CalculatorGuide({ guideKey, onApplyPreset }: CalculatorG
           <p className="text-stone-600 leading-relaxed text-sm sm:text-base">
             {guide.guideDesc}
           </p>
+        </div>
+      )}
+
+      {/* Direct Answer / AI Snippet Box */}
+      {directAnswerText && (
+        <div className="p-4 sm:p-5 rounded-xl bg-blue-50/70 border border-blue-200/80 text-blue-950 flex items-start gap-3.5">
+          <span className="material-symbols-outlined text-blue-600 text-[24px] shrink-0 mt-0.5">verified</span>
+          <div className="text-xs sm:text-sm leading-relaxed">
+            <span className="font-bold block mb-1 text-blue-900">{labels.directAnswer}</span>
+            <p className="text-stone-700 leading-relaxed">{directAnswerText}</p>
+          </div>
         </div>
       )}
 

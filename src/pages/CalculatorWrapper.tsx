@@ -3,6 +3,7 @@ import { Suspense, lazy } from 'react';
 import NotFound from './NotFound';
 import Breadcrumbs from '../components/Breadcrumbs';
 import RelatedCalculators from '../components/RelatedCalculators';
+import ShareActions from '../components/ShareActions';
 import { calculators, getCalculatorTitle, getCalculatorDescription } from '../data/calculators';
 import SkeletonLoader from '../components/SkeletonLoader';
 import ErrorBoundary from '../components/ErrorBoundary';
@@ -63,6 +64,10 @@ export default function CalculatorWrapper() {
           <Component />
         </Suspense>
       </ErrorBoundary>
+
+      <div className="mt-6 mb-8">
+        <ShareActions calculatorTitle={title} calculatorPath={currentPath} />
+      </div>
 
       <RelatedCalculators currentId={currentPath} />
     </div>

@@ -15,6 +15,17 @@ interface SEOProps {
   ratingValue?: number | string;
   ratingCount?: number | string;
   faq?: Array<{ question: string; answer: string }>;
+  dataset?: {
+    name: string;
+    description: string;
+    variableMeasured?: string[];
+    keywords?: string[];
+  };
+  howTo?: {
+    name: string;
+    description: string;
+    steps: Array<{ name: string; text: string }>;
+  };
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -29,7 +40,9 @@ const SEO: React.FC<SEOProps> = ({
   applicationCategory = 'CalculatorApplication',
   ratingValue = '4.9',
   ratingCount = '1480',
-  faq = []
+  faq = [],
+  dataset,
+  howTo,
 }) => {
   const location = useLocation();
   const siteName = 'Global Calc Pro';
@@ -182,6 +195,38 @@ const SEO: React.FC<SEOProps> = ({
     }))
   } : null;
 
+  // Dataset Schema
+  const datasetSchema = dataset ? {
+    '@type': 'Dataset',
+    '@id': `${finalCanonicalUrl}#dataset`,
+    name: dataset.name,
+    description: dataset.description,
+    url: finalCanonicalUrl,
+    inLanguage: currentLang,
+    isAccessibleForFree: true,
+    creator: {
+      '@id': `${baseUrl}/#organization`
+    },
+    ...(dataset.variableMeasured ? { variableMeasured: dataset.variableMeasured } : {}),
+    ...(dataset.keywords ? { keywords: dataset.keywords } : {}),
+  } : null;
+
+  // HowTo Schema
+  const howToSchema = howTo && howTo.steps.length > 0 ? {
+    '@type': 'HowTo',
+    '@id': `${finalCanonicalUrl}#howto`,
+    name: howTo.name,
+    description: howTo.description,
+    inLanguage: currentLang,
+    step: howTo.steps.map((step, idx) => ({
+      '@type': 'HowToStep',
+      position: idx + 1,
+      name: step.name,
+      text: step.text,
+      url: `${finalCanonicalUrl}#step-${idx + 1}`
+    }))
+  } : null;
+
   const graphItems: Record<string, any>[] = [
     organizationSchema,
     websiteSchema,
@@ -189,6 +234,8 @@ const SEO: React.FC<SEOProps> = ({
     breadcrumbSchema,
     softwareSchema,
     ...(faqSchema ? [faqSchema] : []),
+    ...(datasetSchema ? [datasetSchema] : []),
+    ...(howToSchema ? [howToSchema] : []),
     ...(structuredData ? [structuredData] : [])
   ];
 

@@ -6,6 +6,7 @@ import { useI18n } from '../../contexts/i18n';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import RelatedCalculators from '../../components/RelatedCalculators';
 import CopyButton from '../../components/CopyButton';
+import ShareActions from '../../components/ShareActions';
 
 const conversions: Record<string, Record<string, (v: number) => number>> = {
   length: {
@@ -134,6 +135,10 @@ export default function UnitConverter() {
               <div className="text-xs text-stone-600 border-t border-stone-800 pt-3 font-mono">
                 {type.replace('-', ' ➝ ').toUpperCase()}
               </div>
+            </div>
+
+            <div className="border-t border-stone-800 pt-4 mt-4">
+              <ShareActions calculatorTitle={t.unitTitle} calculatorPath="/unit-converter" />
             </div>
           </div>
         </div>
