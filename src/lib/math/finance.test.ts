@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { calculateMortgage, calculateCompoundInterest, calculateDebtSnowball } from './finance';
+import {
+  calculateMortgage,
+  calculateCompoundInterest,
+  calculateDebtSnowball,
+  calculateReverseMortgage,
+  calculateTargetSavings,
+  calculateGrossFromNet
+} from './finance';
 
 describe('Financial Math Engine', () => {
   describe('calculateMortgage', () => {
@@ -20,6 +27,43 @@ describe('Financial Math Engine', () => {
     it('should handle zero principal or zero years gracefully without throwing', () => {
       expect(calculateMortgage(0, 5, 30)).toEqual({ monthlyPayment: 0, totalInterest: 0 });
       expect(calculateMortgage(500000, 5, 0)).toEqual({ monthlyPayment: 0, totalInterest: 0 });
+    });
+  });
+
+  describe('calculateReverseMortgage (Target Payment to Max Loan)', () => {
+    it('should calculate loan capacity from target monthly payment', () => {
+      // For $4,774.15 payment at 4% for 30 years => should yield ~$1,000,000
+      const result = calculateReverseMortgage(4774.15, 4, 30);
+      expect(result.maxLoanAmount).toBeCloseTo(1000000, -2);
+      expect(result.totalPaid).toBeGreaterThan(result.maxLoanAmount);
+    });
+
+    it('should handle zero interest correctly in reverse', () => {
+      // $1,000/mo for 10 years (120 months) at 0% => $120,000
+      const result = calculateReverseMortgage(1000, 0, 10);
+      expect(result.maxLoanAmount).toBe(120000);
+      expect(result.totalInterest).toBe(0);
+    });
+  });
+
+  describe('calculateTargetSavings', () => {
+    it('should calculate required monthly savings to reach $1,000,000', () => {
+      // Goal $1,000,000 at 7% in 30 years with 0 initial deposit
+      const result = calculateTargetSavings(1000000, 7, 30, 0);
+      expect(result.requiredMonthlyContribution).toBeGreaterThan(700);
+      expect(result.requiredMonthlyContribution).toBeLessThan(900);
+      expect(result.totalSaved).toBe(1000000);
+      expect(result.totalInterest).toBeGreaterThan(600000);
+    });
+  });
+
+  describe('calculateGrossFromNet', () => {
+    it('should calculate gross salary needed for target net', () => {
+      // Target net $10,000 with 20% tax, 6% pension, 4% social security (30% total) => $14,286 gross
+      const result = calculateGrossFromNet(10000, 20, 6, 4);
+      expect(result.grossMonthly).toBe(14286);
+      expect(result.netMonthly).toBe(10000);
+      expect(result.takeHomeRatio).toBe(70);
     });
   });
 
