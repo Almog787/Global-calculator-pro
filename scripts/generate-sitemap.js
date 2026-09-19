@@ -35,6 +35,7 @@ const staticPaths = [
   "/privacy-policy",
   "/terms-of-service",
   "/about",
+  "/widgets",
 ];
 
 const rawPaths = Array.from(new Set([...staticPaths, ...dynamicPaths]));

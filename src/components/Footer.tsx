@@ -17,6 +17,10 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-wrap gap-x-6 gap-y-3 md:justify-end items-center">
+          <Link to={`/${lang}/widgets`} className="font-body-md text-sm text-secondary hover:underline font-semibold transition-colors flex items-center gap-1">
+            <span className="material-symbols-outlined text-[16px]">widgets</span>
+            <span>{lang === 'he' ? 'ווידג\'טים להטמעה' : lang === 'es' ? 'Widgets Web' : lang === 'fr' ? 'Widgets d\'intégration' : lang === 'ar' ? 'أدوات التضمين' : 'Embed Widgets'}</span>
+          </Link>
           <Link to={`/${lang}/about`} className="font-body-md text-sm text-on-surface-variant hover:text-secondary hover:underline transition-colors">
             {t.aboutTitle || 'About Us'}
           </Link>

@@ -128,6 +128,47 @@
 - **Path**: `/{lang}/unit-converter`
 - **Categories**: Length (m, km, ft, in, mi, yd), Mass/Weight (kg, g, lb, oz), Temperature (C, F, K), Area, Volume, Speed, Time, Digital Data (B, KB, MB, GB, TB).
 
+### 13. Side-by-Side Scenario Comparison Engine
+- **Mortgage Comparison Path**: `/{lang}/mortgage-calculator` (Tab: "Scenario Comparison" / "השוואת מסלולים")
+- **Compound Interest Comparison Path**: `/{lang}/compound-interest` (Tab: "Compare Scenarios" / "השוואת תוכניות")
+- **Function `compareMortgages(scenarioA, scenarioB)`**:
+  - **Inputs**: `scenarioA` and `scenarioB` each with `{ principal, rate, years }`.
+  - **Outputs**:
+    - `scenarioA`, `scenarioB`: `{ monthlyPayment, totalInterest, totalPaid }`.
+    - `diffMonthly`: Monthly payment difference (`B - A`).
+    - `diffTotalInterest`: Total interest difference (`B - A`). Negative value indicates savings.
+    - `diffTotalPaid`: Total loan outlay difference.
+    - `interestSavingsPercent`: Percentage of interest saved.
+- **Function `compareCompoundInterest(scenarioA, scenarioB)`**:
+  - **Inputs**: `scenarioA` and `scenarioB` each with `{ principal, rate, years, contribution }`.
+  - **Outputs**:
+    - `diffFutureValue`: Net wealth difference at investment horizon (`B - A`).
+    - `diffContributions`: Difference in out-of-pocket deposits.
+    - `diffInterest`: Extra interest earned through compound growth.
+    - `gainPercentage`: Total percentage increase in future portfolio value.
+
+### 14. Embeddable Widgets & Calculators Hub
+- **Path**: `/{lang}/widgets`
+- **Embed URL Format**: `https://globalcalcpro.com/{lang}/{slug}?embed=true&theme={light|dark}`
+- **Supported Widget Slugs**:
+  - `mortgage-calculator`: Monthly repayment, loan amortization schedule & comparison.
+  - `compound-interest`: Investment future value, compound interest curve & contributions.
+  - `salary-calculator`: Net take-home salary, tax, pension & deductions.
+  - `bmi-calculator`: Body Mass Index, health category & target weight range.
+  - `percentage-finder`: Percent of value, percentage change & discount calculator.
+  - `unit-converter`: Metric and imperial length, weight, area, volume & temperature.
+  - `tip-calculator`: Bill gratuity calculation and group bill splitting.
+  - `age-calculator`: Exact age in years, months, days, hours & next birthday countdown.
+- **Code Formats Provided**:
+  - Standard HTML `<iframe>` with `loading="lazy"` and responsive styling.
+  - WordPress / Elementor / Gutenberg Custom HTML embed block.
+  - Modern React / Next.js component ready for client-side inclusion.
+- **Supported Customizations**:
+  - Languages: `en`, `he`, `es`, `fr`, `ar` (with automatic RTL/LTR orientation).
+  - Width: Responsive 100%, Standard 600px, Sidebar 380px.
+  - Height: Adjustable (typically 520px - 720px).
+  - Themes: Light (`#ffffff` card background) and Dark (`#1c1917` card background).
+
 ---
 
 ## Generative AI Engine Integration Instructions

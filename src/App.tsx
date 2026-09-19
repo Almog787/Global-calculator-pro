@@ -16,6 +16,7 @@ const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const AboutUs = lazy(() => import('./pages/AboutUs'));
 const SuggestFeature = lazy(() => import('./pages/SuggestFeature'));
+const WidgetsHub = lazy(() => import('./pages/WidgetsHub'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 import { useI18n } from './contexts/i18n';
@@ -279,6 +280,7 @@ function App() {
             <Route path="/contact" element={<Navigate to={`/${lang}/contact`} replace />} />
             <Route path="/contact-us" element={<Navigate to={`/${lang}/contact`} replace />} />
             <Route path="/suggest" element={<Navigate to={`/${lang}/suggest`} replace />} />
+            <Route path="/widgets" element={<Navigate to={`/${lang}/widgets`} replace />} />
 
             {/* Localized Routing */}
             <Route path="/:urlLang/*" element={<LocalizedRoutes />} />
@@ -360,6 +362,7 @@ function LocalizedRoutes() {
       <Route path="about" element={<AboutUs />} />
       <Route path="about-us" element={<Navigate to="../about" replace />} />
       <Route path="suggest" element={<SuggestFeature />} />
+      <Route path="widgets" element={<WidgetsHub />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

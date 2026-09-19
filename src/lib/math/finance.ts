@@ -236,6 +236,84 @@ export function calculateCompoundInterest(principal: number, annualRate: number,
   }
 }
 
+export interface MortgageScenarioParams {
+  principal: number;
+  rate: number;
+  years: number;
+}
+
+export interface MortgageComparisonResult {
+  scenarioA: MortgageResult & { totalPaid: number };
+  scenarioB: MortgageResult & { totalPaid: number };
+  diffMonthly: number;
+  diffTotalInterest: number;
+  diffTotalPaid: number;
+  interestSavingsPercent: number;
+}
+
+export function compareMortgages(a: MortgageScenarioParams, b: MortgageScenarioParams): MortgageComparisonResult {
+  const resA = calculateMortgage(a.principal, a.rate, a.years);
+  const resB = calculateMortgage(b.principal, b.rate, b.years);
+
+  const totalPaidA = (resA.monthlyPayment * a.years * 12);
+  const totalPaidB = (resB.monthlyPayment * b.years * 12);
+
+  const diffMonthly = resB.monthlyPayment - resA.monthlyPayment;
+  const diffTotalInterest = resB.totalInterest - resA.totalInterest;
+  const diffTotalPaid = totalPaidB - totalPaidA;
+
+  const interestSavingsPercent = resA.totalInterest > 0
+    ? Math.round(((resA.totalInterest - resB.totalInterest) / resA.totalInterest) * 100)
+    : 0;
+
+  return {
+    scenarioA: { ...resA, totalPaid: Math.round(totalPaidA) },
+    scenarioB: { ...resB, totalPaid: Math.round(totalPaidB) },
+    diffMonthly: Math.round(diffMonthly),
+    diffTotalInterest: Math.round(diffTotalInterest),
+    diffTotalPaid: Math.round(diffTotalPaid),
+    interestSavingsPercent
+  };
+}
+
+export interface CompoundScenarioParams {
+  principal: number;
+  rate: number;
+  years: number;
+  contribution: number;
+}
+
+export interface CompoundComparisonResult {
+  scenarioA: CompoundInterestResult;
+  scenarioB: CompoundInterestResult;
+  diffFutureValue: number;
+  diffContributions: number;
+  diffInterest: number;
+  gainPercentage: number;
+}
+
+export function compareCompoundInterest(a: CompoundScenarioParams, b: CompoundScenarioParams): CompoundComparisonResult {
+  const resA = calculateCompoundInterest(a.principal, a.rate, a.years, a.contribution);
+  const resB = calculateCompoundInterest(b.principal, b.rate, b.years, b.contribution);
+
+  const diffFutureValue = resB.futureValue - resA.futureValue;
+  const diffContributions = resB.totalContributions - resA.totalContributions;
+  const diffInterest = resB.totalInterest - resA.totalInterest;
+
+  const gainPercentage = resA.futureValue > 0
+    ? Math.round(((resB.futureValue - resA.futureValue) / resA.futureValue) * 100)
+    : 0;
+
+  return {
+    scenarioA: resA,
+    scenarioB: resB,
+    diffFutureValue: Math.round(diffFutureValue),
+    diffContributions: Math.round(diffContributions),
+    diffInterest: Math.round(diffInterest),
+    gainPercentage
+  };
+}
+
 export interface DebtItem {
   id: number;
   bal: number;

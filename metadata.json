@@ -1,6 +1,6 @@
 {
   "name": "Global Calculator Pro",
-  "description": "Multi-lingual financial, mathematical, and health online calculators.",
+  "description": "Multi-lingual financial, mortgage, compound interest, health, and math online calculators with scenario comparisons and embeddable widgets.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

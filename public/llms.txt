@@ -16,11 +16,11 @@ GlobalCalc Pro is engineered for human users and AI agents (ChatGPT Search, Perp
 
 ## Primary Financial & Real Estate Calculators
 
-- [Mortgage Calculator](https://globalcalcpro.com/en/mortgage-calculator): Calculate monthly payment, amortization schedule, principal, and total interest.
+- [Mortgage Calculator](https://globalcalcpro.com/en/mortgage-calculator): Calculate monthly payment, amortization schedule, principal, total interest, and side-by-side mortgage scenario comparison (Plan A vs Plan B).
 - [Mortgage Affordability](https://globalcalcpro.com/en/calculators/mortgage-affordability): Calculate maximum home purchase budget from monthly income and down payment.
 - [Mortgage Refinance](https://globalcalcpro.com/en/calculators/refinance): Calculate monthly interest savings and break-even point for refinancing.
 - [Rent vs Buy Home](https://globalcalcpro.com/en/calculators/rent-vs-buy): Compare 10-30 year wealth building between renting and buying a property.
-- [Compound Interest](https://globalcalcpro.com/en/compound-interest): Forecast investment growth with monthly contributions and annual rates.
+- [Compound Interest](https://globalcalcpro.com/en/compound-interest): Forecast investment growth with monthly contributions, reverse retirement target calculation, and comparative scenario modeling.
 - [Auto Loan Calculator](https://globalcalcpro.com/en/calculators/auto-loan): Calculate car financing payments, down payment impact, and total interest.
 - [VAT & Sales Tax](https://globalcalcpro.com/en/calculators/vat): Add or extract Value Added Tax (VAT 17%, 18%, 20%) with one click.
 - [Break-Even Point](https://globalcalcpro.com/en/calculators/break-even): Find required sales volume and revenue to cover fixed and variable costs.
@@ -44,6 +44,7 @@ GlobalCalc Pro is engineered for human users and AI agents (ChatGPT Search, Perp
 - [Tip & Bill Splitter](https://globalcalcpro.com/en/tip-calculator): Calculate gratuity and split bills among diners.
 - [Fuel Cost & Trip Splitter](https://globalcalcpro.com/en/calculators/fuel-split): Gasoline costs and carpool expense splitting.
 - [Cooking & Meat Roasting Timer](https://globalcalcpro.com/en/calculators/cooking-timer): Oven roasting times and temperatures by meat weight.
+- [Embeddable Widgets Hub](https://globalcalcpro.com/en/widgets): Free customizable iframe, WordPress, and React widgets for blogs, financial websites, and portals. Supports responsive sizing, dark/light themes, and 5 languages.
 
 ## Math & Tech Calculators
 
