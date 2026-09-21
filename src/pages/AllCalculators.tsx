@@ -272,112 +272,61 @@ export default function AllCalculators() {
       <section 
         onMouseMove={handleHeroMouseMove}
         onMouseLeave={handleHeroMouseLeave}
-        className="text-center mb-12 sm:mb-16 relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-border-subtle/60 p-8 sm:p-12 md:p-16 shadow-lg transition-all"
+        className="mb-12 sm:mb-16 relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-border-subtle/80 p-6 sm:p-10 lg:p-12 shadow-xl transition-all"
       >
-        {/* Background Mesh Grid */}
+        {/* Interactive Background Mesh Grid */}
         <Squares 
           direction="diagonal"
           speed={0.4}
-          borderColor="rgba(0, 107, 91, 0.06)"
-          hoverFillColor="rgba(0, 107, 91, 0.12)"
+          borderColor="rgba(0, 107, 91, 0.07)"
+          hoverFillColor="rgba(0, 107, 91, 0.15)"
           squareSize={48}
         />
 
-        {/* 3D Glassmorphism Backdrop Image */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <img 
-            src="/images/hero-proposal-1.jpg" 
-            alt="3D Glassmorphism Calculator Engine" 
-            className="w-full h-full object-cover opacity-20 dark:opacity-25 mix-blend-multiply dark:mix-blend-screen scale-105 transition-transform duration-700 ease-out" 
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface-container-lowest/40 via-surface-container-lowest/80 to-surface-container-lowest" />
-        </div>
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Text & Search Column (7 Cols on LG) */}
+          <div className="lg:col-span-7 text-center ltr:lg:text-left rtl:lg:text-right flex flex-col items-center ltr:lg:items-start rtl:lg:items-start">
+            {/* Top Badge */}
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-700 dark:text-teal-300 text-xs sm:text-sm font-semibold mb-6 shadow-sm backdrop-blur-md"
+            >
+              <span className="material-symbols-outlined text-base text-teal-600 dark:text-teal-400">auto_awesome</span>
+              <span>{isRtl ? 'מנוע החישובים הבינלאומי המעודכן 2026' : 'International Calculation Engine 2026'}</span>
+            </motion.div>
 
-        {/* Floating 3D Parallax Glass Cards */}
-        {/* Glass Card 1 - Top Right */}
-        <motion.div 
-          style={{ x: card1X, y: card1Y }}
-          className="hidden lg:flex absolute top-8 ltr:right-8 rtl:left-8 z-20 items-center gap-3 bg-white/70 dark:bg-neutral-900/70 backdrop-blur-md border border-white/80 dark:border-neutral-700/80 p-3.5 px-4 rounded-2xl shadow-xl pointer-events-none"
-        >
-          <div className="w-10 h-10 rounded-xl bg-teal-500/15 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-lg shadow-inner">
-            ₪
-          </div>
-          <div className="text-start">
-            <div className="text-xs text-text-muted font-medium">{isRtl ? 'חישובים שבוצעו' : 'Calculations Done'}</div>
-            <div className="text-sm font-extrabold text-primary-container font-mono-num flex items-center gap-1.5">
-              <CountUp from={1000000} to={2540890} separator="," duration={2} />
-              <span className="text-xs text-emerald-600 bg-emerald-500/10 px-1.5 py-0.5 rounded font-bold">+24%</span>
-            </div>
-          </div>
-        </motion.div>
+            <h1 className="font-display-xl text-3xl sm:text-4xl md:text-5xl text-primary-container mb-4 font-extrabold tracking-tight leading-tight">
+              {currText.heroTitle}
+            </h1>
+            <p className="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-xl mb-8 leading-relaxed font-normal">
+              {currText.heroSubtitle}
+            </p>
 
-        {/* Glass Card 2 - Bottom Left */}
-        <motion.div 
-          style={{ x: card2X, y: card2Y }}
-          className="hidden lg:flex absolute bottom-10 ltr:left-8 rtl:right-8 z-20 items-center gap-3 bg-white/70 dark:bg-neutral-900/70 backdrop-blur-md border border-white/80 dark:border-neutral-700/80 p-3.5 px-4 rounded-2xl shadow-xl pointer-events-none"
-        >
-          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">
-            f(x)
-          </div>
-          <div className="text-start">
-            <div className="text-xs text-text-muted font-medium">{isRtl ? 'מנוע חישוב מדויק' : 'Accuracy Engine'}</div>
-            <div className="text-xs font-mono font-bold text-primary-container">
-              Decimal.js • 100% Precision
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Glass Card 3 - Top Left Floating Pill */}
-        <motion.div 
-          style={{ x: card3X, y: card3Y }}
-          className="hidden xl:flex absolute top-12 ltr:left-12 rtl:right-12 z-20 items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-sm text-emerald-700 dark:text-emerald-300 text-xs font-bold pointer-events-none"
-        >
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>{isRtl ? 'מעודכן לתקנות המס 2026' : 'Updated to 2026 Tax Rules'}</span>
-        </motion.div>
-
-        {/* Main Content Container */}
-        <div className="relative z-10 max-w-3xl mx-auto">
-          {/* Top Badge */}
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/25 text-teal-700 dark:text-teal-300 text-xs sm:text-sm font-semibold mb-6 shadow-sm backdrop-blur-sm"
-          >
-            <span className="material-symbols-outlined text-base text-teal-600 dark:text-teal-400">auto_awesome</span>
-            <span>{isRtl ? 'פלטפורמת החישובים הבינלאומית' : 'International Calculation Platform'}</span>
-          </motion.div>
-
-          <h1 className="font-display-xl text-3xl sm:text-4xl md:text-5xl text-primary-container mb-4 font-extrabold tracking-tight leading-tight">
-            {currText.heroTitle}
-          </h1>
-          <p className="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed font-normal">
-            {currText.heroSubtitle}
-          </p>
-  
-          {/* Search Hero Box with Enhanced Glass Shell */}
-          <div className="relative max-w-2xl mx-auto flex flex-col items-center">
-            <div className="w-full bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl border border-white/60 dark:border-neutral-700/60 p-2 sm:p-2.5 rounded-2xl shadow-2xl transition-all hover:shadow-teal-500/10">
-              <SearchBar isHero placeholder={currText.heroSearchPlaceholder} />
-            </div>
-            
-            {/* Dynamic Search Suggestions with RotatingText */}
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm text-text-muted">
-              <span className="font-semibold text-secondary">{isRtl ? 'חיפושים נפוצים:' : 'Popular:'}</span>
-              <RotatingText
-                texts={
-                  isRtl
-                    ? ['חישוב שכר נטו', 'החזר משכנתא חודשי', 'ריבית דריבית וחיסכון', 'אופציות ו-RSU', 'פיצויי פיטורין', 'מס רכישה ושבח']
-                    : ['Net Salary Take-Home', 'Monthly Mortgage Payment', 'Compound Interest Growth', 'Stock Options & RSU', 'Severance Pay', 'Real Estate Cap Rate']
-                }
-                rotationInterval={2800}
-                className="font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-lg border border-primary/20"
-                elementClassName="text-primary-container"
-              />
+            {/* Search Hero Box with Enhanced Glass Shell */}
+            <div className="w-full max-w-xl mb-6">
+              <div className="w-full bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl border border-white/80 dark:border-neutral-700/80 p-2 sm:p-2.5 rounded-2xl shadow-2xl transition-all hover:shadow-teal-500/15">
+                <SearchBar isHero placeholder={currText.heroSearchPlaceholder} />
+              </div>
+              
+              {/* Dynamic Search Suggestions with RotatingText */}
+              <div className="mt-4 flex flex-wrap items-center justify-center ltr:lg:justify-start rtl:lg:justify-start gap-2 text-xs sm:text-sm text-text-muted">
+                <span className="font-semibold text-secondary">{isRtl ? 'חיפושים נפוצים:' : 'Popular:'}</span>
+                <RotatingText
+                  texts={
+                    isRtl
+                      ? ['חישוב שכר נטו', 'החזר משכנתא חודשי', 'ריבית דריבית וחיסכון', 'אופציות ו-RSU', 'פיצויי פיטורין', 'מס רכישה ושבח']
+                      : ['Net Salary Take-Home', 'Monthly Mortgage Payment', 'Compound Interest Growth', 'Stock Options & RSU', 'Severance Pay', 'Real Estate Cap Rate']
+                  }
+                  rotationInterval={2800}
+                  className="font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-lg border border-primary/20"
+                  elementClassName="text-primary-container"
+                />
+              </div>
             </div>
 
-            {/* Micro Trust Indicators */}
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-on-surface-variant font-medium">
+            {/* Trust Badges */}
+            <div className="flex flex-wrap items-center justify-center ltr:lg:justify-start rtl:lg:justify-start gap-4 sm:gap-6 text-xs text-on-surface-variant font-medium">
               <span className="flex items-center gap-1.5">
                 <span className="material-symbols-outlined text-emerald-500 text-sm">verified</span>
                 {isRtl ? '36+ מחשבונים מקצועיים' : '36+ Professional Calculators'}
@@ -391,6 +340,62 @@ export default function AllCalculators() {
                 {isRtl ? 'ללא שמירת נתונים אישיים' : '100% Private & Anonymous'}
               </span>
             </div>
+          </div>
+
+          {/* 3D Glassmorphism Showcase Card Column (5 Cols on LG) */}
+          <div className="lg:col-span-5 relative flex justify-center items-center mt-6 lg:mt-0">
+            {/* Outer Glowing Atmosphere */}
+            <div className="absolute -inset-2 bg-gradient-to-r from-teal-500/20 via-emerald-500/20 to-primary/20 rounded-3xl blur-xl opacity-75 animate-pulse pointer-events-none" />
+
+            {/* Main 3D Glass Card Container */}
+            <motion.div 
+              style={{ x: card1X, y: card1Y }}
+              className="relative w-full max-w-md bg-white/80 dark:bg-neutral-900/80 backdrop-blur-2xl border border-white dark:border-neutral-700 rounded-2xl p-3 shadow-2xl overflow-visible group"
+            >
+              {/* High-Res 3D Glassmorphism Generated Image */}
+              <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden border border-border-subtle/50 shadow-inner">
+                <img 
+                  src="/images/hero-proposal-1.jpg" 
+                  alt="GlobalCalc Pro 3D Glassmorphism Engine" 
+                  className="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-105" 
+                />
+                
+                {/* Glossy Glass Reflection Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-white/20 pointer-events-none" />
+
+                {/* Floating Badge inside Image */}
+                <div className="absolute top-3 ltr:left-3 rtl:right-3 bg-black/70 backdrop-blur-md border border-white/30 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                  <span>{isRtl ? 'מטריצת 3D מונפשת' : '3D Interactive Matrix'}</span>
+                </div>
+              </div>
+
+              {/* Floating 3D Parallax Badge 1 - Live Counter */}
+              <motion.div 
+                style={{ x: card2X, y: card2Y }}
+                className="absolute -bottom-4 ltr:-left-4 rtl:-right-4 z-30 flex items-center gap-3 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl border border-white dark:border-neutral-700 p-3 px-4 rounded-xl shadow-2xl pointer-events-none"
+              >
+                <div className="w-10 h-10 rounded-lg bg-teal-500/20 flex items-center justify-center text-teal-600 dark:text-teal-400 font-bold text-lg shadow-inner">
+                  ₪
+                </div>
+                <div>
+                  <div className="text-[10px] text-text-muted font-bold uppercase tracking-wider">{isRtl ? 'חישובים שבוצעו' : 'Total Calculated'}</div>
+                  <div className="text-sm font-extrabold text-primary-container font-mono-num flex items-center gap-1.5">
+                    <CountUp from={1000000} to={2540890} separator="," duration={2} />
+                    <span className="text-[10px] text-emerald-600 bg-emerald-500/15 px-1.5 py-0.5 rounded font-bold">+24%</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Floating 3D Parallax Badge 2 - Precision */}
+              <motion.div 
+                style={{ x: card3X, y: card3Y }}
+                className="absolute -top-4 ltr:-right-4 rtl:-left-4 z-30 flex items-center gap-2 bg-emerald-600 text-white backdrop-blur-xl p-2.5 px-3.5 rounded-xl shadow-2xl text-xs font-extrabold pointer-events-none border border-emerald-400/40"
+              >
+                <span className="material-symbols-outlined text-sm">verified</span>
+                <span>{isRtl ? '100% דיוק מתמטי' : '100% Precision'}</span>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
