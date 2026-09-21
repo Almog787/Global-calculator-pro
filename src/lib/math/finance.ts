@@ -17,9 +17,9 @@ export function generateMortgageAmortizationSchedule(
   maxPeriods: number = 360
 ): MortgageAmortizationRow[] {
   try {
-    const decP = new Decimal(principal || 0);
-    const decR = new Decimal(annualRate || 0).div(100).div(12);
-    const totalMonths = Math.min(maxPeriods, (years || 0) * 12);
+    const decP = Decimal.max(0, new Decimal(principal || 0));
+    const decR = Decimal.max(0, new Decimal(annualRate || 0).div(100).div(12));
+    const totalMonths = Math.max(0, Math.min(maxPeriods, Math.floor((years || 0) * 12)));
 
     if (decP.isZero() || totalMonths === 0) return [];
 
@@ -79,9 +79,9 @@ export interface MortgageResult {
 
 export function calculateMortgage(principal: number, annualRate: number, years: number): MortgageResult {
   try {
-    const decP = new Decimal(principal || 0);
-    const decR = new Decimal(annualRate || 0).div(100).div(12);
-    const decN = new Decimal(years || 0).mul(12);
+    const decP = Decimal.max(0, new Decimal(principal || 0));
+    const decR = Decimal.max(0, new Decimal(annualRate || 0).div(100).div(12));
+    const decN = Decimal.max(0, new Decimal(years || 0).mul(12));
 
     if (decP.isZero() || decN.isZero()) {
       return { monthlyPayment: 0, totalInterest: 0 };
@@ -90,18 +90,18 @@ export function calculateMortgage(principal: number, annualRate: number, years: 
     let mp = new Decimal(0);
 
     if (decR.isZero()) {
-      mp = decN.isZero() ? new Decimal(0) : decP.div(decN);
-    } else if (!decN.isZero()) {
+      mp = decP.div(decN);
+    } else {
       const rateFactor = decR.add(1).pow(decN.toNumber());
       mp = decP.mul(decR.mul(rateFactor)).div(rateFactor.sub(1));
     }
 
     const totalPaid = mp.mul(decN);
-    const ti = totalPaid.sub(decP);
+    const ti = Decimal.max(0, totalPaid.sub(decP));
 
     return {
-      monthlyPayment: mp.isFinite() ? mp.toNumber() : 0,
-      totalInterest: ti.isFinite() ? ti.toNumber() : 0
+      monthlyPayment: mp.isFinite() ? Math.max(0, mp.toNumber()) : 0,
+      totalInterest: ti.isFinite() ? Math.max(0, ti.toNumber()) : 0
     };
   } catch {
     return { monthlyPayment: 0, totalInterest: 0 };
