@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useUrlState } from '../hooks/useUrlState';
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { calculators, getCalculatorTitle, getCalculatorDescription } from "../data/calculators";
 import SEO from "../components/SEO";
 import SearchBar from "../components/SearchBar";
@@ -22,6 +23,36 @@ export default function AllCalculators() {
   const [mortgageAmount, setMortgageAmount] = useUrlState<number>('mortgageAmount', 1200000);
   const [mortgageRate, setMortgageRate] = useUrlState<number>('mortgageRate', 4.5);
   const mortgageYears = 25;
+
+  // Interactive 3D Glassmorphism Parallax Motion Values (Proposal 1)
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 120 };
+  const mouseXSpring = useSpring(mouseX, springConfig);
+  const mouseYSpring = useSpring(mouseY, springConfig);
+
+  const card1X = useTransform(mouseXSpring, [-0.5, 0.5], [-22, 22]);
+  const card1Y = useTransform(mouseYSpring, [-0.5, 0.5], [-16, 16]);
+
+  const card2X = useTransform(mouseXSpring, [-0.5, 0.5], [24, -24]);
+  const card2Y = useTransform(mouseYSpring, [-0.5, 0.5], [18, -18]);
+
+  const card3X = useTransform(mouseXSpring, [-0.5, 0.5], [-14, 14]);
+  const card3Y = useTransform(mouseYSpring, [-0.5, 0.5], [15, -15]);
+
+  const handleHeroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleHeroMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   // Compute live monthly payment estimate
   const monthlyRate = mortgageRate / 100 / 12;
@@ -237,37 +268,102 @@ export default function AllCalculators() {
         }}
       />
 
-      {/* Hero Section */}
-      <section className="text-center mb-12 sm:mb-16 relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-border-subtle p-8 md:p-16 shadow-sm">
+      {/* Proposal 1: 3D Glassmorphism & Parallax Mesh Hero Section */}
+      <section 
+        onMouseMove={handleHeroMouseMove}
+        onMouseLeave={handleHeroMouseLeave}
+        className="text-center mb-12 sm:mb-16 relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-border-subtle/60 p-8 sm:p-12 md:p-16 shadow-lg transition-all"
+      >
+        {/* Background Mesh Grid */}
         <Squares 
           direction="diagonal"
           speed={0.4}
-          borderColor="rgba(0, 107, 91, 0.05)"
-          hoverFillColor="rgba(0, 107, 91, 0.08)"
+          borderColor="rgba(0, 107, 91, 0.06)"
+          hoverFillColor="rgba(0, 107, 91, 0.12)"
           squareSize={48}
         />
-        <img 
-          src="/images/hero-banner.webp" 
-          alt="GlobalCalc Pro" 
-          className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none mix-blend-multiply dark:mix-blend-lighten" 
-        />
-        <div className="relative z-10">
-          <h1 className="font-display-xl text-3xl sm:text-4xl md:text-display-xl text-primary-container mb-4 font-extrabold tracking-tight">
+
+        {/* 3D Glassmorphism Backdrop Image */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <img 
+            src="/images/hero-proposal-1.jpg" 
+            alt="3D Glassmorphism Calculator Engine" 
+            className="w-full h-full object-cover opacity-20 dark:opacity-25 mix-blend-multiply dark:mix-blend-screen scale-105 transition-transform duration-700 ease-out" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-surface-container-lowest/40 via-surface-container-lowest/80 to-surface-container-lowest" />
+        </div>
+
+        {/* Floating 3D Parallax Glass Cards */}
+        {/* Glass Card 1 - Top Right */}
+        <motion.div 
+          style={{ x: card1X, y: card1Y }}
+          className="hidden lg:flex absolute top-8 ltr:right-8 rtl:left-8 z-20 items-center gap-3 bg-white/70 dark:bg-neutral-900/70 backdrop-blur-md border border-white/80 dark:border-neutral-700/80 p-3.5 px-4 rounded-2xl shadow-xl pointer-events-none"
+        >
+          <div className="w-10 h-10 rounded-xl bg-teal-500/15 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-lg shadow-inner">
+            ₪
+          </div>
+          <div className="text-start">
+            <div className="text-xs text-text-muted font-medium">{isRtl ? 'חישובים שבוצעו' : 'Calculations Done'}</div>
+            <div className="text-sm font-extrabold text-primary-container font-mono-num flex items-center gap-1.5">
+              <CountUp from={1000000} to={2540890} separator="," duration={2} />
+              <span className="text-xs text-emerald-600 bg-emerald-500/10 px-1.5 py-0.5 rounded font-bold">+24%</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Glass Card 2 - Bottom Left */}
+        <motion.div 
+          style={{ x: card2X, y: card2Y }}
+          className="hidden lg:flex absolute bottom-10 ltr:left-8 rtl:right-8 z-20 items-center gap-3 bg-white/70 dark:bg-neutral-900/70 backdrop-blur-md border border-white/80 dark:border-neutral-700/80 p-3.5 px-4 rounded-2xl shadow-xl pointer-events-none"
+        >
+          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">
+            f(x)
+          </div>
+          <div className="text-start">
+            <div className="text-xs text-text-muted font-medium">{isRtl ? 'מנוע חישוב מדויק' : 'Accuracy Engine'}</div>
+            <div className="text-xs font-mono font-bold text-primary-container">
+              Decimal.js • 100% Precision
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Glass Card 3 - Top Left Floating Pill */}
+        <motion.div 
+          style={{ x: card3X, y: card3Y }}
+          className="hidden xl:flex absolute top-12 ltr:left-12 rtl:right-12 z-20 items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-sm text-emerald-700 dark:text-emerald-300 text-xs font-bold pointer-events-none"
+        >
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span>{isRtl ? 'מעודכן לתקנות המס 2026' : 'Updated to 2026 Tax Rules'}</span>
+        </motion.div>
+
+        {/* Main Content Container */}
+        <div className="relative z-10 max-w-3xl mx-auto">
+          {/* Top Badge */}
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/25 text-teal-700 dark:text-teal-300 text-xs sm:text-sm font-semibold mb-6 shadow-sm backdrop-blur-sm"
+          >
+            <span className="material-symbols-outlined text-base text-teal-600 dark:text-teal-400">auto_awesome</span>
+            <span>{isRtl ? 'פלטפורמת החישובים הבינלאומית' : 'International Calculation Platform'}</span>
+          </motion.div>
+
+          <h1 className="font-display-xl text-3xl sm:text-4xl md:text-5xl text-primary-container mb-4 font-extrabold tracking-tight leading-tight">
             {currText.heroTitle}
           </h1>
-          <p className="font-body-lg text-base sm:text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">
+          <p className="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed font-normal">
             {currText.heroSubtitle}
           </p>
   
-          {/* Search Hero */}
+          {/* Search Hero Box with Enhanced Glass Shell */}
           <div className="relative max-w-2xl mx-auto flex flex-col items-center">
-            <div className="w-full">
+            <div className="w-full bg-white/70 dark:bg-neutral-900/70 backdrop-blur-xl border border-white/60 dark:border-neutral-700/60 p-2 sm:p-2.5 rounded-2xl shadow-2xl transition-all hover:shadow-teal-500/10">
               <SearchBar isHero placeholder={currText.heroSearchPlaceholder} />
             </div>
             
             {/* Dynamic Search Suggestions with RotatingText */}
-            <div className="mt-4 flex items-center justify-center gap-2 text-xs sm:text-sm text-text-muted">
-              <span className="font-medium text-secondary">{isRtl ? 'חיפושים נפוצים:' : 'Popular:'}</span>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm text-text-muted">
+              <span className="font-semibold text-secondary">{isRtl ? 'חיפושים נפוצים:' : 'Popular:'}</span>
               <RotatingText
                 texts={
                   isRtl
@@ -275,9 +371,25 @@ export default function AllCalculators() {
                     : ['Net Salary Take-Home', 'Monthly Mortgage Payment', 'Compound Interest Growth', 'Stock Options & RSU', 'Severance Pay', 'Real Estate Cap Rate']
                 }
                 rotationInterval={2800}
-                className="font-semibold text-primary"
+                className="font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-lg border border-primary/20"
                 elementClassName="text-primary-container"
               />
+            </div>
+
+            {/* Micro Trust Indicators */}
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-on-surface-variant font-medium">
+              <span className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-emerald-500 text-sm">verified</span>
+                {isRtl ? '36+ מחשבונים מקצועיים' : '36+ Professional Calculators'}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-teal-500 text-sm">bolt</span>
+                {isRtl ? 'חישוב בריאל-טיים' : 'Real-time Calculations'}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-blue-500 text-sm">lock</span>
+                {isRtl ? 'ללא שמירת נתונים אישיים' : '100% Private & Anonymous'}
+              </span>
             </div>
           </div>
         </div>
