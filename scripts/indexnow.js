@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const INDEXNOW_KEY = '1a4e8d26c5bf40989f7a63581561cf29';
+const INDEXNOW_KEY = '4d34065b458d434790086c9693b9c095';
 const INDEXNOW_KEY_LOCATION = `https://globalcalcpro.com/${INDEXNOW_KEY}.txt`;
 const HOST = 'globalcalcpro.com';
 
@@ -64,7 +64,11 @@ async function submitIndexNow() {
       '/calculators/download-time',
       '/calculators/fuel-split',
       '/calculators/peltier-cooling',
+      '/calculators/stock-options-rsu',
+      '/calculators/purchase-appreciation-tax',
+      '/calculators/employer-cost',
       '/all',
+      '/widgets',
       '/category/finance',
       '/category/real-estate',
       '/category/health',

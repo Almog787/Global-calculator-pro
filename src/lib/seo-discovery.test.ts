@@ -109,4 +109,21 @@ describe('SEO & AI Knowledge Discovery Suite', () => {
       expect(indexHtml).toContain(`<meta property="og:description" content="${metadata.description}" />`);
     });
   });
+
+  describe('IndexNow (Bing, Yandex, Seznam) Configuration', () => {
+    const key = '4d34065b458d434790086c9693b9c095';
+    const keyFilePath = path.join(rootDir, `public/${key}.txt`);
+
+    it('should have the IndexNow API key verification file in public folder', () => {
+      expect(fs.existsSync(keyFilePath)).toBe(true);
+      const content = fs.readFileSync(keyFilePath, 'utf8').trim();
+      expect(content).toBe(key);
+    });
+
+    it('scripts/indexnow.js should use the verified IndexNow key', () => {
+      const scriptContent = fs.readFileSync(path.join(rootDir, 'scripts/indexnow.js'), 'utf8');
+      expect(scriptContent).toContain(`const INDEXNOW_KEY = '${key}';`);
+      expect(scriptContent).toContain('https://api.indexnow.org/indexnow');
+    });
+  });
 });
