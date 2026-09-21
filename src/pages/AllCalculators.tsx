@@ -116,6 +116,57 @@ export default function AllCalculators() {
 
   const isRtl = t.dir === 'rtl';
 
+  const categoryStyles: Record<string, {
+    badgeBg: string;
+    badgeText: string;
+    badgeBorder: string;
+    icon: string;
+    accentBar: string;
+  }> = {
+    finance: {
+      badgeBg: 'bg-emerald-500/10 dark:bg-emerald-500/20',
+      badgeText: 'text-emerald-700 dark:text-emerald-300',
+      badgeBorder: 'border-emerald-500/30',
+      icon: 'account_balance',
+      accentBar: 'bg-emerald-500',
+    },
+    'real-estate': {
+      badgeBg: 'bg-indigo-500/10 dark:bg-indigo-500/20',
+      badgeText: 'text-indigo-700 dark:text-indigo-300',
+      badgeBorder: 'border-indigo-500/30',
+      icon: 'real_estate_agent',
+      accentBar: 'bg-indigo-500',
+    },
+    health: {
+      badgeBg: 'bg-rose-500/10 dark:bg-rose-500/20',
+      badgeText: 'text-rose-700 dark:text-rose-300',
+      badgeBorder: 'border-rose-500/30',
+      icon: 'favorite',
+      accentBar: 'bg-rose-500',
+    },
+    math: {
+      badgeBg: 'bg-amber-500/10 dark:bg-amber-500/20',
+      badgeText: 'text-amber-700 dark:text-amber-300',
+      badgeBorder: 'border-amber-500/30',
+      icon: 'functions',
+      accentBar: 'bg-amber-500',
+    },
+    tech: {
+      badgeBg: 'bg-sky-500/10 dark:bg-sky-500/20',
+      badgeText: 'text-sky-700 dark:text-sky-300',
+      badgeBorder: 'border-sky-500/30',
+      icon: 'devices',
+      accentBar: 'bg-sky-500',
+    },
+    lifestyle: {
+      badgeBg: 'bg-purple-500/10 dark:bg-purple-500/20',
+      badgeText: 'text-purple-700 dark:text-purple-300',
+      badgeBorder: 'border-purple-500/30',
+      icon: 'mood',
+      accentBar: 'bg-purple-500',
+    },
+  };
+
   // Localized texts for Bento Showcase
   const bentoTexts = {
     he: {
@@ -286,17 +337,7 @@ export default function AllCalculators() {
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Text & Search Column (7 Cols on LG) */}
           <div className="lg:col-span-7 text-center ltr:lg:text-left rtl:lg:text-right flex flex-col items-center ltr:lg:items-start rtl:lg:items-start">
-            {/* Top Badge */}
-            <motion.div 
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-700 dark:text-teal-300 text-xs sm:text-sm font-semibold mb-6 shadow-sm backdrop-blur-md"
-            >
-              <span className="material-symbols-outlined text-base text-teal-600 dark:text-teal-400">auto_awesome</span>
-              <span>{isRtl ? 'מנוע החישובים הבינלאומי המעודכן 2026' : 'International Calculation Engine 2026'}</span>
-            </motion.div>
-
-            <h1 className="font-display-xl text-3xl sm:text-4xl md:text-5xl text-primary-container mb-4 font-extrabold tracking-tight leading-tight">
+            <h1 className="font-display-xl text-3xl sm:text-4xl md:text-5xl text-primary-container mb-4 font-extrabold tracking-tight leading-tight pt-2">
               {currText.heroTitle}
             </h1>
             <p className="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-xl mb-8 leading-relaxed font-normal">
@@ -726,11 +767,12 @@ export default function AllCalculators() {
         </div>
       </section>
 
-      {/* Complete Calculator Cards Grid */}
+      {/* Complete Calculator Cards Grid with Category Visual Separation */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
         {filtered.map((calc) => {
           const title = getCalculatorTitle(calc, t, lang);
           const description = getCalculatorDescription(calc, t, lang);
+          const style = categoryStyles[calc.category] || categoryStyles.finance;
           
           return (
             <Link
@@ -739,12 +781,18 @@ export default function AllCalculators() {
               className="block group h-full"
             >
               <SpotlightCard
-                className="p-6 flex flex-col h-full hover:border-secondary hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300"
+                className="bg-surface-container-lowest border border-border-subtle/80 rounded-2xl p-6 flex flex-col h-full shadow-xs hover:border-secondary hover:shadow-[0_12px_36px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
                 spotlightColor="rgba(0, 107, 91, 0.12)"
               >
-                <div className="flex justify-between items-start mb-4 gap-4">
-                  <div className="bg-surface-container-low px-2.5 py-1 rounded-md border border-border-subtle/50">
-                    <span className="text-[11px] font-label-bold uppercase tracking-wider text-secondary whitespace-nowrap">
+                {/* Colored Top Accent Bar for Category Distinction */}
+                <div className={`absolute top-0 inset-x-0 h-1.5 ${style.accentBar} opacity-80 group-hover:opacity-100 transition-opacity`} />
+
+                <div className="flex justify-between items-start mb-4 gap-3 pt-1">
+                  <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border ${style.badgeBg} ${style.badgeBorder}`}>
+                    <span className={`material-symbols-outlined text-sm ${style.badgeText}`}>
+                      {style.icon}
+                    </span>
+                    <span className={`text-[11px] font-label-bold uppercase tracking-wider ${style.badgeText} whitespace-nowrap`}>
                       {calc.category}
                     </span>
                   </div>
@@ -753,19 +801,19 @@ export default function AllCalculators() {
                   </span>
                 </div>
                 
-                <h3 className="font-headline-md text-xl font-bold text-on-surface group-hover:text-primary transition-colors leading-snug mb-3">
+                <h3 className="font-headline-md text-lg sm:text-xl font-extrabold text-on-surface group-hover:text-primary transition-colors leading-snug mb-2.5">
                   {title}
                 </h3>
                 
-                <p className="font-body-md text-[15px] text-on-surface-variant leading-relaxed line-clamp-3 mb-6 flex-grow">
+                <p className="font-body-md text-sm text-on-surface-variant leading-relaxed line-clamp-3 mb-5 flex-grow font-normal">
                   {description}
                 </p>
 
-                <div className="flex flex-wrap gap-x-3 gap-y-2 mt-auto pt-4 border-t border-border-subtle/50">
+                <div className="flex flex-wrap gap-x-2.5 gap-y-1.5 mt-auto pt-3.5 border-t border-border-subtle/60">
                   {calc.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="font-label-sm text-[12px] font-medium text-outline-variant before:content-['#'] before:opacity-50 before:mr-0.5 rtl:before:ml-0.5 rtl:before:mr-0 whitespace-nowrap"
+                      className="font-label-sm text-[11px] font-semibold text-text-muted bg-surface-container-low px-2 py-0.5 rounded-md border border-border-subtle/40 before:content-['#'] before:opacity-40 before:mr-0.5 rtl:before:ml-0.5 rtl:before:mr-0 whitespace-nowrap"
                     >
                       {tag}
                     </span>
