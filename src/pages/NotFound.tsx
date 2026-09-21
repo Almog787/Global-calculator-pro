@@ -129,18 +129,19 @@ export default function NotFound() {
               <span className="material-symbols-outlined text-4xl">search_off</span>
             </motion.div>
 
-            {/* Big 404 Code */}
-            <motion.h1 
+            {/* Big 404 Code Badge */}
+            <motion.div 
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="text-6xl sm:text-7xl font-black text-primary-container tracking-tight mb-2 font-display-xl"
+              className="text-6xl sm:text-7xl font-black text-primary-container tracking-tight mb-2 font-display-xl select-none"
+              aria-hidden="true"
             >
               404
-            </motion.h1>
+            </motion.div>
 
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-on-surface mb-3 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-on-surface mb-3 tracking-tight">
               {text.title}
-            </h2>
+            </h1>
 
             <p className="text-on-surface-variant text-sm sm:text-base leading-relaxed mb-8 max-w-lg">
               {text.subtitle}

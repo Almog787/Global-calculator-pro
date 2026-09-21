@@ -85,7 +85,7 @@ export default function AgeCalculator() {
       <div className="flex-1 w-full bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200 flex flex-col">
         <div className="mb-10">
           
-        <h2 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.ageTitle}</h2>
+        <h1 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.ageTitle}</h1>
         <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-sm">{t.ageExplanation}</p>
       
         </div>

@@ -369,9 +369,9 @@ ${lang === 'he' ? 'הפרש ורווח עודף' : 'Difference & Extra Returns'}
         </div>
 
         <div className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-2">
+          <h1 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-2">
             {mode === 'growth' ? t.compoundTitle : mode === 'target' ? modeLabels.target : modeLabels.compare}
-          </h2>
+          </h1>
           <p className="text-stone-500 font-medium text-[14px] leading-relaxed max-w-lg">
             {mode === 'growth'
               ? t.compoundExplanation

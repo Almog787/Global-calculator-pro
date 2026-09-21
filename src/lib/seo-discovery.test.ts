@@ -126,4 +126,40 @@ describe('SEO & AI Knowledge Discovery Suite', () => {
       expect(scriptContent).toContain('https://api.indexnow.org/indexnow');
     });
   });
+
+  describe('Bingbot & SEO Heading Architecture (H1 Verification)', () => {
+    it('every calculator page component in src/pages/calculators must contain an <h1> tag', () => {
+      const calcsDir = path.join(rootDir, 'src/pages/calculators');
+      const files = fs.readdirSync(calcsDir).filter(f => f.endsWith('.tsx'));
+
+      files.forEach((file) => {
+        const content = fs.readFileSync(path.join(calcsDir, file), 'utf8');
+        expect(
+          content.includes('<h1') || content.includes('<motion.h1'),
+          `SEO Warning: Calculator page "${file}" is missing an <h1> tag!`
+        ).toBe(true);
+      });
+    });
+
+    it('all major top-level pages contain an <h1> tag', () => {
+      const pages = [
+        'src/pages/AllCalculators.tsx',
+        'src/pages/AboutUs.tsx',
+        'src/pages/ContactUs.tsx',
+        'src/pages/PrivacyPolicy.tsx',
+        'src/pages/TermsOfService.tsx',
+        'src/pages/SuggestFeature.tsx',
+        'src/pages/WidgetsHub.tsx',
+        'src/pages/NotFound.tsx',
+      ];
+
+      pages.forEach((pageRel) => {
+        const content = fs.readFileSync(path.join(rootDir, pageRel), 'utf8');
+        expect(
+          content.includes('<h1') || content.includes('<motion.h1'),
+          `SEO Warning: Page "${pageRel}" is missing an <h1> tag!`
+        ).toBe(true);
+      });
+    });
+  });
 });

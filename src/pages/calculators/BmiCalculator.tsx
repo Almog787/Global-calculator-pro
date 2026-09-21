@@ -171,9 +171,9 @@ export default function BmiCalculator() {
 
         <div className="mb-8 flex justify-between items-start flex-col sm:flex-row gap-4">
           <div>
-            <h2 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-2">
+            <h1 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-2">
               {mode === 'standard' ? t.bmiTitle : modeLabels.reverse}
-            </h2>
+            </h1>
             <p className="text-stone-500 font-medium text-[14px] leading-relaxed max-w-lg">
               {mode === 'standard'
                 ? t.bmiExplanation
