@@ -13,9 +13,28 @@ describe('Embeddable Widgets Configuration & Code Generator Suite', () => {
   const languages = ['en', 'he', 'es', 'fr', 'ar'] as const;
 
   it('should provide a complete catalog of supported widgets', () => {
-    expect(AVAILABLE_WIDGETS.length).toBe(8);
+    expect(AVAILABLE_WIDGETS.length).toBe(18);
 
-    const expectedIds = ['mortgage', 'compound', 'salary', 'bmi', 'percentage', 'unit', 'tip', 'age'];
+    const expectedIds = [
+      'mortgage',
+      'compound',
+      'salary',
+      'bmi',
+      'percentage',
+      'unit',
+      'tip',
+      'age',
+      'z-score',
+      'linear-regression',
+      'quadratic',
+      'linear-system',
+      'base-converter',
+      'bitwise',
+      'triangle',
+      'circle-sector',
+      'matrix',
+      'complex-numbers'
+    ];
     const actualIds = AVAILABLE_WIDGETS.map(w => w.id);
     expect(actualIds).toEqual(expectedIds);
   });

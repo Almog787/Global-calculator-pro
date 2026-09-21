@@ -176,6 +176,216 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
     category: 'Personal Tools',
     icon: 'cake',
     defaultHeight: 580
+  },
+  {
+    id: 'z-score',
+    slug: 'calculators/z-score',
+    name: {
+      en: 'Z-Score & Normal Distribution Calculator',
+      he: 'מחשבון ציון תקן Z והתפלגות נורמלית',
+      es: 'Calculadora de Z-Score y Distribución Normal',
+      fr: 'Calculateur de Score Z et Loi Normale',
+      ar: 'حاسبة الدرجة المعيارية Z والتوزيع الطبيعي'
+    },
+    description: {
+      en: 'Compute standard normal Z-scores, percentiles, tail probabilities, and bell curves.',
+      he: 'חישוב ציון תקן Z, הסתברויות זנב, אחוזונים ותרשים עקומת פעמון גאוס אינטראקטיבי.',
+      es: 'Calcula puntuaciones Z, probabilidades acumuladas y campana de Gauss.',
+      fr: 'Calculez le score Z standardisé, les percentiles et la courbe de Gauss.',
+      ar: 'حساب الدرجة المعيارية Z، الاحتمالات التراكمية ومنحنى التوزيع الطبيعي.'
+    },
+    category: 'Statistics & Math',
+    icon: 'analytics',
+    defaultHeight: 640
+  },
+  {
+    id: 'linear-regression',
+    slug: 'calculators/linear-regression',
+    name: {
+      en: 'Linear Regression & Correlation Calculator',
+      he: 'מחשבון רגרסיה לינארית ומתאם פירסון',
+      es: 'Calculadora de Regresión Lineal y Correlación',
+      fr: 'Calculateur de Régression Linéaire et Corrélation',
+      ar: 'حاسبة الانحدار الخطي ومعامل الارتباط'
+    },
+    description: {
+      en: 'Calculate best-fit line y = mx + b, Pearson r, R-squared, and scatter plot trendline.',
+      he: 'מציאת קו מגמה y = mx + b, מקדם מתאם פירסון r, שונות מוסברת R² ותרשים פיזור.',
+      es: 'Calcula la recta y = mx + b, correlación de Pearson y gráfico de dispersión.',
+      fr: 'Trouvez la droite de régression, le coefficient de corrélation r et le nuage de points.',
+      ar: 'إيجاد معادلة خط الانحدار ومعامل ارتباط بيرسون ومخطط التشتت.'
+    },
+    category: 'Statistics & Math',
+    icon: 'show_chart',
+    defaultHeight: 660
+  },
+  {
+    id: 'quadratic',
+    slug: 'calculators/quadratic-equation',
+    name: {
+      en: 'Quadratic Equation Solver',
+      he: 'מחשבון משוואה ריבועית ופרבולה',
+      es: 'Calculadora de Ecuaciones Cuadráticas',
+      fr: 'Résolveur d\'Équations du Second Degré',
+      ar: 'حاسبة المعادلات التربيعية'
+    },
+    description: {
+      en: 'Solve quadratic equations ax² + bx + c = 0 with real/complex roots and vertex.',
+      he: 'פתרון משוואות ריבועיות עם שורשים ממשיים ומרוכבים, דיסקרימיננטה וקודקוד פרבולה.',
+      es: 'Halla raíces reales, complejas, vértice y discriminante.',
+      fr: 'Résolvez les équations ax² + bx + c = 0 avec racines et tracé du sommet.',
+      ar: 'حل المعادلات التربيعية مع إيجاد الجذور والمميز ورأس القطع المكافئ.'
+    },
+    category: 'Algebra & Math',
+    icon: 'function',
+    defaultHeight: 650
+  },
+  {
+    id: 'linear-system',
+    slug: 'calculators/linear-system',
+    name: {
+      en: 'Linear Equations System Solver',
+      he: 'מחשבון מערכת משוואות לינאריות',
+      es: 'Sistemas de Ecuaciones Lineales',
+      fr: 'Systèmes d\'Équations Linéaires',
+      ar: 'حاسبة أنظمة المعادلات الخطية'
+    },
+    description: {
+      en: 'Solve 2x2 simultaneous linear systems using Cramer\'s rule and line intersections.',
+      he: 'פתרון מערכת שתי משוואות בשני נעלמים בשיטת קרמר ומציאת נקודת חיתוך.',
+      es: 'Resuelve sistemas 2x2 con determinantes y punto de intersección.',
+      fr: 'Résolvez les systèmes à 2 inconnues avec la règle de Cramer.',
+      ar: 'حل معادلتين خطيتين بمجهولين بطريقة كرامر مع الرسم البياني.'
+    },
+    category: 'Algebra & Math',
+    icon: 'layers',
+    defaultHeight: 650
+  },
+  {
+    id: 'base-converter',
+    slug: 'calculators/base-converter',
+    name: {
+      en: 'Binary, Hex & Base Converter',
+      he: 'ממיר בסיסים: בינארי, הקסה ועשרוני',
+      es: 'Conversor de Bases Numéricas',
+      fr: 'Convertisseur de Bases Numériques',
+      ar: 'محول أنظمة العد الثنائية والسداسية'
+    },
+    description: {
+      en: 'Convert numbers across Binary, Octal, Decimal, Hexadecimal, and custom bases.',
+      he: 'המרת מספרים מהירה בין בסיס 2, 8, 10, 16 וכל בסיס מותאם אישית.',
+      es: 'Convierte números entre bases 2, 8, 10, 16 y personalizadas.',
+      fr: 'Convertissez entre binaire, octal, décimal et hexadécimal.',
+      ar: 'تحويل الأرقام بين النظام الثنائي والعشري والسداسي عشر.'
+    },
+    category: 'Computer Science',
+    icon: 'binary',
+    defaultHeight: 600
+  },
+  {
+    id: 'bitwise',
+    slug: 'calculators/bitwise-calculator',
+    name: {
+      en: 'Bitwise Logic Calculator',
+      he: 'מחשבון פעולות סיביות ולוגיקה',
+      es: 'Calculadora Bitwise y Lógica',
+      fr: 'Calculateur Bitwise et Logique',
+      ar: 'حاسبة العمليات المنطقية على البتات'
+    },
+    description: {
+      en: 'Evaluate AND, OR, XOR, NOT and Bit Shifts on 8, 16, 32-bit integers.',
+      he: 'חישוב פעולות סיביות AND, OR, XOR, NOT והזזות סיביות בינאריות.',
+      es: 'Calcula compuertas lógicas bit a bit y desplazamientos binarios.',
+      fr: 'Évaluez les opérations bit à bit et décalages sur entiers.',
+      ar: 'تقييم العمليات المنطقية على البتات مع جدول مقارنة ثنائي.'
+    },
+    category: 'Computer Science',
+    icon: 'cpu',
+    defaultHeight: 620
+  },
+  {
+    id: 'triangle',
+    slug: 'calculators/triangle-solver',
+    name: {
+      en: 'Triangle Solver',
+      he: 'מחשבון משולשים וטריגונומטריה',
+      es: 'Calculadora de Triángulos',
+      fr: 'Résolveur de Triangles',
+      ar: 'حاسبة حل المثلثات'
+    },
+    description: {
+      en: 'Solve sides, angles, area via Heron\'s formula, inradius and circumradius.',
+      he: 'חישוב זוויות, צלעות, שטח לפי הרון ורדיוס מעגל חוסם וחסום.',
+      es: 'Halla lados, ángulos, área con fórmula de Herón y radios.',
+      fr: 'Résolvez les triangles avec angles, formule de Héron et rayons.',
+      ar: 'حساب زوايا وأضلاع ومساحة المثلث مع الدائرة المحيطة والداخلية.'
+    },
+    category: 'Geometry & Math',
+    icon: 'change_history',
+    defaultHeight: 650
+  },
+  {
+    id: 'circle-sector',
+    slug: 'calculators/circle-sector',
+    name: {
+      en: 'Circle Sector & Arc Calculator',
+      he: 'מחשבון גזרה וקשת במעגל',
+      es: 'Sector Circular y Longitud de Arco',
+      fr: 'Secteur Circulaire et Longueur d\'Arc',
+      ar: 'حاسبة القطاع الدائري وطول القوس'
+    },
+    description: {
+      en: 'Calculate arc length, sector area, chord length, and segment area.',
+      he: 'חישוב אורך קשת, שטח גזרה, אורך מיתר ושטח מקטע מעגלי מרדיוס וזווית.',
+      es: 'Calcula arco, área del sector circular, cuerda y segmento.',
+      fr: 'Calculez longueur d\'arc, aire du secteur, corde et segment.',
+      ar: 'حساب طول القوس ومساحة القطاع والوتر والمقطع الدائري.'
+    },
+    category: 'Geometry & Math',
+    icon: 'pie_chart',
+    defaultHeight: 650
+  },
+  {
+    id: 'matrix',
+    slug: 'calculators/matrix-calculator',
+    name: {
+      en: 'Matrix Calculator & Linear Algebra',
+      he: 'מחשבון מטריצות ואלגברה לינארית',
+      es: 'Calculadora de Matrices',
+      fr: 'Calculateur de Matrices',
+      ar: 'حاسبة المصفوفات والجبر الخطي'
+    },
+    description: {
+      en: 'Determinant, inverse matrix, transpose, rank, trace, and matrix multiplication.',
+      he: 'דטרמיננטה, מטריצה הופכית, שחלוף, דרגה, עקבה וכפל מטריצות.',
+      es: 'Determinante, inversa, traspuesta, rango, traza y producto matricial.',
+      fr: 'Déterminant, inverse, transposée, rang, trace et produit matriciel.',
+      ar: 'المحدد والمعكوس والمنقول والرتبة والأثر وضرب المصفوفات.'
+    },
+    category: 'Linear Algebra & Math',
+    icon: 'grid_on',
+    defaultHeight: 680
+  },
+  {
+    id: 'complex-numbers',
+    slug: 'calculators/complex-numbers',
+    name: {
+      en: 'Complex Numbers Calculator',
+      he: 'מחשבון מספרים מרוכבים',
+      es: 'Calculadora de Números Complejos',
+      fr: 'Calculateur de Nombres Complexes',
+      ar: 'حاسبة الأعداد المركبة'
+    },
+    description: {
+      en: 'Arithmetic, polar & Euler forms, modulus, argument, and Argand plane diagram.',
+      he: 'פעולות חשבון, הצגה קוטבית ואוילר, מודולוס, ארגומנט ומישור גאוס.',
+      es: 'Aritmética, forma polar y Euler, módulo, argumento y plano complejo.',
+      fr: 'Formes polaire et Euler, module, argument et plan complexe.',
+      ar: 'العمليات الحسابية والصيغة القطبية وأويلر والمقياس والمستوى المركب.'
+    },
+    category: 'Advanced Math',
+    icon: 'compass',
+    defaultHeight: 680
   }
 ];
 
