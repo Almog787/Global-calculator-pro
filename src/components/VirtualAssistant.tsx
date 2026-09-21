@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useI18n } from "../contexts/i18n";
 import { calculators, getCalculatorTitle, getCalculatorDescription } from "../data/calculators";
 import { QuizOption, AssistantTip } from "../types/assistant";
+import Magnet from "./Magnet";
 
 const ThreeCharacterCanvas = React.lazy(() => import("./ThreeCharacterCanvas"));
 
@@ -792,42 +793,44 @@ export default function VirtualAssistant() {
         )}
 
         {/* The Animated 3D Character Button */}
-        <button
-          onClick={() => {
-            setIsOpen((prev) => !prev);
-            triggerSuccessJump();
-          }}
-          onPointerDown={(e) => {
-            e.currentTarget.style.transform = "scale(0.9) scaleY(0.85) scaleX(1.1)"; // Squash
-          }}
-          onPointerUp={(e) => {
-            e.currentTarget.style.transform = ""; // Revert stretch
-          }}
-          onPointerLeave={(e) => {
-            e.currentTarget.style.transform = "";
-          }}
-          className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-slate-950 via-slate-900 to-cyan-950 text-white shadow-[0_10px_30px_rgba(6,182,212,0.4)] hover:shadow-[0_15px_40px_rgba(6,182,212,0.6)] transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] flex items-center justify-center relative border-2 border-cyan-400 cursor-pointer overflow-hidden transform hover:-translate-y-1 ${
-            isOpen ? "ring-4 ring-cyan-400/50 shadow-cyan-500/60" : ""
-          }`}
-          title={i18nTexts.title}
-          aria-label={i18nTexts.title}
-        >
-          {/* Luminous Glow Behind Character */}
-          <div className="absolute inset-0 bg-radial from-cyan-400/40 via-sky-500/20 to-transparent pointer-events-none"></div>
+        <Magnet padding={35} magnetStrength={3}>
+          <button
+            onClick={() => {
+              setIsOpen((prev) => !prev);
+              triggerSuccessJump();
+            }}
+            onPointerDown={(e) => {
+              e.currentTarget.style.transform = "scale(0.9) scaleY(0.85) scaleX(1.1)"; // Squash
+            }}
+            onPointerUp={(e) => {
+              e.currentTarget.style.transform = ""; // Revert stretch
+            }}
+            onPointerLeave={(e) => {
+              e.currentTarget.style.transform = "";
+            }}
+            className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-slate-950 via-slate-900 to-cyan-950 text-white shadow-[0_10px_30px_rgba(6,182,212,0.4)] hover:shadow-[0_15px_40px_rgba(6,182,212,0.6)] transition-all duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] flex items-center justify-center relative border-2 border-cyan-400 cursor-pointer overflow-hidden transform hover:-translate-y-1 ${
+              isOpen ? "ring-4 ring-cyan-400/50 shadow-cyan-500/60" : ""
+            }`}
+            title={i18nTexts.title}
+            aria-label={i18nTexts.title}
+          >
+            {/* Luminous Glow Behind Character */}
+            <div className="absolute inset-0 bg-radial from-cyan-400/40 via-sky-500/20 to-transparent pointer-events-none"></div>
 
-          {/* 3D Character Canvas */}
-          <Suspense fallback={<img src="/icon-192.jpg" alt="Calc-E Assistant" className="w-10 h-10 object-cover rounded-full shadow-inner pointer-events-none" />}>
-            <ThreeCharacterCanvas
-              state={assistantState}
-              mousePos={normalizedMousePos}
-              scrollVelocity={scrollVelocity}
-              message={assistantMessage}
-              width={64}
-              height={64}
-              className="pointer-events-none block"
-            />
-          </Suspense>
-        </button>
+            {/* 3D Character Canvas */}
+            <Suspense fallback={<img src="/icon-192.jpg" alt="Calc-E Assistant" className="w-10 h-10 object-cover rounded-full shadow-inner pointer-events-none" />}>
+              <ThreeCharacterCanvas
+                state={assistantState}
+                mousePos={normalizedMousePos}
+                scrollVelocity={scrollVelocity}
+                message={assistantMessage}
+                width={64}
+                height={64}
+                className="pointer-events-none block"
+              />
+            </Suspense>
+          </button>
+        </Magnet>
       </div>
     </div>
   );

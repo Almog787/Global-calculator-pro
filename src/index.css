@@ -48,7 +48,31 @@
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Custom Motion & Spring Animations for Calc-E */
+/* Custom Motion & Spring Animations for Calc-E & React Bits */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    currentColor 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    currentColor 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s infinite linear;
+}
+
 @keyframes popInSpring {
   0% { transform: scale(0); opacity: 0; }
   60% { transform: scale(1.08); opacity: 1; }
@@ -69,9 +93,29 @@
   animation: slideUpFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+@keyframes starMovementBottom {
+  0% { transform: translate(0%, 0%); opacity: 1; }
+  100% { transform: translate(-100%, 0%); opacity: 0; }
+}
+
+@keyframes starMovementTop {
+  0% { transform: translate(0%, 0%); opacity: 1; }
+  100% { transform: translate(100%, 0%); opacity: 0; }
+}
+
+.animate-star-movement-bottom {
+  animation: starMovementBottom linear infinite alternate;
+}
+
+.animate-star-movement-top {
+  animation: starMovementTop linear infinite alternate;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-pop-in-spring,
-  .animate-slide-up-fade {
+  .animate-slide-up-fade,
+  .animate-star-movement-bottom,
+  .animate-star-movement-top {
     animation: none !important;
     transform: none !important;
     opacity: 1 !important;

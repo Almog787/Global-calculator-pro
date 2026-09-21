@@ -23,6 +23,7 @@ import { MORTGAGE_REGIMES, MortgageRegimeId } from '../../lib/regimes/mortgageRe
 import PopularScenarios from '../../components/PopularScenarios';
 import { POPULAR_MORTGAGE_SCENARIOS, getProgrammaticFaqs } from '../../lib/seo/programmaticScenarios';
 import AnimatedNumber from '../../components/AnimatedNumber';
+import ShinyText from '../../components/ShinyText';
 import { trackCalculation, trackExcelExport, trackScenarioComparison } from '../../lib/analytics';
 
 
@@ -683,13 +684,16 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
       {/* Sticky Results Dashboard */}
       <div className="w-full lg:w-[420px] shrink-0 lg:sticky lg:top-24 bg-stone-900 rounded-3xl p-8 shadow-2xl border border-stone-800 text-white flex flex-col">
         <div className="mb-8">
-          <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block mb-3">
-            {mode === 'standard'
-              ? t.monthlyPayment
-              : mode === 'reverse'
-              ? (lang === 'he' ? 'סכום הלוואה מקסימלי' : lang === 'es' ? 'Monto Máximo' : lang === 'fr' ? 'Capacité Maximale' : lang === 'ar' ? 'أقصى قرض' : 'Maximum Borrowing Power')
-              : (lang === 'he' ? 'הפרש בהחזר חודשי' : 'Monthly Payment Diff')}
-          </span>
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block">
+              {mode === 'standard'
+                ? t.monthlyPayment
+                : mode === 'reverse'
+                ? (lang === 'he' ? 'סכום הלוואה מקסימלי' : lang === 'es' ? 'Monto Máximo' : lang === 'fr' ? 'Capacité Maximale' : lang === 'ar' ? 'أقصى قرض' : 'Maximum Borrowing Power')
+                : (lang === 'he' ? 'הפרש בהחזר חודשי' : 'Monthly Payment Diff')}
+            </span>
+            <ShinyText text="2026 PRIME" speed={3} className="text-[10px] text-blue-400 font-mono" />
+          </div>
           <div className="text-4xl sm:text-5xl font-black text-white tracking-tighter" dir="ltr">
             {mode === 'compare' ? (
               `${comparisonResult.diffMonthly >= 0 ? '+' : ''}${currencyFormat.format(comparisonResult.diffMonthly)}`

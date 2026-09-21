@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useI18n } from '../contexts/i18n';
 import { ProgrammaticScenario } from '../lib/seo/programmaticScenarios';
 import { TrendingUp, ArrowRight, ChevronDown, ChevronUp, Sparkles, CheckCircle2 } from 'lucide-react';
+import SpotlightCard from './SpotlightCard';
 
 interface PopularScenariosProps {
   title?: string;
@@ -74,13 +75,14 @@ export default function PopularScenarios({
           const isActive = currentPrincipal !== undefined && currentPrincipal === scenario.params.principal;
 
           return (
-            <div
+            <SpotlightCard
               key={scenario.id}
               className={`p-5 rounded-2xl border transition-all flex flex-col justify-between ${
                 isActive
                   ? 'border-primary bg-primary/5 ring-2 ring-primary/20 shadow-xs'
                   : 'border-border-subtle bg-surface-container-low hover:border-primary/40 hover:bg-surface hover:shadow-xs'
               }`}
+              spotlightColor="rgba(0, 107, 91, 0.12)"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
@@ -169,7 +171,7 @@ export default function PopularScenarios({
                   </div>
                 );
               })()}
-            </div>
+            </SpotlightCard>
           );
         })}
       </div>

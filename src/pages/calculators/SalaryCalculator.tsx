@@ -20,6 +20,8 @@ import ScenarioPresets from '../../components/ScenarioPresets';
 import { Link } from 'react-router-dom';
 import { useCalculatorState } from '../../hooks/useCalculatorState';
 import ShareActions from '../../components/ShareActions';
+import CountUp from '../../components/CountUp';
+import ShinyText from '../../components/ShinyText';
 import { calculateGrossFromNet } from '../../lib/math/finance';
 
 ChartJS.register(
@@ -337,11 +339,18 @@ export default function SalaryCalculator() {
       <div className="w-full lg:w-[420px] shrink-0 lg:sticky lg:top-24 flex flex-col gap-6">
         <div className="bg-stone-900 rounded-3xl p-8 shadow-2xl border border-stone-800 text-white flex flex-col">
           <div className="mb-8">
-            <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block mb-3">
-              {mode === 'gross-to-net' ? t.yearly : (lang === 'he' ? 'שכר ברוטו חודשי נדרש' : 'Required Gross Monthly')}
-            </span>
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-[11px] tracking-widest uppercase font-bold text-stone-400 block">
+                {mode === 'gross-to-net' ? t.yearly : (lang === 'he' ? 'שכר ברוטו חודשי נדרש' : 'Required Gross Monthly')}
+              </span>
+              <ShinyText text="2026 LIVE" speed={3} className="text-[10px] text-emerald-400 font-mono" />
+            </div>
             <div className="text-4xl sm:text-5xl font-black text-white tracking-tighter" dir="ltr">
-              {currencyFormat.format(mode === 'gross-to-net' ? results.yearly : results.monthly)}
+              <CountUp
+                to={Math.round(mode === 'gross-to-net' ? results.yearly : results.monthly)}
+                prefix={lang === 'he' ? '₪ ' : (lang === 'fr' || lang === 'es' ? '€ ' : '$ ')}
+                duration={0.6}
+              />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4 mb-8">
@@ -350,7 +359,11 @@ export default function SalaryCalculator() {
                   {mode === 'gross-to-net' ? t.monthly : (lang === 'he' ? 'שכר ברוטו שנתי' : 'Gross Yearly')}
                 </span>
                 <div className="text-lg font-bold text-blue-400" dir="ltr">
-                  {currencyFormat.format(mode === 'gross-to-net' ? results.monthly : results.yearly)}
+                  <CountUp
+                    to={Math.round(mode === 'gross-to-net' ? results.monthly : results.yearly)}
+                    prefix={lang === 'he' ? '₪ ' : (lang === 'fr' || lang === 'es' ? '€ ' : '$ ')}
+                    duration={0.6}
+                  />
                 </div>
               </div>
               <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
@@ -358,7 +371,11 @@ export default function SalaryCalculator() {
                   {lang === 'he' ? 'נטו חודשי' : 'Net Monthly'}
                 </span>
                 <div className="text-lg font-bold text-emerald-400" dir="ltr">
-                  {currencyFormat.format(results.netMonthly)}
+                  <CountUp
+                    to={Math.round(results.netMonthly)}
+                    prefix={lang === 'he' ? '₪ ' : (lang === 'fr' || lang === 'es' ? '€ ' : '$ ')}
+                    duration={0.6}
+                  />
                 </div>
               </div>
           </div>

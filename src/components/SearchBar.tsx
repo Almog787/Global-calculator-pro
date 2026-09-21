@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { searchCalculators, getCalculatorTitle, getCalculatorDescription, CalculatorMeta } from "../data/calculators";
 import { useI18n } from "../contexts/i18n";
+import DecryptedText from "./DecryptedText";
 
 interface SearchBarProps {
   placeholder?: string;
@@ -16,6 +17,26 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { t, lang } = useI18n();
+
+  const isRtl = t.dir === 'rtl';
+
+  const trendingTags = isRtl
+    ? [
+        { label: 'משכנתא', path: '/mortgage-calculator' },
+        { label: 'ברוטו לנטו', path: '/salary-calculator' },
+        { label: 'עלות מעסיק', path: '/employer-cost' },
+        { label: 'אופציות RSU', path: '/stock-options-rsu' },
+        { label: 'פיצויי פיטורים', path: '/severance-pay' },
+        { label: 'מע"מ 18%', path: '/vat' },
+      ]
+    : [
+        { label: 'Mortgage', path: '/mortgage-calculator' },
+        { label: 'Salary Gross-Net', path: '/salary-calculator' },
+        { label: 'Employer Cost', path: '/employer-cost' },
+        { label: 'RSU & Options', path: '/stock-options-rsu' },
+        { label: 'Severance Pay', path: '/severance-pay' },
+        { label: 'VAT 18%', path: '/vat' },
+      ];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -43,20 +64,20 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
     navigate(`/${lang}${path}`);
   };
 
-  const defaultPlaceholder = placeholder || (t.dir === 'rtl' ? 'חיפוש מחשבון...' : 'Search calculator...');
+  const defaultPlaceholder = placeholder || (isRtl ? 'חיפוש מחשבון...' : 'Search calculator...');
 
   if (isHero) {
     return (
       <div className="relative w-full" ref={ref}>
-        <div className="w-full relative input-focus-ring bg-surface-container-lowest rounded-xl border border-border-subtle transition-all duration-300 shadow-sm">
-          <span className="material-symbols-outlined absolute right-4 rtl:right-4 rtl:left-auto left-auto ltr:left-4 ltr:right-auto top-1/2 -translate-y-1/2 text-primary-container text-2xl pointer-events-none">
+        <div className="w-full relative input-focus-ring bg-surface-container-lowest rounded-2xl border border-border-subtle transition-all duration-300 shadow-md hover:shadow-lg focus-within:shadow-lg">
+          <span className="material-symbols-outlined absolute right-4 rtl:right-4 rtl:left-auto left-auto ltr:left-4 ltr:right-auto top-1/2 -translate-y-1/2 text-secondary text-2xl pointer-events-none">
             search
           </span>
           <input
             id="hero-search-input"
             aria-label={defaultPlaceholder}
             type="text"
-            className="w-full bg-transparent border-none py-4 pr-14 pl-14 rtl:pr-14 rtl:pl-4 ltr:pl-14 ltr:pr-4 text-lg text-on-surface placeholder:text-text-muted focus:outline-none focus:ring-0 rounded-xl"
+            className="w-full bg-transparent border-none py-4 pr-14 pl-14 rtl:pr-14 rtl:pl-4 ltr:pl-14 ltr:pr-4 text-base sm:text-lg text-on-surface placeholder:text-text-muted focus:outline-none focus:ring-0 rounded-2xl"
             placeholder={defaultPlaceholder}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -64,6 +85,28 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
               if (query.trim().length > 1) setIsOpen(true);
             }}
           />
+        </div>
+
+        {/* Quick Search Chips */}
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-3 text-xs sm:text-sm text-text-muted">
+          <span className="font-medium text-on-surface-variant flex items-center gap-1">
+            <span className="material-symbols-outlined text-[16px] text-secondary">trending_up</span>
+            <DecryptedText
+              text={isRtl ? 'חיפושים נפוצים:' : 'Popular searches:'}
+              speed={30}
+              animateOn="mount"
+              className="font-medium"
+            />
+          </span>
+          {trendingTags.map((tag) => (
+            <button
+              key={tag.path}
+              onClick={() => handleSelect(tag.path)}
+              className="px-2.5 py-1 rounded-full bg-surface-container-low hover:bg-secondary/10 hover:text-secondary border border-border-subtle/80 transition-all text-xs font-medium cursor-pointer"
+            >
+              {tag.label}
+            </button>
+          ))}
         </div>
 
         {isOpen && (

@@ -2,6 +2,8 @@ import React, { useDeferredValue } from 'react';
 import { useUrlState } from '../../hooks/useUrlState';
 import { useI18n } from '../../contexts/i18n';
 import SEO from '../../components/SEO';
+import CountUp from '../../components/CountUp';
+import ShinyText from '../../components/ShinyText';
 import { calculateEmployerCost } from '../../lib/math/finance';
 import { trackCalculation } from '../../lib/analytics';
 import {
@@ -454,11 +456,14 @@ export default function EmployerCost() {
         <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
           <div className="bg-stone-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-stone-800 space-y-6">
             <div>
-              <span className="text-xs uppercase font-bold tracking-wider text-stone-400 block mb-1">
-                {t.totalEmployerCost}
-              </span>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs uppercase font-bold tracking-wider text-stone-400 block">
+                  {t.totalEmployerCost}
+                </span>
+                <ShinyText text="2026 RATES" speed={3} className="text-[10px] text-indigo-400 font-mono" />
+              </div>
               <div className="text-3xl sm:text-4xl font-black text-indigo-400" dir="ltr">
-                {currencyFormat.format(results.totalEmployerCost)}
+                <CountUp to={Math.round(results.totalEmployerCost)} prefix="₪ " duration={0.6} />
               </div>
               <span className="text-xs text-stone-400 block mt-1">
                 ({results.employerCostPercentage}% משכר הברוטו)
@@ -471,7 +476,7 @@ export default function EmployerCost() {
                 {t.netTakeHome}
               </span>
               <div className="text-3xl font-black text-white" dir="ltr">
-                {currencyFormat.format(results.netSalary)}
+                <CountUp to={Math.round(results.netSalary)} prefix="₪ " duration={0.6} />
               </div>
               <span className="text-xs text-emerald-200/70 block mt-1">
                 ({results.netPercentageOfGross}% מהברוטו נשאר בכיס)

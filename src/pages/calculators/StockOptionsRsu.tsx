@@ -2,6 +2,8 @@ import React, { useDeferredValue } from 'react';
 import { useUrlState } from '../../hooks/useUrlState';
 import { useI18n } from '../../contexts/i18n';
 import SEO from '../../components/SEO';
+import CountUp from '../../components/CountUp';
+import ShinyText from '../../components/ShinyText';
 import { calculateStockOptionsRsu } from '../../lib/math/finance';
 import { trackCalculation } from '../../lib/analytics';
 import { 
@@ -549,7 +551,7 @@ export default function StockOptionsRsu() {
               <div className="bg-stone-800/60 p-4 rounded-2xl border border-stone-800">
                 <span className="text-xs text-stone-400 block mb-1">{t.vestedShares}</span>
                 <span className="text-2xl font-black text-blue-400">
-                  {results.vestedShares.toLocaleString()}
+                  <CountUp to={Math.round(results.vestedShares)} duration={0.6} />
                 </span>
                 <span className="text-[11px] text-stone-500 block mt-0.5">
                   out of {results.totalShares.toLocaleString()} total
@@ -559,22 +561,25 @@ export default function StockOptionsRsu() {
               <div className="bg-stone-800/60 p-4 rounded-2xl border border-stone-800">
                 <span className="text-xs text-stone-400 block mb-1">{t.vestedNetValue}</span>
                 <span className="text-2xl font-black text-emerald-400" dir="ltr">
-                  {currencyFormat.format(results.netProceedsCurrent)}
+                  <CountUp to={Math.round(results.netProceedsCurrent)} prefix="$ " duration={0.6} />
                 </span>
                 <span className="text-[11px] text-stone-500 block mt-0.5">
-                  Gross: {currencyFormat.format(results.grossProceedsCurrent)}
+                  Gross: ${Math.round(results.grossProceedsCurrent).toLocaleString()}
                 </span>
               </div>
             </div>
 
             {/* Big Exit Projection */}
             <div className="p-5 rounded-2xl bg-gradient-to-br from-blue-950/60 to-emerald-950/60 border border-blue-900/40">
-              <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">
-                <Award className="w-4 h-4" />
-                {t.netExitValue}
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                  <Award className="w-4 h-4" />
+                  {t.netExitValue}
+                </div>
+                <ShinyText text="PROJECTED EXIT" speed={3} className="text-[10px] text-emerald-300 font-mono" />
               </div>
               <div className="text-3xl sm:text-4xl font-black text-white" dir="ltr">
-                {currencyFormat.format(results.netProceedsExit)}
+                <CountUp to={Math.round(results.netProceedsExit)} prefix="$ " duration={0.6} />
               </div>
               <div className="flex justify-between items-center text-xs text-stone-300 mt-3 pt-3 border-t border-white/10">
                 <span>{t.totalExitValue}: {currencyFormat.format(results.grossProceedsExit)}</span>

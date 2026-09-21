@@ -27,6 +27,7 @@ import SearchBar from './components/SearchBar';
 import SkeletonLoader from './components/SkeletonLoader';
 import { PWAInstallButton } from './components/PWAInstallButton';
 import { OfflineIndicator } from './components/OfflineIndicator';
+import ClickSpark from './components/ClickSpark';
 import { getCanonicalRedirect } from './utils/legacyRedirects';
 import { initWebMCP } from './lib/webmcp';
 import { trackPageView, trackLanguageChange } from './lib/analytics';
@@ -147,8 +148,9 @@ function App() {
   const isEmbed = new URLSearchParams(location.search).get('embed') === 'true';
 
   return (
-    <div className={`min-h-screen bg-surface-bg text-on-surface antialiased flex flex-col font-body-md ${t.dir === 'rtl' ? 'rtl' : 'ltr'} ${isEmbed ? 'is-embed-mode' : ''}`}>
-      {/* TopNavBar */}
+    <ClickSpark sparkColor="rgba(0, 107, 91, 0.7)" sparkCount={7} sparkRadius={22} duration={350}>
+      <div className={`min-h-screen bg-surface-bg text-on-surface antialiased flex flex-col font-body-md ${t.dir === 'rtl' ? 'rtl' : 'ltr'} ${isEmbed ? 'is-embed-mode' : ''}`}>
+        {/* TopNavBar */}
       {!isEmbed && (
         <nav className="bg-surface shadow-xs top-0 sticky z-50 border-b border-border-subtle">
         <div className="flex justify-between items-center px-4 sm:px-margin-desktop py-4 w-full max-w-container-max mx-auto">
@@ -352,6 +354,7 @@ function App() {
         </div>
       )}
     </div>
+    </ClickSpark>
   );
 }
 
