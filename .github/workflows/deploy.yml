@@ -74,3 +74,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Notify Bing & IndexNow of Deployment
+        run: npm run indexnow
+        continue-on-error: true

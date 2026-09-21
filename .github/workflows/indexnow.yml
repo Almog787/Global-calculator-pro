@@ -1,0 +1,29 @@
+name: Bing & IndexNow Submission
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Run every Monday at 06:00 UTC to re-index all updated pages
+    - cron: '0 6 * * 1'
+
+jobs:
+  indexnow-submission:
+    name: Submit URLs to Bing & IndexNow API
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build site (generates sitemap and static routes)
+        run: npm run build
+
+      - name: Submit URLs to IndexNow (Bing, Yandex, Seznam, Naver)
+        run: npm run indexnow
