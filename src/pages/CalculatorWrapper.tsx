@@ -32,10 +32,16 @@ export default function CalculatorWrapper() {
   }
 
   const currentPath = `/calculators/${slug}`;
-  const calcData = calculators.find(c => c.path === currentPath);
+  const calcData = calculators.find(c => 
+    c.path === currentPath || 
+    c.path === `/${slug}` || 
+    c.id === slug || 
+    c.id === cleanSlug ||
+    c.path.replace(/^\/calculators\//, '').replace(/^\//, '') === cleanSlug
+  );
   const title = calcData ? getCalculatorTitle(calcData, t, lang) : (slug || 'Calculator');
   const description = calcData ? getCalculatorDescription(calcData, t, lang) : 'Free online calculator tool';
-  const canonicalUrl = `/${lang}${currentPath}`;
+  const canonicalUrl = `/${lang}${calcData?.path || currentPath}`;
 
   return (
     <div className="w-full">

@@ -24,18 +24,18 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
     ? [
         { label: 'משכנתא', path: '/mortgage-calculator' },
         { label: 'ברוטו לנטו', path: '/salary-calculator' },
-        { label: 'עלות מעסיק', path: '/employer-cost' },
-        { label: 'אופציות RSU', path: '/stock-options-rsu' },
-        { label: 'פיצויי פיטורים', path: '/severance-pay' },
-        { label: 'מע"מ 18%', path: '/vat' },
+        { label: 'עלות מעסיק', path: '/calculators/employer-cost' },
+        { label: 'אופציות RSU', path: '/calculators/stock-options-rsu' },
+        { label: 'פיצויי פיטורים', path: '/calculators/severance-pay' },
+        { label: 'מע"מ 18%', path: '/calculators/vat' },
       ]
     : [
         { label: 'Mortgage', path: '/mortgage-calculator' },
         { label: 'Salary Gross-Net', path: '/salary-calculator' },
-        { label: 'Employer Cost', path: '/employer-cost' },
-        { label: 'RSU & Options', path: '/stock-options-rsu' },
-        { label: 'Severance Pay', path: '/severance-pay' },
-        { label: 'VAT 18%', path: '/vat' },
+        { label: 'Employer Cost', path: '/calculators/employer-cost' },
+        { label: 'RSU & Options', path: '/calculators/stock-options-rsu' },
+        { label: 'Severance Pay', path: '/calculators/severance-pay' },
+        { label: 'VAT 18%', path: '/calculators/vat' },
       ];
 
   useEffect(() => {

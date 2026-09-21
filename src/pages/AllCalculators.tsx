@@ -9,7 +9,6 @@ import CountUp from "../components/CountUp";
 import SpotlightCard from "../components/SpotlightCard";
 import Magnet from "../components/Magnet";
 import Squares from "../components/Squares";
-import RotatingText from "../components/RotatingText";
 import { useI18n } from "../contexts/i18n";
 
 export default function AllCalculators() {
@@ -350,20 +349,51 @@ export default function AllCalculators() {
                 <SearchBar isHero placeholder={currText.heroSearchPlaceholder} />
               </div>
               
-              {/* Dynamic Search Suggestions with RotatingText */}
-              <div className="mt-4 flex flex-wrap items-center justify-center ltr:lg:justify-start rtl:lg:justify-start gap-2 text-xs sm:text-sm text-text-muted">
-                <span className="font-semibold text-secondary">{isRtl ? 'חיפושים נפוצים:' : 'Popular:'}</span>
-                <RotatingText
-                  texts={
-                    isRtl
-                      ? ['חישוב שכר נטו', 'החזר משכנתא חודשי', 'ריבית דריבית וחיסכון', 'אופציות ו-RSU', 'פיצויי פיטורין', 'מס רכישה ושבח']
-                      : ['Net Salary Take-Home', 'Monthly Mortgage Payment', 'Compound Interest Growth', 'Stock Options & RSU', 'Severance Pay', 'Real Estate Cap Rate']
-                  }
-                  rotationInterval={2800}
-                  className="font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-lg border border-primary/20"
-                  elementClassName="text-primary-container"
-                />
+              {/* Dynamic Interactive Search Suggestion Chips */}
+              <div className="mt-4 flex flex-wrap items-center justify-center ltr:lg:justify-start rtl:lg:justify-start gap-1.5 sm:gap-2 text-xs sm:text-sm text-text-muted">
+                <span className="font-bold text-secondary text-xs me-1">{isRtl ? 'חיפושים נפוצים:' : 'Popular:'}</span>
+                {[
+                  {
+                    label: isRtl ? 'אופציות ו-RSU' : 'Stock Options & RSU',
+                    path: `/${lang}/calculators/stock-options-rsu`,
+                    featured: true,
+                  },
+                  {
+                    label: isRtl ? 'שכר נטו' : 'Net Salary',
+                    path: `/${lang}/salary-calculator`,
+                  },
+                  {
+                    label: isRtl ? 'משכנתא' : 'Mortgage',
+                    path: `/${lang}/mortgage-calculator`,
+                  },
+                  {
+                    label: isRtl ? 'ריבית דריבית' : 'Compound Interest',
+                    path: `/${lang}/compound-interest`,
+                  },
+                  {
+                    label: isRtl ? 'פיצויי פיטורין' : 'Severance Pay',
+                    path: `/${lang}/calculators/severance-pay`,
+                  },
+                  {
+                    label: isRtl ? 'מס רכישה ושבח' : 'Purchase Tax',
+                    path: `/${lang}/calculators/purchase-appreciation-tax`,
+                  },
+                ].map((chip) => (
+                  <Link
+                    key={chip.path}
+                    to={chip.path}
+                    className={`inline-flex items-center gap-1 font-bold px-2.5 py-1 rounded-lg border text-xs transition-all duration-200 active:scale-95 ${
+                      chip.featured
+                        ? 'bg-teal-500/15 border-teal-500/40 text-teal-700 dark:text-teal-300 hover:bg-teal-500/25 hover:border-teal-500/60 shadow-xs'
+                        : 'bg-surface-container-low border-border-subtle/70 text-on-surface-variant hover:text-primary hover:border-primary/40 hover:bg-primary/5'
+                    }`}
+                  >
+                    <span>{chip.label}</span>
+                    <span className="material-symbols-outlined text-[12px] opacity-70">north_west</span>
+                  </Link>
+                ))}
               </div>
+
             </div>
 
             {/* Trust Badges */}

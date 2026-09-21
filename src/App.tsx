@@ -412,6 +412,7 @@ function LocalizedRoutes() {
       <Route path="about-us" element={<Navigate to="../about" replace />} />
       <Route path="suggest" element={<SuggestFeature />} />
       <Route path="widgets" element={<WidgetsHub />} />
+      <Route path=":slug" element={<CalculatorWrapper />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
