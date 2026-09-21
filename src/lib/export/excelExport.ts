@@ -1,5 +1,31 @@
 import * as XLSX from 'xlsx';
 
+/**
+ * Sanitizes any cell value to prevent CSV / Formula Injection (CWE-1236).
+ * If a string begins with dangerous formula trigger characters (=, +, -, @, |, \t, \r),
+ * it is safely prepended with a single quote (') so spreadsheet engines treat it as plain text.
+ */
+export function sanitizeExcelCell<T>(value: T): T {
+  if (typeof value !== 'string') return value;
+  const trimmed = value.trimStart();
+  if (
+    trimmed.startsWith('=') ||
+    trimmed.startsWith('+') ||
+    trimmed.startsWith('-') ||
+    trimmed.startsWith('@') ||
+    trimmed.startsWith('|') ||
+    trimmed.startsWith('\t') ||
+    trimmed.startsWith('\r')
+  ) {
+    return `'${value}` as unknown as T;
+  }
+  return value;
+}
+
+export function sanitizeExcelRows(rows: (string | number | boolean | null | undefined)[][]): (string | number | boolean | null | undefined)[][] {
+  return rows.map(row => row.map(cell => sanitizeExcelCell(cell)));
+}
+
 export interface ExportMortgageOptions {
   principal: number;
   rate: number;
@@ -194,13 +220,13 @@ export function exportMortgageToExcel(options: ExportMortgageOptions): void {
   const wb = XLSX.utils.book_new();
 
   // Create Summary worksheet
-  const wsSummary = XLSX.utils.aoa_to_sheet(summaryRows);
+  const wsSummary = XLSX.utils.aoa_to_sheet(sanitizeExcelRows(summaryRows));
   wsSummary['!cols'] = [{ wch: 32 }, { wch: 25 }];
   XLSX.utils.book_append_sheet(wb, wsSummary, l.summarySheet);
 
   // Create Schedule worksheet
   if (scheduleRows.length > 0) {
-    const wsSchedule = XLSX.utils.aoa_to_sheet([l.scheduleHeaders, ...scheduleRows]);
+    const wsSchedule = XLSX.utils.aoa_to_sheet(sanitizeExcelRows([l.scheduleHeaders, ...scheduleRows]));
     wsSchedule['!cols'] = [{ wch: 10 }, { wch: 18 }, { wch: 18 }, { wch: 18 }, { wch: 20 }, { wch: 20 }];
     XLSX.utils.book_append_sheet(wb, wsSchedule, l.scheduleSheet);
   }
@@ -278,13 +304,13 @@ export function exportCompoundToExcel(options: ExportCompoundOptions): void {
   const wb = XLSX.utils.book_new();
 
   // Create Summary worksheet
-  const wsSummary = XLSX.utils.aoa_to_sheet(summaryRows);
+  const wsSummary = XLSX.utils.aoa_to_sheet(sanitizeExcelRows(summaryRows));
   wsSummary['!cols'] = [{ wch: 32 }, { wch: 25 }];
   XLSX.utils.book_append_sheet(wb, wsSummary, isHe ? 'תחזית השקעה' : 'Investment Summary');
 
   // Create Schedule worksheet
   if (scheduleRows.length > 0) {
-    const wsSchedule = XLSX.utils.aoa_to_sheet([scheduleHeaders, ...scheduleRows]);
+    const wsSchedule = XLSX.utils.aoa_to_sheet(sanitizeExcelRows([scheduleHeaders, ...scheduleRows]));
     wsSchedule['!cols'] = [{ wch: 10 }, { wch: 22 }, { wch: 25 }, { wch: 25 }];
     XLSX.utils.book_append_sheet(wb, wsSchedule, isHe ? 'טבלת צמיחה שנתית' : 'Yearly Growth Table');
   }
@@ -307,7 +333,8 @@ export function exportTableToExcel(
   sheetName: string = 'Sheet1'
 ): void {
   const wb = XLSX.utils.book_new();
-  const ws = XLSX.utils.aoa_to_sheet([headers, ...rows]);
+  const sanitizedRows = sanitizeExcelRows([headers, ...rows]);
+  const ws = XLSX.utils.aoa_to_sheet(sanitizedRows);
   XLSX.utils.book_append_sheet(wb, ws, sheetName);
   XLSX.writeFile(wb, filename.endsWith('.xlsx') ? filename : `${filename}.xlsx`);
 }

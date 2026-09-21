@@ -1,12 +1,11 @@
 import React from 'react';
 
-export interface StarBorderProps {
+export interface StarBorderProps extends React.HTMLAttributes<HTMLElement> {
   as?: React.ElementType;
   className?: string;
   color?: string;
   speed?: string;
   children: React.ReactNode;
-  [key: string]: any;
 }
 
 export const StarBorder: React.FC<StarBorderProps> = ({
@@ -17,8 +16,9 @@ export const StarBorder: React.FC<StarBorderProps> = ({
   children,
   ...props
 }) => {
+  const DynamicComponent = Component as any;
   return (
-    <Component
+    <DynamicComponent
       className={`relative inline-block p-[1px] overflow-hidden rounded-2xl ${className}`}
       {...props}
     >
@@ -39,7 +39,7 @@ export const StarBorder: React.FC<StarBorderProps> = ({
       <div className="relative z-10 w-full h-full bg-surface-container-lowest rounded-2xl">
         {children}
       </div>
-    </Component>
+    </DynamicComponent>
   );
 };
 

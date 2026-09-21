@@ -1,11 +1,17 @@
 import { describe, it, expect, vi } from 'vitest';
 import * as XLSX from 'xlsx';
-import { exportMortgageToExcel, exportCompoundToExcel, exportTableToExcel } from './excelExport';
+import {
+  exportMortgageToExcel,
+  exportCompoundToExcel,
+  exportTableToExcel,
+  sanitizeExcelCell,
+  sanitizeExcelRows,
+} from './excelExport';
 
 vi.mock('xlsx', () => {
   const writeFileMock = vi.fn();
   const bookNewMock = vi.fn(() => ({ SheetNames: [], Sheets: {} }));
-  const aoaToSheetMock = vi.fn(() => ({}));
+  const aoaToSheetMock = vi.fn((data) => ({ data }));
   const bookAppendSheetMock = vi.fn();
 
   return {
@@ -18,7 +24,38 @@ vi.mock('xlsx', () => {
   };
 });
 
-describe('Excel Export Utility', () => {
+describe('Excel Export Utility & Formula Injection Security', () => {
+  describe('Security Sanitization (CWE-1236 Formula Injection)', () => {
+    it('should sanitize dangerous leading formula characters', () => {
+      expect(sanitizeExcelCell('=SUM(A1:A10)')).toBe("'=SUM(A1:A10)");
+      expect(sanitizeExcelCell('+cmd|/C calc')).toBe("'+cmd|/C calc");
+      expect(sanitizeExcelCell('-100')).toBe("'-100");
+      expect(sanitizeExcelCell('@SUM(1+1)')).toBe("'@SUM(1+1)");
+      expect(sanitizeExcelCell('|calc.exe')).toBe("'|calc.exe");
+      expect(sanitizeExcelCell('\t=cmd')).toBe("'\t=cmd");
+    });
+
+    it('should preserve safe non-formula strings and numbers', () => {
+      expect(sanitizeExcelCell('Safe Text')).toBe('Safe Text');
+      expect(sanitizeExcelCell(12345)).toBe(12345);
+      expect(sanitizeExcelCell(true)).toBe(true);
+      expect(sanitizeExcelCell(null)).toBe(null);
+      expect(sanitizeExcelCell(undefined)).toBe(undefined);
+    });
+
+    it('should sanitize full 2D array of rows', () => {
+      const dirtyRows = [
+        ['=cmd|calc', 'Safe Header', 100],
+        ['@malicious', '+dangerous', 'Normal'],
+      ];
+      const cleaned = sanitizeExcelRows(dirtyRows);
+      expect(cleaned).toEqual([
+        ["'=cmd|calc", 'Safe Header', 100],
+        ["'@malicious", "'+dangerous", 'Normal'],
+      ]);
+    });
+  });
+
   it('should generate and write mortgage excel file with summary and schedule sheets', () => {
     exportMortgageToExcel({
       principal: 1000000,
@@ -63,13 +100,19 @@ describe('Excel Export Utility', () => {
     expect(lastCall[1]).toContain('Compound_Interest_15Y');
   });
 
-  it('should export generic tabular data to excel', () => {
+  it('should export generic tabular data to excel with sanitization', () => {
     exportTableToExcel(
       ['Header 1', 'Header 2'],
-      [['Row 1 Col 1', 100], ['Row 2 Col 1', 200]],
+      [['=calc()', 100], ['Row 2 Col 1', 200]],
       'CustomReport.xlsx'
     );
 
     expect(XLSX.writeFile).toHaveBeenCalled();
+    expect(XLSX.utils.aoa_to_sheet).toHaveBeenCalledWith([
+      ['Header 1', 'Header 2'],
+      ["'=calc()", 100],
+      ['Row 2 Col 1', 200],
+    ]);
   });
 });
+

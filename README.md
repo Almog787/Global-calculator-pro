@@ -46,14 +46,14 @@
 - **[ROI Calculator](https://globalcalcpro.com/calculators/roi)** - Calculate Return on Investment (ROI) and annualized ROI for your investments.
 - **[Salary Calculator](https://globalcalcpro.com/salary-calculator)** - Convert hourly wage to annual salary.
 - **[Salary Calculator Calculator](https://globalcalcpro.com/calculators/salary-calculator)** - Free online salary calculator calculator for precise calculations.
-- **[Severance Pay Calculator](https://globalcalcpro.com/calculators/severance-pay)** - Free online severance pay calculator for precise calculations.
+- **[Severance Pay & Section 14 Calculator](https://globalcalcpro.com/calculators/severance-pay)** - Calculate employee severance pay based on tenure and last salary, Section 14 pension deposits, statutory tax-exempt severance limits (13,750 NIS/year), taxable portion, and employer completion payments.
 - **[Sleep Calculator Calculator](https://globalcalcpro.com/calculators/sleep-calculator)** - Free online sleep calculator calculator for precise calculations.
 - **[Stock Options & RSU Calculator](https://globalcalcpro.com/calculators/stock-options-rsu)** - Calculate net proceeds, 4-year vesting schedule, capital gains tax under Section 102, dilution impact, and exit scenarios for startup equity and tech compensation.
 - **[Tip & Bill Splitter](https://globalcalcpro.com/tip-calculator)** - Calculate tip and split the bill among friends.
 - **[Tip Calculator Calculator](https://globalcalcpro.com/calculators/tip-calculator)** - Free online tip calculator calculator for precise calculations.
 - **[Unit Converter](https://globalcalcpro.com/unit-converter)** - Convert between different units of measurement.
 - **[Unit Converter Calculator](https://globalcalcpro.com/calculators/unit-converter)** - Free online unit converter calculator for precise calculations.
-- **[Vat Calculator](https://globalcalcpro.com/calculators/vat)** - Free online vat calculator for precise calculations.
+- **[VAT & Sales Tax Calculator](https://globalcalcpro.com/calculators/vat)** - Calculate Value Added Tax (VAT) online: Add VAT to net amount, remove VAT from gross price, batch invoice itemization, and official tax rates for Israel (18%), UK, EU, and US.
 - **[Water Intake Calculator](https://globalcalcpro.com/calculators/water-intake)** - Free online water intake calculator for precise calculations.
 
 ## 🌍 Global Usability & SEO Infrastructure

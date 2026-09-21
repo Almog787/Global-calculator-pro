@@ -7,7 +7,12 @@ type FAQItem = {
   answer: string;
 };
 
-export default function FAQ({ items }: { items: FAQItem[] }) {
+export interface FAQProps {
+  items: FAQItem[];
+  title?: string;
+}
+
+export default function FAQ({ items, title }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const { t } = useI18n();
 
@@ -35,7 +40,7 @@ export default function FAQ({ items }: { items: FAQItem[] }) {
       </Helmet>
       
       <div className="mt-12 mb-8">
-        <h2 className="text-2xl font-bold text-on-surface mb-6">{t.faqTitle || 'Frequently Asked Questions'}</h2>
+        <h2 className="text-2xl font-bold text-on-surface mb-6">{title || t.faqTitle || 'Frequently Asked Questions'}</h2>
         
         <div className="space-y-4">
           {items.map((item, index) => {
