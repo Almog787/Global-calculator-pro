@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 export interface CountUpProps {
-  to: number;
+  to?: number;
+  value?: number;
+  end?: number;
   from?: number;
   duration?: number; // duration in seconds
   delay?: number; // delay in seconds
@@ -19,6 +21,8 @@ export interface CountUpProps {
 
 export const CountUp: React.FC<CountUpProps> = ({
   to,
+  value,
+  end,
   from,
   duration = 0.8,
   delay = 0,
@@ -33,19 +37,20 @@ export const CountUp: React.FC<CountUpProps> = ({
   onEnd,
   preserveValue = true,
 }) => {
-  const [displayValue, setDisplayValue] = useState<number>(from !== undefined ? from : to);
-  const previousValueRef = useRef<number>(from !== undefined ? from : to);
+  const targetVal = to !== undefined ? to : (value !== undefined ? value : (end !== undefined ? end : 0));
+  const [displayValue, setDisplayValue] = useState<number>(from !== undefined ? from : targetVal);
+  const previousValueRef = useRef<number>(from !== undefined ? from : targetVal);
   const isFirstRender = useRef(true);
 
   useEffect(() => {
     if (!startWhen) return;
 
     const startVal = isFirstRender.current
-      ? (from !== undefined ? from : (preserveValue ? 0 : to))
+      ? (from !== undefined ? from : (preserveValue ? 0 : targetVal))
       : previousValueRef.current;
     
     isFirstRender.current = false;
-    const endVal = to;
+    const endVal = targetVal;
 
     if (startVal === endVal) {
       setDisplayValue(endVal);

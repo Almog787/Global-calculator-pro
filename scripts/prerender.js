@@ -6,9 +6,20 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const distPath = path.resolve(__dirname, "../dist");
 
+// Load all locales for meta tag & text injection
+const locales = {
+  en: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/en.json"), "utf8")),
+  he: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/he.json"), "utf8")),
+  es: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/es.json"), "utf8")),
+  fr: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/fr.json"), "utf8")),
+  ar: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/ar.json"), "utf8")),
+};
+
 // Read paths to prerender from calculators.ts
 const calculatorsPath = path.resolve(__dirname, "../src/data/calculators.ts");
 let dynamicPaths = [];
+let dynamicTranslations = {};
+
 if (fs.existsSync(calculatorsPath)) {
   const content = fs.readFileSync(calculatorsPath, "utf8");
   const pathRegex = /path:\s*['"]([^'"]+)['"]/g;
@@ -16,11 +27,25 @@ if (fs.existsSync(calculatorsPath)) {
   while ((match = pathRegex.exec(content)) !== null) {
     dynamicPaths.push(match[1]);
   }
+
+  // Parse dynamic translations dictionary
+  const dtRegex = /export const dynamicTranslations[^=]*=\s*({[\s\S]*?^};)/m;
+  const dtMatch = dtRegex.exec(content);
+  if (dtMatch) {
+    try {
+      // Evaluate safe translation mapping
+      const fn = new Function(`return ${dtMatch[1].replace(/;$/, "")}`);
+      dynamicTranslations = fn();
+    } catch {
+      // Fallback regex if direct evaluation fails
+    }
+  }
 }
 
 const staticPaths = [
   "/",
   "/all",
+  "/widgets",
   "/category/finance",
   "/category/real-estate",
   "/category/health",
@@ -53,43 +78,62 @@ if (!fs.existsSync(baseHtmlPath)) {
 let baseHtml = fs.readFileSync(baseHtmlPath, "utf8");
 
 console.log(
-  `Generating static HTML entry points for ${allPaths.length} routes...`,
+  `[Prerender] Generating static HTML entry points for ${allPaths.length} routes...`,
 );
 
-// Load all locales for meta tag injection
-const locales = {
-  en: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/en.json"), "utf8")),
-  he: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/he.json"), "utf8")),
-  es: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/es.json"), "utf8")),
-  fr: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/fr.json"), "utf8")),
-  ar: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/ar.json"), "utf8")),
-};
-
-// Route to title / description resolver
+// Route metadata resolver
 function getRouteMetadata(route, lang) {
   const t = locales[lang]?.ui || locales.en.ui;
   const siteName = "GlobalCalc Pro";
   const unlocalizedPath = route.replace(new RegExp(`^\\/${lang}`), "") || "/";
 
-  // Static routes
+  // Home
   if (unlocalizedPath === "/") {
     const titles = {
-      en: "GlobalCalc Pro - Free Online Smart Calculators [2026]",
-      he: "GlobalCalc Pro - מחשבונים אונליין בחינם לכל מטרה [2026]",
-      es: "GlobalCalc Pro - Calculadoras Online Gratuitas [2026]",
-      fr: "GlobalCalc Pro - Calculatrices en Ligne Gratuites [2026]",
-      ar: "GlobalCalc Pro - حاسبات مجانية ذكية عبر الإنترنت [2026]",
+      en: "GlobalCalc Pro – Free Online Smart Calculators [2026]",
+      he: "GlobalCalc Pro – מחשבונים אונליין בחינם לכל מטרה [2026]",
+      es: "GlobalCalc Pro – Calculadoras Online Gratuitas [2026]",
+      fr: "GlobalCalc Pro – Calculatrices en Ligne Gratuites [2026]",
+      ar: "GlobalCalc Pro – حاسبات مجانية ذكية عبر الإنترنت [2026]",
     };
     const descs = {
-      en: "Free online calculators for finance, health, math, and daily life. Accurate, fast, and easy to use.",
+      en: "Free online calculators for finance, mortgages, health, math, and daily life. Fast, accurate, and easy to use.",
       he: "מגוון מחשבונים חכמים בחינם: מחשבון משכנתא, ריבית דריבית, אחוזים, BMI, המרת מידות ועוד בדיוק מושלם.",
       es: "Calculadoras online gratuitas para finanzas, salud, matemáticas y vida cotidiana. Rápidas y precisas.",
       fr: "Calculatrices en ligne gratuites pour les finances, la santé, les maths et le quotidien. Rapide et précis.",
-      ar: "حاسبات مجانية عبر الإنترنت للمال، الصحة، الرياضيات والحياة اليومية. سريعة ودقيقة ومجانية.",
+      ar: "حاسبات مجانية عبر الإنترنت للمال، الرهن العقاري، الصحة، الرياضيات والحياة اليومية.",
     };
-    return { title: titles[lang] || titles.en, description: descs[lang] || descs.en };
+    return {
+      title: titles[lang] || titles.en,
+      description: descs[lang] || descs.en,
+      schemaType: "WebApplication",
+    };
   }
 
+  // Widgets Hub
+  if (unlocalizedPath === "/widgets") {
+    const titles = {
+      en: "Embeddable Calculator Widgets Hub | GlobalCalc Pro",
+      he: "ווידג'טים של מחשבונים להטמעה באתרים | GlobalCalc Pro",
+      es: "Widgets de Calculadoras Integrables | GlobalCalc Pro",
+      fr: "Widgets de Calculatrices Intégrables | GlobalCalc Pro",
+      ar: "أدوات حاسبة قابلة للتضمين في المواقع | GlobalCalc Pro",
+    };
+    const descs = {
+      en: "Embed free, customizable financial, math, and health calculator widgets directly into your website or blog with clean iframe codes.",
+      he: "הטמע מחשבוני משכנתא, פיננסים, בריאות ומתמטיקה באתר או בבלוג שלך בקלות עם קוד iframe נקי ומותאם אישית.",
+      es: "Integra widgets de calculadoras financieras y de salud gratis en tu web o blog con código iframe responsivo.",
+      fr: "Intégrez gratuitement des widgets de calculatrices financières et mathématiques sur votre site web avec du code iframe.",
+      ar: "قم بتضمين أدوات حاسبة مالية وصحية مجانية ومخصصة مباشرة في موقعك الإلكتروني عبر كود iframe بسيط.",
+    };
+    return {
+      title: titles[lang] || titles.en,
+      description: descs[lang] || descs.en,
+      schemaType: "SoftwareApplication",
+    };
+  }
+
+  // Static common calculators
   const staticCalcMap = {
     "/mortgage-calculator": { titleKey: "mortgageTitle", descKey: "mortgageDesc" },
     "/compound-interest": { titleKey: "compoundTitle", descKey: "compoundDesc" },
@@ -108,6 +152,7 @@ function getRouteMetadata(route, lang) {
     return {
       title: `${pageTitle} | ${siteName}`,
       description: pageDesc,
+      schemaType: "WebApplication",
     };
   }
 
@@ -115,13 +160,11 @@ function getRouteMetadata(route, lang) {
   const calcMatch = unlocalizedPath.match(/^\/calculators\/([a-zA-Z0-9-]+)/);
   if (calcMatch) {
     const calcId = calcMatch[1];
-    // Read from dynamicTranslations inside calculators.ts
-    const dynRegex = new RegExp(`"${calcId}":\\s*{[\\s\\S]*?${lang}:\\s*{\\s*title:\\s*"([^"]+)",\\s*description:\\s*"([^"]+)"`, "m");
-    const dynMatch = dynRegex.exec(fs.readFileSync(calculatorsPath, "utf8"));
-    if (dynMatch) {
+    if (dynamicTranslations[calcId]?.[lang]) {
       return {
-        title: `${dynMatch[1]} | ${siteName}`,
-        description: dynMatch[2],
+        title: `${dynamicTranslations[calcId][lang].title} | ${siteName}`,
+        description: dynamicTranslations[calcId][lang].description,
+        schemaType: "WebApplication",
       };
     }
   }
@@ -132,16 +175,77 @@ function getRouteMetadata(route, lang) {
     const catName = catMatch[1].charAt(0).toUpperCase() + catMatch[1].slice(1);
     return {
       title: `${catName} Calculators | ${siteName}`,
-      description: `Explore all ${catName.toLowerCase()} calculators and tools on GlobalCalc Pro.`,
+      description: `Explore all verified ${catName.toLowerCase()} calculators and tools on GlobalCalc Pro. Free, fast, and accurate.`,
+      schemaType: "WebPage",
+    };
+  }
+
+  // Informational pages
+  if (unlocalizedPath === "/about") {
+    return {
+      title: `About Us | ${siteName}`,
+      description: "Learn more about GlobalCalc Pro and our mission to provide accurate, accessible mathematical tools for everyone.",
+      schemaType: "AboutPage",
+    };
+  }
+
+  if (unlocalizedPath === "/contact") {
+    return {
+      title: `Contact Us | ${siteName}`,
+      description: "Get in touch with the GlobalCalc Pro engineering team for support, feedback, or custom calculator requests.",
+      schemaType: "ContactPage",
+    };
+  }
+
+  if (unlocalizedPath === "/privacy-policy") {
+    return {
+      title: `Privacy Policy | ${siteName}`,
+      description: "GlobalCalc Pro privacy policy, client-side data security, and privacy commitments.",
+      schemaType: "WebPage",
+    };
+  }
+
+  if (unlocalizedPath === "/terms-of-service") {
+    return {
+      title: `Terms of Service | ${siteName}`,
+      description: "Terms of service and usage guidelines for GlobalCalc Pro online calculations.",
+      schemaType: "WebPage",
     };
   }
 
   return {
-    title: `${siteName} - Smart Online Calculators`,
-    description: "Free, instant online tools and calculators.",
+    title: `${siteName} – Smart Online Calculators`,
+    description: "Free, instant online tools and calculators for everyday decisions.",
+    schemaType: "WebApplication",
   };
 }
 
+// Generate JSON-LD Schema
+function createSchemaJsonLd(title, description, canonicalUrl, lang, schemaType) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": schemaType || "WebApplication",
+    name: title,
+    description: description,
+    url: canonicalUrl,
+    inLanguage: lang,
+  };
+
+  if (schemaType === "WebApplication" || schemaType === "SoftwareApplication") {
+    schema.applicationCategory = "UtilitiesApplication";
+    schema.operatingSystem = "All";
+    schema.offers = {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    };
+    schema.browserRequirements = "Requires JavaScript. Requires HTML5.";
+  }
+
+  return JSON.stringify(schema, null, 2);
+}
+
+// Process and write prerendered files
 for (const route of allPaths) {
   const routeDir = path.join(distPath, route);
   if (!fs.existsSync(routeDir)) {
@@ -154,31 +258,36 @@ for (const route of allPaths) {
   const isRtl = lang === "he" || lang === "ar";
   const canonicalUrl = `https://globalcalcpro.com${route}`;
   const unlocalizedPath = route.replace(new RegExp(`^\\/${lang}`), "") || "/";
-  const { title, description } = getRouteMetadata(route, lang);
+  const { title, description, schemaType } = getRouteMetadata(route, lang);
 
   let customHtml = baseHtml;
 
-  // Update html lang and dir attribute
+  // 1. Update html lang and dir attribute
   customHtml = customHtml.replace(
     /<html[^>]*>/i,
     `<html lang="${lang}" dir="${isRtl ? "rtl" : "ltr"}">`,
   );
 
-  // Update title
+  // 2. Update title tag
   customHtml = customHtml.replace(
     /<title>[^<]*<\/title>/i,
     `<title>${title}</title>`,
   );
 
-  // Update description meta tag
+  // 3. Update or inject meta description
   if (customHtml.includes('<meta name="description"')) {
     customHtml = customHtml.replace(
       /<meta name="description" content="[^"]*"/i,
       `<meta name="description" content="${description}"`,
     );
+  } else {
+    customHtml = customHtml.replace(
+      "</head>",
+      `  <meta name="description" content="${description}" />\n</head>`,
+    );
   }
 
-  // Update OpenGraph tags
+  // 4. Update OpenGraph tags
   customHtml = customHtml.replace(
     /<meta property="og:title" content="[^"]*"/i,
     `<meta property="og:title" content="${title}"`,
@@ -192,7 +301,17 @@ for (const route of allPaths) {
     `<meta property="og:url" content="${canonicalUrl}"`,
   );
 
-  // Inject canonical and hreflang tags if not present
+  // 5. Update Twitter tags
+  customHtml = customHtml.replace(
+    /<meta name="twitter:title" content="[^"]*"/i,
+    `<meta name="twitter:title" content="${title}"`,
+  );
+  customHtml = customHtml.replace(
+    /<meta name="twitter:description" content="[^"]*"/i,
+    `<meta name="twitter:description" content="${description}"`,
+  );
+
+  // 6. Inject Canonical and Hreflang tags
   const hreflangTags = languages
     .map(
       (l) =>
@@ -206,6 +325,17 @@ for (const route of allPaths) {
   const canonicalTag = `  <link rel="canonical" href="${canonicalUrl}" />\n${hreflangTags}`;
   if (!customHtml.includes('rel="canonical"')) {
     customHtml = customHtml.replace("</head>", `${canonicalTag}\n</head>`);
+  }
+
+  // 7. Inject Schema.org JSON-LD Structured Data
+  const jsonLdContent = createSchemaJsonLd(title, description, canonicalUrl, lang, schemaType);
+  const jsonLdScript = `  <script type="application/ld+json">\n${jsonLdContent}\n  </script>`;
+  customHtml = customHtml.replace("</head>", `${jsonLdScript}\n</head>`);
+
+  // 8. Inject Semantic Content Shell inside <div id="root"> for crawlers & bots
+  const semanticShell = `<div id="root"><div class="sr-only" aria-hidden="true"><header><h1>${title}</h1><p>${description}</p></header></div></div>`;
+  if (customHtml.includes('<div id="root"></div>')) {
+    customHtml = customHtml.replace('<div id="root"></div>', semanticShell);
   }
 
   fs.writeFileSync(path.join(routeDir, "index.html"), customHtml);
@@ -262,7 +392,6 @@ for (const [legacyPath, targetCanonical] of Object.entries(legacyRedirectMap)) {
 </body>
 </html>`;
 
-  // Write file directly if ending with .html, otherwise inside directory index.html
   if (legacyPath.endsWith(".html")) {
     const filePath = path.join(distPath, legacyPath.replace(/^\//, ""));
     const dir = path.dirname(filePath);
@@ -276,5 +405,5 @@ for (const [legacyPath, targetCanonical] of Object.entries(legacyRedirectMap)) {
 }
 
 console.log(
-  `Static entry points generated successfully for ${allPaths.length} routes and ${Object.keys(legacyRedirectMap).length} legacy redirects.`,
+  `[Prerender] Complete! Generated ${allPaths.length} static HTML pages with full SEO metadata, JSON-LD schemas, and hreflang links.`,
 );

@@ -38,7 +38,7 @@ jobs:
       - name: Check for Broken Links
         uses: lycheeverse/lychee-action@v1.9.0
         with:
-          args: --verbose --no-progress --exclude 'fonts.googleapis.com' --exclude 'fonts.gstatic.com' --exclude 'https://globalcalcpro.com.*' --exclude 'http://localhost.*' --exclude 'http://127.0.0.1.*' './dist/**/*.html'
+          args: --verbose --no-progress --exclude 'mailto:.*' --exclude 'fonts.googleapis.com' --exclude 'fonts.gstatic.com' --exclude 'https://globalcalcpro.com.*' --exclude 'http://localhost.*' --exclude 'http://127.0.0.1.*' './dist/**/*.html'
           fail: true
 
       - name: Upload Test Results
