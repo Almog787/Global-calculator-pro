@@ -311,7 +311,7 @@ for (const route of allPaths) {
     `<meta name="twitter:description" content="${description}"`,
   );
 
-  // 6. Inject Canonical and Hreflang tags
+  // 6. Inject or Replace Canonical and Hreflang tags
   const hreflangTags = languages
     .map(
       (l) =>
@@ -322,24 +322,60 @@ for (const route of allPaths) {
     )
     .join("\n");
 
-  const canonicalTag = `  <link rel="canonical" href="${canonicalUrl}" />\n${hreflangTags}`;
-  if (!customHtml.includes('rel="canonical"')) {
-    customHtml = customHtml.replace("</head>", `${canonicalTag}\n</head>`);
+  const canonicalAndHreflang = `  <link rel="canonical" href="${canonicalUrl}" />\n${hreflangTags}`;
+  
+  if (customHtml.includes('rel="canonical"')) {
+    // Strip old canonical and alternate hreflang tags from template
+    customHtml = customHtml.replace(/<link rel="canonical"[^>]*>\s*/i, "");
+    customHtml = customHtml.replace(/<link rel="alternate" hreflang="[^"]*"[^>]*>\s*/gi, "");
+    customHtml = customHtml.replace("</head>", `${canonicalAndHreflang}\n</head>`);
+  } else {
+    customHtml = customHtml.replace("</head>", `${canonicalAndHreflang}\n</head>`);
   }
 
-  // 7. Inject Schema.org JSON-LD Structured Data
+  // 7. Inject or Replace Schema.org JSON-LD Structured Data
   const jsonLdContent = createSchemaJsonLd(title, description, canonicalUrl, lang, schemaType);
   const jsonLdScript = `  <script type="application/ld+json">\n${jsonLdContent}\n  </script>`;
-  customHtml = customHtml.replace("</head>", `${jsonLdScript}\n</head>`);
+  
+  if (customHtml.includes('application/ld+json')) {
+    customHtml = customHtml.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/i, jsonLdScript);
+  } else {
+    customHtml = customHtml.replace("</head>", `${jsonLdScript}\n</head>`);
+  }
 
-  // 8. Inject Semantic Content Shell inside <div id="root"> for crawlers & bots
-  const semanticShell = `<div id="root"><div class="sr-only" aria-hidden="true"><header><h1>${title}</h1><p>${description}</p></header></div></div>`;
-  if (customHtml.includes('<div id="root"></div>')) {
-    customHtml = customHtml.replace('<div id="root"></div>', semanticShell);
+  // 8. Inject or Replace Semantic Content Shell inside <div id="root"> for crawlers & bots
+  const localizedHeader = `<header class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;">\n        <h1>${title}</h1>\n        <p>${description}</p>\n      </header>`;
+
+  if (customHtml.includes('<header class="sr-only"')) {
+    customHtml = customHtml.replace(/<header class="sr-only"[^>]*>[\s\S]*?<\/header>/i, localizedHeader);
+  } else if (customHtml.includes('<div id="root">')) {
+    customHtml = customHtml.replace(
+      /<div id="root">/i,
+      `<div id="root">\n      ${localizedHeader}`,
+    );
   }
 
   fs.writeFileSync(path.join(routeDir, "index.html"), customHtml);
 }
+
+// Ensure the root dist/index.html also has full rich SEO metadata, JSON-LD, and H1
+const rootTitle = "GlobalCalc Pro – Free Online Smart Calculators [2026]";
+const rootDesc = "Free online calculators for finance, mortgages, health, math, and daily life. Fast, accurate, and easy to use.";
+const rootJsonLd = createSchemaJsonLd(rootTitle, rootDesc, "https://globalcalcpro.com/en", "en", "WebApplication");
+
+let rootHtml = baseHtml;
+rootHtml = rootHtml.replace(/<title>[^<]*<\/title>/i, `<title>${rootTitle}</title>`);
+if (!rootHtml.includes('rel="canonical"')) {
+  const rootHreflang = languages
+    .map((l) => `  <link rel="alternate" hreflang="${l}" href="https://globalcalcpro.com/${l}" />`)
+    .concat(`  <link rel="alternate" hreflang="x-default" href="https://globalcalcpro.com/en" />`)
+    .join("\n");
+  rootHtml = rootHtml.replace("</head>", `  <link rel="canonical" href="https://globalcalcpro.com/en" />\n${rootHreflang}\n</head>`);
+}
+if (!rootHtml.includes('application/ld+json')) {
+  rootHtml = rootHtml.replace("</head>", `  <script type="application/ld+json">\n${rootJsonLd}\n  </script>\n</head>`);
+}
+fs.writeFileSync(baseHtmlPath, rootHtml);
 
 // Generate static redirect entry points for legacy URLs (.html, trailing slashes, old blog posts)
 const legacyRedirectMap = {

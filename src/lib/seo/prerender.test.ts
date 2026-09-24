@@ -46,6 +46,6 @@ describe('Prerendering & Metadata Registry Unit Tests', () => {
     expect(prerenderScript).toContain('application/ld+json');
     expect(prerenderScript).toContain('rel="canonical"');
     expect(prerenderScript).toContain('hreflang=');
-    expect(prerenderScript).toContain('semanticShell');
+    expect(prerenderScript).toContain('localizedHeader');
   });
 });
