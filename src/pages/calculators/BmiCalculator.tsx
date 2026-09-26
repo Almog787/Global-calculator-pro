@@ -130,15 +130,8 @@ export default function BmiCalculator() {
         title={t.bmiTitle}
         description={t.bmiDesc}
         canonicalUrl={`/${lang}/bmi-calculator`}
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: t.bmiTitle,
-          description: t.bmiDesc,
-          applicationCategory: 'CalculatorApplication',
-          operatingSystem: 'Any',
-          url: `https://globalcalcpro.com/${lang}/bmi-calculator`
-        }}
+        type="SoftwareApplication"
+        applicationCategory="CalculatorApplication"
       />
       
       {/* Input Form */}

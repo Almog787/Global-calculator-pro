@@ -133,14 +133,18 @@ const SEO: React.FC<SEOProps> = ({
     }
   };
 
-  // WebApplication / Software Schema
-  const softwareSchema = {
+  // Determine if this route is an interactive calculator / software tool
+  const isStaticInfoPage = ['/all', '/contact', '/privacy-policy', '/terms-of-service', '/about', '/suggest', '/widgets'].includes(normalizedPath);
+  const isCalculatorApp = (type === 'SoftwareApplication' || Boolean(applicationCategory)) && !isStaticInfoPage;
+
+  // WebApplication / Software Schema (Only for actual calculator tools)
+  const softwareSchema = isCalculatorApp ? {
     '@type': 'WebApplication',
     '@id': `${finalCanonicalUrl}#software`,
     name: title.replace(` | ${siteName}`, ''),
     description: description,
     url: finalCanonicalUrl,
-    applicationCategory: applicationCategory,
+    applicationCategory: applicationCategory || 'CalculatorApplication',
     applicationSubCategory: 'FinancialCalculator',
     operatingSystem: 'All',
     browserRequirements: 'Requires JavaScript. Requires HTML5.',
@@ -168,7 +172,7 @@ const SEO: React.FC<SEOProps> = ({
       bestRating: '5',
       worstRating: '1'
     }
-  };
+  } : null;
 
   // BreadcrumbList Schema
   const breadcrumbSchema = {
@@ -238,16 +242,29 @@ const SEO: React.FC<SEOProps> = ({
     }))
   } : null;
 
+  // Filter out any redundant custom structured data that duplicates existing entity types
+  const extraStructuredData = structuredData ? (
+    Array.isArray(structuredData) ? structuredData : [structuredData]
+  ).filter(item => {
+    const itemType = item?.['@type'];
+    if (!itemType) return false;
+    // Don't duplicate core entities already managed above
+    if (itemType === 'WebApplication' || itemType === 'SoftwareApplication' || itemType === 'Organization' || itemType === 'WebSite' || itemType === 'WebPage' || itemType === 'BreadcrumbList') {
+      return false;
+    }
+    return true;
+  }) : [];
+
   const graphItems: Record<string, any>[] = [
     organizationSchema,
     websiteSchema,
     webPageSchema,
     breadcrumbSchema,
-    softwareSchema,
+    ...(softwareSchema ? [softwareSchema] : []),
     ...(faqSchema ? [faqSchema] : []),
     ...(datasetSchema ? [datasetSchema] : []),
     ...(howToSchema ? [howToSchema] : []),
-    ...(structuredData ? [structuredData] : [])
+    ...extraStructuredData
   ];
 
   const consolidatedSchema = {

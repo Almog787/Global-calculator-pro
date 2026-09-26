@@ -70,15 +70,8 @@ export default function AgeCalculator() {
         title={t.ageTitle}
         description={t.ageDesc}
         canonicalUrl={`/${lang}/age-calculator`}
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: t.ageTitle,
-          description: t.ageDesc,
-          applicationCategory: 'CalculatorApplication',
-          operatingSystem: 'Any',
-          url: `https://globalcalcpro.com/${lang}/age-calculator`
-        }}
+        type="SoftwareApplication"
+        applicationCategory="CalculatorApplication"
       />
       
       {/* Input Form */}

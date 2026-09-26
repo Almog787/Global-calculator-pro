@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { useUrlState } from '../../hooks/useUrlState';
 import { useI18n } from '../../contexts/i18n';
-import SEO from '../../components/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import RelatedCalculators from '../../components/RelatedCalculators';
 import ShareActions from '../../components/ShareActions';
@@ -265,21 +264,7 @@ export default function SeverancePay() {
 
   return (
     <div className="w-full max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
-      <SEO
-        title={t.title}
-        description={t.description}
-        canonicalUrl={`/${lang}/calculators/severance-pay`}
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: t.title,
-          description: t.description,
-          applicationCategory: 'FinanceApplication',
-          operatingSystem: 'Any',
-        }}
-      />
-
-      <Breadcrumbs items={[
+<Breadcrumbs items={[
         { label: lang === 'he' ? 'כל המחשבונים' : 'All Calculators', path: `/${lang}/all` },
         { label: t.title }
       ]} />

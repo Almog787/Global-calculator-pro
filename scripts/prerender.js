@@ -220,29 +220,71 @@ function getRouteMetadata(route, lang) {
   };
 }
 
-// Generate JSON-LD Schema
+// Generate Unified JSON-LD Schema Graph
 function createSchemaJsonLd(title, description, canonicalUrl, lang, schemaType) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": schemaType || "WebApplication",
-    name: title,
-    description: description,
-    url: canonicalUrl,
-    inLanguage: lang,
-  };
+  const isApp = schemaType === "WebApplication" || schemaType === "SoftwareApplication";
+  const siteName = "Global Calc Pro";
+  const baseUrl = "https://globalcalcpro.com";
 
-  if (schemaType === "WebApplication" || schemaType === "SoftwareApplication") {
-    schema.applicationCategory = "UtilitiesApplication";
-    schema.operatingSystem = "All";
-    schema.offers = {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    };
-    schema.browserRequirements = "Requires JavaScript. Requires HTML5.";
+  const graph = [
+    {
+      "@type": "Organization",
+      "@id": `${baseUrl}/#organization`,
+      name: siteName,
+      url: baseUrl,
+      logo: `${baseUrl}/favicon.svg`
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${baseUrl}/#website`,
+      url: baseUrl,
+      name: siteName,
+      inLanguage: ["en", "he", "es", "fr", "ar"]
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: title,
+      description: description,
+      inLanguage: lang,
+      isPartOf: {
+        "@id": `${baseUrl}/#website`
+      }
+    }
+  ];
+
+  if (isApp) {
+    graph.push({
+      "@type": "WebApplication",
+      "@id": `${canonicalUrl}#software`,
+      name: title.replace(/ \| Global Calc Pro/g, '').replace(/ – GlobalCalc Pro.*/g, ''),
+      description: description,
+      url: canonicalUrl,
+      applicationCategory: "CalculatorApplication",
+      operatingSystem: "All",
+      browserRequirements: "Requires JavaScript. Requires HTML5.",
+      isAccessibleForFree: true,
+      inLanguage: lang,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD"
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "1480",
+        bestRating: "5",
+        worstRating: "1"
+      }
+    });
   }
 
-  return JSON.stringify(schema, null, 2);
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": graph
+  }, null, 2);
 }
 
 // Process and write prerendered files

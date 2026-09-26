@@ -1,7 +1,6 @@
 import React from 'react';
 import { useUrlState } from '../../hooks/useUrlState';
 import { useI18n } from '../../contexts/i18n';
-import SEO from '../../components/SEO';
 import { calculatePurchaseTax, calculateAppreciationTax } from '../../lib/math/finance';
 import { trackCalculation } from '../../lib/analytics';
 import {
@@ -285,22 +284,7 @@ export default function PurchaseAppreciationTax() {
 
   return (
     <div className="w-full max-w-7xl mx-auto space-y-8" id="purchase-appreciation-tax-calc">
-      <SEO
-        title={`${t.title} | GlobalCalcPro`}
-        description={t.description}
-        canonicalUrl={`/${lang}/calculators/purchase-appreciation-tax`}
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: t.title,
-          description: t.description,
-          applicationCategory: 'RealEstateApplication',
-          operatingSystem: 'Any',
-          url: `https://globalcalcpro.com/${lang}/calculators/purchase-appreciation-tax`
-        }}
-      />
-
-      {/* Header */}
+{/* Header */}
       <div className="bg-white dark:bg-stone-900 rounded-3xl p-6 sm:p-8 border border-stone-200 dark:border-stone-800 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>

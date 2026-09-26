@@ -1,7 +1,6 @@
 import React, { useDeferredValue } from 'react';
 import { useUrlState } from '../../hooks/useUrlState';
 import { useI18n } from '../../contexts/i18n';
-import SEO from '../../components/SEO';
 import CountUp from '../../components/CountUp';
 import ShinyText from '../../components/ShinyText';
 import { calculateEmployerCost } from '../../lib/math/finance';
@@ -241,22 +240,7 @@ export default function EmployerCost() {
 
   return (
     <div className="w-full max-w-7xl mx-auto space-y-8" id="employer-cost-calc">
-      <SEO
-        title={`${t.title} | GlobalCalcPro`}
-        description={t.description}
-        canonicalUrl={`/${lang}/calculators/employer-cost`}
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: t.title,
-          description: t.description,
-          applicationCategory: 'FinanceApplication',
-          operatingSystem: 'Any',
-          url: `https://globalcalcpro.com/${lang}/calculators/employer-cost`
-        }}
-      />
-
-      {/* Header */}
+{/* Header */}
       <div className="bg-white dark:bg-stone-900 rounded-3xl p-6 sm:p-8 border border-stone-200 dark:border-stone-800 shadow-sm">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold">

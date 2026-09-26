@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useUrlState } from '../../hooks/useUrlState';
 import { useI18n } from '../../contexts/i18n';
-import SEO from '../../components/SEO';
 import CountUp from '../../components/CountUp';
 import ShinyText from '../../components/ShinyText';
 import { calculateLinearRegression, DataPoint } from '../../lib/math/statistics';
@@ -257,13 +256,7 @@ export default function LinearRegression() {
 
   return (
     <div className="w-full max-w-5xl mx-auto space-y-8" dir={lang === 'he' || lang === 'ar' ? 'rtl' : 'ltr'}>
-      <SEO
-        title={dict.title}
-        description={dict.description}
-        canonicalUrl={`/${lang}/calculators/linear-regression`}
-      />
-
-      {/* Header Card */}
+{/* Header Card */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-stone-200">
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-3">

@@ -1,6 +1,5 @@
 import { useDeferredValue, useEffect, useState } from 'react';
 import { useUrlState } from '../../hooks/useUrlState';
-import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
 import RelatedCalculators from '../../components/RelatedCalculators';
 import Decimal from 'decimal.js';
@@ -154,22 +153,7 @@ export default function FuelSplit() {
       <article className="w-full h-full flex flex-col lg:flex-row gap-8 items-start relative">
       {/* Input Form */}
       <div className="flex-[1.5] w-full bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200 flex flex-col">
-      <SEO
-        title={t.title}
-        description={t.description}
-        canonicalUrl={`/${lang}/calculators/fuel-split`}
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: t.title,
-          description: t.description,
-          applicationCategory: 'CalculatorApplication',
-          operatingSystem: 'Any',
-          url: `https://globalcalcpro.com/${lang}/calculators/fuel-split`
-        }}
-      />
-
-      <div className="flex-[1.5] flex flex-col">
+<div className="flex-[1.5] flex flex-col">
         <div className="mb-8 flex justify-between items-start flex-col sm:flex-row gap-4">
           <div>
             <h1 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.title}</h1>

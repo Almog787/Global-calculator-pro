@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { useUrlState } from '../../hooks/useUrlState';
 import { useI18n } from '../../contexts/i18n';
-import SEO from '../../components/SEO';
 import CountUp from '../../components/CountUp';
 import ShinyText from '../../components/ShinyText';
 import {
@@ -343,13 +342,7 @@ export default function MatrixCalculator() {
 
   return (
     <div className="w-full max-w-5xl mx-auto space-y-8 pb-12">
-      <SEO
-        title={dict.title}
-        description={dict.description}
-        canonicalUrl={`/${lang}/calculators/matrix-calculator`}
-      />
-
-      {/* Header */}
+{/* Header */}
       <div className="text-center space-y-3">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-semibold uppercase tracking-wider">
           <Grid className="w-4 h-4" />

@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { useUrlState } from '../../hooks/useUrlState';
 import { useI18n } from '../../contexts/i18n';
-import SEO from '../../components/SEO';
 import CountUp from '../../components/CountUp';
 import ShinyText from '../../components/ShinyText';
 import {
@@ -324,13 +323,7 @@ export default function ComplexNumbers() {
 
   return (
     <div className="w-full max-w-5xl mx-auto space-y-8 pb-12">
-      <SEO
-        title={dict.title}
-        description={dict.description}
-        canonicalUrl={`/${lang}/calculators/complex-numbers`}
-      />
-
-      {/* Header */}
+{/* Header */}
       <div className="text-center space-y-3">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-xs font-semibold uppercase tracking-wider">
           <Zap className="w-4 h-4" />

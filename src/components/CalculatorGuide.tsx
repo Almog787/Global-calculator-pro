@@ -92,46 +92,8 @@ export default function CalculatorGuide({ guideKey, onApplyPreset }: CalculatorG
     applyPreset: 'Test Scenario',
   };
 
-  // Generate structured schema for Google Dataset & HowTo rich results
-  const datasetSchema = benchmark ? {
-    '@context': 'https://schema.org',
-    '@type': 'Dataset',
-    name: tableTitle,
-    description: tableDesc || tableTitle,
-    inLanguage: lang,
-    isAccessibleForFree: true,
-    creator: {
-      '@type': 'Organization',
-      name: 'Global Calc Pro',
-      url: 'https://globalcalcpro.com'
-    },
-    variableMeasured: headers
-  } : null;
-
-  const howToSchema = guide && guide.formulaLines && guide.formulaLines.length > 0 ? {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: guide.guideTitle,
-    description: guide.guideDesc,
-    inLanguage: lang,
-    step: guide.formulaLines.map((line: string, idx: number) => ({
-      '@type': 'HowToStep',
-      position: idx + 1,
-      name: `Step ${idx + 1}`,
-      text: line
-    }))
-  } : null;
-
   return (
     <section className="w-full bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-xs border border-stone-200 mt-8 mb-8 space-y-8">
-      {/* Structured Data JSON-LD for Dataset & HowTo */}
-      {datasetSchema && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetSchema) }} />
-      )}
-      {howToSchema && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-      )}
-
       {/* Title & Overview */}
       {guide && (
         <div className="border-b border-stone-200 pb-6">

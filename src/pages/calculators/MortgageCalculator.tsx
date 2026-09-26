@@ -339,15 +339,8 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
         description={t.mortgageDesc}
         canonicalUrl={`/${lang}/mortgage-calculator`}
         faq={getProgrammaticFaqs('mortgage')}
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: programmaticTitle,
-          description: t.mortgageDesc,
-          applicationCategory: 'CalculatorApplication',
-          operatingSystem: 'Any',
-          url: `https://globalcalcpro.com/${lang}/mortgage-calculator`
-        }}
+        type="SoftwareApplication"
+        applicationCategory="CalculatorApplication"
       />
       
       {/* Input Form */}

@@ -1,6 +1,5 @@
 import { useDeferredValue, useEffect, useState } from 'react';
 import { useUrlState } from '../../hooks/useUrlState';
-import SEO from '../../components/SEO';
 import FAQ from '../../components/FAQ';
 import RelatedCalculators from '../../components/RelatedCalculators';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -158,22 +157,7 @@ export default function DebtSnowball() {
       <article className="w-full h-full flex flex-col lg:flex-row gap-8 items-start relative">
       {/* Input Form */}
       <div className="flex-[1.5] w-full bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200 flex flex-col">
-      <SEO
-        title={t.title}
-        description={t.description}
-        canonicalUrl={`/${lang}/calculators/debt-snowball`}
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: t.title,
-          description: t.description,
-          applicationCategory: 'CalculatorApplication',
-          operatingSystem: 'Any',
-          url: `https://globalcalcpro.com/${lang}/calculators/debt-snowball`
-        }}
-      />
-
-      <div className="flex-[2] flex flex-col">
+<div className="flex-[2] flex flex-col">
         <div className="mb-8">
           <h1 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.title}</h1>
           <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-lg">{t.description}</p>

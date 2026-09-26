@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { useUrlState } from '../../hooks/useUrlState';
 import { useI18n } from '../../contexts/i18n';
-import SEO from '../../components/SEO';
 import { calculateBitwise } from '../../lib/math/algebraCs';
 import { trackCalculation } from '../../lib/analytics';
 import {
@@ -141,13 +140,7 @@ export default function BitwiseCalculator() {
 
   return (
     <div className="w-full max-w-5xl mx-auto space-y-8" dir={lang === 'he' || lang === 'ar' ? 'rtl' : 'ltr'}>
-      <SEO
-        title={dict.title}
-        description={dict.description}
-        canonicalUrl={`/${lang}/calculators/bitwise-calculator`}
-      />
-
-      {/* Header Card */}
+{/* Header Card */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-stone-200">
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-3">

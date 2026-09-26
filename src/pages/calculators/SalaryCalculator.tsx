@@ -225,15 +225,8 @@ export default function SalaryCalculator() {
         title={t.salaryTitle}
         description={t.salaryDesc}
         canonicalUrl={`/${lang}/salary-calculator`}
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: t.salaryTitle,
-          description: t.salaryDesc,
-          applicationCategory: 'CalculatorApplication',
-          operatingSystem: 'Any',
-          url: `https://globalcalcpro.com/${lang}/salary-calculator`
-        }}
+        type="SoftwareApplication"
+        applicationCategory="CalculatorApplication"
       />
       
       {/* Input Form */}

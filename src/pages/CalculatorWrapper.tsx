@@ -49,15 +49,8 @@ export default function CalculatorWrapper() {
         title={title}
         description={description}
         canonicalUrl={canonicalUrl}
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'SoftwareApplication',
-          name: title,
-          description: description,
-          applicationCategory: 'CalculatorApplication',
-          operatingSystem: 'Any',
-          url: `https://globalcalcpro.com${canonicalUrl}`
-        }}
+        type="SoftwareApplication"
+        applicationCategory="CalculatorApplication"
       />
 
       <Breadcrumbs items={[
