@@ -20,30 +20,30 @@
 - **[BMI Calculator](https://globalcalcpro.com/bmi-calculator)** - Determine Body Mass Index with health status.
 - **[Bmi Calculator Calculator](https://globalcalcpro.com/calculators/bmi-calculator)** - Free online bmi calculator calculator for precise calculations.
 - **[Bmr Calculator](https://globalcalcpro.com/calculators/bmr)** - Free online bmr calculator for precise calculations.
-- **[Break Even Calculator](https://globalcalcpro.com/calculators/break-even)** - Free online break even calculator for precise calculations.
+- **[Break-Even Calculator](https://globalcalcpro.com/calculators/break-even)** - Calculate your exact break-even point in units and revenue. Discover contribution margins, safety margins, and model profitability across various pricing strategies.
 - **[Cap Rate Calculator](https://globalcalcpro.com/calculators/cap-rate)** - Calculate the Capitalization Rate and Net Operating Income (NOI) for real estate investments.
 - **[Circle Sector & Arc Length Calculator](https://globalcalcpro.com/calculators/circle-sector)** - Free online circle sector calculator. Compute arc length, sector area, chord length, and segment area from radius and central angle in degrees or radians with interactive SVG diagram.
 - **[Complex Numbers Calculator](https://globalcalcpro.com/calculators/complex-numbers)** - Comprehensive complex numbers calculator. Convert between rectangular, polar, and exponential Euler forms. Calculate modulus, argument, conjugate, square roots, powers, addition, subtraction, multiplication, and division with step-by-step solutions.
 - **[Compound Interest Calculator](https://globalcalcpro.com/compound-interest)** - Forecast investment growth over time.
 - **[Compound Interest Calculator](https://globalcalcpro.com/calculators/compound-interest)** - Free online compound interest calculator for precise calculations.
 - **[Cooking Timer Calculator](https://globalcalcpro.com/calculators/cooking-timer)** - Free online cooking timer calculator for precise calculations.
-- **[Credit Card Payoff Calculator](https://globalcalcpro.com/calculators/credit-card-payoff)** - Free online credit card payoff calculator for precise calculations.
+- **[Credit Card Payoff Calculator](https://globalcalcpro.com/calculators/credit-card-payoff)** - Calculate your exact credit card payoff timeline, total interest charges, and see how extra monthly payments can save thousands of dollars.
 - **[Currency Converter Calculator](https://globalcalcpro.com/calculators/currency-converter)** - Free online currency converter calculator for precise calculations.
 - **[Date Difference Calculator](https://globalcalcpro.com/calculators/date-difference)** - Free online date difference calculator for precise calculations.
-- **[Debt Snowball Calculator](https://globalcalcpro.com/calculators/debt-snowball)** - Calculate how fast you can become debt-free by paying extra toward your smallest debts first.
-- **[Download Time Calculator](https://globalcalcpro.com/calculators/download-time)** - Calculate exactly how long it will take to download or upload a file based on your internet speed.
+- **[Debt Snowball & Avalanche Calculator](https://globalcalcpro.com/calculators/debt-snowball)** - Compare Debt Snowball (lowest balance first) and Debt Avalanche (highest APR first). See how fast you become debt-free and calculate total interest savings.
+- **[Download & Upload Time Calculator](https://globalcalcpro.com/calculators/download-time)** - Calculate how long it takes to download or upload files, games, 4K movies, or backups based on internet connection speed and network overhead.
 - **[Employer Cost vs Employee Net Salary Calculator](https://globalcalcpro.com/calculators/employer-cost)** - Calculate total cost of employment for Israeli employers alongside employee net take-home salary, national insurance, income tax brackets, pension, and study fund contributions.
 - **[Freelance Net Income Calculator](https://globalcalcpro.com/calculators/freelance-net-income)** - Calculate your actual take-home pay after business expenses and estimated taxes.
 - **[Fuel Split Calculator](https://globalcalcpro.com/calculators/fuel-split)** - Calculate and split travel costs fairly among passengers.
-- **[Goal Savings Calculator](https://globalcalcpro.com/calculators/goal-savings)** - Calculate how much you need to save monthly to reach your financial goal.
-- **[Inflation Calculator](https://globalcalcpro.com/calculators/inflation)** - Free online inflation calculator for precise calculations.
+- **[Goal Savings Calculator](https://globalcalcpro.com/calculators/goal-savings)** - Calculate your required monthly savings contribution to reach your financial goal on time. Model compound interest, starting balance, and growth timelines.
+- **[Inflation & Purchasing Power Calculator](https://globalcalcpro.com/calculators/inflation)** - Calculate how inflation erodes your money’s buying power over time. Compare future costs, real value vs nominal value, and historical inflation curves.
 - **[Linear Regression & Correlation Calculator](https://globalcalcpro.com/calculators/linear-regression)** - Free online linear regression calculator. Enter bivariate data points (X, Y) to find the best fit line equation y = mx + b, Pearson correlation coefficient (r), coefficient of determination (R²), and scatter plot graph.
-- **[Margin Calculator](https://globalcalcpro.com/calculators/margin)** - Quickly calculate your gross profit and profit margin from cost and revenue.
+- **[Margin & Markup Calculator](https://globalcalcpro.com/calculators/margin)** - Quickly calculate your gross profit margin and markup from cost and revenue. Or calculate target selling price based on your desired profit margin.
 - **[Matrix Calculator & Linear Algebra](https://globalcalcpro.com/calculators/matrix-calculator)** - Solve 2x2 and 3x3 matrices with step-by-step solutions. Calculate determinant, inverse, transpose, rank, trace, matrix addition, subtraction, and multiplication.
 - **[Mortgage Affordability Calculator](https://globalcalcpro.com/calculators/mortgage-affordability)** - Free online mortgage affordability calculator for precise calculations.
 - **[Mortgage Calculator](https://globalcalcpro.com/mortgage-calculator)** - Calculate home loan monthly payments and interest.
 - **[Mortgage Calculator Calculator](https://globalcalcpro.com/calculators/mortgage-calculator)** - Free online mortgage calculator calculator for precise calculations.
-- **[Peltier Cooling Calculator](https://globalcalcpro.com/calculators/peltier-cooling)** - Calculate the expected cooling capacity and efficiency (COP) of a Thermoelectric Cooler.
+- **[Peltier Cooling & TEC Calculator](https://globalcalcpro.com/calculators/peltier-cooling)** - Calculate the expected heat pumping capacity, power consumption, and Coefficient of Performance (COP) of a Peltier module (TEC1-12706, TEC1-12710, etc.) under real temperature differentials.
 - **[Percentage Calculator](https://globalcalcpro.com/percentage-finder)** - Solve complex percentage calculations instantly.
 - **[Percentage Finder Calculator](https://globalcalcpro.com/calculators/percentage-finder)** - Free online percentage finder calculator for precise calculations.
 - **[Pregnancy Calculator Calculator](https://globalcalcpro.com/calculators/pregnancy-calculator)** - Free online pregnancy calculator calculator for precise calculations.
@@ -51,7 +51,7 @@
 - **[Real Estate Purchase & Appreciation Tax Calculator](https://globalcalcpro.com/calculators/purchase-appreciation-tax)** - Calculate official Israel real estate purchase tax brackets (single home vs additional investor home) and linear property appreciation tax with deductible expenses and exemptions.
 - **[Refinance Calculator](https://globalcalcpro.com/calculators/refinance)** - Free online refinance calculator for precise calculations.
 - **[Rent vs Buy Calculator](https://globalcalcpro.com/calculators/rent-vs-buy)** - Compare the financial costs of renting versus buying a home over 10 years.
-- **[ROI Calculator](https://globalcalcpro.com/calculators/roi)** - Calculate Return on Investment (ROI) and annualized ROI for your investments.
+- **[ROI (Return on Investment) Calculator](https://globalcalcpro.com/calculators/roi)** - Calculate your exact return on investment (ROI) and annualized growth rate (CAGR). Compare real estate, stocks, venture capital, and business investments.
 - **[Salary Calculator](https://globalcalcpro.com/salary-calculator)** - Convert hourly wage to annual salary.
 - **[Salary Calculator Calculator](https://globalcalcpro.com/calculators/salary-calculator)** - Free online salary calculator calculator for precise calculations.
 - **[Severance Pay & Section 14 Calculator](https://globalcalcpro.com/calculators/severance-pay)** - Calculate employee severance pay based on tenure and last salary, Section 14 pension deposits, statutory tax-exempt severance limits (13,750 NIS/year), taxable portion, and employer completion payments.

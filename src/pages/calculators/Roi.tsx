@@ -1,64 +1,126 @@
-import { useDeferredValue, useEffect, useState } from 'react';
-import { useUrlState } from '../../hooks/useUrlState';
-import FAQ from '../../components/FAQ';
-import RelatedCalculators from '../../components/RelatedCalculators';
-import Decimal from 'decimal.js';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import React, { useDeferredValue, useMemo } from 'react';
+import { TrendingUp } from 'lucide-react';
 import { useI18n } from '../../contexts/i18n';
+import SEO from '../../components/SEO';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedCalculators from '../../components/RelatedCalculators';
+import CalculatorGuide from '../../components/CalculatorGuide';
+import ScenarioPresets from '../../components/ScenarioPresets';
+import ShareActions from '../../components/ShareActions';
+import CountUp from '../../components/CountUp';
+import ShinyText from '../../components/ShinyText';
+import FAQ from '../../components/FAQ';
+import DisclaimerNotice from '../../components/DisclaimerNotice';
+import { useCalculatorState } from '../../hooks/useCalculatorState';
+import Decimal from 'decimal.js';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip as ChartTooltip,
+  Legend
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, ChartTooltip, Legend);
 
 const localDict = {
   en: {
-    title: 'ROI Calculator',
-    description: 'Calculate Return on Investment (ROI) and annualized ROI for your investments.',
-    amountInvested: 'Amount Invested',
-    amountReturned: 'Amount Returned',
-    investmentLength: 'Investment Length (Years)',
-    roi: 'ROI (%)',
-    investmentGain: 'Investment Gain',
-    annualizedRoi: 'Annualized ROI (%)',
+    title: 'ROI (Return on Investment) Calculator',
+    subtitle: 'Calculate Total Return, Annualized ROI (CAGR) & Net Capital Multiplier',
+    description: 'Calculate your exact return on investment (ROI) and annualized growth rate (CAGR). Compare real estate, stocks, venture capital, and business investments.',
+    amountInvested: 'Initial Capital Invested',
+    amountInvestedDesc: 'Total cost of investment at start',
+    amountReturned: 'Total Amount Returned / Final Value',
+    amountReturnedDesc: 'Total liquidation value, sale price, or current portfolio balance',
+    investmentLength: 'Investment Duration (Years)',
+    investmentLengthDesc: 'Length of holding period in years',
+    roi: 'Total Return on Investment (ROI)',
+    annualizedRoi: 'Annualized ROI (CAGR %)',
+    investmentGain: 'Net Investment Profit',
+    multiple: 'Capital Multiplier',
+    chartTitle: 'Invested Capital vs Net Gain',
+    chartInvested: 'Initial Principal',
+    chartGain: 'Net Capital Gain',
+    faqTitle: 'Frequently Asked Questions: ROI & Annualized Returns',
   },
   he: {
-    title: 'מחשבון החזר השקעה (ROI)',
-    description: 'חשב את החזר ההשקעה והתשואה השנתית עבור ההשקעות שלך.',
-    amountInvested: 'סכום שהושקע',
-    amountReturned: 'סכום שהוחזר',
+    title: 'מחשבון תשואת השקעה (ROI)',
+    subtitle: 'חישוב תשואה כוללת, תשואה שנתית ממוצעת (CAGR) ומכפיל הון',
+    description: 'מחשבון ROI מדויק: גלה את אחוז הרווח על ההשקעה, התשואה השנתית המשוקללת (CAGR), רווח נקי ומכפיל הון להשקעות נדל"ן, שוק ההון, עסקים וסטארטאפים.',
+    amountInvested: 'סכום השקעה התחלתי',
+    amountInvestedDesc: 'סך ההון העצמי שהושקע בנכס או במיזם בתחילת הדרך',
+    amountReturned: 'סכום סופי שהתקבל / שווי נוכחי',
+    amountReturnedDesc: 'סך המזומנים לאחר מכירה, דיבידנדים או שווי שוק עדכני',
     investmentLength: 'תקופת השקעה (בשנים)',
-    roi: 'החזר השקעה (%)',
-    investmentGain: 'רווח מהשקעה',
-    annualizedRoi: 'תשואה שנתית (%)',
+    investmentLengthDesc: 'משך תקופת ההחזקה בשנים (למשל 3 או 5 שנים)',
+    roi: 'תשואה כוללת (ROI %)',
+    annualizedRoi: 'תשואה שנתית ממוצעת (CAGR %)',
+    investmentGain: 'רווח הון נקי',
+    multiple: 'מכפיל הון (Multiple)',
+    chartTitle: 'השוואת הון מושקע מול רווח נקי',
+    chartInvested: 'קרן מושקעת',
+    chartGain: 'רווח הון נקי',
+    faqTitle: 'שאלות ותשובות נפוצות: חישוב ROI ותשואה שנתית',
   },
   es: {
-    title: 'Calculadora de ROI',
-    description: 'Calcula el Retorno de Inversión (ROI) y el ROI anualizado para tus inversiones.',
-    amountInvested: 'Cantidad Invertida',
-    amountReturned: 'Cantidad Devuelta',
+    title: 'Calculadora de ROI (Retorno de Inversión)',
+    subtitle: 'Calcula retorno total, ROI anualizado (CAGR) y múltiplo de capital',
+    description: 'Calcula tu retorno de inversión (ROI) y tasa anualizada en inmuebles, bolsa y negocios.',
+    amountInvested: 'Capital Invertido Inicial',
+    amountInvestedDesc: 'Costo total de entrada',
+    amountReturned: 'Valor Final / Retornado',
+    amountReturnedDesc: 'Valor de salida o liquidación',
     investmentLength: 'Duración (Años)',
-    roi: 'ROI (%)',
-    investmentGain: 'Ganancia',
-    annualizedRoi: 'ROI Anualizado (%)',
+    investmentLengthDesc: 'Años de tenencia',
+    roi: 'ROI Total (%)',
+    annualizedRoi: 'ROI Anualizado (CAGR %)',
+    investmentGain: 'Ganancia Neta',
+    multiple: 'Múltiplo de Capital',
+    chartTitle: 'Capital Invertido vs Ganancia',
+    chartInvested: 'Principal',
+    chartGain: 'Ganancia Neta',
+    faqTitle: 'Preguntas Frecuentes sobre ROI',
   },
   fr: {
-    title: 'Calculatrice de ROI',
-    description: 'Calculez le retour sur investissement (ROI) et le ROI annualisé pour vos investissements.',
-    amountInvested: 'Montant Investi',
-    amountReturned: 'Montant Retourné',
+    title: 'Calculateur de ROI (Retour sur Investissement)',
+    subtitle: 'Calculez rentabilité totale, taux de rendement annualisé (CAGR) et multiple',
+    description: 'Mesurez la performance de vos investissements financiers, immobiliers ou d\'entreprise.',
+    amountInvested: 'Capital Initial Investi',
+    amountInvestedDesc: 'Montant injecté',
+    amountReturned: 'Valeur Finale / Récupérée',
+    amountReturnedDesc: 'Montant de sortie ou revente',
     investmentLength: 'Durée (Années)',
-    roi: 'ROI (%)',
-    investmentGain: 'Gain',
-    annualizedRoi: 'ROI Annualisé (%)',
+    investmentLengthDesc: 'Horizon en années',
+    roi: 'ROI Total (%)',
+    annualizedRoi: 'ROI Annualisé (CAGR %)',
+    investmentGain: 'Plus-Value Nette',
+    multiple: 'Multiple de Capital',
+    chartTitle: 'Capital Investi vs Plus-Value',
+    chartInvested: 'Capital Initial',
+    chartGain: 'Plus-Value',
+    faqTitle: 'Questions Fréquentes sur le ROI',
   },
   ar: {
-    title: 'حاسبة العائد على الاستثمار',
-    description: 'احسب العائد على الاستثمار (ROI) والعائد السنوي لاستثماراتك.',
-    amountInvested: 'المبلغ المستثمر',
-    amountReturned: 'المبلغ العائد',
+    title: 'حاسبة العائد على الاستثمار (ROI)',
+    subtitle: 'احسب العائد الإجمالي، العائد السنوي المركب (CAGR) ومضاعف رأس المال',
+    description: 'احسب العائد على استثمارك العقاري أو التجاري أو في الأسهم مع حساب النسبة السنوية وصافي الأرباح.',
+    amountInvested: 'المبلغ المستثمر مبدئياً',
+    amountInvestedDesc: 'رأس المال المبدئي',
+    amountReturned: 'المبلغ المسترد / القيمة النهائية',
+    amountReturnedDesc: 'إجمالي القيمة بعد التخارج أو الأرباح',
     investmentLength: 'مدة الاستثمار (بالسنوات)',
-    roi: 'العائد (%)',
-    investmentGain: 'ربح الاستثمار',
-    annualizedRoi: 'العائد السنوي (%)',
+    investmentLengthDesc: 'عدد سنوات الاحتفاظ بالاستثمار',
+    roi: 'العائد الإجمالي (ROI %)',
+    annualizedRoi: 'العائد السنوي المركب (CAGR %)',
+    investmentGain: 'صافي ربح الاستثمار',
+    multiple: 'مضاعف رأس المال',
+    chartTitle: 'رأس المال المستثمر مقابل صافي الربح',
+    chartInvested: 'رأس المال الأصلي',
+    chartGain: 'صافي الأرباح',
+    faqTitle: 'الأسئلة الشائعة حول العائد على الاستثمار',
   }
 };
 
@@ -67,174 +129,270 @@ export default function Roi() {
   const guide = guides['roi'] || { guideTitle: 'Guide & Formulas', guideDesc: 'Comprehensive calculation breakdown and FAQs.', faq: [] };
   const t = localDict[lang as keyof typeof localDict] || localDict.en;
 
-  const [invested, setInvested] = useUrlState('invested', 10000);
-  const [returned, setReturned] = useUrlState('returned', 15000);
-  const [years, setYears] = useUrlState('years', 5);
-
-  const [results, setResults] = useState({
-    gain: 0,
-    roi: 0,
-    annualizedRoi: 0,
+  const { state, updateState, saveToHistory, loadFromHistory, getHistory } = useCalculatorState('roi', {
+    amountInvested: 50000,
+    amountReturned: 85000,
+    investmentLength: 3,
   });
 
-  useEffect(() => {
+  const { amountInvested, amountReturned, investmentLength } = state;
+
+  const setAmountInvested = (v: number) => updateState({ amountInvested: v });
+  const setAmountReturned = (v: number) => updateState({ amountReturned: v });
+  const setInvestmentLength = (v: number) => updateState({ investmentLength: v });
+
+  const currencySymbol = lang === 'he' ? '₪' : (lang === 'fr' || lang === 'es' ? '€' : '$');
+
+  const results = useMemo(() => {
     try {
-      const decInvested = new Decimal(invested || 0);
-      const decReturned = new Decimal(returned || 0);
-      const decYears = new Decimal(years || 1);
+      const decInv = new Decimal(amountInvested || 0);
+      const decRet = new Decimal(amountReturned || 0);
+      const n = Math.max(0.1, investmentLength || 1);
 
-      const gain = decReturned.sub(decInvested);
+      const gain = decRet.sub(decInv);
       let roi = new Decimal(0);
-      if (!decInvested.isZero()) {
-        roi = gain.div(decInvested).mul(100);
-      }
+      let cagr = new Decimal(0);
+      let multiple = new Decimal(0);
 
-      let annRoi = new Decimal(0);
-      if (!decInvested.isZero() && !decYears.isZero()) {
-        const ratio = decReturned.div(decInvested).toNumber();
-        if (ratio > 0) {
-          const exponent = 1 / decYears.toNumber();
-          annRoi = new Decimal(Math.pow(ratio, exponent) - 1).mul(100);
-        } else {
-          annRoi = new Decimal(-100);
+      if (!decInv.isZero()) {
+        roi = gain.div(decInv).mul(100);
+        multiple = decRet.div(decInv);
+
+        if (decRet.isPositive() && !decRet.isZero()) {
+          // CAGR = (End / Start) ^ (1/n) - 1
+          const ratio = decRet.div(decInv).toNumber();
+          if (ratio > 0) {
+            cagr = new Decimal(Math.pow(ratio, 1 / n) - 1).mul(100);
+          }
         }
       }
 
-      setResults({
-        gain: gain.isFinite() ? gain.toNumber() : 0,
-        roi: roi.isFinite() ? roi.toNumber() : 0,
-        annualizedRoi: annRoi.isFinite() ? annRoi.toNumber() : 0,
-      });
+      return {
+        gain: Math.round(gain.toNumber()),
+        roi: Math.round(roi.toNumber() * 10) / 10,
+        cagr: Math.round(cagr.toNumber() * 10) / 10,
+        multiple: Math.round(multiple.toNumber() * 100) / 100,
+      };
     } catch {
-      setResults({ gain: 0, roi: 0, annualizedRoi: 0 });
+      return {
+        gain: 0,
+        roi: 0,
+        cagr: 0,
+        multiple: 0,
+      };
     }
-  }, [invested, returned, years]);
+  }, [amountInvested, amountReturned, investmentLength]);
 
-  const defaultCurrency = lang === 'he' ? 'ILS' : 'USD';
-  const currencyFormat = new Intl.NumberFormat(lang === 'en' ? 'en-US' : lang, { 
-    style: 'currency', currency: defaultCurrency, minimumFractionDigits: 0, maximumFractionDigits: 2 
-  });
-  const percentFormat = new Intl.NumberFormat(lang === 'en' ? 'en-US' : lang, { 
-    style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 
-  });
+  const chartData = useMemo(() => {
+    const invVal = Math.max(0, amountInvested || 0);
+    const gainVal = Math.max(0, results.gain || 0);
 
-  const chartData = {
-    labels: [t.amountInvested, t.amountReturned],
-    datasets: [
-      {
-        label: 'Amount',
-        data: [invested, returned],
-        backgroundColor: ['#64748b', '#10b981'],
-        borderRadius: 8,
-      },
-    ],
-  };
-
-  const chartOptions = {
-    animation: false as const,
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: {
-          label: (context: any) => currencyFormat.format(context.raw || 0),
+    return {
+      labels: [t.chartInvested, t.chartGain],
+      datasets: [
+        {
+          label: 'Capital Allocation',
+          data: [invVal, gainVal],
+          backgroundColor: ['#3b82f6', '#10b981'],
+          borderRadius: 12,
         },
-      },
-    },
-    scales: {
-      y: {
-        ticks: {
-          callback: (value: any) => currencyFormat.format(value),
-          font: { size: 11 },
-        },
-        grid: { color: '#f3f4f6' },
-      },
-      x: {
-        grid: { display: false },
-      },
-    },
-  };
+      ],
+    };
+  }, [amountInvested, results.gain, t]);
 
   const deferredChartData = useDeferredValue(chartData);
 
+  const presets = [
+    {
+      label: lang === 'he' ? 'מדד S&P 500 (10% שנתי ל-5 שנים)' : 'S&P 500 Index (5 Yrs Growth)',
+      values: { amountInvested: 100000, amountReturned: 161000, investmentLength: 5 }
+    },
+    {
+      label: lang === 'he' ? 'השבחת נדל"ן / אקזיט (שנתיים)' : 'Real Estate Flip (2 Yrs)',
+      values: { amountInvested: 500000, amountReturned: 680000, investmentLength: 2 }
+    },
+    {
+      label: lang === 'he' ? 'השקעת סיד בסטארטאפ (מכפיל 5x)' : 'Startup Angel Seed (5x in 6 Yrs)',
+      values: { amountInvested: 25000, amountReturned: 125000, investmentLength: 6 }
+    },
+    {
+      label: lang === 'he' ? 'תיק אג"ח סולידי (4% ל-3 שנים)' : 'Conservative Bond (3 Yrs at 4%)',
+      values: { amountInvested: 200000, amountReturned: 225000, investmentLength: 3 }
+    },
+  ];
+
   return (
-    <div>
-      <article className="w-full h-full flex flex-col lg:flex-row gap-8 items-start relative">
-      {/* Input Form */}
-      <div className="flex-[1.5] w-full bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-stone-200 flex flex-col">
-<div className="flex-[1.5] flex flex-col">
-        <div className="mb-10">
-          <h1 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tight mb-3">{t.title}</h1>
-          <p className="text-stone-500 font-medium text-[15px] leading-relaxed max-w-md">{t.description}</p>
+    <div className="w-full max-w-7xl mx-auto space-y-8">
+      <SEO
+        title={t.title}
+        description={t.description}
+        keywords={['roi calculator', 'return on investment', 'תשואת השקעה', 'מחשבון ROI', 'CAGR']}
+      />
+
+      <Breadcrumbs
+        items={[
+          { label: lang === 'he' ? 'עסקים ופיננסים' : 'Finance & Business', path: `/${lang}/category/finance` },
+          { label: t.title },
+        ]}
+      />
+
+      <ScenarioPresets
+        presets={presets}
+        onSelect={(val) => {
+          if (val.amountInvested !== undefined) setAmountInvested(val.amountInvested);
+          if (val.amountReturned !== undefined) setAmountReturned(val.amountReturned);
+          if (val.investmentLength !== undefined) setInvestmentLength(val.investmentLength);
+        }}
+      />
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Left Form Card */}
+        <div className="lg:col-span-7 bg-white dark:bg-stone-900 rounded-3xl p-6 sm:p-8 border border-stone-200 dark:border-stone-800 shadow-sm space-y-6">
+          <div className="flex items-center gap-3.5 pb-4 border-b border-stone-100 dark:border-stone-800">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shadow-xs">
+              <TrendingUp className="w-6 h-6" />
+            </div>
+            <div>
+              <h1 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
+                {t.title}
+              </h1>
+              <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 font-medium">
+                {t.subtitle}
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-5">
+            {/* Amount Invested */}
+            <div>
+              <label htmlFor="roi-inv" className="block text-xs font-bold uppercase tracking-wider text-stone-700 dark:text-stone-300 mb-1">
+                {t.amountInvested} ({currencySymbol})
+              </label>
+              <input
+                id="roi-inv"
+                type="number"
+                min="1"
+                value={amountInvested}
+                onChange={(e) => setAmountInvested(Math.max(1, Number(e.target.value)))}
+                className="w-full bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 rounded-2xl p-3.5 text-xl font-bold text-stone-900 dark:text-white focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
+              />
+              <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">{t.amountInvestedDesc}</p>
+            </div>
+
+            {/* Amount Returned */}
+            <div>
+              <label htmlFor="roi-ret" className="block text-xs font-bold uppercase tracking-wider text-stone-700 dark:text-stone-300 mb-1">
+                {t.amountReturned} ({currencySymbol})
+              </label>
+              <input
+                id="roi-ret"
+                type="number"
+                min="0"
+                value={amountReturned}
+                onChange={(e) => setAmountReturned(Math.max(0, Number(e.target.value)))}
+                className="w-full bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 rounded-2xl p-3.5 text-xl font-bold text-stone-900 dark:text-white focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
+              />
+              <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">{t.amountReturnedDesc}</p>
+            </div>
+
+            {/* Duration (Years) */}
+            <div>
+              <label htmlFor="roi-len" className="block text-xs font-bold uppercase tracking-wider text-stone-700 dark:text-stone-300 mb-1">
+                {t.investmentLength}
+              </label>
+              <input
+                id="roi-len"
+                type="number"
+                min="0.1"
+                step="0.5"
+                value={investmentLength}
+                onChange={(e) => setInvestmentLength(Math.max(0.1, Number(e.target.value)))}
+                className="w-full bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 rounded-2xl p-3.5 text-xl font-bold text-stone-900 dark:text-white focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
+              />
+              <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">{t.investmentLengthDesc}</p>
+            </div>
+          </div>
+
+          <ShareActions
+            calculatorTitle={t.title}
+            calculatorPath="/calculators/roi"
+            onSaveHistory={saveToHistory}
+            historyEntries={getHistory()}
+            onLoadHistory={loadFromHistory}
+          />
         </div>
 
-        <div className="space-y-8">
-          <div className="group">
-<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.amountInvested}</label>
-            <input type="number" value={invested} onChange={e => setInvested(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
+        {/* Right Sticky Dashboard */}
+        <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
+          <div className="bg-stone-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-stone-800 text-white flex flex-col gap-6">
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-emerald-400">
+                  {t.roi}
+                </span>
+                <ShinyText text="NET RETURN" speed={3} className="text-[10px] text-emerald-400 font-mono" />
+              </div>
+              <div className="text-4xl sm:text-5xl font-black tracking-tight text-white flex items-baseline gap-2" dir="ltr">
+                <CountUp to={results.roi} suffix="%" duration={0.6} />
+              </div>
+              <p className="text-xs text-stone-400 mt-2">
+                {lang === 'he'
+                  ? `רווח נקי של ${results.gain.toLocaleString()} ₪ לאורך ${investmentLength} שנים (מכפיל ${results.multiple}x על הקרן).`
+                  : `Net profit of ${currencySymbol}${results.gain.toLocaleString()} over ${investmentLength} years (${results.multiple}x capital multiple).`}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3.5">
+              <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-stone-400 block mb-1">
+                  {t.annualizedRoi}
+                </span>
+                <div className="text-lg sm:text-xl font-bold text-blue-400" dir="ltr">
+                  <CountUp to={results.cagr} suffix="%" duration={0.6} />
+                </div>
+              </div>
+
+              <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-stone-400 block mb-1">
+                  {t.multiple}
+                </span>
+                <div className="text-lg sm:text-xl font-bold text-amber-400" dir="ltr">
+                  <CountUp to={results.multiple} suffix="x" duration={0.6} />
+                </div>
+              </div>
+
+              <div className="p-4 bg-white/5 rounded-2xl border border-white/10 col-span-2">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-stone-400 block mb-1">
+                  {t.investmentGain}
+                </span>
+                <div className="text-xl sm:text-2xl font-bold text-emerald-400" dir="ltr">
+                  <CountUp to={results.gain} prefix={`${currencySymbol} `} duration={0.6} />
+                </div>
+              </div>
+            </div>
+
+            {/* Visual Bar Chart */}
+            <div className="w-full h-[180px] bg-white/5 p-3 rounded-2xl border border-white/10" dir="ltr">
+              <Bar
+                data={deferredChartData}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: { legend: { display: false } },
+                  scales: {
+                    x: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { display: false } },
+                    y: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                  },
+                }}
+              />
+            </div>
           </div>
-          <div className="group">
-<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.amountReturned}</label>
-            <input type="number" value={returned} onChange={e => setReturned(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
-          </div>
-          <div className="group">
-<label className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">{t.investmentLength}</label>
-            <input type="number" value={years} onChange={e => setYears(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-2xl md:text-3xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
-          </div>
-        </div></div>
+        </div>
       </div>
-      {/* Sticky Results Dashboard */}
-      <div className="flex-1 w-full lg:w-[420px] shrink-0 lg:sticky lg:top-24 bg-stone-900 rounded-3xl p-8 shadow-2xl border border-stone-800 text-white flex flex-col justify-between">
 
-        <div>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-8">
-            <div>
-              <span className="text-xs tracking-wider uppercase font-bold text-stone-400 block mb-1">{t.investmentGain}</span>
-              <div className="text-2xl md:text-3xl font-black text-stone-900" dir="ltr">{currencyFormat.format(results.gain)}</div>
-            </div>
-            <div>
-              <span className="text-xs tracking-wider uppercase font-bold text-stone-400 block mb-1">{t.roi}</span>
-              <div className="text-2xl md:text-3xl font-headline text-blue-600" dir="ltr">{percentFormat.format(results.roi)}%</div>
-            </div>
-            <div>
-              <span className="text-xs tracking-wider uppercase font-bold text-stone-400 block mb-1">{t.annualizedRoi}</span>
-              <div className="text-xl md:text-2xl font-black text-stone-900" dir="ltr">{percentFormat.format(results.annualizedRoi)}%</div>
-            </div>
-          </div>
-        </div>
-      
-        <div className="w-full h-[240px] bg-white/5 p-4 rounded-2xl border border-white/10 mt-6" dir="ltr">
-          <Bar data={deferredChartData} options={chartOptions} />
-        </div>
-      </div>
-    </article>
+      <DisclaimerNotice type="financial" />
 
-      {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
-      <section className="w-full bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-xs border border-stone-200 mt-8 mb-8 space-y-8">
-        <div className="border-b border-stone-200 pb-6">
-          <h2 className="text-2xl sm:text-3xl font-headline font-bold text-stone-900 tracking-tight mb-3">
-            {guide.guideTitle}
-          </h2>
-          <p className="text-stone-600 leading-relaxed text-sm sm:text-base">
-            {guide.guideDesc}
-          </p>
-        </div>
-
-        {guide.formulaHeading && (
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-stone-900 flex items-center gap-2">
-              <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold">1</span>
-              {guide.formulaHeading}
-            </h3>
-            <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 font-mono text-xs sm:text-sm text-stone-800 space-y-2">
-              {guide.formulaLines?.map((line: string, idx: number) => (
-                <div key={idx}>{line}</div>
-              ))}
-            </div>
-          </div>
-        )}
-      </section>
+      <CalculatorGuide guideKey="roi" category="finance" />
 
       <FAQ items={guide.faq} />
 

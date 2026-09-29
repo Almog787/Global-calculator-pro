@@ -754,7 +754,7 @@ export function getRelatedCalculators(currentId: string, limit: number = 3) {
   const directClusterIds = curatedClusters[current.id] || curatedClusters[current.id.replace('calc-', '')] || [];
   const clusterCalcs = directClusterIds
     .map((id) => calculators.find((c) => c.id === id || c.id === `calc-${id}` || c.path.includes(id)))
-    .filter((c): c is CalculatorMeta => Boolean(c) && c.id !== current.id);
+    .filter((c): c is CalculatorMeta => c !== undefined && c.id !== current.id);
 
   if (clusterCalcs.length >= limit) {
     return clusterCalcs.slice(0, limit);

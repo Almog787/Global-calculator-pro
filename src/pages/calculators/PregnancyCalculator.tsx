@@ -790,7 +790,8 @@ export default function PregnancyCalculator() {
       ],
     };
 
-    return questions[lang] || questions.en;
+    const raw = questions[lang] || questions.en;
+    return raw.map((item) => ({ question: item.q, answer: item.a }));
   }, [lang]);
 
   return (
