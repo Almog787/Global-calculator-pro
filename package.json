@@ -1,6 +1,40 @@
 {
   "name": "global-calc-pro",
   "version": "1.0.0",
+  "description": "High-precision open-source calculator engine, embeddable widgets suite (iframe, React, WordPress), and multi-domain financial, math, and health tools in 5 languages.",
+  "keywords": [
+    "calculator",
+    "calculator-widgets",
+    "embeddable-widgets",
+    "mortgage-calculator",
+    "finance-calculator",
+    "compound-interest",
+    "vat-calculator",
+    "severance-pay",
+    "pregnancy-calculator",
+    "salary-calculator",
+    "bmi-calculator",
+    "percentage-calculator",
+    "scientific-calculator",
+    "unit-converter",
+    "matrix-calculator",
+    "financial-tools",
+    "math-tools",
+    "open-source-calculator",
+    "iframe-widget",
+    "react-calculator",
+    "pwa"
+  ],
+  "homepage": "https://globalcalcpro.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/almogshaked8/Global-Calc-Pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/almogshaked8/Global-Calc-Pro/issues"
+  },
+  "license": "MIT",
+  "author": "Almog Shaked",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3000",
