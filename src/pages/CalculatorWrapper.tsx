@@ -9,6 +9,7 @@ import SkeletonLoader from '../components/SkeletonLoader';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { useI18n } from '../contexts/i18n';
 import SEO from '../components/SEO';
+import DisclaimerNotice, { DisclaimerType } from '../components/DisclaimerNotice';
 
 // Using Vite's import.meta.glob to dynamically discover all calculators in the folder.
 const modules = import.meta.glob('./calculators/*.tsx');
@@ -43,6 +44,15 @@ export default function CalculatorWrapper() {
   const description = calcData ? getCalculatorDescription(calcData, t, lang) : 'Free online calculator tool';
   const canonicalUrl = `/${lang}${calcData?.path || currentPath}`;
 
+  let disclaimerType: DisclaimerType = 'general';
+  if (calcData?.category === 'health') {
+    disclaimerType = 'medical';
+  } else if (calcData?.category === 'finance' || calcData?.category === 'real-estate') {
+    disclaimerType = 'financial';
+  } else if (calcData?.id === 'severance-pay' || cleanSlug === 'severancepay') {
+    disclaimerType = 'legal';
+  }
+
   return (
     <div className="w-full">
       <SEO
@@ -63,6 +73,10 @@ export default function CalculatorWrapper() {
           <Component />
         </Suspense>
       </ErrorBoundary>
+
+      <div className="mt-6 mb-6">
+        <DisclaimerNotice type={disclaimerType} />
+      </div>
 
       <div className="mt-6 mb-8">
         <ShareActions calculatorTitle={title} calculatorPath={currentPath} />

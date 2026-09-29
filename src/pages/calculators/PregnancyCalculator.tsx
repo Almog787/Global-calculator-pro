@@ -4,6 +4,7 @@ import { useI18n } from '../../contexts/i18n';
 import { calculatePregnancy, getFetalDataForWeek, FetalWeekData } from '../../lib/math/allCalculators';
 import CalculatorGuide from '../../components/CalculatorGuide';
 import FAQ from '../../components/FAQ';
+import DisclaimerNotice from '../../components/DisclaimerNotice';
 import {
   Baby,
   Calendar,
@@ -159,18 +160,18 @@ const PRENATAL_MILESTONES: PrenatalMilestone[] = [
     startWeek: 28,
     endWeek: 32,
     title: {
-      he: 'מעקב גדילה ראשון (הערכת משקל) וחיסון שעלת',
-      en: '3rd Trimester Growth Scan & Tdap Vaccine',
-      es: 'Control de Crecimiento Fetal y Vacuna Tosferina',
-      fr: 'Échographie du 3e Trimestre et Vaccin Coqueluche',
-      ar: 'متابعة نمو ووزن الجنين وتطعيم السعال الديكي',
+      he: 'מעקב גדילה ראשון (הערכת משקל) ומעקב הריון',
+      en: '3rd Trimester Growth Scan & Routine Checkup',
+      es: 'Control de Crecimiento Fetal y Revisión Prenatal',
+      fr: 'Échographie du 3e Trimestre et Suivi de Routine',
+      ar: 'متابعة نمو ووزن الجنين والفحص الدوري',
     },
     desc: {
-      he: 'אולטרסאונד להערכת משקל, קצב גדילה וזרימות דם, לצד מתן חיסון שעלת להגנת התינוק לאחר הלידה.',
-      en: 'Ultrasound check for fetal growth and amniotic fluid; maternal Tdap vaccination to protect newborn.',
-      es: 'Ecografía para evaluar percentil de peso y líquido amniótico; vacunación materna para proteger al recién nacido.',
-      fr: 'Contrôle du poids fœtal, du liquide amniotique et vaccination maternelle protectrice pour le nourrisson.',
-      ar: 'فحص بالسونار لتقدير وزن الجنين ونموه وكمية السائل الأمنيوسي وتطعيم الأم لحماية المولود.',
+      he: 'אולטרסאונד שגרתי להערכת משקל, קצב גדילה וזרימות דם, לצד מידע כללי על מעקבים מומלצים בהריון לפי הנחיות הרופא המטפל.',
+      en: 'Routine ultrasound check for fetal growth and amniotic fluid, along with standard prenatal checkup review with your doctor.',
+      es: 'Ecografía de rutina para evaluar percentil de peso y líquido amniótico junto al control prenatal con su médico.',
+      fr: 'Échographie de contrôle de croissance et consultation prénatale de routine avec votre praticien.',
+      ar: 'فحص بالسونار لتقدير وزن الجنين ونموه ومراجعة الفحوصات الروتينية مع الطبيب المعالج.',
     },
     category: 'routine',
   },
@@ -827,6 +828,9 @@ export default function PregnancyCalculator() {
           )}
         </button>
       </div>
+
+      {/* Prominent Medical Disclaimer */}
+      <DisclaimerNotice type="medical" />
 
       {/* Main Calculation Form Card */}
       <section className="bg-surface rounded-3xl p-6 sm:p-8 shadow-xs border border-border-subtle space-y-6">

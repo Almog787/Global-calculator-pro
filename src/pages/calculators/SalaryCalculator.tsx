@@ -23,6 +23,7 @@ import ShareActions from '../../components/ShareActions';
 import CountUp from '../../components/CountUp';
 import ShinyText from '../../components/ShinyText';
 import { calculateGrossFromNet } from '../../lib/math/finance';
+import DisclaimerNotice from '../../components/DisclaimerNotice';
 
 ChartJS.register(
   CategoryScale,
@@ -397,6 +398,9 @@ export default function SalaryCalculator() {
         </div>
       </div>
     </div>
+
+      {/* Financial & Tax Disclaimer */}
+      <DisclaimerNotice type="financial" className="mt-8 mb-6" />
 
       {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
       <CalculatorGuide

@@ -10,6 +10,7 @@ import ShareActions from '../../components/ShareActions';
 import ScenarioPresets from '../../components/ScenarioPresets';
 import { useMeasurementSystem } from '../../hooks/useMeasurementSystem';
 import MeasurementToggle from '../../components/MeasurementToggle';
+import DisclaimerNotice from '../../components/DisclaimerNotice';
 
 export default function BmiCalculator() {
   const { t, lang, guides } = useI18n();
@@ -242,6 +243,9 @@ export default function BmiCalculator() {
         </div>
       </div>
     </div>
+
+      {/* Medical Disclaimer */}
+      <DisclaimerNotice type="medical" className="mt-8 mb-6" />
 
       {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
       <CalculatorGuide guideKey="bmi" />

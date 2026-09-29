@@ -23,6 +23,7 @@ import { MORTGAGE_REGIMES, MortgageRegimeId } from '../../lib/regimes/mortgageRe
 import PopularScenarios from '../../components/PopularScenarios';
 import { POPULAR_MORTGAGE_SCENARIOS, getProgrammaticFaqs } from '../../lib/seo/programmaticScenarios';
 import AnimatedNumber from '../../components/AnimatedNumber';
+import DisclaimerNotice from '../../components/DisclaimerNotice';
 import ShinyText from '../../components/ShinyText';
 import { trackCalculation, trackExcelExport, trackScenarioComparison } from '../../lib/analytics';
 
@@ -788,6 +789,9 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
       />
+
+      {/* Financial & Mortgage Disclaimer */}
+      <DisclaimerNotice type="financial" className="mt-8 mb-6" />
 
       {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
       <CalculatorGuide
