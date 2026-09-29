@@ -16,6 +16,7 @@ ChartJS.register(ArcElement, ChartTooltip, Legend);
 
 const localDict = {
   en: {
+    catFinance: 'Finance & Money',
     title: 'VAT & Sales Tax Calculator',
     subtitle: 'Add or Remove Value Added Tax (VAT) Easily | Israel 18% VAT & Global Tax Rates',
     description: 'Calculate Value Added Tax (VAT) online: Add VAT to net amount, remove VAT from gross price, batch invoice itemization, and official tax rates for Israel (18%), UK, EU, and US.',
@@ -47,6 +48,7 @@ const localDict = {
     a3: 'Output VAT is the tax a business collects from customers on sales. Input VAT is the tax paid by the business on business expenses. Businesses report and pay the net difference (Output VAT minus Input VAT) to tax authorities.'
   },
   he: {
+    catFinance: 'פיננסים וכסף',
     title: 'מחשבון מע"מ (הוספה והפחתה מחישוב ברוטו/נטו)',
     subtitle: 'מחשבון מע"מ מעודכן 18% (2026) | הוספת מע"מ למחיר נטו, הפחתת מע"מ ממחיר כולל ופירוט חשבוניות',
     description: 'מחשבון מע"מ אונליין: חישוב הוספת מע"מ (סכום לפני מע"מ לכולל מע"מ), הפחתת מע"מ (חילוץ מע"מ ממחיר סופי), מע"מ 18% מעודכן, מע"מ 17% ופירוט חשבונית רב-פריטית.',
@@ -78,6 +80,7 @@ const localDict = {
     a3: 'מס עסקאות הוא המע"מ שהעסק גובה מלקוחותיו בגין מכירות. מס תשומות הוא המע"מ שהעסק שילם לספקים בגין הוצאות מוכרות. בדיווח התקופתי למע"מ העסק משלם לרשות המיסים את ההפרש (מס עסקאות פחות מס תשומות).'
   },
   es: {
+    catFinance: 'Finanzas y Dinero',
     title: 'Calculadora de IVA e Impuestos de Ventas',
     subtitle: 'Añade o Desglosa el IVA Fácilmente | Tasas Oficiales de IVA',
     description: 'Calcula el IVA en línea: Añade IVA al importe neto, desglosa el IVA de un precio bruto final y gestiona desgloses para facturas completas.',
@@ -109,6 +112,7 @@ const localDict = {
     a3: 'Las empresas restan el IVA pagado en sus compras del IVA cobrado en sus ventas para liquidar la diferencia con Hacienda.'
   },
   fr: {
+    catFinance: 'Finance & Argent',
     title: 'Calculateur de TVA (Ajout & Déduction de TVA)',
     subtitle: 'Calculateur TVA en Ligne | Taux de TVA 20% & Internationaux',
     description: 'Calculez la TVA facilement: ajoutez la TVA à un prix HT ou extrayez le montant de la TVA d\'un prix TTC.',
@@ -140,6 +144,7 @@ const localDict = {
     a3: 'L\'entreprise reverse à l\'administration fiscale la différence entre la TVA collectée et la TVA déductible.'
   },
   ar: {
+    catFinance: 'المالية والاستثمار',
     title: 'حاسبة ضريبة القيمة المضافة (VAT)',
     subtitle: 'إضافة أو إخراج ضريبة القيمة المضافة بسهولة | نسبة 18% ونسب عالمية',
     description: 'احسب ضريبة القيمة المضافة أونلاين: إضافة الضريبة للسعر الصافي، استخراج الضريبة من السعر الإجمالي، وتفصيل الفواتير.',
@@ -301,7 +306,7 @@ export default function Vat() {
       <Breadcrumbs
         items={[
           {
-            label: t.catFinance || (lang === 'he' ? 'פיננסים וכסף' : 'Finance & Money'),
+            label: t.catFinance,
             path: `/${lang}/category/finance`
           },
           { label: t.title }

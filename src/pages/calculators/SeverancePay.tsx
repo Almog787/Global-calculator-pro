@@ -15,6 +15,7 @@ ChartJS.register(ArcElement, ChartTooltip, Legend);
 
 const localDict = {
   en: {
+    catFinance: 'Finance & Money',
     title: 'Severance Pay & Section 14 Calculator',
     subtitle: 'Comprehensive Israel & Global Severance Pay, Tax Exemption Ceiling & Section 14 Employer Completion',
     description: 'Calculate employee severance pay based on tenure and last salary, Section 14 pension deposits, statutory tax-exempt severance limits (13,750 NIS/year), taxable portion, and employer completion payments.',
@@ -47,6 +48,7 @@ const localDict = {
     a3: 'When Section 14 does not apply or only applies partially (e.g., 6% instead of 8.33%), the employer must pay the gap between last salary × total years worked and the actual amount accumulated in the pension severance component.'
   },
   he: {
+    catFinance: 'פיננסים וכסף',
     title: 'מחשבון פיצויי פיטורים וסעיף 14',
     subtitle: 'חישוב פיצויי פיטורים, תקרת פטור ממס (13,750 ₪ לשנה), סעיף 14 והשלמת מעסיק',
     description: 'מחשבון פיצויי פיטורים מתקדם: חשב את זכאות הפיצויים לפי ותק ושכר אחרון, תקרת הפטור ממס הכנסה (13,750 ₪ לשנת עבודה), חלק פטור מול חייב במס, השלמת מעסיק וסעיף 14.',
@@ -79,6 +81,7 @@ const localDict = {
     a3: 'כאשר לא חל סעיף 14 מלא (למשל כאשר המעסיק הפריש 6% בלבד במקום 8.33%), המעסיק מחויב לשלם לעובד השלמה במזומן בשיעור 28% מהשכר האחרון כפול שנות הוותק (הפרש בין 8.33% ל-6%), או את ההפרש בין השכר האחרון כפול הוותק לבין הסכום שנצבר בפועל מרכיב הפיצויים בקופה.'
   },
   es: {
+    catFinance: 'Finanzas y Dinero',
     title: 'Calculadora de Indemnización por Despido y Exención Fiscal',
     subtitle: 'Cálculo de Indemnización por Antigüedad, Límites Exentos e Impuestos',
     description: 'Calcula la indemnización por despido según antigüedad y último salario, deducciones fiscales legalmente exentas, tramos impositivos y aportaciones a fondos de pensiones.',
@@ -111,6 +114,7 @@ const localDict = {
     a3: 'Los fondos acumulados en la cuenta de despido reducen el importe que la empresa debe abonar directamente en efectivo.'
   },
   fr: {
+    catFinance: 'Finance & Argent',
     title: 'Calculateur d\'Indemnité de Licenciement et Exonération Fiscale',
     subtitle: 'Calcul des Indemnités selon l\'Ancienneté, Plafonds d\'Exonération et Impôts',
     description: 'Calculez votre indemnité légale ou conventionnelle de licenciement, la part exonérée d\'impôt, le reliquat imposable et les versements d\'abondement employeur.',
@@ -143,6 +147,7 @@ const localDict = {
     a3: 'Les sommes déjà versées sur les fonds dédiés viennent en déduction du montant restant à la charge directe de l\'employeur.'
   },
   ar: {
+    catFinance: 'المالية والاستثمار',
     title: 'حاسبة تعويضات نهاية الخدمة والإعفاء الضريبي',
     subtitle: 'احتساب تعويضات نهاية الخدمة، سقف الإعفاء الضريبي والمبلغ التكميلي للمشغل',
     description: 'احسب تعويضات نهاية الخدمة حسب الأقدمية والراتب الأخير، سقف الإعفاء الضريبي (13,750 شيكل/سنة)، الجزء الخاضع للضريبة والمبلغ التكميلي من المشغل.',
@@ -267,7 +272,7 @@ export default function SeverancePay() {
       <Breadcrumbs
         items={[
           {
-            label: t.catFinance || (lang === 'he' ? 'פיננסים וכסף' : 'Finance & Money'),
+            label: t.catFinance,
             path: `/${lang}/category/finance`
           },
           { label: t.title }
