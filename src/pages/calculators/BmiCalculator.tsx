@@ -113,7 +113,7 @@ export default function BmiCalculator() {
 
   return (
     <div className="w-full">
-      <Breadcrumbs items={[{ label: t.catAll || 'Library', path: `/${lang}/all` }, { label: t.bmiTitle }]} />
+      <Breadcrumbs items={[{ label: t.catHealth || 'Health', path: `/${lang}/category/health` }, { label: t.bmiTitle }]} />
 
       {/* Programmatic Scenario Presets */}
       <ScenarioPresets

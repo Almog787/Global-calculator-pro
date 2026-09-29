@@ -198,7 +198,7 @@ export default function PercentageFinder() {
 
   return (
     <div className="w-full max-w-5xl mx-auto px-2 sm:px-4 py-2">
-      <Breadcrumbs items={[{ label: t.catAll || 'Library', path: `/${lang}/all` }, { label: t.percFinderTitle }]} />
+      <Breadcrumbs items={[{ label: t.catMath || 'Math', path: `/${lang}/category/math` }, { label: t.percFinderTitle }]} />
 
       <SEO
         title={

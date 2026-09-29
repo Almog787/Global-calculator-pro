@@ -10,8 +10,8 @@ import SpotlightCard from "../components/SpotlightCard";
 import Magnet from "../components/Magnet";
 import Squares from "../components/Squares";
 import { useI18n } from "../contexts/i18n";
-import { getCategoryHubInfo, CATEGORY_HUBS } from "../data/categories";
-import CategoryHubBanner from "../components/CategoryHubBanner";
+import Breadcrumbs from "../components/Breadcrumbs";
+import { categoryHubsData } from "../data/categoryHubs";
 
 export default function AllCalculators() {
   const { t, lang } = useI18n();
@@ -299,40 +299,14 @@ export default function AllCalculators() {
 
   const currText = bentoTexts[lang as keyof typeof bentoTexts] || bentoTexts.en;
 
-  const isCategoryRoute = Boolean(categoryId && categoryId !== "all" && CATEGORY_HUBS[categoryId]);
-  const hubInfo = isCategoryRoute ? getCategoryHubInfo(categoryId!) : null;
-
-  const seoTitle = hubInfo
-    ? (hubInfo.seoTitle[lang] || hubInfo.seoTitle.en)
-    : t.libraryTitle;
-
-  const seoDescription = hubInfo
-    ? (hubInfo.seoDescription[lang] || hubInfo.seoDescription.en)
-    : t.librarySubtitle;
-
-  const seoCanonical = isCategoryRoute
-    ? `/${lang}/category/${categoryId}`
-    : `/${lang}/all`;
-
   return (
     <div className="w-full">
       <SEO
-        title={seoTitle}
-        description={seoDescription}
-        keywords={isCategoryRoute && hubInfo ? (hubInfo.tags[lang] || hubInfo.tags.en) : ['calculators', 'assistant', 'Calc-E', 'finance', 'health', 'math', 'tools']}
-        canonicalUrl={seoCanonical}
-        structuredData={isCategoryRoute && hubInfo ? {
-          '@context': 'https://schema.org',
-          '@type': 'CollectionPage',
-          name: seoTitle,
-          description: seoDescription,
-          url: `https://globalcalcpro.com${seoCanonical}`,
-          isPartOf: {
-            '@type': 'WebSite',
-            name: 'GlobalCalc Pro',
-            url: `https://globalcalcpro.com/${lang}/all`
-          }
-        } : {
+        title={t.libraryTitle}
+        description={t.librarySubtitle}
+        keywords={['calculators', 'assistant', 'Calc-E', 'finance', 'health', 'math', 'tools']}
+        canonicalUrl={`/${lang}/all`}
+        structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebSite',
           name: t.title,
@@ -346,16 +320,9 @@ export default function AllCalculators() {
         }}
       />
 
-      {isCategoryRoute && hubInfo ? (
-        <CategoryHubBanner
-          hubInfo={hubInfo}
-          categoryId={categoryId!}
-          totalCalculators={filtered.length}
-        />
-      ) : (
-        /* Proposal 1: 3D Glassmorphism & Parallax Mesh Hero Section */
-        <section 
-          onMouseMove={handleHeroMouseMove}
+      {/* Proposal 1: 3D Glassmorphism & Parallax Mesh Hero Section */}
+      <section 
+        onMouseMove={handleHeroMouseMove}
         onMouseLeave={handleHeroMouseLeave}
         className="mb-12 sm:mb-16 relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-border-subtle/80 p-6 sm:p-10 lg:p-12 shadow-xl transition-all"
       >
@@ -499,7 +466,6 @@ export default function AllCalculators() {
           </div>
         </div>
       </section>
-      )}
 
       {/* Interactive Bento Grid Showcase */}
       {activeCategory === "all" && (
@@ -804,6 +770,85 @@ export default function AllCalculators() {
         </section>
       )}
 
+      {/* Category Hub Breadcrumbs & Rich Educational Topic Hub for SEO */}
+      {activeCategory !== 'all' && categoryHubsData[activeCategory] && (
+        <div className="mb-8 space-y-6">
+          <Breadcrumbs
+            items={[
+              {
+                label: categoryHubsData[activeCategory].title[lang] || categoryHubsData[activeCategory].title.en || activeCategory,
+                path: `/${lang}/category/${activeCategory}`
+              }
+            ]}
+          />
+
+          <section className="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 md:p-10 border border-border-subtle shadow-xs space-y-6">
+            <div className="border-b border-border-subtle/80 pb-5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-secondary/10 text-secondary border border-secondary/20 mb-3">
+                <span className="material-symbols-outlined text-[16px]">hub</span>
+                <span>{categoryHubsData[activeCategory].title[lang] || categoryHubsData[activeCategory].title.en}</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-headline font-extrabold text-primary-container tracking-tight mb-2">
+                {categoryHubsData[activeCategory].title[lang] || categoryHubsData[activeCategory].title.en}
+              </h2>
+              <p className="text-on-surface-variant text-sm sm:text-base leading-relaxed">
+                {categoryHubsData[activeCategory].subtitle[lang] || categoryHubsData[activeCategory].subtitle.en}
+              </p>
+            </div>
+
+            {/* 100-150 Word Rich SEO Educational Content */}
+            <div className="text-stone-700 dark:text-stone-300 text-sm sm:text-base leading-relaxed space-y-4">
+              <p>
+                {categoryHubsData[activeCategory].introText[lang] || categoryHubsData[activeCategory].introText.en}
+              </p>
+            </div>
+
+            {/* Key Mathematical & Regulatory Benefits */}
+            {categoryHubsData[activeCategory].keyBenefits[lang] && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {categoryHubsData[activeCategory].keyBenefits[lang].map((benefit: string, idx: number) => (
+                  <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-surface-container-low/70 border border-border-subtle text-xs sm:text-sm text-on-surface">
+                    <span className="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">check_circle</span>
+                    <span className="font-medium">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Recommended Workflow & Expert Quote */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-2">
+              {categoryHubsData[activeCategory].recommendedWorkflow?.[lang] && (
+                <div className="p-4 rounded-2xl bg-blue-50/60 dark:bg-blue-950/20 border border-blue-200/70 text-xs sm:text-sm text-blue-950 dark:text-blue-200 flex items-start gap-3">
+                  <span className="material-symbols-outlined text-blue-600 text-[22px] shrink-0 mt-0.5">route</span>
+                  <div>
+                    <span className="font-bold block mb-1 text-blue-900 dark:text-blue-300">
+                      {lang === 'he' ? 'זרימת עבודה מומלצת:' : 'Recommended Calculation Workflow:'}
+                    </span>
+                    <p className="leading-relaxed text-stone-700 dark:text-stone-300">
+                      {categoryHubsData[activeCategory].recommendedWorkflow[lang]}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {categoryHubsData[activeCategory].expertQuote?.[lang] && (
+                <div className="p-4 rounded-2xl bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200/70 text-xs sm:text-sm text-amber-950 dark:text-amber-200 flex items-start gap-3">
+                  <span className="material-symbols-outlined text-amber-600 text-[22px] shrink-0 mt-0.5">format_quote</span>
+                  <div>
+                    <span className="font-bold block mb-1 text-amber-900 dark:text-amber-300">
+                      {lang === 'he' ? 'ציטוט מומחה:' : 'Expert Insight:'}
+                    </span>
+                    <p className="leading-relaxed text-stone-700 dark:text-stone-300 italic font-serif">
+                      {categoryHubsData[activeCategory].expertQuote[lang]}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        </div>
+      )}
+
       {/* Category Filter Pills */}
       <section id="category-filters" className="mb-8 overflow-x-auto pb-3 scrollbar-hide">
         <div className="flex gap-3 min-w-max">
@@ -884,37 +929,6 @@ export default function AllCalculators() {
           );
         })}
       </section>
-
-      {/* Other Categories Topic Cluster Linking */}
-      {isCategoryRoute && (
-        <section className="mt-14 pt-8 border-t border-border-subtle">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-on-surface mb-6 flex items-center gap-2">
-            <span className="material-symbols-outlined text-base text-secondary">category</span>
-            <span>{lang === 'he' ? 'קטגוריות מחשבונים נוספות' : 'Explore Other Calculator Categories'}</span>
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-            {categories.filter(c => c.id !== 'all' && c.id !== categoryId).map(cat => {
-              const catHub = CATEGORY_HUBS[cat.id];
-              return (
-                <Link
-                  key={cat.id}
-                  to={`/${lang}/category/${cat.id}`}
-                  className="group flex flex-col p-4 bg-surface rounded-2xl border border-border-subtle hover:border-secondary hover:shadow-md transition-all text-center items-center"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-surface-container-high group-hover:bg-secondary/10 flex items-center justify-center text-on-surface-variant group-hover:text-secondary transition-colors mb-2">
-                    <span className="material-symbols-outlined text-xl">
-                      {catHub?.icon || 'calculate'}
-                    </span>
-                  </div>
-                  <span className="text-xs sm:text-sm font-bold text-on-surface group-hover:text-secondary transition-colors">
-                    {cat.label}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-      )}
     </div>
   );
 }

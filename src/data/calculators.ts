@@ -723,33 +723,57 @@ export function searchCalculators(query: string, t?: any, lang?: string) {
 }
 
 export function getRelatedCalculators(currentId: string, limit: number = 3) {
-  const normalizedQuery = (currentId || '').toLowerCase().replace(/^\/calculators\//, '').replace(/^\//, '').trim();
-
   const current = calculators.find(
-    (c) =>
-      c.id === currentId ||
-      c.path === currentId ||
-      c.path === `/${currentId}` ||
-      c.path === `/calculators/${currentId}` ||
-      c.id.toLowerCase() === normalizedQuery ||
-      c.path.toLowerCase().replace(/^\/calculators\//, '').replace(/^\//, '') === normalizedQuery ||
-      (normalizedQuery.length >= 3 && (c.id.includes(normalizedQuery) || normalizedQuery.includes(c.id)))
+    (c) => c.id === currentId || c.path === currentId || c.path === `/calculators/${currentId}` || c.path === `/${currentId}`
   );
+  if (!current) return calculators.slice(0, limit);
 
-  const currentCategory = current ? current.category : null;
+  // Curated high-intent topic clusters for maximum relevance & link equity
+  const curatedClusters: Record<string, string[]> = {
+    'mortgage': ['purchase-appreciation-tax', 'mortgage-affordability', 'rent-vs-buy', 'refinance', 'cap-rate'],
+    'compound-interest': ['goal-savings', 'inflation', 'roi', 'mortgage', 'stock-options-rsu'],
+    'pregnancy-calculator': ['water-intake', 'bmi-calculator', 'sleep-calculator', 'bmr', 'date-difference'],
+    'bmi-calculator': ['bmr', 'water-intake', 'sleep-calculator', 'pregnancy-calculator'],
+    'percentage-finder': ['vat', 'margin', 'tip-calculator', 'salary', 'break-even'],
+    'salary': ['freelance-net-income', 'employer-cost', 'severance-pay', 'percentage-finder', 'break-even'],
+    'rent-vs-buy': ['mortgage', 'cap-rate', 'purchase-appreciation-tax', 'mortgage-affordability'],
+    'auto-loan': ['mortgage', 'fuel-split', 'debt-snowball', 'credit-card-payoff'],
+    'vat': ['percentage-finder', 'margin', 'freelance-net-income', 'break-even'],
+    'bmr': ['bmi-calculator', 'water-intake', 'sleep-calculator'],
+    'water-intake': ['bmi-calculator', 'bmr', 'sleep-calculator', 'pregnancy-calculator'],
+    'sleep-calculator': ['water-intake', 'bmi-calculator', 'date-difference'],
+    'debt-snowball': ['credit-card-payoff', 'auto-loan', 'mortgage'],
+    'credit-card-payoff': ['debt-snowball', 'auto-loan', 'compound-interest'],
+    'goal-savings': ['compound-interest', 'inflation', 'mortgage-affordability'],
+    'inflation': ['compound-interest', 'salary', 'goal-savings'],
+    'purchase-appreciation-tax': ['mortgage', 'rent-vs-buy', 'cap-rate'],
+    'employer-cost': ['salary', 'freelance-net-income', 'severance-pay'],
+    'severance-pay': ['salary', 'employer-cost', 'freelance-net-income'],
+  };
 
-  // Find by same category first
-  const related = currentCategory
-    ? calculators.filter((c) => (!current || c.id !== current.id) && c.category === currentCategory)
-    : [];
+  const directClusterIds = curatedClusters[current.id] || curatedClusters[current.id.replace('calc-', '')] || [];
+  const clusterCalcs = directClusterIds
+    .map((id) => calculators.find((c) => c.id === id || c.id === `calc-${id}` || c.path.includes(id)))
+    .filter((c): c is CalculatorMeta => Boolean(c) && c.id !== current.id);
 
-  // If not enough in same category, pad with popular/related calculators from other categories
-  if (related.length < limit) {
-    const others = calculators.filter(
-      (c) => (!current || c.id !== current.id) && (!currentCategory || c.category !== currentCategory)
-    );
-    related.push(...others.slice(0, limit - related.length));
+  if (clusterCalcs.length >= limit) {
+    return clusterCalcs.slice(0, limit);
   }
 
-  return related.slice(0, limit);
+  // Find by same category next
+  const categoryCalcs = calculators.filter(
+    (c) => c.id !== current.id && c.category === current.category && !clusterCalcs.some((existing) => existing.id === c.id)
+  );
+
+  const combined = [...clusterCalcs, ...categoryCalcs];
+
+  // Pad with others if still below limit
+  if (combined.length < limit) {
+    const others = calculators.filter(
+      (c) => c.id !== current.id && !combined.some((existing) => existing.id === c.id)
+    );
+    combined.push(...others.slice(0, limit - combined.length));
+  }
+
+  return combined.slice(0, limit);
 }

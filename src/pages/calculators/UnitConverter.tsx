@@ -60,7 +60,7 @@ export default function UnitConverter() {
 
   return (
     <div className="w-full max-w-4xl mx-auto px-2 sm:px-4 py-2">
-      <Breadcrumbs items={[{ label: t.catAll || 'Library', path: `/${lang}/all` }, { label: t.unitConvTitle }]} />
+      <Breadcrumbs items={[{ label: t.catMath || 'Math', path: `/${lang}/category/math` }, { label: t.unitConvTitle }]} />
       <article className="w-full bg-white rounded-2xl p-6 md:p-8 shadow-xs border border-stone-200/80">
         <SEO
         title={t.unitConvTitle}

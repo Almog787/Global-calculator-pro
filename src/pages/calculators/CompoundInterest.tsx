@@ -295,7 +295,7 @@ ${lang === 'he' ? 'הפרש ורווח עודף' : 'Difference & Extra Returns'}
 
   return (
     <div className="w-full">
-      <Breadcrumbs items={[{ label: t.catAll || 'Library', path: `/${lang}/all` }, { label: t.compoundTitle }]} />
+      <Breadcrumbs items={[{ label: t.catFinance || 'Finance', path: `/${lang}/category/finance` }, { label: t.compoundTitle }]} />
       
       {/* Programmatic Scenario Presets */}
       <ScenarioPresets

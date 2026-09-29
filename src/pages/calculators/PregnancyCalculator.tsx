@@ -5,6 +5,7 @@ import { calculatePregnancy, getFetalDataForWeek, FetalWeekData } from '../../li
 import CalculatorGuide from '../../components/CalculatorGuide';
 import FAQ from '../../components/FAQ';
 import DisclaimerNotice from '../../components/DisclaimerNotice';
+import Breadcrumbs from '../../components/Breadcrumbs';
 import {
   Baby,
   Calendar,
@@ -794,6 +795,7 @@ export default function PregnancyCalculator() {
 
   return (
     <div className="w-full max-w-4xl mx-auto space-y-8">
+      <Breadcrumbs items={[{ label: t.catHealth || 'Health', path: `/${lang}/category/health` }, { label: L.title }]} />
       {/* Hero Header */}
       <div className="text-center sm:text-start flex flex-col sm:flex-row items-center justify-between gap-4 pb-2 border-b border-border-subtle">
         <div className="flex items-center gap-3.5">

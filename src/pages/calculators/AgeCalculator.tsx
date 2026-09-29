@@ -64,7 +64,7 @@ export default function AgeCalculator() {
 
   return (
     <div className="w-full">
-      <Breadcrumbs items={[{ label: t.catAll || 'Library', path: `/${lang}/all` }, { label: t.ageTitle }]} />
+      <Breadcrumbs items={[{ label: t.catLifestyle || 'Lifestyle', path: `/${lang}/category/lifestyle` }, { label: t.ageTitle }]} />
       <div className="w-full h-full flex flex-col lg:flex-row gap-8 items-start relative">
       
       <SEO

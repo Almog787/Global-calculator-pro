@@ -205,7 +205,7 @@ export default function SalaryCalculator() {
 
   return (
     <div className="w-full">
-      <Breadcrumbs items={[{ label: t.catAll || 'Library', path: `/${lang}/all` }, { label: t.salaryTitle }]} />
+      <Breadcrumbs items={[{ label: t.catFinance || 'Finance', path: `/${lang}/category/finance` }, { label: t.salaryTitle }]} />
 
       {/* Programmatic Scenario Presets */}
       <ScenarioPresets

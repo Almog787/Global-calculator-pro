@@ -222,13 +222,13 @@ function App() {
               <option value="ar">العربية</option>
             </select>
 
-            {/* History Drawer Trigger */}
+            {/* History Drawer Trigger (Desktop only - mobile is in the search row below) */}
             <button
               type="button"
               onClick={toggleDrawer}
               aria-label={lang === 'he' ? 'היסטוריית חישובים' : 'Calculation History'}
               title={lang === 'he' ? 'היסטוריית חישובים אחרונה' : 'Recent Calculations'}
-              className="relative flex items-center justify-center w-10 h-10 rounded-lg border border-border-subtle bg-surface-container-lowest hover:bg-surface-container text-on-surface transition-all cursor-pointer shrink-0"
+              className="hidden lg:flex relative items-center justify-center w-10 h-10 rounded-lg border border-border-subtle bg-surface-container-lowest hover:bg-surface-container text-on-surface transition-all cursor-pointer shrink-0"
             >
               <span className="material-symbols-outlined text-[20px]">history</span>
               {recentCount > 0 && (
