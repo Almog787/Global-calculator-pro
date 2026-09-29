@@ -43,24 +43,62 @@ export default function ShareActions({
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
+  const handleTelegramShare = () => {
+    const text = shareMessage
+      ? `${shareMessage}`
+      : `${calculatorTitle || 'GlobalCalc Pro'}`;
+    const url = `https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleNativeShare = async () => {
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share({
+          title: calculatorTitle || 'GlobalCalc Pro',
+          text: shareMessage || calculatorTitle || 'GlobalCalc Pro',
+          url: window.location.href,
+        });
+      } catch {
+        // User dismissed share dialog
+      }
+    } else {
+      handleCopyLink();
+    }
+  };
+
   const handlePrint = () => {
     window.print();
   };
 
   const hasHistory = historyEntries && historyEntries.length > 0;
+  const canNativeShare = typeof navigator !== 'undefined' && typeof navigator.share === 'function';
 
   const labels = {
-    en: { copyLink: 'Copy Link', whatsapp: 'Share via WhatsApp', print: 'Print / Save PDF', excel: 'Export to Excel', embed: 'Embed Widget', saveResult: 'Save Result', history: 'Recent Calculations' },
-    he: { copyLink: 'העתק קישור', whatsapp: 'שתף ב-WhatsApp', print: 'הדפס / שמור כ-PDF', excel: 'ייצוא ל-Excel', embed: 'הטמע באתר (Embed)', saveResult: 'שמור חישוב', history: 'היסטוריית חישובים' },
-    es: { copyLink: 'Copiar Enlace', whatsapp: 'Compartir en WhatsApp', print: 'Imprimir / PDF', excel: 'Exportar a Excel', embed: 'Insertar Widget', saveResult: 'Guardar Resultado', history: 'Cálculos Recientes' },
-    fr: { copyLink: 'Copier le Lien', whatsapp: 'Partager sur WhatsApp', print: 'Imprimer / PDF', excel: 'Exporter vers Excel', embed: 'Intégrer le Widget', saveResult: 'Sauvegarder', history: 'Historique des Calculs' },
-    ar: { copyLink: 'نسخ الرابط', whatsapp: 'مشاركة عبر WhatsApp', print: 'طباعة / حفظ PDF', excel: 'تصدير إلى Excel', embed: 'تضمين في موقعك', saveResult: 'حفظ الحساب', history: 'سجل الحسابات' },
-  }[lang] || { copyLink: 'Copy Link', whatsapp: 'Share via WhatsApp', print: 'Print / Save PDF', excel: 'Export to Excel', embed: 'Embed Widget', saveResult: 'Save Result', history: 'Recent Calculations' };
+    en: { copyLink: 'Copy Link', shareNative: 'Share Result', whatsapp: 'WhatsApp', telegram: 'Telegram', print: 'Print / PDF', excel: 'Export to Excel', embed: 'Embed Widget', saveResult: 'Save Result', history: 'Recent Calculations' },
+    he: { copyLink: 'העתק קישור', shareNative: 'שתף תוצאה', whatsapp: 'WhatsApp', telegram: 'Telegram', print: 'הדפס / PDF', excel: 'ייצוא ל-Excel', embed: 'הטמע באתר (Embed)', saveResult: 'שמור חישוב', history: 'היסטוריית חישובים' },
+    es: { copyLink: 'Copiar Enlace', shareNative: 'Compartir', whatsapp: 'WhatsApp', telegram: 'Telegram', print: 'Imprimir / PDF', excel: 'Exportar a Excel', embed: 'Insertar Widget', saveResult: 'Guardar Resultado', history: 'Cálculos Recientes' },
+    fr: { copyLink: 'Copier le Lien', shareNative: 'Partager', whatsapp: 'WhatsApp', telegram: 'Telegram', print: 'Imprimer / PDF', excel: 'Exporter vers Excel', embed: 'Intégrer le Widget', saveResult: 'Sauvegarder', history: 'Historique des Calculs' },
+    ar: { copyLink: 'نسخ الرابط', shareNative: 'مشاركة', whatsapp: 'واتساب', telegram: 'تيليجرام', print: 'طباعة / PDF', excel: 'تصدير إلى Excel', embed: 'تضمين في موقعك', saveResult: 'حفظ الحساب', history: 'سجل الحسابات' },
+  }[lang] || { copyLink: 'Copy Link', shareNative: 'Share Result', whatsapp: 'WhatsApp', telegram: 'Telegram', print: 'Print / PDF', excel: 'Export to Excel', embed: 'Embed Widget', saveResult: 'Save Result', history: 'Recent Calculations' };
 
   return (
     <>
       <div className="mt-8 pt-6 border-t border-border-subtle flex flex-wrap items-center gap-2.5 justify-between sm:justify-start print:hidden">
         <div className="flex flex-wrap gap-2">
+          {/* Native Share (if available on mobile/supported browser) */}
+          {canNativeShare && (
+            <button
+              type="button"
+              onClick={handleNativeShare}
+              className="flex items-center gap-2 px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium text-xs sm:text-sm shadow-xs cursor-pointer"
+              title={labels.shareNative}
+            >
+              <Share2 className="w-4 h-4 text-white" />
+              <span>{labels.shareNative}</span>
+            </button>
+          )}
+
           {/* Copy Link */}
           <button
             type="button"
@@ -75,11 +113,22 @@ export default function ShareActions({
           <button
             type="button"
             onClick={handleWhatsAppShare}
-            className="flex items-center gap-2 px-3.5 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-lg transition-colors font-medium text-xs sm:text-sm border border-emerald-200 cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 rounded-lg transition-colors font-medium text-xs sm:text-sm border border-emerald-200 cursor-pointer"
             title={labels.whatsapp}
           >
-            <Share2 className="w-4 h-4 text-emerald-600" />
+            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
             <span>{labels.whatsapp}</span>
+          </button>
+
+          {/* Telegram Share */}
+          <button
+            type="button"
+            onClick={handleTelegramShare}
+            className="flex items-center gap-1.5 px-3 py-2 bg-sky-50 hover:bg-sky-100 text-sky-800 rounded-lg transition-colors font-medium text-xs sm:text-sm border border-sky-200 cursor-pointer"
+            title={labels.telegram}
+          >
+            <span className="w-2 h-2 rounded-full bg-sky-500"></span>
+            <span>{labels.telegram}</span>
           </button>
 
           {/* Excel Export */}

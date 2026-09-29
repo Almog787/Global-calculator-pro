@@ -36,9 +36,10 @@ export default function EmbedModal({
   const widthValue = widthType === 'responsive' ? '100%' : `${fixedWidth}px`;
   const titleText = calculatorTitle || t.title || 'Calculator';
 
+  const anchorTitle = calculatorTitle ? `${calculatorTitle} - GlobalCalc Pro` : 'GlobalCalc Pro';
   const embedCode = `<iframe src="${fullEmbedUrl}" width="${widthValue}" height="${height}" frameborder="0" style="border: 1px solid #e5e7eb; border-radius: 12px; width: ${widthValue}; max-width: 100%;" title="${titleText}"></iframe>${
     includeBacklink
-      ? `\n<p style="font-size: 12px; color: #6b7280; margin-top: 6px; text-align: center; font-family: sans-serif;">Powered by <a href="${canonicalUrl}" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline;">GlobalCalc Pro</a></p>`
+      ? `\n<p style="font-size: 12px; color: #6b7280; margin-top: 6px; text-align: center; font-family: sans-serif;">${lang === 'he' ? 'מופעל באמצעות' : 'Powered by'} <a href="${canonicalUrl}" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline; font-weight: 600;">${anchorTitle}</a></p>`
       : ''
   }`;
 
