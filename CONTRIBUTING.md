@@ -11,8 +11,8 @@ Whether you are fixing a calculation edge case, adding a new calculator or widge
 1. **Fork the Repository** on GitHub.
 2. **Clone your fork locally**:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/Global-Calc-Pro.git
-   cd Global-Calc-Pro
+   git clone https://github.com/YOUR_USERNAME/Global-calculator-pro.git
+   cd Global-calculator-pro
    ```
 3. **Install dependencies**:
    ```bash
@@ -63,4 +63,4 @@ All 210+ test cases must pass with zero TypeScript compilation errors.
 ## 💬 Community & Feature Requests
 
 Have an idea for a new calculator or embeddable widget?
-Open a **[Widget Request](https://github.com/almogshaked8/Global-Calc-Pro/issues/new?template=widget_request.md)** on GitHub!
+Open a **[Widget Request](https://github.com/Almog787/Global-calculator-pro/issues/new?template=widget_request.md)** on GitHub!

@@ -79,7 +79,7 @@ const readmeTemplate = `# Global Calc Pro 🧮
 [![Official Website](https://img.shields.io/badge/Website-globalcalcpro.com-0066FF?style=for-the-badge&logo=googlechrome&logoColor=white)](${DOMAIN})
 [![Widgets Hub](https://img.shields.io/badge/Widgets-Embed%20Calculators-00A86B?style=for-the-badge&logo=html5&logoColor=white)](${DOMAIN}/en/widgets)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Vitest Tests](https://img.shields.io/badge/Tests-210%20Passed-brightgreen?style=for-the-badge&logo=vitest&logoColor=white)](https://github.com/almogshaked8/Global-Calc-Pro)
+[![Vitest Tests](https://img.shields.io/badge/Tests-210%20Passed-brightgreen?style=for-the-badge&logo=vitest&logoColor=white)](https://github.com/Almog787/Global-calculator-pro)
 [![TypeScript 5.9](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React 19](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![PWA Ready](https://img.shields.io/badge/PWA-Offline%20First-purple?style=for-the-badge&logo=pwa&logoColor=white)](${DOMAIN})
@@ -232,8 +232,8 @@ ${linkList}
 
 \`\`\`bash
 # 1. Clone the repository
-git clone https://github.com/almogshaked8/Global-Calc-Pro.git
-cd Global-Calc-Pro
+git clone https://github.com/Almog787/Global-calculator-pro.git
+cd Global-calculator-pro
 
 # 2. Install dependencies
 npm install
@@ -274,7 +274,7 @@ npm run build
 
 Contributions are warmly welcomed! Please read our **[CONTRIBUTING.md](CONTRIBUTING.md)** for details on code style, testing guidelines, and submission workflows.
 
-To suggest a new calculator or widget, open a **[Widget Request Issue](https://github.com/almogshaked8/Global-Calc-Pro/issues/new?template=widget_request.md)**.
+To suggest a new calculator or widget, open a **[Widget Request Issue](https://github.com/Almog787/Global-calculator-pro/issues/new?template=widget_request.md)**.
 
 ---
 
