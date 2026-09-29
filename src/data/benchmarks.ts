@@ -363,5 +363,48 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       fr: "Usage des pourboires : Aux États-Unis 18-20% est la norme. En France et Europe, 10% est apprécié pour un service soigné.",
       ar: "أعراف الإكرامية: في الولايات المتحدة تتراوح الإكرامية بين 18-20%، بينما في الشرق الأوسط وأوروبا تتراوح بين 10-15%.",
     }
+  },
+  pregnancy: {
+    title: {
+      en: "Pregnancy Trimester, Baby Size & Milestone Benchmarks",
+      he: "טבלת אבני דרך, טרימסטרים וגודל העובר לפי שבועות הריון",
+      es: "Hitos del Embarazo, Trimestres y Tamaño del Feto",
+      fr: "Tableau de Suivi de Grossesse, Trimestres et Taille du Fœtus",
+      ar: "جدول مراحل الحمل، الأثلاث ونمو الجنين حسب الأسابيع",
+    },
+    description: {
+      en: "Clinical overview of gestational age, fetal length, average weight, and key prenatal screenings.",
+      he: "סקירה קלינית של שבועות ההריון, אורך העובר, משקל ממוצע ובדיקות מעקב מרכזיות בכל שלב.",
+      es: "Resumen clínico de semanas de gestación, longitud y peso fetal medio y pruebas prenatales clave.",
+      fr: "Aperçu clinique des semaines de grossesse, taille et poids moyens du fœtus et examens recommandés.",
+      ar: "نظرة سريرية شاملة على أسابيع الحمل، طول الجنين ووزنه التقريبي وأبرز الفحوصات الطبية الدورية.",
+    },
+    directAnswer: {
+      en: "A full-term human pregnancy lasts 40 weeks (280 days) from the first day of the last menstrual period (LMP). It is divided into 3 trimesters: 1st (weeks 1–13), 2nd (weeks 14–27), and 3rd (weeks 28–40+). Full term is officially reached at week 37.",
+      he: "הריון מלא נמשך בממוצע 40 שבועות (280 ימים) מהיום הראשון של הווסת האחרונה (LMP). ההריון מתחלק ל-3 טרימסטרים: שליש ראשון (שבועות 1–13), שליש שני (שבועות 14–27), ושליש שלישי (שבועות 28–40+). הריון נחשב במועד מלא (Full Term) החל משבוע 37.",
+      es: "Un embarazo a término completo dura 40 semanas (280 días) desde la última menstruación. Consta de 3 trimestres: 1º (sem 1-13), 2º (sem 14-27) y 3º (sem 28-40+). Se considera a término a partir de la semana 37.",
+      fr: "Une grossesse à terme dure 40 semaines d'aménorrhée (280 jours). Elle comprend 3 trimestres : 1er (sem 1 à 13), 2e (sem 14 à 27) et 3e (sem 28 à 40+). Le terme est atteint dès la 37e semaine.",
+      ar: "يستمر الحمل المكتمل 40 أسبوعاً (280 يوماً) بدءاً من أول يوم لآخر دورة شهرية. ينقسم إلى 3 أثلاث: الأول (1-13 أسبوع)، الثاني (14-27 أسبوع)، والثالث (28-40+ أسبوع). يعتبر الحمل مكتملاً رسمياً عند الأسبوع 37.",
+    },
+    headers: {
+      en: ["Pregnancy Stage", "Gestational Weeks", "Average Fetal Size & Weight", "Key Prenatal Checkup"],
+      he: ["שלב בהריון", "שבועות הריון", "אורך ומשקל ממוצע של העובר", "בדיקת מעקב עיקרית"],
+      es: ["Etapa del Embarazo", "Semanas de Gestación", "Tamaño y Peso Medio Fetal", "Prueba Prenatal Clave"],
+      fr: ["Étape de la Grossesse", "Semaines d'Aménorrhée", "Taille et Poids Moyen", "Examen Médical Clé"],
+      ar: ["مرحلة الحمل", "أسابيع الحمل", "حجم ووزن الجنين التقديري", "الفحص الطبي الرئيسي"],
+    },
+    rows: [
+      { label: "Trimester 1 / שליש ראשון", col1: "Weeks 1–13 (שבועות 1–13)", col2: "5.4 cm / 14 g (שזיף)", col3: "אולטרסאונד דופק + שקיפות עורפית וסקר שליש ראשון" },
+      { label: "Trimester 2 / שליש שני", col1: "Weeks 14–27 (שבועות 14–27)", col2: "35.6 cm / 760 g (חסה)", col3: "סקירת מערכות מוקדמת ומאוחרת + העמסת סוכר 50 גרם" },
+      { label: "Trimester 3 / שליש שלישי", col1: "Weeks 28–36 (שבועות 28–36)", col2: "47.4 cm / 2,600 g (אננס)", col3: "מעקב גדילה והערכת משקל, חיסון שעלת, משטח GBS" },
+      { label: "Full Term / מועד מלא", col1: "Weeks 37–40+ (שבועות 37–40+)", col2: "50–52 cm / 3,200–3,600 g (דלעת/אבטיח)", col3: "בדיקת פתיחה, מעקב תנועות והכנה לחדר לידה" },
+    ],
+    expertTip: {
+      en: "Only about 4% to 5% of babies are born precisely on their estimated due date (EDD). Delivering anytime between 37 weeks and 41 weeks is completely normal and considered full term.",
+      he: "רק כ-4% עד 5% מהתינוקות נולדים בדיוק בתאריך הלידה המשוער. לידה בכל שלב בין שבוע 37 לשבוע 41 נחשבת לידה תקינה ובמועד (Full Term).",
+      es: "Solo el 4-5% de los bebés nacen exactamente en su fecha prevista de parto. Dar a luz entre las semanas 37 y 41 es totalmente normal.",
+      fr: "Seulement 4 à 5 % des bébés naissent le jour exact du terme prévu. Un accouchement entre la 37e et 41e semaine est considéré comme à terme.",
+      ar: "حوالي 4% إلى 5% فقط من المواليد يولدون في يوم موعد الولادة المتوقع بالضبط. الولادة بين الأسبوع 37 والأسبوع 41 تعتبر ولادة طبيعية مكتملة المدة.",
+    }
   }
 };

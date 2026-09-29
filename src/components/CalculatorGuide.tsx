@@ -25,6 +25,7 @@ export default function CalculatorGuide({ guideKey, onApplyPreset }: CalculatorG
     'auto-loan': ['/mortgage-calculator', '/calculators/fuel-split', '/calculators/debt-snowball'],
     vat: ['/percentage-finder', '/calculators/margin', '/calculators/freelance-net-income'],
     bmr: ['/bmi-calculator', '/calculators/water-intake', '/calculators/sleep-calculator'],
+    pregnancy: ['/bmi-calculator', '/calculators/water-intake', '/calculators/sleep-calculator', '/calculators/date-difference'],
   };
 
   const relatedPaths = contextualLinksMap[guideKey] || [];

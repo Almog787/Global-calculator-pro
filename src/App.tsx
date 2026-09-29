@@ -317,6 +317,9 @@ function App() {
             <Route path="/tip-calculator" element={<Navigate to={`/${lang}/tip-calculator`} replace />} />
             <Route path="/salary-calculator" element={<Navigate to={`/${lang}/salary-calculator`} replace />} />
             <Route path="/age-calculator" element={<Navigate to={`/${lang}/age-calculator`} replace />} />
+            <Route path="/pregnancy-calculator" element={<Navigate to={`/${lang}/calculators/pregnancy-calculator`} replace />} />
+            <Route path="/pregnancy" element={<Navigate to={`/${lang}/calculators/pregnancy-calculator`} replace />} />
+            <Route path="/due-date-calculator" element={<Navigate to={`/${lang}/calculators/pregnancy-calculator`} replace />} />
             <Route path="/privacy" element={<Navigate to={`/${lang}/privacy-policy`} replace />} />
             <Route path="/privacy-policy" element={<Navigate to={`/${lang}/privacy-policy`} replace />} />
             <Route path="/terms" element={<Navigate to={`/${lang}/terms-of-service`} replace />} />

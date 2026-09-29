@@ -11,6 +11,13 @@ export type CalculatorMeta = {
 };
 
 export const dynamicTranslations: Record<string, Record<string, { title: string; description: string }>> = {
+  "pregnancy-calculator": {
+    en: { title: "Pregnancy & Due Date Calculator", description: "Calculate your exact pregnancy week, estimated due date, current trimester, and fetal development milestones." },
+    he: { title: "מחשבון שבועות הריון ותאריך לידה משוער", description: "חישוב שבוע הריון מדויק, תאריך לידה משוער, טרימסטר נוכחי, התפתחות העובר ולוח בדיקות ומעקב שבועי." },
+    es: { title: "Calculadora de Embarazo y Fecha de Parto", description: "Calcula tus semanas exactas de embarazo, fecha probable de parto, trimestre actual e hitos del bebé." },
+    fr: { title: "Calculateur de Grossesse et Date d'Accouchement", description: "Calculez votre semaine exacte de grossesse, la date prévue d'accouchement, le trimestre et l'évolution du fœtus." },
+    ar: { title: "حاسبة الحمل وموعد الولادة المتوقع", description: "احسبي أسبوع الحمل بدقة، موعد الولادة المتوقع، الثلث الحالي ومراحل نمو الجنين والفحوصات الدورية." },
+  },
   "mortgage-affordability": {
     en: { title: "Mortgage Affordability Calculator", description: "Calculate exactly how much house you can afford based on income, down payment, and monthly debt." },
     he: { title: "כמה משכנתא אני יכול לקחת?", description: "חשב את תקציב קניית הדירה המדויק שלך, גובה המשכנתא המקסימלי וההחזר החודשי לפי ההכנסה." },
@@ -667,6 +674,14 @@ export const calculators: CalculatorMeta[] = [
     description: "Arithmetic, polar/Euler form, modulus, argument, powers (De Moivre), and Argand diagram.",
     category: "math",
     tags: ["complex numbers", "polar form", "euler formula", "modulus", "argument", "de moivre", "imaginary", "argand diagram", "math"],
+  },
+  {
+    id: "pregnancy-calculator",
+    path: "/calculators/pregnancy-calculator",
+    fallbackTitle: "Pregnancy & Due Date Calculator",
+    description: "Calculate your exact pregnancy week, estimated due date, current trimester, and fetal development milestones.",
+    category: "health",
+    tags: ["pregnancy", "due date", "gestational age", "trimester", "baby", "conception", "ovulation", "ultrasound", "health", "family", "הריון", "תאריך לידה", "שבועות הריון"],
   },
 ];
 

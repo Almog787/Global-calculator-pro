@@ -481,3 +481,362 @@ export function calculateSleepCycles(sleepTimeHours: number, sleepTimeMinutes: n
     return { recommendedWakeTimes: [] };
   }
 }
+
+// -------------------------------------------------------------
+// PREGNANCY & DUE DATE CALCULATOR
+// -------------------------------------------------------------
+
+export interface PregnancyCalculationParams {
+  method?: 'lmp' | 'conception' | 'due_date' | 'ivf_day3' | 'ivf_day5';
+  dateStr?: string;
+  cycleLength?: number;
+}
+
+export interface PregnancyResult {
+  dueDate: string;
+  dueDateFormatted: string;
+  conceptionDate: string;
+  conceptionDateFormatted: string;
+  gestationalWeeks: number;
+  gestationalDays: number;
+  totalDaysPregnant: number;
+  daysRemaining: number;
+  progressPercent: number;
+  trimester: 1 | 2 | 3;
+  currentMonth: number;
+  fetalLengthCm: number;
+  fetalWeightGrams: number;
+  zodiacSign: string;
+  isFullTerm: boolean;
+}
+
+export interface FetalWeekData {
+  week: number;
+  lengthCm: number;
+  weightGrams: number;
+  fruit: {
+    he: string;
+    en: string;
+    es: string;
+    fr: string;
+    ar: string;
+  };
+  highlight: {
+    he: string;
+    en: string;
+    es: string;
+    fr: string;
+    ar: string;
+  };
+}
+
+export function getZodiacSign(month: number, day: number): string {
+  if ((month === 1 && day <= 19) || (month === 12 && day >= 22)) return 'capricorn';
+  if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) return 'aquarius';
+  if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) return 'pisces';
+  if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return 'aries';
+  if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return 'taurus';
+  if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) return 'gemini';
+  if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) return 'cancer';
+  if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return 'leo';
+  if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return 'virgo';
+  if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) return 'libra';
+  if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) return 'scorpio';
+  return 'sagittarius';
+}
+
+export const FETAL_DEVELOPMENT_BY_WEEK: Record<number, FetalWeekData> = {
+  4: {
+    week: 4,
+    lengthCm: 0.1,
+    weightGrams: 0.1,
+    fruit: { he: 'זרע פרג', en: 'Poppy seed', es: 'Semilla de amapola', fr: 'Graine de pavot', ar: 'بذرة الخشخاش' },
+    highlight: { he: 'השרשה ברחם והתחלת יצירת השליה', en: 'Uterine implantation and early placenta formation', es: 'Implantación y formación de la placenta', fr: 'Implantation et début du placenta', ar: 'انغراس البويضة وبداية تشكل المشيمة' },
+  },
+  6: {
+    week: 6,
+    lengthCm: 0.5,
+    weightGrams: 0.5,
+    fruit: { he: 'גרגר עדשים', en: 'Lentil / Sweet pea', es: 'Lenteja', fr: 'Lentille', ar: 'حبة عدس' },
+    highlight: { he: 'הלב מתחיל לפעום (נצפה באולטרסאונד)', en: 'Heart begins beating (visible on early ultrasound)', es: 'El corazón comienza a latir', fr: 'Le cœur commence à battre', ar: 'يبدأ القلب بالنبض' },
+  },
+  8: {
+    week: 8,
+    lengthCm: 1.6,
+    weightGrams: 1,
+    fruit: { he: 'פטל / פרי יער', en: 'Raspberry', es: 'Frambuesa', fr: 'Framboise', ar: 'توت العليق' },
+    highlight: { he: 'היווצרות אצבעות הידיים והרגליים', en: 'Webbed fingers and toes are forming', es: 'Formación de dedos de manos y pies', fr: 'Formation des doigts et orteils', ar: 'تشكل أصابع اليدين والقدمين' },
+  },
+  10: {
+    week: 10,
+    lengthCm: 3.1,
+    weightGrams: 4,
+    fruit: { he: 'תות שדה', en: 'Strawberry', es: 'Fresa', fr: 'Fraise', ar: 'فراولة' },
+    highlight: { he: 'סיום שלב האמבריו ומעבר להגדרה כעובר (פיוטוס)', en: 'Transition from embryo to fetus; vital organs working', es: 'Transición de embrión a feto', fr: 'L\'embryon devient officiellement fœtus', ar: 'الانتقال من مضغة إلى جنين مكتمل الأعضاء' },
+  },
+  12: {
+    week: 12,
+    lengthCm: 5.4,
+    weightGrams: 14,
+    fruit: { he: 'שזיף עסיסי', en: 'Plum', es: 'Ciruela', fr: 'Prune', ar: 'برقوق' },
+    highlight: { he: 'סיום השליש הראשון; רפלקסים פעילים', en: 'End of 1st trimester; reflexes developing', es: 'Fin del primer trimestre; reflejos activos', fr: 'Fin du premier trimestre; réflexes actifs', ar: 'نهاية الثلث الأول وبدء ردود الفعل الحركية' },
+  },
+  14: {
+    week: 14,
+    lengthCm: 8.7,
+    weightGrams: 43,
+    fruit: { he: 'לימון צהוב', en: 'Lemon', es: 'Limón', fr: 'Citron', ar: 'ليمونة' },
+    highlight: { he: 'תחילת השליש השני; העובר מתרגל בליעה והבעות פנים', en: 'Start of 2nd trimester; facial expressions form', es: 'Inicio del 2º trimestre; expresiones faciales', fr: 'Début du 2e trimestre; expressions faciales', ar: 'بداية الثلث الثاني وملامح الوجه' },
+  },
+  16: {
+    week: 16,
+    lengthCm: 11.6,
+    weightGrams: 100,
+    fruit: { he: 'אבוקדו', en: 'Avocado', es: 'Aguacate', fr: 'Avocat', ar: 'أفوكادو' },
+    highlight: { he: 'העיניים רגישות לאור; הלב שואב כ-25 ליטר דם ביממה', en: 'Eyes sensitive to light; heart pumps 25L blood/day', es: 'Ojos sensibles a la luz', fr: 'Les yeux réagissent à la lumière', ar: 'العينان تتأثران بالضوء' },
+  },
+  18: {
+    week: 18,
+    lengthCm: 14.2,
+    weightGrams: 190,
+    fruit: { he: 'פלפל מתוק', en: 'Bell pepper', es: 'Pimiento', fr: 'Poivron', ar: 'فلفل حلو' },
+    highlight: { he: 'העובר יכול לשמוע צלילים וקולות חיצוניים', en: 'Baby can hear your voice and external sounds', es: 'El bebé puede escuchar tu voz y sonidos', fr: 'Le bébé perçoit les bruits extérieurs', ar: 'يستطيع الجنين سماع صوت الأم والأصوات' },
+  },
+  20: {
+    week: 20,
+    lengthCm: 25.6,
+    weightGrams: 300,
+    fruit: { he: 'בננה', en: 'Banana', es: 'Plátano', fr: 'Banane', ar: 'موزة' },
+    highlight: { he: 'אמצע הדרך בדיוק! מרגישים תנועות בעיטה ראשונות', en: 'Halfway mark! Quickening movements often felt', es: '¡Mitad del camino! Primeras patadas perceptibles', fr: 'La moitié du parcours ! Premiers coups de pied', ar: 'منتصف الطريق تماماً! الشعور بركلات الجنين' },
+  },
+  22: {
+    week: 22,
+    lengthCm: 27.8,
+    weightGrams: 430,
+    fruit: { he: 'פפאיה', en: 'Papaya', es: 'Papaya', fr: 'Papaye', ar: 'بابايا' },
+    highlight: { he: 'חוש המגע מפותח; העובר ממשש את פניו וחבל הטבור', en: 'Sense of touch developed; baby grasps umbilical cord', es: 'Sentido del tacto muy desarrollado', fr: 'Le sens du toucher se perfectionne', ar: 'تطور حاسة اللمس والإمساك بالحبل السري' },
+  },
+  24: {
+    week: 24,
+    lengthCm: 30.0,
+    weightGrams: 600,
+    fruit: { he: 'קלח תירס', en: 'Ear of corn', es: 'Mazorca de maíz', fr: 'Épi de maïs', ar: 'عرنوس ذرة' },
+    highlight: { he: 'סף החיות הרפואי; הריאות מפתחות נאדיות ראשונות', en: 'Viability threshold; lungs develop branches', es: 'Umbral de viabilidad; pulmones madurando', fr: 'Seuil de viabilité; les poumons progressent', ar: 'مرحلة القدرة على الحياة خارج الرحم ونمو الرئتين' },
+  },
+  26: {
+    week: 26,
+    lengthCm: 35.6,
+    weightGrams: 760,
+    fruit: { he: 'ראש חסה', en: 'Head of lettuce', es: 'Lechuga', fr: 'Laitue', ar: 'رأس خس' },
+    highlight: { he: 'העיניים נפקחות לראשונה; תגובה לרעש חזק', en: 'Eyes open for the first time; startle reflex', es: 'Abre los ojos por primera vez', fr: 'Ouvre les yeux pour la première fois', ar: 'فتح العينين لأول مرة والاستجابة للصوت' },
+  },
+  28: {
+    week: 28,
+    lengthCm: 37.6,
+    weightGrams: 1000,
+    fruit: { he: 'חציל גדול', en: 'Eggplant', es: 'Berenjena', fr: 'Aubergine', ar: 'باذنجان' },
+    highlight: { he: 'כניסה לשליש השלישי! המוח רושם גלי שנת חלום (REM)', en: 'Welcome to the 3rd trimester! Baby dreams (REM sleep)', es: '¡Tercer trimestre! Actividad cerebral y sueño REM', fr: 'Bienvenue au 3e trimestre ! Sommeil paradoxal', ar: 'بداية الثلث الثالث ونوم الأحلام (REM)' },
+  },
+  30: {
+    week: 30,
+    lengthCm: 39.9,
+    weightGrams: 1300,
+    fruit: { he: 'כרוב ירוק', en: 'Cabbage', es: 'Col / Repollo', fr: 'Chou', ar: 'ملفوف' },
+    highlight: { he: 'מח העצם מייצר כדוריות דם אדומות', en: 'Bone marrow takes over red blood cell production', es: 'La médula ósea produce glóbulos rojos', fr: 'La moelle osseuse produit les globules rouges', ar: 'نخاع العظم ينتج خلايا الدم الحمراء' },
+  },
+  32: {
+    week: 32,
+    lengthCm: 42.4,
+    weightGrams: 1700,
+    fruit: { he: 'דלורית', en: 'Butternut squash', es: 'Calabaza cacahuete', fr: 'Courge butternut', ar: 'قرع عسلي' },
+    highlight: { he: 'תרגול תנועות נשימה ובליעה; שכבת שומן נבנית', en: 'Practicing breathing motions; layer of body fat accumulates', es: 'Práctica de respiración y grasa corporal', fr: 'Entraînement respiratoire et prise de poids', ar: 'التدرب على التنفس وتراكم الدهون الصحية' },
+  },
+  34: {
+    week: 34,
+    lengthCm: 45.0,
+    weightGrams: 2100,
+    fruit: { he: 'מלון עסיסי', en: 'Cantaloupe', es: 'Melón', fr: 'Melon', ar: 'شمام' },
+    highlight: { he: 'מערכת החיסון מתחזקת בנוגדנים מהאם', en: 'Immune system strengthens via maternal antibodies', es: 'Sistema inmune absorbe anticuerpos maternos', fr: 'Le système immunitaire reçoit les anticorps', ar: 'انتقال الأجسام المضادة من الأم لتقوية المناعة' },
+  },
+  36: {
+    week: 36,
+    lengthCm: 47.4,
+    weightGrams: 2600,
+    fruit: { he: 'אננס', en: 'Pineapple', es: 'Piña', fr: 'Ananas', ar: 'أناناس' },
+    highlight: { he: 'התבססות ראש העובר באגן; כמעט במועד', en: 'Head descends into pelvis; almost full term', es: 'El bebé encaja su cabecita en la pelvis', fr: 'La tête s\'engage dans le bassin', ar: 'نزول رأس الجنين في الحوض استعداداً للولادة' },
+  },
+  38: {
+    week: 38,
+    lengthCm: 49.8,
+    weightGrams: 3100,
+    fruit: { he: 'אבטיח אישי', en: 'Mini watermelon', es: 'Sandía pequeña', fr: 'Petite pastèque', ar: 'بطيخ صغير' },
+    highlight: { he: 'הריון במועד מלא (Full Term)! הריאות בשלות לחלוטין', en: 'Full term pregnancy! Lungs are fully mature', es: '¡Embarazo a término! Pulmones completamente maduros', fr: 'Terme précoce atteint ! Poumons matures', ar: 'حمل مكتمل المدة والرئتان جاهزتان للتنفس' },
+  },
+  40: {
+    week: 40,
+    lengthCm: 51.2,
+    weightGrams: 3500,
+    fruit: { he: 'דלעת / אבטיח ענק', en: 'Pumpkin / Watermelon', es: 'Sandía grande', fr: 'Citrouille / Pastèque', ar: 'بطيخة كبيرة' },
+    highlight: { he: 'תאריך הלידה המשוער הגיע! מוכנים לפגישה המרגשת', en: 'Official due date arrived! Ready for birth', es: '¡Llegó la fecha estimada! Listo para nacer', fr: 'La date du terme est arrivée ! Prêt pour la rencontre', ar: 'موعد الولادة الرسمي! استعداد تام للقاء الطفل' },
+  },
+};
+
+export function getFetalDataForWeek(weekNum: number): FetalWeekData {
+  const safeWeek = Math.max(4, Math.min(40, Math.round(weekNum || 4)));
+  const existingWeeks = Object.keys(FETAL_DEVELOPMENT_BY_WEEK).map(Number).sort((a, b) => a - b);
+  
+  let closest = existingWeeks[0];
+  for (const w of existingWeeks) {
+    if (w <= safeWeek) closest = w;
+  }
+  
+  const base = FETAL_DEVELOPMENT_BY_WEEK[closest] || FETAL_DEVELOPMENT_BY_WEEK[40];
+  // Interpolate slightly if exact week differs
+  const lengthEst = Number((safeWeek * 1.28).toFixed(1));
+  const weightEst = safeWeek < 12 ? Math.round(safeWeek * 1.5) : Math.round(Math.pow(safeWeek, 2.2) * 1.05);
+
+  return {
+    ...base,
+    week: safeWeek,
+    lengthCm: safeWeek === base.week ? base.lengthCm : lengthEst,
+    weightGrams: safeWeek === base.week ? base.weightGrams : weightEst,
+  };
+}
+
+export function calculatePregnancy(
+  arg1?: PregnancyCalculationParams | any,
+  arg2?: any,
+  arg3?: any
+): PregnancyResult {
+  try {
+    let method: string = 'lmp';
+    let dateStr: string = '';
+    let cycleLength: number = 28;
+
+    if (typeof arg1 === 'object' && arg1 !== null) {
+      method = arg1.method || 'lmp';
+      dateStr = arg1.dateStr || '';
+      cycleLength = Number(arg1.cycleLength) || 28;
+    } else if (typeof arg1 === 'string') {
+      dateStr = arg1;
+      if (typeof arg2 === 'string') method = arg2;
+      if (typeof arg3 === 'number') cycleLength = arg3;
+    }
+
+    if (cycleLength < 20 || cycleLength > 45 || isNaN(cycleLength)) {
+      cycleLength = 28;
+    }
+
+    // Default reference date is 8 weeks ago if invalid or empty
+    const now = new Date();
+    let inputDate = new Date(dateStr);
+    if (isNaN(inputDate.getTime()) || !dateStr) {
+      inputDate = new Date(now.getTime() - 56 * 24 * 60 * 60 * 1000); // 8 weeks ago
+    }
+
+    let calculatedLmp: Date;
+    let dueDate: Date;
+    let conceptionDate: Date;
+
+    const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+
+    if (method === 'conception') {
+      conceptionDate = new Date(inputDate);
+      calculatedLmp = new Date(conceptionDate.getTime() - 14 * ONE_DAY_MS);
+      dueDate = new Date(conceptionDate.getTime() + 266 * ONE_DAY_MS);
+    } else if (method === 'due_date') {
+      dueDate = new Date(inputDate);
+      calculatedLmp = new Date(dueDate.getTime() - 280 * ONE_DAY_MS);
+      conceptionDate = new Date(dueDate.getTime() - 266 * ONE_DAY_MS);
+    } else if (method === 'ivf_day3') {
+      conceptionDate = new Date(inputDate.getTime() - 3 * ONE_DAY_MS);
+      calculatedLmp = new Date(conceptionDate.getTime() - 14 * ONE_DAY_MS);
+      dueDate = new Date(inputDate.getTime() + 263 * ONE_DAY_MS);
+    } else if (method === 'ivf_day5') {
+      conceptionDate = new Date(inputDate.getTime() - 5 * ONE_DAY_MS);
+      calculatedLmp = new Date(conceptionDate.getTime() - 14 * ONE_DAY_MS);
+      dueDate = new Date(inputDate.getTime() + 261 * ONE_DAY_MS);
+    } else {
+      // Standard LMP with cycle length variation (Naegele's rule adjusted)
+      const cycleAdjustment = (cycleLength - 28) * ONE_DAY_MS;
+      calculatedLmp = new Date(inputDate.getTime() + cycleAdjustment);
+      conceptionDate = new Date(calculatedLmp.getTime() + 14 * ONE_DAY_MS);
+      dueDate = new Date(calculatedLmp.getTime() + 280 * ONE_DAY_MS);
+    }
+
+    // Days elapsed from calculated LMP to today
+    const diffTime = now.getTime() - calculatedLmp.getTime();
+    const totalDaysPregnant = Math.max(0, Math.floor(diffTime / ONE_DAY_MS));
+
+    const gestationalWeeks = Math.floor(totalDaysPregnant / 7);
+    const gestationalDays = totalDaysPregnant % 7;
+
+    const remainingTime = dueDate.getTime() - now.getTime();
+    const daysRemaining = Math.max(0, Math.ceil(remainingTime / ONE_DAY_MS));
+
+    const progressPercent = Math.min(100, Math.max(0, Number(((totalDaysPregnant / 280) * 100).toFixed(1))));
+
+    let trimester: 1 | 2 | 3 = 1;
+    if (gestationalWeeks >= 28) {
+      trimester = 3;
+    } else if (gestationalWeeks >= 14) {
+      trimester = 2;
+    }
+
+    // Month calculation
+    let currentMonth = 1;
+    if (gestationalWeeks <= 4) currentMonth = 1;
+    else if (gestationalWeeks <= 8) currentMonth = 2;
+    else if (gestationalWeeks <= 13) currentMonth = 3;
+    else if (gestationalWeeks <= 17) currentMonth = 4;
+    else if (gestationalWeeks <= 21) currentMonth = 5;
+    else if (gestationalWeeks <= 27) currentMonth = 6;
+    else if (gestationalWeeks <= 31) currentMonth = 7;
+    else if (gestationalWeeks <= 35) currentMonth = 8;
+    else currentMonth = 9;
+
+    const fetal = getFetalDataForWeek(gestationalWeeks || 4);
+    const zodiac = getZodiacSign(dueDate.getMonth() + 1, dueDate.getDate());
+
+    const isFullTerm = gestationalWeeks >= 37;
+
+    const pad = (n: number) => n.toString().padStart(2, '0');
+    const toIsoDate = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+
+    return {
+      dueDate: toIsoDate(dueDate),
+      dueDateFormatted: dueDate.toLocaleDateString(),
+      conceptionDate: toIsoDate(conceptionDate),
+      conceptionDateFormatted: conceptionDate.toLocaleDateString(),
+      gestationalWeeks,
+      gestationalDays,
+      totalDaysPregnant,
+      daysRemaining,
+      progressPercent,
+      trimester,
+      currentMonth,
+      fetalLengthCm: fetal.lengthCm,
+      fetalWeightGrams: fetal.weightGrams,
+      zodiacSign: zodiac,
+      isFullTerm,
+    };
+  } catch {
+    return {
+      dueDate: '2026-11-15',
+      dueDateFormatted: '15/11/2026',
+      conceptionDate: '2026-02-22',
+      conceptionDateFormatted: '22/02/2026',
+      gestationalWeeks: 20,
+      gestationalDays: 0,
+      totalDaysPregnant: 140,
+      daysRemaining: 140,
+      progressPercent: 50,
+      trimester: 2,
+      currentMonth: 5,
+      fetalLengthCm: 25.6,
+      fetalWeightGrams: 300,
+      zodiacSign: 'scorpio',
+      isFullTerm: false,
+    };
+  }
+}

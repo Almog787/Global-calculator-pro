@@ -46,6 +46,7 @@
 - **[Peltier Cooling Calculator](https://globalcalcpro.com/calculators/peltier-cooling)** - Calculate the expected cooling capacity and efficiency (COP) of a Thermoelectric Cooler.
 - **[Percentage Calculator](https://globalcalcpro.com/percentage-finder)** - Solve complex percentage calculations instantly.
 - **[Percentage Finder Calculator](https://globalcalcpro.com/calculators/percentage-finder)** - Free online percentage finder calculator for precise calculations.
+- **[Pregnancy Calculator Calculator](https://globalcalcpro.com/calculators/pregnancy-calculator)** - Free online pregnancy calculator calculator for precise calculations.
 - **[Quadratic Equation Solver (ax² + bx + c = 0)](https://globalcalcpro.com/calculators/quadratic-equation)** - Free quadratic formula calculator. Solves quadratic equations step-by-step with real or complex numbers, discriminant analysis, factored form, and interactive parabola curve graph.
 - **[Real Estate Purchase & Appreciation Tax Calculator](https://globalcalcpro.com/calculators/purchase-appreciation-tax)** - Calculate official Israel real estate purchase tax brackets (single home vs additional investor home) and linear property appreciation tax with deductible expenses and exemptions.
 - **[Refinance Calculator](https://globalcalcpro.com/calculators/refinance)** - Free online refinance calculator for precise calculations.
