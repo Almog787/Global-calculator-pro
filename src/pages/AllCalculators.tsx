@@ -427,18 +427,12 @@ export default function AllCalculators() {
               <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden border border-border-subtle/50 shadow-inner">
                 <img 
                   src="/images/hero-proposal-1.jpg" 
-                  alt="GlobalCalc Pro 3D Glassmorphism Engine" 
+                  alt="GlobalCalc Pro Smart Calculators" 
                   className="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-105" 
                 />
                 
                 {/* Glossy Glass Reflection Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-white/20 pointer-events-none" />
-
-                {/* Floating Badge inside Image */}
-                <div className="absolute top-3 ltr:left-3 rtl:right-3 bg-black/70 backdrop-blur-md border border-white/30 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  <span>{isRtl ? 'מטריצת 3D מונפשת' : '3D Interactive Matrix'}</span>
-                </div>
               </div>
 
               {/* Floating 3D Parallax Badge 1 - Live Counter */}
