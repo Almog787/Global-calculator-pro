@@ -773,6 +773,22 @@ export default function VirtualAssistant() {
               </div>
             </div>
           )}
+
+          {/* Assistant No-Advice Legal & Medical Disclaimer */}
+          <div className="mt-3.5 pt-2.5 border-t border-slate-800/80 text-[10px] text-slate-400 leading-tight flex items-center gap-1.5">
+            <span className="material-symbols-outlined text-[13px] text-slate-400 shrink-0">info</span>
+            <span>
+              {lang === 'he'
+                ? 'התשובות והטיפים נועדו להעשרה ולימוד בלבד ואינם מהווים ייעוץ רפואי, פיננסי או משפטי.'
+                : lang === 'es'
+                ? 'Las respuestas y consejos son meramente educativos y no constituyen asesoramiento médico, financiero ni legal.'
+                : lang === 'fr'
+                ? 'Les réponses et astuces sont uniquement éducatives et ne constituent pas un conseil médical, financier ou juridique.'
+                : lang === 'ar'
+                ? 'الإجابات والنصائح للأغراض الإرشادية والتعليمية فقط ولا تعتبر استشارة طبية أو مالية أو قانونية.'
+                : 'Tips and guidance are for educational purposes only and do not constitute medical, financial, or legal advice.'}
+            </span>
+          </div>
         </div>
       </div>
 

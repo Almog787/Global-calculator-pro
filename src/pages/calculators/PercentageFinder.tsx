@@ -10,6 +10,8 @@ import VisualRatioBar from '../../components/VisualRatioBar';
 import PresetChips from '../../components/PresetChips';
 import FAQ from '../../components/FAQ';
 import ShareActions from '../../components/ShareActions';
+import DisclaimerNotice from '../../components/DisclaimerNotice';
+import CalculatorGuide from '../../components/CalculatorGuide';
 
 export default function PercentageFinder() {
   const { t, lang, guides } = useI18n();
@@ -940,6 +942,12 @@ export default function PercentageFinder() {
         </div>
 
       </section>
+
+      {/* Financial/General Estimation Disclaimer */}
+      <DisclaimerNotice type="financial" className="mt-8 mb-6" />
+
+      {/* SEO EDUCATIONAL GUIDE & E-E-A-T REVIEW */}
+      <CalculatorGuide guideKey="percentage" category="math" />
 
       <FAQ items={guide.faq} />
 

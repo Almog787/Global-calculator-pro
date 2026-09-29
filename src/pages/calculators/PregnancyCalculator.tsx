@@ -1381,7 +1381,7 @@ export default function PregnancyCalculator() {
       </section>
 
       {/* Clinical Reference Guide & Benchmark Table */}
-      <CalculatorGuide guideKey="pregnancy" />
+      <CalculatorGuide guideKey="pregnancy" category="health" />
 
       {/* Frequently Asked Questions */}
       <FAQ items={faqItems} title={t.faqTitle || (lang === 'he' ? 'שאלות ותשובות נפוצות על שבועות הריון ולידה' : 'Frequently Asked Questions about Pregnancy & Due Dates')} />

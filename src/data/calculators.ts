@@ -723,20 +723,30 @@ export function searchCalculators(query: string, t?: any, lang?: string) {
 }
 
 export function getRelatedCalculators(currentId: string, limit: number = 3) {
+  const normalizedQuery = (currentId || '').toLowerCase().replace(/^\/calculators\//, '').replace(/^\//, '').trim();
+
   const current = calculators.find(
-    (c) => c.id === currentId || c.path === currentId,
+    (c) =>
+      c.id === currentId ||
+      c.path === currentId ||
+      c.path === `/${currentId}` ||
+      c.path === `/calculators/${currentId}` ||
+      c.id.toLowerCase() === normalizedQuery ||
+      c.path.toLowerCase().replace(/^\/calculators\//, '').replace(/^\//, '') === normalizedQuery ||
+      (normalizedQuery.length >= 3 && (c.id.includes(normalizedQuery) || normalizedQuery.includes(c.id)))
   );
-  if (!current) return calculators.slice(0, limit);
+
+  const currentCategory = current ? current.category : null;
 
   // Find by same category first
-  const related = calculators.filter(
-    (c) => c.id !== current.id && c.category === current.category,
-  );
+  const related = currentCategory
+    ? calculators.filter((c) => (!current || c.id !== current.id) && c.category === currentCategory)
+    : [];
 
-  // If not enough in same category, pad with others
+  // If not enough in same category, pad with popular/related calculators from other categories
   if (related.length < limit) {
     const others = calculators.filter(
-      (c) => c.id !== current.id && c.category !== current.category,
+      (c) => (!current || c.id !== current.id) && (!currentCategory || c.category !== currentCategory)
     );
     related.push(...others.slice(0, limit - related.length));
   }

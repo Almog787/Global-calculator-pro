@@ -5,6 +5,7 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 import RelatedCalculators from '../../components/RelatedCalculators';
 import ShareActions from '../../components/ShareActions';
 import FAQ from '../../components/FAQ';
+import DisclaimerNotice from '../../components/DisclaimerNotice';
 
 export default function AgeCalculator() {
   const { t, lang, guides } = useI18n();
@@ -147,6 +148,9 @@ export default function AgeCalculator() {
           </div>
         )}
       </section>
+
+      {/* General Estimation Disclaimer */}
+      <DisclaimerNotice type="general" className="mt-8 mb-6" />
 
       <FAQ items={guide.faq} />
 

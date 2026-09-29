@@ -405,9 +405,11 @@ export default function SalaryCalculator() {
       {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
       <CalculatorGuide
         guideKey="salary"
+        category="finance"
         onApplyPreset={(preset) => {
           if (preset.amount !== undefined) setAmount(Number(preset.amount));
           if (preset.frequency !== undefined) setFrequency(preset.frequency as any);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
       />
 

@@ -232,7 +232,7 @@ export default function RentVsBuy() {
     </article>
 
       {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
-      <CalculatorGuide guideKey="rent-vs-buy" />
+      <CalculatorGuide guideKey="rent-vs-buy" category="real-estate" />
 
       <FAQ items={guide.faq} />
 

@@ -298,10 +298,15 @@ export default function Vat() {
         }}
       />
 
-      <Breadcrumbs items={[
-        { label: lang === 'he' ? 'כל המחשבונים' : 'All Calculators', path: `/${lang}/all` },
-        { label: t.title }
-      ]} />
+      <Breadcrumbs
+        items={[
+          {
+            label: t.catFinance || (lang === 'he' ? 'פיננסים וכסף' : 'Finance & Money'),
+            path: `/${lang}/category/finance`
+          },
+          { label: t.title }
+        ]}
+      />
 
       {/* Hero Header */}
       <div className="bg-surface-container-lowest border border-border-subtle rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">

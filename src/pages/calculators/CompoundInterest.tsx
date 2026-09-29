@@ -15,6 +15,7 @@ import { calculateCompoundInterest, calculateTargetSavings, compareCompoundInter
 import { exportCompoundToExcel } from '../../lib/export/excelExport';
 import AnimatedNumber from '../../components/AnimatedNumber';
 import { trackCalculation, trackExcelExport, trackScenarioComparison } from '../../lib/analytics';
+import DisclaimerNotice from '../../components/DisclaimerNotice';
 
 
 export default function CompoundInterest() {
@@ -758,13 +759,20 @@ ${lang === 'he' ? 'הפרש ורווח עודף' : 'Difference & Extra Returns'}
         </div>
       </section>
 
+      {/* Disclaimer Notice */}
+      <DisclaimerNotice type="financial" className="mt-8 mb-6" />
+
       {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
       <CalculatorGuide
         guideKey="compound"
         onApplyPreset={(preset) => {
-          if (preset.contribution !== undefined) setContribution(Number(preset.contribution));
-          if (preset.rate !== undefined) setRate(Number(preset.rate));
+          if (preset.principal !== undefined) setPrincipal(Number(preset.principal));
+          if (preset.monthlyContribution !== undefined) setContribution(Number(preset.monthlyContribution));
+          else if (preset.contribution !== undefined) setContribution(Number(preset.contribution));
+          if (preset.annualRate !== undefined) setRate(Number(preset.annualRate));
+          else if (preset.rate !== undefined) setRate(Number(preset.rate));
           if (preset.years !== undefined) setYears(Number(preset.years));
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
       />
 

@@ -54,6 +54,7 @@ GlobalCalc Pro is engineered for human users and AI engines (ChatGPT Search, Per
 - [Sleep Cycle Calculator](https://globalcalcpro.com/en/calculators/sleep-calculator): Ideal bedtimes and wake times based on 90-minute REM sleep cycles.
 - [Tip & Bill Splitter](https://globalcalcpro.com/en/tip-calculator): Calculate gratuity and split bills among diners.
 - [Fuel Cost & Trip Splitter](https://globalcalcpro.com/en/calculators/fuel-split): Gasoline costs and carpool expense splitting.
+- [Pregnancy & Due Date Calculator](https://globalcalcpro.com/en/calculators/pregnancy-calculator): Calculate gestational age, estimated due date (EDD), current trimester, fetal growth metrics, and clinical prenatal milestones by LMP, conception, or IVF transfer date.
 - [Cooking & Meat Roasting Timer](https://globalcalcpro.com/en/calculators/cooking-timer): Oven roasting times and temperatures by meat weight.
 - [Embeddable Widgets Hub](https://globalcalcpro.com/en/widgets): Free customizable iframe, WordPress, and React widgets for blogs, financial websites, and portals. Supports responsive sizing, dark/light themes, and 5 languages.
 

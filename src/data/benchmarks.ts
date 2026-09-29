@@ -7,17 +7,36 @@ export interface BenchmarkRow {
   preset?: Record<string, number | string>;
 }
 
+export interface CaseStudyData {
+  title: Record<string, string>;
+  scenario: Record<string, string>;
+  calculations: Record<string, string[]>;
+  takeaway: Record<string, string>;
+  preset?: Record<string, number | string>;
+}
+
+export interface FormulaBreakdownData {
+  name: Record<string, string>;
+  formula: string;
+  variables: Record<string, string[]>;
+  stepExample?: Record<string, string[]>;
+}
+
 export interface BenchmarkData {
+  category?: 'finance' | 'health' | 'math' | 'lifestyle' | 'real-estate' | 'tech';
   title: Record<string, string>;
   description: Record<string, string>;
   directAnswer?: Record<string, string>; // Concise AI Answer & Featured Snippet extract
   headers: Record<string, string[]>;
   rows: BenchmarkRow[];
   expertTip?: Record<string, string>;
+  caseStudy?: CaseStudyData;
+  formulaBreakdown?: FormulaBreakdownData;
 }
 
 export const benchmarkTables: Record<string, BenchmarkData> = {
   mortgage: {
+    category: 'finance',
     title: {
       en: "Mortgage Payment Benchmarks (30-Year Fixed at 6.5%)",
       he: "טבלת השוואת החזר משכנתא לדוגמה (30 שנה בריבית 6.5%)",
@@ -59,9 +78,119 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       es: "Consejo: Hacer un pago adicional al año puede reducir una hipoteca de 30 años entre 4 y 6 años y ahorrar miles en intereses.",
       fr: "Conseil Pro : Effectuer un remboursement anticipé équivalent à une mensualité par an permet de raccourcir votre prêt de 4 à 6 ans.",
       ar: "نصيحة الخبراء: سداد دفعة شهرية إضافية واحدة سنوياً يمكن أن يقلل مدة القرض بمقدار 4 إلى 6 سنوات ويوفر آلاف الدولارات من الفوائد.",
+    },
+    caseStudy: {
+      title: {
+        en: "Realistic Case Study: 25-Year vs 30-Year Loan Comparison",
+        he: "תרחיש לדוגמה מהחיים: נטילת משכנתא של 1,200,000 ₪ – 25 שנה מול 30 שנה",
+        es: "Caso Práctico: Hipoteca de $300,000 – 25 vs 30 años",
+        fr: "Étude de Cas Réelle : Prêt de 300 000 € sur 25 ans vs 30 ans",
+        ar: "دراسة حالة واقعية: قرض عقاري بقيمة 1,200,000 – مقارنة 25 سنة مقابل 30 سنة",
+      },
+      scenario: {
+        en: "Borrowing $300,000 (₪1,200,000) at a 4.5% fixed interest rate. Should the borrower choose a 25-year or a 30-year amortization schedule?",
+        he: "משפחה נוטלת משכנתא בסך 1,200,000 ₪ בריבית קבועה של 4.5%. מה ההבדל האמיתי בין פריסה ל-25 שנה לבין פריסה ל-30 שנה?",
+        es: "Préstamo de $300,000 al 4.5% de interés. Comparativa directa entre 25 y 30 años de amortización.",
+        fr: "Emprunt de 300 000 € à 4,5 % d'intérêt. Comparaison entre 25 et 30 ans d'amortissement.",
+        ar: "اقتراض مبلغ 1,200,000 بفائدة سنوية 4.5%. ما الفارق المالي بين السداد على 25 سنة مقابل 30 سنة؟",
+      },
+      calculations: {
+        he: [
+          "מסלול ל-25 שנה (300 חודשים): החזר חודשי של 6,670 ₪ | סך ריבית לתשלום: 801,000 ₪ | עלות כוללת: 2,001,000 ₪.",
+          "מסלול ל-30 שנה (360 חודשים): החזר חודשי של 6,080 ₪ | סך ריבית לתשלום: 988,800 ₪ | עלות כוללת: 2,188,800 ₪.",
+          "פער ההחזר החודשי: תוספת של 590 ₪ בלבד לחודש במסלול ה-25 שנה.",
+          "חיסכון מצטבר כולל: 187,800 ₪ חיסכון נקי בריביות + סיום מוקדם ב-5 שנים מלאות!"
+        ],
+        en: [
+          "25-Year Schedule (300 mos): Monthly payment $1,668 | Total Interest: $200,260 | Total Cost: $500,260.",
+          "30-Year Schedule (360 mos): Monthly payment $1,520 | Total Interest: $247,220 | Total Cost: $547,220.",
+          "Monthly difference: Only $148 extra per month for the 25-year term.",
+          "Total Net Savings: $46,960 in pure interest saved + debt-free 5 years sooner!"
+        ],
+        es: [
+          "Plazo a 25 años: Cuota mensual $1,668 | Interés total: $200,260 | Coste total: $500,260.",
+          "Plazo a 30 años: Cuota mensual $1,520 | Interés total: $247,220 | Coste total: $547,220.",
+          "Ahorro total neto: $46,960 en intereses y libertad financiera 5 años antes.",
+        ],
+        fr: [
+          "Prêt sur 25 ans : Mensualité 1 668 € | Intérêts totaux : 200 260 € | Coût total : 500 260 €.",
+          "Prêt sur 30 ans : Mensualité 1 520 € | Intérêts totaux : 247 220 € | Coût total : 547 220 €.",
+          "Économie totale : 46 960 € d'intérêts économisés et 5 ans d'endettement en moins.",
+        ],
+        ar: [
+          "خطة 25 سنة: القسط الشهري 6,670 | إجمالي الفائدة: 801,000 | التكلفة الإجمالية: 2,001,000.",
+          "خطة 30 سنة: القسط الشهري 6,080 | إجمالي الفائدة: 988,800 | التكلفة الإجمالية: 2,188,800.",
+          "التوفير الصافي: توفير 187,800 من الفوائد والتخلص من القرض قبل 5 سنوات كاملة.",
+        ]
+      },
+      takeaway: {
+        en: "Key Insight: Opting for a 25-year term increases the monthly obligation by less than 10%, but slashes almost 20% off total lifetime interest charges.",
+        he: "מסקנה פרקטית: העלאת ההחזר החודשי בכ-9.7% בלבד חוסכת כמעט 190,000 ₪ ומקצרת 60 תשלומי משכנתא שלמים.",
+        es: "Conclusión: Pagar un 10% más al mes reduce los intereses globales en un 20% y elimina 5 años de deuda.",
+        fr: "Conclusion : Augmenter la mensualité de seulement 10% permet de réduire les intérêts de 20% et de gagner 5 ans.",
+        ar: "الخلاصة: زيادة القسط الشهري بنسبة 10% فقط توفر قرابة 20% من الفائدة الإجمالية وتختصر 5 سنوات كاملة من الديون.",
+      },
+      preset: { principal: 1200000, rate: 4.5, years: 25 }
+    },
+    formulaBreakdown: {
+      name: {
+        en: "Standard Amortization Formula (Spitzer Schedule)",
+        he: "נוסחת שפיצר לחישוב החזר חודשי ולוח סילוקין",
+        es: "Fórmula de Amortización Francesa (Spitzer)",
+        fr: "Formule d'Amortissement Constant (Tableau Spitzer)",
+        ar: "معادلة شبيتزر لحساب القسط الشهري وجدول الاستهلاك",
+      },
+      formula: "M = P · [ r(1 + r)^n ] / [ (1 + r)^n - 1 ]",
+      variables: {
+        he: [
+          "M = סכום ההחזר החודשי הקבוע (Monthly Payment)",
+          "P = סכום קרן ההלוואה המקורית (Principal Loan Amount)",
+          "r = שיעור הריבית החודשית (שיעור ריבית שנתי באחוזים ÷ 100 ÷ 12)",
+          "n = מספר התשלומים הכולל לאורך תקופת ההלוואה (שנים × 12 חודשים)"
+        ],
+        en: [
+          "M = Fixed monthly mortgage payment",
+          "P = Principal loan amount borrowed",
+          "r = Monthly interest rate (Annual rate ÷ 100 ÷ 12)",
+          "n = Total number of monthly payments (Loan term in years × 12)"
+        ],
+        es: [
+          "M = Cuota mensual fija",
+          "P = Monto del capital prestado",
+          "r = Tasa de interés mensual (Tasa anual ÷ 100 ÷ 12)",
+          "n = Número total de cuotas (Años × 12)"
+        ],
+        fr: [
+          "M = Mensualité constante",
+          "P = Montant du capital emprunté",
+          "r = Taux d'intérêt mensuel (Taux annuel ÷ 100 ÷ 12)",
+          "n = Nombre total de mensualités (Années × 12)"
+        ],
+        ar: [
+          "M = القسط الشهري الثابت",
+          "P = أصل مبلغ القرض",
+          "r = معدل الفائدة الشهري (الفائدة السنوية ÷ 100 ÷ 12)",
+          "n = إجمالي عدد الدفعات الشهرية (السنوات × 12)"
+        ]
+      },
+      stepExample: {
+        he: [
+          "שלב 1: המרת הריבית לחודשית: r = 4.5% ÷ 12 = 0.00375",
+          "שלב 2: חישוב מספר חודשים: n = 25 × 12 = 300 חודשים",
+          "שלב 3: חישוב מקדם הריבית: (1 + 0.00375)^300 = 3.0694",
+          "שלב 4: הכפלת הקרן במקדם וחילוק: 1,200,000 × (0.00375 × 3.0694) ÷ (3.0694 - 1) = 6,670 ₪ בחודש"
+        ],
+        en: [
+          "Step 1: Convert annual rate to monthly: r = 4.5% ÷ 12 = 0.00375",
+          "Step 2: Calculate total payment periods: n = 25 × 12 = 300 months",
+          "Step 3: Compute compound multiplier: (1 + 0.00375)^300 = 3.0694",
+          "Step 4: Solve for M: $300,000 × (0.00375 × 3.0694) ÷ (3.0694 - 1) = $1,668/month"
+        ]
+      }
     }
   },
   compound: {
+    category: 'finance',
     title: {
       en: "Compound Interest Growth Benchmarks (8% Annual Return)",
       he: "טבלת צמיחת ריבית דריבית לדוגמה (תשואה שנתית 8%)",
@@ -91,10 +220,10 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       ar: ["الإيداع الشهري", "بعد 10 سنوات", "بعد 20 سنة", "بعد 30 سنة"],
     },
     rows: [
-      { label: "$100 / ₪400 /mo", col1: "$18,295 / ₪73,180", col2: "$58,902 / ₪235,608", col3: "$149,036 / ₪596,144", preset: { contribution: 100, rate: 8, years: 30 } },
-      { label: "$250 / ₪1,000 /mo", col1: "$45,737 / ₪182,950", col2: "$147,255 / ₪589,020", col3: "$372,590 / ₪1,490,360", preset: { contribution: 250, rate: 8, years: 30 } },
-      { label: "$500 / ₪2,000 /mo", col1: "$91,473 / ₪365,900", col2: "$294,510 / ₪1,178,040", col3: "$745,180 / ₪2,980,720", preset: { contribution: 500, rate: 8, years: 30 } },
-      { label: "$1,000 / ₪4,000 /mo", col1: "$182,946 / ₪731,800", col2: "$589,020 / ₪2,356,080", col3: "$1,490,359 / ₪5,961,440", preset: { contribution: 1000, rate: 8, years: 30 } },
+      { label: "$100 / ₪400 /mo", col1: "$18,295 / ₪73,180", col2: "$58,902 / ₪235,608", col3: "$149,036 / ₪596,144", preset: { principal: 0, monthlyContribution: 100, annualRate: 8, years: 30 } },
+      { label: "$250 / ₪1,000 /mo", col1: "$45,737 / ₪182,950", col2: "$147,255 / ₪589,020", col3: "$372,590 / ₪1,490,360", preset: { principal: 0, monthlyContribution: 250, annualRate: 8, years: 30 } },
+      { label: "$500 / ₪2,000 /mo", col1: "$91,473 / ₪365,900", col2: "$294,510 / ₪1,178,040", col3: "$745,180 / ₪2,980,720", preset: { principal: 0, monthlyContribution: 500, annualRate: 8, years: 30 } },
+      { label: "$1,000 / ₪4,000 /mo", col1: "$182,946 / ₪731,800", col2: "$589,020 / ₪2,356,080", col3: "$1,490,359 / ₪5,961,440", preset: { principal: 0, monthlyContribution: 1000, annualRate: 8, years: 30 } },
     ],
     expertTip: {
       en: "The Rule of 72: Divide 72 by your expected annual return rate to estimate how many years it will take for your money to double (e.g., 72 ÷ 8% = ~9 years).",
@@ -102,9 +231,91 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       es: "Regla del 72: Divide 72 entre tu tasa de interés para estimar en cuántos años se duplicará tu dinero (ej. 72 ÷ 8% = ~9 años).",
       fr: "Règle des 72 : Divisez 72 par le taux de rendement annuel pour estimer le nombre d'années nécessaires pour doubler votre capital.",
       ar: "قاعدة 72: اقسم 72 على نسبة العائد السنوي لتقدير عدد السنوات اللازمة لمضاعفة أموالك (مثال: 72 ÷ 8% = ~9 سنوات).",
+    },
+    caseStudy: {
+      title: {
+        en: "Realistic Case Study: The Exponential Power of 20-Year Consistent Investing",
+        he: "תרחיש לדוגמה מהחיים: חיסכון חודשי של 1,500 ₪ בריבית 8% לאורך 20 שנה",
+        es: "Caso Práctico: Ahorro mensual de $400 al 8% durante 20 años",
+        fr: "Étude de Cas : Épargne mensuelle de 400 € à 8 % sur 20 ans",
+        ar: "دراسة حالة واقعية: ادخار شهري بمبلغ 1,500 بفائدة 8% على مدى 20 عاماً",
+      },
+      scenario: {
+        en: "An investor deposits $400 (₪1,500) per month starting with $10,000 (₪40,000) initial capital into an index fund averaging 8% annual return over 20 years.",
+        he: "משקיע מתחיל עם הון ראשוני של 40,000 ₪ ומפקיד 1,500 ₪ מדי חודש בקרן מחקה מדד עם תשואה שנתית ממוצעת של 8% למשך 20 שנה.",
+        es: "Un inversor aporta $400 al mes con un capital inicial de $10,000 y un rendimiento anual del 8% a 20 años.",
+        fr: "Un épargnant place 400 €/mois avec 10 000 € d'apport initial à un rendement de 8% sur 20 ans.",
+        ar: "مستثمر يبدأ برأس مال 40,000 ويدخر 1,500 شهرياً في صندوق استثماري بعائد 8% لمدة 20 سنة.",
+      },
+      calculations: {
+        he: [
+          "הון עצמי שהופקד בפועל: 40,000 ₪ הון התחלתי + 360,000 ₪ (1,500 ₪ × 240 חודשים) = 400,000 ₪ סך הפקדות מהכיס.",
+          "סך השווי הסופי המצטבר (Future Value): כ-1,072,000 ₪.",
+          "סך רווחי ריבית דריבית נקיים: כ-672,000 ₪ (168% תשואה על סך כל ההפקדות!).",
+          "תרומת הזמן: בשנה ה-20 לבדה, תיק ההשקעות מייצר כ-80,000 ₪ בריבית שנתית – יותר מפי 4 מסך כל ההפקדות השנתיות."
+        ],
+        en: [
+          "Total Money Deposited: $10,000 initial + $96,000 ($400 × 240 mos) = $106,000 total out-of-pocket.",
+          "Final Accumulated Portfolio Value: ~$286,000.",
+          "Compound Interest Profit Earned: ~$180,000 (Profits exceed contributions by 170%!).",
+          "The Velocity of Compounding: In year 20 alone, annual interest gains generate over $21,000—more than 4x annual deposits."
+        ],
+        es: [
+          "Total aportado: $10,000 inicial + $96,000 mensuales = $106,000.",
+          "Valor final acumulado: ~$286,000.",
+          "Intereses netos ganados: ~$180,000.",
+        ],
+        fr: [
+          "Total versé : 10 000 € + 96 000 € = 106 000 €.",
+          "Valeur finale atteinte : ~286 000 €.",
+          "Gains d'intérêts nets : ~180 000 €.",
+        ],
+        ar: [
+          "إجمالي المبالغ المدفوعة: 40,000 + 360,000 = 400,000.",
+          "القيمة النهائية المتراكمة: 1,072,000.",
+          "أرباح الفائدة المركبة: 672,000.",
+        ]
+      },
+      takeaway: {
+        en: "Key Insight: The compound interest curve is exponential. More than 62% of the entire final portfolio value is pure generated profit, not deposited capital.",
+        he: "מסקנה פרקטית: כוח הריבית דריבית עובד בצורה מעריכית. יותר מ-62% מכלל ההון הסופי נוצר מרווחי ריבית ולא מכספי ההפקדה האישיים.",
+        es: "Conclusión: Más del 62% del capital final son intereses generados, demostrando la importancia de empezar temprano.",
+        fr: "Conclusion : Plus de 62 % de la somme finale provient des intérêts composés et non de vos versements.",
+        ar: "الخلاصة: أكثر من 62% من رأس المال النهائي هو أرباح فوائد مركبة ناتجة عن عامل الزمن والاستمرارية.",
+      },
+      preset: { principal: 40000, monthlyContribution: 1500, annualRate: 8, years: 20 }
+    },
+    formulaBreakdown: {
+      name: {
+        en: "Future Value of Compound Interest with Regular Monthly Contributions",
+        he: "נוסחת ריבית דריבית עם הפקדות חודשיות שוטפות",
+        es: "Fórmula de Interés Compuesto con Aportaciones Mensuales",
+        fr: "Formule des Intérêts Composés avec Versements Mensuels",
+        ar: "معادلة الفائدة المركبة مع الإيداعات الشهرية المنتظمة",
+      },
+      formula: "FV = P(1 + r/n)^(n·t) + PMT · [ ((1 + r/n)^(n·t) - 1) / (r/n) ]",
+      variables: {
+        he: [
+          "FV = שווי עתידי מצטבר כולל (Future Value)",
+          "P = סכום השקעה ראשונית (Principal)",
+          "PMT = סכום הפקדה חודשית קבועה (Monthly Contribution)",
+          "r = שיעור תשואה שנתית באחוזים (Annual Interest Rate)",
+          "n = תדירות החישוב בשנה (לחישוב חודשי n = 12)",
+          "t = מספר השנים לצמיחת ההשקעה (Years)"
+        ],
+        en: [
+          "FV = Total accumulated Future Value",
+          "P = Initial investment principal",
+          "PMT = Regular monthly payment / deposit",
+          "r = Annual nominal interest rate (as a decimal)",
+          "n = Compounding periods per year (n = 12 for monthly)",
+          "t = Number of investment years"
+        ]
+      }
     }
   },
   bmi: {
+    category: 'health',
     title: {
       en: "WHO Official Body Mass Index (BMI) Classifications",
       he: "טבלת מדדי BMI לפי ארגון הבריאות העולמי (WHO)",
@@ -146,225 +357,69 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       es: "Nota: El IMC no distingue entre masa muscular y grasa. Atletas con alta musculatura pueden tener un IMC elevado siendo saludables.",
       fr: "Remarque : L'IMC ne fait pas la différence entre masse musculaire et masse grasse. Les athlètes peuvent avoir un IMC élevé tout en étant en parfaite santé.",
       ar: "ملاحظة: مؤشر كتلة الجسم لا يميز بين الكتلة العضلية والدهون، لذلك قد يحصل الرياضيون على مؤشر مرتفع مع تمتعهم بصحة ممتازة.",
-    }
-  },
-  percentage: {
-    title: {
-      en: "Common Percentage & Discount Quick Reference",
-      he: "טבלת אחוזים, הנחות ושברים נפוצים",
-      es: "Tabla Rápida de Porcentajes y Descuentos",
-      fr: "Tableau de Référence des Pourcentages et Remises",
-      ar: "جدول سريع للنسب المئوية والخصومات الشائعة",
     },
-    description: {
-      en: "Instant decimal and fraction equivalents for fast mental math and shopping discounts.",
-      he: "ערכים עשרוניים ושברים מקבילים לחישוב מנטלי מהיר של הנחות ומבצעים בקניות.",
-      es: "Equivalencias decimales y fraccionarias para cálculos rápidos de descuentos.",
-      fr: "Équivalences décimales et fractions pour calculer rapidement les remises.",
-      ar: "المكافئات العشرية والكسرية لحساب الخصومات والتسوق بسرعة.",
+    caseStudy: {
+      title: {
+        en: "Realistic Case Study: Adult BMI & Ideal Weight Target Calculation",
+        he: "תרחיש לדוגמה מהחיים: חישוב BMI ויעד משקל בריא לגבר בגובה 178 ס״מ",
+        es: "Caso Práctico: Cálculo de IMC y peso ideal para altura de 178 cm",
+        fr: "Étude de Cas : Calcul de l'IMC et du poids idéal pour 178 cm",
+        ar: "دراسة حالة واقعية: حساب مؤشر كتلة الجسم والوزن المثالي لطول 178 سم",
+      },
+      scenario: {
+        en: "A 32-year-old individual with a height of 178 cm (5'10\") weighs 88 kg (194 lbs). What is their current BMI, and how much weight should they lose to enter the normal range?",
+        he: "גבר בן 32 בגובה 178 ס״מ שוקל כיום 88 ק״ג. מהו מדד ה-BMI שלו, וכמה קילוגרמים עליו להפחית כדי להגיע לטווח משקל תקין ובריא?",
+        es: "Una persona de 178 cm y 88 kg busca conocer su IMC y cuántos kilos necesita reducir para llegar a su peso óptimo.",
+        fr: "Une personne mesurant 178 cm et pesant 88 kg souhaite connaître son IMC et le poids à perdre pour atteindre la zone normale.",
+        ar: "شخص طوله 178 سم ووزنه الحالي 88 كغ. ما هو مؤشر كتلته وكم كيلوغراماً يحتاج لإنقاصه للوصول للوزن الطبيعي؟",
+      },
+      calculations: {
+        he: [
+          "חישוב גובה בריבוע: 1.78 מטר × 1.78 מטר = 3.1684 מ\"ר.",
+          "חישוב מדד BMI נוכחי: 88 ק\"ג ÷ 3.1684 = 27.77 ק\"ג/מ\"ר (מוגדר כ-עודף משקל / Overweight).",
+          "משקל תקין עליון (BMI 24.9): 24.9 × 3.1684 = 78.89 ק\"ג.",
+          "טווח משקל יעד תקין (BMI 18.5 עד 24.9): 58.6 ק\"ג עד 78.9 ק\"ג.",
+          "הפחתת משקל נדרשת להגעה לטווח הבריא: כ-9.1 ק\"ג."
+        ],
+        en: [
+          "Height squared: 1.78 m × 1.78 m = 3.1684 m².",
+          "Current BMI: 88 kg ÷ 3.1684 = 27.77 kg/m² (Overweight Category).",
+          "Upper Normal Weight Cutoff (BMI 24.9): 24.9 × 3.1684 = 78.89 kg.",
+          "Target Weight Reduction: 88 kg - 78.9 kg = ~9.1 kg (20 lbs) to reach normal category."
+        ]
+      },
+      takeaway: {
+        en: "Clinical Insight: A gradual weight reduction of 0.5 to 1 kg per week over 3–4 months is the safest and most sustainable approach to reaching the normal BMI range.",
+        he: "מסקנה קלינית: ירידה הדרגתית ומבוקרת של 0.5 עד 1 ק\"ג בשבוע על פני 3-4 חודשים היא הדרך הבריאה והיציבה ביותר להשגת טווח ה-BMI התקין.",
+        es: "Conclusión: Una pérdida gradual de 0.5 a 1 kg por semana es la vía recomendada para alcanzar el peso saludable.",
+        fr: "Conclusion : Une perte de poids progressive de 0,5 à 1 kg par semaine permet d'atteindre durablement la zone normale.",
+        ar: "الخلاصة: فقدان الوزن التدريجي بمعدل 0.5 إلى 1 كغ أسبوعياً هو المسار الأكثر أماناً واستدامة للوصول إلى النطاق الصحي.",
+      },
+      preset: { height: 178, weight: 88 }
     },
-    directAnswer: {
-      en: "To find X% of Y, multiply Y by (X / 100). For quick mental discounts: 10% is moving the decimal left by one place, 20% is 10% multiplied by 2, and 50% is dividing by 2.",
-      he: "לחישוב X% מתוך Y, כופלים את המספר Y ב-(X חלקי 100). לחישוב מנטלי מהיר של הנחה: 10% שווה להזזת הנקודה העשרונית מקום אחד שמאלה, 20% שווה להכפלת ה-10% פי 2, ו-50% שווה לחלוקה ב-2.",
-      es: "Para calcular el X% de Y, multiplica Y por (X / 100). Para descuentos rápidos: 10% es mover la coma un lugar a la izquierda, 20% es duplicar el 10% y 50% es dividir entre 2.",
-      fr: "Pour trouver X% de Y, multipliez Y par (X / 100). Pour un calcul mental rapide : 10% équivaut à décaler la virgule d'un rang vers la gauche et 50% à diviser par 2.",
-      ar: "لحساب X% من القيمة Y، اضرب Y في (X ÷ 100). للحساب الذهني السريع للخصم: 10% تعني تحريك الفاصلة العشرية خانة واحدة لليسار، و20% تعني مضاعفة الـ 10%، و50% تعني القسمة على 2.",
-    },
-    headers: {
-      en: ["Percentage", "Decimal Multiplier", "Fraction Equivalent", "Example on $100 / ₪100"],
-      he: ["אחוז (%)", "מכפיל עשרוני", "שבר פשוט", "דוגמה על 100 ₪ / $100"],
-      es: ["Porcentaje", "Multiplicador", "Fracción", "Ejemplo en $100"],
-      fr: ["Pourcentage", "Multiplicateur", "Fraction", "Exemple sur 100 €"],
-      ar: ["النسبة المئوية", "المعامل العشري", "الكسر", "مثال على 100"],
-    },
-    rows: [
-      { label: "10%", col1: "0.10", col2: "1/10", col3: "$10 / ₪10 off" },
-      { label: "15%", col1: "0.15", col2: "3/20", col3: "$15 / ₪15 off" },
-      { label: "20%", col1: "0.20", col2: "1/5", col3: "$20 / ₪20 off" },
-      { label: "25%", col1: "0.25", col2: "1/4", col3: "$25 / ₪25 off" },
-      { label: "33.3%", col1: "0.333", col2: "1/3", col3: "$33.33 / ₪33.33 off" },
-      { label: "50%", col1: "0.50", col2: "1/2", col3: "$50 / ₪50 off (Half price)" },
-    ],
-    expertTip: {
-      en: "Quick Tip: To quickly calculate a 15% tip or discount, find 10% (move the decimal one spot to the left), then add half of that number.",
-      he: "טיפ לחישוב מהיר: כדי לחשב 15% בראש, חשבו 10% (הזיזו את הנקודה העשרונית מקום אחד שמאלה) והוסיפו חצי מאותו הסכום.",
-      es: "Consejo rápido: Para calcular el 15%, obtén el 10% (mueve la coma un lugar a la izquierda) y suma la mitad de ese valor.",
-      fr: "Astuce : Pour calculer 15%, calculez d'abord 10% puis ajoutez la moitié de ce résultat.",
-      ar: "حساب سريع: لحساب 15% ذهنياً، احسب 10% أولاً ثم أضف نصف تلك القيمة إليها.",
-    }
-  },
-  salary: {
-    title: {
-      en: "Salary Conversion Reference Table (40-Hour Work Week)",
-      he: "טבלת המרת שכר שעתי לשכר חודשי ושנתי (משרה מלאה)",
-      es: "Tabla de Conversión Salarial (Semana de 40 Horas)",
-      fr: "Tableau de Conversion Salaire Horaire en Mensuel et Annuel",
-      ar: "جدول تحويل الراتب بالساعة إلى شهري وسنوي (40 ساعة أسبوعياً)",
-    },
-    description: {
-      en: "Gross salary equivalents based on 52 working weeks (2,080 annual hours, ~173.3 monthly hours).",
-      he: "המרת שכר ברוטו לפי 52 שבועות עבודה בשנה (2,080 שעות שנתיות, כ-173.33 שעות חודשיות בממוצע).",
-      es: "Salarios brutos basados en 52 semanas laborales al año (2.080 horas anuales).",
-      fr: "Équivalents salariaux bruts basés sur un temps plein standard annuel.",
-      ar: "مقارنة الرواتب الإجمالية استناداً إلى 52 أسبوع عمل في السنة.",
-    },
-    directAnswer: {
-      en: "A full-time hourly wage of $25/hour equals roughly $4,333 per month and $52,000 per year gross (based on 2,080 working hours annually). An hourly wage of ₪50/hr in Israel translates to approximately ₪8,667 gross per month.",
-      he: "שכר שעתי של 50 ₪ לשעה במשרה מלאה שווה לכ-8,667 ₪ ברוטו בחודש ו-104,000 ₪ בשנה (לפי 173.33 שעות חודשיות ו-2,080 שעות עבודה שנתיות). שכר של 100 ₪ לשעה מתרגם ל-17,333 ₪ ברוטו לחודש.",
-      es: "Un salario de $25/hora a tiempo completo equivale a aproximadamente $4,333 brutos al mes y $52,000 al año (2.080 horas anuales).",
-      fr: "Un taux horaire brut de 25 € à temps plein (35h-40h) équivaut à environ 4 333 € brut par mois et 52 000 € brut par an.",
-      ar: "أجر 25 دولاراً في الساعة بدوام كامل يعادل حوالي 4,333 دولار شهرياً و52,000 دولار سنوياً قبل خصم الضرائب (بناءً على 2080 ساعة عمل سنوياً).",
-    },
-    headers: {
-      en: ["Hourly Wage", "Daily (8h)", "Monthly (~173h)", "Annual Gross"],
-      he: ["שכר שעתי", "יומי (8 שעות)", "חודשי ממוצע", "שנתי ברוטו"],
-      es: ["Por Hora", "Diario (8h)", "Mensual", "Anual Bruto"],
-      fr: ["Taux Horaire", "Journalier (8h)", "Mensuel", "Annuel Brut"],
-      ar: ["الساعة", "اليومي (8 ساعات)", "الشهري", "السنوي الإجمالي"],
-    },
-    rows: [
-      { label: "$15 / ₪35 /hr", col1: "$120 / ₪280", col2: "$2,600 / ₪6,066", col3: "$31,200 / ₪72,800", preset: { amount: 15, frequency: 'hourly' } },
-      { label: "$25 / ₪50 /hr", col1: "$200 / ₪400", col2: "$4,333 / ₪8,667", col3: "$52,000 / ₪104,000", preset: { amount: 25, frequency: 'hourly' } },
-      { label: "$40 / ₪80 /hr", col1: "$320 / ₪640", col2: "$6,933 / ₪13,867", col3: "$83,200 / ₪166,400", preset: { amount: 40, frequency: 'hourly' } },
-      { label: "$60 / ₪120 /hr", col1: "$480 / ₪960", col2: "$10,400 / ₪20,800", col3: "$124,800 / ₪249,600", preset: { amount: 60, frequency: 'hourly' } },
-      { label: "$100 / ₪200 /hr", col1: "$800 / ₪1,600", col2: "$17,333 / ₪34,667", col3: "$208,000 / ₪416,000", preset: { amount: 100, frequency: 'hourly' } },
-    ],
-    expertTip: {
-      en: "Take-Home Pay Rule: Net salary after income tax, pension contributions, and healthcare deductions typically ranges between 65% and 80% of gross pay.",
-      he: "כלל אצבע לשכר נטו: השכר נטו שנכנס לבנק לאחר ניכויי מס הכנסה, ביטוח לאומי ופנסיה עומד בדרך כלל על 65% עד 82% מהשכר ברוטו.",
-      es: "Regla del salario neto: El ingreso neto real tras impuestos suele representar entre el 65% y el 80% del salario bruto.",
-      fr: "Salaire net : Le salaire net après cotisations et impôts représente en moyenne 75% à 80% du salaire brut.",
-      ar: "صافي الراتب: يشكل الراتب الصافي بعد خصم الضرائب والتأمينات عادة ما بين 65% إلى 80% من الراتب الإجمالي.",
-    }
-  },
-  "rent-vs-buy": {
-    title: {
-      en: "Rent vs Buy 10-Year Wealth Projections",
-      he: "השוואת הון מצטבר: קנייה מול שכירות (אופק 10 שנים)",
-      es: "Comparativa Alquilar vs Comprar a 10 Años",
-      fr: "Comparatif Location vs Achat Immobilier sur 10 Ans",
-      ar: "مقارنة بناء الثروة: الإيجار مقابل الشراء على مدار 10 سنوات",
-    },
-    description: {
-      en: "How buying with home appreciation compares to renting and investing the down payment in index funds.",
-      he: "כיצד עליית ערך הנכס ברכישה משתווה לשכירות והשקעת ההון העצמי והחיסכון החודשי בשוק ההון.",
-      es: "Comparación entre la revalorización de la vivienda y la inversión del enganche en bolsa.",
-      fr: "Comparaison du patrimoine net entre achat immobilier et investissement boursier de l'apport.",
-      ar: "مقارنة بين نمو قيمة العقار المشتري مقابل استثمار رأس المال في الأسهم.",
-    },
-    directAnswer: {
-      en: "Buying a home generally builds more long-term wealth when staying for 5+ years due to forced equity buildup and property appreciation, whereas renting wins in the short term (<4 years) due to high transaction taxes and closing costs.",
-      he: "רכישת דירה נוטה לייצר הון מצטבר גבוה יותר כאשר מתכננים להתגורר בנכס מעל 5-7 שנים (בשל בניית הון בנכס ועליית ערך), בעוד ששכירות עדיפה לטווח קצר (עד 4 שנים) בשל חיסכון בעלויות עסקה כבדות (מס רכישה, עו\"ד, תיווך ושיפוץ).",
-      es: "Comprar vivienda suele generar mayor patrimonio neto a partir del 5º o 7º año, mientras que alquilar resulta más ventajoso a corto plazo por el ahorro en gastos de compra.",
-      fr: "L'achat immobilier permet de créer plus de patrimoine à partir de 5 à 7 ans de détention, tandis que la location est financièrement plus souple sur le court terme.",
-      ar: "شراء العقار يحقق ثروة صافية أكبر عند الاستقرار لمدة تزيد عن 5 إلى 7 سنوات بفضل تراكم الأصول ونمو الأسعار، بينما يعد الإيجار أفضل مالياً للمدد القصيرة.",
-    },
-    headers: {
-      en: ["Scenario", "Initial Capital", "Monthly Outlay", "Estimated 10-Yr Net Worth"],
-      he: ["תרחיש", "הון עצמי ראשוני", "הוצאה חודשית", "שווי נטו מוערך (10 שנים)"],
-      es: ["Escenario", "Capital Inicial", "Gasto Mensual", "Patrimonio Estimado (10a)"],
-      fr: ["Scénario", "Apport Initial", "Dépense Mensuelle", "Patrimoine Net Estimé (10 ans)"],
-      ar: ["السيناريو", "رأس المال الأولي", "المصروف الشهري", "صافي الثروة المقدرة (10 سنوات)"],
-    },
-    rows: [
-      { label: "Buying Home ($500k / ₪2M)", col1: "$100,000 / ₪400,000", col2: "$3,100 / ₪11,500 (Mortgage+Tax)", col3: "~$340,000 / ₪1,350,000 (Equity)", preset: {} },
-      { label: "Renting + Investing Capital", col1: "$100,000 (In Index Funds)", col2: "$2,200 / ₪7,500 (Rent)", col3: "~$310,000 / ₪1,200,000 (Portfolio)", preset: {} },
-    ],
-    expertTip: {
-      en: "Break-even Rule: Buying usually builds more wealth if you plan to stay in the home for at least 5 to 7 years to offset initial transaction fees, taxes, and agent commissions.",
-      he: "כלל נקודת האיזון: רכישת דירה משתלמת בדרך כלל אם מתכננים לגור בה לפחות 5 עד 7 שנים, על מנת לכסות את עלויות העסקה (מס רכישה, תיווך ועו\"ד).",
-      es: "Regla del punto de equilibrio: Comprar es más rentable si permaneces en la vivienda al menos 5 a 7 años.",
-      fr: "Règle d'amortissement : L'achat devient généralement plus avantageux que la location à partir de 5 à 7 ans de détention.",
-      ar: "نقطة التعادل: يعتبر الشراء خياراً أفضل إذا كنت تخطط للإقامة في العقار لمدة 5 إلى 7 سنوات على الأقل لتغطية تكاليف الشراء والرسوم.",
-    }
-  },
-  "auto-loan": {
-    title: {
-      en: "Car Loan Payment Benchmarks (5-Year Term at 7%)",
-      he: "טבלת החזר הלוואת רכב לדוגמה (5 שנים בריבית 7%)",
-      es: "Tabla de Pagos de Préstamo de Auto (5 Años al 7%)",
-      fr: "Mensualités de Prêt Auto (5 Ans à 7%)",
-      ar: "جدول أقساط قرض السيارة (5 سنوات بفائدة 7%)",
-    },
-    description: {
-      en: "Estimated monthly payment and total interest across typical vehicle price points.",
-      he: "החזר חודשי וסך ריבית עבור מחירי רכב נפוצים.",
-      es: "Pago mensual estimado e interés total según el valor del vehículo.",
-      fr: "Mensualité estimée et coût total des intérêts selon le prix du véhicule.",
-      ar: "الدفعة الشهرية المقدرة وإجمالي الفائدة لمختلف أسعار السيارات.",
-    },
-    directAnswer: {
-      en: "On a 5-year (60-month) car loan with 20% down payment at a 7% interest rate, financing a $35,000 (₪130,000) car results in a monthly payment of ~$554 (₪2,059) and total interest of ~$5,265 (₪19,550).",
-      he: "בהלוואת רכב ל-5 שנים (60 חודשים) עם מקדמה של 20% ובריבית 7%, מימון רכב בשווי 130,000 ₪ מניב החזר חודשי של כ-2,059 ₪ וסך ריבית של כ-19,550 ₪ לאורך תקופת ההלוואה.",
-      es: "En un préstamo de auto a 5 años al 7% con 20% de enganche, financiar un coche de $35,000 supone una cuota de unos $554/mes y $5,265 de interés total.",
-      fr: "Pour un prêt auto sur 5 ans à 7 % avec 20 % d'apport, financer un véhicule de 35 000 € revient à une mensualité d'environ 554 € et 5 265 € d'intérêts totaux.",
-      ar: "لقرض سيارة مدته 5 سنوات بفائدة 7% ودفعة أولى 20%، فإن تمويل سيارة بقيمة 35,000 دولار ينتج عنه قسط شهري قدره 554 دولار وإجمالي فائدة 5,265 دولار.",
-    },
-    headers: {
-      en: ["Vehicle Price", "Down Payment (20%)", "Monthly Payment (60 mo)", "Total Interest"],
-      he: ["מחיר הרכב", "מקדמה (20%)", "החזר חודשי (60 חודש)", "סך ריבית לתשלום"],
-      es: ["Precio del Auto", "Enganche (20%)", "Pago Mensual (60m)", "Interés Total"],
-      fr: ["Prix du Véhicule", "Apport (20%)", "Mensualité (60 mois)", "Total Intérêts"],
-      ar: ["سعر السيارة", "الدفعة الأولى (20%)", "القسط الشهري (60 شهراً)", "إجمالي الفائدة"],
-    },
-    rows: [
-      { label: "$20,000 / ₪75,000", col1: "$4,000 / ₪15,000", col2: "$317 / ₪1,188", col3: "$3,009 / ₪11,280" },
-      { label: "$35,000 / ₪130,000", col1: "$7,000 / ₪26,000", col2: "$554 / ₪2,059", col3: "$5,265 / ₪19,550" },
-      { label: "$50,000 / ₪190,000", col1: "$10,000 / ₪38,000", col2: "$792 / ₪3,009", col3: "$7,522 / ₪28,580" },
-      { label: "$75,000 / ₪280,000", col1: "$15,000 / ₪56,000", col2: "$1,188 / ₪4,435", col3: "$11,283 / ₪42,120" },
-    ],
-    expertTip: {
-      en: "The 20/4/10 Rule for Car Buying: Put at least 20% down, finance for no longer than 4 years (48 months), and keep total transportation costs (loan, insurance, fuel) below 10% of gross monthly income.",
-      he: "כלל ה-20/4/10 לרכישת רכב: שלמו לפחות 20% מקדמה, פרסו לתקופה שלא עולה על 4 שנים (48 חודשים), והגבילו את סך כל הוצאות הרכב החודשיות לעד 10% מהכנסתכם ברוטו.",
-      es: "Regla 20/4/10: 20% de enganche, financiamiento a máximo 4 años y gastos de transporte inferiores al 10% de tus ingresos brutos.",
-      fr: "Règle 20/4/10 : 20% d'apport, crédit sur 4 ans maximum et budget auto limité à 10% de vos revenus bruts.",
-      ar: "قاعدة 20/4/10: ادفع 20% كدفعة أولى، وقسط على مدة لا تتجاوز 4 سنوات، واجعل تكاليف السيارة أقل من 10% من دخلك الإجمالي.",
-    }
-  },
-  tip: {
-    title: {
-      en: "Standard Gratuity & Tipping Benchmarks",
-      he: "טבלת טיפים מומלצים לפי סכום החשבון",
-      es: "Guía Rápida de Propinas por Monto",
-      fr: "Guide des Pourboires selon l'Addition",
-      ar: "جدول الإكراميات الموصى بها حسب الفاتورة",
-    },
-    description: {
-      en: "Quick tip calculation chart for common dining and service amounts.",
-      he: "חישוב טיפ מהיר (12%, 15%, 18%, 20%) לפי מגוון סכומי חשבון נפוצים.",
-      es: "Cálculo rápido de propinas para diferentes montos de factura.",
-      fr: "Tableau de calcul rapide pour le pourboire sur vos additions.",
-      ar: "حساب سريع للإكرامية لمختلف مبالغ الفواتير والخدمات.",
-    },
-    directAnswer: {
-      en: "A standard restaurant tip ranges between 15% and 20% in the US and Canada, and between 10% and 15% in Israel and Europe. On a $100 (₪400) restaurant bill, a 15% tip is $15 (₪60) and an 18% tip is $18 (₪72).",
-      he: "טיפ סטנדרטי במסעדות ובתי קפה בישראל עומד על 12% עד 15%, ובארה\"ב על 18% עד 20%. על חשבון של 400 ₪, טיפ של 12% הוא 48 ₪, טיפ של 15% הוא 60 ₪, וטיפ של 18% עומד על 72 ₪.",
-      es: "La propina habitual en restaurantes se sitúa entre el 10% y el 15% en Europa/Latinoamérica, y el 18-20% en EE.UU. En una cuenta de $100, el 15% son $15.",
-      fr: "Le pourboire standard se situe entre 10% et 15% en Europe et entre 18% et 20% en Amérique du Nord. Sur une addition de 100 €, un pourboire de 15% équivaut à 15 €.",
-      ar: "تتراوح الإكرامية القياسية في المطاعم بين 10% و 15% في الشرق الأوسط وأوروبا، وبين 18% و 20% في أمريكا الشمالية. على فاتورة بقيمة 100 دولار، تكون الإكرامية بنسبة 15% هي 15 دولاراً.",
-    },
-    headers: {
-      en: ["Bill Amount", "12% Tip", "15% Standard", "18% Great Service", "20% Exceptional"],
-      he: ["סכום החשבון", "12% בסיסי", "15% סטנדרטי", "18% שירות מצוין", "20% שירות יוצא דופן"],
-      es: ["Monto de Cuenta", "12% Básico", "15% Estándar", "18% Excelente", "20% Excepcional"],
-      fr: ["Montant Addition", "12% Basique", "15% Standard", "18% Très bon", "20% Exceptionnel"],
-      ar: ["مبلغ الفاتورة", "12% أساسي", "15% قياسي", "18% خدمة ممتازة", "20% خدمة استثنائية"],
-    },
-    rows: [
-      { label: "$25 / ₪100", col1: "$3.00 / ₪12", col2: "$3.75 / ₪15", col3: "$4.50 / ₪18", col4: "$5.00 / ₪20" },
-      { label: "$50 / ₪200", col1: "$6.00 / ₪24", col2: "$7.50 / ₪30", col3: "$9.00 / ₪36", col4: "$10.00 / ₪40" },
-      { label: "$100 / ₪400", col1: "$12.00 / ₪48", col2: "$15.00 / ₪60", col3: "$18.00 / ₪72", col4: "$20.00 / ₪80" },
-      { label: "$200 / ₪800", col1: "$24.00 / ₪96", col2: "$30.00 / ₪120", col3: "$36.00 / ₪144", col4: "$40.00 / ₪160" },
-    ],
-    expertTip: {
-      en: "Tipping Norms: In the US, 15–20% on the pre-tax bill is standard. In Israel and Europe, 10–15% is customary for table service.",
-      he: "נוהגי מתן טיפ: בישראל מקובל להשאיר 12% עד 15% על שירות במסעדות ובתי קפה, ובארה\"ב הסטנדרט עומד על 18% עד 20%.",
-      es: "Normas de propina: En EE.UU. lo habitual es 15-20%, mientras que en Europa y Latinoamérica oscila entre 10-15%.",
-      fr: "Usage des pourboires : Aux États-Unis 18-20% est la norme. En France et Europe, 10% est apprécié pour un service soigné.",
-      ar: "أعراف الإكرامية: في الولايات المتحدة تتراوح الإكرامية بين 18-20%، بينما في الشرق الأوسط وأوروبا تتراوح بين 10-15%.",
+    formulaBreakdown: {
+      name: {
+        en: "Official WHO Metric BMI Formula",
+        he: "נוסחת ה-BMI המטרית של ארגון הבריאות העולמי",
+        es: "Fórmula Métrica Oficial del IMC (OMS)",
+        fr: "Formule Officielle de l'IMC (Métrique OMS)",
+        ar: "المعادلة المترية الرسمية لمؤشر كتلة الجسم (منظمة الصحة العالمية)",
+      },
+      formula: "BMI = Weight (kg) / [ Height (m) ]²",
+      variables: {
+        he: [
+          "Weight (משקל) = משקל הגוף הנמדד בקילוגרמים (kg)",
+          "Height (גובה) = גובה האדם במטרים (לדוגמה: 178 ס\"מ = 1.78 מטר)"
+        ],
+        en: [
+          "Weight = Total body mass in kilograms (kg)",
+          "Height = Body stature measured in meters (e.g., 178 cm = 1.78 m)"
+        ]
+      }
     }
   },
   pregnancy: {
+    category: 'health',
     title: {
       en: "Pregnancy Trimester, Baby Size & Milestone Benchmarks",
       he: "טבלת אבני דרך, טרימסטרים וגודל העובר לפי שבועות הריון",
@@ -405,6 +460,64 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
       es: "Solo el 4-5% de los bebés nacen exactamente en su fecha prevista de parto. Dar a luz entre las semanas 37 y 41 es totalmente normal.",
       fr: "Seulement 4 à 5 % des bébés naissent le jour exact du terme prévu. Un accouchement entre la 37e et 41e semaine est considéré comme à terme.",
       ar: "حوالي 4% إلى 5% فقط من المواليد يولدون في يوم موعد الولادة المتوقع بالضبط. الولادة بين الأسبوع 37 والأسبوع 41 تعتبر ولادة طبيعية مكتملة المدة.",
+    },
+    caseStudy: {
+      title: {
+        en: "Realistic Case Study: Due Date Calculation from LMP (Last Menstrual Period)",
+        he: "תרחיש לדוגמה מהחיים: חישוב תאריך לידה ואבני דרך לווסת אחרונה ב-1 בינואר",
+        es: "Caso Práctico: Cálculo de FPP con última regla el 1 de enero",
+        fr: "Étude de Cas : Calcul du terme pour une DDR au 1er janvier",
+        ar: "دراسة حالة واقعية: حساب موعد الولادة لآخر دورة شهرية في 1 يناير",
+      },
+      scenario: {
+        en: "A mother's last menstrual period (LMP) began on January 1st with a standard 28-day menstrual cycle. When is the estimated due date (EDD) and when are key screenings scheduled?",
+        he: "היום הראשון של הווסת האחרונה היה ב-1 בינואר. מחזור סדיר בן 28 יום. מהו תאריך הלידה המשוער (EDD) ומתי נערכות הבדיקות הקריטיות?",
+        es: "Último periodo menstrual: 1 de enero con ciclo de 28 días. ¿Cuál es la fecha estimada de parto (FPP)?",
+        fr: "Date des dernières règles : 1er janvier (cycle régulier de 28 jours). Quelle est la date prévue d'accouchement ?",
+        ar: "أول يوم لآخر دورة شهرية كان في 1 يناير مع دورة منتظمة 28 يوماً. ما هو موعد الولادة المتوقع والجدول الطبي؟",
+      },
+      calculations: {
+        he: [
+          "הפעלת כלל נייגלה (Naegele's Rule): הוספת שנה אחת (+1), החסרת 3 חודשים (-3), והוספת 7 ימים (+7).",
+          "תאריך לידה משוער (EDD): 8 באוקטובר של אותה שנה (סך הכל 280 ימים / 40 שבועות).",
+          "שקיפות עורפית (שבועות 11-13): בין 19 במרץ ל-9 באפריל.",
+          "סקירת מערכות מוקדמת (שבועות 14-16): בין 9 באפריל ל-23 באפריל.",
+          "כניסה למועד מלא (Full Term - שבוע 37): החל מ-17 בספטמבר."
+        ],
+        en: [
+          "Applying Naegele's Rule: Add 1 year, subtract 3 months, add 7 days.",
+          "Estimated Due Date (EDD): October 8th (280 days total).",
+          "Nuchal Translucency Scan (Weeks 11–13): March 19th – April 9th.",
+          "Full Term Horizon (Week 37): From September 17th onwards."
+        ]
+      },
+      takeaway: {
+        en: "Clinical Insight: Ultrasound dating in the first trimester (CRL measurement) remains the gold standard for refining gestational age if ovulation was irregular.",
+        he: "מסקנה קלינית: בדיקת אולטרסאונד בשליש הראשון (מדידת CRL) היא המדד המדויק ביותר לקביעת גיל ההריון הסופי במקרים של ביוץ לא סדיר.",
+        es: "Conclusión: La ecografía del primer trimestre es la referencia médica más precisa para confirmar la edad gestacional.",
+        fr: "Conclusion : L'échographie de datation au 1er trimestre reste la méthode la plus précise.",
+        ar: "الخلاصة: فحص السونار في الثلث الأول هو المعيار الطبي الأدق لتأكيد عمر الحمل وتاريخ الولادة.",
+      }
+    },
+    formulaBreakdown: {
+      name: {
+        en: "Naegele's Rule for Estimated Due Date (EDD)",
+        he: "כלל נייגלה (Naegele's Rule) לחישוב תאריך לידה משוער",
+        es: "Regla de Naegele para Fecha Prevista de Parto (FPP)",
+        fr: "Règle de Naegele pour la Date Prévue d'Accouchement (DPA)",
+        ar: "قاعدة نيغيل (Naegele) لحساب موعد الولادة المتوقع",
+      },
+      formula: "EDD = First Day of LMP + 1 Year - 3 Months + 7 Days (for 28-day cycle)",
+      variables: {
+        he: [
+          "LMP = תאריך היום הראשון של הווסת האחרונה (Last Menstrual Period)",
+          "תיקון אורך מחזור = במידה והמחזור ארוך מ-28 ימים מוסיפים ימים, במידה וקצר מחסירים ימים"
+        ],
+        en: [
+          "LMP = First day of the Last Menstrual Period",
+          "Cycle Adjustment = Add (Cycle Length - 28) days for irregular cycles"
+        ]
+      }
     }
   }
 };

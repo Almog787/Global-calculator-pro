@@ -248,7 +248,15 @@ export default function BmiCalculator() {
       <DisclaimerNotice type="medical" className="mt-8 mb-6" />
 
       {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
-      <CalculatorGuide guideKey="bmi" />
+      <CalculatorGuide
+        guideKey="bmi"
+        category="health"
+        onApplyPreset={(preset) => {
+          if (preset.height) setHeight(Number(preset.height));
+          if (preset.weight) setWeight(Number(preset.weight));
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+      />
 
       <FAQ items={guide.faq} />
 

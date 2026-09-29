@@ -53,6 +53,25 @@ export default function CalculatorWrapper() {
     disclaimerType = 'legal';
   }
 
+  const categoryNames: Record<string, string> = {
+    finance: t.catFinance || 'Finance',
+    'real-estate': t.catRealEstate || 'Real Estate',
+    health: t.catHealth || 'Health',
+    math: t.catMath || 'Math',
+    tech: t.catTech || 'Tech',
+    lifestyle: t.catLifestyle || 'Lifestyle',
+  };
+
+  const categoryLabel = calcData?.category ? categoryNames[calcData.category] : null;
+  const categoryPath = calcData?.category ? `/${lang}/category/${calcData.category}` : undefined;
+
+  const breadcrumbItems = [
+    ...(categoryLabel && categoryPath
+      ? [{ label: categoryLabel, path: categoryPath }]
+      : [{ label: t.catAll || 'Library', path: `/${lang}/all` }]),
+    { label: title }
+  ];
+
   return (
     <div className="w-full">
       <SEO
@@ -63,10 +82,7 @@ export default function CalculatorWrapper() {
         applicationCategory="CalculatorApplication"
       />
 
-      <Breadcrumbs items={[
-        { label: t.catAll || 'Library', path: `/${lang}/all` },
-        { label: title }
-      ]} />
+      <Breadcrumbs items={breadcrumbItems} />
       
       <ErrorBoundary>
         <Suspense fallback={<SkeletonLoader />}>

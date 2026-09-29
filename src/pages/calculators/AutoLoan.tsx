@@ -209,7 +209,7 @@ export default function AutoLoan() {
     </article>
 
       {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
-      <CalculatorGuide guideKey="auto-loan" />
+      <CalculatorGuide guideKey="auto-loan" category="finance" />
 
       <FAQ items={guide.faq} />
 

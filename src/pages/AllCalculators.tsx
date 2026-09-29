@@ -10,6 +10,8 @@ import SpotlightCard from "../components/SpotlightCard";
 import Magnet from "../components/Magnet";
 import Squares from "../components/Squares";
 import { useI18n } from "../contexts/i18n";
+import { getCategoryHubInfo, CATEGORY_HUBS } from "../data/categories";
+import CategoryHubBanner from "../components/CategoryHubBanner";
 
 export default function AllCalculators() {
   const { t, lang } = useI18n();
@@ -297,14 +299,40 @@ export default function AllCalculators() {
 
   const currText = bentoTexts[lang as keyof typeof bentoTexts] || bentoTexts.en;
 
+  const isCategoryRoute = Boolean(categoryId && categoryId !== "all" && CATEGORY_HUBS[categoryId]);
+  const hubInfo = isCategoryRoute ? getCategoryHubInfo(categoryId!) : null;
+
+  const seoTitle = hubInfo
+    ? (hubInfo.seoTitle[lang] || hubInfo.seoTitle.en)
+    : t.libraryTitle;
+
+  const seoDescription = hubInfo
+    ? (hubInfo.seoDescription[lang] || hubInfo.seoDescription.en)
+    : t.librarySubtitle;
+
+  const seoCanonical = isCategoryRoute
+    ? `/${lang}/category/${categoryId}`
+    : `/${lang}/all`;
+
   return (
     <div className="w-full">
       <SEO
-        title={t.libraryTitle}
-        description={t.librarySubtitle}
-        keywords={['calculators', 'assistant', 'Calc-E', 'finance', 'health', 'math', 'tools']}
-        canonicalUrl={`/${lang}/all`}
-        structuredData={{
+        title={seoTitle}
+        description={seoDescription}
+        keywords={isCategoryRoute && hubInfo ? (hubInfo.tags[lang] || hubInfo.tags.en) : ['calculators', 'assistant', 'Calc-E', 'finance', 'health', 'math', 'tools']}
+        canonicalUrl={seoCanonical}
+        structuredData={isCategoryRoute && hubInfo ? {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: seoTitle,
+          description: seoDescription,
+          url: `https://globalcalcpro.com${seoCanonical}`,
+          isPartOf: {
+            '@type': 'WebSite',
+            name: 'GlobalCalc Pro',
+            url: `https://globalcalcpro.com/${lang}/all`
+          }
+        } : {
           '@context': 'https://schema.org',
           '@type': 'WebSite',
           name: t.title,
@@ -318,9 +346,16 @@ export default function AllCalculators() {
         }}
       />
 
-      {/* Proposal 1: 3D Glassmorphism & Parallax Mesh Hero Section */}
-      <section 
-        onMouseMove={handleHeroMouseMove}
+      {isCategoryRoute && hubInfo ? (
+        <CategoryHubBanner
+          hubInfo={hubInfo}
+          categoryId={categoryId!}
+          totalCalculators={filtered.length}
+        />
+      ) : (
+        /* Proposal 1: 3D Glassmorphism & Parallax Mesh Hero Section */
+        <section 
+          onMouseMove={handleHeroMouseMove}
         onMouseLeave={handleHeroMouseLeave}
         className="mb-12 sm:mb-16 relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-border-subtle/80 p-6 sm:p-10 lg:p-12 shadow-xl transition-all"
       >
@@ -464,6 +499,7 @@ export default function AllCalculators() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Interactive Bento Grid Showcase */}
       {activeCategory === "all" && (
@@ -848,6 +884,37 @@ export default function AllCalculators() {
           );
         })}
       </section>
+
+      {/* Other Categories Topic Cluster Linking */}
+      {isCategoryRoute && (
+        <section className="mt-14 pt-8 border-t border-border-subtle">
+          <h2 className="text-sm font-bold uppercase tracking-wider text-on-surface mb-6 flex items-center gap-2">
+            <span className="material-symbols-outlined text-base text-secondary">category</span>
+            <span>{lang === 'he' ? 'קטגוריות מחשבונים נוספות' : 'Explore Other Calculator Categories'}</span>
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+            {categories.filter(c => c.id !== 'all' && c.id !== categoryId).map(cat => {
+              const catHub = CATEGORY_HUBS[cat.id];
+              return (
+                <Link
+                  key={cat.id}
+                  to={`/${lang}/category/${cat.id}`}
+                  className="group flex flex-col p-4 bg-surface rounded-2xl border border-border-subtle hover:border-secondary hover:shadow-md transition-all text-center items-center"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-surface-container-high group-hover:bg-secondary/10 flex items-center justify-center text-on-surface-variant group-hover:text-secondary transition-colors mb-2">
+                    <span className="material-symbols-outlined text-xl">
+                      {catHub?.icon || 'calculate'}
+                    </span>
+                  </div>
+                  <span className="text-xs sm:text-sm font-bold text-on-surface group-hover:text-secondary transition-colors">
+                    {cat.label}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

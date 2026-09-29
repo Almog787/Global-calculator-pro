@@ -7,6 +7,7 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 import RelatedCalculators from '../../components/RelatedCalculators';
 import CopyButton from '../../components/CopyButton';
 import ShareActions from '../../components/ShareActions';
+import DisclaimerNotice from '../../components/DisclaimerNotice';
 
 const conversions: Record<string, Record<string, (v: number) => number>> = {
   length: {
@@ -169,6 +170,9 @@ export default function UnitConverter() {
           </div>
         )}
       </section>
+
+      {/* General Disclaimer */}
+      <DisclaimerNotice type="general" className="mt-8 mb-6" />
 
       <FAQ items={guide.faq} />
 

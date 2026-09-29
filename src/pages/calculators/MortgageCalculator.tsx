@@ -321,7 +321,15 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
 
   return (
     <div className="w-full">
-      <Breadcrumbs items={[{ label: t.catAll || 'Library', path: `/${lang}/all` }, { label: t.mortgageTitle }]} />
+      <Breadcrumbs
+        items={[
+          {
+            label: t.catRealEstate || (lang === 'he' ? 'נדל״ן ומשכנתאות' : 'Real Estate & Mortgages'),
+            path: `/${lang}/category/real-estate`
+          },
+          { label: t.mortgageTitle }
+        ]}
+      />
 
       <ScenarioPresets
         presets={presets}

@@ -10,6 +10,7 @@ import CalculatorGuide from '../../components/CalculatorGuide';
 import CopyButton from '../../components/CopyButton';
 import PresetChips from '../../components/PresetChips';
 import ShareActions from '../../components/ShareActions';
+import DisclaimerNotice from '../../components/DisclaimerNotice';
 
 export default function TipCalculator() {
   const { t, lang, guides } = useI18n();
@@ -142,8 +143,11 @@ export default function TipCalculator() {
         </div>
       </article>
 
+      {/* General Disclaimer */}
+      <DisclaimerNotice type="general" className="mt-8 mb-6" />
+
       {/* SEO EDUCATIONAL GUIDE & FORMULA BREAKDOWN */}
-      <CalculatorGuide guideKey="tip" />
+      <CalculatorGuide guideKey="tip" category="lifestyle" />
 
       <FAQ items={guide.faq} />
 
