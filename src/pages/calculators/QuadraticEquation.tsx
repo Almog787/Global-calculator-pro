@@ -187,35 +187,79 @@ export default function QuadraticEquation() {
     trackCalculation('quadratic_solver', { a: coefA, b: coefB, c: coefC });
   };
 
-  // Parabola graph generation
+  // Parabola graph generation on Cartesian coordinates with (0,0) origin
   const chartData = useMemo(() => {
-    if (!solution) return { labels: [], datasets: [] };
+    if (!solution) return { datasets: [] };
 
     const vx = solution.vertex.x;
-    const range = 6;
-    const step = 0.2;
-    const labels: string[] = [];
-    const values: number[] = [];
+    const r1 = solution.root1.real;
+    const r2 = solution.root2.real;
+    const isReal = solution.natureOfRoots !== 'complex';
 
-    for (let x = vx - range; x <= vx + range + 0.001; x += step) {
-      const rx = Number(x.toFixed(1));
-      labels.push(rx.toString());
+    const minXTarget = Math.min(-3, vx - 4, isReal ? r1 : 0, isReal ? r2 : 0);
+    const maxXTarget = Math.max(3, vx + 4, isReal ? r1 : 0, isReal ? r2 : 0);
+    const padding = Math.max(2, (maxXTarget - minXTarget) * 0.2);
+    const startX = Math.floor(minXTarget - padding);
+    const endX = Math.ceil(maxXTarget + padding);
+    const step = Math.max(0.1, (endX - startX) / 80);
+
+    const curvePoints: { x: number; y: number }[] = [];
+    for (let x = startX; x <= endX + 0.001; x += step) {
+      const rx = Number(x.toFixed(2));
       const y = solution.a * rx * rx + solution.b * rx + solution.c;
-      values.push(Number(y.toFixed(2)));
+      curvePoints.push({ x: rx, y: Number(y.toFixed(3)) });
     }
 
     return {
-      labels,
       datasets: [
         {
           label: `f(x) = ${solution.a}x² + ${solution.b}x + ${solution.c}`,
-          data: values,
+          data: curvePoints,
           borderColor: '#006a5a',
           backgroundColor: 'rgba(0, 106, 90, 0.08)',
           fill: true,
           tension: 0.2,
-          pointRadius: 0
-        }
+          pointRadius: 0,
+          borderWidth: 2.5,
+          showLine: true,
+        },
+        {
+          label: 'ראשית הצירים (0,0) Origin',
+          data: [{ x: 0, y: 0 }],
+          backgroundColor: '#ef4444',
+          borderColor: '#ffffff',
+          borderWidth: 2,
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          showLine: false,
+        },
+        {
+          label: `קודקוד Vertex (${solution.vertex.x}, ${solution.vertex.y})`,
+          data: [{ x: solution.vertex.x, y: solution.vertex.y }],
+          backgroundColor: '#8b5cf6',
+          borderColor: '#ffffff',
+          borderWidth: 2,
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          showLine: false,
+        },
+        ...(isReal
+          ? [
+              {
+                label: `שורשים Roots (${solution.root1.real}, 0)${solution.natureOfRoots === 'two_real' ? ` & (${solution.root2.real}, 0)` : ''}`,
+                data: [
+                  { x: solution.root1.real, y: 0 },
+                  ...(solution.natureOfRoots === 'two_real' ? [{ x: solution.root2.real, y: 0 }] : [])
+                ],
+                backgroundColor: '#2563eb',
+                borderColor: '#ffffff',
+                borderWidth: 2,
+                pointRadius: 6,
+                pointHoverRadius: 8,
+                showLine: false,
+              }
+            ]
+          : [])
       ]
     };
   }, [solution]);
@@ -388,15 +432,38 @@ export default function QuadraticEquation() {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                  legend: { display: false }
+                  legend: {
+                    display: true,
+                    position: 'top' as const,
+                    labels: {
+                      boxWidth: 10,
+                      usePointStyle: true,
+                      font: { size: 11, weight: 'bold' }
+                    }
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: (ctx) => `${ctx.dataset.label}: (${Number(ctx.parsed.x).toFixed(2)}, ${Number(ctx.parsed.y).toFixed(2)})`
+                    }
+                  }
                 },
                 scales: {
                   x: {
-                    grid: { color: 'rgba(0,0,0,0.05)' },
-                    ticks: { maxTicksLimit: 11 }
+                    type: 'linear' as const,
+                    title: { display: true, text: 'ציר X Axis', font: { size: 10, weight: 'bold' } },
+                    grid: {
+                      color: (ctx) => (ctx.tick && ctx.tick.value === 0 ? '#1c1917' : 'rgba(0,0,0,0.06)'),
+                      lineWidth: (ctx) => (ctx.tick && ctx.tick.value === 0 ? 2 : 1),
+                    },
+                    ticks: { maxTicksLimit: 13 }
                   },
                   y: {
-                    grid: { color: 'rgba(0,0,0,0.05)' }
+                    type: 'linear' as const,
+                    title: { display: true, text: 'ציר Y Axis / f(x)', font: { size: 10, weight: 'bold' } },
+                    grid: {
+                      color: (ctx) => (ctx.tick && ctx.tick.value === 0 ? '#1c1917' : 'rgba(0,0,0,0.06)'),
+                      lineWidth: (ctx) => (ctx.tick && ctx.tick.value === 0 ? 2 : 1),
+                    }
                   }
                 }
               }}

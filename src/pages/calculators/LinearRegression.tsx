@@ -211,8 +211,8 @@ export default function LinearRegression() {
 
     const scatterPoints = points.map(p => ({ x: p.x, y: p.y }));
     const xValues = points.map(p => p.x);
-    const minX = Math.min(...xValues);
-    const maxX = Math.max(...xValues, Number(predictInputX) || 0);
+    const minX = Math.min(0, ...xValues, Number(predictInputX) || 0);
+    const maxX = Math.max(0, ...xValues, Number(predictInputX) || 0) + 1;
 
     const linePoints = [
       { x: minX, y: Number((regression.slope * minX + regression.intercept).toFixed(2)) },
@@ -222,7 +222,7 @@ export default function LinearRegression() {
     const datasets: any[] = [
       {
         type: 'scatter',
-        label: 'Observed Data Points (X, Y)',
+        label: 'נתונים נמדדים Observed Points (X, Y)',
         data: scatterPoints,
         backgroundColor: '#006a5a',
         borderColor: '#004f43',
@@ -231,12 +231,22 @@ export default function LinearRegression() {
       },
       {
         type: 'line',
-        label: 'Trendline: ' + regression.formula,
+        label: 'קו מגמה Trendline: ' + regression.formula,
         data: linePoints,
         borderColor: '#e07a5f',
         borderWidth: 2.5,
         fill: false,
         pointRadius: 0
+      },
+      {
+        type: 'scatter',
+        label: 'ראשית הצירים (0,0) Origin',
+        data: [{ x: 0, y: 0 }],
+        backgroundColor: '#ef4444',
+        borderColor: '#ffffff',
+        borderWidth: 2,
+        pointRadius: 6,
+        pointHoverRadius: 8
       }
     ];
 
@@ -421,16 +431,36 @@ export default function LinearRegression() {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                  legend: { position: 'top' as const }
+                  legend: {
+                    position: 'top' as const,
+                    labels: {
+                      boxWidth: 10,
+                      usePointStyle: true,
+                      font: { size: 11, weight: 'bold' }
+                    }
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: (ctx) => `${ctx.dataset.label}: (${Number(ctx.parsed.x).toFixed(2)}, ${Number(ctx.parsed.y).toFixed(2)})`
+                    }
+                  }
                 },
                 scales: {
                   x: {
-                    title: { display: true, text: 'X Variable' },
-                    grid: { color: 'rgba(0,0,0,0.05)' }
+                    type: 'linear' as const,
+                    title: { display: true, text: 'ציר X Variable', font: { size: 10, weight: 'bold' } },
+                    grid: {
+                      color: (ctx) => (ctx.tick && ctx.tick.value === 0 ? '#1c1917' : 'rgba(0,0,0,0.06)'),
+                      lineWidth: (ctx) => (ctx.tick && ctx.tick.value === 0 ? 2 : 1),
+                    }
                   },
                   y: {
-                    title: { display: true, text: 'Y Variable' },
-                    grid: { color: 'rgba(0,0,0,0.05)' }
+                    type: 'linear' as const,
+                    title: { display: true, text: 'ציר Y Variable', font: { size: 10, weight: 'bold' } },
+                    grid: {
+                      color: (ctx) => (ctx.tick && ctx.tick.value === 0 ? '#1c1917' : 'rgba(0,0,0,0.06)'),
+                      lineWidth: (ctx) => (ctx.tick && ctx.tick.value === 0 ? 2 : 1),
+                    }
                   }
                 }
               }}

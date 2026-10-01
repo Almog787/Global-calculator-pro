@@ -148,13 +148,18 @@ export default function LinearSystem() {
     trackCalculation('linear_system_2x2', { a1, b1, c1, a2, b2, c2 });
   };
 
-  // Lines Graph Data
+  // Lines Graph Data on Cartesian coordinates with (0,0) origin
   const chartData = useMemo(() => {
-    const centerX = result.x !== undefined ? result.x : 0;
-    const range = 6;
-    const labels: string[] = [];
-    const line1Data: (number | null)[] = [];
-    const line2Data: (number | null)[] = [];
+    const centerX = typeof result.x === 'number' ? result.x : 0;
+    const minXTarget = Math.min(-4, centerX - 5);
+    const maxXTarget = Math.max(4, centerX + 5);
+    const padding = 2;
+    const startX = Math.floor(minXTarget - padding);
+    const endX = Math.ceil(maxXTarget + padding);
+    const step = 0.5;
+
+    const line1Points: { x: number; y: number }[] = [];
+    const line2Points: { x: number; y: number }[] = [];
 
     const numA1 = Number(a1) || 0;
     const numB1 = Number(b1) || 0;
@@ -164,31 +169,25 @@ export default function LinearSystem() {
     const numB2 = Number(b2) || 0;
     const numC2 = Number(c2) || 0;
 
-    for (let x = centerX - range; x <= centerX + range + 0.001; x += 0.5) {
-      const rx = Number(x.toFixed(1));
-      labels.push(rx.toString());
+    for (let x = startX; x <= endX + 0.001; x += step) {
+      const rx = Number(x.toFixed(2));
 
       // Line 1: y = (c1 - a1*x) / b1
       if (Math.abs(numB1) > 1e-6) {
-        line1Data.push(Number(((numC1 - numA1 * rx) / numB1).toFixed(2)));
-      } else {
-        line1Data.push(null);
+        line1Points.push({ x: rx, y: Number(((numC1 - numA1 * rx) / numB1).toFixed(2)) });
       }
 
       // Line 2: y = (c2 - a2*x) / b2
       if (Math.abs(numB2) > 1e-6) {
-        line2Data.push(Number(((numC2 - numA2 * rx) / numB2).toFixed(2)));
-      } else {
-        line2Data.push(null);
+        line2Points.push({ x: rx, y: Number(((numC2 - numA2 * rx) / numB2).toFixed(2)) });
       }
     }
 
     return {
-      labels,
       datasets: [
         {
           label: `Line 1: ${numA1}x + ${numB1}y = ${numC1}`,
-          data: line1Data,
+          data: line1Points,
           borderColor: '#006a5a',
           backgroundColor: 'transparent',
           borderWidth: 2.5,
@@ -197,13 +196,37 @@ export default function LinearSystem() {
         },
         {
           label: `Line 2: ${numA2}x + ${numB2}y = ${numC2}`,
-          data: line2Data,
+          data: line2Points,
           borderColor: '#e07a5f',
           backgroundColor: 'transparent',
           borderWidth: 2.5,
           tension: 0,
           pointRadius: 0
-        }
+        },
+        {
+          label: 'ראשית הצירים (0,0) Origin',
+          data: [{ x: 0, y: 0 }],
+          backgroundColor: '#ef4444',
+          borderColor: '#ffffff',
+          borderWidth: 2,
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          showLine: false,
+        },
+        ...(result.solutionType === 'unique' && typeof result.x === 'number' && typeof result.y === 'number'
+          ? [
+              {
+                label: `נקודת חיתוך (${result.x}, ${result.y})`,
+                data: [{ x: result.x, y: result.y }],
+                backgroundColor: '#3b82f6',
+                borderColor: '#ffffff',
+                borderWidth: 2,
+                pointRadius: 7,
+                pointHoverRadius: 9,
+                showLine: false,
+              }
+            ]
+          : [])
       ]
     };
   }, [a1, b1, c1, a2, b2, c2, result]);
@@ -405,11 +428,38 @@ export default function LinearSystem() {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                  legend: { position: 'top' as const }
+                  legend: {
+                    position: 'top' as const,
+                    labels: {
+                      boxWidth: 10,
+                      usePointStyle: true,
+                      font: { size: 11, weight: 'bold' }
+                    }
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: (ctx) => `${ctx.dataset.label}: (${Number(ctx.parsed.x).toFixed(2)}, ${Number(ctx.parsed.y).toFixed(2)})`
+                    }
+                  }
                 },
                 scales: {
-                  x: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { maxTicksLimit: 11 } },
-                  y: { grid: { color: 'rgba(0,0,0,0.05)' } }
+                  x: {
+                    type: 'linear' as const,
+                    title: { display: true, text: 'ציר X Axis', font: { size: 10, weight: 'bold' } },
+                    grid: {
+                      color: (ctx) => (ctx.tick && ctx.tick.value === 0 ? '#1c1917' : 'rgba(0,0,0,0.06)'),
+                      lineWidth: (ctx) => (ctx.tick && ctx.tick.value === 0 ? 2 : 1),
+                    },
+                    ticks: { maxTicksLimit: 13 }
+                  },
+                  y: {
+                    type: 'linear' as const,
+                    title: { display: true, text: 'ציר Y Axis', font: { size: 10, weight: 'bold' } },
+                    grid: {
+                      color: (ctx) => (ctx.tick && ctx.tick.value === 0 ? '#1c1917' : 'rgba(0,0,0,0.06)'),
+                      lineWidth: (ctx) => (ctx.tick && ctx.tick.value === 0 ? 2 : 1),
+                    }
+                  }
                 }
               }}
             />

@@ -517,17 +517,22 @@ export default function ZScore() {
                 },
                 scales: {
                   x: {
-                    grid: { display: false },
+                    grid: {
+                      color: (ctx) => (chartData.labels && chartData.labels[ctx.index] === '0' ? '#1c1917' : 'rgba(0,0,0,0.05)'),
+                      lineWidth: (ctx) => (chartData.labels && chartData.labels[ctx.index] === '0' ? 2 : 1),
+                    },
                     ticks: {
                       maxTicksLimit: 9,
                       callback: (val, index) => {
                         const label = chartData.labels[index];
-                        return ['-3', '-2', '-1', '0', '1', '2', '3'].includes(label) ? `${label}σ` : '';
+                        return ['-3', '-2', '-1', '0', '1', '2', '3'].includes(label) ? `${label === '0' ? 'μ=0' : `${label}σ`}` : '';
                       }
                     }
                   },
                   y: {
-                    display: false
+                    display: true,
+                    grid: { color: 'rgba(0,0,0,0.05)' },
+                    ticks: { font: { size: 9 } }
                   }
                 }
               }}

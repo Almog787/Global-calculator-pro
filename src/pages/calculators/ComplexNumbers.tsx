@@ -764,6 +764,23 @@ export default function ComplexNumbers() {
                 strokeWidth={1.5}
               />
 
+              {/* Origin (0,0) point & label */}
+              <circle
+                cx={argandData.center}
+                cy={argandData.center}
+                r={4}
+                fill="#ef4444"
+                stroke="#ffffff"
+                strokeWidth={1.5}
+              />
+              <text
+                x={argandData.center - 14}
+                y={argandData.center + 14}
+                className="text-[10px] font-mono font-bold fill-red-500 dark:fill-red-400"
+              >
+                (0,0)
+              </text>
+
               {/* Axis labels */}
               <text
                 x={argandData.size - 20}
