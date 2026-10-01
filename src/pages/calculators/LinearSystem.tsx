@@ -31,6 +31,10 @@ const localDict = {
     solTypeInconsistent: 'No Solution (Parallel Lines)',
     stepByStep: 'Cramer’s Rule Step-by-Step Derivation',
     graphTitle: 'Geometric Lines & Intersection Graph',
+    originLabel: 'Origin (0,0)',
+    intersectionLabel: 'Intersection',
+    xAxisTitle: 'X Axis',
+    yAxisTitle: 'Y Axis',
     faqTitle: 'Frequently Asked Questions: Systems of Linear Equations',
     q1: 'What is Cramer’s Rule for a 2x2 system?',
     a1: 'Cramer’s rule solves linear systems using determinants: D = a₁b₂ - a₂b₁, Dx = c₁b₂ - c₂b₁, and Dy = a₁c₂ - a₂c₁. When D ≠ 0, x = Dx / D and y = Dy / D.',
@@ -52,6 +56,10 @@ const localDict = {
     solTypeInconsistent: 'אין פתרון (ישרים מקבילים)',
     stepByStep: 'שלבי הפתרון לפי כלל קרמר (Cramer)',
     graphTitle: 'שרטוט גיאומטרי של שני הישרים והחיתוך',
+    originLabel: 'ראשית הצירים (0,0)',
+    intersectionLabel: 'נקודת חיתוך',
+    xAxisTitle: 'ציר X',
+    yAxisTitle: 'ציר Y',
     faqTitle: 'שאלות ותשובות נפוצות: מערכת משוואות לינאריות',
     q1: 'מהו כלל קרמר (Cramer’s Rule) לפתרון מערכת משוואות?',
     a1: 'כלל קרמר משתמש בדטרמיננטות למציאת הנעלמים: D = a₁b₂ - a₂b₁, Dx = c₁b₂ - c₂b₁, Dy = a₁c₂ - a₂c₁. כאשר D ≠ 0, x = Dx / D ו-y = Dy / D.',
@@ -73,6 +81,10 @@ const localDict = {
     solTypeInconsistent: 'Sin Solución (Paralelas)',
     stepByStep: 'Regla de Cramer Paso a Paso',
     graphTitle: 'Gráfica de Rectas e Intersección',
+    originLabel: 'Origen (0,0)',
+    intersectionLabel: 'Intersección',
+    xAxisTitle: 'Eje X',
+    yAxisTitle: 'Eje Y',
     faqTitle: 'Preguntas Frecuentes: Sistemas Lineales',
     q1: '¿Qué es la regla de Cramer?',
     a1: 'Resuelve variables mediante cocientes de determinantes: x = Dx / D, y = Dy / D.',
@@ -94,6 +106,10 @@ const localDict = {
     solTypeInconsistent: 'Aucune solution (Parallèles)',
     stepByStep: 'Méthode de Cramer détaillée',
     graphTitle: 'Représentation Graphique des Droites',
+    originLabel: 'Origine (0,0)',
+    intersectionLabel: 'Intersection',
+    xAxisTitle: 'Axe X',
+    yAxisTitle: 'Axe Y',
     faqTitle: 'Questions Fréquentes : Systèmes Linéaires',
     q1: 'Qu’est-ce que la règle de Cramer ?',
     a1: 'Une formule matricielle où x = Dx / D et y = Dy / D.',
@@ -115,6 +131,10 @@ const localDict = {
     solTypeInconsistent: 'لا يوجد حل (مستقيمان متوازيان)',
     stepByStep: 'خطوات الحل بقاعدة كرامر',
     graphTitle: 'التمثيل البياني للمستقيمين',
+    originLabel: 'نقطة الأصل (0,0)',
+    intersectionLabel: 'نقطة التقاطع',
+    xAxisTitle: 'محور X',
+    yAxisTitle: 'محور Y',
     faqTitle: 'الأسئلة الشائعة حول أنظمة المعادلات',
     q1: 'ما هي قاعدة كرامر؟',
     a1: 'طريقة لحل المعادلات الخطية عبر قسمة المحددات س = Dx / D و ص = Dy / D.',
@@ -122,6 +142,31 @@ const localDict = {
     a2: 'المستقيمان متوازيان (لا يوجد حل) أو متطابقان (حلول لا نهائية).',
     q3: 'ما هي تطبيقاتها؟',
     a3: 'نقطة التعادل الاقتصادي، تقاطع المسارات، وتوازن السوق.'
+  },
+  ru: {
+    title: 'Калькулятор систем линейных уравнений (2x2)',
+    subtitle: 'Метод Крамера, определители, точка пересечения и график прямых',
+    description: 'Решение систем из двух линейных уравнений с двумя неизвестными методом Крамера, определителями и графиком пересечения.',
+    eq1Title: 'Уравнение 1: a₁x + b₁y = c₁',
+    eq2Title: 'Уравнение 2: a₂x + b₂y = c₂',
+    solTitle: 'Точка пересечения (x, y)',
+    detTitle: 'Главный определитель (D)',
+    solTypeUnique: 'Единственное решение (точка пересечения)',
+    solTypeInfinite: 'Бесконечно много решений (прямые совпадают)',
+    solTypeInconsistent: 'Нет решений (прямые параллельны)',
+    stepByStep: 'Пошаговое решение по правилу Крамера',
+    graphTitle: 'График прямых и пересечения',
+    originLabel: 'Начало координат (0,0)',
+    intersectionLabel: 'Точка пересечения',
+    xAxisTitle: 'Ось X',
+    yAxisTitle: 'Ось Y',
+    faqTitle: 'Часто задаваемые вопросы: Системы линейных уравнений',
+    q1: 'Что такое метод Крамера?',
+    a1: 'Метод нахождения неизвестных через определители: x = Dx / D, y = Dy / D.',
+    q2: 'Что происходит, если определитель D = 0?',
+    a2: 'Прямые параллельны (нет решений) или совпадают (бесконечно много решений).',
+    q3: 'Где это применяется?',
+    a3: 'Точка безубыточности, экономический баланс спроса и предложения.'
   }
 };
 
@@ -204,7 +249,7 @@ export default function LinearSystem() {
           pointRadius: 0
         },
         {
-          label: 'ראשית הצירים (0,0) Origin',
+          label: dict.originLabel,
           data: [{ x: 0, y: 0 }],
           backgroundColor: '#ef4444',
           borderColor: '#ffffff',
@@ -216,7 +261,7 @@ export default function LinearSystem() {
         ...(result.solutionType === 'unique' && typeof result.x === 'number' && typeof result.y === 'number'
           ? [
               {
-                label: `נקודת חיתוך (${result.x}, ${result.y})`,
+                label: `${dict.intersectionLabel} (${result.x}, ${result.y})`,
                 data: [{ x: result.x, y: result.y }],
                 backgroundColor: '#3b82f6',
                 borderColor: '#ffffff',
@@ -229,7 +274,7 @@ export default function LinearSystem() {
           : [])
       ]
     };
-  }, [a1, b1, c1, a2, b2, c2, result]);
+  }, [a1, b1, c1, a2, b2, c2, result, dict]);
 
   return (
     <div className="w-full max-w-5xl mx-auto space-y-8" dir={lang === 'he' || lang === 'ar' ? 'rtl' : 'ltr'}>
@@ -445,7 +490,7 @@ export default function LinearSystem() {
                 scales: {
                   x: {
                     type: 'linear' as const,
-                    title: { display: true, text: 'ציר X Axis', font: { size: 10, weight: 'bold' } },
+                    title: { display: true, text: dict.xAxisTitle, font: { size: 10, weight: 'bold' } },
                     grid: {
                       color: (ctx) => (ctx.tick && ctx.tick.value === 0 ? '#1c1917' : 'rgba(0,0,0,0.06)'),
                       lineWidth: (ctx) => (ctx.tick && ctx.tick.value === 0 ? 2 : 1),
@@ -454,7 +499,7 @@ export default function LinearSystem() {
                   },
                   y: {
                     type: 'linear' as const,
-                    title: { display: true, text: 'ציר Y Axis', font: { size: 10, weight: 'bold' } },
+                    title: { display: true, text: dict.yAxisTitle, font: { size: 10, weight: 'bold' } },
                     grid: {
                       color: (ctx) => (ctx.tick && ctx.tick.value === 0 ? '#1c1917' : 'rgba(0,0,0,0.06)'),
                       lineWidth: (ctx) => (ctx.tick && ctx.tick.value === 0 ? 2 : 1),

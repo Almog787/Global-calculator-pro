@@ -38,6 +38,12 @@ const localDict = {
     stdError: 'Standard Error (SE)',
     scatterTitle: 'Scatter Plot & Regression Trendline',
     strengthLabel: 'Correlation Strength',
+    observedLabel: 'Observed Data Points (X, Y)',
+    trendlineLabel: 'Trendline',
+    originLabel: 'Origin (0,0)',
+    predictedLabel: 'Predicted Point',
+    xAxisTitle: 'X Variable',
+    yAxisTitle: 'Y Variable',
     faqTitle: 'Frequently Asked Questions: Linear Regression & Correlation',
     q1: 'What does the Pearson correlation coefficient (r) indicate?',
     a1: 'The Pearson correlation coefficient (r) ranges between -1 and +1. +1 indicates a perfect positive linear relationship, -1 indicates a perfect negative relationship, and 0 indicates no linear correlation.',
@@ -65,6 +71,12 @@ const localDict = {
     stdError: 'שגיאת תקן (SE)',
     scatterTitle: 'תרשים פיזור (Scatter Plot) וקו רגרסיה',
     strengthLabel: 'עוצמת הקשר הלינארי',
+    observedLabel: 'נקודות נמדדות (X, Y)',
+    trendlineLabel: 'קו מגמה',
+    originLabel: 'ראשית הצירים (0,0)',
+    predictedLabel: 'נקודה חזויה',
+    xAxisTitle: 'ציר X',
+    yAxisTitle: 'ציר Y',
     faqTitle: 'שאלות ותשובות נפוצות: רגרסיה לינארית ומתאם פירסון',
     q1: 'מה אומר מקדם המתאם של פירסון (r)?',
     a1: 'מקדם פירסון נע בין 1- ל-1+. ערך של 1+ מייצג קשר חיובי מושלם, 1- מייצג קשר שלילי מושלם, ו-0 מסמל היעדר קשר לינארי בין המשתנים.',
@@ -92,6 +104,12 @@ const localDict = {
     stdError: 'Error Estándar (SE)',
     scatterTitle: 'Gráfico de Dispersión y Tendencia',
     strengthLabel: 'Fuerza de la Correlación',
+    observedLabel: 'Puntos Observados (X, Y)',
+    trendlineLabel: 'Línea de tendencia',
+    originLabel: 'Origen (0,0)',
+    predictedLabel: 'Punto predicho',
+    xAxisTitle: 'Eje X',
+    yAxisTitle: 'Eje Y',
     faqTitle: 'Preguntas Frecuentes sobre Regresión Lineal',
     q1: '¿Qué indica el coeficiente de Pearson (r)?',
     a1: 'Mide la dirección y fuerza lineal entre -1 y +1.',
@@ -119,6 +137,12 @@ const localDict = {
     stdError: 'Erreur standard (SE)',
     scatterTitle: 'Nuage de points & Droite d’ajustement',
     strengthLabel: 'Force de la corrélation',
+    observedLabel: 'Points Observés (X, Y)',
+    trendlineLabel: 'Ligne de tendance',
+    originLabel: 'Origine (0,0)',
+    predictedLabel: 'Point prédit',
+    xAxisTitle: 'Axe X',
+    yAxisTitle: 'Axe Y',
     faqTitle: 'Questions Fréquentes : Régression Linéaire',
     q1: 'Que mesure le r de Pearson ?',
     a1: 'L’intensité et le sens de la liaison linéaire entre -1 et 1.',
@@ -146,6 +170,12 @@ const localDict = {
     stdError: 'الخطأ المعياري',
     scatterTitle: 'مخطط التشتت وخط الانحدار',
     strengthLabel: 'قوة الارتباط',
+    observedLabel: 'نقاط البيانات (X, Y)',
+    trendlineLabel: 'خط الاتجاه',
+    originLabel: 'نقطة الأصل (0,0)',
+    predictedLabel: 'النقطة المتوقعة',
+    xAxisTitle: 'محور X',
+    yAxisTitle: 'محور Y',
     faqTitle: 'الأسئلة الشائعة حول الانحدار الخطي والارتباط',
     q1: 'ماذا يوضح معامل ارتباط بيرسون؟',
     a1: 'يقيس قوة واتجاه العلاقة الخطية ويتراوح بين -1 و +1.',
@@ -153,6 +183,39 @@ const localDict = {
     a2: 'R² يوضح النسبة المئوية للتباين في Y التي يفسرها X.',
     q3: 'كيف تعمل طريقة المربعات الصغرى؟',
     a3: 'تقلل مجموع مربعات الفروق بين النقاط والخط.'
+  },
+  ru: {
+    title: 'Калькулятор линейной регрессии и корреляции',
+    subtitle: 'Метод наименьших квадратов, коэффициент Пирсона (r), R² и линия тренда',
+    description: 'Онлайн калькулятор линейной регрессии. Введите точки данных (X, Y) для построения линии тренда y = mx + b, расчета корреляции Пирсона и графика рассеяния.',
+    dataInputTitle: 'Точки данных (X, Y)',
+    dataInputDesc: 'Введите пары значений или загрузите пример',
+    addPoint: 'Добавить точку',
+    loadPreset: 'Загрузить пример',
+    clearAll: 'Очистить все',
+    predictX: 'Прогноз Y для заданного X:',
+    predictResult: 'Прогнозируемое значение Y',
+    regressionEq: 'Уравнение линии тренда',
+    pearsonR: 'Корреляция Пирсона (r)',
+    rSquared: 'Коэффициент детерминации (R²)',
+    slopeLabel: 'Наклон (m)',
+    interceptLabel: 'Свободный член (b)',
+    stdError: 'Стандартная ошибка (SE)',
+    scatterTitle: 'Диаграмма рассеяния и линия тренда',
+    strengthLabel: 'Сила корреляции',
+    observedLabel: 'Наблюдаемые точки (X, Y)',
+    trendlineLabel: 'Линия тренда',
+    originLabel: 'Начало координат (0,0)',
+    predictedLabel: 'Прогнозируемая точка',
+    xAxisTitle: 'Переменная X',
+    yAxisTitle: 'Переменная Y',
+    faqTitle: 'Часто задаваемые вопросы: Линейная регрессия',
+    q1: 'Что показывает коэффициент Пирсона (r)?',
+    a1: 'Показывает направление и силу линейной связи от -1 до +1.',
+    q2: 'В чем разница между r и R²?',
+    a2: 'R² показывает долю дисперсии Y, объясняемую переменной X.',
+    q3: 'Как работает метод наименьших квадратов?',
+    a3: 'Минимизирует сумму квадратов вертикальных отклонений точек от линии.'
   }
 };
 
@@ -222,7 +285,7 @@ export default function LinearRegression() {
     const datasets: any[] = [
       {
         type: 'scatter',
-        label: 'נתונים נמדדים Observed Points (X, Y)',
+        label: dict.observedLabel,
         data: scatterPoints,
         backgroundColor: '#006a5a',
         borderColor: '#004f43',
@@ -231,7 +294,7 @@ export default function LinearRegression() {
       },
       {
         type: 'line',
-        label: 'קו מגמה Trendline: ' + regression.formula,
+        label: `${dict.trendlineLabel}: ` + regression.formula,
         data: linePoints,
         borderColor: '#e07a5f',
         borderWidth: 2.5,
@@ -240,7 +303,7 @@ export default function LinearRegression() {
       },
       {
         type: 'scatter',
-        label: 'ראשית הצירים (0,0) Origin',
+        label: dict.originLabel,
         data: [{ x: 0, y: 0 }],
         backgroundColor: '#ef4444',
         borderColor: '#ffffff',
@@ -253,7 +316,7 @@ export default function LinearRegression() {
     if (predictedY !== null) {
       datasets.push({
         type: 'scatter',
-        label: 'Predicted Point',
+        label: `${dict.predictedLabel} (${predictInputX}, ${predictedY})`,
         data: [{ x: Number(predictInputX), y: predictedY }],
         backgroundColor: '#e76f51',
         pointRadius: 8,
@@ -262,7 +325,7 @@ export default function LinearRegression() {
     }
 
     return { datasets };
-  }, [points, regression, predictInputX, predictedY]);
+  }, [points, regression, predictInputX, predictedY, dict]);
 
   return (
     <div className="w-full max-w-5xl mx-auto space-y-8" dir={lang === 'he' || lang === 'ar' ? 'rtl' : 'ltr'}>
@@ -448,7 +511,7 @@ export default function LinearRegression() {
                 scales: {
                   x: {
                     type: 'linear' as const,
-                    title: { display: true, text: 'ציר X Variable', font: { size: 10, weight: 'bold' } },
+                    title: { display: true, text: dict.xAxisTitle, font: { size: 10, weight: 'bold' } },
                     grid: {
                       color: (ctx) => (ctx.tick && ctx.tick.value === 0 ? '#1c1917' : 'rgba(0,0,0,0.06)'),
                       lineWidth: (ctx) => (ctx.tick && ctx.tick.value === 0 ? 2 : 1),
@@ -456,7 +519,7 @@ export default function LinearRegression() {
                   },
                   y: {
                     type: 'linear' as const,
-                    title: { display: true, text: 'ציר Y Variable', font: { size: 10, weight: 'bold' } },
+                    title: { display: true, text: dict.yAxisTitle, font: { size: 10, weight: 'bold' } },
                     grid: {
                       color: (ctx) => (ctx.tick && ctx.tick.value === 0 ? '#1c1917' : 'rgba(0,0,0,0.06)'),
                       lineWidth: (ctx) => (ctx.tick && ctx.tick.value === 0 ? 2 : 1),

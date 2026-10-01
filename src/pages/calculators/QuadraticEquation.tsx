@@ -39,6 +39,11 @@ const localDict = {
     opensDown: 'Parabola opens downward (Maximum vertex)',
     stepByStep: 'Step-by-Step Mathematical Derivation',
     graphTitle: 'Parabola Curve & Roots Visualization',
+    originLabel: 'Origin (0,0)',
+    vertexLabel: 'Vertex',
+    rootsLabel: 'Roots',
+    xAxisTitle: 'X Axis',
+    yAxisTitle: 'Y Axis / f(x)',
     faqTitle: 'Frequently Asked Questions: Quadratic Equations',
     q1: 'What is the quadratic formula?',
     a1: 'The quadratic formula is x = (-b ± √(b² - 4ac)) / (2a). It provides the exact solutions for any quadratic equation in the form ax² + bx + c = 0.',
@@ -68,6 +73,11 @@ const localDict = {
     opensDown: 'פרבולה בוכה (מקסימום בקודקוד)',
     stepByStep: 'שלבי הפתרון המתמטי המלאים',
     graphTitle: 'תרשים גרפי של הפרבולה והחיתוכים',
+    originLabel: 'ראשית הצירים (0,0)',
+    vertexLabel: 'קודקוד',
+    rootsLabel: 'שורשים',
+    xAxisTitle: 'ציר X',
+    yAxisTitle: 'ציר Y / f(x)',
     faqTitle: 'שאלות ותשובות נפוצות: משוואות ריבועיות',
     q1: 'מהי נוסחת השורשים למשוואה ריבועית?',
     a1: 'נוסחת השורשים היא x = (-b ± √(b² - 4ac)) / (2a). היא מאפשרת למצוא את פתרונות המשוואה הריבועית בצורתה הסטנדרטית ax² + bx + c = 0.',
@@ -97,6 +107,11 @@ const localDict = {
     opensDown: 'Parábola abierta hacia abajo',
     stepByStep: 'Paso a Paso Detallado',
     graphTitle: 'Gráfica de la Función Cuadrática',
+    originLabel: 'Origen (0,0)',
+    vertexLabel: 'Vértice',
+    rootsLabel: 'Raíces',
+    xAxisTitle: 'Eje X',
+    yAxisTitle: 'Eje Y / f(x)',
     faqTitle: 'Preguntas Frecuentes',
     q1: '¿Cuál es la fórmula cuadrática?',
     a1: 'x = (-b ± √(b² - 4ac)) / (2a).',
@@ -126,6 +141,11 @@ const localDict = {
     opensDown: 'Parabole orientée vers le bas',
     stepByStep: 'Étapes de résolution',
     graphTitle: 'Tracé de la Parabole',
+    originLabel: 'Origine (0,0)',
+    vertexLabel: 'Sommet',
+    rootsLabel: 'Racines',
+    xAxisTitle: 'Axe X',
+    yAxisTitle: 'Axe Y / f(x)',
     faqTitle: 'Questions Fréquentes',
     q1: 'Quelle est la formule quadratique ?',
     a1: 'x = (-b ± √(b² - 4ac)) / (2a).',
@@ -155,6 +175,11 @@ const localDict = {
     opensDown: 'مفتوح لأسفل (قيمة عظمى)',
     stepByStep: 'خطوات الحل بالتفصيل',
     graphTitle: 'التمثيل البياني للقطع المكافئ',
+    originLabel: 'نقطة الأصل (0,0)',
+    vertexLabel: 'رأس القطع',
+    rootsLabel: 'الجذور',
+    xAxisTitle: 'محور X',
+    yAxisTitle: 'محور Y / f(x)',
     faqTitle: 'الأسئلة الشائعة حول المعادلات التربيعية',
     q1: 'ما هو القانون العام لحل المعادلة التربيعية؟',
     a1: 'س = (-b ± √(b² - 4ac)) / (2a).',
@@ -162,6 +187,40 @@ const localDict = {
     a2: 'موجب: حلان حقيقيان، صفر: حل واحد، سالب: حلان مركبان.',
     q3: 'كيف يتم حساب رأس القطع المكافئ؟',
     a3: 'س = -b / (2a).'
+  },
+  ru: {
+    title: 'Калькулятор квадратных уравнений (ax² + bx + c = 0)',
+    subtitle: 'Поиск действительных и комплексных корней, дискриминанта, вершины и графика параболы',
+    description: 'Бесплатный пошаговый калькулятор квадратных уравнений. Решение с дискриминантом, разложением на множители и графиком.',
+    coefA: 'Коэффициент a (x²)',
+    coefADesc: 'Не может быть нулем (a ≠ 0)',
+    coefB: 'Коэффициент b (x)',
+    coefBDesc: 'Линейный коэффициент',
+    coefC: 'Свободный член c',
+    coefCDesc: 'Точка пересечения с осью Y',
+    rootsTitle: 'Корни уравнения (Решения)',
+    discriminantTitle: 'Дискриминант (Δ = b² - 4ac)',
+    vertexTitle: 'Вершина параболы (h, k)',
+    axisTitle: 'Ось симметрии',
+    twoRealRoots: 'Два различных вещественных корня',
+    oneRealRoot: 'Один вещественный корень (кратный)',
+    complexRoots: 'Два комплексно-сопряженных корня',
+    opensUp: 'Ветви параболы направлены вверх',
+    opensDown: 'Ветви параболы направлены вниз',
+    stepByStep: 'Пошаговое математическое решение',
+    graphTitle: 'График параболы и корней',
+    originLabel: 'Начало координат (0,0)',
+    vertexLabel: 'Вершина',
+    rootsLabel: 'Корни',
+    xAxisTitle: 'Ось X',
+    yAxisTitle: 'Ось Y / f(x)',
+    faqTitle: 'Часто задаваемые вопросы: Квадратные уравнения',
+    q1: 'Какова формула корней квадратного уравнения?',
+    a1: 'x = (-b ± √(b² - 4ac)) / (2a).',
+    q2: 'Что показывает дискриминант (Δ)?',
+    a2: 'Если Δ > 0 — два корня; Δ = 0 — один корень; Δ < 0 — комплексные корни.',
+    q3: 'Как найти вершину параболы?',
+    a3: 'Координата x вершины h = -b / (2a), координата y k = c - b² / (4a).'
   }
 };
 
@@ -224,7 +283,7 @@ export default function QuadraticEquation() {
           showLine: true,
         },
         {
-          label: 'ראשית הצירים (0,0) Origin',
+          label: dict.originLabel,
           data: [{ x: 0, y: 0 }],
           backgroundColor: '#ef4444',
           borderColor: '#ffffff',
@@ -234,7 +293,7 @@ export default function QuadraticEquation() {
           showLine: false,
         },
         {
-          label: `קודקוד Vertex (${solution.vertex.x}, ${solution.vertex.y})`,
+          label: `${dict.vertexLabel} (${solution.vertex.x}, ${solution.vertex.y})`,
           data: [{ x: solution.vertex.x, y: solution.vertex.y }],
           backgroundColor: '#8b5cf6',
           borderColor: '#ffffff',
@@ -246,7 +305,7 @@ export default function QuadraticEquation() {
         ...(isReal
           ? [
               {
-                label: `שורשים Roots (${solution.root1.real}, 0)${solution.natureOfRoots === 'two_real' ? ` & (${solution.root2.real}, 0)` : ''}`,
+                label: `${dict.rootsLabel} (${solution.root1.real}, 0)${solution.natureOfRoots === 'two_real' ? ` & (${solution.root2.real}, 0)` : ''}`,
                 data: [
                   { x: solution.root1.real, y: 0 },
                   ...(solution.natureOfRoots === 'two_real' ? [{ x: solution.root2.real, y: 0 }] : [])
@@ -262,7 +321,7 @@ export default function QuadraticEquation() {
           : [])
       ]
     };
-  }, [solution]);
+  }, [solution, dict]);
 
   return (
     <div className="w-full max-w-5xl mx-auto space-y-8" dir={lang === 'he' || lang === 'ar' ? 'rtl' : 'ltr'}>
@@ -450,7 +509,7 @@ export default function QuadraticEquation() {
                 scales: {
                   x: {
                     type: 'linear' as const,
-                    title: { display: true, text: 'ציר X Axis', font: { size: 10, weight: 'bold' } },
+                    title: { display: true, text: dict.xAxisTitle, font: { size: 10, weight: 'bold' } },
                     grid: {
                       color: (ctx) => (ctx.tick && ctx.tick.value === 0 ? '#1c1917' : 'rgba(0,0,0,0.06)'),
                       lineWidth: (ctx) => (ctx.tick && ctx.tick.value === 0 ? 2 : 1),
@@ -459,7 +518,7 @@ export default function QuadraticEquation() {
                   },
                   y: {
                     type: 'linear' as const,
-                    title: { display: true, text: 'ציר Y Axis / f(x)', font: { size: 10, weight: 'bold' } },
+                    title: { display: true, text: dict.yAxisTitle, font: { size: 10, weight: 'bold' } },
                     grid: {
                       color: (ctx) => (ctx.tick && ctx.tick.value === 0 ? '#1c1917' : 'rgba(0,0,0,0.06)'),
                       lineWidth: (ctx) => (ctx.tick && ctx.tick.value === 0 ? 2 : 1),
