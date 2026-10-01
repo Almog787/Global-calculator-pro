@@ -38,8 +38,8 @@ const SEO: React.FC<SEOProps> = ({
   image = 'https://globalcalcpro.com/og-image.jpg',
   noindex = false,
   applicationCategory = 'CalculatorApplication',
-  ratingValue = '4.9',
-  ratingCount = '1480',
+  ratingValue: _ratingValue = '4.9',
+  ratingCount: _ratingCount = '1480',
   faq = [],
   dataset,
   howTo,
@@ -164,13 +164,6 @@ const SEO: React.FC<SEOProps> = ({
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD'
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: String(ratingValue),
-      reviewCount: String(ratingCount),
-      bestRating: '5',
-      worstRating: '1'
     }
   } : null;
 

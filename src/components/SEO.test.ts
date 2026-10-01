@@ -17,7 +17,7 @@ describe('SEO Schema & Graph Generator Suite', () => {
     expect(org.url).toBe(baseUrl);
   });
 
-  it('should build rich WebApplication schema with aggregateRating and zero price offer', () => {
+  it('should build rich WebApplication schema with zero price offer', () => {
     const defaultTitle = 'Mortgage Calculator | Global Calc Pro';
     const description = 'Calculate monthly payments and amortization schedules.';
     const finalCanonicalUrl = 'https://globalcalcpro.com/en/mortgage-calculator';
@@ -38,17 +38,9 @@ describe('SEO Schema & Graph Generator Suite', () => {
         '@type': 'Offer',
         price: '0',
         priceCurrency: 'USD'
-      },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        reviewCount: '1480',
-        bestRating: '5',
-        worstRating: '1'
       }
     };
 
-    expect(softwareSchema.aggregateRating.ratingValue).toBe('4.9');
     expect(softwareSchema.offers.price).toBe('0');
     expect(softwareSchema.isAccessibleForFree).toBe(true);
   });
