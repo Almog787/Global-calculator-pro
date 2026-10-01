@@ -4,7 +4,7 @@
  * to their current clean canonical destinations.
  */
 
-const VALID_LANGS = ['en', 'he', 'es', 'fr', 'ar'] as const;
+const VALID_LANGS = ['en', 'he', 'es', 'fr', 'ar', 'ru'] as const;
 type ValidLang = (typeof VALID_LANGS)[number];
 
 const KNOWN_BASE_ROUTES = [

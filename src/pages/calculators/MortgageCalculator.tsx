@@ -194,6 +194,7 @@ export default function MortgageCalculator() {
     es: { standard: 'Calcular Pago Mensual', reverse: 'Cálculo Inverso: Capacidad', compare: 'Comparar Escenarios' },
     fr: { standard: 'Calculer la Mensualité', reverse: 'Calcul Inverse : Capacité', compare: 'Comparer les Scénarios' },
     ar: { standard: 'حساب القسط الشهري', reverse: 'حساب عكسي: القدرة الشرائية', compare: 'مقارنة السيناريوهات' },
+    ru: { standard: 'Расчет ежемесячного платежа', reverse: 'Обратный расчет: сумма кредита по платежу', compare: 'Сравнение двух вариантов' },
   }[lang] || { standard: 'Calculate Monthly Payment', reverse: 'Reverse: Borrowing Power / Max Loan', compare: 'Side-by-Side Comparison' };
 
   const mortgageComparisonReportText = `
@@ -491,7 +492,7 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
               ) : (
                 <div className="group">
                   <label htmlFor="mc-target-payment" className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">
-                    {lang === 'he' ? 'החזר חודשי רצוי' : lang === 'es' ? 'Pago Mensual Deseado' : lang === 'fr' ? 'Mensualité Souhaitée' : lang === 'ar' ? 'القسط الشهري المستهدف' : 'Desired Monthly Payment'}
+                    {lang === 'he' ? 'החזר חודשי רצוי' : lang === 'es' ? 'Pago Mensual Deseado' : lang === 'fr' ? 'Mensualité Souhaitée' : lang === 'ar' ? 'القسط الشهري المستهدف' : lang === 'ru' ? 'Желаемый ежемесячный платеж' : 'Desired Monthly Payment'}
                   </label>
                   <input id="mc-target-payment" aria-label="Target monthly payment" type="number" value={targetPayment} onChange={e => setTargetPayment(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
                 </div>
@@ -683,8 +684,8 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
               {mode === 'standard'
                 ? t.monthlyPayment
                 : mode === 'reverse'
-                ? (lang === 'he' ? 'סכום הלוואה מקסימלי' : lang === 'es' ? 'Monto Máximo' : lang === 'fr' ? 'Capacité Maximale' : lang === 'ar' ? 'أقصى قرض' : 'Maximum Borrowing Power')
-                : (lang === 'he' ? 'הפרש בהחזר חודשי' : 'Monthly Payment Diff')}
+                ? (lang === 'he' ? 'סכום הלוואה מקסימלי' : lang === 'es' ? 'Monto Máximo' : lang === 'fr' ? 'Capacité Maximale' : lang === 'ar' ? 'أقصى قرض' : lang === 'ru' ? 'Макс. сумма кредита' : 'Maximum Borrowing Power')
+                : (lang === 'he' ? 'הפרש בהחזר חודשי' : lang === 'ru' ? 'Разница в платеже' : 'Monthly Payment Diff')}
             </span>
             <ShinyText text="2026 PRIME" speed={3} className="text-[10px] text-blue-400 font-mono" />
           </div>

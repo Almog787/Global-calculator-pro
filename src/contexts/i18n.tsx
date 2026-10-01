@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
 
-export type Language = 'en' | 'he' | 'es' | 'fr' | 'ar';
+export type Language = 'en' | 'he' | 'es' | 'fr' | 'ar' | 'ru';
 
 export type Translations = {
   [key in Language]: {
@@ -172,7 +172,7 @@ export function getInitialLanguage(): Language {
   if (typeof window === 'undefined') return 'en';
   
   const path = window.location.pathname;
-  const match = path.match(/^\/(en|he|es|fr|ar)(\/|$)/);
+  const match = path.match(/^\/(en|he|es|fr|ar|ru)(\/|$)/);
   if (match) {
     return match[1] as Language;
   }

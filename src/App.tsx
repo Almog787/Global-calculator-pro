@@ -200,7 +200,7 @@ function App() {
               onChange={(e) => {
                 const newLang = e.target.value as any;
                 const currentPath = location.pathname;
-                const match = currentPath.match(/^\/(en|he|es|fr|ar)(\/|$)/);
+                const match = currentPath.match(/^\/(en|he|es|fr|ar|ru)(\/|$)/);
                 let newPath: string;
                 if (match) {
                   newPath = currentPath.replace(/^\/[^/]+/, `/${newLang}`);
@@ -220,6 +220,7 @@ function App() {
               <option value="es">Español</option>
               <option value="fr">Français</option>
               <option value="ar">العربية</option>
+              <option value="ru">Русский</option>
             </select>
 
             {/* History Drawer Trigger (Desktop only - mobile is in the search row below) */}
@@ -351,7 +352,7 @@ function App() {
             rel="noopener noreferrer"
             className="text-secondary hover:underline flex items-center gap-1 font-bold"
           >
-            <span>{lang === 'he' ? 'פתח במחשבון המלא' : lang === 'es' ? 'Calculadora completa' : lang === 'fr' ? 'Calculatrice complète' : lang === 'ar' ? 'الآلة الحاسبة الكاملة' : 'Full Calculator'}</span>
+            <span>{lang === 'he' ? 'פתח במחשבון המלא' : lang === 'es' ? 'Calculadora completa' : lang === 'fr' ? 'Calculatrice complète' : lang === 'ar' ? 'الآلة الحاسبة الكاملة' : lang === 'ru' ? 'Открыть полный калькулятор' : 'Full Calculator'}</span>
             <span className="material-symbols-outlined text-[14px]">open_in_new</span>
           </a>
         </div>
@@ -370,7 +371,7 @@ function LocalizedRoutes() {
   const location = useLocation();
 
   useEffect(() => {
-    const validLangs = ['en', 'he', 'es', 'fr', 'ar'];
+    const validLangs = ['en', 'he', 'es', 'fr', 'ar', 'ru'];
     if (urlLang && validLangs.includes(urlLang) && urlLang !== contextLang) {
       setLang(urlLang as any);
     } else if (urlLang && !validLangs.includes(urlLang)) {

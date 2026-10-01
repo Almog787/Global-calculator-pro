@@ -155,6 +155,7 @@ export default function SalaryCalculator() {
     es: { standard: 'Conversión Bruto a Neto', reverse: 'Cálculo Inverso: Neto Deseado ➔ Bruto Requerido' },
     fr: { standard: 'Conversion Brut vers Net', reverse: 'Calcul Inverse : Net Souhaité ➔ Brut Requis' },
     ar: { standard: 'تحويل الراتب الإجمالي (قياسي)', reverse: 'حساب عكسي: الصافي المستهدف ➔ الإجمالي المطلوب' },
+    ru: { standard: 'Расчет из Gross в Net', reverse: 'Обратный расчет: из желаемого Net в Gross' },
   }[lang] || { standard: 'Gross to Net Conversion', reverse: 'Reverse: Target Net ➔ Required Gross' };
 
   const chartData = {
@@ -291,7 +292,7 @@ export default function SalaryCalculator() {
               <>
                 <div className="group">
                   <label htmlFor="sal-target-net" className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">
-                    {lang === 'he' ? 'שכר נטו חודשי מבוקש' : lang === 'es' ? 'Salario Neto Mensual Deseado' : lang === 'fr' ? 'Net Mensuel Souhaité' : lang === 'ar' ? 'الصافي الشهري المستهدف' : 'Target Net Monthly Salary'}
+                    {lang === 'he' ? 'שכר נטו חודשי מבוקש' : lang === 'es' ? 'Salario Neto Mensual Deseado' : lang === 'fr' ? 'Net Mensuel Souhaité' : lang === 'ar' ? 'الصافي الشهري المستهدف' : lang === 'ru' ? 'Желаемый чистый оклад (Net)' : 'Target Net Monthly Salary'}
                   </label>
                   <input id="sal-target-net" aria-label="Target net monthly" type="number" value={targetNet} onChange={e => setTargetNet(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
                 </div>

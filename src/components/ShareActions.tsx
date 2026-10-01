@@ -80,6 +80,7 @@ export default function ShareActions({
     es: { copyLink: 'Copiar Enlace', shareNative: 'Compartir', whatsapp: 'WhatsApp', telegram: 'Telegram', print: 'Imprimir / PDF', excel: 'Exportar a Excel', embed: 'Insertar Widget', saveResult: 'Guardar Resultado', history: 'Cálculos Recientes' },
     fr: { copyLink: 'Copier le Lien', shareNative: 'Partager', whatsapp: 'WhatsApp', telegram: 'Telegram', print: 'Imprimer / PDF', excel: 'Exporter vers Excel', embed: 'Intégrer le Widget', saveResult: 'Sauvegarder', history: 'Historique des Calculs' },
     ar: { copyLink: 'نسخ الرابط', shareNative: 'مشاركة', whatsapp: 'واتساب', telegram: 'تيليجرام', print: 'طباعة / PDF', excel: 'تصدير إلى Excel', embed: 'تضمين في موقعك', saveResult: 'حفظ الحساب', history: 'سجل الحسابات' },
+    ru: { copyLink: 'Скопировать ссылку', shareNative: 'Поделиться', whatsapp: 'WhatsApp', telegram: 'Telegram', print: 'Печать / PDF', excel: 'Экспорт в Excel', embed: 'Встроить виджет', saveResult: 'Сохранить результат', history: 'История расчетов' },
   }[lang] || { copyLink: 'Copy Link', shareNative: 'Share Result', whatsapp: 'WhatsApp', telegram: 'Telegram', print: 'Print / PDF', excel: 'Export to Excel', embed: 'Embed Widget', saveResult: 'Save Result', history: 'Recent Calculations' };
 
   return (

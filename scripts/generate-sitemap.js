@@ -39,7 +39,7 @@ const staticPaths = [
 ];
 
 const rawPaths = Array.from(new Set([...staticPaths, ...dynamicPaths]));
-const languages = ["en", "he", "es", "fr", "ar"];
+const languages = ["en", "he", "es", "fr", "ar", "ru"];
 
 const baseUrl = "https://globalcalcpro.com";
 const lastmod = new Date().toISOString().split("T")[0];

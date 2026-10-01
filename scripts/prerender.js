@@ -60,7 +60,7 @@ const staticPaths = [
 ];
 
 const rawPaths = Array.from(new Set([...staticPaths, ...dynamicPaths]));
-const languages = ["en", "he", "es", "fr", "ar"];
+const languages = ["en", "he", "es", "fr", "ar", "ru"];
 
 const allPaths = [];
 for (const lang of languages) {
@@ -239,7 +239,7 @@ function createSchemaJsonLd(title, description, canonicalUrl, lang, schemaType) 
       "@id": `${baseUrl}/#website`,
       url: baseUrl,
       name: siteName,
-      inLanguage: ["en", "he", "es", "fr", "ar"]
+      inLanguage: ["en", "he", "es", "fr", "ar", "ru"]
     },
     {
       "@type": "WebPage",

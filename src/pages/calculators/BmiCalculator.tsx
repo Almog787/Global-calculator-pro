@@ -70,10 +70,10 @@ export default function BmiCalculator() {
   }, [mode, height, weight, targetBmi]);
 
   const getCategory = (val: number = bmi) => {
-    if (val < 18.5) return lang === 'he' ? 'תת-משקל' : lang === 'es' ? 'Bajo peso' : lang === 'fr' ? 'Insuffisance pondérale' : lang === 'ar' ? 'نقص الوزن' : 'Underweight';
-    if (val < 25) return lang === 'he' ? 'משקל תקין ומומלץ' : lang === 'es' ? 'Peso normal' : lang === 'fr' ? 'Poids normal' : lang === 'ar' ? 'وزن طبيعي' : 'Normal weight';
-    if (val < 30) return lang === 'he' ? 'עודף משקל' : lang === 'es' ? 'Sobrepeso' : lang === 'fr' ? 'Surpoids' : lang === 'ar' ? 'زيادة وزن' : 'Overweight';
-    return lang === 'he' ? 'השמנת יתר' : lang === 'es' ? 'Obesidad' : lang === 'fr' ? 'Obésité' : lang === 'ar' ? 'سمنة' : 'Obese';
+    if (val < 18.5) return lang === 'he' ? 'תת-משקל' : lang === 'es' ? 'Bajo peso' : lang === 'fr' ? 'Insuffisance pondérale' : lang === 'ar' ? 'نقص الوزن' : lang === 'ru' ? 'Дефицит массы тела' : 'Underweight';
+    if (val < 25) return lang === 'he' ? 'משקל תקין ומומלץ' : lang === 'es' ? 'Peso normal' : lang === 'fr' ? 'Poids normal' : lang === 'ar' ? 'وزن طبيعي' : lang === 'ru' ? 'Нормальный вес' : 'Normal weight';
+    if (val < 30) return lang === 'he' ? 'עודף משקל' : lang === 'es' ? 'Sobrepeso' : lang === 'fr' ? 'Surpoids' : lang === 'ar' ? 'زيادة وزن' : lang === 'ru' ? 'Избыточный вес' : 'Overweight';
+    return lang === 'he' ? 'השמנת יתר' : lang === 'es' ? 'Obesidad' : lang === 'fr' ? 'Obésité' : lang === 'ar' ? 'سمنة' : lang === 'ru' ? 'Ожирение' : 'Obese';
   };
 
   const presets = [
@@ -109,6 +109,7 @@ export default function BmiCalculator() {
     es: { standard: 'Calcular IMC por Peso', reverse: 'Cálculo Inverso: Peso Ideal según IMC' },
     fr: { standard: 'Calculer l\'IMC', reverse: 'Calcul Inverse : Poids Idéal pour l\'IMC' },
     ar: { standard: 'حساب مؤشر كتلة الجسم (قياسي)', reverse: 'حساب عكسي: الوزن المثالي لمؤشر مستهدف' },
+    ru: { standard: 'Расчет ИМТ по росту и весу', reverse: 'Обратный расчет: идеальный вес для желаемого ИМТ' },
   }[lang] || { standard: 'Calculate BMI', reverse: 'Reverse Ideal Weight' };
 
   return (

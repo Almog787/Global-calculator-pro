@@ -47,7 +47,7 @@ const KNOWN_STATIC_PAGE_ROUTES = new Set([
   '/widgets',
 ]);
 
-const VALID_LANGUAGES = ['en', 'he', 'es', 'fr', 'ar'];
+const VALID_LANGUAGES = ['en', 'he', 'es', 'fr', 'ar', 'ru'];
 
 /**
  * Helper to check whether a path resolves to a known static page or dynamic calculator

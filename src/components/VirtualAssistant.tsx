@@ -786,6 +786,8 @@ export default function VirtualAssistant() {
                 ? 'Les réponses et astuces sont uniquement éducatives et ne constituent pas un conseil médical, financier ou juridique.'
                 : lang === 'ar'
                 ? 'الإجابات والنصائح للأغراض الإرشادية والتعليمية فقط ولا تعتبر استشارة طبية أو مالية أو قانونية.'
+                : lang === 'ru'
+                ? 'Ответы и подсказки носят исключительно информационный характер и не являются юридической или финансовой консультацией.'
                 : 'Tips and guidance are for educational purposes only and do not constitute medical, financial, or legal advice.'}
             </span>
           </div>

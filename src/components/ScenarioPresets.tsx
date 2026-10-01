@@ -33,6 +33,7 @@ export default function ScenarioPresets({
     es: 'Escenarios Comunes y Ajustes Rápidos',
     fr: 'Scénarios Fréquents et Préréglages Rapides',
     ar: 'السيناريوهات الشائعة والإعدادات المسبقة السريعة',
+    ru: 'Популярные готовые сценарии и расчеты в 1 клик',
   }[lang] || 'Popular Scenarios & Quick Presets';
 
   return (
@@ -76,7 +77,7 @@ export default function ScenarioPresets({
                 )}
               </div>
               <div className="mt-2 text-[10px] font-semibold text-blue-600 group-hover:text-blue-800 flex items-center gap-1">
-                <span>{lang === 'he' ? 'החל תרחיש' : lang === 'es' ? 'Aplicar' : lang === 'fr' ? 'Appliquer' : lang === 'ar' ? 'تطبيق' : 'Apply Preset'}</span>
+                <span>{lang === 'he' ? 'החל תרחיש' : lang === 'es' ? 'Aplicar' : lang === 'fr' ? 'Appliquer' : lang === 'ar' ? 'تطبيق' : lang === 'ru' ? 'Применить' : 'Apply Preset'}</span>
                 <span className="material-symbols-outlined text-[13px] group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-transform">
                   arrow_forward
                 </span>

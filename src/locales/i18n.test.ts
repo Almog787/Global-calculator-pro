@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 
-const SUPPORTED_LANGUAGES = ['en', 'he', 'es', 'fr', 'ar'] as const;
+const SUPPORTED_LANGUAGES = ['en', 'he', 'es', 'fr', 'ar', 'ru'] as const;
 type Lang = (typeof SUPPORTED_LANGUAGES)[number];
 
 function getKeys(obj: Record<string, unknown>, prefix = ''): string[] {

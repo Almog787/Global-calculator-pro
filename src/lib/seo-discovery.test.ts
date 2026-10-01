@@ -4,7 +4,7 @@ import path from 'path';
 
 describe('SEO & AI Knowledge Discovery Suite', () => {
   const rootDir = process.cwd();
-  const validLanguages = ['en', 'he', 'es', 'fr', 'ar'];
+  const validLanguages = ['en', 'he', 'es', 'fr', 'ar', 'ru'];
 
   describe('robots.txt AI Crawlers Configuration', () => {
     const robotsPath = path.join(rootDir, 'public/robots.txt');

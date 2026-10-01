@@ -1,8 +1,8 @@
 export interface WidgetOption {
   id: string;
   slug: string;
-  name: { en: string; he: string; es: string; fr: string; ar: string };
-  description: { en: string; he: string; es: string; fr: string; ar: string };
+  name: { en: string; he: string; es: string; fr: string; ar: string; ru: string };
+  description: { en: string; he: string; es: string; fr: string; ar: string; ru: string };
   category: string;
   icon: string;
   defaultHeight: number;
@@ -18,6 +18,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora de Hipoteca y Préstamos',
       fr: 'Calculateur de Prêt Immobilier',
       ar: 'حاسبة الرهن العقاري والقروض'
+    ,
+      ru: 'Ипотечный калькулятор'
     },
     description: {
       en: 'Calculate monthly amortized mortgage payments, total interest, and scenario comparisons.',
@@ -25,6 +27,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calcula pagos mensuales de hipoteca, intereses totales y amortización.',
       fr: 'Calculez vos mensualités, le coût total du crédit et l\'amortissement.',
       ar: 'حساب الأقساط الشهرية للرهن العقاري، إجمالي الفוائد وجدول السداد.'
+    ,
+      ru: 'Расчет ежемесячных платежей по ипотеке, переплаты по процентам и сравнение графиков.'
     },
     category: 'Finance / Real Estate',
     icon: 'home',
@@ -39,6 +43,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora de Interés Compuesto',
       fr: 'Calculateur d\'Intérêts Composés',
       ar: 'حاسبة الفائدة المركبة والادخار'
+    ,
+      ru: 'Калькулятор сложных процентов'
     },
     description: {
       en: 'Project future investment wealth, monthly DCA compounding, and reverse retirement targets.',
@@ -46,6 +52,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Proyecta el crecimiento de tus ahorros e inversiones a largo plazo.',
       fr: 'Simulez l\'effet boule de neige des intérêts composés et votre épargne.',
       ar: 'توقع نمو استثماراتك وادخارك المالي المستقبلي بالفوائد المركبة.'
+    ,
+      ru: 'Расчет прироста инвестиционного капитала, ежемесячных довложений и финансовой цели.'
     },
     category: 'Finance / Investing',
     icon: 'trending_up',
@@ -60,6 +68,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora de Salario Neto y Bruto',
       fr: 'Calculateur Salaire Brut / Net',
       ar: 'حاسبة الراتب الصافي والإجمالي'
+    ,
+      ru: 'Калькулятор зарплаты Gross / Net'
     },
     description: {
       en: 'Estimate gross to net take-home pay with income tax, social security, and health deductions.',
@@ -67,6 +77,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calcula el sueldo neto mensual a partir del bruto con retenciones fiscales.',
       fr: 'Convertissez salaire brut en salaire net avec les cotisations sociales.',
       ar: 'حساب الراتب الصافي بعد خصم الضرائب والتأمينات الاجتماعية.'
+    ,
+      ru: 'Расчет чистого дохода из оклада с учетом подоходного налога и социальных взносов.'
     },
     category: 'Work / Taxes',
     icon: 'payments',
@@ -81,6 +93,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora de IMC y Peso Saludable',
       fr: 'Calculateur d\'IMC (Masse Corporelle)',
       ar: 'حاسبة مؤشر كتلة الجسم (BMI)'
+    ,
+      ru: 'Калькулятор индекса массы тела (ИМТ)'
     },
     description: {
       en: 'Evaluate body mass index, healthy weight range, and tailored health guidance.',
@@ -88,6 +102,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Determina el índice de masa corporal y rango de peso saludable.',
       fr: 'Évaluez votre indice de masse corporelle et zone de poids santé.',
       ar: 'تقييم مؤشر كتلة الجسم والوزن الصحي المثالي للبالغين.'
+    ,
+      ru: 'Оценка индекса массы тела, диапазона здорового веса и рекомендации ВОЗ.'
     },
     category: 'Health & Fitness',
     icon: 'monitor_weight',
@@ -102,6 +118,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora de Porcentajes y Descuentos',
       fr: 'Calculateur de Pourcentages et Remises',
       ar: 'حاسبة النسب المئوية والخصومات'
+    ,
+      ru: 'Калькулятор процентов и скидок'
     },
     description: {
       en: 'Instant percentage increase, sale discounts, ratio comparisons, and reverse percentages.',
@@ -109,6 +127,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calcula rebajas, aumento porcentual e impuestos rápidamente.',
       fr: 'Calculez remises commerciales, TVA et hausses en pourcentage.',
       ar: 'حساب الخصومات التجارية، الزيادة المئوية والضرائب بسهولة.'
+    ,
+      ru: 'Быстрый расчет скидок на распродаже, процентного изменения и наценки.'
     },
     category: 'Math & Commerce',
     icon: 'percent',
@@ -123,6 +143,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Conversor Universal de Unidades',
       fr: 'Convertisseur d\'Unités Universel',
       ar: 'محول وحدات القياس الشامل'
+    ,
+      ru: 'Универсальный конвертер величин'
     },
     description: {
       en: 'Convert units across metric and imperial systems with high-precision decimals.',
@@ -130,6 +152,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Convierte medidas métricas e imperiales al instante.',
       fr: 'Convertissez unités de longueur, masse, volume et température.',
       ar: 'تحويل وحدات الطول والوزن ودرجات الحرارة والمساحة بدقة فائقة.'
+    ,
+      ru: 'Мгновенный перевод единиц длины, веса, объема, температуры и площади.'
     },
     category: 'Science & Tools',
     icon: 'sync_alt',
@@ -144,6 +168,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora de Propinas y Cuentas',
       fr: 'Calculateur de Pourboire et Addition',
       ar: 'حاسبة البقشيش وتقسيم الفاتورة'
+    ,
+      ru: 'Калькулятор чаевых и деления счета'
     },
     description: {
       en: 'Split restaurant bills fairly among friends with custom gratuity percentages.',
@@ -151,6 +177,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Divide la cuenta del restaurante y añade la propina adecuada.',
       fr: 'Partagez l\'addition au restaurant et ajoutez le pourboire adapté.',
       ar: 'تقسيم فاتورة المطعم وحساب البقشيش العادل بين الأصدقاء.'
+    ,
+      ru: 'Разделение счета в ресторане и расчет справедливых чаевых на человека.'
     },
     category: 'Daily Living',
     icon: 'receipt_long',
@@ -165,6 +193,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora de Edad y Aniversarios',
       fr: 'Calculateur d\'Âge et Dates Clés',
       ar: 'حاسبة العمر وتواريخ الميلاد'
+    ,
+      ru: 'Калькулятор точного возраста'
     },
     description: {
       en: 'Calculate exact age in years, months, days, hours, and next upcoming birthday.',
@@ -172,6 +202,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calcula tu edad exacta en días, meses y próximo cumpleaños.',
       fr: 'Calculez votre âge exact et compte à rebours jusqu\'au prochain anniversaire.',
       ar: 'حساب العمر الدقيق بالسنوات والأشهر والأيام والساعات مع العد التنازلي.'
+    ,
+      ru: 'Расчет возраста в годах, месяцах, днях, часах и таймер до дня рождения.'
     },
     category: 'Personal Tools',
     icon: 'cake',
@@ -186,6 +218,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora de Z-Score y Distribución Normal',
       fr: 'Calculateur de Score Z et Loi Normale',
       ar: 'حاسبة الدرجة المعيارية Z والتوزيع الطبيعي'
+    ,
+      ru: 'Калькулятор Z-оценки и распределения Гаусса'
     },
     description: {
       en: 'Compute standard normal Z-scores, percentiles, tail probabilities, and bell curves.',
@@ -193,6 +227,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calcula puntuaciones Z, probabilidades acumuladas y campana de Gauss.',
       fr: 'Calculez le score Z standardisé, les percentiles et la courbe de Gauss.',
       ar: 'حساب الدرجة المعيارية Z، الاحتمالات التراكمية ومنحنى التوزيع الطبيعي.'
+    ,
+      ru: 'Статистический расчет Z-оценки, p-value, перцентилей и интерактивная колоколообразная кривая.'
     },
     category: 'Statistics & Math',
     icon: 'analytics',
@@ -207,6 +243,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora de Regresión Lineal y Correlación',
       fr: 'Calculateur de Régression Linéaire et Corrélation',
       ar: 'حاسبة الانحدار الخطي ومعامل الارتباط'
+    ,
+      ru: 'Калькулятор линейной регрессии'
     },
     description: {
       en: 'Calculate best-fit line y = mx + b, Pearson r, R-squared, and scatter plot trendline.',
@@ -214,6 +252,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calcula la recta y = mx + b, correlación de Pearson y gráfico de dispersión.',
       fr: 'Trouvez la droite de régression, le coefficient de corrélation r et le nuage de points.',
       ar: 'إيجاد معادلة خط الانحدار ومعامل ارتباط بيرسون ومخطط التشتت.'
+    ,
+      ru: 'Построение линии тренда, вычисление коэффициента корреляции Пирсона r и R².'
     },
     category: 'Statistics & Math',
     icon: 'show_chart',
@@ -228,6 +268,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora de Ecuaciones Cuadráticas',
       fr: 'Résolveur d\'Équations du Second Degré',
       ar: 'حاسبة المعادلات التربيعية'
+    ,
+      ru: 'Решение квадратных уравнений'
     },
     description: {
       en: 'Solve quadratic equations ax² + bx + c = 0 with real/complex roots and vertex.',
@@ -235,6 +277,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Halla raíces reales, complejas, vértice y discriminante.',
       fr: 'Résolvez les équations ax² + bx + c = 0 avec racines et tracé du sommet.',
       ar: 'حل المعادلات التربيعية مع إيجاد الجذور والمميز ورأس القطع المكافئ.'
+    ,
+      ru: 'Пошаговый расчет корней через дискриминант D с интерактивным графиком параболы.'
     },
     category: 'Algebra & Math',
     icon: 'function',
@@ -249,6 +293,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Sistemas de Ecuaciones Lineales',
       fr: 'Systèmes d\'Équations Linéaires',
       ar: 'حاسبة أنظمة المعادلات الخطية'
+    ,
+      ru: 'Решение систем уравнений 2x2'
     },
     description: {
       en: 'Solve 2x2 simultaneous linear systems using Cramer\'s rule and line intersections.',
@@ -256,6 +302,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Resuelve sistemas 2x2 con determinantes y punto de intersección.',
       fr: 'Résolvez les systèmes à 2 inconnues avec la règle de Cramer.',
       ar: 'حل معادلتين خطيتين بمجهولين بطريقة كرامر مع الرسم البياني.'
+    ,
+      ru: 'Решение системы из 2 уравнений методом Крамера, матричным способом и графиком.'
     },
     category: 'Algebra & Math',
     icon: 'layers',
@@ -270,6 +318,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Conversor de Bases Numéricas',
       fr: 'Convertisseur de Bases Numériques',
       ar: 'محول أنظمة العد الثنائية والسداسية'
+    ,
+      ru: 'Конвертер систем счисления'
     },
     description: {
       en: 'Convert numbers across Binary, Octal, Decimal, Hexadecimal, and custom bases.',
@@ -277,6 +327,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Convierte números entre bases 2, 8, 10, 16 y personalizadas.',
       fr: 'Convertissez entre binaire, octal, décimal et hexadécimal.',
       ar: 'تحويل الأرقام بين النظام الثنائي والعشري والسداسي عشر.'
+    ,
+      ru: 'Перевод чисел между двоичной (BIN), восьмеричной (OCT), десятичной (DEC) и 16-ричной (HEX).'
     },
     category: 'Computer Science',
     icon: 'binary',
@@ -291,6 +343,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora Bitwise y Lógica',
       fr: 'Calculateur Bitwise et Logique',
       ar: 'حاسبة العمليات المنطقية على البتات'
+    ,
+      ru: 'Побитовый калькулятор'
     },
     description: {
       en: 'Evaluate AND, OR, XOR, NOT and Bit Shifts on 8, 16, 32-bit integers.',
@@ -298,6 +352,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calcula compuertas lógicas bit a bit y desplazamientos binarios.',
       fr: 'Évaluez les opérations bit à bit et décalages sur entiers.',
       ar: 'تقييم العمليات المنطقية على البتات مع جدول مقارنة ثنائي.'
+    ,
+      ru: 'Побитовые логические операции AND, OR, XOR, NOT и битовые сдвиги с наглядным представлением.'
     },
     category: 'Computer Science',
     icon: 'cpu',
@@ -312,6 +368,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora de Triángulos',
       fr: 'Résolveur de Triangles',
       ar: 'حاسبة حل المثلثات'
+    ,
+      ru: 'Калькулятор треугольника'
     },
     description: {
       en: 'Solve sides, angles, area via Heron\'s formula, inradius and circumradius.',
@@ -319,6 +377,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Halla lados, ángulos, área con fórmula de Herón y radios.',
       fr: 'Résolvez les triangles avec angles, formule de Héron et rayons.',
       ar: 'حساب زوايا وأضلاع ومساحة المثلث مع الدائرة المحيطة والداخلية.'
+    ,
+      ru: 'Расчет всех сторон, углов, высот, площади и периметра по теореме синусов и косинусов.'
     },
     category: 'Geometry & Math',
     icon: 'change_history',
@@ -333,6 +393,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Sector Circular y Longitud de Arco',
       fr: 'Secteur Circulaire et Longueur d\'Arc',
       ar: 'حاسبة القطاع الدائري وطول القوس'
+    ,
+      ru: 'Калькулятор сектора круга и дуги'
     },
     description: {
       en: 'Calculate arc length, sector area, chord length, and segment area.',
@@ -340,6 +402,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calcula arco, área del sector circular, cuerda y segmento.',
       fr: 'Calculez longueur d\'arc, aire du secteur, corde et segment.',
       ar: 'حساب طول القوس ومساحة القطاع والوتر والمقطع الدائري.'
+    ,
+      ru: 'Расчет площади сектора, длины дуги, хорды и сегмента по радиусу и центральному углу.'
     },
     category: 'Geometry & Math',
     icon: 'pie_chart',
@@ -354,6 +418,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora de Matrices',
       fr: 'Calculateur de Matrices',
       ar: 'حاسبة المصفوفات والجبر الخطي'
+    ,
+      ru: 'Матричный калькулятор онлайн'
     },
     description: {
       en: 'Determinant, inverse matrix, transpose, rank, trace, and matrix multiplication.',
@@ -361,6 +427,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Determinante, inversa, traspuesta, rango, traza y producto matricial.',
       fr: 'Déterminant, inverse, transposée, rang, trace et produit matriciel.',
       ar: 'المحدد والمعكوس والمنقول والرتبة والأثر وضرب المصفوفات.'
+    ,
+      ru: 'Операции с матрицами: умножение, определитель, обратная матрица, ранг и транспонирование.'
     },
     category: 'Linear Algebra & Math',
     icon: 'grid_on',
@@ -375,6 +443,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Calculadora de Números Complejos',
       fr: 'Calculateur de Nombres Complexes',
       ar: 'حاسبة الأعداد المركبة'
+    ,
+      ru: 'Калькулятор комплексных чисел'
     },
     description: {
       en: 'Arithmetic, polar & Euler forms, modulus, argument, and Argand plane diagram.',
@@ -382,6 +452,8 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
       es: 'Aritmética, forma polar y Euler, módulo, argumento y plano complejo.',
       fr: 'Formes polaire et Euler, module, argument et plan complexe.',
       ar: 'العمليات الحسابية والصيغة القطبية وأويلر والمقياس والمستوى المركب.'
+    ,
+      ru: 'Арифметика комплексных чисел, алгебраическая, тригонометрическая формы и плоскость Гаусса.'
     },
     category: 'Advanced Math',
     icon: 'compass',
@@ -412,7 +484,7 @@ export function generateIframeCode(options: EmbedOptions): string {
   const embedUrl = buildEmbedUrl(widget.slug, widgetLang, theme);
   const canonicalUrl = buildCanonicalUrl(widget.slug, widgetLang);
   const widgetTitle = widget.name[uiLang as keyof typeof widget.name] || widget.name.en;
-  const poweredByText = uiLang === 'he' ? 'מופעל ע״י' : uiLang === 'es' ? 'Desarrollado por' : uiLang === 'fr' ? 'Propulsé par' : uiLang === 'ar' ? 'مشغل بواسطة' : 'Powered by';
+  const poweredByText = uiLang === 'he' ? 'מופעל ע״י' : uiLang === 'es' ? 'Desarrollado por' : uiLang === 'fr' ? 'Propulsé par' : uiLang === 'ar' ? 'مشغل بواسطة' : uiLang === 'ru' ? 'Работает на' : 'Powered by';
 
   return `<iframe 
   src="${embedUrl}" 
@@ -437,7 +509,7 @@ export function generateReactCode(options: EmbedOptions): string {
   const canonicalUrl = buildCanonicalUrl(widget.slug, widgetLang);
   const componentName = widget.id.charAt(0).toUpperCase() + widget.id.slice(1) + 'Widget';
   const widgetTitle = widget.name[uiLang as keyof typeof widget.name] || widget.name.en;
-  const poweredByText = uiLang === 'he' ? 'מופעל ע״י' : uiLang === 'es' ? 'Desarrollado por' : uiLang === 'fr' ? 'Propulsé par' : uiLang === 'ar' ? 'مشغل بواسطة' : 'Powered by';
+  const poweredByText = uiLang === 'he' ? 'מופעל ע״י' : uiLang === 'es' ? 'Desarrollado por' : uiLang === 'fr' ? 'Propulsé par' : uiLang === 'ar' ? 'مشغل بواسطة' : uiLang === 'ru' ? 'Работает на' : 'Powered by';
 
   return `import React from 'react';
 

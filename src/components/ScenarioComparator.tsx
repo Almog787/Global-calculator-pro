@@ -66,7 +66,8 @@ export default function ScenarioComparator({
     en: 'Side-by-Side Scenario Comparison',
     es: 'Comparación de Escenarios Cara a Cara',
     fr: 'Comparaison de Scénarios Côte à Côte',
-    ar: 'مقارنة السيناريوهات جنباً إلى جنب'
+    ar: 'مقارنة السيناريوهات جنباً إلى جنب',
+    ru: 'Параллельное сравнение сценариев'
   }[lang] || 'Scenario Comparison';
 
   const defaultNameA = {
@@ -74,7 +75,8 @@ export default function ScenarioComparator({
     en: 'Scenario A (Baseline)',
     es: 'Escenario A (Base)',
     fr: 'Scénario A (Base)',
-    ar: 'السيناريو أ (الأساس)'
+    ar: 'السيناريو أ (الأساس)',
+    ru: 'Сценарий А (базовый)'
   }[lang] || 'Scenario A';
 
   const defaultNameB = {
@@ -82,7 +84,8 @@ export default function ScenarioComparator({
     en: 'Scenario B (Alternative)',
     es: 'Escenario B (Alternativa)',
     fr: 'Scénario B (Optionnel)',
-    ar: 'السيناريو ب (البديل)'
+    ar: 'السيناريو ب (البديل)',
+    ru: 'Сценарий Б (альтернативный)'
   }[lang] || 'Scenario B';
 
   return (

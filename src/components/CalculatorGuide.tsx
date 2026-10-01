@@ -127,6 +127,18 @@ export default function CalculatorGuide({ guideKey, category, onApplyPreset }: C
       applyPreset: 'تطبيق السيناريو في الحاسبة',
       variablesLegend: 'دليل المتغيرات والمعادلات',
     },
+    ru: {
+      directAnswer: 'Прямой ответ и ключевые выводы',
+      quickReference: 'Справочная таблица показателей',
+      formula: 'Математическая формула и метод вычисления',
+      formulaBreakdownHeading: 'Пошаговый математический разбор',
+      caseStudyHeading: 'Практический пример из реальной жизни',
+      practicalTakeaway: 'Практический вывод',
+      expertAdvice: 'Советы экспертов и рекомендации',
+      exploreMore: 'Похожие калькуляторы по теме',
+      applyPreset: 'Загрузить этот сценарий в калькулятор',
+      variablesLegend: 'Обозначения и переменные формулы',
+    },
   }[lang] || {
     directAnswer: 'Direct Answer & Key Summary',
     quickReference: 'Benchmark Reference Table',

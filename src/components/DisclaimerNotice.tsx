@@ -25,6 +25,7 @@ export default function DisclaimerNotice({
         es: 'Aviso Médico Importante',
         fr: 'Avertissement Médical Important',
         ar: 'إخلاء مسؤولية طبي هام',
+        ru: 'Важное медицинское уведомление',
       },
       text: {
         he: 'מחשבון זה, תוצאותיו והנתונים המוצגים בו נועדו למטרות הערכה, לימוד ומידע כללי בלבד. אין לראות בתוצאות בשום אופן אבחון רפואי, חוות דעת קלינית או תחליף להתייעצות אישית עם רופא/ת מוסמך/ת. בכל שאלה, הריון, תסמינים או החלטה רפואית יש לפנות תמיד לגורם רפואי מוסמך.',
@@ -32,6 +33,7 @@ export default function DisclaimerNotice({
         es: 'Esta herramienta y sus resultados se ofrecen exclusivamente con fines educativos e informativos. No constituyen asesoramiento médico, diagnóstico ni criterio clínico. Consulte siempre a un médico o profesional de la salud cualificado.',
         fr: 'Cet outil et ses estimations sont fournis exclusivement à des fins éducatives et informatives. Ils ne constituent pas un avis médical, un diagnostic ou un suivi clinique. Consultez toujours un médecin ou professionnel de santé qualifié.',
         ar: 'هذه الأداة ونتائجها مقدمة لأغراض تعليمية وإعلامية عامة فقط، ولا تشكل استشارة طبية أو تشخيصاً أو توجيهاً علاجياً. يُرجى دائماً مراجعة طبيב مختص أو جهة رعاية صحية معتمدة.',
+        ru: 'Данный калькулятор и его результаты носят исключительно ознакомительный и справочный характер. Они не являются медицинской диагностикой или рекомендацией. При любых вопросах всегда обращайтесь к квалифицированному врачу.',
       },
       icon: ShieldAlert,
       bg: 'bg-amber-50/80 dark:bg-amber-950/20 border-amber-200 dark:border-amber-900/40 text-amber-900 dark:text-amber-200',
@@ -44,6 +46,7 @@ export default function DisclaimerNotice({
         es: 'Aviso Financiero e Hipotecario',
         fr: 'Avertissement Financier & Immobilier',
         ar: 'إخلاء مسؤولية مالي وعقاري هام',
+        ru: 'Важное финансовое уведомление',
       },
       text: {
         he: 'החישובים, התרחישים והתוצאות המוצגים באתר נועדו למטרות סימולציה, הערכה ולימוד בלבד, ואינם מהווים ייעוץ השקעות, ייעוץ משכנתאות, ייעוץ פיננסי או ייעוץ מס. אין להסתמך על נתונים אלו לביצוע התחייבות כספית כלשהי ויש להיוועץ באנשי מקצוע מורשים (יועץ משכנתאות, יועץ השקעות או רואה חשבון) לפני קבלת החלטות.',
@@ -51,6 +54,7 @@ export default function DisclaimerNotice({
         es: 'Los cálculos y estimaciones son únicamente para simulación y educación. No constituyen asesoramiento financiero, de inversión, hipotecario ni fiscal. Consulte a asesores certificados antes de comprometerse financieramente.',
         fr: 'Les calculs et estimations sont fournis uniquement à titre de simulation indicative et éducative. Ils ne constituent pas un conseil en investissement, fiscal ou financier. Consultez un conseiller agréé avant tout engagement.',
         ar: 'الحسابات والمحاكاة المعروضة هي لأغراض تقديرية وتعليمية فقط، ولا تشكل استشارة مالية أو استثمارية أو عقارية أو ضريبية. استشر مستشاراً مالياً معتمداً قبل اتخاذ أي التزام مالي.',
+        ru: 'Все финансовые расчеты и процентные ставки представлены исключительно для предварительной симуляции и анализа. Они не являются инвестиционной, налоговой или ипотечной консультацией.',
       },
       icon: AlertTriangle,
       bg: 'bg-blue-50/80 dark:bg-blue-950/20 border-blue-200 dark:border-blue-900/40 text-blue-950 dark:text-blue-200',
@@ -63,6 +67,7 @@ export default function DisclaimerNotice({
         es: 'Aviso Legal Importante',
         fr: 'Avertissement Juridique Important',
         ar: 'إخلاء مسؤولية قانوني هام',
+        ru: 'Важное правовое уведомление',
       },
       text: {
         he: 'התכנים, החישובים והכלים באתר (לרבות חישובי פיצויי פיטורין, חוזים, שכר וזכויות עובדים) אינם מהווים ייעוץ משפטי ואינם תחליף לייעוץ פרטני עם עורך דין מוסמך. השימוש באתר הוא באחריות המשתמש בלבד.',
@@ -70,6 +75,7 @@ export default function DisclaimerNotice({
         es: 'Toda la información y cálculos (incluidas indemnizaciones laborales o contratos) no constituyen asesoramiento jurídico ni sustituyen la consulta con un abogado profesional.',
         fr: 'Les informations et calculs (notamment indemnités de rupture ou contrats) ne constituent pas un conseil juridique et ne remplacent pas l\'avis d\'un avocat qualifié.',
         ar: 'المعلومات والحسابات المقدمة (بما فيها مكافأة نهاية الخدمة وعقود العمل) لا تشكل استشارة قانونية ولا تغني عن استشارة محامٍ مرخص.',
+        ru: 'Все расчеты компенсаций и трудовых выплат носят ориентировочный характер и не заменяют персональную консультацию с профильным юристом.',
       },
       icon: Scale,
       bg: 'bg-stone-50 dark:bg-stone-900/40 border-stone-200 dark:border-stone-800 text-stone-800 dark:text-stone-300',
@@ -82,6 +88,7 @@ export default function DisclaimerNotice({
         es: 'Aviso General',
         fr: 'Avertissement Général',
         ar: 'إخلاء مسؤولية عام',
+        ru: 'Общее уведомление',
       },
       text: {
         he: 'כל החישובים, הנוסחאות והכלים באתר מסופקים ככלי עזר טכני למטרות מידע כללי והערכה בלבד ללא כל אחריות. השימוש במידע ובתוצאות נעשה על אחריותו הבלעדית של המשתמש.',
@@ -89,6 +96,7 @@ export default function DisclaimerNotice({
         es: 'Todos los cálculos y fórmulas se proporcionan como herramientas de ayuda técnica con fines informativos y sin garantía. El uso es bajo su propia responsabilidad.',
         fr: 'Tous les calculs et formules sont fournis à titre d\'aide technique indicative sans garantie d\'aucune sorte. L\'utilisation s\'effectue à vos propres risques.',
         ar: 'جميع الحسابات والمعادلات مقدمة كأدوات مساعدة لأغراض إعلامية عامة دون أي ضمانات، واستخدامها يقع على مسؤولية المستخدم الخاصة.',
+        ru: 'Все формулы и расчетные инструменты на сайте предоставляются как вспомогательные средства без каких-либо прямых гарантий.',
       },
       icon: Info,
       bg: 'bg-surface-container-low border-border-subtle text-on-surface-variant',

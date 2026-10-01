@@ -610,7 +610,7 @@ export default function PregnancyCalculator() {
     try {
       const [y, m, d] = isoStr.split('-').map(Number);
       const date = new Date(y, m - 1, d);
-      return date.toLocaleDateString(lang === 'he' ? 'he-IL' : lang === 'es' ? 'es-ES' : lang === 'fr' ? 'fr-FR' : lang === 'ar' ? 'ar-EG' : 'en-US', {
+      return date.toLocaleDateString(lang === 'he' ? 'he-IL' : lang === 'es' ? 'es-ES' : lang === 'fr' ? 'fr-FR' : lang === 'ar' ? 'ar-EG' : lang === 'ru' ? 'ru-RU' : 'en-US', {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
@@ -638,7 +638,7 @@ export default function PregnancyCalculator() {
       const isFuture = calcResult.gestationalWeeks < m.startWeek;
 
       const dateOptions: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short' };
-      const loc = lang === 'he' ? 'he-IL' : lang === 'es' ? 'es-ES' : lang === 'fr' ? 'fr-FR' : lang === 'ar' ? 'ar-EG' : 'en-US';
+      const loc = lang === 'he' ? 'he-IL' : lang === 'es' ? 'es-ES' : lang === 'fr' ? 'fr-FR' : lang === 'ar' ? 'ar-EG' : lang === 'ru' ? 'ru-RU' : 'en-US';
       const dateRangeStr = `${startDate.toLocaleDateString(loc, dateOptions)} – ${endDate.toLocaleDateString(loc, dateOptions)}`;
 
       return {

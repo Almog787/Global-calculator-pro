@@ -242,8 +242,42 @@ export default function WidgetsHub() {
       benefit3Desc: 'متوافق بالكامل مع جميع الشاشات والأجهزة الذكية.',
       integrationGuideTitle: 'دليل التثبيت السريع على ووردبريس ومختلف المنصات',
       faqTitle: 'الأسئلة الشائعة من أصحاب المواقع والمدونات',
+    },
+    ru: {
+      pageTitle: 'Бесплатные виджеты и встраиваемые калькуляторы',
+      pageDesc: 'Добавьте адаптивные финансовые и инженерные калькуляторы на свой сайт, блог или портал без программирования за 1 минуту.',
+      selectCalc: '1. Выберите калькулятор',
+      customizeWidget: '2. Настройте параметры и дизайн',
+      previewWidget: '3. Интерактивный предпросмотр',
+      codeSnippet: '4. Скопируйте код для вставки',
+      languageLabel: 'Язык виджета',
+      themeLabel: 'Тема оформления',
+      lightTheme: 'Светлая тема',
+      darkTheme: 'Темная тема',
+      widthLabel: 'Ширина виджета',
+      responsiveWidth: 'Адаптивная 100% (Рекомендуется)',
+      fixedWidth: 'Стандартная (600px)',
+      compactWidth: 'Сайдбар (380px)',
+      heightLabel: 'Высота (px)',
+      backlinkCheckbox: 'Включить ссылку на источник (бесплатно для всех сайтов)',
+      previewDesktop: 'Компьютер',
+      previewTablet: 'Планшет',
+      previewMobile: 'Смартфон',
+      copyIframe: 'Скопировать HTML (iFrame)',
+      copyReact: 'Скопировать код React',
+      copyWP: 'Скопировать для WordPress',
+      copied: 'Скопировано в буфер обмена!',
+      whyEmbedTitle: 'Зачем встраивать виджеты GlobalCalc Pro на ваш сайт?',
+      benefit1Title: 'Увеличение времени на сайте и улучшение SEO',
+      benefit1Desc: 'Интерактивные инструменты удерживают посетителей в 3–5 раз дольше, что положительно влияет на поведенческие факторы в поиске.',
+      benefit2Title: '100% бесплатно и без серверов',
+      benefit2Desc: 'Все вычисления происходят прямо в браузере пользователя без задержек и без необходимости оплачивать API.',
+      benefit3Title: 'Полная мультиязычность и адаптивность',
+      benefit3Desc: 'Идеально отображается на любых экранах, от смартфонов до широкоформатных мониторов.',
+      integrationGuideTitle: 'Инструкция по установке на WordPress, Tilda, React и HTML',
+      faqTitle: 'Часто задаваемые вопросы для владельцев сайтов',
     }
-  }[lang as 'en' | 'he' | 'es' | 'fr' | 'ar'] || {
+  }[lang as 'en' | 'he' | 'es' | 'fr' | 'ar' | 'ru'] || {
     pageTitle: 'Free Embeddable Calculators & Widgets Hub',
     pageDesc: 'Add high-performance, responsive financial and utility calculators to your blog, news site, or client website with zero coding required.',
     selectCalc: '1. Select Calculator',
@@ -403,13 +437,14 @@ export default function WidgetsHub() {
             <label className="text-xs font-bold text-stone-600 uppercase tracking-wider block mb-2">
               {uiText.languageLabel}
             </label>
-            <div className="grid grid-cols-5 gap-1.5 p-1 bg-stone-100 rounded-xl border border-stone-200">
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 p-1 bg-stone-100 rounded-xl border border-stone-200">
               {[
                 { id: 'he', label: 'עברית' },
                 { id: 'en', label: 'English' },
                 { id: 'es', label: 'Español' },
                 { id: 'fr', label: 'Français' },
                 { id: 'ar', label: 'العربية' },
+                { id: 'ru', label: 'Русский' },
               ].map((l) => (
                 <button
                   key={l.id}

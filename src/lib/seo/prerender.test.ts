@@ -4,8 +4,8 @@ import fs from 'fs';
 import path from 'path';
 
 describe('Prerendering & Metadata Registry Unit Tests', () => {
-  it('should support all 5 core languages', () => {
-    expect(SUPPORTED_LANGUAGES).toEqual(['en', 'he', 'es', 'fr', 'ar']);
+  it('should support all 6 core languages', () => {
+    expect(SUPPORTED_LANGUAGES).toEqual(['en', 'he', 'es', 'fr', 'ar', 'ru']);
   });
 
   it('should generate accurate canonical URLs across languages', () => {

@@ -10,7 +10,7 @@ import {
 } from './widgetsConfig';
 
 describe('Embeddable Widgets Configuration & Code Generator Suite', () => {
-  const languages = ['en', 'he', 'es', 'fr', 'ar'] as const;
+  const languages = ['en', 'he', 'es', 'fr', 'ar', 'ru'] as const;
 
   it('should provide a complete catalog of supported widgets', () => {
     expect(AVAILABLE_WIDGETS.length).toBe(18);
@@ -39,7 +39,7 @@ describe('Embeddable Widgets Configuration & Code Generator Suite', () => {
     expect(actualIds).toEqual(expectedIds);
   });
 
-  it('should ensure all widgets have complete multilingual names and descriptions in 5 languages', () => {
+  it('should ensure all widgets have complete multilingual names and descriptions in 6 languages', () => {
     for (const widget of AVAILABLE_WIDGETS) {
       expect(widget.slug).toBeTruthy();
       expect(widget.defaultHeight).toBeGreaterThan(400);

@@ -19,7 +19,7 @@ export default function Footer() {
         <div className="flex flex-wrap gap-x-6 gap-y-3 md:justify-end items-center">
           <Link to={`/${lang}/widgets`} className="font-body-md text-sm text-secondary hover:underline font-semibold transition-colors flex items-center gap-1">
             <span className="material-symbols-outlined text-[16px]">widgets</span>
-            <span>{lang === 'he' ? 'ווידג\'טים להטמעה' : lang === 'es' ? 'Widgets Web' : lang === 'fr' ? 'Widgets d\'intégration' : lang === 'ar' ? 'أدوات التضمين' : 'Embed Widgets'}</span>
+            <span>{lang === 'he' ? 'ווידג\'טים להטמעה' : lang === 'es' ? 'Widgets Web' : lang === 'fr' ? 'Widgets d\'intégration' : lang === 'ar' ? 'أدوات التضمين' : lang === 'ru' ? 'Встраиваемые виджеты' : 'Embed Widgets'}</span>
           </Link>
           <Link to={`/${lang}/about`} className="font-body-md text-sm text-on-surface-variant hover:text-secondary hover:underline transition-colors">
             {t.aboutTitle || 'About Us'}
@@ -62,6 +62,8 @@ export default function Footer() {
             ? 'Avertissement Légal, Médical et Financier Important :'
             : lang === 'ar'
             ? 'إخلاء مسؤولية قانوني وطبي ومالي هام:'
+            : lang === 'ru'
+            ? 'Важное юридическое, медицинское и финансовое уведомление:'
             : 'Important Legal, Medical & Financial Disclaimer:'}
         </p>
         <p>
@@ -73,6 +75,8 @@ export default function Footer() {
             ? 'L\'ensemble des calculatrices et informations fournies sur GlobalCalc Pro sont uniquement destinées à des fins éducatives et indicatives. Elles ne constituent en aucun cas un avis médical, un diagnostic, un conseil en investissement, fiscal, hypothécaire ou juridique professionnel. Consultez toujours un professionnel qualifié et agréé avant toute décision. L\'utilisation du site s\'effectue sous votre seule responsabilité.'
             : lang === 'ar'
             ? 'جميع الحاسبات والمعلومات المقدمة على GlobalCalc Pro هي لأغراض تعليمية وإرشادية عامة فقط. ولا تشكل بأي حال من الأحوال استشارة طبية أو تشخيصاً علاجياً، أو استشارة مالية أو استثمارية أو عقارية أو ضريبية أو قانونية. يُرجى دائماً استشارة المتخصصين المؤهلين والمرخصين قبل اتخاذ أي قرارات صحية أو مالية أو قانونية. استخدام الموقع يقع على مسؤولية المستخدم الكاملة.'
+            : lang === 'ru'
+            ? 'Все калькуляторы, конвертеры и информационные материалы на сайте GlobalCalc Pro предназначены исключительно для ознакомительных, обучающих и ориентировочных расчетов. Они ни при каких обстоятельствах не являются медицинской диагностикой, финансовой, инвестиционной, налоговой или юридической консультацией. Перед принятием ответственных решений всегда консультируйтесь с квалифицированными профильными специалистами. Использование сервиса осуществляется под вашу личную ответственность.'
             : 'All calculators, estimations, and content on GlobalCalc Pro are provided strictly for educational and informational simulation purposes. Nothing on this website constitutes medical advice, clinical diagnosis, financial, investment, mortgage, tax, or legal advice, nor does it create a professional-client relationship. Always consult licensed and certified professionals before making any health, financial, or legal decisions. Use of this website is at your sole discretion and risk.'}
         </p>
       </div>

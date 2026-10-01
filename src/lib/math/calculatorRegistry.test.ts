@@ -15,7 +15,7 @@ import * as allMath from './allCalculators';
 describe('Phase 3: Automated Calculator Registry & Universal Test Auto-Discovery Suite', () => {
   const rootDir = process.cwd();
   const calculatorsDir = path.join(rootDir, 'src/pages/calculators');
-  const supportedLanguages = ['en', 'he', 'es', 'fr', 'ar'] as const;
+  const supportedLanguages = ['en', 'he', 'es', 'fr', 'ar', 'ru'] as const;
 
   // 1. Auto-Discovery of Calculator Files vs Registry
   describe('Calculator File Auto-Discovery & Registry Integrity', () => {

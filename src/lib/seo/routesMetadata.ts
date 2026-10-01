@@ -4,14 +4,14 @@
 
 export interface RouteMetadata {
   path: string;
-  lang: 'en' | 'he' | 'es' | 'fr' | 'ar';
+  lang: 'en' | 'he' | 'es' | 'fr' | 'ar' | 'ru';
   title: string;
   description: string;
   category?: string;
   schemaType?: 'WebApplication' | 'SoftwareApplication' | 'WebPage' | 'AboutPage' | 'ContactPage';
 }
 
-export const SUPPORTED_LANGUAGES = ['en', 'he', 'es', 'fr', 'ar'] as const;
+export const SUPPORTED_LANGUAGES = ['en', 'he', 'es', 'fr', 'ar', 'ru'] as const;
 export type SupportedLang = typeof SUPPORTED_LANGUAGES[number];
 
 export const STATIC_ROUTES = [

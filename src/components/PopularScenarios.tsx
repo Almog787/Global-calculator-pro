@@ -28,6 +28,7 @@ export default function PopularScenarios({
     es: 'Escenarios Populares y Cálculos Frecuentes',
     fr: 'Scénarios Populaires et Simulations Fréquentes',
     ar: 'سيناريوهات شائعة وحسابات فورية',
+    ru: 'Популярные сценарии и быстрые расчеты',
   }[lang] || 'Popular Scenarios & Quick Pre-Calculations';
 
   const defaultSubtitle = {
@@ -36,6 +37,7 @@ export default function PopularScenarios({
     es: 'Selecciona un escenario de referencia con un clic para ver el desglose completo',
     fr: 'Sélectionnez un scénario type en un clic pour obtenir l\'amortissement complet',
     ar: 'اختر سيناريو قياسي جاهز بنقرة واحدة لعرض النتائج وجدول السداد فوراً',
+    ru: 'Выберите готовый расчетный сценарий в 1 клик для детального графика платежей и процентов',
   }[lang] || 'Select a pre-calculated benchmark scenario with 1-click';
 
   const applyText = {
@@ -44,6 +46,7 @@ export default function PopularScenarios({
     es: 'Aplicar Escenario',
     fr: 'Appliquer ce scénario',
     ar: 'تطبيق هذا السيناريو',
+    ru: 'Применить сценарий',
   }[lang] || 'Apply Scenario';
 
   const isRtl = lang === 'he' || lang === 'ar';

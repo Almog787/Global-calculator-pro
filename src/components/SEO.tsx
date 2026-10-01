@@ -56,7 +56,7 @@ const SEO: React.FC<SEOProps> = ({
 
   // Extract language or fallback to 'en'
   const pathParts = currentPath.split('/').filter(Boolean);
-  const validLangs = ['en', 'he', 'es', 'fr', 'ar'];
+  const validLangs = ['en', 'he', 'es', 'fr', 'ar', 'ru'];
   const currentLang = pathParts.length > 0 && validLangs.includes(pathParts[0]) ? pathParts[0] : 'en';
 
   const localeMap: Record<string, string> = {
@@ -64,7 +64,8 @@ const SEO: React.FC<SEOProps> = ({
     he: 'he_IL',
     es: 'es_ES',
     fr: 'fr_FR',
-    ar: 'ar_AR'
+    ar: 'ar_AR',
+    ru: 'ru_RU'
   };
   const currentLocale = localeMap[currentLang] || 'en_US';
 
@@ -309,6 +310,7 @@ const SEO: React.FC<SEOProps> = ({
       <link rel="alternate" hrefLang="es" href={`${baseUrl}/es${subPath}`} />
       <link rel="alternate" hrefLang="fr" href={`${baseUrl}/fr${subPath}`} />
       <link rel="alternate" hrefLang="ar" href={`${baseUrl}/ar${subPath}`} />
+      <link rel="alternate" hrefLang="ru" href={`${baseUrl}/ru${subPath}`} />
       <link rel="alternate" hrefLang="x-default" href={`${baseUrl}/en${subPath}`} />
     </Helmet>
   );

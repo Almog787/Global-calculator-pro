@@ -28,7 +28,7 @@ async function submitIndexNow() {
 
   // Fallback if sitemap not found
   if (urlList.length === 0) {
-    const langs = ['en', 'he', 'es', 'fr', 'ar'];
+    const langs = ['en', 'he', 'es', 'fr', 'ar', 'ru'];
     const paths = [
       '',
       '/mortgage-calculator',

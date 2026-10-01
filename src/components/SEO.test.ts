@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 
 describe('SEO Schema & Graph Generator Suite', () => {
   const baseUrl = 'https://globalcalcpro.com';
-  const validLangs = ['en', 'he', 'es', 'fr', 'ar'];
+  const validLangs = ['en', 'he', 'es', 'fr', 'ar', 'ru'];
 
   it('should generate valid Organization and WebSite schema structure', () => {
     const org = {
@@ -69,15 +69,16 @@ describe('SEO Schema & Graph Generator Suite', () => {
     expect(faqSchema.mainEntity[0].name).toBe('What is a mortgage?');
   });
 
-  it('should cover all 5 languages in hreflang alternate links', () => {
+  it('should cover all 6 languages in hreflang alternate links', () => {
     const subPath = '/mortgage-calculator';
     const hreflangs = validLangs.map(l => ({
       lang: l,
       url: `${baseUrl}/${l}${subPath}`
     }));
 
-    expect(hreflangs.length).toBe(5);
+    expect(hreflangs.length).toBe(6);
     expect(hreflangs.find(h => h.lang === 'he')?.url).toBe('https://globalcalcpro.com/he/mortgage-calculator');
     expect(hreflangs.find(h => h.lang === 'ar')?.url).toBe('https://globalcalcpro.com/ar/mortgage-calculator');
+    expect(hreflangs.find(h => h.lang === 'ru')?.url).toBe('https://globalcalcpro.com/ru/mortgage-calculator');
   });
 });

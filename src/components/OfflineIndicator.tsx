@@ -51,6 +51,10 @@ export const OfflineIndicator: React.FC = () => {
     ar: {
       offline: 'وضع عدم الاتصال — جميع الآلات الحاسبة تعمل بدون إنترنت',
       online: 'تمت استعادة الاتصال بالإنترنت'
+    },
+    ru: {
+      offline: 'Офлайн-режим — Все калькуляторы работают без интернета',
+      online: 'Подключение к интернету восстановлено'
     }
   }[lang] || {
     offline: 'Offline Mode — All calculators work without internet',

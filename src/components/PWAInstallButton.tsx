@@ -53,6 +53,14 @@ export const PWAInstallButton: React.FC = () => {
       iosStep1: '1. اضغط على زر المشاركة (Share) في Safari.',
       iosStep2: '2. اختر "إضافة إلى الشاشة الرئيسية".',
       close: 'إغلاق'
+    },
+    ru: {
+      install: 'Установить приложение',
+      installIOS: 'Установить на iOS',
+      iosTitle: 'Установка на iPhone / iPad',
+      iosStep1: '1. Нажмите кнопку «Поделиться» в браузере Safari.',
+      iosStep2: '2. Выберите пункт «На экран «Домой»».',
+      close: 'Закрыть'
     }
   }[lang] || {
     install: 'Install App',

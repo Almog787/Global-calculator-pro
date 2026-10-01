@@ -168,6 +168,7 @@ export default function CompoundInterest() {
     es: { growth: 'Crecimiento de Inversión', target: 'Planificador de Meta (Inverso)', compare: 'Comparar Estrategias' },
     fr: { growth: 'Croissance de l\'Épargne', target: 'Planificateur d\'Objectif (Inverse)', compare: 'Comparer les Plans' },
     ar: { growth: 'نمو الاستثمار (قياسي)', target: 'مخطط الهدف المالي (عكسي)', compare: 'مقارنة خطط الاستثمار' },
+    ru: { growth: 'Рост инвестиций (стандарт)', target: 'Накопление цели (обратный расчет)', compare: 'Сравнение двух стратегий' },
   }[lang] || { growth: 'Investment Growth', target: 'Reverse Goal Planner', compare: 'Side-by-Side Comparison' };
 
   const compoundComparisonReportText = `
@@ -381,7 +382,7 @@ ${lang === 'he' ? 'הפרש ורווח עודף' : 'Difference & Extra Returns'}
               {mode === 'target' ? (
                 <div className="group">
                   <label htmlFor="ci-target-goal" className="text-xs tracking-wider uppercase font-bold text-stone-500 mb-1 block group-focus-within:text-blue-600 transition-colors">
-                    {lang === 'he' ? 'יעד הון סופי רצוי' : lang === 'es' ? 'Meta Financiera Final' : lang === 'fr' ? 'Objectif de Patrimoine' : lang === 'ar' ? 'هدف الثروة النهائي' : 'Target Goal Amount'}
+                    {lang === 'he' ? 'יעד הון סופי רצוי' : lang === 'es' ? 'Meta Financiera Final' : lang === 'fr' ? 'Objectif de Patrimoine' : lang === 'ar' ? 'هدف الثروة النهائي' : lang === 'ru' ? 'Целевой капитал' : 'Target Goal Amount'}
                   </label>
                   <input id="ci-target-goal" aria-label="Target goal" type="number" value={targetGoal} onChange={e => setTargetGoal(Number(e.target.value))} className="w-full bg-transparent border-0 border-b-2 border-stone-200 px-0 py-2 text-3xl md:text-4xl font-bold text-stone-900 focus:ring-0 focus:border-blue-600 transition-colors" />
                 </div>
@@ -642,8 +643,8 @@ ${lang === 'he' ? 'הפרש ורווח עודף' : 'Difference & Extra Returns'}
             {mode === 'growth'
               ? t.futureValue
               : mode === 'target'
-              ? (lang === 'he' ? 'הפקדה חודשית נדרשת' : lang === 'es' ? 'Aporte Mensual' : lang === 'fr' ? 'Épargne Mensuelle' : lang === 'ar' ? 'الادخار المطلوب' : 'Required Monthly Savings')
-              : (lang === 'he' ? 'הפרש בהון הסופי' : 'Extra Future Wealth')}
+              ? (lang === 'he' ? 'הפקדה חודשית נדרשת' : lang === 'es' ? 'Aporte Mensual' : lang === 'fr' ? 'Épargne Mensuelle' : lang === 'ar' ? 'الادخار المطلوب' : lang === 'ru' ? 'Необходимый ежемесячный взнос' : 'Required Monthly Savings')
+              : (lang === 'he' ? 'הפרש בהון הסופי' : lang === 'ru' ? 'Разница в капитале' : 'Extra Future Wealth')}
           </span>
           <div className="text-4xl sm:text-5xl font-black text-white tracking-tight" dir="ltr">
             {mode === 'compare' ? (
