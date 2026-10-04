@@ -174,7 +174,6 @@ export default function AllCalculators() {
       heroTitle: 'כל מחשבון שתצטרך, במקום אחד',
       heroSubtitle: 'כלי חישוב מקצועיים, מדויקים ואמינים לכל מטרה. מפיננסים ועד בריאות - התשובות שלך מחכות כאן.',
       heroSearchPlaceholder: 'איזה חישוב תרצה לבצע היום?',
-      assistantTooltip: 'Calc-E העוזר',
       finBadge: 'פיננסים ומשכנתאות',
       finTitle: 'מחשבון משכנתא מתקדם',
       loanAmountLabel: 'סכום הלוואה',
@@ -199,7 +198,6 @@ export default function AllCalculators() {
       heroTitle: 'Every Calculator You Need, In One Place',
       heroSubtitle: 'High-performance, accurate, and reliable calculation tools for any purpose. From finance to health — your answers are here.',
       heroSearchPlaceholder: 'What calculation would you like to perform today?',
-      assistantTooltip: 'Calc-E Assistant',
       finBadge: 'Finance & Mortgages',
       finTitle: 'Advanced Mortgage Calculator',
       loanAmountLabel: 'Loan Amount',
@@ -224,7 +222,6 @@ export default function AllCalculators() {
       heroTitle: 'Cada calculadora que necesites, en un solo lugar',
       heroSubtitle: 'Herramientas de cálculo profesionales, precisas y confiables para cualquier propósito.',
       heroSearchPlaceholder: '¿Qué cálculo deseas realizar hoy?',
-      assistantTooltip: 'Asistente Calc-E',
       finBadge: 'Finanzas e Hipotecas',
       finTitle: 'Calculadora de Hipoteca Avanzada',
       loanAmountLabel: 'Monto del Préstamo',
@@ -249,7 +246,6 @@ export default function AllCalculators() {
       heroTitle: 'Chaque calculateur dont vous avez besoin, au même endroit',
       heroSubtitle: 'Des outils de calcul performants, précis et fiables pour tous vos besoins.',
       heroSearchPlaceholder: 'Quel calcul souhaitez-vous effectuer aujourd\'hui ?',
-      assistantTooltip: 'Assistant Calc-E',
       finBadge: 'Finance & Prêts',
       finTitle: 'Calculateur d\'Hypothèque Avancé',
       loanAmountLabel: 'Montant du Prêt',
@@ -274,7 +270,6 @@ export default function AllCalculators() {
       heroTitle: 'كل حاسبة تحتاجها، في مكان واحد',
       heroSubtitle: 'أدوات حسابية احترافية ودقيقة وموثوقة لجميع الأغراض. من المالية إلى الصحة - إجاباتك هنا.',
       heroSearchPlaceholder: 'ما الحساب الذي تريد إجراءه اليوم؟',
-      assistantTooltip: 'مساعد Calc-E',
       finBadge: 'التمويل والرهن العقاري',
       finTitle: 'حاسبة الرهن العقاري المتقدمة',
       loanAmountLabel: 'مبلغ القرض',
@@ -304,7 +299,7 @@ export default function AllCalculators() {
       <SEO
         title={t.libraryTitle}
         description={t.librarySubtitle}
-        keywords={['calculators', 'assistant', 'Calc-E', 'finance', 'health', 'math', 'tools']}
+        keywords={['calculators', 'finance', 'mortgage', 'health', 'math', 'tools']}
         canonicalUrl={`/${lang}/all`}
         structuredData={{
           '@context': 'https://schema.org',

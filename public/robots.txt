@@ -1,21 +1,46 @@
+# Allow all web search engines, crawlers, and AI agents
 User-agent: *
 Allow: /
-Disallow: /*?search=*
-Disallow: /*?q=*
 
-# AI Search Engine Crawlers & Answer Engines - Allowed for Generative Search & Citations
-User-agent: OAI-SearchBot
-User-agent: GPTBot
-User-agent: PerplexityBot
-User-agent: Claude-Web
-User-agent: ClaudeBot
-User-agent: Google-Extended
-User-agent: Applebot-Extended
-User-agent: Bingbot
+# Major Search Engines
 User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Googlebot-News
+User-agent: Googlebot-Video
+User-agent: Bingbot
+User-agent: Slurp
+User-agent: DuckDuckBot
+User-agent: Baiduspider
+User-agent: YandexBot
+User-agent: Yandex
+User-agent: Applebot
+User-agent: NaverBot
+User-agent: Yeti
+User-agent: SeznamBot
+User-agent: Qwantify
 Allow: /
 
-# Direct AI Knowledge Documentation
+# Major AI Agents, Search Bots & LLM Web Crawlers
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+User-agent: FacebookBot
+User-agent: Bytespider
+User-agent: CCBot
+User-agent: cohere-ai
+User-agent: Amazonbot
+User-agent: Diffbot
+User-agent: Scrapy
+Allow: /
+
+# Knowledge Documentation & LLMs Specifications
 # LLMs specification file: https://globalcalcpro.com/llms.txt
 # Full schema documentation: https://globalcalcpro.com/llms-full.txt
 # Embeddable Widgets & API Hub: https://globalcalcpro.com/en/widgets

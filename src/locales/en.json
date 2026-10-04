@@ -85,7 +85,7 @@
     "termsTitle": "Terms of Service",
     "termsDesc": "Read our terms and conditions for using GlobalCalc Pro.",
     "aboutTitle": "About Us",
-    "aboutDesc": "Discover GlobalCalc Pro - free, fast, and accessible online calculation tools powered by Calc-E AI Assistant.",
+    "aboutDesc": "Discover GlobalCalc Pro - free, fast, and accessible online calculation tools computed 100% locally in your browser.",
     "suggestionsTitle": "Suggest a Feature",
     "suggestionsDesc": "Submit feature ideas and calculator requests for GlobalCalc Pro.",
     "suggestionsExplanation": "Have an idea for a new calculator or feature? Share your suggestion with us.",
@@ -119,7 +119,7 @@
     "pwaPromoStep1": "Tap the share menu or browser menu (⋮)",
     "pwaPromoStep2": "Select \"Add to Home Screen\" or \"Install App\"",
     "libraryTitle": "Calculator Library",
-    "librarySubtitle": "Find the perfect tool for your calculations, or use Calc-E, our smart AI assistant, for guided recommendations."
+    "librarySubtitle": "Find the perfect tool for your calculations with instant, privacy-focused client-side computing."
   },
   "guides": {
     "auto-loan": {

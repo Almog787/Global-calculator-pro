@@ -1,4 +1,3 @@
-import VirtualAssistant from "./components/VirtualAssistant";
 import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { Routes, Route, Link, Navigate, useNavigate, useLocation, useParams } from 'react-router-dom';
 const MortgageCalculator = lazy(() => import('./pages/calculators/MortgageCalculator'));
@@ -29,7 +28,6 @@ import { PWAInstallButton } from './components/PWAInstallButton';
 import { OfflineIndicator } from './components/OfflineIndicator';
 import ClickSpark from './components/ClickSpark';
 import { getCanonicalRedirect } from './utils/legacyRedirects';
-import { initWebMCP } from './lib/webmcp';
 import { trackPageView, trackLanguageChange } from './lib/analytics';
 
 function App() {
@@ -38,56 +36,11 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    initWebMCP();
-  }, []);
   const prevPath = useRef(location.pathname);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Global input tracking for assistant
-  useEffect(() => {
-    let debounceTimer: NodeJS.Timeout;
-    
-    const handleInput = (e: Event) => {
-      const target = e.target as HTMLElement;
-      if (target.tagName === 'INPUT' || target.tagName === 'SELECT') {
-        clearTimeout(debounceTimer);
-        
-        // Make the assistant "think" while typing
-        if (typeof window !== 'undefined' && (window as any).CalcE) {
-          (window as any).CalcE.triggerEmotion('thinking', 'מחשב...');
-        }
-        
-        // Back to idle after stopped typing
-        debounceTimer = setTimeout(() => {
-           if (typeof window !== 'undefined' && (window as any).CalcE) {
-              (window as any).CalcE.triggerEmotion('success', 'התעדכן!');
-           }
-        }, 1200);
-      }
-    };
-
-    document.addEventListener('input', handleInput);
-    return () => {
-      document.removeEventListener('input', handleInput);
-      clearTimeout(debounceTimer);
-    };
-  }, []);
-
   useEffect(() => {
     const currentPath = location.pathname;
-
-    // Trigger assistant greeting on route change if navigating to a specific calculator
-    if (prevPath.current !== currentPath) {
-      if (typeof window !== 'undefined' && (window as any).CalcE) {
-        // Find if it's a calculator path
-        if (currentPath !== `/${lang}/all` && currentPath.split('/').length > 2) {
-           setTimeout(() => {
-             (window as any).CalcE.triggerEmotion('success', 'מוכן לחישוב!');
-           }, 800);
-        }
-      }
-    }
 
     // 301-equivalent redirect for legacy WordPress blog URLs, .html extensions, and trailing slashes
     const redirectPath = getCanonicalRedirect(currentPath, lang);
@@ -338,7 +291,6 @@ function App() {
         </Suspense>
       </main>
 
-      {!isEmbed && <VirtualAssistant />}
       {!isEmbed && <Footer />}
       <HistoryDrawer />
       <OfflineIndicator />

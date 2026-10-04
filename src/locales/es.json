@@ -84,7 +84,7 @@
     "termsTitle": "Términos de Servicio",
     "termsDesc": "Lea nuestros términos y condiciones de uso para GlobalCalc Pro.",
     "aboutTitle": "Sobre Nosotros",
-    "aboutDesc": "Descubra GlobalCalc Pro: herramientas de cálculo en línea gratuitas y rápidas con el asistente inteligente Calc-E.",
+    "aboutDesc": "Descubra GlobalCalc Pro: herramientas de cálculo en línea gratuitas y precisas computadas 100% localmente en su navegador.",
     "suggestionsTitle": "Sugerir una función",
     "suggestionsDesc": "Envíe ideas de funciones y solicitudes de calculadoras para GlobalCalc Pro.",
     "suggestionsExplanation": "¿Tiene una idea para una nueva calculadora o función? Comparta su sugerencia con nosotros.",
@@ -118,7 +118,7 @@
     "pwaPromoStep1": "Toca el menú del navegador (⋮) o el botón de compartir",
     "pwaPromoStep2": "Selecciona \"Agregar a la pantalla de inicio\" o \"Instalar aplicación\"",
     "libraryTitle": "Biblioteca de Calculadoras",
-    "librarySubtitle": "Encuentre la herramienta perfecta, o utilice nuestro asistente inteligente Calc-E para obtener recomendaciones guiadas.",
+    "librarySubtitle": "Encuentre la herramienta perfecta con cálculo instantáneo y privado directamente en su dispositivo.",
     "faqTitle": "Preguntas Frecuentes"
   },
   "guides": {

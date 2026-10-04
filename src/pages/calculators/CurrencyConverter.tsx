@@ -8,6 +8,20 @@ const commonCurrencies = [
   'USD', 'EUR', 'GBP', 'ILS', 'JPY', 'AUD', 'CAD', 'CHF', 'CNY', 'INR'
 ];
 
+// Offline fallback rates relative to USD (1.0)
+const localFallbackRates: Record<string, number> = {
+  USD: 1.0,
+  EUR: 0.92,
+  GBP: 0.78,
+  ILS: 3.65,
+  JPY: 155.0,
+  AUD: 1.52,
+  CAD: 1.38,
+  CHF: 0.90,
+  CNY: 7.25,
+  INR: 83.5,
+};
+
 export default function CurrencyConverter() {
   const { lang } = useI18n();
   const [amount, setAmount] = useUrlState<number>('amount', 100);
@@ -37,8 +51,11 @@ export default function CurrencyConverter() {
         setExchangeRate(data.rates[toCurrency]);
         setLastUpdated(data.date);
       } catch {
-        setError(lang === 'he' ? 'שגיאה בטעינת שערי חליפין' : 'Error loading exchange rates');
-        setExchangeRate(null);
+        const fromBase = localFallbackRates[fromCurrency] || 1;
+        const toBase = localFallbackRates[toCurrency] || 1;
+        const fallbackRate = toBase / fromBase;
+        setExchangeRate(Math.round(fallbackRate * 10000) / 10000);
+        setLastUpdated(lang === 'he' ? 'חישוב מקומי' : 'Local calculation');
       } finally {
         setLoading(false);
       }

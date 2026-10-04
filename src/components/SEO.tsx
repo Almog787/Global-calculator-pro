@@ -269,7 +269,14 @@ const SEO: React.FC<SEOProps> = ({
   return (
     <Helmet>
       {isNoIndex && <meta name="robots" content="noindex, follow" />}
-      {!isNoIndex && <meta name="robots" content="index, follow" />}
+      {!isNoIndex && (
+        <>
+          <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+          <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+          <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        </>
+      )}
+      <link rel="help" type="text/plain" href="/llms.txt" title="LLM and AI Agent Context" />
 
       {/* Primary Meta Tags */}
       <title>{defaultTitle}</title>
