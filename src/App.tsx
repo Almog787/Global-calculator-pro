@@ -98,6 +98,16 @@ function App() {
     { id: 'all', path: `/${lang}/all`, label: t.catAll },
   ];
 
+  const historyLabels: Record<string, string> = {
+    he: 'היסטוריית חישובים',
+    en: 'Calculation History',
+    es: 'Historial de Cálculos',
+    fr: 'Historique des Calculs',
+    ar: 'سجل الحسابات',
+    ru: 'История расчетов',
+  };
+  const historyLabel = historyLabels[lang] || historyLabels.en;
+
   const isEmbed = new URLSearchParams(location.search).get('embed') === 'true';
 
   return (
@@ -180,8 +190,8 @@ function App() {
             <button
               type="button"
               onClick={toggleDrawer}
-              aria-label={lang === 'he' ? 'היסטוריית חישובים' : 'Calculation History'}
-              title={lang === 'he' ? 'היסטוריית חישובים אחרונה' : 'Recent Calculations'}
+              aria-label={historyLabel}
+              title={historyLabel}
               className="hidden lg:flex relative items-center justify-center w-10 h-10 rounded-lg border border-border-subtle bg-surface-container-lowest hover:bg-surface-container text-on-surface transition-all cursor-pointer shrink-0"
             >
               <span className="material-symbols-outlined text-[20px]">history</span>
@@ -211,7 +221,7 @@ function App() {
           <button
             type="button"
             onClick={toggleDrawer}
-            aria-label={lang === 'he' ? 'היסטוריית חישובים' : 'Calculation History'}
+            aria-label={historyLabel}
             className="relative flex items-center justify-center w-10 h-10 rounded-lg border border-border-subtle bg-surface-container-lowest hover:bg-surface-container text-on-surface transition-all cursor-pointer shrink-0"
           >
             <span className="material-symbols-outlined text-[20px]">history</span>

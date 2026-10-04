@@ -18,25 +18,85 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
   const navigate = useNavigate();
   const { t, lang } = useI18n();
 
-  const isRtl = t.dir === 'rtl';
+  const trendingTagsMap: Record<string, Array<{ label: string; path: string }>> = {
+    he: [
+      { label: 'משכנתא', path: '/mortgage-calculator' },
+      { label: 'ברוטו לנטו', path: '/salary-calculator' },
+      { label: 'עלות מעסיק', path: '/calculators/employer-cost' },
+      { label: 'אופציות RSU', path: '/calculators/stock-options-rsu' },
+      { label: 'פיצויי פיטורים', path: '/calculators/severance-pay' },
+      { label: 'מע"מ 18%', path: '/calculators/vat' },
+    ],
+    en: [
+      { label: 'Mortgage', path: '/mortgage-calculator' },
+      { label: 'Salary Gross-Net', path: '/salary-calculator' },
+      { label: 'Employer Cost', path: '/calculators/employer-cost' },
+      { label: 'RSU & Options', path: '/calculators/stock-options-rsu' },
+      { label: 'Severance Pay', path: '/calculators/severance-pay' },
+      { label: 'VAT 18%', path: '/calculators/vat' },
+    ],
+    es: [
+      { label: 'Hipoteca', path: '/mortgage-calculator' },
+      { label: 'Salario Neto', path: '/salary-calculator' },
+      { label: 'Coste Empresa', path: '/calculators/employer-cost' },
+      { label: 'Interés Compuesto', path: '/compound-interest' },
+      { label: 'Indemnización', path: '/calculators/severance-pay' },
+      { label: 'IVA', path: '/calculators/vat' },
+    ],
+    fr: [
+      { label: 'Prêt Immobilier', path: '/mortgage-calculator' },
+      { label: 'Salaire Brut/Net', path: '/salary-calculator' },
+      { label: 'Coût Employeur', path: '/calculators/employer-cost' },
+      { label: 'Intérêts Composés', path: '/compound-interest' },
+      { label: 'Indemnité Rupture', path: '/calculators/severance-pay' },
+      { label: 'TVA', path: '/calculators/vat' },
+    ],
+    ar: [
+      { label: 'الرهن العقاري', path: '/mortgage-calculator' },
+      { label: 'الراتب الصافي', path: '/salary-calculator' },
+      { label: 'تكلفة الموظף', path: '/calculators/employer-cost' },
+      { label: 'الفائدة المركبة', path: '/compound-interest' },
+      { label: 'مكافأة نهاية الخدمة', path: '/calculators/severance-pay' },
+      { label: 'ضريبة القيمة المضافة', path: '/calculators/vat' },
+    ],
+    ru: [
+      { label: 'Ипотека', path: '/mortgage-calculator' },
+      { label: 'Зарплата Net', path: '/salary-calculator' },
+      { label: 'Расходы работодателя', path: '/calculators/employer-cost' },
+      { label: 'Сложный процент', path: '/compound-interest' },
+      { label: 'Выходное пособие', path: '/calculators/severance-pay' },
+      { label: 'НДС', path: '/calculators/vat' },
+    ],
+  };
 
-  const trendingTags = isRtl
-    ? [
-        { label: 'משכנתא', path: '/mortgage-calculator' },
-        { label: 'ברוטו לנטו', path: '/salary-calculator' },
-        { label: 'עלות מעסיק', path: '/calculators/employer-cost' },
-        { label: 'אופציות RSU', path: '/calculators/stock-options-rsu' },
-        { label: 'פיצויי פיטורים', path: '/calculators/severance-pay' },
-        { label: 'מע"מ 18%', path: '/calculators/vat' },
-      ]
-    : [
-        { label: 'Mortgage', path: '/mortgage-calculator' },
-        { label: 'Salary Gross-Net', path: '/salary-calculator' },
-        { label: 'Employer Cost', path: '/calculators/employer-cost' },
-        { label: 'RSU & Options', path: '/calculators/stock-options-rsu' },
-        { label: 'Severance Pay', path: '/calculators/severance-pay' },
-        { label: 'VAT 18%', path: '/calculators/vat' },
-      ];
+  const trendingTags = trendingTagsMap[lang] || trendingTagsMap.en;
+
+  const placeholdersMap: Record<string, string> = {
+    he: 'חיפוש מחשבון...',
+    en: 'Search calculator...',
+    es: 'Buscar calculadora...',
+    fr: 'Rechercher une calculatrice...',
+    ar: 'البحث عن آلة حاسبة...',
+    ru: 'Поиск калькулятора...',
+  };
+
+  const popularSearchesMap: Record<string, string> = {
+    he: 'חיפושים נפוצים:',
+    en: 'Popular searches:',
+    es: 'Búsquedas populares:',
+    fr: 'Recherches fréquentes :',
+    ar: 'عمليات البحث الشائعة:',
+    ru: 'Популярные запросы:',
+  };
+
+  const noResultsMap: Record<string, string> = {
+    he: 'לא נמצאו מחשבונים התואמים לחיפוש',
+    en: 'No matching calculators found',
+    es: 'No se encontraron calculadoras coincidentes',
+    fr: 'Aucune calculatrice trouvée',
+    ar: 'لم يتم العثور على حاسبات مطابقة',
+    ru: 'Калькуляторы не найдены',
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -64,7 +124,7 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
     navigate(`/${lang}${path}`);
   };
 
-  const defaultPlaceholder = placeholder || (isRtl ? 'חיפוש מחשבון...' : 'Search calculator...');
+  const defaultPlaceholder = placeholder || (placeholdersMap[lang] || placeholdersMap.en);
 
   if (isHero) {
     return (
@@ -92,7 +152,7 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
           <span className="font-medium text-on-surface-variant flex items-center gap-1">
             <span className="material-symbols-outlined text-[16px] text-secondary">trending_up</span>
             <DecryptedText
-              text={isRtl ? 'חיפושים נפוצים:' : 'Popular searches:'}
+              text={popularSearchesMap[lang] || popularSearchesMap.en}
               speed={30}
               animateOn="mount"
               className="font-medium"
@@ -136,7 +196,7 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
               </ul>
             ) : (
               <div className="px-5 py-4 font-body-md text-on-surface-variant text-center">
-                {t.dir === 'rtl' ? 'לא נמצאו מחשבונים המתאימים לחיפוש' : 'No calculators found for your search'}
+                {noResultsMap[lang] || noResultsMap.en}
               </div>
             )}
           </div>
@@ -187,7 +247,7 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
             </ul>
           ) : (
             <div className="px-4 py-3 font-body-md text-xs text-text-muted text-center">
-              {t.dir === 'rtl' ? 'לא נמצאו מחשבונים' : 'No calculators found.'}
+              {noResultsMap[lang] || noResultsMap.en}
             </div>
           )}
         </div>

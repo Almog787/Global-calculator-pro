@@ -50,42 +50,97 @@ export default function NotFound() {
       backHome: 'العودة للصفحة الرئيسية',
       suggestCalc: 'اقترح حاسبة جديدة',
     },
+    ru: {
+      title: 'Страница не найдена',
+      subtitle: 'Не переживайте! В нашем каталоге собраны профессиональные высокоточные калькуляторы для решения любых задач.',
+      searchPlaceholder: 'Поиск: ипотека, зарплата (Net), сложный процент, валюты...',
+      popularTitle: 'Популярные калькуляторы:',
+      backHome: 'Вернуться на главную',
+      suggestCalc: 'Предложить новый калькулятор',
+    },
   };
 
   const text = localizedContent[lang as keyof typeof localizedContent] || localizedContent.en;
 
+  const quickLinksData = {
+    he: [
+      { title: 'מחשבון משכנתא', desc: 'חישוב החזר חודשי ולוח סילוקין' },
+      { title: 'מחשבון שכר נטו', desc: 'חישוב ברוטו לנטו ומס הכנסה' },
+      { title: 'שווי אופציות ו-RSU', desc: 'חישוב הבשלה ורווחי הון' },
+      { title: 'מחשבון ריבית דריבית', desc: 'חישוב צמיחת חיסכון והשקעות' },
+      { title: 'המרת מט"ח מקוונת', desc: 'שערי חליפין רציפים' }
+    ],
+    en: [
+      { title: 'Mortgage Calculator', desc: 'Calculate monthly payment & amortization' },
+      { title: 'Salary Calculator', desc: 'Calculate gross to net salary & tax' },
+      { title: 'Stock Options & RSU', desc: 'Vesting schedule & capital gains' },
+      { title: 'Compound Interest', desc: 'Calculate long-term investment growth' },
+      { title: 'Currency Converter', desc: 'Exchange rates for global currencies' }
+    ],
+    es: [
+      { title: 'Calculadora de Hipoteca', desc: 'Calcula tu cuota mensual y amortización' },
+      { title: 'Calculadora de Salario', desc: 'Conversión de salario bruto a neto' },
+      { title: 'Opciones sobre Acciones y RSU', desc: 'Planes de consolidación y ganancias' },
+      { title: 'Interés Compuesto', desc: 'Calcula el crecimiento de tu inversión' },
+      { title: 'Convertidor de Divisas', desc: 'Tipos de cambio de divisas al instante' }
+    ],
+    fr: [
+      { title: 'Calculateur d\'Hypothèque', desc: 'Calcul de mensualité et tableau d\'amortissement' },
+      { title: 'Calculateur de Salaire', desc: 'Conversion salaire brut en net' },
+      { title: 'Stock-Options & RSU', desc: 'Calendrier d\'acquisition et plus-values' },
+      { title: 'Intérêts Composés', desc: 'Projection de croissance d\'investissement' },
+      { title: 'Convertisseur de Devises', desc: 'Taux de change internationaux' }
+    ],
+    ar: [
+      { title: 'حاسبة الرهن العقاري', desc: 'احسب القسط الشهري وجدول السداد' },
+      { title: 'حاسبة الراتب', desc: 'حساب الراتب من الإجمالي إلى الصافي' },
+      { title: 'خيارات الأسهم وRSU', desc: 'جدول الاستحقاق ومكاسب رأس المال' },
+      { title: 'حاسبة الفائدة المركبة', desc: 'احسب نمو استثماراتك ومدخراتك' },
+      { title: 'محول العملات', desc: 'أسعار صرف العملات العالمية' }
+    ],
+    ru: [
+      { title: 'Ипотечный калькулятор', desc: 'Расчет ежемесячного платежа и графика выплат' },
+      { title: 'Калькулятор зарплаты', desc: 'Расчет оклада Gross в Net с вычетом налогов' },
+      { title: 'Опционы и RSU', desc: 'График вестинга и расчет налога на прибыль' },
+      { title: 'Сложные проценты', desc: 'Расчет прироста капитала и сбережений' },
+      { title: 'Конвертер валют', desc: 'Мгновенный пересчет популярных мировых валют' }
+    ]
+  };
+
+  const currentQL = quickLinksData[lang as keyof typeof quickLinksData] || quickLinksData.en;
+
   const quickLinks = [
     {
-      title: isRtl ? 'מחשבון משכנתא' : 'Mortgage Calculator',
-      desc: isRtl ? 'חישוב החזר חודשי, לוח סילוקין ושפיצר' : 'Calculate monthly payment & amortization',
+      title: currentQL[0].title,
+      desc: currentQL[0].desc,
       icon: 'real_estate_agent',
       path: `/${lang}/mortgage-calculator`,
       color: 'text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border-indigo-500/20',
     },
     {
-      title: isRtl ? 'מחשבון שכר נטו' : 'Salary Calculator',
-      desc: isRtl ? 'חישוב ברוטו לנטו, מס הכנסה וביטוח לאומי' : 'Calculate gross to net salary & income tax',
+      title: currentQL[1].title,
+      desc: currentQL[1].desc,
       icon: 'payments',
       path: `/${lang}/salary-calculator`,
       color: 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
     },
     {
-      title: isRtl ? 'שווי אופציות ו-RSU' : 'Stock Options & RSU',
-      desc: isRtl ? 'חישוב מס סעיף 102, הבשלה ותרחישי אקזיט' : 'Vesting schedule & Section 102 capital gains',
+      title: currentQL[2].title,
+      desc: currentQL[2].desc,
       icon: 'show_chart',
       path: `/${lang}/calculators/stock-options-rsu`,
       color: 'text-teal-600 dark:text-teal-400 bg-teal-500/10 border-teal-500/20',
     },
     {
-      title: isRtl ? 'מחשבון ריבית דריבית' : 'Compound Interest',
-      desc: isRtl ? 'חישוב צמיחת חיסכון והשקעות לטווח ארוך' : 'Calculate long-term investment growth',
+      title: currentQL[3].title,
+      desc: currentQL[3].desc,
       icon: 'trending_up',
       path: `/${lang}/compound-interest`,
       color: 'text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20',
     },
     {
-      title: isRtl ? 'המרת מט"ח בזמן אמת' : 'Currency Converter',
-      desc: isRtl ? 'דולר, יורו, שקל ושערי חליפין רציפים' : 'Real-time exchange rates for USD, EUR, ILS',
+      title: currentQL[4].title,
+      desc: currentQL[4].desc,
       icon: 'currency_exchange',
       path: `/${lang}/calculators/currency-converter`,
       color: 'text-sky-600 dark:text-sky-400 bg-sky-500/10 border-sky-500/20',

@@ -25,7 +25,8 @@ export default function RelatedCalculators({
     he: 'מחשבונים קשורים ומומלצים',
     es: 'Calculadoras Relacionadas y Recomendadas',
     fr: 'Calculatrices Associées & Recommandées',
-    ar: 'حاسبات ذات صلة وموصى بها'
+    ar: 'حاسبات ذات صلة وموصى بها',
+    ru: 'Похожие и рекомендуемые калькуляторы'
   };
 
   const viewCategoryLabels: Record<string, string> = {
@@ -33,7 +34,8 @@ export default function RelatedCalculators({
     he: 'לכל הכלים בקטגוריה זו',
     es: 'Ver todas en esta categoría',
     fr: 'Voir tous les outils de cette catégorie',
-    ar: 'استكشف كافة الأدوات في هذا القسم'
+    ar: 'استكشف كافة الأدوات في هذا القسم',
+    ru: 'Смотреть все инструменты в этой категории'
   };
 
   const sectionHeading = headings[lang] || headings.en;

@@ -8,11 +8,36 @@
 [![TypeScript 5.9](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React 19](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![PWA Ready](https://img.shields.io/badge/PWA-Offline%20First-purple?style=for-the-badge&logo=pwa&logoColor=white)](https://globalcalcpro.com)
-[![i18n Ready](https://img.shields.io/badge/Languages-EN%20%7C%20HE%20%7C%20ES%20%7C%20FR%20%7C%20AR-orange?style=for-the-badge)](https://globalcalcpro.com)
+[![i18n Ready](https://img.shields.io/badge/Languages-EN%20%7C%20HE%20%7C%20ES%20%7C%20FR%20%7C%20AR%20%7C%20RU-orange?style=for-the-badge)](https://globalcalcpro.com)
 
-**[Global Calc Pro](https://globalcalcpro.com)** is an open-source, high-performance web suite of precision online calculators, financial modeling tools, and **embeddable calculator widgets** for webmasters, developers, and bloggers. 
+**[Global Calc Pro](https://globalcalcpro.com)** is an open-source, high-performance web suite of precision online calculators, financial modeling tools, and **[free embeddable calculator widgets](https://globalcalcpro.com/en/widgets)** for webmasters, developers, and bloggers. 
 
-Built with a zero-latency, client-side first architecture, Global Calc Pro delivers arbitrary-precision math (powered by `Decimal.js`), interactive visual charts, offline Progressive Web App (PWA) capabilities, and full Right-to-Left (RTL) localization across 5 major languages.
+Built with a zero-latency, client-side first architecture, Global Calc Pro delivers arbitrary-precision math (powered by `Decimal.js`), interactive visual charts, offline Progressive Web App (PWA) capabilities, and full Right-to-Left (RTL) localization across 6 major languages: **English, Hebrew, Spanish, French, Arabic, and Russian**.
+
+---
+
+## 📑 Table of Contents
+
+- [🌐 Live Interactive Portal](#-live-interactive-portal--widgets-hub)
+- [🧩 Embed Calculator Widgets on Any Website](#-embed-calculator-widgets-on-any-website)
+  - [1. Simple HTML / Iframe Embed](#1-simple-html--iframe-embed)
+  - [2. React / Next.js Component Embed](#2-react--nextjs-component-embed)
+  - [3. WordPress, Elementor & Gutenberg](#3-wordpress-elementor--gutenberg)
+  - [🎛️ Widget Customization Parameters](#️-widget-customization-parameters)
+- [⚡ Key Engineering Features](#-key-engineering-features)
+- [📂 Complete Calculator Directory](#-complete-calculator-directory)
+  - [💰 Finance, Taxes & Real Estate](#-finance-taxes--real-estate)
+  - [📐 Mathematics, Statistics & Science](#-mathematics-statistics--science)
+  - [🩺 Health, Fitness & Medical](#-health-fitness--medical)
+  - [⚡ Daily Utility & Conversions](#-daily-utility--conversions)
+- [🔗 Full SEO Sitemap Catalog (55 Calculators)](#-full-seo-sitemap-catalog-55-calculators)
+- [🧰 Developer Ecosystem & Recommended Open-Source SEO Tools](#-developer-ecosystem--recommended-open-source-seo-tools)
+- [❓ Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
+- [🛠️ Developer Quick Start](#️-developer-quick-start)
+- [🏗️ Technical Architecture](#️-technical-architecture)
+- [🤝 Contributing](#-contributing)
+- [⭐ Star the Project](#-star-the-project)
+- [📄 License](#-license)
 
 ---
 
@@ -20,6 +45,7 @@ Built with a zero-latency, client-side first architecture, Global Calc Pro deliv
 - 🚀 **Full Web Application:** [https://globalcalcpro.com](https://globalcalcpro.com)
 - 🧩 **Interactive Widget Builder:** [https://globalcalcpro.com/en/widgets](https://globalcalcpro.com/en/widgets)
 - 📚 **Sitemap & Directory:** [https://globalcalcpro.com/en/all](https://globalcalcpro.com/en/all)
+- 🔍 **SEO & Structured Data Index:** [https://globalcalcpro.com/sitemap.xml](https://globalcalcpro.com/sitemap.xml)
 
 ---
 
@@ -49,7 +75,7 @@ import React from 'react';
 
 interface CalculatorWidgetProps {
   slug?: string;
-  lang?: 'en' | 'he' | 'es' | 'fr' | 'ar';
+  lang?: 'en' | 'he' | 'es' | 'fr' | 'ar' | 'ru';
   height?: number;
 }
 
@@ -81,16 +107,16 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 | Parameter | Values | Description |
 | :--- | :--- | :--- |
 | `embed` | `true` | Enables lightweight widget layout (hides header, footer, and assistant). |
-| `lang` | `en`, `he`, `es`, `fr`, `ar` | Sets language, RTL/LTR layout, and regional tax/currency presets. |
+| `lang` | `en`, `he`, `es`, `fr`, `ar`, `ru` | Sets language, RTL/LTR layout, and regional tax/currency presets. |
 | `theme` | `light`, `dark` | Overrides color scheme to match your website theme. |
 
 ---
 
-## ⚡ Key Highlights & Engineering Features
+## ⚡ Key Engineering Features
 
 - 🎯 **Arbitrary Precision Arithmetic**: Uses `decimal.js` to guarantee zero floating-point roundoff issues (no `0.1 + 0.2 = 0.30000000000000004` errors).
 - 🧩 **Embeddable Widgets Hub**: Comprehensive interactive generator to customize widget height, language, and theme with live code copy.
-- 🌐 **Native Multi-Language & RTL Engine**: Complete linguistic and directional parity for English, Hebrew (RTL), Spanish, French, and Arabic (RTL).
+- 🌐 **Native Multi-Language & RTL Engine**: Complete linguistic and directional parity for English, Hebrew (RTL), Spanish, French, Arabic (RTL), and Russian.
 - 📊 **Dynamic Data Visualizations**: Real-time interactive charts powered by Chart.js and Recharts with responsive canvas rendering.
 - 📱 **100% Offline-First PWA**: Service workers cache assets so all calculators function completely without an internet connection.
 - 📥 **Export to Excel (.xlsx) & CSV**: Download amortization schedules, VAT breakdowns, or investment projections instantly.
@@ -207,6 +233,49 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 
 ---
 
+## 🧰 Developer Ecosystem & Recommended Open-Source SEO Tools
+
+To help developers, webmasters, and creators monetize websites and optimize search performance, we recommend these industry-standard open-source tools:
+
+| Tool & Repository | Category | Description & Synergy |
+| :--- | :--- | :--- |
+| **[python-seo-analyzer](https://github.com/sethblack/python-seo-analyzer)** | Technical SEO | Audits website structure, meta tags, and internal link health in CI/CD pipelines. |
+| **[serpapi/awesome-seo-tools](https://github.com/serpapi/awesome-seo-tools)** | SEO Hub | Curated collection of open-source SEO, scraping, and search analytics frameworks. |
+| **[payload-ai](https://github.com/ashbuilds/payload-ai)** | Content Automation | AI-driven content generation and CMS optimization plugin for programmatic SEO. |
+| **[aimeos/aimeos](https://github.com/aimeos/aimeos)** | E-Commerce & Monetization | High-performance commerce and digital checkout engine with built-in SEO. |
+| **[chenxingqiang/repo-seo](https://github.com/chenxingqiang/repo-seo)** | GitHub Repo SEO | AI-powered toolkit for optimizing repository visibility and traffic monetization. |
+
+---
+
+## ❓ Frequently Asked Questions (FAQ)
+
+<details>
+<summary><b>1. Is Global Calc Pro free to use and embed on external websites?</b></summary>
+<p>Yes! Global Calc Pro is 100% open-source under the MIT license. You can embed any calculator widget into your commercial or non-commercial website, blog, or application free of charge using our responsive iframe or React components.</p>
+</details>
+
+<details>
+<summary><b>2. How does Global Calc Pro achieve zero floating-point arithmetic errors?</b></summary>
+<p>Standard JavaScript numbers use IEEE 754 double-precision binary floating-point representation, causing known issues like <code>0.1 + 0.2 = 0.30000000000000004</code>. Global Calc Pro utilizes <code>Decimal.js</code> for arbitrary-precision decimal arithmetic across all financial, mortgage, and tax computations.</p>
+</details>
+
+<details>
+<summary><b>3. Does Global Calc Pro collect user data or calculation history on servers?</b></summary>
+<p>No. Global Calc Pro is architected with a 100% client-side execution model. All inputs, financial simulations, and calculation history records reside strictly in the user's browser local storage and memory. No telemetry or server-side logging is performed.</p>
+</details>
+
+<details>
+<summary><b>4. Can I use the calculators offline without an internet connection?</b></summary>
+<p>Yes. Global Calc Pro is a compliant Progressive Web App (PWA) equipped with service workers and local asset caching. Once loaded, all mathematical engines run fully offline.</p>
+</details>
+
+<details>
+<summary><b>5. Which languages and regional formats are supported?</b></summary>
+<p>Global Calc Pro supports 6 languages with native Right-to-Left (RTL) layout switching and localized currencies: English (USD, EUR, GBP), Hebrew (ILS / ש״ח), Spanish, French, Arabic, and Russian.</p>
+</details>
+
+---
+
 ## 🛠️ Developer Quick Start
 
 ```bash
@@ -232,10 +301,10 @@ npm run build
 ## 🏗️ Technical Architecture
 
 ```
-├── .github/                 # CI/CD Workflows, Indexing, and Issue Templates
-├── scripts/                 # Automated Sitemap, Readme, and SEO Indexing scripts
+├── .github/                 # CI/CD Workflows, SEO metadata, and Issue Templates
+├── scripts/                 # Automated Sitemap, Readme generator, and Indexing scripts
 ├── src/
-│   ├── components/          # Reusable UI, SEO, Charts, and Layout components
+│   ├── components/          # Reusable UI, SEO tags, Charts, and Layout components
 │   ├── contexts/            # i18n localization, Calculation History, URL state
 │   ├── lib/                 # Mathematical engines, Decimal.js logic, Vitest tests
 │   │   ├── export/          # Excel (.xlsx) and CSV comprehensive exporters
@@ -243,7 +312,7 @@ npm run build
 │   │   └── widgets/         # Widgets catalog and code generation utilities
 │   ├── pages/               # Top-level view controllers and Widgets Hub
 │   │   └── calculators/     # 40+ precision calculator implementations
-│   └── locales/             # Multilingual dictionaries (EN, HE, ES, FR, AR)
+│   └── locales/             # Multilingual dictionaries (EN, HE, ES, FR, AR, RU)
 └── public/                  # Manifest, icons, sitemaps, and robots.txt
 ```
 

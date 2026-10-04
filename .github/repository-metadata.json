@@ -1,0 +1,29 @@
+{
+  "name": "Global-calculator-pro",
+  "owner": "Almog787",
+  "website": "https://globalcalcpro.com",
+  "description": "🧮 High-performance open-source online calculator suite & 36+ free embeddable widgets. Decimal.js precision, offline PWA, 6 languages (EN/HE/ES/FR/AR/RU).",
+  "topics": [
+    "seo-optimization",
+    "calculators",
+    "calculator",
+    "embeddable-widgets",
+    "widgets",
+    "financial-tools",
+    "mortgage-calculator",
+    "compound-interest",
+    "pwa",
+    "offline-first",
+    "typescript",
+    "react19",
+    "content-generation",
+    "decimal-js",
+    "i18n",
+    "hebrew",
+    "arabic",
+    "spanish",
+    "french",
+    "russian",
+    "open-source"
+  ]
+}
