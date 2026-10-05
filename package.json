@@ -34,7 +34,7 @@
     "url": "https://github.com/Almog787/Global-calculator-pro/issues"
   },
   "license": "MIT",
-  "author": "Almog Shaked",
+  "author": "AlSh",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3000",

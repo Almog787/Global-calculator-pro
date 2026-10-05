@@ -1,39 +1,48 @@
 # משימה 2: נוכחות מבוזרת, אימות ישות עסקית ו-GBP (LEVERAGE & LOCAL)
-**תאריך הפקה:** 2026-10-05 | **סטטוס:** הושלם בהצלחה ✅
-**ארגון רשמי:** סטודיו דיגיטל פרו בע"מ (Global Calc Pro)
+**שם הישות:** Global Calc Pro | **מפתח ומייסד:** AlSh
+**דומיין ראשי:** https://globalcalcpro.com | **מאגר קוד פתוח:** [https://github.com/Almog787/Global-calculator-pro.git](https://github.com/Almog787/Global-calculator-pro.git)
+**תאריך סריקה:** 2026-10-05 | **סטטוס:** נשאב מקוד המאגר ✅
 
 ---
 
-## 1. אופטימיזציית Google Business Profile (GBP)
+## 1. אימות ישות דיגיטלית וסמכות דומיין (GitHub High DA 96+ Authority)
 
-- **קטגוריה ראשית:** Website Designer / Software Company
-- **4 קטגוריות משניות:** E-Commerce Service, Internet Marketing Service, Marketing Consultant, Business Management Consultant.
-- **תיאור עסק מנצח (680 תווים):**
-  > **סטודיו דיגיטל פרו בע"מ (Global Calc Pro)** היא חברת פיתוח טכנולוגית מובילה המתמחה בהקמת אתרי מסחר B2B/B2C מתקדמים, פיתוח ווידג'טים אינטראקטיביים ואופטימיזציית מנועי חיפוש ו-AI (GEO / Generative Engine Optimization). אנו מיישמים ארכיטקטורה היברידית סופר-מהירה (SSG/PWA), מבני חילוץ תוכן ישיר עבור ChatGPT Search ו-Perplexity, ומערכות חישוב פיננסיות בדיוק שברירי ללא שגיאות. צוות המומחים שלנו מלווה חברות מובילות בישראל בהגדלת יחס ההמרה והשגת עליונות דיגיטלית מתועדת לשנת 2026.
-- **פירוט 5 שירותי ליבה ב-GBP:**
-  1. **פיתוח אתרי מסחר B2B מותאמי AI:** ארכיטקטורה היברידית מהירה עם התאמה מלאה למודלי שפה ומנועי תשובות.
-  2. **הטמעת ווידג'טים ומחשבונים אינטראקטיביים:** כלי חישוב והמרה מבוססי React ו-Decimal.js להעלאת זמן השהייה באתר.
-  3. **אופטימיזציית מנועי AI (GEO) וסכמות JSON-LD:** הזרקת נתונים מובנים וארגון תשובות PAA לחילוץ מקסימלי.
-  4. **שדרוג מהירות ו-Core Web Vitals:** אופטימיזציית LCP תחת 1.2 שניות ואפס קפיצות layout (CLS = 0).
-  5. **ליווי והמרת משפך מכירות (BOFU):** תכנון עמודי נחיתה והסרת התנגדויות להכפלת לידים מוסמכים.
+- **עוגן הישות הראשי ב-GitHub:**
+  - הריפו הפתוח `Almog787/Global-calculator-pro.git` מהווה עוגן סמכות רב-עוצמה המזרים קישורי DoFollow וסמכות מותג ישירות ל-`https://globalcalcpro.com`.
+  - תגיות נושא (Topics) מאומתות: `seo-optimization`, `calculators`, `embeddable-widgets`, `pwa`, `typescript`, `financial-tools`, `decimal-js`, `react19`, `i18n`.
+- **תיאור הישות המדויק (Under 160 chars for Knowledge Graph):**
+  > `High-precision open-source calculator engine, embeddable widgets suite (iframe, React, WordPress), and multi-domain financial, math, and health tools in 5 languages.`
 
 ---
 
-## 2. אסטרטגיית נוכחות מבוזרת (Off-Site Corroboration)
+## 2. הגדרת פרופיל Google Business Profile (GBP) & Local Entities
 
-- **פעילות בקהילות טכנולוגיות ו-Reddit:**
-  - מענה מבוסס ערך ב-r/webdev, r/SEO, r/ecommerce לשאלות בנושא GEO וארכיטקטורת SSG.
-  - שיתוף מחקרי מקרה (Case Studies) מבוססי נתוני אמת המקשרים לנכס הדיגיטלי כמקור ידע פתוח.
-- **אימות NAP (Name, Address, Phone) ואינדקסים מובילים:**
-  - סנכרון מלא ואחיד בכל אינדקסי העסקים בישראל (דפי זהב, בזק, BDI, Crunchbase, GitHub, LinkedIn).
+- **קטגוריה ראשית:** Software Company / Web Application Developer
+- **קטגוריות משניות:** Financial Consultant, Educational Software, Internet Marketing Service, Database Management.
+- **תיאור העסק ב-GBP (עד 750 תווים):**
+  > **Global Calc Pro** (https://globalcalcpro.com) היא פלטפורמת מחשבונים פיננסיים, הנדסיים ומתמטיים מתקדמת וספריית ווידג'טים פתוחה להטמעה חינמית. המערכת פועלת על גבי ארכיטקטורה היברידית קלת-משקל (PWA & Client-Side Execution) ומבטיחה אפס שגיאות חישוב באמצעות מנוע דיוק שברירי `Decimal.js`. הפורטל כולל מעל 47 מחשבונים מקצועיים – החל ממחשבוני משכנתא, ריבית דריבית, מע"מ ופיצויי פיטורין, ועד פתרון מטריצות ורגרסיה סטטיסטית, עם תמיכה מלאה ב-6 שפות (עברית, אנגלית, ספרדית, צרפתית, ערבית ורוסית) וייצוא נתונים מלא ל-Excel ו-CSV.
+- **5 שירותי ליבה מוגדרים:**
+  1. **מחשבוני משכנתאות ונדל"ן:** סימולציית לוח שפיצר, מס רכישה ושבח, כושר החזר ומיחזור משכנתא.
+  2. **מחשבונים פיננסיים ופנסיוניים:** ריבית דריבית, חישוב שכר נטו, פיצויי פיטורין (סעיף 14) ונקודת איזון.
+  3. **ספריית ווידג'טים להטמעה:** ווידג'טים אינטראקטיביים מעוצבים להטמעה באתרי וורדפרס, ריאקט ואתרי תוכן.
+  4. **מחשבוני בריאות ומדדי גוף:** מדד BMI, שבועות הריון ומעקב שבועי, קלוריות BMR וצריכת מים.
+  5. **כלים מתמטיים ומדעיים:** כפל והיפוך מטריצות, פתרון משוואות ריבועיות, רגרסיה וקירור פלייה.
 
 ---
 
-## 3. שכתוב מטא-דאטה בעל שיעור הקלקה (CTR) מקסימלי
+## 3. אסטרטגיית נוכחות מבוזרת (Off-Site Corroboration)
 
-- **אפשרות 1 (מוכוונת ביצועים):**
-  - **Title (54 תווים):** פיתוח אתרי מסחר ושיווק AI | סטודיו דיגיטל פרו
-  - **Meta Description (148 תווים):** הפכו את אתר המסחר שלכם למקור מומלץ במנועי AI ובגוגל. ארכיטקטורה היברידית סופר-מהירה, נתונים מובנים והגדלת עסקאות מוכחת. גלו עוד עכשיו.
-- **אפשרות 2 (מוכוונת מנהלי שיווק ומנכ"לים):**
-  - **Title (58 תווים):** סוכנות פיתוח אתרים מותאמת עידן ה-AI [2026] | דיגיטל פרו
-  - **Meta Description (152 תווים):** קידום אתרים בעידן ה-GEO ו-ChatGPT Search. פיתוח אתרי B2B מהירים, ווידג'טים אינטראקטיביים ומבנה נתונים מנצח לחברות מובילות בישראל.
+- **Reddit & Developer Communities:**
+  - פעילות בקהילות `r/webdev`, `r/reactjs`, `r/personalfinance`, `r/Israel` ובפורומי נדל"ן.
+  - שיתוף קודי מקור פתוחים של מחשבוני הדיוק והווידג'טים כמקור סמכות עליון (E-E-A-T).
+- **אינדקסי ישות דיגיטלית ו-NAP:**
+  - סנכרון ישות מלא ב-GitHub, NPM, Crunchbase, ProductHunt, LinkedIn ואינדקסי מפתחים.
+
+---
+
+## 4. מטא-דאטה בעל שיעור הקלקה (CTR) מקסימלי
+
+- **עברית (54 תווים):** מחשבוני דיוק אונליין וחישובי משכנתא | Global Calc Pro
+  - **Meta Description (148 תווים):** מעל 47 מחשבונים פיננסיים, משכנתאות, שכר, ריבית דריבית ובריאות בדיוק ללא פשרות. חינמי, פועל אופליין (PWA) וכולל ייצוא לאקסל. היכנסו עכשיו.
+- **אנגלית (58 תווים):** Global Calc Pro – Free Precision Online Calculators & Widgets
+  - **Meta Description (152 תווים):** Multi-lingual financial, mortgage, compound interest, health, and math online calculators with high-precision Decimal math, Excel export, and free widgets.

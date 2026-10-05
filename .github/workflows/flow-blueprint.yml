@@ -1,76 +1,59 @@
-name: FLOW Master Blueprint Runner
+name: FLOW Master Blueprint Runner (Manual)
 
 on:
   workflow_dispatch:
     inputs:
       business_name:
-        description: 'Business / Digital Asset Name'
+        description: 'שם הנכס / אתר (ריק = שאיבה אוטומטית מ-package.json)'
         required: false
-        default: 'סטודיו דיגיטל פרו בע"מ (Global Calc Pro)'
-      core_services:
-        description: 'Core Services & Capabilities'
-        required: false
-        default: 'פיתוח מחשבונים פיננסיים, ווידג\'טים להטמעה, ואתרי מסחר ושיווק מבוססי AI'
-      target_audience:
-        description: 'Target Audience & Geography'
-        required: false
-        default: 'מנכ"לים, מנהלי שיווק, וובמאסטרים ויוצרי תוכן דיגיטלי בישראל ובעולם'
+        default: 'Global Calc Pro'
       target_url:
-        description: 'Target Service / Asset URL'
+        description: 'כתובת הדומיין הראשית (ריק = שאיבה אוטומטית מ-package.json)'
         required: false
-        default: 'https://globalcalcpro.com/services/ai-ecommerce'
-  schedule:
-    # Run every Sunday at 04:00 UTC to refresh data & scorecards
-    - cron: '0 4 * * 0'
-  push:
-    paths:
-      - 'scripts/run-flow-blueprint.js'
-      - '.github/workflows/flow-blueprint.yml'
+        default: 'https://globalcalcpro.com'
+
+# Minimal required permissions
+permissions:
+  contents: write
 
 jobs:
-  execute-flow-blueprint:
-    name: Execute FLOW 4-Task Master Strategy & Generate Reports
+  run-blueprint:
+    name: Generate FLOW SEO & GEO Blueprint (Live Codebase Data)
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Setup Node.js Environment
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Run FLOW Master Blueprint Strategy Engine
+      - name: Execute FLOW Master Blueprint Engine
         env:
-          FLOW_BUSINESS_NAME: ${{ github.event.inputs.business_name || 'סטודיו דיגיטל פרו בע"מ (Global Calc Pro)' }}
-          FLOW_SERVICES: ${{ github.event.inputs.core_services || 'פיתוח מחשבונים פיננסיים, ווידג\'טים להטמעה, ואתרי מסחר ושיווק מבוססי AI' }}
-          FLOW_AUDIENCE: ${{ github.event.inputs.target_audience || 'מנכ"לים, מנהלי שיווק, וובמאסטרים ויוצרי תוכן דיגיטלי בישראל ובעולם' }}
-          FLOW_URL: ${{ github.event.inputs.target_url || 'https://globalcalcpro.com/services/ai-ecommerce' }}
+          FLOW_BUSINESS_NAME: ${{ github.event.inputs.business_name }}
+          FLOW_URL: ${{ github.event.inputs.target_url }}
         run: |
           node scripts/run-flow-blueprint.js
 
-      - name: Upload FLOW Master Blueprint Artifacts
+      - name: Upload Output Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: flow-master-blueprint-reports
+          name: flow-blueprint-reports
           path: flow-blueprint/
           retention-days: 30
 
-      - name: Commit & Push Updated Blueprint Reports
+      - name: Commit and Push Reports to Repository
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add flow-blueprint/
           if git diff --staged --quiet; then
-            echo "No changes detected in flow-blueprint/"
+            echo "No changes in flow-blueprint/ to commit."
           else
-            git commit -m "docs(flow): update FLOW master blueprint reports [skip ci]"
-            git push
+            git commit -m "docs(flow): update FLOW SEO & GEO master blueprint with live codebase data [skip ci]"
+            git push origin HEAD:${{ github.ref_name }}
           fi
