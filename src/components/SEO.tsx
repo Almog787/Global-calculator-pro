@@ -87,7 +87,7 @@ const SEO: React.FC<SEOProps> = ({
     : `${baseUrl}${resolvedCanonicalPath}`;
 
   const rawPath = finalCanonicalUrl.replace(baseUrl, '');
-  const pathWithoutLang = rawPath.replace(/^\/(en|he|es|fr|ar)(\/|$)/, '$2');
+  const pathWithoutLang = rawPath.replace(/^\/(en|he|es|fr|ar|ru)(\/|$)/, '$2');
   const normalizedPath = pathWithoutLang.startsWith('/') ? pathWithoutLang : `/${pathWithoutLang}`;
   const subPath = normalizedPath === '/' ? '' : normalizedPath;
 

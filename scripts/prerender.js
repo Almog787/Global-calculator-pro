@@ -417,10 +417,26 @@ const legacyRedirectMap = {
   "/percentage": "/en/percentage-finder",
   "/percentage/": "/en/percentage-finder",
   "/percentage.html": "/en/percentage-finder",
+  "/percentage-calculator": "/en/percentage-finder",
   "/percent": "/en/percentage-finder",
+  "/percent/": "/en/percentage-finder",
   "/percent-finder": "/en/percentage-finder",
+  "/percentages": "/en/percentage-finder",
+  "/mortgage": "/en/mortgage-calculator",
+  "/mortgage/": "/en/mortgage-calculator",
+  "/mortgage-calculator.html": "/en/mortgage-calculator",
+  "/compound": "/en/compound-interest",
   "/compound-interest.html": "/en/compound-interest",
+  "/unit": "/en/unit-converter",
   "/unit-converter.html": "/en/unit-converter",
+  "/bmi": "/en/bmi-calculator",
+  "/bmi-calculator.html": "/en/bmi-calculator",
+  "/tip": "/en/tip-calculator",
+  "/tip-calculator.html": "/en/tip-calculator",
+  "/salary": "/en/salary-calculator",
+  "/salary-calculator.html": "/en/salary-calculator",
+  "/age": "/en/age-calculator",
+  "/age-calculator.html": "/en/age-calculator",
   "/privacy": "/en/privacy-policy",
   "/privacy/": "/en/privacy-policy",
   "/privacy.html": "/en/privacy-policy",
@@ -429,8 +445,11 @@ const legacyRedirectMap = {
   "/terms.html": "/en/terms-of-service",
   "/about-us": "/en/about",
   "/about/": "/en/about",
+  "/about.html": "/en/about",
   "/contact-us": "/en/contact",
   "/contact/": "/en/contact",
+  "/contact.html": "/en/contact",
+  "/suggest-feature": "/en/suggest",
   "/2026/04/12/tech-as-your-personal-time-machine": "/en/calculators/download-time",
   "/2026/04/18/iran-negotiations-global-economy-impact": "/en/calculators/inflation",
   "/2026/04/10/happiness-roi-the-1-percent-rule": "/en/percentage-finder",
@@ -452,10 +471,9 @@ for (const [legacyPath, targetCanonical] of Object.entries(legacyRedirectMap)) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Redirecting...</title>
+  <title>Redirecting to ${targetCanonical}...</title>
   <meta http-equiv="refresh" content="0; url=${targetCanonical}">
   <link rel="canonical" href="${targetUrl}">
-  <meta name="robots" content="noindex, follow">
   <script>window.location.replace('${targetCanonical}');</script>
 </head>
 <body style="font-family: sans-serif; text-align: center; padding: 50px;">

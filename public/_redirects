@@ -1,1 +1,42 @@
+# Explicit 301 Permanent Redirects for Search Engines and Crawlers
+/percentage /en/percentage-finder 301
+/percentage/ /en/percentage-finder 301
+/percentage.html /en/percentage-finder 301
+/percentage-calculator /en/percentage-finder 301
+/percent /en/percentage-finder 301
+/percent/ /en/percentage-finder 301
+/percent-finder /en/percentage-finder 301
+/percentages /en/percentage-finder 301
+
+/mortgage /en/mortgage-calculator 301
+/mortgage/ /en/mortgage-calculator 301
+/mortgage-calculator.html /en/mortgage-calculator 301
+/compound /en/compound-interest 301
+/compound-interest.html /en/compound-interest 301
+/unit /en/unit-converter 301
+/unit-converter.html /en/unit-converter 301
+/bmi /en/bmi-calculator 301
+/bmi-calculator.html /en/bmi-calculator 301
+/tip /en/tip-calculator 301
+/tip-calculator.html /en/tip-calculator 301
+/salary /en/salary-calculator 301
+/salary-calculator.html /en/salary-calculator 301
+/age /en/age-calculator 301
+/age-calculator.html /en/age-calculator 301
+
+/privacy /en/privacy-policy 301
+/privacy/ /en/privacy-policy 301
+/privacy.html /en/privacy-policy 301
+/terms /en/terms-of-service 301
+/terms/ /en/terms-of-service 301
+/terms.html /en/terms-of-service 301
+/about-us /en/about 301
+/about/ /en/about 301
+/about.html /en/about 301
+/contact-us /en/contact 301
+/contact/ /en/contact 301
+/contact.html /en/contact 301
+/suggest-feature /en/suggest 301
+
+# Single Page App fallback
 /*    /index.html   200
