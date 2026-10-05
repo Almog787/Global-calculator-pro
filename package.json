@@ -41,6 +41,7 @@
     "build": "node scripts/generate-sitemap.js && node scripts/update-readme.js && vite build && cp dist/index.html dist/404.html && sed -i 's/<head>/<head><meta name=\"robots\" content=\"noindex\">/' dist/404.html && node scripts/prerender.js",
     "index-site": "node scripts/index-site.js",
     "indexnow": "node scripts/indexnow.js",
+    "flow:blueprint": "node scripts/run-flow-blueprint.js",
     "preview": "vite preview",
     "test": "tsc --noEmit && eslint . && vitest run",
     "test:unit": "vitest run",
