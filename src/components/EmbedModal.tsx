@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useI18n } from '../contexts/i18n';
-import { X, Copy, Check, Eye, Code2, ExternalLink } from 'lucide-react';
+import { X, Copy, Check, Eye, Code2, ExternalLink, Palette } from 'lucide-react';
 
 interface EmbedModalProps {
   isOpen: boolean;
@@ -316,15 +317,26 @@ export default function EmbedModal({
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
-                <a
-                  href={fullEmbedUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-blue-600 hover:text-blue-800 hover:underline font-medium"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  {translations.openInNewTab}
-                </a>
+                <div className="flex items-center gap-3">
+                  <a
+                    href={fullEmbedUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-blue-600 hover:text-blue-800 hover:underline font-medium"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    {translations.openInNewTab}
+                  </a>
+
+                  <Link
+                    to={`/${lang}/widgets?calc=${encodeURIComponent(pathWithoutLang.replace(/^\//, ''))}`}
+                    onClick={onClose}
+                    className="inline-flex items-center gap-1.5 text-xs text-emerald-700 hover:text-emerald-900 font-bold hover:underline"
+                  >
+                    <Palette className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>{lang === 'he' ? 'עצב צבעים ורכיב React במחולל הווידג\'טים' : 'Open in Widget Customizer (Brand Colors & React)'}</span>
+                  </Link>
+                </div>
 
                 <button
                   type="button"

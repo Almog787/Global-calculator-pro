@@ -6,6 +6,7 @@ import {
   generateIframeCode,
   generateReactCode,
   generateWordPressCode,
+  generateWebComponentCode,
   EmbedOptions
 } from './widgetsConfig';
 
@@ -13,7 +14,7 @@ describe('Embeddable Widgets Configuration & Code Generator Suite', () => {
   const languages = ['en', 'he', 'es', 'fr', 'ar', 'ru'] as const;
 
   it('should provide a complete catalog of supported widgets', () => {
-    expect(AVAILABLE_WIDGETS.length).toBe(18);
+    expect(AVAILABLE_WIDGETS.length).toBe(22);
 
     const expectedIds = [
       'mortgage',
@@ -33,7 +34,11 @@ describe('Embeddable Widgets Configuration & Code Generator Suite', () => {
       'triangle',
       'circle-sector',
       'matrix',
-      'complex-numbers'
+      'complex-numbers',
+      'retirement',
+      'capital-gains',
+      'car-finance-lease',
+      'scientific-units'
     ];
     const actualIds = AVAILABLE_WIDGETS.map(w => w.id);
     expect(actualIds).toEqual(expectedIds);
@@ -185,6 +190,31 @@ describe('Embeddable Widgets Configuration & Code Generator Suite', () => {
 
       expect(code).toContain('<!-- WordPress Custom HTML Block: Paste the following directly -->');
       expect(code).toContain('src="https://globalcalcpro.com/es/bmi-calculator?embed=true"');
+    });
+  });
+
+  describe('generateWebComponentCode', () => {
+    it('should generate styled web component container with custom styling parameters', () => {
+      const widget = AVAILABLE_WIDGETS.find(w => w.id === 'retirement')!;
+      const options: EmbedOptions = {
+        widget,
+        widgetLang: 'he',
+        uiLang: 'he',
+        width: '100%',
+        height: 740,
+        theme: 'light',
+        primaryColor: '#1E40AF',
+        borderRadius: 24,
+        shadow: 'elevated',
+        includeBacklink: true
+      };
+
+      const code = generateWebComponentCode(options);
+
+      expect(code).toContain('gcp-calc-widget');
+      expect(code).toContain('border-radius: 24px');
+      expect(code).toContain('color: #1E40AF');
+      expect(code).toContain('calculators/retirement-planner');
     });
   });
 });

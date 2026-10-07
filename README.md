@@ -30,7 +30,7 @@ Built with a zero-latency, client-side first architecture, Global Calc Pro deliv
   - [📐 Mathematics, Statistics & Science](#-mathematics-statistics--science)
   - [🩺 Health, Fitness & Medical](#-health-fitness--medical)
   - [⚡ Daily Utility & Conversions](#-daily-utility--conversions)
-- [🔗 Full SEO Sitemap Catalog (57 Calculators)](#-full-seo-sitemap-catalog-57-calculators)
+- [🔗 Full SEO Sitemap Catalog (59 Calculators)](#-full-seo-sitemap-catalog-59-calculators)
 - [🧰 Developer Ecosystem & Recommended Open-Source SEO Tools](#-developer-ecosystem--recommended-open-source-seo-tools)
 - [❓ Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
 - [🛠️ Developer Quick Start](#️-developer-quick-start)
@@ -173,7 +173,7 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 
 ---
 
-## 🔗 Full SEO Sitemap Catalog (57 Calculators)
+## 🔗 Full SEO Sitemap Catalog (59 Calculators)
 
 - **[Age & Milestone Birthday Calculator](https://globalcalcpro.com/age-calculator)** - Calculate exact chronological age in years, months, days, hours, and next birthday.
 - **[Age Calculator Calculator](https://globalcalcpro.com/calculators/age-calculator)** - Free online age calculator calculator for precise calculations.
@@ -187,6 +187,7 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 - **[Break-Even Calculator](https://globalcalcpro.com/calculators/break-even)** - Calculate your exact break-even point in units and revenue. Discover contribution margins, safety margins, and model profitability across various pricing strategies.
 - **[Cap Rate Calculator](https://globalcalcpro.com/calculators/cap-rate)** - Calculate the Capitalization Rate and Net Operating Income (NOI) for real estate investments.
 - **[Capital Gains Tax Calculator](https://globalcalcpro.com/calculators/capital-gains-tax)** - Calculate real and nominal capital gains tax on stocks, crypto, real estate, and investments with inflation indexation adjustment and tax loss carryforward.
+- **[Car Finance vs Lease vs Cash Calculator](https://globalcalcpro.com/calculators/car-finance-lease)** - Compare financing a car loan, leasing, or paying in full cash. Evaluate monthly payments, retained equity, depreciation, and net lifetime costs.
 - **[Circle Sector & Arc Length Calculator](https://globalcalcpro.com/calculators/circle-sector)** - Free online circle sector calculator. Compute arc length, sector area, chord length, and segment area from radius and central angle in degrees or radians with interactive SVG diagram.
 - **[Complex Numbers Calculator](https://globalcalcpro.com/calculators/complex-numbers)** - Comprehensive complex numbers calculator. Convert between rectangular, polar, and exponential Euler forms. Calculate modulus, argument, conjugate, square roots, powers, addition, subtraction, multiplication, and division with step-by-step solutions.
 - **[Compound Interest & Wealth Planner](https://globalcalcpro.com/compound-interest)** - Forecast investment growth, monthly DCA compounding, and retirement targets.
@@ -220,6 +221,7 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 - **[ROI (Return on Investment) Calculator](https://globalcalcpro.com/calculators/roi)** - Calculate your exact return on investment (ROI) and annualized growth rate (CAGR). Compare real estate, stocks, venture capital, and business investments.
 - **[Salary Calculator Calculator](https://globalcalcpro.com/calculators/salary-calculator)** - Free online salary calculator calculator for precise calculations.
 - **[Salary Gross-to-Net Take-Home Calculator](https://globalcalcpro.com/salary-calculator)** - Convert gross salary to net pay with income tax, social security, and health deductions.
+- **[Scientific & Engineering Unit Converter](https://globalcalcpro.com/calculators/scientific-unit-engine)** - Convert complex engineering and scientific units including Pressure (Pa, Bar, PSI), Energy (Joules, kWh, BTU), Power, Data Storage, Force, and Thermodynamics with high numerical precision.
 - **[Severance Pay & Section 14 Calculator](https://globalcalcpro.com/calculators/severance-pay)** - Calculate employee severance pay based on tenure and last salary, Section 14 pension deposits, statutory tax-exempt severance limits (13,750 NIS/year), taxable portion, and employer completion payments.
 - **[Sleep Calculator Calculator](https://globalcalcpro.com/calculators/sleep-calculator)** - Free online sleep calculator calculator for precise calculations.
 - **[Stock Options & RSU Calculator](https://globalcalcpro.com/calculators/stock-options-rsu)** - Calculate net proceeds, 4-year vesting schedule, capital gains tax under Section 102, dilution impact, and exit scenarios for startup equity and tech compensation.

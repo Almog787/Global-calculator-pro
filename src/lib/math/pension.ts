@@ -48,13 +48,8 @@ export function calculateRetirementPlan(options: RetirementCalculationOptions): 
   const conversionFactor = new Decimal(Math.max(50, options.annuityConversionFactor || 200));
   const inflationRate = new Decimal(Math.max(0, options.annualInflationPercent ?? 2.5)).div(100);
 
-  // Monthly deposit after deposit fee
+  // Monthly gross deposit
   const grossMonthlyDeposit = monthlySal.mul(contribRate);
-  const netMonthlyDeposit = grossMonthlyDeposit.mul(new Decimal(1).sub(depositFeeRate));
-
-  // Net annual growth rate factoring in accumulation fee
-  // (1 + r_net) = (1 + r_gross) * (1 - fee_accum)
-  const netAnnualGrowthFactor = new Decimal(1).add(annualReturnRate).mul(new Decimal(1).sub(accumFeeRate)).sub(1);
 
   let runningBalance = currentBal;
   let cumulativeGrossContributions = new Decimal(0);

@@ -178,6 +178,27 @@ describe('Link & Route Integrity Test Suite (Dead Links & 404 Prevention)', () =
     });
   });
 
+  describe('Unique Identifiers Integrity', () => {
+    it('every calculator in calculators.ts has a unique id and path to prevent duplicate key rendering errors', () => {
+      const seenIds = new Set<string>();
+      const seenPaths = new Set<string>();
+      for (const calc of calculators) {
+        expect(seenIds.has(calc.id), `Duplicate calculator id detected: "${calc.id}"`).toBe(false);
+        seenIds.add(calc.id);
+        expect(seenPaths.has(calc.path), `Duplicate calculator path detected: "${calc.path}"`).toBe(false);
+        seenPaths.add(calc.path);
+      }
+    });
+
+    it('every widget in AVAILABLE_WIDGETS has a unique id', () => {
+      const seenIds = new Set<string>();
+      for (const widget of AVAILABLE_WIDGETS) {
+        expect(seenIds.has(widget.id), `Duplicate widget id detected: "${widget.id}"`).toBe(false);
+        seenIds.add(widget.id);
+      }
+    });
+  });
+
   describe('Embeddable Widgets Route Integrity', () => {
     it('every widget in widgetsConfig points to an active valid calculator route', () => {
       AVAILABLE_WIDGETS.forEach((widget) => {

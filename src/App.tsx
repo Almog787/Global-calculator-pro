@@ -286,6 +286,12 @@ function App() {
             <Route path="/pension" element={<Navigate to={`/${lang}/calculators/retirement-planner`} replace />} />
             <Route path="/capital-gains-tax" element={<Navigate to={`/${lang}/calculators/capital-gains-tax`} replace />} />
             <Route path="/capital-gains" element={<Navigate to={`/${lang}/calculators/capital-gains-tax`} replace />} />
+            <Route path="/car-finance-lease" element={<Navigate to={`/${lang}/calculators/car-finance-lease`} replace />} />
+            <Route path="/car-lease-vs-buy" element={<Navigate to={`/${lang}/calculators/car-finance-lease`} replace />} />
+            <Route path="/car-finance" element={<Navigate to={`/${lang}/calculators/car-finance-lease`} replace />} />
+            <Route path="/scientific-unit-engine" element={<Navigate to={`/${lang}/calculators/scientific-unit-engine`} replace />} />
+            <Route path="/scientific-units" element={<Navigate to={`/${lang}/calculators/scientific-unit-engine`} replace />} />
+            <Route path="/unit-engine" element={<Navigate to={`/${lang}/calculators/scientific-unit-engine`} replace />} />
             <Route path="/pregnancy-calculator" element={<Navigate to={`/${lang}/calculators/pregnancy-calculator`} replace />} />
             <Route path="/pregnancy" element={<Navigate to={`/${lang}/calculators/pregnancy-calculator`} replace />} />
             <Route path="/due-date-calculator" element={<Navigate to={`/${lang}/calculators/pregnancy-calculator`} replace />} />

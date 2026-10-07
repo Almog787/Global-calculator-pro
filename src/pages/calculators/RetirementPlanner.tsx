@@ -7,11 +7,10 @@ import RelatedCalculators from '../../components/RelatedCalculators';
 import ShareActions from '../../components/ShareActions';
 import FAQ from '../../components/FAQ';
 import CountUp from '../../components/CountUp';
-import ShinyText from '../../components/ShinyText';
 import { calculateRetirementPlan } from '../../lib/math/pension';
 import { sanitizeExcelRows } from '../../lib/export/excelExport';
 import * as XLSX from 'xlsx';
-import { ShieldCheck, TrendingUp, DollarSign, PieChart, Download, FileSpreadsheet, Layers, Sparkles } from 'lucide-react';
+import { TrendingUp, FileSpreadsheet, Layers, Sparkles } from 'lucide-react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 

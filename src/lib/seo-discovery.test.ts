@@ -77,9 +77,25 @@ describe('SEO & AI Knowledge Discovery Suite', () => {
     const sitemapPath = path.join(rootDir, 'public/sitemap.xml');
     const sitemapContent = fs.readFileSync(sitemapPath, 'utf8');
 
-    it('should include all 5 language endpoints for /widgets in sitemap.xml', () => {
+    it('should include all 6 language endpoints for /widgets in sitemap.xml', () => {
       for (const lang of validLanguages) {
         expect(sitemapContent).toContain(`<loc>https://globalcalcpro.com/${lang}/widgets</loc>`);
+      }
+    });
+
+    it('should include all 6 language endpoints for new flagship calculators in sitemap.xml', () => {
+      const flagshipPaths = [
+        '/calculators/retirement-planner',
+        '/calculators/capital-gains-tax',
+        '/calculators/car-finance-lease',
+        '/calculators/scientific-unit-engine',
+        '/calculators/pregnancy-calculator',
+      ];
+
+      for (const lang of validLanguages) {
+        for (const fp of flagshipPaths) {
+          expect(sitemapContent).toContain(`<loc>https://globalcalcpro.com/${lang}${fp}</loc>`);
+        }
       }
     });
 

@@ -458,6 +458,144 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
     category: 'Advanced Math',
     icon: 'compass',
     defaultHeight: 680
+  },
+  {
+    id: 'retirement',
+    slug: 'calculators/retirement-planner',
+    name: {
+      en: 'Retirement & Pension Planner',
+      he: 'מחשבון פנסיה ותכנון פרישה',
+      es: 'Planificador de Jubilación y Pensiones',
+      fr: 'Calculateur de Retraite et Pension',
+      ar: 'حاسبة التقاعد والراتب التقاعدי',
+      ru: 'Пенсионный калькулятор и планирование'
+    },
+    description: {
+      en: 'Simulate pension accumulation, monthly benefits, annuity factor, and management fees.',
+      he: 'חישוב צבירה פנסיונית בגיל פרישה, קצבה חודשית לפי מקדם המרה ודמי ניהול.',
+      es: 'Calcula tu fondo de jubilación acumulado, pensión mensual estimada y comisiones.',
+      fr: 'Estimez votre capital à la retraite, rente mensuelle et frais de gestion.',
+      ar: 'محاكاة تراكم المدخرات التقاعدية والراتب الشهري المتوقع ورسوم الإدارة.',
+      ru: 'Расчет пенсионных накоплений, ежемесячной пенсии и комиссий фонда.'
+    },
+    category: 'Finance / Pension',
+    icon: 'account_balance',
+    defaultHeight: 740
+  },
+  {
+    id: 'capital-gains',
+    slug: 'calculators/capital-gains-tax',
+    name: {
+      en: 'Capital Gains Tax Calculator',
+      he: 'מחשבון מס רווחי הון והשקעות',
+      es: 'Calculadora de Ganancias de Capital',
+      fr: 'Calculateur de Plus-Values Mobilières',
+      ar: 'حاسبة ضريبة الأرباح الرأسمالية',
+      ru: 'Калькулятор налога на прирост капитала'
+    },
+    description: {
+      en: 'Compute real and nominal capital gains tax on stocks, crypto, real estate, and loss offsets.',
+      he: 'חישוב מס רווחי הון ריאלי (25%), ניכוי אינפלציה, קיזוז הפסדי עבר ומניות וקריפטו.',
+      es: 'Calcula el impuesto sobre plusvalías en acciones, cripto e inversiones con ajuste de inflación.',
+      fr: 'Calculez l\'impôt sur les plus-values d\'actions, crypto et investissements.',
+      ar: 'حساب ضريبة أرباح الأسهم والعملات الرقمية والعقارات مع خصم التضخم والخסائر.',
+      ru: 'Расчет налога на прибыль от акций, криптовалюты и недвижимости.'
+    },
+    category: 'Finance / Taxes',
+    icon: 'request_quote',
+    defaultHeight: 720
+  },
+  {
+    id: 'car-finance-lease',
+    slug: 'calculators/car-finance-lease',
+    name: {
+      en: 'Car Finance vs Lease vs Cash Calculator',
+      he: 'מחשבון ליסינג מול מימון מול רכישה במזומן',
+      es: 'Calculadora de Financiamiento vs Leasing vs Contado',
+      fr: 'Crédit Auto vs Leasing (LOA/LLD) vs Comptant',
+      ar: 'حاسبة تمويل السيارات مقابل التأجير التمويלי والنقد',
+      ru: 'Калькулятор автокредита, лизинга и покупки за наличные'
+    },
+    description: {
+      en: 'Compare auto loan finance, lease, and cash purchase. Evaluate monthly cost & retained equity.',
+      he: 'השוואה מקיפה בין מימון בנקאי, עסקת ליסינג וקנייה במזומן כולל ירידת ערך ועלות נטו.',
+      es: 'Compara préstamo de auto, leasing y compra al contado para encontrar la opción más económica.',
+      fr: 'Comparez le crédit automobile classique, le leasing (LOA/LLD) et l\'achat au comptant.',
+      ar: 'مقارنة دقيقة بين القرض البنكي، التأجير التمويلي، والدفع نقداً לשراء السيارات.',
+      ru: 'Сравните автокредит, лизинг и покупку авто за наличные: ежемесячные взносы и чистая стоимость.'
+    },
+    category: 'Auto / Finance',
+    icon: 'directions_car',
+    defaultHeight: 720
+  },
+  {
+    id: 'scientific-units',
+    slug: 'calculators/scientific-unit-engine',
+    name: {
+      en: 'Scientific Unit Engine & Engineering Converter',
+      he: 'ממיר מידות הנדסיות ומדעיות מורכבות',
+      es: 'Motor de Conversión de Unidades Científicas e Ingeniería',
+      fr: 'Convertisseur d\'Unités Scientifiques et Ingénierie',
+      ar: 'محول الوحدات العلمية والهندسية المتقدم',
+      ru: 'Инженерный конвертер физических и научных величин'
+    },
+    description: {
+      en: 'High-precision conversions for Pressure, Energy, Power, Force, Torque, Flow Rate, Viscosity, Bandwidth.',
+      he: 'המרה מדעית מתקדמת של לחץ, אנרגיה, הספק, כוח, מומנט, ספיקה, צמיגות, רוחב פס וטיפוגרפיה.',
+      es: 'Conversiones de alta precisión para presión, energía, potencia, fuerza, torsión y viscosidad.',
+      fr: 'Conversions haute précision pour pression, énergie, puissance, force, débit et viscosité.',
+      ar: 'تحويلات فائقة الدقة للضغط، الطاقة، القدرة، القوة، عزم الدوران واللزوجة.',
+      ru: 'Прецизионный перевод единиц давления, энергии, мощности, силы, крутящего момента и вязкости.'
+    },
+    category: 'Science & Engineering',
+    icon: 'science',
+    defaultHeight: 700
+  }
+];
+
+export interface ColorPreset {
+  id: string;
+  name: { en: string; he: string; es: string; fr: string; ar: string; ru: string };
+  primary: string;
+  accent: string;
+  theme: 'light' | 'dark';
+}
+
+export const THEME_PALETTES: ColorPreset[] = [
+  {
+    id: 'emerald-pro',
+    name: { en: 'Emerald Brand (Default)', he: 'ירוק אמרלד מותגי (ברירת מחדל)', es: 'Verde Esmeralda Pro', fr: 'Émeraude Pro', ar: 'زمردي احترافي', ru: 'Изумрудный бренд' },
+    primary: '#006B5B',
+    accent: '#10B981',
+    theme: 'light'
+  },
+  {
+    id: 'sapphire-blue',
+    name: { en: 'Sapphire Modern Blue', he: 'כחול ספיר מודרני', es: 'Azul Zafiro Moderno', fr: 'Bleu Saphir Moderne', ar: 'أزرق ياقوتي حديث', ru: 'Сапфировый синий' },
+    primary: '#1E40AF',
+    accent: '#3B82F6',
+    theme: 'light'
+  },
+  {
+    id: 'indigo-violet',
+    name: { en: 'Royal Indigo & Purple', he: 'אינדיגו וסגול מלכותי', es: 'Índigo Real', fr: 'Indigo Royal', ar: 'نيلي ملكي', ru: 'Королевский индиго' },
+    primary: '#4F46E5',
+    accent: '#8B5CF6',
+    theme: 'light'
+  },
+  {
+    id: 'sunset-amber',
+    name: { en: 'Sunset Amber & Orange', he: 'כתום שקיעה חם', es: 'Ámbar Cálido', fr: 'Ambre Couchant', ar: 'عنبري دافئ', ru: 'Янтарный закат' },
+    primary: '#C2410C',
+    accent: '#F97316',
+    theme: 'light'
+  },
+  {
+    id: 'obsidian-dark',
+    name: { en: 'Obsidian Night (Dark Mode)', he: 'שחור אובסידיאן (מצב כהה)', es: 'Obsidiana Oscuro', fr: 'Noir Obsidienne', ar: 'أوبسيديان ليلي', ru: 'Темный обсидиан' },
+    primary: '#10B981',
+    accent: '#059669',
+    theme: 'dark'
   }
 ];
 
@@ -468,23 +606,85 @@ export interface EmbedOptions {
   width: string;
   height: number;
   theme: 'light' | 'dark';
+  primaryColor?: string;
+  accentColor?: string;
+  borderRadius?: number;
+  shadow?: 'none' | 'subtle' | 'elevated' | 'deep';
+  fontFamily?: string;
+  showBorder?: boolean;
   includeBacklink: boolean;
 }
 
-export function buildEmbedUrl(slug: string, lang: string, theme: 'light' | 'dark' = 'light'): string {
-  return `https://globalcalcpro.com/${lang}/${slug}?embed=true${theme === 'dark' ? '&theme=dark' : ''}`;
+export function buildEmbedUrl(
+  slug: string,
+  lang: string,
+  theme: 'light' | 'dark' = 'light',
+  customization?: { primaryColor?: string; accentColor?: string; borderRadius?: number }
+): string {
+  let url = `https://globalcalcpro.com/${lang}/${slug}?embed=true`;
+  if (theme === 'dark') url += '&theme=dark';
+  if (customization?.primaryColor && customization.primaryColor !== '#006B5B') {
+    url += `&primary=${encodeURIComponent(customization.primaryColor.replace('#', ''))}`;
+  }
+  if (customization?.borderRadius !== undefined && customization.borderRadius !== 16) {
+    url += `&radius=${customization.borderRadius}`;
+  }
+  return url;
 }
 
 export function buildCanonicalUrl(slug: string, lang: string): string {
   return `https://globalcalcpro.com/${lang}/${slug}`;
 }
 
+export function getShadowCss(shadow: 'none' | 'subtle' | 'elevated' | 'deep' = 'elevated'): string {
+  switch (shadow) {
+    case 'none':
+      return 'none';
+    case 'subtle':
+      return '0 2px 8px -1px rgba(0, 0, 0, 0.04)';
+    case 'deep':
+      return '0 20px 35px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+    case 'elevated':
+    default:
+      return '0 8px 24px -2px rgba(0, 0, 0, 0.08)';
+  }
+}
+
 export function generateIframeCode(options: EmbedOptions): string {
-  const { widget, widgetLang, uiLang = 'en', width, height, theme, includeBacklink } = options;
-  const embedUrl = buildEmbedUrl(widget.slug, widgetLang, theme);
+  const {
+    widget,
+    widgetLang,
+    uiLang = 'en',
+    width,
+    height,
+    theme,
+    primaryColor,
+    accentColor,
+    borderRadius = 16,
+    shadow = 'elevated',
+    showBorder = true,
+    includeBacklink
+  } = options;
+
+  const embedUrl = buildEmbedUrl(widget.slug, widgetLang, theme, { primaryColor, accentColor, borderRadius });
   const canonicalUrl = buildCanonicalUrl(widget.slug, widgetLang);
   const widgetTitle = widget.name[uiLang as keyof typeof widget.name] || widget.name.en;
-  const poweredByText = uiLang === 'he' ? 'מופעל ע״י' : uiLang === 'es' ? 'Desarrollado por' : uiLang === 'fr' ? 'Propulsé par' : uiLang === 'ar' ? 'مشغل بواسطة' : uiLang === 'ru' ? 'Работает на' : 'Powered by';
+  const poweredByText =
+    uiLang === 'he'
+      ? 'מופעל ע״י'
+      : uiLang === 'es'
+      ? 'Desarrollado por'
+      : uiLang === 'fr'
+      ? 'Propulsé par'
+      : uiLang === 'ar'
+      ? 'مشغل بواسطة'
+      : uiLang === 'ru'
+      ? 'Работает на'
+      : 'Powered by';
+
+  const borderStyle = showBorder ? (theme === 'dark' ? 'border: 1px solid #334155;' : 'border: 1px solid #e5e7eb;') : 'border: none;';
+  const shadowValue = getShadowCss(shadow);
+  const linkColor = primaryColor || '#006B5B';
 
   return `<iframe 
   src="${embedUrl}" 
@@ -493,23 +693,52 @@ export function generateIframeCode(options: EmbedOptions): string {
   frameborder="0" 
   loading="lazy" 
   title="${widgetTitle}" 
-  style="border: 1px solid #e5e7eb; border-radius: 16px; width: ${width}; max-width: 100%; box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);"
+  style="${borderStyle} border-radius: ${borderRadius}px; width: ${width}; max-width: 100%; box-shadow: ${shadowValue};"
 ></iframe>${
     includeBacklink
-      ? `\n<p style="font-size: 12px; color: #6b7280; margin-top: 8px; text-align: center; font-family: system-ui, sans-serif;">
-  ${poweredByText} <a href="${canonicalUrl}" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline; font-weight: 600;">GlobalCalc Pro</a>
+      ? `\n<p style="font-size: 12px; color: ${theme === 'dark' ? '#94a3b8' : '#6b7280'}; margin-top: 8px; text-align: center; font-family: system-ui, sans-serif;">
+  ${poweredByText} <a href="${canonicalUrl}" target="_blank" rel="noopener noreferrer" style="color: ${linkColor}; text-decoration: underline; font-weight: 600;">GlobalCalc Pro</a>
 </p>`
       : ''
   }`;
 }
 
 export function generateReactCode(options: EmbedOptions): string {
-  const { widget, widgetLang, uiLang = 'en', width, height, theme, includeBacklink } = options;
-  const embedUrl = buildEmbedUrl(widget.slug, widgetLang, theme);
+  const {
+    widget,
+    widgetLang,
+    uiLang = 'en',
+    width,
+    height,
+    theme,
+    primaryColor,
+    accentColor,
+    borderRadius = 16,
+    shadow = 'elevated',
+    showBorder = true,
+    includeBacklink
+  } = options;
+
+  const embedUrl = buildEmbedUrl(widget.slug, widgetLang, theme, { primaryColor, accentColor, borderRadius });
   const canonicalUrl = buildCanonicalUrl(widget.slug, widgetLang);
-  const componentName = widget.id.charAt(0).toUpperCase() + widget.id.slice(1) + 'Widget';
+  const componentName = widget.id.replace(/-/g, '').charAt(0).toUpperCase() + widget.id.replace(/-/g, '').slice(1) + 'Widget';
   const widgetTitle = widget.name[uiLang as keyof typeof widget.name] || widget.name.en;
-  const poweredByText = uiLang === 'he' ? 'מופעל ע״י' : uiLang === 'es' ? 'Desarrollado por' : uiLang === 'fr' ? 'Propulsé par' : uiLang === 'ar' ? 'مشغل بواسطة' : uiLang === 'ru' ? 'Работает на' : 'Powered by';
+  const poweredByText =
+    uiLang === 'he'
+      ? 'מופעל ע״י'
+      : uiLang === 'es'
+      ? 'Desarrollado por'
+      : uiLang === 'fr'
+      ? 'Propulsé par'
+      : uiLang === 'ar'
+      ? 'مشغل بواسطة'
+      : uiLang === 'ru'
+      ? 'Работает на'
+      : 'Powered by';
+
+  const shadowValue = getShadowCss(shadow);
+  const borderColor = showBorder ? (theme === 'dark' ? '#334155' : '#e5e7eb') : 'transparent';
+  const linkColor = primaryColor || '#006B5B';
 
   return `import React from 'react';
 
@@ -524,17 +753,17 @@ export function ${componentName}() {
         loading="lazy"
         title="${widgetTitle}"
         style={{
-          border: '1px solid #e5e7eb',
-          borderRadius: '16px',
-          boxShadow: '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+          border: '1px solid ${borderColor}',
+          borderRadius: '${borderRadius}px',
+          boxShadow: '${shadowValue}',
           width: '100%'
         }}
       />
       ${
         includeBacklink
-          ? `<p style={{ fontSize: '12px', color: '#6b7280', marginTop: '8px', textAlign: 'center' }}>
+          ? `<p style={{ fontSize: '12px', color: '${theme === 'dark' ? '#94a3b8' : '#6b7280'}', marginTop: '8px', textAlign: 'center' }}>
         ${poweredByText}{' '}
-        <a href="${canonicalUrl}" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', fontWeight: 600 }}>
+        <a href="${canonicalUrl}" target="_blank" rel="noopener noreferrer" style={{ color: '${linkColor}', fontWeight: 600 }}>
           GlobalCalc Pro
         </a>
       </p>`
@@ -549,3 +778,28 @@ export function generateWordPressCode(options: EmbedOptions): string {
   const iframe = generateIframeCode(options);
   return `<!-- WordPress Custom HTML Block: Paste the following directly -->\n${iframe}`;
 }
+
+export function generateWebComponentCode(options: EmbedOptions): string {
+  const { widget, widgetLang, uiLang = 'en', width, height, theme, primaryColor, accentColor, borderRadius = 16, shadow = 'elevated', showBorder = true, includeBacklink } = options;
+  const embedUrl = buildEmbedUrl(widget.slug, widgetLang, theme, { primaryColor, accentColor, borderRadius });
+  const canonicalUrl = buildCanonicalUrl(widget.slug, widgetLang);
+  const widgetTitle = widget.name[uiLang as keyof typeof widget.name] || widget.name.en;
+  const shadowValue = getShadowCss(shadow);
+  const borderColor = showBorder ? (theme === 'dark' ? '#334155' : '#e5e7eb') : 'transparent';
+  const linkColor = primaryColor || '#006B5B';
+
+  return `<!-- GlobalCalc Pro Interactive Widget Container -->
+<div class="gcp-calc-widget" style="width: ${width}; max-width: 100%; margin: 0 auto;">
+  <iframe 
+    src="${embedUrl}" 
+    width="100%" 
+    height="${height}" 
+    style="border: 1px solid ${borderColor}; border-radius: ${borderRadius}px; box-shadow: ${shadowValue}; width: 100%; display: block;" 
+    frameborder="0" 
+    loading="lazy" 
+    title="${widgetTitle}">
+  </iframe>
+  ${includeBacklink ? `<div style="text-align: center; margin-top: 6px; font-size: 11px; font-family: sans-serif; color: #888;">Powered by <a href="${canonicalUrl}" target="_blank" rel="noopener" style="color: ${linkColor}; text-decoration: none; font-weight: bold;">GlobalCalc Pro</a></div>` : ''}
+</div>`;
+}
+

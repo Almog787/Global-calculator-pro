@@ -175,6 +175,10 @@
 - **Supported Widget Slugs**:
   - `mortgage-calculator`: Monthly repayment, loan amortization schedule & comparison.
   - `compound-interest`: Investment future value, compound interest curve & contributions.
+  - `calculators/retirement-planner`: Pension nest egg, monthly annuity benefits, management fees.
+  - `calculators/capital-gains-tax`: Real & nominal capital gains tax (25%), inflation adjustments, loss carryforward.
+  - `calculators/car-finance-lease`: Auto loans vs leasing vs cash purchase with depreciation.
+  - `calculators/scientific-unit-engine`: High-precision conversions for Pressure, Energy, Power, Force, Torque, Flow Rate, Viscosity, Bandwidth.
   - `salary-calculator`: Net take-home salary, tax, pension & deductions.
   - `bmi-calculator`: Body Mass Index, health category & target weight range.
   - `percentage-finder`: Percent of value, percentage change & discount calculator.
@@ -185,11 +189,15 @@
   - Standard HTML `<iframe>` with `loading="lazy"` and responsive styling.
   - WordPress / Elementor / Gutenberg Custom HTML embed block.
   - Modern React / Next.js component ready for client-side inclusion.
+  - Standalone Web Component snippet.
 - **Supported Customizations**:
-  - Languages: `en`, `he`, `es`, `fr`, `ar` (with automatic RTL/LTR orientation).
-  - Width: Responsive 100%, Standard 600px, Sidebar 380px.
-  - Height: Adjustable (typically 520px - 720px).
-  - Themes: Light (`#ffffff` card background) and Dark (`#1c1917` card background).
+  - Languages: `en`, `he`, `es`, `fr`, `ar`, `ru` (with automatic RTL/LTR orientation).
+  - Brand Palette Presets: Emerald, Sapphire Blue, Royal Indigo, Sunset Amber, Obsidian Dark, or Custom HEX Color Picker.
+  - Border Radius: Sharp (0px), Rounded (8px), Modern (16px), Pill (24px).
+  - Box Shadow: Flat, Subtle, Modern Elevated, Deep 3D.
+  - Width: Responsive 100%, Standard 600px, Sidebar 380px, Custom slider.
+  - Height: Adjustable (typically 520px - 740px).
+  - Themes: Light and Dark.
 
 ---
 

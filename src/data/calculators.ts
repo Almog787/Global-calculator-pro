@@ -339,25 +339,25 @@ export const dynamicTranslations: Record<string, Record<string, { title: string;
     ar: { title: "حاسبة ضريبة الأرباح الرأسمالية", description: "حساب ضريبة أرباح الأسهم والعملات الرقمية والعقارات مع خصم التضخم والخسائر السابقة." },
     ru: { title: "Калькулятор налога на прирост капитала", description: "Расчет налога на прибыль от акций, криптовалюты и недвижимости с учетом инфляционной индексации." },
   },
+  "car-finance-lease": {
+    en: { title: "Car Finance vs Lease vs Cash Calculator", description: "Compare financing a car loan, leasing, or paying in full cash. Evaluate monthly payments, retained equity, and true net cost." },
+    he: { title: "מחשבון ליסינג מול מימון מול רכישה במזומן", description: "השוואה מלאה: מימון בנקאי לרכב, עסקת ליסינג או קנייה במזומן. גלה את התשלום החודשי, ירידת הערך והעלות האמיתית." },
+    es: { title: "Calculadora de Financiamiento vs Leasing vs Contado", description: "Compara préstamo de auto, leasing y compra al contado para encontrar la opción más económica." },
+    fr: { title: "Crédit Auto vs Leasing (LOA/LLD) vs Comptant", description: "Comparez le crédit automobile classique, le leasing (LOA/LLD) et l'achat au comptant." },
+    ar: { title: "حاسبة تمويل السيارات مقابل التأجير التمويلي والنقد", description: "مقارنة دقيقة بين القرض البنكي، التأجير التمويلي، والدفع نقداً لشراء السيارات." },
+    ru: { title: "Калькулятор автокредита, лизинга и покупки за наличные", description: "Сравните автокредит, лизинг и покупку авто за наличные: ежемесячные взносы и чистая стоимость." },
+  },
+  "scientific-unit-engine": {
+    en: { title: "Scientific & Engineering Unit Converter", description: "High-precision conversion engine for Pressure (Pa, Bar, PSI), Energy (Joules, kWh, BTU), Power, Force, and Data." },
+    he: { title: "מחשבון המרת מידות הנדסיות ומדעיות", description: "מנוע המרה בדיוק גבוה: לחץ (Pa, Bar, PSI), אנרגיה (ג'אול, קוט\"ש, BTU), הספק, אחסון נתונים ותרמודינמיקה." },
+    es: { title: "Convertidor de Unidades Científicas e Ingeniería", description: "Conversor de alta precisión para presión, energía, potencia, datos y termodinámica." },
+    fr: { title: "Convertisseur d'Unités Scientifiques et d'Ingénierie", description: "Moteur de conversion pour la pression, l'énergie, la puissance et le stockage de données." },
+    ar: { title: "محول الوحدات العلمية والهندسية الدقيق", description: "تحويل وحدات القياس الهندسية والعلمية المعقدة: الضغط، الطاقة، القدرة، وتخزين البيانات." },
+    ru: { title: "Инженерный и научный конвертер величин", description: "Высокоточный конвертер для давления, энергии, мощности, силы и объемов данных." },
+  },
 };
 
 export const calculators: CalculatorMeta[] = [
-  {
-    id: "retirement-planner",
-    path: "/calculators/retirement-planner",
-    fallbackTitle: "Retirement & Pension Planner",
-    description: "Simulate retirement capital, monthly pension benefits, and management fees.",
-    category: "finance",
-    tags: ["pension","retirement","savings","annuity","salary","finance"],
-  },
-  {
-    id: "capital-gains-tax",
-    path: "/calculators/capital-gains-tax",
-    fallbackTitle: "Capital Gains Tax Calculator",
-    description: "Calculate real 25% capital gains tax, inflation adjustments, and loss offsets.",
-    category: "finance",
-    tags: ["tax","capital gains","stocks","crypto","investing","finance"],
-  },
   {
     id: "mortgage-affordability",
     path: "/calculators/mortgage-affordability",
@@ -754,6 +754,38 @@ export const calculators: CalculatorMeta[] = [
     category: "health",
     tags: ["pregnancy", "due date", "gestational age", "trimester", "baby", "conception", "ovulation", "ultrasound", "health", "family", "הריון", "תאריך לידה", "שבועות הריון"],
   },
+  {
+    id: "retirement-planner",
+    path: "/calculators/retirement-planner",
+    fallbackTitle: "Retirement & Pension Planner",
+    description: "Calculate retirement capital accumulation, gross monthly pension benefit, management fees, and annuity factors.",
+    category: "finance",
+    tags: ["retirement", "pension", "annuity", "401k", "savings", "compound interest", "salary", "management fees", "פנסיה", "פרישה", "קצבה"],
+  },
+  {
+    id: "capital-gains-tax",
+    path: "/calculators/capital-gains-tax",
+    fallbackTitle: "Capital Gains Tax Calculator",
+    description: "Calculate real and nominal capital gains tax on stocks, crypto, real estate, and loss carryforward offsets.",
+    category: "finance",
+    tags: ["capital gains", "tax", "stocks", "crypto", "bitcoin", "investing", "inflation deduction", "loss offset", "מס רווחי הון", "מניות", "קריפטו"],
+  },
+  {
+    id: "car-finance-lease",
+    path: "/calculators/car-finance-lease",
+    fallbackTitle: "Car Finance vs Lease vs Cash Calculator",
+    description: "Compare financing a car loan, leasing, or paying in full cash. Evaluate monthly payments, retained equity, and true net cost.",
+    category: "finance",
+    tags: ["car loan", "lease", "cash purchase", "auto finance", "residual value", "depreciation", "down payment", "מימון רכב", "ליסינג", "קניית רכב"],
+  },
+  {
+    id: "scientific-unit-engine",
+    path: "/calculators/scientific-unit-engine",
+    fallbackTitle: "Scientific Unit Engine & Engineering Converter",
+    description: "Multi-category scientific conversion engine for Pressure, Energy, Power, Force, Torque, Flow Rate, Dynamic Viscosity, Data Bandwidth, and Typography.",
+    category: "tech",
+    tags: ["scientific units", "engineering", "pressure", "energy", "power", "force", "torque", "flow rate", "viscosity", "bandwidth", "typography", "physics", "המרה מדעית"],
+  },
 ];
 
 export function getCalculatorTitle(calc: CalculatorMeta, t: any, lang: string): string {
@@ -820,6 +852,10 @@ export function getRelatedCalculators(currentId: string, limit: number = 3) {
     'purchase-appreciation-tax': ['mortgage', 'rent-vs-buy', 'cap-rate'],
     'employer-cost': ['salary', 'freelance-net-income', 'severance-pay'],
     'severance-pay': ['salary', 'employer-cost', 'freelance-net-income'],
+    'retirement-planner': ['compound-interest', 'goal-savings', 'salary', 'capital-gains-tax', 'stock-options-rsu'],
+    'capital-gains-tax': ['stock-options-rsu', 'roi', 'retirement-planner', 'margin', 'purchase-appreciation-tax'],
+    'car-finance-lease': ['auto-loan', 'fuel-split', 'debt-snowball', 'rent-vs-buy', 'credit-card-payoff'],
+    'scientific-unit-engine': ['unit-converter', 'peltier-cooling', 'download-time', 'matrix-calculator', 'base-converter'],
   };
 
   const directClusterIds = curatedClusters[current.id] || curatedClusters[current.id.replace('calc-', '')] || [];

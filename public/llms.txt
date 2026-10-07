@@ -21,9 +21,13 @@ GlobalCalc Pro is engineered for human users and AI engines (ChatGPT Search, Per
 - Spanish: `https://globalcalcpro.com/es/` (LTR)
 - French: `https://globalcalcpro.com/fr/` (LTR)
 - Arabic: `https://globalcalcpro.com/ar/` (RTL)
+- Russian: `https://globalcalcpro.com/ru/` (LTR)
 
 ## Primary Financial & Real Estate Calculators
 
+- [Retirement & Pension Planner](https://globalcalcpro.com/en/calculators/retirement-planner): Simulate pension nest egg accumulation, monthly gross benefit annuity, management fees impact, and inflation-adjusted purchasing power with full Excel (.xlsx) export.
+- [Capital Gains Tax Calculator](https://globalcalcpro.com/en/calculators/capital-gains-tax): Real and nominal capital gains tax calculation (25%), inflation adjustments, loss carryforward offsets for stocks and cryptocurrency.
+- [Car Finance vs Lease vs Cash](https://globalcalcpro.com/en/calculators/car-finance-lease): Compare auto loans, closed-end lease, and cash purchase. Evaluate monthly cash flow, residual value, and true net cost.
 - [Mortgage Calculator](https://globalcalcpro.com/en/mortgage-calculator): Calculate monthly payment, amortization schedule, principal, total interest, side-by-side mortgage scenario comparison (Plan A vs Plan B), and export to Excel (.xlsx).
 - [Mortgage Affordability](https://globalcalcpro.com/en/calculators/mortgage-affordability): Calculate maximum home purchase budget from monthly income and down payment.
 - [Mortgage Refinance](https://globalcalcpro.com/en/calculators/refinance): Calculate monthly interest savings and break-even point for refinancing.
@@ -60,6 +64,7 @@ GlobalCalc Pro is engineered for human users and AI engines (ChatGPT Search, Per
 
 ## Math & Tech Calculators
 
+- [Scientific Unit Engine](https://globalcalcpro.com/en/calculators/scientific-unit-engine): High-precision conversions for Pressure, Energy, Power, Force, Torque, Flow Rate, Dynamic Viscosity, Data Bandwidth, and Typography.
 - [Percentage Finder](https://globalcalcpro.com/en/percentage-finder): Percentages, percentage change, and discounts.
 - [Unit Converter](https://globalcalcpro.com/en/unit-converter): Length, weight, temperature, area, volume, speed, and time.
 - [Date Duration & Business Days](https://globalcalcpro.com/en/calculators/date-difference): Days, weeks, months, and working business days between dates.

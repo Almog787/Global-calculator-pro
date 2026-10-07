@@ -13,6 +13,7 @@ const locales = {
   es: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/es.json"), "utf8")),
   fr: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/fr.json"), "utf8")),
   ar: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/ar.json"), "utf8")),
+  ru: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/ru.json"), "utf8")),
 };
 
 // Read paths to prerender from calculators.ts

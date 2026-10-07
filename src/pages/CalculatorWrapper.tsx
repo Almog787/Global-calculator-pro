@@ -10,6 +10,7 @@ import ErrorBoundary from '../components/ErrorBoundary';
 import { useI18n } from '../contexts/i18n';
 import SEO from '../components/SEO';
 import DisclaimerNotice, { DisclaimerType } from '../components/DisclaimerNotice';
+import EmbedCtaBanner from '../components/EmbedCtaBanner';
 
 // Using Vite's import.meta.glob to dynamically discover all calculators in the folder.
 const modules = import.meta.glob('./calculators/*.tsx');
@@ -93,6 +94,11 @@ export default function CalculatorWrapper() {
       <div className="mt-6 mb-6">
         <DisclaimerNotice type={disclaimerType} />
       </div>
+
+      <EmbedCtaBanner
+        calculatorId={calcData?.id || cleanSlug}
+        calculatorTitle={title}
+      />
 
       <div className="mt-6 mb-8">
         <ShareActions calculatorTitle={title} calculatorPath={currentPath} />

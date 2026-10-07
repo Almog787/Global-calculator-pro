@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useUrlState } from '../../hooks/useUrlState';
 import { useI18n } from '../../contexts/i18n';
 import SEO from '../../components/SEO';
@@ -10,7 +10,7 @@ import CountUp from '../../components/CountUp';
 import { calculateCapitalGains } from '../../lib/math/capitalGains';
 import { sanitizeExcelRows } from '../../lib/export/excelExport';
 import * as XLSX from 'xlsx';
-import { DollarSign, Percent, Receipt, FileSpreadsheet, Sparkles, TrendingUp, Info, ShieldAlert } from 'lucide-react';
+import { Receipt, FileSpreadsheet, Sparkles } from 'lucide-react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
