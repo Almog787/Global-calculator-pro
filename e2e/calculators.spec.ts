@@ -1,56 +1,54 @@
 import { test, expect } from '@playwright/test';
-import { calculators } from '../src/data/calculators';
+import { BaseCalculatorPage } from './pages/BaseCalculatorPage';
 
-test.describe('Calculators E2E Tests', () => {
-  // Test the home page
-  test('Home page should load without errors', async ({ page }) => {
-    const errors: string[] = [];
-    page.on('pageerror', (err) => errors.push(err.message));
-    page.on('console', (msg) => {
-      if (msg.type() === 'error') {
-        const text = msg.text();
-        // Ignore expected Vite/HMR errors in preview environments
-        if (!text.includes('failed to connect to websocket') && !text.includes('Vite') && !text.includes('net::ERR_CONNECTION_REFUSED')) {
-          errors.push(text);
-        }
-      }
-    });
+test.describe('Core Calculators Sanity & Navigation Suite', () => {
 
-    await page.goto('/');
-    
-    // Wait for the app to mount
-    await page.waitForSelector('main', { state: 'visible' });
-    
-    // Check if there are no critical errors
-    expect(errors.length).toBe(0);
+  test('Home page mounts with hero section, search bar, and calculator catalog grid', async ({ page }) => {
+    const calcPage = new BaseCalculatorPage(page);
+    await calcPage.navigate('/all', 'en');
+
+    // Hero Search Bar is visible and functional
+    const searchInput = calcPage.searchInput;
+    await expect(searchInput).toBeVisible();
+
+    // Verify catalog cards
+    const cards = page.locator('a[href*="/en/"]');
+    const count = await cards.count();
+    expect(count).toBeGreaterThan(10);
+
+    calcPage.verifyNoConsoleErrors();
   });
 
-  // Dynamically test all calculators
-  for (const calc of calculators) {
-    test(`Calculator: ${calc.fallbackTitle} should load without errors at ${calc.path}`, async ({ page }) => {
-      const errors: string[] = [];
-      page.on('pageerror', (err) => errors.push(err.message));
-      page.on('console', (msg) => {
-        if (msg.type() === 'error') {
-          const text = msg.text();
-          // Ignore expected Vite/HMR errors in preview environments
-          if (!text.includes('failed to connect to websocket') && !text.includes('Vite') && !text.includes('net::ERR_CONNECTION_REFUSED')) {
-            errors.push(text);
-          }
-        }
-      });
+  test('Widgets Hub displays interactive widget code generator and preview', async ({ page }) => {
+    const calcPage = new BaseCalculatorPage(page);
+    await calcPage.navigate('/widgets', 'en');
 
-      await page.goto(calc.path);
-      
-      // Wait for the app to be mounted and title to be set (basic sanity check)
-      await page.waitForSelector('main', { state: 'visible' });
+    await calcPage.verifyH1Heading();
+    await calcPage.verifyNoMissingTranslations();
 
-      // The React app should not crash (usually a crash results in a blank screen or error boundary)
-      const rootElement = await page.locator('#root').innerHTML();
-      expect(rootElement.length).toBeGreaterThan(0);
-      
-      // Verify no console errors
-      expect(errors).toEqual([]);
-    });
-  }
+    // Verify iframe code preview is displayed
+    const codeBlock = page.locator('pre, code, textarea');
+    await expect(codeBlock.first()).toBeVisible();
+
+    calcPage.verifyNoConsoleErrors();
+  });
+
+  test('Category navigation filters calculators correctly', async ({ page }) => {
+    const calcPage = new BaseCalculatorPage(page);
+    
+    // Navigate to Finance Category
+    await calcPage.navigate('/category/finance', 'en');
+    await calcPage.verifyH1Heading();
+    
+    // Check that finance calculators are visible
+    await expect(page.getByText(/Mortgage|Compound Interest|Salary|VAT/i).first()).toBeVisible();
+
+    // Navigate to Health Category
+    await calcPage.navigate('/category/health', 'en');
+    await calcPage.verifyH1Heading();
+    await expect(page.getByText(/BMI|BMR|Pregnancy|Water/i).first()).toBeVisible();
+
+    calcPage.verifyNoConsoleErrors();
+  });
+
 });

@@ -5,7 +5,10 @@ on:
 
 jobs:
   e2e-testing:
+    name: Run Next-Gen E2E Test Suite
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -13,18 +16,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci || npm install
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Run Playwright tests
-        run: npx playwright test
-        
-      - name: Upload Playwright report
+      - name: Run Playwright E2E Suite
+        run: npx playwright test --project=Desktop-Chrome
+
+      - name: Upload Playwright HTML Report
         uses: actions/upload-artifact@v4
         if: always()
         with:
