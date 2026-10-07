@@ -323,9 +323,41 @@ export const dynamicTranslations: Record<string, Record<string, { title: string;
     ar: { title: "حاسبة الأعداد المركبة", description: "العمليات الحسابية، الصيغة القطبية وأويلر، المقياس، السعة، قوى دي موافر والمستوى المركب." },
     ru: { title: "Калькулятор комплексных чисел", description: "Арифметические операции, тригонометрическая форма, модуль, аргумент и сопряжение комплексных чисел." },
   },
+  "retirement-planner": {
+    en: { title: "Retirement & Pension Planner", description: "Calculate retirement capital accumulation, gross monthly pension benefit, management fees, and annuity factors." },
+    he: { title: "מחשבון פנסיה ותכנון פרישה", description: "חישוב צבירה פנסיונית בפרישה, קצבה חודשית ברוטו לפי מקדם המרה, השפעת דמי ניהול ותשואה שנתית." },
+    es: { title: "Planificador de Jubilación y Pensiones", description: "Calcula tu fondo de jubilación acumulado, pensión mensual estimada y comisiones de gestión." },
+    fr: { title: "Calculateur de Retraite et Pension", description: "Estimez votre capital à la retraite, rente mensuelle prévisionnelle et impact des frais de gestion." },
+    ar: { title: "حاسبة التقاعد والراتب التقاعدي", description: "محاكاة تراكم المدخرات التقاعدية والراتب الشهري المتوقع ورسوم الإدارة عبر السنوات." },
+    ru: { title: "Пенсионный калькулятор и планирование", description: "Расчет пенсионных накоплений, ежемесячной пенсии и комиссий фонда до выхода на пенсию." },
+  },
+  "capital-gains-tax": {
+    en: { title: "Capital Gains Tax Calculator", description: "Calculate real and nominal capital gains tax on stocks, crypto, real estate, and loss carryforward offsets." },
+    he: { title: "מחשבון מס רווחי הון והשקעות", description: "חישוב מס רווחי הון ריאלי (25%), ניכוי אינפלציה, רווח פטור, קיזוז הפסדי עבר וחישוב מס על מניות וקריפטו." },
+    es: { title: "Calculadora de Ganancias de Capital", description: "Calcula el impuesto sobre plusvalías en acciones, cripto e inversiones con ajuste de inflación." },
+    fr: { title: "Calculateur de Plus-Values Mobilières", description: "Calculez l'impôt sur les plus-values d'actions, crypto-monnaies et investissements avec déduction de l'inflation." },
+    ar: { title: "حاسبة ضريبة الأرباح الرأسمالية", description: "حساب ضريبة أرباح الأسهم والعملات الرقمية والعقارات مع خصم التضخم والخسائر السابقة." },
+    ru: { title: "Калькулятор налога на прирост капитала", description: "Расчет налога на прибыль от акций, криптовалюты и недвижимости с учетом инфляционной индексации." },
+  },
 };
 
 export const calculators: CalculatorMeta[] = [
+  {
+    id: "retirement-planner",
+    path: "/calculators/retirement-planner",
+    fallbackTitle: "Retirement & Pension Planner",
+    description: "Simulate retirement capital, monthly pension benefits, and management fees.",
+    category: "finance",
+    tags: ["pension","retirement","savings","annuity","salary","finance"],
+  },
+  {
+    id: "capital-gains-tax",
+    path: "/calculators/capital-gains-tax",
+    fallbackTitle: "Capital Gains Tax Calculator",
+    description: "Calculate real 25% capital gains tax, inflation adjustments, and loss offsets.",
+    category: "finance",
+    tags: ["tax","capital gains","stocks","crypto","investing","finance"],
+  },
   {
     id: "mortgage-affordability",
     path: "/calculators/mortgage-affordability",

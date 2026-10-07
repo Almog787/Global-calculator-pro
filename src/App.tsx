@@ -281,6 +281,11 @@ function App() {
             <Route path="/tip-calculator" element={<Navigate to={`/${lang}/tip-calculator`} replace />} />
             <Route path="/salary-calculator" element={<Navigate to={`/${lang}/salary-calculator`} replace />} />
             <Route path="/age-calculator" element={<Navigate to={`/${lang}/age-calculator`} replace />} />
+            <Route path="/retirement-planner" element={<Navigate to={`/${lang}/calculators/retirement-planner`} replace />} />
+            <Route path="/pension-calculator" element={<Navigate to={`/${lang}/calculators/retirement-planner`} replace />} />
+            <Route path="/pension" element={<Navigate to={`/${lang}/calculators/retirement-planner`} replace />} />
+            <Route path="/capital-gains-tax" element={<Navigate to={`/${lang}/calculators/capital-gains-tax`} replace />} />
+            <Route path="/capital-gains" element={<Navigate to={`/${lang}/calculators/capital-gains-tax`} replace />} />
             <Route path="/pregnancy-calculator" element={<Navigate to={`/${lang}/calculators/pregnancy-calculator`} replace />} />
             <Route path="/pregnancy" element={<Navigate to={`/${lang}/calculators/pregnancy-calculator`} replace />} />
             <Route path="/due-date-calculator" element={<Navigate to={`/${lang}/calculators/pregnancy-calculator`} replace />} />
