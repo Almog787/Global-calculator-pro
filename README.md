@@ -30,7 +30,7 @@ Built with a zero-latency, client-side first architecture, Global Calc Pro deliv
   - [📐 Mathematics, Statistics & Science](#-mathematics-statistics--science)
   - [🩺 Health, Fitness & Medical](#-health-fitness--medical)
   - [⚡ Daily Utility & Conversions](#-daily-utility--conversions)
-- [🔗 Full SEO Sitemap Catalog (55 Calculators)](#-full-seo-sitemap-catalog-55-calculators)
+- [🔗 Full SEO Sitemap Catalog (57 Calculators)](#-full-seo-sitemap-catalog-57-calculators)
 - [🧰 Developer Ecosystem & Recommended Open-Source SEO Tools](#-developer-ecosystem--recommended-open-source-seo-tools)
 - [❓ Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
 - [🛠️ Developer Quick Start](#️-developer-quick-start)
@@ -173,7 +173,7 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 
 ---
 
-## 🔗 Full SEO Sitemap Catalog (55 Calculators)
+## 🔗 Full SEO Sitemap Catalog (57 Calculators)
 
 - **[Age & Milestone Birthday Calculator](https://globalcalcpro.com/age-calculator)** - Calculate exact chronological age in years, months, days, hours, and next birthday.
 - **[Age Calculator Calculator](https://globalcalcpro.com/calculators/age-calculator)** - Free online age calculator calculator for precise calculations.
@@ -186,6 +186,7 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 - **[Bmr Calculator](https://globalcalcpro.com/calculators/bmr)** - Free online bmr calculator for precise calculations.
 - **[Break-Even Calculator](https://globalcalcpro.com/calculators/break-even)** - Calculate your exact break-even point in units and revenue. Discover contribution margins, safety margins, and model profitability across various pricing strategies.
 - **[Cap Rate Calculator](https://globalcalcpro.com/calculators/cap-rate)** - Calculate the Capitalization Rate and Net Operating Income (NOI) for real estate investments.
+- **[Capital Gains Tax Calculator](https://globalcalcpro.com/calculators/capital-gains-tax)** - Calculate real and nominal capital gains tax on stocks, crypto, real estate, and investments with inflation indexation adjustment and tax loss carryforward.
 - **[Circle Sector & Arc Length Calculator](https://globalcalcpro.com/calculators/circle-sector)** - Free online circle sector calculator. Compute arc length, sector area, chord length, and segment area from radius and central angle in degrees or radians with interactive SVG diagram.
 - **[Complex Numbers Calculator](https://globalcalcpro.com/calculators/complex-numbers)** - Comprehensive complex numbers calculator. Convert between rectangular, polar, and exponential Euler forms. Calculate modulus, argument, conjugate, square roots, powers, addition, subtraction, multiplication, and division with step-by-step solutions.
 - **[Compound Interest & Wealth Planner](https://globalcalcpro.com/compound-interest)** - Forecast investment growth, monthly DCA compounding, and retirement targets.
@@ -215,6 +216,7 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 - **[Real Estate Purchase & Appreciation Tax Calculator](https://globalcalcpro.com/calculators/purchase-appreciation-tax)** - Calculate official Israel real estate purchase tax brackets (single home vs additional investor home) and linear property appreciation tax with deductible expenses and exemptions.
 - **[Refinance Calculator](https://globalcalcpro.com/calculators/refinance)** - Free online refinance calculator for precise calculations.
 - **[Rent vs Buy Calculator](https://globalcalcpro.com/calculators/rent-vs-buy)** - Compare the financial costs of renting versus buying a home over 10 years.
+- **[Retirement & Pension Planner](https://globalcalcpro.com/calculators/retirement-planner)** - Calculate your retirement nest egg and estimated monthly pension benefit based on current age, salary contributions, expected market return, and annuity conversion factors.
 - **[ROI (Return on Investment) Calculator](https://globalcalcpro.com/calculators/roi)** - Calculate your exact return on investment (ROI) and annualized growth rate (CAGR). Compare real estate, stocks, venture capital, and business investments.
 - **[Salary Calculator Calculator](https://globalcalcpro.com/calculators/salary-calculator)** - Free online salary calculator calculator for precise calculations.
 - **[Salary Gross-to-Net Take-Home Calculator](https://globalcalcpro.com/salary-calculator)** - Convert gross salary to net pay with income tax, social security, and health deductions.
