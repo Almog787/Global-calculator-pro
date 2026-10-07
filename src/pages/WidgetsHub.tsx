@@ -707,7 +707,7 @@ export default function WidgetsHub() {
         title={uiText.pageTitle}
         description={uiText.pageDesc}
         canonicalUrl={`/${lang}/widgets`}
-        type="WebApplication"
+        type="SoftwareApplication"
         applicationCategory="UtilityApplication"
         structuredData={structuredData}
       />

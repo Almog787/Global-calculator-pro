@@ -333,27 +333,29 @@ export default function CarFinanceLease() {
     setIsExporting(true);
     try {
       const summaryRows = [
-        { Parameter: 'Vehicle Price', Value: vehiclePrice },
-        { Parameter: 'Finance Monthly Payment', Value: results.finance.monthlyPayment },
-        { Parameter: 'Finance Net True Cost', Value: results.finance.netCostOfOwnership },
-        { Parameter: 'Lease Monthly Payment', Value: results.lease.monthlyPayment },
-        { Parameter: 'Lease Net True Cost', Value: results.lease.netCostOfOwnership },
-        { Parameter: 'Cash Purchase Net True Cost', Value: results.cash.netCostOfOwnership },
-        { Parameter: 'Recommended Choice', Value: results.recommendedOption },
+        ['Parameter', 'Value'],
+        ['Vehicle Price', vehiclePrice],
+        ['Finance Monthly Payment', results.finance.monthlyPayment],
+        ['Finance Net True Cost', results.finance.netCostOfOwnership],
+        ['Lease Monthly Payment', results.lease.monthlyPayment],
+        ['Lease Net True Cost', results.lease.netCostOfOwnership],
+        ['Cash Purchase Net True Cost', results.cash.netCostOfOwnership],
+        ['Recommended Choice', results.recommendedOption],
       ];
 
-      const scheduleRows = results.amortizationSchedule.map((row) => ({
-        Month: row.month,
-        Payment: row.payment,
-        Principal: row.principal,
-        Interest: row.interest,
-        RemainingLoanBalance: row.remainingBalance,
-        EstimatedCarValue: row.vehicleValue,
-      }));
+      const scheduleHeaders = ['Month', 'Payment', 'Principal', 'Interest', 'Remaining Loan Balance', 'Estimated Car Value'];
+      const scheduleRows = results.amortizationSchedule.map((row) => [
+        row.month,
+        row.payment,
+        row.principal,
+        row.interest,
+        row.remainingBalance,
+        row.vehicleValue,
+      ]);
 
       const wb = XLSX.utils.book_new();
-      const wsSummary = XLSX.utils.json_to_sheet(sanitizeExcelRows(summaryRows));
-      const wsSchedule = XLSX.utils.json_to_sheet(sanitizeExcelRows(scheduleRows));
+      const wsSummary = XLSX.utils.aoa_to_sheet(sanitizeExcelRows(summaryRows));
+      const wsSchedule = XLSX.utils.aoa_to_sheet(sanitizeExcelRows([scheduleHeaders, ...scheduleRows]));
 
       XLSX.utils.book_append_sheet(wb, wsSummary, 'Comparison Summary');
       XLSX.utils.book_append_sheet(wb, wsSchedule, 'Amortization & Value');
