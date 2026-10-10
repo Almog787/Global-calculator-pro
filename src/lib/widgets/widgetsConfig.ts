@@ -615,6 +615,23 @@ export interface EmbedOptions {
   includeBacklink: boolean;
 }
 
+export function buildRelativeEmbedUrl(
+  slug: string,
+  lang: string,
+  theme: 'light' | 'dark' = 'light',
+  customization?: { primaryColor?: string; accentColor?: string; borderRadius?: number }
+): string {
+  let url = `/${lang}/${slug}?embed=true`;
+  if (theme === 'dark') url += '&theme=dark';
+  if (customization?.primaryColor) {
+    url += `&primary=${encodeURIComponent(customization.primaryColor.replace('#', ''))}`;
+  }
+  if (customization?.borderRadius !== undefined) {
+    url += `&radius=${customization.borderRadius}`;
+  }
+  return url;
+}
+
 export function buildEmbedUrl(
   slug: string,
   lang: string,

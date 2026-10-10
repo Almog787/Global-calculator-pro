@@ -1,7 +1,17 @@
-name: Google Indexing Submission
+name: Google Search Console & Indexing API (Manual)
 
 on:
   workflow_dispatch:
+    inputs:
+      action_type:
+        description: 'Submission Action'
+        required: true
+        default: 'URL_UPDATED'
+        type: choice
+        options:
+          - 'URL_UPDATED'
+          - 'URL_DELETED'
+
 
 jobs:
   google-indexing:

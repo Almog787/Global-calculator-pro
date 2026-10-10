@@ -3,11 +3,54 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --brand-primary: #006b5b;
+    --brand-accent: #10b981;
+    --brand-radius: 16px;
+  }
+
   body {
     @apply bg-surface-bg text-on-surface font-body-md min-h-screen flex flex-col antialiased selection:bg-secondary/20 selection:text-secondary;
     font-variant-numeric: tabular-nums;
   }
 }
+
+/* Embed Mode Theme Overrides */
+.is-embed-mode {
+  min-height: 100vh;
+}
+
+.is-embed-mode .bg-secondary,
+.is-embed-mode button.bg-secondary {
+  background-color: var(--brand-primary, #006b5b) !important;
+}
+
+.is-embed-mode .text-secondary,
+.is-embed-mode a.text-secondary {
+  color: var(--brand-primary, #006b5b) !important;
+}
+
+.is-embed-mode .border-secondary {
+  border-color: var(--brand-primary, #006b5b) !important;
+}
+
+.is-embed-mode .focus\:ring-secondary:focus {
+  --tw-ring-color: var(--brand-primary, #006b5b) !important;
+}
+
+.is-embed-mode .bg-secondary\/10 {
+  background-color: color-mix(in srgb, var(--brand-primary, #006b5b) 10%, transparent) !important;
+}
+
+.is-embed-mode .bg-secondary\/20 {
+  background-color: color-mix(in srgb, var(--brand-primary, #006b5b) 20%, transparent) !important;
+}
+
+.is-embed-mode .rounded-2xl,
+.is-embed-mode .rounded-3xl {
+  border-radius: var(--brand-radius, 16px);
+}
+
 
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';

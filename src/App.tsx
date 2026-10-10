@@ -108,11 +108,48 @@ function App() {
   };
   const historyLabel = historyLabels[lang] || historyLabels.en;
 
-  const isEmbed = new URLSearchParams(location.search).get('embed') === 'true';
+  const searchParams = new URLSearchParams(location.search);
+  const isEmbed = searchParams.get('embed') === 'true';
+  const paramPrimary = searchParams.get('primary');
+  const paramRadius = searchParams.get('radius');
+  const paramTheme = searchParams.get('theme');
+
+  useEffect(() => {
+    if (isEmbed) {
+      if (paramPrimary) {
+        const hex = paramPrimary.startsWith('#') ? paramPrimary : `#${paramPrimary}`;
+        document.documentElement.style.setProperty('--brand-primary', hex);
+      }
+      if (paramRadius) {
+        document.documentElement.style.setProperty('--brand-radius', `${paramRadius}px`);
+      }
+      if (paramTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else if (paramTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+    return () => {
+      if (isEmbed) {
+        document.documentElement.style.removeProperty('--brand-primary');
+        document.documentElement.style.removeProperty('--brand-radius');
+      }
+    };
+  }, [isEmbed, paramPrimary, paramRadius, paramTheme]);
 
   return (
     <ClickSpark sparkColor="rgba(0, 107, 91, 0.7)" sparkCount={7} sparkRadius={22} duration={350}>
-      <div className={`min-h-screen bg-surface-bg text-on-surface antialiased flex flex-col font-body-md ${t.dir === 'rtl' ? 'rtl' : 'ltr'} ${isEmbed ? 'is-embed-mode' : ''}`}>
+      <div 
+        style={
+          isEmbed && paramPrimary
+            ? ({
+                '--brand-primary': paramPrimary.startsWith('#') ? paramPrimary : `#${paramPrimary}`,
+                '--brand-radius': paramRadius ? `${paramRadius}px` : undefined
+              } as React.CSSProperties)
+            : undefined
+        }
+        className={`min-h-screen bg-surface-bg text-on-surface antialiased flex flex-col font-body-md ${t.dir === 'rtl' ? 'rtl' : 'ltr'} ${isEmbed ? 'is-embed-mode' : ''} ${paramTheme === 'dark' ? 'dark' : ''}`}
+      >
         {/* TopNavBar */}
       {!isEmbed && (
         <nav className="bg-surface shadow-xs top-0 sticky z-50 border-b border-border-subtle">

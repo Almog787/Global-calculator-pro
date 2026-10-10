@@ -1,0 +1,28 @@
+name: Sitemap Ping & Manual URL Submission Check
+
+on:
+  workflow_dispatch:
+    inputs:
+      custom_sitemap_url:
+        description: 'Sitemap URL to ping'
+        required: false
+        default: 'https://globalcalcpro.com/sitemap.xml'
+
+jobs:
+  sitemap-ping:
+    name: Ping Search Engines with Sitemap
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Ping Search Engines
+        run: node scripts/ping-sitemap.js

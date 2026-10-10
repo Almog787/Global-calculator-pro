@@ -1,10 +1,18 @@
-name: Bing & IndexNow Submission
+name: Bing & IndexNow Submission (Manual)
 
 on:
   workflow_dispatch:
-  schedule:
-    # Run every Monday at 06:00 UTC to re-index all updated pages
-    - cron: '0 6 * * 1'
+    inputs:
+      target_engine:
+        description: 'Target Search Engine API'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - 'all'
+          - 'bing'
+          - 'yandex'
+          - 'naver'
 
 jobs:
   indexnow-submission:

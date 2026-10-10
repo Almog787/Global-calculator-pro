@@ -38,6 +38,7 @@ import {
   generateWordPressCode,
   generateWebComponentCode,
   buildEmbedUrl,
+  buildRelativeEmbedUrl,
   buildCanonicalUrl,
   getShadowCss,
   EmbedOptions
@@ -139,6 +140,11 @@ export default function WidgetsHub() {
   const previewFrameWidth =
     previewDevice === 'mobile' ? '380px' : previewDevice === 'tablet' ? '640px' : '100%';
 
+  const previewEmbedUrl = buildRelativeEmbedUrl(selectedWidget.slug, widgetLang, theme, {
+    primaryColor,
+    accentColor,
+    borderRadius
+  });
   const fullEmbedUrl = buildEmbedUrl(selectedWidget.slug, widgetLang, theme, {
     primaryColor,
     accentColor,
@@ -1279,7 +1285,8 @@ export default function WidgetsHub() {
                 className="transition-all duration-200"
               >
                 <iframe
-                  src={fullEmbedUrl}
+                  key={previewEmbedUrl}
+                  src={previewEmbedUrl}
                   width="100%"
                   height={customHeight}
                   frameBorder="0"

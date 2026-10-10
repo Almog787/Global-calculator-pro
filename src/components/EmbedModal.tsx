@@ -24,6 +24,9 @@ export default function EmbedModal({
   const [activeTab, setActiveTab] = useState<'code' | 'preview'>('code');
   const [copied, setCopied] = useState(false);
 
+  const [primaryColor, setPrimaryColor] = useState('#006B5B');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
   if (!isOpen) return null;
 
   const currentPath = calculatorPath || window.location.pathname;
@@ -31,7 +34,16 @@ export default function EmbedModal({
   const cleanPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
   // Extract path without existing language prefix if any
   const pathWithoutLang = cleanPath.replace(/^\/(en|he|es|fr|ar)(\/|$)/, '/');
-  const fullEmbedUrl = `https://globalcalcpro.com/${lang}${pathWithoutLang === '/' ? '' : pathWithoutLang}?embed=true`;
+  
+  const queryParts = ['embed=true'];
+  if (theme === 'dark') queryParts.push('theme=dark');
+  if (primaryColor && primaryColor !== '#006B5B') {
+    queryParts.push(`primary=${encodeURIComponent(primaryColor.replace('#', ''))}`);
+  }
+  const queryString = queryParts.length > 0 ? `?${queryParts.join('&')}` : '';
+
+  const fullEmbedUrl = `https://globalcalcpro.com/${lang}${pathWithoutLang === '/' ? '' : pathWithoutLang}${queryString}`;
+  const previewEmbedUrl = `/${lang}${pathWithoutLang === '/' ? '' : pathWithoutLang}${queryString}`;
   const canonicalUrl = `https://globalcalcpro.com/${lang}${pathWithoutLang === '/' ? '' : pathWithoutLang}`;
 
   const widthValue = widthType === 'responsive' ? '100%' : `${fixedWidth}px`;
@@ -40,9 +52,10 @@ export default function EmbedModal({
   const anchorTitle = calculatorTitle ? `${calculatorTitle} - GlobalCalc Pro` : 'GlobalCalc Pro';
   const embedCode = `<iframe src="${fullEmbedUrl}" width="${widthValue}" height="${height}" frameborder="0" style="border: 1px solid #e5e7eb; border-radius: 12px; width: ${widthValue}; max-width: 100%;" title="${titleText}"></iframe>${
     includeBacklink
-      ? `\n<p style="font-size: 12px; color: #6b7280; margin-top: 6px; text-align: center; font-family: sans-serif;">${lang === 'he' ? 'מופעל באמצעות' : 'Powered by'} <a href="${canonicalUrl}" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline; font-weight: 600;">${anchorTitle}</a></p>`
+      ? `\n<p style="font-size: 12px; color: #6b7280; margin-top: 6px; text-align: center; font-family: sans-serif;">${lang === 'he' ? 'מופעל באמצעות' : 'Powered by'} <a href="${canonicalUrl}" target="_blank" rel="noopener noreferrer" style="color: ${primaryColor}; text-decoration: underline; font-weight: 600;">${anchorTitle}</a></p>`
       : ''
   }`;
+
 
   const translations = {
     en: {
@@ -288,6 +301,74 @@ export default function EmbedModal({
               </div>
             </div>
 
+            {/* Theme & Color Customization */}
+            <div className="sm:col-span-2 pt-2 border-t border-stone-200">
+              <label className="font-bold text-stone-700 block mb-1.5">
+                {lang === 'he' ? 'צבע מותג וערכת נושא (Brand Color & Theme)' : 'Brand Color & Theme'}
+              </label>
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="flex items-center gap-1.5">
+                  {[
+                    { id: 'emerald', label: 'Emerald', hex: '#006B5B' },
+                    { id: 'blue', label: 'Blue', hex: '#1E40AF' },
+                    { id: 'indigo', label: 'Indigo', hex: '#4F46E5' },
+                    { id: 'amber', label: 'Amber', hex: '#C2410C' },
+                    { id: 'rose', label: 'Rose', hex: '#E11D48' },
+                  ].map((preset) => (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      onClick={() => setPrimaryColor(preset.hex)}
+                      style={{ backgroundColor: preset.hex }}
+                      title={preset.label}
+                      className={`w-7 h-7 rounded-full border-2 transition-transform cursor-pointer ${
+                        primaryColor.toLowerCase() === preset.hex.toLowerCase()
+                          ? 'border-white ring-2 ring-stone-900 scale-110 shadow-sm'
+                          : 'border-transparent hover:scale-105 opacity-80 hover:opacity-100'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <input
+                    type="color"
+                    value={primaryColor}
+                    onChange={(e) => setPrimaryColor(e.target.value)}
+                    className="w-7 h-7 rounded-lg border border-stone-300 cursor-pointer p-0.5 bg-white"
+                  />
+                  <input
+                    type="text"
+                    value={primaryColor}
+                    onChange={(e) => setPrimaryColor(e.target.value)}
+                    placeholder="#006B5B"
+                    className="w-24 px-2 py-1 text-xs font-mono rounded-lg border border-stone-300 bg-white uppercase text-stone-800"
+                  />
+                </div>
+
+                <div className="flex items-center gap-1 ms-auto">
+                  <button
+                    type="button"
+                    onClick={() => setTheme('light')}
+                    className={`px-2.5 py-1 text-xs rounded-lg font-medium border transition-colors cursor-pointer ${
+                      theme === 'light' ? 'bg-stone-900 text-white border-stone-900' : 'bg-white text-stone-700 border-stone-300'
+                    }`}
+                  >
+                    {lang === 'he' ? 'בהיר' : 'Light'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setTheme('dark')}
+                    className={`px-2.5 py-1 text-xs rounded-lg font-medium border transition-colors cursor-pointer ${
+                      theme === 'dark' ? 'bg-stone-900 text-white border-stone-900' : 'bg-white text-stone-700 border-stone-300'
+                    }`}
+                  >
+                    {lang === 'he' ? 'כהה' : 'Dark'}
+                  </button>
+                </div>
+              </div>
+            </div>
+
             {/* Backlink Toggle */}
             <div className="sm:col-span-2 pt-2 border-t border-stone-200">
               <label className="flex items-center gap-2.5 cursor-pointer select-none">
@@ -366,7 +447,8 @@ export default function EmbedModal({
                   className="rounded-xl overflow-hidden shadow-sm border border-stone-300 bg-white"
                 >
                   <iframe
-                    src={fullEmbedUrl}
+                    key={previewEmbedUrl}
+                    src={previewEmbedUrl}
                     width="100%"
                     height={Math.min(height, 500)}
                     title="Calculator Preview"
