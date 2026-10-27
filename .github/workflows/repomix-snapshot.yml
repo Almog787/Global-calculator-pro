@@ -76,21 +76,35 @@ jobs:
         run: |
           OUTPUT_FILE="${{ steps.meta.outputs.output_path }}"
           FORMAT="${{ github.event.inputs.output_format }}"
-          
-          # Check if custom configuration or script exists in cloned repomix787
+          DIR_NAME="${{ steps.meta.outputs.dir_name }}"
+
+          # If custom repomix787 was cloned, check for instruction and config files
           CONFIG_ARG=""
-          if [ -f ".custom_repomix/repomix.config.json" ]; then
-            CONFIG_ARG="--config .custom_repomix/repomix.config.json"
+          if [ -d ".custom_repomix" ]; then
+            # Copy repomix-instruction.md if referenced by config
+            if [ -f ".custom_repomix/repomix-instruction.md" ] && [ ! -f "repomix-instruction.md" ]; then
+              cp .custom_repomix/repomix-instruction.md ./repomix-instruction.md
+              echo "Copied repomix-instruction.md from Almog787/repomix787"
+            fi
+
+            # Check if custom config exists
+            if [ -f ".custom_repomix/repomix.config.json" ]; then
+              CONFIG_ARG="--config .custom_repomix/repomix.config.json"
+              echo "Using custom config from Almog787/repomix787"
+            fi
           fi
 
           echo "Running Repomix -> $OUTPUT_FILE (format: $FORMAT)"
           npx repomix \
             --style "$FORMAT" \
             --output "$OUTPUT_FILE" \
-            --ignore "node_modules/**,dist/**,playwright-report/**,test-results/**,.git/**,.custom_repomix/**,${{ steps.meta.outputs.dir_name }}/**" \
+            --ignore "node_modules/**,dist/**,dev-dist/**,playwright-report/**,test-results/**,.git/**,.custom_repomix/**,${DIR_NAME}/**" \
             $CONFIG_ARG
 
-          # Clean up temporary clone if present
+          # Clean up temporary instruction copy and cloned repo
+          if [ -f "repomix-instruction.md" ] && [ -d ".custom_repomix" ]; then
+            rm -f repomix-instruction.md
+          fi
           rm -rf .custom_repomix
 
           echo "Snapshot generated successfully:"
