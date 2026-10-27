@@ -1,0 +1,110 @@
+name: Generate Repomix Snapshot (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      output_format:
+        description: 'Output format style (xml / markdown / plain)'
+        required: true
+        default: 'xml'
+        type: choice
+        options:
+          - 'xml'
+          - 'markdown'
+          - 'plain'
+      target_dir:
+        description: 'Target directory for repomix snapshots'
+        required: true
+        default: 'repomix-output'
+        type: string
+      commit_to_repo:
+        description: 'Commit the generated snapshot directly to repository?'
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  build-repomix:
+    name: Pack codebase with Repomix
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout target repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Determine timestamp and output filename
+        id: meta
+        run: |
+          DATE_STR=$(date +'%Y-%m-%d_%H-%M-%S')
+          DIR_NAME="${{ github.event.inputs.target_dir }}"
+          FORMAT="${{ github.event.inputs.output_format }}"
+          
+          mkdir -p "$DIR_NAME"
+          
+          EXTENSION="txt"
+          if [ "$FORMAT" = "xml" ]; then
+            EXTENSION="xml"
+          elif [ "$FORMAT" = "markdown" ]; then
+            EXTENSION="md"
+          fi
+          
+          FILE_NAME="repomix_${DATE_STR}.${EXTENSION}"
+          OUTPUT_PATH="${DIR_NAME}/${FILE_NAME}"
+          
+          echo "date_str=$DATE_STR" >> $GITHUB_OUTPUT
+          echo "output_path=$OUTPUT_PATH" >> $GITHUB_OUTPUT
+          echo "file_name=$FILE_NAME" >> $GITHUB_OUTPUT
+          echo "dir_name=$DIR_NAME" >> $GITHUB_OUTPUT
+
+      - name: Checkout custom repomix tools (Almog787/repomix787) if available
+        id: custom_repomix
+        continue-on-error: true
+        run: |
+          echo "Checking for custom configuration or tool from Almog787/repomix787..."
+          git clone --depth 1 https://github.com/Almog787/repomix787.git .custom_repomix || echo "No separate remote repo found, proceeding with standard repomix engine."
+
+      - name: Generate Repomix snapshot
+        run: |
+          OUTPUT_FILE="${{ steps.meta.outputs.output_path }}"
+          FORMAT="${{ github.event.inputs.output_format }}"
+          
+          # Check if custom configuration or script exists in cloned repomix787
+          CONFIG_ARG=""
+          if [ -f ".custom_repomix/repomix.config.json" ]; then
+            CONFIG_ARG="--config .custom_repomix/repomix.config.json"
+          fi
+
+          echo "Running Repomix -> $OUTPUT_FILE (format: $FORMAT)"
+          npx repomix \
+            --style "$FORMAT" \
+            --output "$OUTPUT_FILE" \
+            --ignore "node_modules/**,dist/**,playwright-report/**,test-results/**,.git/**,.custom_repomix/**,${{ steps.meta.outputs.dir_name }}/**" \
+            $CONFIG_ARG
+
+          # Clean up temporary clone if present
+          rm -rf .custom_repomix
+
+          echo "Snapshot generated successfully:"
+          ls -lh "$OUTPUT_FILE"
+
+      - name: Upload Repomix output artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: repomix-${{ steps.meta.outputs.date_str }}
+          path: ${{ steps.meta.outputs.output_path }}
+
+      - name: Commit snapshot to repository
+        if: ${{ github.event.inputs.commit_to_repo == 'true' || github.event.inputs.commit_to_repo == true }}
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update repomix snapshot ${{ steps.meta.outputs.file_name }} [skip ci]"
+          file_pattern: "${{ steps.meta.outputs.output_path }}"
