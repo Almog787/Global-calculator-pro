@@ -349,6 +349,7 @@ export default function EmbedModal({
                 <div className="flex items-center gap-1 ms-auto">
                   <button
                     type="button"
+                    aria-label="Toggle theme light"
                     onClick={() => setTheme('light')}
                     className={`px-2.5 py-1 text-xs rounded-lg font-medium border transition-colors cursor-pointer ${
                       theme === 'light' ? 'bg-stone-900 text-white border-stone-900' : 'bg-white text-stone-700 border-stone-300'
@@ -358,6 +359,7 @@ export default function EmbedModal({
                   </button>
                   <button
                     type="button"
+                    aria-label="Toggle theme dark"
                     onClick={() => setTheme('dark')}
                     className={`px-2.5 py-1 text-xs rounded-lg font-medium border transition-colors cursor-pointer ${
                       theme === 'dark' ? 'bg-stone-900 text-white border-stone-900' : 'bg-white text-stone-700 border-stone-300'

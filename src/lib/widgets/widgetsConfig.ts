@@ -816,7 +816,7 @@ export function generateWebComponentCode(options: EmbedOptions): string {
     loading="lazy" 
     title="${widgetTitle}">
   </iframe>
-  ${includeBacklink ? `<div style="text-align: center; margin-top: 6px; font-size: 11px; font-family: sans-serif; color: #888;">Powered by <a href="${canonicalUrl}" target="_blank" rel="noopener" style="color: ${linkColor}; text-decoration: none; font-weight: bold;">GlobalCalc Pro</a></div>` : ''}
+  ${includeBacklink ? `<div style="text-align: center; margin-top: 6px; font-size: 11px; font-family: sans-serif; color: #888;">Powered by <a href="${canonicalUrl}" target="_blank" rel="noopener noreferrer" style="color: ${linkColor}; text-decoration: none; font-weight: bold;">GlobalCalc Pro</a></div>` : ''}
 </div>`;
 }
 

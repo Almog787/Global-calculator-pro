@@ -1173,6 +1173,7 @@ export default function WidgetsHub() {
             <div className="grid grid-cols-2 gap-2">
               <button
                 type="button"
+                aria-label="Toggle theme light"
                 onClick={() => setTheme('light')}
                 className={`py-2 px-3 text-xs font-bold rounded-xl border transition-all flex items-center justify-center gap-2 ${
                   theme === 'light'
@@ -1185,6 +1186,7 @@ export default function WidgetsHub() {
               </button>
               <button
                 type="button"
+                aria-label="Toggle theme dark"
                 onClick={() => setTheme('dark')}
                 className={`py-2 px-3 text-xs font-bold rounded-xl border transition-all flex items-center justify-center gap-2 ${
                   theme === 'dark'
