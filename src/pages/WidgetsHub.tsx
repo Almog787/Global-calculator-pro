@@ -57,14 +57,64 @@ export default function WidgetsHub() {
   const [widgetSearchQuery, setWidgetSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
-  // Customization state
-  const [widgetLang, setWidgetLang] = useState<string>(lang);
-  const [selectedPaletteId, setSelectedPaletteId] = useState<string>('emerald-pro');
-  const [primaryColor, setPrimaryColor] = useState<string>('#006B5B');
-  const [accentColor, setAccentColor] = useState<string>('#10B981');
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [borderRadius, setBorderRadius] = useState<number>(16);
-  const [shadowElevation, setShadowElevation] = useState<'none' | 'subtle' | 'elevated' | 'deep'>('elevated');
+  // Customization state initialized from localStorage if available
+  const [widgetLang, setWidgetLang] = useState<string>(() => {
+    return lang;
+  });
+  const [selectedPaletteId, setSelectedPaletteId] = useState<string>(() => {
+    try {
+      const saved = localStorage.getItem('globalcalc_widget_prefs');
+      if (saved) return JSON.parse(saved).selectedPaletteId || 'emerald-pro';
+    } catch {
+      // ignore storage read error
+    }
+    return 'emerald-pro';
+  });
+  const [primaryColor, setPrimaryColor] = useState<string>(() => {
+    try {
+      const saved = localStorage.getItem('globalcalc_widget_prefs');
+      if (saved) return JSON.parse(saved).primaryColor || '#006B5B';
+    } catch {
+      // ignore storage read error
+    }
+    return '#006B5B';
+  });
+  const [accentColor, setAccentColor] = useState<string>(() => {
+    try {
+      const saved = localStorage.getItem('globalcalc_widget_prefs');
+      if (saved) return JSON.parse(saved).accentColor || '#10B981';
+    } catch {
+      // ignore storage read error
+    }
+    return '#10B981';
+  });
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    try {
+      const saved = localStorage.getItem('globalcalc_widget_prefs');
+      if (saved) return JSON.parse(saved).theme || 'light';
+    } catch {
+      // ignore storage read error
+    }
+    return 'light';
+  });
+  const [borderRadius, setBorderRadius] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem('globalcalc_widget_prefs');
+      if (saved && typeof JSON.parse(saved).borderRadius === 'number') return JSON.parse(saved).borderRadius;
+    } catch {
+      // ignore storage read error
+    }
+    return 16;
+  });
+  const [shadowElevation, setShadowElevation] = useState<'none' | 'subtle' | 'elevated' | 'deep'>(() => {
+    try {
+      const saved = localStorage.getItem('globalcalc_widget_prefs');
+      if (saved) return JSON.parse(saved).shadowElevation || 'elevated';
+    } catch {
+      // ignore storage read error
+    }
+    return 'elevated';
+  });
   const [showBorder, setShowBorder] = useState<boolean>(true);
   const [widthMode, setWidthMode] = useState<'responsive' | 'fixed' | 'compact'>('responsive');
   const [customWidth, setCustomWidth] = useState<number>(600);
@@ -76,6 +126,23 @@ export default function WidgetsHub() {
   const [activeCodeTab, setActiveCodeTab] = useState<'iframe' | 'react' | 'wp' | 'webcomponent' | 'url'>('iframe');
   const [activePlatformGuide, setActivePlatformGuide] = useState<'wp' | 'wix' | 'react' | 'webflow'>('wp');
   const [copiedTab, setCopiedTab] = useState<string | null>(null);
+
+  // Save customization choices to localStorage for 100% local persistence
+  useEffect(() => {
+    try {
+      const prefs = {
+        selectedPaletteId,
+        primaryColor,
+        accentColor,
+        theme,
+        borderRadius,
+        shadowElevation
+      };
+      localStorage.setItem('globalcalc_widget_prefs', JSON.stringify(prefs));
+    } catch {
+      // ignore storage write error
+    }
+  }, [selectedPaletteId, primaryColor, accentColor, theme, borderRadius, shadowElevation]);
 
   // Deep-link auto-selection on mount or searchParam change
   useEffect(() => {
