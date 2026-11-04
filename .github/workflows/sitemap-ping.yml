@@ -20,9 +20,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci || npm install
 
       - name: Ping Search Engines
         run: node scripts/ping-sitemap.js
