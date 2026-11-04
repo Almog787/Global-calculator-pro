@@ -1,4 +1,4 @@
-export type MortgageRegimeId = 'IL' | 'US' | 'EU' | 'UK' | 'CUSTOM';
+export type MortgageRegimeId = 'IL' | 'US' | 'EU' | 'UK' | 'SG' | 'CUSTOM';
 
 export interface MortgageTrack {
   id: string;
@@ -395,6 +395,93 @@ export const MORTGAGE_REGIMES: Record<MortgageRegimeId, MortgageRegime> = {
       },
     ],
   },
+  SG: {
+    id: 'SG',
+    countryCode: 'SG',
+    flag: '🇸🇬',
+    currency: 'SGD',
+    currencySymbol: 'S$',
+    name: {
+      en: 'Singapore (HDB & Private SGD S$)',
+      he: 'סינגפור (HDB ודיור פרטי SGD S$)',
+      es: 'Singapur (HDB y Propiedad Privada S$)',
+      fr: 'Singapour (HDB et Logement Privé S$)',
+      ar: 'سنغافورة (HDB والعقارات الخاصة S$)',
+    },
+    description: {
+      en: 'Monetary Authority of Singapore (MAS) regulated home loans with SORA index, CPF usage, and HDB concessionary loans.',
+      he: 'מסלולי משכנתאות בסינגפור בפיקוח הרשות המוניטרית (MAS): מבוססי מדד SORA, שימוש בחסכונות CPF והלוואות HDB.',
+      es: 'Préstamos hipotecarios en Singapur regulados por MAS con índice SORA y CPF.',
+      fr: 'Prêts immobiliers à Singapour réglementés par la MAS avec indice SORA et CPF.',
+      ar: 'قروض الرهن العقاري في سنغافورة الخاضعة لرقابة سلطة النقد (MAS) مع مؤشر SORA.',
+    },
+    defaultPrincipal: 600000,
+    tracks: [
+      {
+        id: 'sg-sora-floating',
+        name: {
+          en: 'SORA Floating Rate (1M/3M SORA + Margin)',
+          he: 'מסלול צמוד מדד SORA (1M/3M SORA + מרווח)',
+          es: 'Flotante SORA a 1M/3M',
+          fr: 'Taux Variable Indexé SORA',
+          ar: 'مسار متغير مرتبط بمؤشر SORA',
+        },
+        description: {
+          en: 'Linked to Singapore Overnight Rate Average (SORA). Highly transparent and regulated by MAS.',
+          he: 'מבוסס על ממוצע ריבית הלילה בסינגפור (SORA). מסלול שקוף ומפוקח רשמית.',
+          es: 'Vinculado al promedio SORA de Singapur. Altamente transparente.',
+          fr: 'Indexé sur le taux moyen SORA à Singapour. Très transparent.',
+          ar: 'مرتبط بمتوسط فائدة ليلة واحدة في سنغافورة (SORA).',
+        },
+        defaultRate: 3.25,
+        defaultYears: 25,
+        riskLevel: 'medium',
+        badge: 'SORA Index',
+      },
+      {
+        id: 'sg-fixed-3y',
+        name: {
+          en: '3-Year Fixed Deal (Package Rate)',
+          he: 'ריבית קבועה ל-3 שנים (חבילת בנק)',
+          es: 'Fijo a 3 Años (Paquete Bancario)',
+          fr: 'Taux Fixe 3 Ans (Offre Bancaire)',
+          ar: 'فائدة ثابتة لمدة 3 سنوات',
+        },
+        description: {
+          en: 'Locked interest rate for 3 years before converting to SORA floating package.',
+          he: 'ריבית קבועה ומובטחת ל-3 השנים הראשונות, ולאחר מכן מעבר למסלול SORA משתנה.',
+          es: 'Tipo fijo garantizado durante los primeros 3 años.',
+          fr: 'Taux fixe garanti pendant les 3 premières années.',
+          ar: 'فائدة ثابتة مضمونة لأول 3 سنوات.',
+        },
+        defaultRate: 3.10,
+        defaultYears: 25,
+        riskLevel: 'low',
+        badge: '3Y Lock-In',
+      },
+      {
+        id: 'sg-hdb-concessionary',
+        name: {
+          en: 'HDB Concessionary Loan (CPF Linked)',
+          he: 'הלוואת HDB ממשלתית (צמודת CPF)',
+          es: 'Préstamo Concesional HDB (CPF)',
+          fr: 'Prêt Aidé HDB (Indexé CPF)',
+          ar: 'قرض HDB الحكومي الميسر (مرتبط بـ CPF)',
+        },
+        description: {
+          en: 'Official HDB concessionary loan at 0.1% above current CPF Ordinary Account rate (2.60%).',
+          he: 'הלוואה ממשלתית לרוכשי דירות HDB בריבית 2.60% (ריבית חשבון CPF + 0.1%).',
+          es: 'Préstamo oficial HDB fijado en 0.1% sobre el tipo CPF (2.60%).',
+          fr: 'Prêt officiel HDB fixé à 0.1% au-dessus du taux CPF (2.60%).',
+          ar: 'قرض رسمي لشركة HDB بفائدة 2.60% (أعلى بـ 0.1% من فائدة CPF).',
+        },
+        defaultRate: 2.60,
+        defaultYears: 25,
+        riskLevel: 'low',
+        badge: 'HDB Official',
+      },
+    ],
+  },
   CUSTOM: {
     id: 'CUSTOM',
     countryCode: 'GLOBAL',
@@ -441,6 +528,25 @@ export const MORTGAGE_REGIMES: Record<MortgageRegimeId, MortgageRegime> = {
     ],
   },
 };
+
+export function detectUserCountry(): string {
+  if (typeof window === 'undefined') return 'US';
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    if (tz.includes('Singapore') || tz.includes('Asia/Singapore')) return 'SG';
+    if (tz.includes('Tel_Aviv') || tz.includes('Jerusalem') || tz.includes('Asia/Jerusalem')) return 'IL';
+    if (tz.includes('London') || tz.includes('Europe/London')) return 'UK';
+    if (tz.includes('Paris') || tz.includes('Madrid') || tz.includes('Berlin') || tz.includes('Rome') || tz.includes('Brussels') || tz.includes('Amsterdam') || tz.includes('Europe/')) return 'EU';
+
+    const lang = (navigator.language || '').toLowerCase();
+    if (lang.includes('-sg') || lang.includes('sg')) return 'SG';
+    if (lang.includes('-il') || lang === 'he') return 'IL';
+    if (lang.includes('-gb')) return 'UK';
+  } catch {
+    // fallback
+  }
+  return 'US';
+}
 
 export function getRegimeByCountry(countryCode: string): MortgageRegime {
   const upper = (countryCode || '').toUpperCase();

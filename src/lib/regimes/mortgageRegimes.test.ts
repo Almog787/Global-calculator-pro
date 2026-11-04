@@ -7,6 +7,15 @@ describe('mortgageRegimes', () => {
     expect(MORTGAGE_REGIMES.US).toBeDefined();
     expect(MORTGAGE_REGIMES.EU).toBeDefined();
     expect(MORTGAGE_REGIMES.UK).toBeDefined();
+    expect(MORTGAGE_REGIMES.SG).toBeDefined();
+  });
+
+  it('correctly associates Singapore with SGD currency and SORA tracks', () => {
+    const sg = MORTGAGE_REGIMES.SG;
+    expect(sg.currency).toBe('SGD');
+    expect(sg.currencySymbol).toBe('S$');
+    expect(sg.tracks.some(t => t.id === 'sg-sora-floating')).toBe(true);
+    expect(sg.tracks.some(t => t.id === 'sg-hdb-concessionary')).toBe(true);
   });
 
   it('correctly associates Israel with ILS currency and standard tracks', () => {
@@ -28,6 +37,7 @@ describe('mortgageRegimes', () => {
   it('finds regime by country code or falls back to CUSTOM', () => {
     expect(getRegimeByCountry('IL').countryCode).toBe('IL');
     expect(getRegimeByCountry('US').countryCode).toBe('US');
+    expect(getRegimeByCountry('SG').countryCode).toBe('SG');
     expect(getRegimeByCountry('UNKNOWN' as any).id).toBe('CUSTOM');
   });
 });

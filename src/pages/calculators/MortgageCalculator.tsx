@@ -19,7 +19,7 @@ import ScenarioComparator, { ComparisonMetric } from '../../components/ScenarioC
 import { calculateMortgage, calculateReverseMortgage, compareMortgages, generateMortgageAmortizationSchedule } from '../../lib/math/finance';
 import { exportMortgageToExcel } from '../../lib/export/excelExport';
 import { useRecordCalculation } from '../../hooks/useRecordCalculation';
-import { MORTGAGE_REGIMES, MortgageRegimeId } from '../../lib/regimes/mortgageRegimes';
+import { MORTGAGE_REGIMES, MortgageRegimeId, detectUserCountry } from '../../lib/regimes/mortgageRegimes';
 import PopularScenarios from '../../components/PopularScenarios';
 import { POPULAR_MORTGAGE_SCENARIOS, getProgrammaticFaqs } from '../../lib/seo/programmaticScenarios';
 import AnimatedNumber from '../../components/AnimatedNumber';
@@ -38,8 +38,10 @@ export default function MortgageCalculator() {
   const { t, lang, guides } = useI18n();
   const guide = guides['mortgage'] || { guideTitle: 'Guide & Formulas', guideDesc: 'Comprehensive calculation breakdown and FAQs.', faq: [] };
   
+  const defaultRegime = (lang === 'he' ? 'IL' : detectUserCountry()) as MortgageRegimeId;
+
   const [mode, setMode] = useUrlState<'standard' | 'reverse' | 'compare'>('mode', 'standard');
-  const [regimeId, setRegimeId] = useUrlState<MortgageRegimeId>('regime', lang === 'he' ? 'IL' : 'US');
+  const [regimeId, setRegimeId] = useUrlState<MortgageRegimeId>('regime', defaultRegime);
   const [principal, setPrincipal] = useUrlState('principal', 300000);
   const [targetPayment, setTargetPayment] = useUrlState('targetPayment', 1900);
   const [rate, setRate] = useUrlState('rate', 6.5);

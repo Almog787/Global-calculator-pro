@@ -39,6 +39,7 @@ const CURRENCY_MAP: Record<string, CurrencyDetails> = {
   BRL: { code: 'BRL', symbol: 'R$', flag: '🇧🇷', name: { en: 'Brazilian Real', he: 'ריאל ברזילאי', es: 'Real Brasileño', fr: 'Réal Brésilien', ar: 'ريال برازيلي', ru: 'Бразильский реал' } },
   MXN: { code: 'MXN', symbol: 'Mex$', flag: '🇲🇽', name: { en: 'Mexican Peso', he: 'פסו מקסיקני', es: 'Peso Mexicano', fr: 'Peso Mexicain', ar: 'بيزو مكسيكي', ru: 'Мексиканское песо' } },
   TRY: { code: 'TRY', symbol: '₺', flag: '🇹🇷', name: { en: 'Turkish Lira', he: 'לירה טורקית', es: 'Lira Turca', fr: 'Livre Turque', ar: 'ليرة تركية', ru: 'Турецкая лира' } },
+  SGD: { code: 'SGD', symbol: 'S$', flag: '🇸🇬', name: { en: 'Singapore Dollar', he: 'דולר סינגפורי', es: 'Dólar de Singapur', fr: 'Dollar de Singapour', ar: 'دولار سنغافوري', ru: 'Сингапурский доллар' } },
 };
 
 const commonCurrencies = Object.keys(CURRENCY_MAP);
@@ -61,9 +62,20 @@ const localFallbackRates: Record<string, number> = {
   BRL: 5.70,
   MXN: 20.2,
   TRY: 34.2,
+  SGD: 1.35,
 };
 
 function getDefaultToCurrency(lang: string): string {
+  if (typeof window !== 'undefined') {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      if (tz.includes('Singapore') || tz.includes('Asia/Singapore')) return 'SGD';
+      const navLang = (navigator.language || '').toLowerCase();
+      if (navLang.includes('-sg') || navLang.includes('sg')) return 'SGD';
+    } catch {
+      // fallback
+    }
+  }
   switch (lang) {
     case 'he': return 'ILS';
     case 'ru': return 'RUB';
