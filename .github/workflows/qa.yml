@@ -20,9 +20,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+          cache: "npm"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci || npm install
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
