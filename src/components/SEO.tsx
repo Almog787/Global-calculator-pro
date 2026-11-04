@@ -158,7 +158,7 @@ const SEO: React.FC<SEOProps> = ({
       'Offline-First Progressive Web App (PWA) Capability',
       'Side-by-Side Financial Scenario Comparison',
       'Embeddable Responsive Widgets',
-      'Multilingual Support (EN, HE, ES, FR, AR)',
+      'Multilingual Support (EN, HE, ES, FR, AR, RU)',
       'Real-time Animated Visualizations'
     ],
     offers: {
