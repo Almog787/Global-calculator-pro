@@ -550,6 +550,29 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
     category: 'Science & Engineering',
     icon: 'science',
     defaultHeight: 700
+  },
+  {
+    id: 'purchasing-power',
+    slug: 'calculators/purchasing-power',
+    name: {
+      en: 'Global Purchasing Power & Relocation Calculator',
+      he: 'מחשבון כוח קנייה והשוואת עלויות מחייה בין ערים',
+      es: 'Calculadora de Poder Adquisitivo y Coste de Vida Global',
+      fr: 'Calculateur de Pouvoir d\'Achat et Coût de la Vie',
+      ar: 'حاسبة القوة الشرائية وتكلفة المعيشة بين المدن',
+      ru: 'Калькулятор покупательской способности и стоимости жизни'
+    },
+    description: {
+      en: 'Compare cost of living, rent, groceries, and equivalent net salary across global cities.',
+      he: 'השוואת עלויות מחייה, שכירות, מזון ושכר שווה ערך בערים מובילות בעולם.',
+      es: 'Compara el coste de vida, alquiler y salario equivalente en las principales ciudades del mundo.',
+      fr: 'Comparez le coût de la vie, les loyers et le salaire équivalent entre les grandes métropoles.',
+      ar: 'قارن تكلفة المعيشة والإيجار والراتب المماثل بين أبرز مدن العالم.',
+      ru: 'Сравнение стоимости жизни, аренды и эквивалентной зарплаты в крупнейших мегаполисах.'
+    },
+    category: 'Lifestyle / Global',
+    icon: 'public',
+    defaultHeight: 740
   }
 ];
 

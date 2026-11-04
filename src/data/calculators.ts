@@ -19,6 +19,14 @@ export const dynamicTranslations: Record<string, Record<string, { title: string;
     ar: { title: "حاسبة الحمل وموعد الولادة المتوقع", description: "احسبي أسبوع الحمل بدقة، موعد الولادة المتوقع، الثلث الحالي ومراحل نمو الجنين والفحوصات الدورية." },
     ru: { title: "Калькулятор беременности и даты родов", description: "Точный расчет недели беременности, предполагаемой даты родов, текущего триместра и календаря развития плода." },
   },
+  "purchasing-power": {
+    en: { title: "Global Purchasing Power & Relocation Calculator", description: "Compare cost of living, rent, groceries, and equivalent net salary across global cities." },
+    he: { title: "מחשבון כוח קנייה והשוואת עלויות מחייה בין ערים בעולם", description: "השוואת עלויות מחייה, שכירות ושכר שווה ערך בערים מובילות: תל אביב, סינגפור, ניו יורק, לונדון, פריז, ברלין, דובאי ועוד." },
+    es: { title: "Calculadora de Poder Adquisitivo y Coste de Vida Global", description: "Compara el coste de vida, alquiler y salario equivalente en las principales ciudades del mundo." },
+    fr: { title: "Calculateur de Pouvoir d'Achat et Coût de la Vie", description: "Comparez le coût de la vie, les loyers et le salaire équivalent entre les grandes métropoles mondiales." },
+    ar: { title: "حاسبة القوة الشرائية وتكلفة المعيشة بين المدن", description: "قارن تكلفة المعيشة والإيجار والراتب المماثل بين أبرز مدن العالم." },
+    ru: { title: "Калькулятор покупательской способности и стоимости жизни в городах мира", description: "Сравнение стоимости жизни, аренды и эквивалентной зарплаты в крупнейших мегаполисах мира." },
+  },
   "mortgage-affordability": {
     en: { title: "Mortgage Affordability Calculator", description: "Calculate exactly how much house you can afford based on income, down payment, and monthly debt." },
     he: { title: "כמה משכנתא אני יכול לקחת?", description: "חשב את תקציב קניית הדירה המדויק שלך, גובה המשכנתא המקסימלי וההחזר החודשי לפי ההכנסה." },
@@ -785,6 +793,14 @@ export const calculators: CalculatorMeta[] = [
     description: "Multi-category scientific conversion engine for Pressure, Energy, Power, Force, Torque, Flow Rate, Dynamic Viscosity, Data Bandwidth, and Typography.",
     category: "tech",
     tags: ["scientific units", "engineering", "pressure", "energy", "power", "force", "torque", "flow rate", "viscosity", "bandwidth", "typography", "physics", "המרה מדעית"],
+  },
+  {
+    id: "purchasing-power",
+    path: "/calculators/purchasing-power",
+    fallbackTitle: "Global Purchasing Power & Relocation Calculator",
+    description: "Compare cost of living, rent, groceries, and equivalent net salary across major global cities.",
+    category: "lifestyle",
+    tags: ["purchasing power", "cost of living", "relocation", "salary converter", "expat", "cities", "rent comparison", "כוח קנייה", "עלות מחייה", "רילוקיישן", "תל אביב", "סינגפור", "לונדון", "ניו יורק"],
   },
 ];
 
