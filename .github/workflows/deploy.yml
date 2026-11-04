@@ -20,19 +20,35 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'npm'
+
       - name: Install dependencies
         run: npm ci || npm install
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
-      - name: Run Build as QA
+
+      - name: Run Build
         run: npm run build
+
       - name: Run Tests
         run: npm run test
+
+      - name: Commit updated README and sitemap
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: update README and sitemap with new calculator links [skip ci]"
+          file_pattern: "README.md public/sitemap.xml dist/sitemap.xml"
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
 
   deploy:
     needs: qa
@@ -41,38 +57,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci || npm install
-        
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium
-
-      - name: Build
-        run: npm run build
-        
-      - name: Commit updated README and sitemap
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "docs: update README and sitemap with new calculator links [skip ci]"
-          file_pattern: "README.md public/sitemap.xml dist/sitemap.xml"
-        
       - name: Setup Pages
-        uses: actions/configure-pages@v4
-        
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist'
-          
+        uses: actions/configure-pages@v5
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 1200000 # 20 minutes (prevents premature timeout on slow GitHub Pages runners)
+
