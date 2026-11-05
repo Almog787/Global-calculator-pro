@@ -4,13 +4,10 @@ import { useUrlState } from '../../hooks/useUrlState';
 import { useRecordCalculation } from '../../hooks/useRecordCalculation';
 import SEO from '../../components/SEO';
 import Breadcrumbs from '../../components/Breadcrumbs';
-import CalculatorGuide from '../../components/CalculatorGuide';
 import FAQ from '../../components/FAQ';
 import ShareActions from '../../components/ShareActions';
 import EmbedCtaBanner from '../../components/EmbedCtaBanner';
 import AnimatedNumber from '../../components/AnimatedNumber';
-import PresetChips from '../../components/PresetChips';
-import PopularScenarios from '../../components/PopularScenarios';
 import RelatedCalculators from '../../components/RelatedCalculators';
 import DisclaimerNotice from '../../components/DisclaimerNotice';
 import {
@@ -60,15 +57,29 @@ export default function PurchasingPower() {
   // Record calculation to local history
   useRecordCalculation({
     calculatorId: 'purchasing-power',
-    title: lang === 'he' ? 'השוואת כוח קנייה ועלויות מחייה בין ערים' : 'Global Purchasing Power & Relocation Calculator',
-    summary: `${result.sourceCity.flag} ${result.sourceCity.name[lang as keyof typeof result.sourceCity.name] || result.sourceCity.name.en} ➔ ${result.targetCity.flag} ${result.targetCity.name[lang as keyof typeof result.targetCity.name] || result.targetCity.name.en}: ${result.targetCity.currencySymbol}${result.equivalentTargetSalary.toLocaleString()}/mo`,
-    details: {
-      'Source City': result.sourceCity.name.en,
-      'Target City': result.targetCity.name.en,
-      'Source Monthly Salary': `${result.sourceCity.currencySymbol}${result.sourceSalary.toLocaleString()}`,
-      'Equivalent Target Salary': `${result.targetCity.currencySymbol}${result.equivalentTargetSalary.toLocaleString()}`,
-      'Living Cost Diff': `${result.livingCostDiffPercentage > 0 ? '+' : ''}${result.livingCostDiffPercentage}%`,
+    title: {
+      en: 'Global Purchasing Power & Relocation Calculator',
+      he: 'השוואת כוח קנייה ועלויות מחייה בין ערים',
+      es: 'Calculadora de Poder Adquisitivo y Coste de Vida',
+      fr: 'Calculateur de Pouvoir d\'Achat et Coût de la Vie',
+      ar: 'حاسبة القوة الشرائية وتكلفة المعيشة',
     },
+    summary: {
+      en: `${result.sourceCity.flag} ${result.sourceCity.name.en} (${result.sourceCity.currencySymbol}${result.sourceSalary.toLocaleString()}) ➔ ${result.targetCity.flag} ${result.targetCity.name.en}`,
+      he: `${result.sourceCity.flag} ${result.sourceCity.name.he} (${result.sourceCity.currencySymbol}${result.sourceSalary.toLocaleString()}) ➔ ${result.targetCity.flag} ${result.targetCity.name.he}`,
+      es: `${result.sourceCity.flag} ${result.sourceCity.name.es} ➔ ${result.targetCity.flag} ${result.targetCity.name.es}`,
+      fr: `${result.sourceCity.flag} ${result.sourceCity.name.fr} ➔ ${result.targetCity.flag} ${result.targetCity.name.fr}`,
+      ar: `${result.sourceCity.flag} ${result.sourceCity.name.ar} ➔ ${result.targetCity.flag} ${result.targetCity.name.ar}`,
+    },
+    result: {
+      en: `Equivalent: ${result.targetCity.currencySymbol}${result.equivalentTargetSalary.toLocaleString()} / mo (${result.livingCostDiffPercentage > 0 ? '+' : ''}${result.livingCostDiffPercentage}%)`,
+      he: `שכר שווה ערך: ${result.targetCity.currencySymbol}${result.equivalentTargetSalary.toLocaleString()} לחודש (${result.livingCostDiffPercentage > 0 ? '+' : ''}${result.livingCostDiffPercentage}%)`,
+      es: `Equivalente: ${result.targetCity.currencySymbol}${result.equivalentTargetSalary.toLocaleString()} / mes`,
+      fr: `Équivalent : ${result.targetCity.currencySymbol}${result.equivalentTargetSalary.toLocaleString()} / mois`,
+      ar: `المعادل: ${result.targetCity.currencySymbol}${result.equivalentTargetSalary.toLocaleString()} شهرياً`,
+    },
+    path: `/${lang}/calculators/purchasing-power?from=${sourceCityId}&to=${targetCityId}&salary=${monthlySalary}`,
+    badge: `${result.sourceCity.countryCode}➔${result.targetCity.countryCode}`,
   });
 
   const swapCities = () => {
@@ -146,20 +157,20 @@ export default function PurchasingPower() {
 
   const faqItems = [
     {
-      q: lang === 'he' ? 'כיצד מחושב השכר שווה הערך בין שני ערים?' : 'How is equivalent salary calculated between two cities?',
-      a: lang === 'he'
+      question: lang === 'he' ? 'כיצד מחושב השכר שווה הערך בין שני ערים?' : 'How is equivalent salary calculated between two cities?',
+      answer: lang === 'he'
         ? 'החישוב מתבסס על המדד המורכב של עלויות המחייה (Consumer Price Index) והשכירות (Rent Index) בכל עיר, בשילוב שער החליפין העדכני בין המטבעות.'
         : 'The equivalent salary is computed using combined cost of living and rent indices (0.65 CPI + 0.35 Rent Index) combined with real-time currency exchange rates.',
     },
     {
-      q: lang === 'he' ? 'מהו מדד כוח הקנייה המקומי (Local Purchasing Power)?' : 'What is Local Purchasing Power?',
-      a: lang === 'he'
+      question: lang === 'he' ? 'מהו מדד כוח הקנייה המקומי (Local Purchasing Power)?' : 'What is Local Purchasing Power?',
+      answer: lang === 'he'
         ? 'מדד כוח הקנייה משקף כמה מוצרים ושירותים תושב המשתכר שכר ממוצע מקומי יכול לרכוש באותה עיר ביחס לערים אחרות בעולם.'
         : 'Local Purchasing Power measures how many goods and services an average local salary can purchase in that city compared to benchmark global cities.',
     },
     {
-      q: lang === 'he' ? 'האם הנתונים והחישובים מבוצעים באופן פרטי בדפדפן?' : 'Is calculation privacy guaranteed?',
-      a: lang === 'he'
+      question: lang === 'he' ? 'האם הנתונים והחישובים מבוצעים באופן פרטי בדפדפן?' : 'Is calculation privacy guaranteed?',
+      answer: lang === 'he'
         ? 'כן, 100% מהחישובים מבוצעים בצד הלקוח (Client-Side) בלבד. שום נתון שכר או מיקום אינו נשלח לשרת.'
         : 'Yes, 100% of calculations execute locally inside your browser with complete privacy and zero server data storage.',
     },
@@ -194,7 +205,18 @@ export default function PurchasingPower() {
             {pageDesc}
           </p>
 
-          <PresetChips presets={presets} />
+          <div className="flex flex-wrap items-center gap-2 mt-4">
+            {presets.map((p, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={p.action}
+                className="px-3.5 py-1.5 text-xs font-bold rounded-xl bg-stone-100 hover:bg-emerald-50 text-stone-700 hover:text-emerald-800 border border-stone-200 hover:border-emerald-300 transition-colors cursor-pointer"
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -284,7 +306,10 @@ export default function PurchasingPower() {
             </div>
           </div>
 
-          <ShareActions title={pageTitle} />
+          <ShareActions
+            calculatorTitle={pageTitle}
+            calculatorPath="/calculators/purchasing-power"
+          />
         </div>
 
         {/* Results Panel */}
@@ -413,36 +438,52 @@ export default function PurchasingPower() {
         </div>
       </div>
 
-      <EmbedCtaBanner calculatorPath="calculators/purchasing-power" calculatorTitle={pageTitle} />
+      <EmbedCtaBanner calculatorId="purchasing-power" calculatorTitle={pageTitle} />
 
-      <CalculatorGuide
-        title={lang === 'he' ? 'מדריך השוואת עלויות מחייה ורילוקיישן' : 'Purchasing Power & Relocation Guide'}
-        description={
-          lang === 'he'
-            ? 'כיצד לתכנן רילוקיישן נכון, להבין את פערי כוח הקנייה הריאליים ולחשב שכר נטו הוגן במעבר בין מדינות.'
-            : 'How to plan a global relocation, evaluate real purchasing power differentials, and negotiate fair international salary packages.'
-        }
-        steps={[
-          {
-            title: lang === 'he' ? '1. חישוב עלויות הדיור והשכירות' : '1. Evaluate Housing & Rent Expenses',
-            content: lang === 'he'
-              ? 'הסעיף המשמעותי ביותר בתקציב המשפחתי הוא דיור. בערים כמו ניו יורק, סינגפור ולונדון, השכירות תופסת נתח מרכזי מההכנסה.'
-              : 'Housing is typically the largest component of personal expense. Cities like New York, Singapore, and London have significantly higher rental ratios.',
-          },
-          {
-            title: lang === 'he' ? '2. מיסוי והפרשות סוציאליות' : '2. Consider Taxes & Benefits',
-            content: lang === 'he'
-              ? 'בדוק את מדרגות מס ההכנסה המקומיות ואת ההפרשות הפנסיוניות והבריאותיות במדינת היעד (כגון חשבון CPF בסינגפור או הביטוח הלאומי באירופה).'
-              : 'Evaluate local income tax brackets and mandatory social security or pension contributions (e.g. CPF in Singapore or social insurance in Europe).',
-          },
-        ]}
-      />
+      {/* Comprehensive Relocation & Cost of Living Guide */}
+      <section className="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200 shadow-xs space-y-6">
+        <div>
+          <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">
+            {lang === 'he' ? 'מדריך מעשי ומומחיות' : 'Practical Expert Guide'}
+          </span>
+          <h2 className="text-2xl font-black text-stone-900 tracking-tight">
+            {lang === 'he' ? 'מדריך השוואת עלויות מחייה ורילוקיישן' : 'Purchasing Power & Relocation Guide'}
+          </h2>
+          <p className="text-stone-600 text-sm mt-1">
+            {lang === 'he'
+              ? 'כיצד לתכנן רילוקיישן נכון, להבין את פערי כוח הקנייה הריאליים ולחשב שכר נטו הוגן במעבר בין מדינות.'
+              : 'How to plan a global relocation, evaluate real purchasing power differentials, and negotiate fair international salary packages.'}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="p-5 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-2">
+            <h3 className="font-bold text-base text-stone-900">
+              {lang === 'he' ? '1. חישוב עלויות הדיור והשכירות' : '1. Evaluate Housing & Rent Expenses'}
+            </h3>
+            <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-medium">
+              {lang === 'he'
+                ? 'הסעיף המשמעותי ביותר בתקציב המשפחתי הוא דיור. בערים כמו ניו יורק, סינגפור ולונדון, השכירות תופסת נתח מרכזי מההכנסה.'
+                : 'Housing is typically the largest component of personal expense. Cities like New York, Singapore, and London have significantly higher rental ratios.'}
+            </p>
+          </div>
+
+          <div className="p-5 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-2">
+            <h3 className="font-bold text-base text-stone-900">
+              {lang === 'he' ? '2. מיסוי והפרשות סוציאליות' : '2. Consider Taxes & Benefits'}
+            </h3>
+            <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-medium">
+              {lang === 'he'
+                ? 'בדוק את מדרגות מס ההכנסה המקומיות ואת ההפרשות הפנסיוניות והבריאותיות במדינת היעד (כגון חשבון CPF בסינגפור או הביטוח הלאומי באירופה).'
+                : 'Evaluate local income tax brackets and mandatory social security or pension contributions (e.g. CPF in Singapore or social insurance in Europe).'}
+            </p>
+          </div>
+        </div>
+      </section>
 
       <FAQ items={faqItems} />
 
-      <PopularScenarios calculatorType="purchasing-power" />
-
-      <RelatedCalculators currentCalculatorId="purchasing-power" />
+      <RelatedCalculators currentId="purchasing-power" />
 
       <DisclaimerNotice />
     </div>

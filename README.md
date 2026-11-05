@@ -30,7 +30,7 @@ Built with a zero-latency, client-side first architecture, Global Calc Pro deliv
   - [📐 Mathematics, Statistics & Science](#-mathematics-statistics--science)
   - [🩺 Health, Fitness & Medical](#-health-fitness--medical)
   - [⚡ Daily Utility & Conversions](#-daily-utility--conversions)
-- [🔗 Full SEO Sitemap Catalog (61 Calculators)](#-full-seo-sitemap-catalog-61-calculators)
+- [🔗 Full SEO Sitemap Catalog (60 Calculators)](#-full-seo-sitemap-catalog-60-calculators)
 - [🧰 Developer Ecosystem & Recommended Open-Source SEO Tools](#-developer-ecosystem--recommended-open-source-seo-tools)
 - [❓ Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
 - [🛠️ Developer Quick Start](#️-developer-quick-start)
@@ -173,7 +173,7 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 
 ---
 
-## 🔗 Full SEO Sitemap Catalog (61 Calculators)
+## 🔗 Full SEO Sitemap Catalog (60 Calculators)
 
 - **[Age & Milestone Birthday Calculator](https://globalcalcpro.com/age-calculator)** - Calculate exact chronological age in years, months, days, hours, and next birthday.
 - **[Age Calculator Calculator](https://globalcalcpro.com/calculators/age-calculator)** - Free online age calculator calculator for precise calculations.
@@ -214,7 +214,6 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 - **[Percentage Finder Calculator](https://globalcalcpro.com/calculators/percentage-finder)** - Free online percentage finder calculator for precise calculations.
 - **[Pregnancy Calculator Calculator](https://globalcalcpro.com/calculators/pregnancy-calculator)** - Free online pregnancy calculator calculator for precise calculations.
 - **[Purchasing Power Calculator](https://globalcalcpro.com/calculators/purchasing-power)** - Free online purchasing power calculator for precise calculations.
-- **[Purchasing Power Calculator Calculator](https://globalcalcpro.com/calculators/purchasing-power-calculator)** - Free online purchasing power calculator calculator for precise calculations.
 - **[Quadratic Equation Solver (ax² + bx + c = 0)](https://globalcalcpro.com/calculators/quadratic-equation)** - Free quadratic formula calculator. Solves quadratic equations step-by-step with real or complex numbers, discriminant analysis, factored form, and interactive parabola curve graph.
 - **[Real Estate Purchase & Appreciation Tax Calculator](https://globalcalcpro.com/calculators/purchase-appreciation-tax)** - Calculate official Israel real estate purchase tax brackets (single home vs additional investor home) and linear property appreciation tax with deductible expenses and exemptions.
 - **[Refinance Calculator](https://globalcalcpro.com/calculators/refinance)** - Free online refinance calculator for precise calculations.
