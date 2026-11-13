@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const SITEMAP_URL = 'https://globalcalcpro.com/sitemap.xml';
+const SITEMAP_URL = process.env.SITEMAP_URL || 'https://globalcalcpro.com/sitemap.xml';
 
 async function pingSitemaps() {
   console.log('📡 Starting Manual Search Engine Sitemap Ping & Submission Check...');
@@ -21,15 +21,17 @@ async function pingSitemaps() {
     }
   ];
 
-  for (const target of pingTargets) {
-    try {
-      console.log(`\n📤 Pinging ${target.engine}...`);
-      const res = await fetch(target.url, { method: 'GET' });
-      console.log(`✅ ${target.engine} responded with HTTP ${res.status} (${res.statusText})`);
-    } catch (err) {
-      console.warn(`⚠️ Ping to ${target.engine} returned: ${err.message}`);
-    }
-  }
+  await Promise.all(
+    pingTargets.map(async (target) => {
+      try {
+        console.log(`\n📤 Pinging ${target.engine}...`);
+        const res = await fetch(target.url, { method: 'GET' });
+        console.log(`✅ ${target.engine} responded with HTTP ${res.status} (${res.statusText})`);
+      } catch (err) {
+        console.warn(`⚠️ Ping to ${target.engine} returned: ${err.message}`);
+      }
+    })
+  );
 
   // Validate sitemap files locally
   const localSitemaps = ['dist/sitemap.xml', 'public/sitemap.xml'];

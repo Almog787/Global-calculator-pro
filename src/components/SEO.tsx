@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import { calculators } from '../data/calculators';
+
+interface BreadcrumbEntry {
+  name: string;
+  url?: string;
+}
 
 interface SEOProps {
   title: string;
@@ -14,6 +20,7 @@ interface SEOProps {
   applicationCategory?: string;
   ratingValue?: number | string;
   ratingCount?: number | string;
+  breadcrumbs?: BreadcrumbEntry[];
   faq?: Array<{ question: string; answer: string }>;
   dataset?: {
     name: string;
@@ -40,6 +47,7 @@ const SEO: React.FC<SEOProps> = ({
   applicationCategory = 'CalculatorApplication',
   ratingValue: _ratingValue = '4.9',
   ratingCount: _ratingCount = '1480',
+  breadcrumbs,
   faq = [],
   dataset,
   howTo,
@@ -48,6 +56,14 @@ const SEO: React.FC<SEOProps> = ({
   const siteName = 'Global Calc Pro';
   const defaultTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
   const baseUrl = 'https://globalcalcpro.com';
+
+  // Remove static prerendered JSON-LD script once React Helmet manages the canonical schema graph
+  useEffect(() => {
+    const prerenderScript = document.getElementById('prerender-ld-json');
+    if (prerenderScript) {
+      prerenderScript.remove();
+    }
+  }, []);
 
   // Determine current pathname safely
   const currentPath = location ? location.pathname : '/en/all';
@@ -168,26 +184,83 @@ const SEO: React.FC<SEOProps> = ({
     }
   } : null;
 
-  // BreadcrumbList Schema
-  const breadcrumbSchema = {
-    '@type': 'BreadcrumbList',
-    '@id': `${finalCanonicalUrl}#breadcrumb`,
-    itemListElement: [
+  // Localized BreadcrumbList Schema (Single canonical source of truth)
+  const homeLabels: Record<string, string> = {
+    en: 'Home',
+    he: 'ראשי',
+    es: 'Inicio',
+    fr: 'Accueil',
+    ar: 'الرئيسية',
+    ru: 'Главная'
+  };
+  const categoryLabels: Record<string, Record<string, string>> = {
+    finance: { en: 'Finance', he: 'פיננסים', es: 'Finanzas', fr: 'Finances', ar: 'المالية', ru: 'Финансы' },
+    'real-estate': { en: 'Real Estate', he: 'נדל"ן ומשכנתאות', es: 'Bienes Raíces', fr: 'Immobilier', ar: 'العقارات', ru: 'Недвижимость' },
+    health: { en: 'Health', he: 'בריאות', es: 'Salud', fr: 'Santé', ar: 'الصحة', ru: 'Здоровье' },
+    math: { en: 'Math', he: 'מתמטיקה', es: 'Matemáticas', fr: 'Maths', ar: 'الرياضيات', ru: 'Математика' },
+    tech: { en: 'Tech', he: 'טכנולוגיה ומחשבים', es: 'Tecnología', fr: 'Technologie', ar: 'التكنولوجيا والتقنية', ru: 'Технологии' },
+    lifestyle: { en: 'Lifestyle', he: 'לייף סטייל', es: 'Estilo de vida', fr: 'Vie quotidienne', ar: 'نمط الحياة', ru: 'Повседневное' },
+  };
+
+  const homeName = homeLabels[currentLang] || homeLabels.en;
+  const resolveUrl = (u?: string) => {
+    if (!u) return finalCanonicalUrl;
+    if (u.startsWith('http')) return u;
+    return `${baseUrl}${u.startsWith('/') ? u : `/${u}`}`;
+  };
+
+  let breadcrumbItemsList: Array<{ '@type': string; position: number; name: string; item: string }>;
+  if (breadcrumbs && breadcrumbs.length > 0) {
+    breadcrumbItemsList = [
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Home',
-        item: `${baseUrl}/${currentLang}/all`
+        name: homeName,
+        item: `${baseUrl}/${currentLang}`
       },
-      ...(subPath ? [
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: title.replace(` | ${siteName}`, ''),
-          item: finalCanonicalUrl
-        }
-      ] : [])
-    ]
+      ...breadcrumbs.map((entry, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 2,
+        name: entry.name,
+        item: resolveUrl(entry.url)
+      }))
+    ];
+  } else {
+    const matchedCalc = calculators.find(
+      (c) => c.path === normalizedPath || c.path === subPath
+    );
+    const items: Array<{ '@type': string; position: number; name: string; item: string }> = [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: homeName,
+        item: `${baseUrl}/${currentLang}`
+      }
+    ];
+    if (matchedCalc && categoryLabels[matchedCalc.category]) {
+      const catLabel = categoryLabels[matchedCalc.category][currentLang] || categoryLabels[matchedCalc.category].en;
+      items.push({
+        '@type': 'ListItem',
+        position: 2,
+        name: catLabel,
+        item: `${baseUrl}/${currentLang}/category/${matchedCalc.category}`
+      });
+    }
+    if (subPath) {
+      items.push({
+        '@type': 'ListItem',
+        position: items.length + 1,
+        name: title.replace(` | ${siteName}`, ''),
+        item: finalCanonicalUrl
+      });
+    }
+    breadcrumbItemsList = items;
+  }
+
+  const breadcrumbSchema = {
+    '@type': 'BreadcrumbList',
+    '@id': `${finalCanonicalUrl}#breadcrumb`,
+    itemListElement: breadcrumbItemsList
   };
 
   // FAQ Schema

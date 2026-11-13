@@ -111,38 +111,42 @@ async function indexSite() {
       auth,
     });
 
-    console.log(`🚀 Requesting Google Indexing for ${urls.length} URLs...`);
+    const actionType = process.env.INDEXING_ACTION_TYPE === 'URL_DELETED' ? 'URL_DELETED' : 'URL_UPDATED';
+    console.log(`🚀 Requesting Google Indexing (${actionType}) for ${urls.length} URLs...`);
 
-    for (const url of urls) {
-      try {
-        const res = await indexing.urlNotifications.publish({
-          requestBody: {
-            url: url,
-            type: 'URL_UPDATED',
-          },
-        });
-        console.log(`✅ Indexing requested: ${url} (Status: ${res.status})`);
-      } catch (urlErr) {
-        console.error(`⚠️ Indexing failed for ${url}:`, urlErr.message);
+    const BATCH_SIZE = 5;
+    let shouldStop = false;
 
-        // Check for fatal errors that affect all URLs
-        if (urlErr.message && urlErr.message.includes('has been deleted')) {
-          console.error('\n🛑 FATAL ERROR: The Google Cloud Project associated with this Service Account has been deleted.');
-          console.error('👉 To fix this:\n 1. Restore the project in Google Cloud Console (IAM & Admin -> Manage Resources -> Pending Deletion), OR\n 2. Create a new Service Account in an active Google Cloud Project with the Indexing API enabled and update your GOOGLE_SERVICE_ACCOUNT_KEY.');
-          break;
-        }
+    for (let i = 0; i < urls.length && !shouldStop; i += BATCH_SIZE) {
+      const batch = urls.slice(i, i + BATCH_SIZE);
+      await Promise.all(
+        batch.map(async (url) => {
+          if (shouldStop) return;
+          try {
+            const res = await indexing.urlNotifications.publish({
+              requestBody: {
+                url: url,
+                type: actionType,
+              },
+            });
+            console.log(`✅ Indexing requested: ${url} (Status: ${res.status})`);
+          } catch (urlErr) {
+            console.error(`⚠️ Indexing failed for ${url}:`, urlErr.message);
 
-        if (urlErr.message && (urlErr.message.includes('invalid_grant') || urlErr.message.includes('Permission denied') || urlErr.message.includes('has not been used in project'))) {
-          console.error('\n🛑 FATAL AUTH/PERMISSIONS ERROR:', urlErr.message);
-          console.error('👉 Verify that the Indexing API is enabled and the Service Account has Owner permissions in Google Search Console.');
-          break;
-        }
-
-        if (urlErr.message && urlErr.message.includes('Quota exceeded')) {
-          console.log('\n🛑 Quota exceeded. Stopping further indexing requests for today to prevent errors.');
-          break;
-        }
-      }
+            if (urlErr.message && urlErr.message.includes('has been deleted')) {
+              console.error('\n🛑 FATAL ERROR: The Google Cloud Project associated with this Service Account has been deleted.');
+              shouldStop = true;
+            } else if (urlErr.message && (urlErr.message.includes('invalid_grant') || urlErr.message.includes('Permission denied') || urlErr.message.includes('has not been used in project'))) {
+              console.error('\n🛑 FATAL AUTH/PERMISSIONS ERROR:', urlErr.message);
+              console.error('👉 Verify that the Indexing API is enabled and the Service Account has Owner permissions in Google Search Console.');
+              shouldStop = true;
+            } else if (urlErr.message && urlErr.message.includes('Quota exceeded')) {
+              console.log('\n🛑 Quota exceeded. Stopping further indexing requests for today to prevent errors.');
+              shouldStop = true;
+            }
+          }
+        })
+      );
     }
 
     console.log('✨ Google Indexing API execution completed!');

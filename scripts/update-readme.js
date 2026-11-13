@@ -79,7 +79,7 @@ const readmeTemplate = `# Global Calc Pro 🧮
 [![Official Website](https://img.shields.io/badge/Website-globalcalcpro.com-0066FF?style=for-the-badge&logo=googlechrome&logoColor=white)](${DOMAIN})
 [![Widgets Hub](https://img.shields.io/badge/Widgets-Embed%20Calculators-00A86B?style=for-the-badge&logo=html5&logoColor=white)](${DOMAIN}/en/widgets)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Vitest Tests](https://img.shields.io/badge/Tests-210%20Passed-brightgreen?style=for-the-badge&logo=vitest&logoColor=white)](https://github.com/Almog787/Global-calculator-pro)
+[![Vitest Tests](https://img.shields.io/badge/Tests-230%20Passed-brightgreen?style=for-the-badge&logo=vitest&logoColor=white)](https://github.com/Almog787/Global-calculator-pro)
 [![TypeScript 5.9](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React 19](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![PWA Ready](https://img.shields.io/badge/PWA-Offline%20First-purple?style=for-the-badge&logo=pwa&logoColor=white)](${DOMAIN})
@@ -225,7 +225,7 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 - **[Quadratic Equation Solver](https://globalcalcpro.com/calculators/quadratic-equation)** - Solves ax² + bx + c = 0 with real/complex roots, discriminant, and parabola plot.
 - **[System of Linear Equations (2x2)](https://globalcalcpro.com/calculators/linear-system)** - Simultaneous linear equations solver using Cramer's rule with geometric intersection.
 - **[Linear Regression & Pearson Correlation](https://globalcalcpro.com/calculators/linear-regression)** - Best-fit line (y = mx + b), Pearson r, R², and scatter plot chart.
-- **[Z-Score & Normal Distribution Calculator](https://globalcalcpro.com/calculators/zscore)** - Standard scores, percentiles, two-tailed p-values, and interactive Gaussian bell curve.
+- **[Z-Score & Normal Distribution Calculator](https://globalcalcpro.com/calculators/z-score)** - Standard scores, percentiles, two-tailed p-values, and interactive Gaussian bell curve.
 - **[Triangle Solver & Trigonometry Calculator](https://globalcalcpro.com/calculators/triangle-solver)** - SSS and SAS triangle solver with laws of sines/cosines, area, and incircle/circumcircle.
 - **[Circle Sector & Arc Length Calculator](https://globalcalcpro.com/calculators/circle-sector)** - Arc length, sector area, chord length, and segment area with dynamic SVG diagram.
 - **[Bitwise Calculator & Binary Logic](https://globalcalcpro.com/calculators/bitwise-calculator)** - AND, OR, XOR, NOT, left/right bit shifts with binary bit visualizer.

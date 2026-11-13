@@ -15,42 +15,17 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
     en: 'Home',
     es: 'Inicio',
     fr: 'Accueil',
-    ar: 'الرئيسية'
+    ar: 'الرئيسية',
+    ru: 'Главная'
   };
 
   const homeLabel = homeLabels[lang] || 'Home';
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://globalcalcpro.com';
-
-  // Generate Schema.org BreadcrumbList JSON-LD
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": homeLabel,
-        "item": `${baseUrl}/${lang}`
-      },
-      ...items.map((item, index) => ({
-        "@type": "ListItem",
-        "position": index + 2,
-        "name": item.label,
-        ...(item.path ? { "item": item.path.startsWith('http') ? item.path : `${baseUrl}${item.path}` } : {})
-      }))
-    ]
-  };
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <nav
-        className="flex items-center text-xs font-semibold text-stone-500 mb-6 flex-wrap gap-1.5"
-        aria-label="Breadcrumb"
-      >
+    <nav
+      className="flex items-center text-xs font-semibold text-stone-500 mb-6 flex-wrap gap-1.5"
+      aria-label="Breadcrumb"
+    >
         <Link
           to={`/${lang}`}
           className="hover:text-primary transition-colors inline-flex items-center gap-1 text-stone-600 hover:underline"
@@ -79,6 +54,5 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
           </div>
         ))}
       </nav>
-    </>
   );
 }

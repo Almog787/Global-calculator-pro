@@ -30,6 +30,7 @@ jobs:
   build-repomix:
     name: Pack codebase with Repomix
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout target repository
         uses: actions/checkout@v4

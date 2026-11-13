@@ -12,11 +12,11 @@ on:
           - 'URL_UPDATED'
           - 'URL_DELETED'
 
-
 jobs:
   google-indexing:
     name: Submit URLs to Google Indexing API
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,13 +27,19 @@ jobs:
           node-version: 22
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci || npm install
+      - name: Install runtime dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --omit=dev --prefer-offline --no-audit --no-fund
+          else
+            npm install --omit=dev --no-audit --no-fund
+          fi
 
-      - name: Build site
-        run: npm run build
+      - name: Generate Sitemap
+        run: node scripts/generate-sitemap.js
 
       - name: Submit to Google Indexing API
         run: npm run index-site
         env:
           GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+          INDEXING_ACTION_TYPE: ${{ github.event.inputs.action_type }}

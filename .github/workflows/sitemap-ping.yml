@@ -12,6 +12,7 @@ jobs:
   sitemap-ping:
     name: Ping Search Engines with Sitemap
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -20,10 +21,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci || npm install
 
       - name: Ping Search Engines
         run: node scripts/ping-sitemap.js
+        env:
+          SITEMAP_URL: ${{ github.event.inputs.custom_sitemap_url }}

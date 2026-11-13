@@ -16,14 +16,31 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci || npm install
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --prefer-offline --no-audit --no-fund
+          else
+            npm install --no-audit --no-fund
+          fi
+
+      - name: Cache Playwright Browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium
+        run: |
+          if [ "${{ steps.playwright-cache.outputs.cache-hit }}" != "true" ]; then
+            npx playwright install --with-deps chromium
+          else
+            npx playwright install-deps chromium
+          fi
 
       - name: Run Playwright E2E Suite
         run: npx playwright test --project=Desktop-Chrome

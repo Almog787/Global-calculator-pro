@@ -289,6 +289,30 @@ export default function AllCalculators() {
       distance: 'المسافة',
       temp: 'الحرارة',
       moreConversions: 'المزيد من التحويلات...'
+    },
+    ru: {
+      heroTitle: 'Все нужные калькуляторы в одном месте',
+      heroSubtitle: 'Профессиональные, точные и надежные инструменты расчета для любых задач — от финансов и ипотеки до здоровья и математики.',
+      heroSearchPlaceholder: 'Какой расчет вы хотите выполнить сегодня?',
+      finBadge: 'Финансы и ипотека',
+      finTitle: 'Продвинутый ипотечный калькулятор',
+      loanAmountLabel: 'Сумма кредита',
+      interestLabel: 'Годовая ставка (%)',
+      monthlyEstLabel: 'Ожидаемый платеж в месяц',
+      healthBadge: 'Здоровье',
+      healthTitle: 'Индекс массы тела (ИМТ)',
+      healthStatus: 'Норма',
+      bmiBtn: 'Рассчитать ИМТ',
+      realEstateBadge: 'Недвижимость',
+      realEstateTitle: 'Доходность аренды',
+      realEstateDesc: 'Быстро рассчитайте годовую доходность недвижимости на основе стоимости покупки и арендной платы.',
+      realEstateBtn: 'Рассчитать доходность',
+      mathBadge: 'Математика и конвертация',
+      mathTitle: 'Быстрый конвертер величин',
+      weight: 'Вес',
+      distance: 'Расстояние',
+      temp: 'Температура',
+      moreConversions: 'Другие конвертеры...'
     }
   };
 
@@ -301,18 +325,6 @@ export default function AllCalculators() {
         description={t.librarySubtitle}
         keywords={['calculators', 'finance', 'mortgage', 'health', 'math', 'tools']}
         canonicalUrl={`/${lang}/all`}
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebSite',
-          name: t.title,
-          description: t.librarySubtitle,
-          url: `https://globalcalcpro.com/${lang}/all`,
-          potentialAction: {
-            '@type': 'SearchAction',
-            target: `https://globalcalcpro.com/${lang}/all?search={search_term_string}`,
-            'query-input': 'required name=search_term_string'
-          }
-        }}
       />
 
       {/* Proposal 1: 3D Glassmorphism & Parallax Mesh Hero Section */}

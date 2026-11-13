@@ -7,9 +7,14 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
+concurrency:
+  group: "qa-${{ github.ref }}"
+  cancel-in-progress: true
+
 jobs:
   quality-assurance:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,23 +28,25 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci || npm install
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --prefer-offline --no-audit --no-fund
+          else
+            npm install --no-audit --no-fund
+          fi
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium
-
-      - name: Build Application
-        run: npm run build
-
-      - name: Run Tests
+      - name: Run Tests & Typecheck
         run: npm run test
         env:
           BASE_URL: http://127.0.0.1:3000
 
+      - name: Build Application
+        run: npm run build
+
       - name: Check for Broken Links
-        uses: lycheeverse/lychee-action@v1.9.0
+        uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress --exclude 'mailto:.*' --exclude 'fonts.googleapis.com' --exclude 'fonts.gstatic.com' --exclude 'https://globalcalcpro.com.*' --exclude 'http://localhost.*' --exclude 'http://127.0.0.1.*' './dist/**/*.html'
+          args: --verbose --no-progress --max-concurrency 16 --timeout 15 --exclude 'mailto:.*' --exclude 'fonts.googleapis.com' --exclude 'fonts.gstatic.com' --exclude 'https://globalcalcpro.com.*' --exclude 'http://localhost.*' --exclude 'http://127.0.0.1.*' './dist/**/*.html'
           fail: true
 
       - name: Upload Test Results

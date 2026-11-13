@@ -81,6 +81,7 @@ export default function CalculatorWrapper() {
         canonicalUrl={canonicalUrl}
         type="SoftwareApplication"
         applicationCategory="CalculatorApplication"
+        breadcrumbs={breadcrumbItems.map((b) => ({ name: b.label, url: b.path }))}
       />
 
       <Breadcrumbs items={breadcrumbItems} />

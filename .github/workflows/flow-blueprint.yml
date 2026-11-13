@@ -20,6 +20,7 @@ jobs:
   run-blueprint:
     name: Generate FLOW SEO & GEO Blueprint (Live Codebase Data)
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
       - name: Checkout Repository
@@ -30,7 +31,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Execute FLOW Master Blueprint Engine
         env:

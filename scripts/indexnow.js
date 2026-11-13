@@ -109,10 +109,14 @@ async function submitIndexNow() {
   urlList = [...new Set(urlList)];
 
   // IndexNow API endpoints
-  const endpoints = [
-    'https://api.indexnow.org/indexnow',
-    'https://www.bing.com/indexnow'
-  ];
+  const targetEngine = (process.env.INDEXNOW_TARGET || 'all').toLowerCase();
+  const engineEndpointMap = {
+    all: ['https://api.indexnow.org/indexnow', 'https://www.bing.com/indexnow'],
+    bing: ['https://www.bing.com/indexnow'],
+    yandex: ['https://yandex.com/indexnow'],
+    naver: ['https://searchadvisor.naver.com/indexnow'],
+  };
+  const endpoints = engineEndpointMap[targetEngine] || engineEndpointMap.all;
 
   const payload = {
     host: HOST,
@@ -121,27 +125,29 @@ async function submitIndexNow() {
     urlList: urlList
   };
 
-  for (const endpoint of endpoints) {
-    try {
-      console.log(`📤 Sending ${urlList.length} URLs to IndexNow endpoint: ${endpoint}...`);
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8'
-        },
-        body: JSON.stringify(payload)
-      });
+  await Promise.all(
+    endpoints.map(async (endpoint) => {
+      try {
+        console.log(`📤 Sending ${urlList.length} URLs to IndexNow endpoint: ${endpoint}...`);
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
 
-      if (response.ok || response.status === 200 || response.status === 202) {
-        console.log(`✅ IndexNow successfully submitted to ${endpoint} (Status: ${response.status})`);
-      } else {
-        const text = await response.text();
-        console.warn(`⚠️ IndexNow responded with HTTP ${response.status} from ${endpoint}: ${text}`);
+        if (response.ok || response.status === 200 || response.status === 202) {
+          console.log(`✅ IndexNow successfully submitted to ${endpoint} (Status: ${response.status})`);
+        } else {
+          const text = await response.text();
+          console.warn(`⚠️ IndexNow responded with HTTP ${response.status} from ${endpoint}: ${text}`);
+        }
+      } catch (err) {
+        console.error(`❌ Failed to submit to ${endpoint}:`, err.message);
       }
-    } catch (err) {
-      console.error(`❌ Failed to submit to ${endpoint}:`, err.message);
-    }
-  }
+    })
+  );
 
   console.log('✨ IndexNow submission finished!');
 }
