@@ -42,6 +42,10 @@ on:
           - 'ar'
           - 'ru'
 
+concurrency:
+  group: 'google-indexing'
+  cancel-in-progress: false
+
 jobs:
   google-indexing:
     name: Submit URLs to Google Indexing API
@@ -59,6 +63,7 @@ jobs:
           cache: 'npm'
 
       - name: Install runtime dependencies
+        if: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY != '' }}
         run: |
           if [ -f package-lock.json ]; then
             npm ci --omit=dev --prefer-offline --no-audit --no-fund
@@ -67,12 +72,18 @@ jobs:
           fi
 
       - name: Generate Sitemap
+        if: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY != '' }}
         run: node scripts/generate-sitemap.js
 
       - name: Submit to Google Indexing API
+        if: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY != '' }}
         run: npm run index-site
         env:
           GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
           INDEXING_ACTION_TYPE: ${{ github.event.inputs.action_type || 'URL_UPDATED' }}
           INDEXING_BATCH_MODE: ${{ github.event.inputs.batch_mode || 'auto' }}
           INDEXING_LANG_FILTER: ${{ github.event.inputs.lang_filter || 'all' }}
+
+      - name: Notice if Service Account Secret Not Configured
+        if: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY == '' }}
+        run: echo "Skipping Google Indexing API: GOOGLE_SERVICE_ACCOUNT_KEY secret is not configured."

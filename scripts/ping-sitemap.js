@@ -1,34 +1,44 @@
 import fs from 'fs';
 
 const SITEMAP_URL = process.env.SITEMAP_URL || 'https://globalcalcpro.com/sitemap.xml';
+const ROBOTS_URL = 'https://globalcalcpro.com/robots.txt';
 
 async function pingSitemaps() {
-  console.log('📡 Starting Manual Search Engine Sitemap Ping & Submission Check...');
+  console.log('📡 Starting Search Engine Sitemap Health & Ping Check...');
   console.log(`🔗 Target Sitemap: ${SITEMAP_URL}`);
 
-  const pingTargets = [
+  const checks = [
     {
-      engine: 'Google (Search Console Ping endpoint)',
-      url: `https://www.google.com/ping?sitemap=${encodeURIComponent(SITEMAP_URL)}`
+      name: 'Live Sitemap Accessibility (HTTP 200)',
+      url: SITEMAP_URL,
+      strict: true,
     },
     {
-      engine: 'Bing (Bing Webmaster Tools Ping)',
-      url: `https://www.bing.com/ping?sitemap=${encodeURIComponent(SITEMAP_URL)}`
+      name: 'Live robots.txt Accessibility (HTTP 200)',
+      url: ROBOTS_URL,
+      strict: true,
     },
     {
-      engine: 'Yandex (Yandex Ping)',
-      url: `https://blogs.yandex.ru/pings/?status=success&url=${encodeURIComponent(SITEMAP_URL)}`
-    }
+      name: 'Bing Sitemap Ping',
+      url: `https://www.bing.com/ping?sitemap=${encodeURIComponent(SITEMAP_URL)}`,
+      strict: false,
+    },
   ];
 
+  let hasError = false;
+
   await Promise.all(
-    pingTargets.map(async (target) => {
+    checks.map(async (target) => {
       try {
-        console.log(`\n📤 Pinging ${target.engine}...`);
+        console.log(`\n📤 Checking ${target.name}...`);
         const res = await fetch(target.url, { method: 'GET' });
-        console.log(`✅ ${target.engine} responded with HTTP ${res.status} (${res.statusText})`);
+        console.log(`✅ ${target.name} responded with HTTP ${res.status} (${res.statusText})`);
+        if (target.strict && !res.ok) {
+          hasError = true;
+        }
       } catch (err) {
-        console.warn(`⚠️ Ping to ${target.engine} returned: ${err.message}`);
+        console.warn(`⚠️ Request to ${target.name} returned: ${err.message}`);
+        if (target.strict) hasError = true;
       }
     })
   );
@@ -43,7 +53,11 @@ async function pingSitemaps() {
     }
   }
 
-  console.log('\n✨ Sitemap Ping & Verification Complete!');
+  if (hasError) {
+    process.exitCode = 1;
+  } else {
+    console.log('\n✨ Sitemap Health & Verification Complete!');
+  }
 }
 
 pingSitemaps();

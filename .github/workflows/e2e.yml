@@ -3,6 +3,10 @@ name: "QA: E2E Playwright Tests (Manual)"
 on:
   workflow_dispatch:
 
+concurrency:
+  group: "e2e-${{ github.ref }}"
+  cancel-in-progress: true
+
 jobs:
   e2e-testing:
     name: Run Next-Gen E2E Test Suite
@@ -51,4 +55,5 @@ jobs:
         with:
           name: playwright-report
           path: playwright-report/
-          retention-days: 30
+          if-no-files-found: ignore
+          retention-days: 7

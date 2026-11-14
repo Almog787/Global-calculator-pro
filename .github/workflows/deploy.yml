@@ -3,6 +3,11 @@ name: Deploy static content to Pages
 on:
   push:
     branches: ['main', 'master']
+    paths-ignore:
+      - 'repomix-output/**'
+      - 'flow-blueprint/**'
+      - 'playwright-report/**'
+      - 'lychee/**'
   workflow_dispatch:
 
 permissions:
@@ -43,6 +48,9 @@ jobs:
 
       - name: Run Build
         run: npm run build
+
+      - name: Verify Sitemap, JSON-LD & Dist Links
+        run: npm run verify:seo
 
       - name: Commit updated README and sitemap
         uses: stefanzweifel/git-auto-commit-action@v5

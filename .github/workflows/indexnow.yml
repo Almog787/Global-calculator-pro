@@ -18,6 +18,10 @@ on:
           - 'yandex'
           - 'naver'
 
+concurrency:
+  group: 'indexnow'
+  cancel-in-progress: true
+
 jobs:
   indexnow-submission:
     name: Submit URLs to Bing & IndexNow API

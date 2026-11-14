@@ -16,6 +16,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: 'flow-blueprint'
+  cancel-in-progress: true
+
 jobs:
   run-blueprint:
     name: Generate FLOW SEO & GEO Blueprint (Live Codebase Data)
@@ -45,16 +49,10 @@ jobs:
         with:
           name: flow-blueprint-reports
           path: flow-blueprint/
-          retention-days: 30
+          retention-days: 14
 
       - name: Commit and Push Reports to Repository
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add flow-blueprint/
-          if git diff --staged --quiet; then
-            echo "No changes in flow-blueprint/ to commit."
-          else
-            git commit -m "docs(flow): update FLOW SEO & GEO master blueprint with live codebase data [skip ci]"
-            git push origin HEAD:${{ github.ref_name }}
-          fi
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs(flow): update FLOW SEO & GEO master blueprint with live codebase data [skip ci]"
+          file_pattern: "flow-blueprint/"

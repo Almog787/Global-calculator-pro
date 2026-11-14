@@ -1,16 +1,25 @@
-name: Sitemap Ping & Manual URL Submission Check
+name: Sitemap Health & Ping Check (Auto + Manual)
 
 on:
+  workflow_run:
+    workflows: ['Deploy static content to Pages']
+    types:
+      - completed
   workflow_dispatch:
     inputs:
       custom_sitemap_url:
-        description: 'Sitemap URL to ping'
+        description: 'Sitemap URL to verify'
         required: false
         default: 'https://globalcalcpro.com/sitemap.xml'
 
+concurrency:
+  group: 'sitemap-ping'
+  cancel-in-progress: true
+
 jobs:
   sitemap-ping:
-    name: Ping Search Engines with Sitemap
+    name: Verify Live Sitemap & Ping Search Engines
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -22,7 +31,7 @@ jobs:
         with:
           node-version: 22
 
-      - name: Ping Search Engines
+      - name: Verify Sitemap & Ping Search Engines
         run: node scripts/ping-sitemap.js
         env:
-          SITEMAP_URL: ${{ github.event.inputs.custom_sitemap_url }}
+          SITEMAP_URL: ${{ github.event.inputs.custom_sitemap_url || 'https://globalcalcpro.com/sitemap.xml' }}

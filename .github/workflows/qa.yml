@@ -1,10 +1,8 @@
 name: "QA: Logic & Link Checker"
 
 on:
-  push:
-    branches: ["main"]
   pull_request:
-    branches: ["main"]
+    branches: ["main", "master"]
   workflow_dispatch:
 
 concurrency:
@@ -43,10 +41,13 @@ jobs:
       - name: Build Application
         run: npm run build
 
+      - name: Verify Sitemap, JSON-LD & Dist Links
+        run: npm run verify:seo
+
       - name: Check for Broken Links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress --max-concurrency 16 --timeout 15 --exclude 'mailto:.*' --exclude 'fonts.googleapis.com' --exclude 'fonts.gstatic.com' --exclude 'https://globalcalcpro.com.*' --exclude 'http://localhost.*' --exclude 'http://127.0.0.1.*' './dist/**/*.html'
+          args: --verbose --no-progress --max-concurrency 16 --timeout 15 --root-dir ./dist --fallback-extensions html --index-files index.html --exclude 'mailto:.*' --exclude 'fonts.googleapis.com' --exclude 'fonts.gstatic.com' --exclude 'https://globalcalcpro.com.*' --exclude 'http://localhost.*' --exclude 'http://127.0.0.1.*' './dist/**/*.html'
           fail: true
 
       - name: Upload Test Results
@@ -56,4 +57,5 @@ jobs:
           name: qa-reports
           path: |
             lychee/
+          if-no-files-found: ignore
           retention-days: 7

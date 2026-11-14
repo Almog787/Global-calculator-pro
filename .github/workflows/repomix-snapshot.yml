@@ -26,6 +26,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: 'repomix-snapshot'
+  cancel-in-progress: true
+
 jobs:
   build-repomix:
     name: Pack codebase with Repomix
@@ -116,6 +120,7 @@ jobs:
         with:
           name: repomix-${{ steps.meta.outputs.date_str }}
           path: ${{ steps.meta.outputs.output_path }}
+          retention-days: 14
 
       - name: Commit snapshot to repository
         if: ${{ github.event.inputs.commit_to_repo == 'true' || github.event.inputs.commit_to_repo == true }}
