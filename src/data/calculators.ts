@@ -829,15 +829,33 @@ export function getCalculatorsByCategory(category: string) {
 }
 
 export function searchCalculators(query: string, t?: any, lang?: string) {
-  const lowerQuery = query.toLowerCase();
+  const tokens = query
+    .toLowerCase()
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  if (tokens.length === 0) return calculators;
+
   return calculators.filter((c) => {
     const title = (t && lang) ? getCalculatorTitle(c, t, lang) : c.fallbackTitle;
     const desc = (t && lang) ? getCalculatorDescription(c, t, lang) : c.description;
-    return (
-      title.toLowerCase().includes(lowerQuery) ||
-      desc.toLowerCase().includes(lowerQuery) ||
-      c.tags.some((tag) => tag.toLowerCase().includes(lowerQuery))
-    );
+    const dynAll = Object.values(dynamicTranslations[c.id] || {})
+      .map((entry) => `${entry?.title || ''} ${entry?.description || ''}`)
+      .join(' ');
+    const haystack = [
+      title,
+      desc,
+      c.fallbackTitle,
+      c.description,
+      c.id,
+      c.category,
+      c.tags.join(' '),
+      dynAll,
+    ]
+      .join(' ')
+      .toLowerCase();
+
+    return tokens.every((tok) => haystack.includes(tok));
   });
 }
 

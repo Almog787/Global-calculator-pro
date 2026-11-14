@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useState } from 'react';
 import NotFound from './NotFound';
 import Breadcrumbs from '../components/Breadcrumbs';
 import RelatedCalculators from '../components/RelatedCalculators';
@@ -9,6 +9,7 @@ import SkeletonLoader from '../components/SkeletonLoader';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { useI18n } from '../contexts/i18n';
 import SEO from '../components/SEO';
+import { SeoOverrideContext } from '../contexts/SeoOverrideContext';
 import DisclaimerNotice, { DisclaimerType } from '../components/DisclaimerNotice';
 import EmbedCtaBanner from '../components/EmbedCtaBanner';
 
@@ -24,7 +25,16 @@ Object.keys(modules).forEach((path) => {
 
 export default function CalculatorWrapper() {
   const { slug } = useParams<{ slug: string }>();
-  const { t, lang } = useI18n();
+  const { t, lang, guides } = useI18n();
+  const [hasChildSeo, setHasChildSeo] = useState(false);
+
+  useEffect(() => {
+    setHasChildSeo(false);
+  }, [slug]);
+
+  const registerChildSeo = useCallback(() => {
+    setHasChildSeo(true);
+  }, []);
 
   const cleanSlug = slug ? slug.replace(/-/g, '').toLowerCase() : '';
   const Component = cleanSlug ? calculatorComponents[cleanSlug] : null;
@@ -73,24 +83,33 @@ export default function CalculatorWrapper() {
     { label: title }
   ];
 
+  const guideKey = calcData?.id || slug || cleanSlug;
+  const guideFaq = Array.isArray(guides?.[guideKey]?.faq) ? guides[guideKey].faq : [];
+
   return (
     <div className="w-full">
-      <SEO
-        title={title}
-        description={description}
-        canonicalUrl={canonicalUrl}
-        type="SoftwareApplication"
-        applicationCategory="CalculatorApplication"
-        breadcrumbs={breadcrumbItems.map((b) => ({ name: b.label, url: b.path }))}
-      />
+      {!hasChildSeo && (
+        <SEO
+          title={title}
+          description={description}
+          keywords={calcData?.tags || []}
+          canonicalUrl={canonicalUrl}
+          type="SoftwareApplication"
+          applicationCategory="CalculatorApplication"
+          faq={guideFaq}
+          breadcrumbs={breadcrumbItems.map((b) => ({ name: b.label, url: b.path }))}
+        />
+      )}
 
       <Breadcrumbs items={breadcrumbItems} />
       
-      <ErrorBoundary>
-        <Suspense fallback={<SkeletonLoader />}>
-          <Component />
-        </Suspense>
-      </ErrorBoundary>
+      <SeoOverrideContext.Provider value={registerChildSeo}>
+        <ErrorBoundary>
+          <Suspense fallback={<SkeletonLoader />}>
+            <Component />
+          </Suspense>
+        </ErrorBoundary>
+      </SeoOverrideContext.Provider>
 
       <div className="mt-6 mb-6">
         <DisclaimerNotice type={disclaimerType} />

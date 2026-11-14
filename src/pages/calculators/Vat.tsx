@@ -293,6 +293,7 @@ export default function Vat() {
         title={t.title}
         description={t.description}
         canonicalUrl={`/${lang}/calculators/vat`}
+        faq={faqList}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',

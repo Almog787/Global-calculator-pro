@@ -100,6 +100,42 @@ async function indexSite() {
     // fallback to predefined list
   }
 
+  // Deduplicate URLs
+  urls = [...new Set(urls)];
+
+  // Optional language filter (e.g. 'he', 'en', 'ar', etc.)
+  const langFilter = (process.env.INDEXING_LANG_FILTER || 'all').toLowerCase().trim();
+  if (langFilter && langFilter !== 'all') {
+    const langPrefix = `https://globalcalcpro.com/${langFilter}/`;
+    urls = urls.filter((u) => u.startsWith(langPrefix) || u === `https://globalcalcpro.com/${langFilter}`);
+    console.log(`🌐 Filtered to language "${langFilter}": ${urls.length} URLs`);
+  }
+
+  // Automatic batch rotation to respect Google Indexing API's 200 requests/day default quota
+  const batchMode = (process.env.INDEXING_BATCH_MODE || 'auto').toLowerCase().trim();
+  const batchLimit = Math.max(1, Math.min(200, Number(process.env.INDEXING_BATCH_LIMIT || 195) || 195));
+
+  if (batchMode !== 'all' && urls.length > batchLimit) {
+    const totalBatches = Math.ceil(urls.length / batchLimit);
+    let batchIndex = 0;
+    if (batchMode.startsWith('batch_')) {
+      const parsed = parseInt(batchMode.replace('batch_', ''), 10);
+      if (!Number.isNaN(parsed) && parsed >= 1 && parsed <= totalBatches) {
+        batchIndex = parsed - 1;
+      }
+    } else {
+      // 'auto': rotate deterministically by UTC day so every batch runs automatically on schedule
+      const utcDay = Math.floor(Date.now() / 86400000);
+      batchIndex = utcDay % totalBatches;
+    }
+    const start = batchIndex * batchLimit;
+    const end = Math.min(start + batchLimit, urls.length);
+    console.log(
+      `📦 Batch ${batchIndex + 1}/${totalBatches} (mode=${batchMode}): submitting URLs ${start + 1}–${end} of ${urls.length} total.`,
+    );
+    urls = urls.slice(start, end);
+  }
+
   try {
     const auth = new google.auth.GoogleAuth({
       credentials,
@@ -116,6 +152,7 @@ async function indexSite() {
 
     const BATCH_SIZE = 5;
     let shouldStop = false;
+    let successCount = 0;
 
     for (let i = 0; i < urls.length && !shouldStop; i += BATCH_SIZE) {
       const batch = urls.slice(i, i + BATCH_SIZE);
@@ -129,6 +166,7 @@ async function indexSite() {
                 type: actionType,
               },
             });
+            successCount++;
             console.log(`✅ Indexing requested: ${url} (Status: ${res.status})`);
           } catch (urlErr) {
             console.error(`⚠️ Indexing failed for ${url}:`, urlErr.message);
@@ -140,8 +178,8 @@ async function indexSite() {
               console.error('\n🛑 FATAL AUTH/PERMISSIONS ERROR:', urlErr.message);
               console.error('👉 Verify that the Indexing API is enabled and the Service Account has Owner permissions in Google Search Console.');
               shouldStop = true;
-            } else if (urlErr.message && urlErr.message.includes('Quota exceeded')) {
-              console.log('\n🛑 Quota exceeded. Stopping further indexing requests for today to prevent errors.');
+            } else if (urlErr.message && (urlErr.message.includes('Quota exceeded') || urlErr.code === 429)) {
+              console.log('\n🛑 Quota exceeded (200/day limit). Remaining URLs will run automatically in the next scheduled batch.');
               shouldStop = true;
             }
           }
@@ -149,7 +187,7 @@ async function indexSite() {
       );
     }
 
-    console.log('✨ Google Indexing API execution completed!');
+    console.log(`✨ Google Indexing API execution completed! (${successCount}/${urls.length} URLs submitted)`);
   } catch (err) {
     console.error('❌ Google Indexing API Error:', err.message);
   }

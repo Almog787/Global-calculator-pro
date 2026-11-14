@@ -273,7 +273,7 @@ export default function StockOptionsRsu() {
   return (
     <div className="w-full max-w-7xl mx-auto space-y-8" id="stock-options-rsu-calc">
       <SEO
-        title={`${t.title} | GlobalCalcPro`}
+        title={t.title}
         description={t.description}
         canonicalUrl={`/${lang}/calculators/stock-options-rsu`}
         structuredData={{

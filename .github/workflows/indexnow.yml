@@ -1,6 +1,10 @@
-name: Bing & IndexNow Submission (Manual)
+name: Bing & IndexNow Submission (Auto + Manual)
 
 on:
+  workflow_run:
+    workflows: ['Deploy static content to Pages']
+    types:
+      - completed
   workflow_dispatch:
     inputs:
       target_engine:
@@ -17,6 +21,7 @@ on:
 jobs:
   indexnow-submission:
     name: Submit URLs to Bing & IndexNow API
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -34,4 +39,4 @@ jobs:
       - name: Submit URLs to IndexNow (Bing, Yandex, Seznam, Naver)
         run: npm run indexnow
         env:
-          INDEXNOW_TARGET: ${{ github.event.inputs.target_engine }}
+          INDEXNOW_TARGET: ${{ github.event.inputs.target_engine || 'all' }}

@@ -1,11 +1,11 @@
 import fs from "fs";
 import path from "path";
+import { execFileSync } from "child_process";
 
-// Read calculators.ts
 const calculatorsPath = path.resolve("src/data/calculators.ts");
 const content = fs.readFileSync(calculatorsPath, "utf8");
 
-// Extract all path properties
+// Extract all path properties cleanly
 const pathRegex = /path:\s*['"]([^'"]+)['"]/g;
 let match;
 const dynamicPaths = [];
@@ -40,17 +40,61 @@ const staticPaths = [
 
 const rawPaths = Array.from(new Set([...staticPaths, ...dynamicPaths]));
 const languages = ["en", "he", "es", "fr", "ar", "ru"];
-
 const baseUrl = "https://globalcalcpro.com";
-const lastmod = new Date().toISOString().split("T")[0];
+
+// Resolve accurate per-file lastmod date (avoids noisy daily date bumps on unchanged pages)
+const FALLBACK_DATE = "2026-04-30";
+const gitDateCache = new Map();
+
+function getGitLastMod(relFilePath) {
+  if (gitDateCache.has(relFilePath)) return gitDateCache.get(relFilePath);
+  let date = FALLBACK_DATE;
+  if (fs.existsSync(".git") && fs.existsSync(relFilePath)) {
+    try {
+      const out = execFileSync("git", ["log", "-1", "--format=%cs", "--", relFilePath], {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      }).trim();
+      if (/^\d{4}-\d{2}-\d{2}$/.test(out)) {
+        date = out;
+      }
+    } catch {
+      // keep fallback
+    }
+  }
+  gitDateCache.set(relFilePath, date);
+  return date;
+}
+
+const staticFileMap = {
+  "/all": "src/pages/AllCalculators.tsx",
+  "/widgets": "src/pages/WidgetsHub.tsx",
+  "/about": "src/pages/AboutUs.tsx",
+  "/contact": "src/pages/ContactUs.tsx",
+  "/privacy-policy": "src/pages/PrivacyPolicy.tsx",
+  "/terms-of-service": "src/pages/TermsOfService.tsx",
+};
+
+function resolveLastModForPath(p) {
+  if (staticFileMap[p]) return getGitLastMod(staticFileMap[p]);
+  if (p.startsWith("/category/")) return getGitLastMod("src/data/categoryHubs.ts");
+  const slug = p.replace(/^\/calculators\//, "").replace(/^\//, "");
+  const pascal = slug
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join("");
+  const calcFile = `src/pages/calculators/${pascal}.tsx`;
+  if (fs.existsSync(calcFile)) return getGitLastMod(calcFile);
+  return getGitLastMod("src/data/calculators.ts");
+}
 
 const urlEntries = [];
 
 for (const lang of languages) {
   for (const p of rawPaths) {
     const loc = `${baseUrl}/${lang}${p}`;
+    const lastmod = resolveLastModForPath(p);
 
-    // Generate hreflang links for this path
     let hreflangLinks = "";
     for (const altLang of languages) {
       hreflangLinks += `\n    <xhtml:link rel="alternate" hreflang="${altLang}" href="${baseUrl}/${altLang}${p}"/>`;
@@ -72,4 +116,3 @@ ${urlEntries.join("\n")}
 
 fs.writeFileSync(path.resolve("public/sitemap.xml"), sitemapContent);
 console.log(`Generated sitemap with ${urlEntries.length} canonical URLs.`);
-

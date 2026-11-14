@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useUrlState } from '../hooks/useUrlState';
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { calculators, getCalculatorTitle, getCalculatorDescription } from "../data/calculators";
+import { calculators, getCalculatorTitle, getCalculatorDescription, searchCalculators } from "../data/calculators";
 import SEO from "../components/SEO";
 import SearchBar from "../components/SearchBar";
 import CountUp from "../components/CountUp";
@@ -110,10 +110,19 @@ export default function AllCalculators() {
     { id: "lifestyle", label: t.catLifestyle },
   ];
 
-  const filtered =
+  const urlParams = new URLSearchParams(location.search);
+  const urlSearchQuery = (urlParams.get("q") || urlParams.get("search") || "").trim();
+
+  const categoryFiltered =
     activeCategory === "all"
       ? calculators
       : calculators.filter((c) => c.category === activeCategory);
+
+  const filtered = urlSearchQuery
+    ? searchCalculators(urlSearchQuery, t, lang).filter(
+        (c) => activeCategory === "all" || c.category === activeCategory,
+      )
+    : categoryFiltered;
 
   const isRtl = t.dir === 'rtl';
 
@@ -317,14 +326,26 @@ export default function AllCalculators() {
   };
 
   const currText = bentoTexts[lang as keyof typeof bentoTexts] || bentoTexts.en;
+  const activeHub = activeCategory !== 'all' ? categoryHubsData[activeCategory] : null;
+  const seoTitle = activeHub
+    ? (activeHub.title[lang] || activeHub.title.en || t.libraryTitle)
+    : t.libraryTitle;
+  const seoDesc = activeHub
+    ? (activeHub.subtitle[lang] || activeHub.subtitle.en || t.librarySubtitle)
+    : t.librarySubtitle;
+  const seoCanonical = activeHub ? `/${lang}/category/${activeCategory}` : `/${lang}/all`;
+  const seoKeywords = activeHub
+    ? Array.from(new Set([seoTitle, ...filtered.map((c) => getCalculatorTitle(c, t, lang))].filter(Boolean))).slice(0, 15)
+    : ['calculators', 'finance', 'mortgage', 'health', 'math', 'tools'];
 
   return (
     <div className="w-full">
       <SEO
-        title={t.libraryTitle}
-        description={t.librarySubtitle}
-        keywords={['calculators', 'finance', 'mortgage', 'health', 'math', 'tools']}
-        canonicalUrl={`/${lang}/all`}
+        title={seoTitle}
+        description={seoDesc}
+        keywords={seoKeywords}
+        canonicalUrl={seoCanonical}
+        breadcrumbs={activeHub ? [{ name: seoTitle, url: seoCanonical }] : undefined}
       />
 
       {/* Proposal 1: 3D Glassmorphism & Parallax Mesh Hero Section */}

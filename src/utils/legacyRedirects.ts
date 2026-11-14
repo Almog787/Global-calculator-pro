@@ -22,6 +22,7 @@ const KNOWN_BASE_ROUTES = [
   'terms-of-service',
   'about',
   'suggest',
+  'widgets',
 ];
 
 export function getCanonicalRedirect(pathname: string, currentLang: string = 'en'): string | null {

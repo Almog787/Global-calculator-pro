@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
-import { calculators } from '../data/calculators';
+import { calculators, dynamicTranslations } from '../data/calculators';
+import { SeoOverrideContext } from '../contexts/SeoOverrideContext';
 
 interface BreadcrumbEntry {
   name: string;
@@ -54,8 +55,14 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
   const location = useLocation();
   const siteName = 'Global Calc Pro';
-  const defaultTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
   const baseUrl = 'https://globalcalcpro.com';
+  const notifyChildSeo = useContext(SeoOverrideContext);
+
+  useEffect(() => {
+    if (notifyChildSeo) {
+      notifyChildSeo();
+    }
+  }, [notifyChildSeo]);
 
   // Remove static prerendered JSON-LD script once React Helmet manages the canonical schema graph
   useEffect(() => {
@@ -67,7 +74,8 @@ const SEO: React.FC<SEOProps> = ({
 
   // Determine current pathname safely
   const currentPath = location ? location.pathname : '/en/all';
-  const hasSearchParams = location ? (location.search.includes('search=') || location.search.includes('q=')) : false;
+  const searchStr = location?.search || '';
+  const hasSearchParams = searchStr.includes('search=') || searchStr.includes('q=') || searchStr.includes('embed=true');
   const isNoIndex = noindex || hasSearchParams;
 
   // Extract language or fallback to 'en'
@@ -107,6 +115,49 @@ const SEO: React.FC<SEOProps> = ({
   const normalizedPath = pathWithoutLang.startsWith('/') ? pathWithoutLang : `/${pathWithoutLang}`;
   const subPath = normalizedPath === '/' ? '' : normalizedPath;
 
+  // Resolve matched calculator from registry for automatic keywords, localized fallback & category metadata
+  const matchedCalc = calculators.find(
+    (c) => c.path === normalizedPath || c.path === subPath
+  );
+
+  // Guard against child components without full translations overwriting localized metadata (e.g. /ru/ or /ar/) with English
+  let effectiveRawTitle = title;
+  let effectiveDescription = description;
+  if (matchedCalc && currentLang !== 'en') {
+    const dynLoc = (dynamicTranslations as Record<string, Record<string, { title: string; description: string }>>)[matchedCalc.id]?.[currentLang];
+    const dynEn = (dynamicTranslations as Record<string, Record<string, { title: string; description: string }>>)[matchedCalc.id]?.en;
+    const strippedInputTitle = title.replace(/\s*\|\s*Global\s*Calc\s*Pro/gi, '').trim();
+    const enCandidates = [matchedCalc.fallbackTitle, dynEn?.title].filter(Boolean) as string[];
+    if (dynLoc?.title && enCandidates.some((enT) => strippedInputTitle === enT || strippedInputTitle.startsWith(enT))) {
+      effectiveRawTitle = dynLoc.title;
+    }
+    const enDescCandidates = [matchedCalc.description, dynEn?.description].filter(Boolean) as string[];
+    if (dynLoc?.description && enDescCandidates.includes(description.trim())) {
+      effectiveDescription = dynLoc.description;
+    }
+  }
+
+  const normalizedTitleBase = effectiveRawTitle.replace(/\s*\|\s*Global\s*Calc\s*Pro/gi, '').trim();
+  const defaultTitle = `${normalizedTitleBase} | ${siteName}`;
+
+  const categorySubMap: Record<string, string> = {
+    finance: 'FinancialCalculator',
+    'real-estate': 'RealEstateCalculator',
+    health: 'HealthAndFitnessCalculator',
+    math: 'ScientificCalculator',
+    tech: 'DeveloperApplication',
+    lifestyle: 'LifestyleApplication',
+  };
+
+  const cleanPageTitle = normalizedTitleBase;
+  const effectiveKeywords = Array.from(
+    new Set([
+      ...keywords,
+      ...(matchedCalc?.tags || []),
+      ...(cleanPageTitle ? [cleanPageTitle] : []),
+    ])
+  ).filter(Boolean);
+
   // Organization Schema
   const organizationSchema = {
     '@type': 'Organization',
@@ -140,8 +191,9 @@ const SEO: React.FC<SEOProps> = ({
     '@id': `${finalCanonicalUrl}#webpage`,
     url: finalCanonicalUrl,
     name: defaultTitle,
-    description: description,
+    description: effectiveDescription,
     inLanguage: currentLang,
+    ...(effectiveKeywords.length > 0 ? { keywords: effectiveKeywords.join(', ') } : {}),
     isPartOf: {
       '@id': `${baseUrl}/#website`
     },
@@ -158,15 +210,16 @@ const SEO: React.FC<SEOProps> = ({
   const softwareSchema = isCalculatorApp ? {
     '@type': 'WebApplication',
     '@id': `${finalCanonicalUrl}#software`,
-    name: title.replace(` | ${siteName}`, ''),
-    description: description,
+    name: cleanPageTitle,
+    description: effectiveDescription,
     url: finalCanonicalUrl,
     applicationCategory: applicationCategory || 'CalculatorApplication',
-    applicationSubCategory: 'FinancialCalculator',
+    applicationSubCategory: (matchedCalc?.category && categorySubMap[matchedCalc.category]) || 'UtilitiesApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires JavaScript. Requires HTML5.',
     isAccessibleForFree: true,
     inLanguage: currentLang,
+    ...(effectiveKeywords.length > 0 ? { keywords: effectiveKeywords.join(', ') } : {}),
     softwareVersion: '2.0.0',
     featureList: [
       'High-Precision Decimal Arithmetic (Decimal.js)',
@@ -210,13 +263,14 @@ const SEO: React.FC<SEOProps> = ({
   };
 
   let breadcrumbItemsList: Array<{ '@type': string; position: number; name: string; item: string }>;
+  const homeCanonicalUrl = `${baseUrl}/${currentLang}/all`;
   if (breadcrumbs && breadcrumbs.length > 0) {
     breadcrumbItemsList = [
       {
         '@type': 'ListItem',
         position: 1,
         name: homeName,
-        item: `${baseUrl}/${currentLang}`
+        item: homeCanonicalUrl
       },
       ...breadcrumbs.map((entry, idx) => ({
         '@type': 'ListItem',
@@ -226,15 +280,12 @@ const SEO: React.FC<SEOProps> = ({
       }))
     ];
   } else {
-    const matchedCalc = calculators.find(
-      (c) => c.path === normalizedPath || c.path === subPath
-    );
     const items: Array<{ '@type': string; position: number; name: string; item: string }> = [
       {
         '@type': 'ListItem',
         position: 1,
         name: homeName,
-        item: `${baseUrl}/${currentLang}`
+        item: homeCanonicalUrl
       }
     ];
     if (matchedCalc && categoryLabels[matchedCalc.category]) {
@@ -246,11 +297,11 @@ const SEO: React.FC<SEOProps> = ({
         item: `${baseUrl}/${currentLang}/category/${matchedCalc.category}`
       });
     }
-    if (subPath) {
+    if (subPath && subPath !== '/all') {
       items.push({
         '@type': 'ListItem',
         position: items.length + 1,
-        name: title.replace(` | ${siteName}`, ''),
+        name: cleanPageTitle,
         item: finalCanonicalUrl
       });
     }
@@ -354,8 +405,8 @@ const SEO: React.FC<SEOProps> = ({
       {/* Primary Meta Tags */}
       <title>{defaultTitle}</title>
       <meta name="title" content={defaultTitle} />
-      <meta name="description" content={description} />
-      {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+      <meta name="description" content={effectiveDescription} />
+      {effectiveKeywords.length > 0 && <meta name="keywords" content={effectiveKeywords.join(', ')} />}
 
       {/* Canonical Link */}
       <link rel="canonical" href={finalCanonicalUrl} />
@@ -364,7 +415,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:type" content={type} />
       <meta property="og:url" content={finalCanonicalUrl} />
       <meta property="og:title" content={defaultTitle} />
-      <meta property="og:description" content={description} />
+      <meta property="og:description" content={effectiveDescription} />
       <meta property="og:image" content={image} />
       <meta property="og:site_name" content={siteName} />
       <meta property="og:locale" content={currentLocale} />
@@ -373,11 +424,11 @@ const SEO: React.FC<SEOProps> = ({
       ))}
 
       {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={finalCanonicalUrl} />
-      <meta property="twitter:title" content={defaultTitle} />
-      <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={image} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={finalCanonicalUrl} />
+      <meta name="twitter:title" content={defaultTitle} />
+      <meta name="twitter:description" content={effectiveDescription} />
+      <meta name="twitter:image" content={image} />
 
       {/* Structured Data Graph */}
       <script type="application/ld+json">

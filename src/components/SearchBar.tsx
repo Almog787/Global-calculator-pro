@@ -124,6 +124,15 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
     navigate(`/${lang}${path}`);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && query.trim().length > 0) {
+      e.preventDefault();
+      setIsOpen(false);
+      if (onSelect) onSelect();
+      navigate(`/${lang}/all?q=${encodeURIComponent(query.trim())}`);
+    }
+  };
+
   const defaultPlaceholder = placeholder || (placeholdersMap[lang] || placeholdersMap.en);
 
   if (isHero) {
@@ -141,6 +150,7 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
             placeholder={defaultPlaceholder}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
             onFocus={() => {
               if (query.trim().length > 1) setIsOpen(true);
             }}
@@ -219,6 +229,7 @@ export default function SearchBar({ placeholder, isHero = false, onSelect }: Sea
           placeholder={defaultPlaceholder}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleKeyDown}
           onFocus={() => {
             if (query.trim().length > 1) setIsOpen(true);
           }}

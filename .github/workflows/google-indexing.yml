@@ -1,6 +1,13 @@
-name: Google Search Console & Indexing API (Manual)
+name: Google Search Console & Indexing API (Auto + Manual)
 
 on:
+  schedule:
+    # Daily automatic batch rotation so all 384+ URLs stay within Google's 200/day quota
+    - cron: '0 6 * * *'
+  workflow_run:
+    workflows: ['Deploy static content to Pages']
+    types:
+      - completed
   workflow_dispatch:
     inputs:
       action_type:
@@ -11,10 +18,34 @@ on:
         options:
           - 'URL_UPDATED'
           - 'URL_DELETED'
+      batch_mode:
+        description: 'Batch Mode (200/day quota protection)'
+        required: true
+        default: 'auto'
+        type: choice
+        options:
+          - 'auto'
+          - 'batch_1'
+          - 'batch_2'
+          - 'all'
+      lang_filter:
+        description: 'Language Filter'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - 'all'
+          - 'en'
+          - 'he'
+          - 'es'
+          - 'fr'
+          - 'ar'
+          - 'ru'
 
 jobs:
   google-indexing:
     name: Submit URLs to Google Indexing API
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -42,4 +73,6 @@ jobs:
         run: npm run index-site
         env:
           GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
-          INDEXING_ACTION_TYPE: ${{ github.event.inputs.action_type }}
+          INDEXING_ACTION_TYPE: ${{ github.event.inputs.action_type || 'URL_UPDATED' }}
+          INDEXING_BATCH_MODE: ${{ github.event.inputs.batch_mode || 'auto' }}
+          INDEXING_LANG_FILTER: ${{ github.event.inputs.lang_filter || 'all' }}

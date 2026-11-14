@@ -166,7 +166,7 @@ function App() {
               </span>
             </button>
 
-            <Link to={`/${lang}`} className="font-headline-md text-headline-md font-bold text-primary hover:text-secondary transition-colors duration-200 cursor-pointer flex items-center">
+            <Link to={`/${lang}/all`} className="font-headline-md text-headline-md font-bold text-primary hover:text-secondary transition-colors duration-200 cursor-pointer flex items-center">
               <span>{t.title}</span><span className="text-secondary">.</span>
             </Link>
           </div>
@@ -397,7 +397,7 @@ function LocalizedRoutes() {
 
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="all" replace />} />
+      <Route path="/" element={<AllCalculators />} />
       <Route path="all" element={<AllCalculators />} />
       <Route path="category/:categoryId" element={<AllCalculators />} />
       <Route path="mortgage-calculator" element={<MortgageCalculator />} />
@@ -426,8 +426,29 @@ function LocalizedRoutes() {
       <Route path="about-us" element={<Navigate to="../about" replace />} />
       <Route path="suggest" element={<SuggestFeature />} />
       <Route path="widgets" element={<WidgetsHub />} />
-      <Route path=":slug" element={<CalculatorWrapper />} />
+      <Route path=":slug" element={<SlugCanonicalOrNotFound />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
+}
+
+function SlugCanonicalOrNotFound() {
+  const { slug } = useParams<{ slug: string }>();
+  const clean = slug ? slug.toLowerCase() : '';
+  const knownDynamic = [
+    'mortgage-affordability', 'refinance', 'auto-loan', 'rent-vs-buy', 'vat', 'margin',
+    'freelance-net-income', 'break-even', 'cap-rate', 'roi', 'inflation', 'goal-savings',
+    'credit-card-payoff', 'debt-snowball', 'severance-pay', 'currency-converter', 'bmr',
+    'water-intake', 'sleep-calculator', 'bill-splitter', 'cooking-timer', 'date-difference',
+    'download-time', 'fuel-split', 'peltier-cooling', 'stock-options-rsu',
+    'purchase-appreciation-tax', 'employer-cost', 'z-score', 'linear-regression',
+    'quadratic-equation', 'linear-system', 'base-converter', 'bitwise-calculator',
+    'triangle-solver', 'circle-sector', 'matrix-calculator', 'complex-numbers',
+    'pregnancy-calculator', 'retirement-planner', 'capital-gains-tax', 'car-finance-lease',
+    'scientific-unit-engine', 'purchasing-power',
+  ];
+  if (knownDynamic.includes(clean)) {
+    return <Navigate to={`../calculators/${clean}`} replace />;
+  }
+  return <NotFound />;
 }

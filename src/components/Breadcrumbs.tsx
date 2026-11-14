@@ -27,7 +27,7 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
       aria-label="Breadcrumb"
     >
         <Link
-          to={`/${lang}`}
+          to={`/${lang}/all`}
           className="hover:text-primary transition-colors inline-flex items-center gap-1 text-stone-600 hover:underline"
         >
           <span className="material-symbols-outlined text-[15px]">home</span>
