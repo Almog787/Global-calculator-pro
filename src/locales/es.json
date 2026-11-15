@@ -254,6 +254,26 @@
         }
       ]
     },
+    "household-budget": {
+      "guideTitle": "Cómo planificar el presupuesto familiar mensual y calcular el saldo restante",
+      "guideDesc": "Un presupuesto doméstico equilibrado resta los gastos de vivienda, alimentación, servicios, transporte y ahorro del ingreso mensual neto.",
+      "formulaHeading": "Fórmula del Presupuesto Familiar",
+      "formulaLines": [
+        "Gastos de Vida = Vivienda + Alimentación + Servicios + Transporte",
+        "Total Asignado = Gastos de Vida + Ahorros",
+        "Saldo Restante = Ingreso Mensual Neto - Total Asignado"
+      ],
+      "faq": [
+        {
+          "question": "¿Cómo se calcula el saldo restante después de gastos?",
+          "answer": "Se resta la suma de vivienda, alimentación, servicios, transporte y ahorro del ingreso mensual neto."
+        },
+        {
+          "question": "¿Qué es la regla 50/30/20?",
+          "answer": "Destinar hasta un 50% a gastos esenciales, un 30% a margen flexible y al menos un 20% al ahorro."
+        }
+      ]
+    },
     "download-time": {
       "guideTitle": "Cómo calcular el tiempo de descarga según la velocidad",
       "guideDesc": "El tiempo de descarga depende del tamaño del archivo y la velocidad real de transmisión de red.",

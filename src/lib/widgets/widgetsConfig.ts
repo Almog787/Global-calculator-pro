@@ -573,6 +573,29 @@ export const AVAILABLE_WIDGETS: WidgetOption[] = [
     category: 'Lifestyle / Global',
     icon: 'public',
     defaultHeight: 740
+  },
+  {
+    id: 'household-budget',
+    slug: 'calculators/household-budget',
+    name: {
+      en: 'Household Budget Calculator',
+      he: 'מחשבון תקציב משק בית',
+      es: 'Calculadora de Presupuesto Familiar',
+      fr: 'Calculateur de Budget Familial',
+      ar: 'حاسبة ميزانية الأسرة والمنزل',
+      ru: 'Калькулятор семейного бюджета'
+    },
+    description: {
+      en: 'Track monthly income, housing, groceries, utilities, transportation, and savings with automatic balance & chart.',
+      he: 'ניהול הכנסה חודשית, דיור, מצרכים, שירותים, תחבורה וחסכונות עם חישוב יתרה אוטומטי ותרשים.',
+      es: 'Planifica ingresos, vivienda, alimentación, servicios, transporte y ahorro con saldo automático y gráfico.',
+      fr: 'Suivez revenus, logement, courses, charges, transport et épargne avec calcul du reste à vivre.',
+      ar: 'خطط للدخل الشهري والسكن والمشتريات والمرافق والمواصلات والادخار مع رسم بياني تفاعلي.',
+      ru: 'Планирование ежемесячного дохода, жилья, продуктов, ЖКУ, транспорта и сбережений с диаграммой.'
+    },
+    category: 'Finance / Budgeting',
+    icon: 'account_balance_wallet',
+    defaultHeight: 740
   }
 ];
 

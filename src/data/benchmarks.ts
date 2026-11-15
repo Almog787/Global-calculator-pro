@@ -519,5 +519,88 @@ export const benchmarkTables: Record<string, BenchmarkData> = {
         ]
       }
     }
+  },
+  'household-budget': {
+    category: 'finance',
+    title: {
+      en: "Sample Monthly Household Budget Benchmarks (50/30/20 Model)",
+      he: "טבלת השוואה לתקציב משק בית חודשי לדוגמה (מודל 50/30/20)",
+      es: "Ejemplos de Presupuesto Familiar Mensual (Regla 50/30/20)",
+      fr: "Exemples de Budgets Familiaux Mensuels (Modèle 50/30/20)",
+      ar: "أمثلة قياسية لميزانية الأسرة الشهرية (نموذج 50/30/20)",
+    },
+    description: {
+      en: "Compare typical monthly allocations across housing, groceries, utilities, transportation, savings, and remaining cash.",
+      he: "השוואת חלוקה חודשית טיפוסית של הכנסה, דיור, מצרכים, שירותים, תחבורה, חיסכון ויתרה פנויה.",
+      es: "Compara asignaciones mensuales entre vivienda, alimentación, servicios, transporte, ahorro y saldo restante.",
+      fr: "Comparez la répartition mensuelle entre logement, courses, charges, transport, épargne et reste à vivre.",
+      ar: "قارن التوزيع الشهري المعتاد بين السكن والطعام والمرافق والمواصلات والادخار والفائض المتبقي.",
+    },
+    directAnswer: {
+      en: "Under the standard 50/30/20 budget guideline, essential living expenses (housing, groceries, utilities, and transportation) should stay within 50% of net monthly income, savings should account for at least 20%, leaving ~30% as flexible remaining balance.",
+      he: "לפי כלל 50/30/20 לניהול תקציב משק בית, מומלץ שהוצאות המחיה הבסיסיות (דיור, מצרכים, שירותים ותחבורה) לא יעלו על 50% מההכנסה נטו, לפחות 20% יופנו לחיסכון, וכ-30% יישארו כיתרה פנויה גמישה.",
+      es: "Según la regla 50/30/20, los gastos esenciales no deben superar el 50% del ingreso neto, el ahorro debe alcanzar al menos el 20% y el 30% restante queda como margen flexible.",
+      fr: "Selon la règle 50/30/20, les dépenses essentielles ne doivent pas dépasser 50 % du revenu net, l'épargne au moins 20 %, laissant 30 % de reste à vivre.",
+      ar: "وفق قاعدة 50/30/20، يُفضل ألا تتجاوز المصروفات الأساسية 50% من صافي الدخل، مع تخصيص 20% للادخار وبقاء 30% كفائض مرن.",
+    },
+    headers: {
+      en: ["Profile", "Monthly Income", "Living + Savings", "Remaining Cash"],
+      he: ["פרופיל משק בית", "הכנסה חודשית", "הוצאות + חיסכון", "יתרה שנותרה"],
+      es: ["Perfil", "Ingreso Mensual", "Gastos + Ahorro", "Saldo Restante"],
+      fr: ["Profil", "Revenu Mensuel", "Dépenses + Épargne", "Reste à Vivre"],
+      ar: ["الفئة", "الدخل الشهري", "المصروفات + الادخار", "المبلغ المتبقي"],
+    },
+    rows: [
+      {
+        label: "Single / Young Couple (Balanced)",
+        col1: "$4,200 / ₪12,600",
+        col2: "$3,200 / ₪9,600",
+        col3: "$1,000 / ₪3,000",
+        preset: { monthlyIncome: 4200, housing: 1450, groceries: 500, utilities: 240, transportation: 260, savings: 750 },
+      },
+      {
+        label: "Standard 50/30/20 Household",
+        col1: "$6,000 / ₪18,000",
+        col2: "$4,200 / ₪12,600",
+        col3: "$1,800 / ₪5,400",
+        preset: { monthlyIncome: 6000, housing: 1800, groceries: 600, utilities: 300, transportation: 300, savings: 1200 },
+      },
+      {
+        label: "Growing Family Household",
+        col1: "$7,500 / ₪22,500",
+        col2: "$5,900 / ₪17,700",
+        col3: "$1,600 / ₪4,800",
+        preset: { monthlyIncome: 7500, housing: 2400, groceries: 1100, utilities: 450, transportation: 650, savings: 1300 },
+      },
+    ],
+    expertTip: {
+      en: "Keep housing costs (rent or mortgage plus property fees) under 30%–35% of monthly take-home pay so groceries, utilities, and savings never squeeze your cash flow.",
+      he: "מומלץ לשמור על סעיף הדיור (שכירות או משכנתא) מתחת ל-30%–35% מההכנסה החודשית נטו כדי להשאיר מרווח נשימה בריא לחיסכון ולהוצאות שוטפות.",
+      es: "Mantén el gasto de vivienda por debajo del 30%–35% de tu ingreso neto para proteger tu tasa de ahorro.",
+      fr: "Gardez votre poste logement sous 30 % à 35 % du revenu net pour préserver votre capacité d'épargne.",
+      ar: "حافظ على تكاليف السكن دون 30%–35% من صافي الدخل الشهري لتجنب الضغط على المدخرات والسيولة.",
+    },
+    formulaBreakdown: {
+      name: {
+        en: "Household Remaining Balance & Allocation Equations",
+        he: "נוסחאות חישוב תקציב משק בית ויתרה פנויה",
+        es: "Fórmulas de Saldo Restante y Asignación Mensual",
+        fr: "Formules du Reste à Vivre et Taux d'Épargne",
+        ar: "معادلات حساب الميزانية والمبلغ المتبقي",
+      },
+      formula: "Remaining Balance = Monthly Income − (Housing + Groceries + Utilities + Transportation + Savings)",
+      variables: {
+        he: [
+          "סה״כ הוצאות מחיה = דיור + מצרכים + שירותים + תחבורה",
+          "סה״כ התחייבויות והקצאה = סה״כ הוצאות מחיה + חסכונות",
+          "יתרה שנותרה = הכנסה חודשית נטו − סה״כ הקצאה חודשית",
+        ],
+        en: [
+          "Total Living Expenses = Housing + Groceries + Utilities + Transportation",
+          "Total Allocated Outflows = Total Living Expenses + Savings",
+          "Remaining Balance = Monthly Income − Total Allocated Outflows",
+        ],
+      },
+    },
   }
 };

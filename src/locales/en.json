@@ -259,6 +259,26 @@
         }
       ]
     },
+    "household-budget": {
+      "guideTitle": "How to Structure a Monthly Household Budget & Calculate Remaining Cash",
+      "guideDesc": "A healthy monthly household budget subtracts fixed housing, groceries, utilities, transportation, and planned savings from your net monthly income to keep cash flow positive.",
+      "formulaHeading": "Household Budget Formula",
+      "formulaLines": [
+        "Total Living Expenses = Housing + Groceries + Utilities + Transportation",
+        "Total Outflows = Total Living Expenses + Savings",
+        "Remaining Balance = Monthly Net Income - Total Outflows"
+      ],
+      "faq": [
+        {
+          "question": "How is the remaining amount after expenses calculated?",
+          "answer": "Remaining cash equals Monthly Net Income minus housing, groceries, utilities, transportation, and monthly savings. Positive values are surplus; negative values indicate a deficit."
+        },
+        {
+          "question": "What is the 50/30/20 household budget rule?",
+          "answer": "The 50/30/20 rule suggests spending up to 50% of net income on essentials, keeping 30% for flexible spending or discretionary cash, and saving at least 20%."
+        }
+      ]
+    },
     "download-time": {
       "guideTitle": "How File Download Times Are Calculated Based on Network Speed",
       "guideDesc": "Download duration depends on total file size, internet transfer speed, and network overhead losses.",

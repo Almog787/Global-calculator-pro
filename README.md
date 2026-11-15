@@ -30,7 +30,7 @@ Built with a zero-latency, client-side first architecture, Global Calc Pro deliv
   - [📐 Mathematics, Statistics & Science](#-mathematics-statistics--science)
   - [🩺 Health, Fitness & Medical](#-health-fitness--medical)
   - [⚡ Daily Utility & Conversions](#-daily-utility--conversions)
-- [🔗 Full SEO Sitemap Catalog (60 Calculators)](#-full-seo-sitemap-catalog-60-calculators)
+- [🔗 Full SEO Sitemap Catalog (61 Calculators)](#-full-seo-sitemap-catalog-61-calculators)
 - [🧰 Developer Ecosystem & Recommended Open-Source SEO Tools](#-developer-ecosystem--recommended-open-source-seo-tools)
 - [❓ Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
 - [🛠️ Developer Quick Start](#️-developer-quick-start)
@@ -173,7 +173,7 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 
 ---
 
-## 🔗 Full SEO Sitemap Catalog (60 Calculators)
+## 🔗 Full SEO Sitemap Catalog (61 Calculators)
 
 - **[Age & Milestone Birthday Calculator](https://globalcalcpro.com/age-calculator)** - Calculate exact chronological age in years, months, days, hours, and next birthday.
 - **[Age Calculator Calculator](https://globalcalcpro.com/calculators/age-calculator)** - Free online age calculator calculator for precise calculations.
@@ -235,6 +235,7 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 - **[VAT & Sales Tax Calculator](https://globalcalcpro.com/calculators/vat)** - Calculate Value Added Tax (VAT) online: Add VAT to net amount, remove VAT from gross price, batch invoice itemization, and official tax rates for Israel (18%), UK, EU, and US.
 - **[Water Intake Calculator](https://globalcalcpro.com/calculators/water-intake)** - Free online water intake calculator for precise calculations.
 - **[Z-Score & Normal Distribution Calculator](https://globalcalcpro.com/calculators/zscore)** - Free online Z-score calculator. Compute standard scores (Z), cumulative normal probabilities P(Z < z), two-tailed p-values, percentiles, and inverse raw scores with an interactive Gaussian bell curve.
+- **[מחשבון תקציב משק בית](https://globalcalcpro.com/calculators/household-budget)** - מחשבון תקציב משק בית פשוט ואינטראקטיבי: הזינו הכנסה חודשית, דיור, מצרכים, שירותים, תחבורה וחסכונות וקבלו מיד את הסכום שנותר לאחר הוצאות עם גרף חלוקה והשוואה לכלל 50/30/20.
 
 ---
 

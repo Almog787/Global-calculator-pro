@@ -363,6 +363,14 @@ export const dynamicTranslations: Record<string, Record<string, { title: string;
     ar: { title: "محول الوحدات العلمية والهندسية الدقيق", description: "تحويل وحدات القياس الهندسية والعلمية المعقدة: الضغط، الطاقة، القدرة، وتخزين البيانات." },
     ru: { title: "Инженерный и научный конвертер величин", description: "Высокоточный конвертер для давления, энергии, мощности, силы и объемов данных." },
   },
+  "household-budget": {
+    en: { title: "Household Budget Calculator", description: "Plan monthly income, housing, groceries, utilities, transportation, and savings with automatic remaining-balance math and visual chart." },
+    he: { title: "מחשבון תקציב משק בית", description: "ניהול תקציב חודשי פשוט ואינטראקטיבי להכנסה, דיור, מצרכים, שירותים, תחבורה וחסכונות עם חישוב אוטומטי של היתרה ותרשים ויזואלי." },
+    es: { title: "Calculadora de Presupuesto Familiar", description: "Controla ingresos mensuales, vivienda, alimentación, servicios, transporte y ahorro con saldo restante automático y gráfico visual." },
+    fr: { title: "Calculateur de Budget Familial", description: "Suivez revenus mensuels, logement, courses, charges, transport et épargne avec calcul automatique du reste à vivre et graphique." },
+    ar: { title: "حاسبة ميزانية الأسرة والمنزل", description: "خطط للدخل الشهري والسكن والمواد الغذائية والمرافق والمواصلات والادخار مع حساب تلقائي للمتبقي ورسم بياني." },
+    ru: { title: "Калькулятор семейного бюджета", description: "Планируйте ежемесячный доход, жилье, продукты, ЖКУ, транспорт и сбережения с расчетом остатка и наглядной диаграммой." },
+  },
 };
 
 export const calculators: CalculatorMeta[] = [
@@ -802,6 +810,18 @@ export const calculators: CalculatorMeta[] = [
     category: "lifestyle",
     tags: ["purchasing power", "cost of living", "relocation", "salary converter", "expat", "cities", "rent comparison", "כוח קנייה", "עלות מחייה", "רילוקיישן", "תל אביב", "סינגפור", "לונדון", "ניו יורק"],
   },
+  {
+    id: "household-budget",
+    path: "/calculators/household-budget",
+    fallbackTitle: "Household Budget Calculator",
+    description: "Calculate monthly remaining cash flow after housing, groceries, utilities, transportation, and savings with visual breakdown.",
+    category: "finance",
+    tags: [
+      "household budget", "monthly budget", "budget planner", "personal finance", "income", "expenses",
+      "housing", "groceries", "utilities", "transportation", "savings", "50/30/20",
+      "תקציב משק בית", "ניהול תקציב", "תקציב משפחתי", "הוצאות והכנסות", "יתרה חודשית", "דיור", "מצרכים", "חסכונות"
+    ],
+  },
 ];
 
 export function getCalculatorTitle(calc: CalculatorMeta, t: any, lang: string): string {
@@ -872,17 +892,18 @@ export function getRelatedCalculators(currentId: string, limit: number = 3) {
     'pregnancy-calculator': ['water-intake', 'bmi-calculator', 'sleep-calculator', 'bmr', 'date-difference'],
     'bmi-calculator': ['bmr', 'water-intake', 'sleep-calculator', 'pregnancy-calculator'],
     'percentage-finder': ['vat', 'margin', 'tip-calculator', 'salary', 'break-even'],
-    'salary': ['freelance-net-income', 'employer-cost', 'severance-pay', 'percentage-finder', 'break-even'],
+    'salary': ['household-budget', 'freelance-net-income', 'employer-cost', 'severance-pay', 'percentage-finder'],
     'rent-vs-buy': ['mortgage', 'cap-rate', 'purchase-appreciation-tax', 'mortgage-affordability'],
     'auto-loan': ['mortgage', 'fuel-split', 'debt-snowball', 'credit-card-payoff'],
     'vat': ['percentage-finder', 'margin', 'freelance-net-income', 'break-even'],
     'bmr': ['bmi-calculator', 'water-intake', 'sleep-calculator'],
     'water-intake': ['bmi-calculator', 'bmr', 'sleep-calculator', 'pregnancy-calculator'],
     'sleep-calculator': ['water-intake', 'bmi-calculator', 'date-difference'],
-    'debt-snowball': ['credit-card-payoff', 'auto-loan', 'mortgage'],
-    'credit-card-payoff': ['debt-snowball', 'auto-loan', 'compound-interest'],
-    'goal-savings': ['compound-interest', 'inflation', 'mortgage-affordability'],
-    'inflation': ['compound-interest', 'salary', 'goal-savings'],
+    'debt-snowball': ['credit-card-payoff', 'household-budget', 'auto-loan', 'mortgage'],
+    'credit-card-payoff': ['debt-snowball', 'household-budget', 'auto-loan', 'compound-interest'],
+    'goal-savings': ['household-budget', 'compound-interest', 'inflation', 'mortgage-affordability'],
+    'inflation': ['compound-interest', 'household-budget', 'salary', 'goal-savings'],
+    'household-budget': ['goal-savings', 'salary', 'mortgage-affordability', 'inflation', 'credit-card-payoff'],
     'purchase-appreciation-tax': ['mortgage', 'rent-vs-buy', 'cap-rate'],
     'employer-cost': ['salary', 'freelance-net-income', 'severance-pay'],
     'severance-pay': ['salary', 'employer-cost', 'freelance-net-income'],

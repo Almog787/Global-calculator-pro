@@ -41,6 +41,7 @@ GlobalCalc Pro is engineered for human users and AI engines (ChatGPT Search, Per
 - [Profit Margin & Markup](https://globalcalcpro.com/en/calculators/margin): Calculate gross margin, markup percentage, cost of goods, and revenue.
 - [Inflation & Purchasing Power](https://globalcalcpro.com/en/calculators/inflation): Estimate money depreciation and future purchasing power.
 - [Goal Savings Calculator](https://globalcalcpro.com/en/calculators/goal-savings): Calculate required monthly deposit to hit financial goals.
+- [Household Budget Calculator](https://globalcalcpro.com/en/calculators/household-budget): Plan monthly income, housing, groceries, utilities, transportation, and savings with automatic remaining cash flow calculation and visual chart.
 - [Credit Card Payoff](https://globalcalcpro.com/en/calculators/credit-card-payoff): Debt payoff timeline and interest savings.
 - [Debt Snowball](https://globalcalcpro.com/en/calculators/debt-snowball): Multi-debt repayment acceleration and timeline.
 - [Freelance Net Income](https://globalcalcpro.com/en/calculators/freelance-net-income): Self-employed net take-home pay after taxes and deductions.

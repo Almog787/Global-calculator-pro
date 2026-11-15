@@ -14,7 +14,7 @@ describe('Embeddable Widgets Configuration & Code Generator Suite', () => {
   const languages = ['en', 'he', 'es', 'fr', 'ar', 'ru'] as const;
 
   it('should provide a complete catalog of supported widgets', () => {
-    expect(AVAILABLE_WIDGETS.length).toBe(23);
+    expect(AVAILABLE_WIDGETS.length).toBe(24);
 
     const expectedIds = [
       'mortgage',
@@ -39,7 +39,8 @@ describe('Embeddable Widgets Configuration & Code Generator Suite', () => {
       'capital-gains',
       'car-finance-lease',
       'scientific-units',
-      'purchasing-power'
+      'purchasing-power',
+      'household-budget'
     ];
     const actualIds = AVAILABLE_WIDGETS.map(w => w.id);
     expect(actualIds).toEqual(expectedIds);

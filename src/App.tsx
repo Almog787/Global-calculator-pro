@@ -445,7 +445,7 @@ function SlugCanonicalOrNotFound() {
     'quadratic-equation', 'linear-system', 'base-converter', 'bitwise-calculator',
     'triangle-solver', 'circle-sector', 'matrix-calculator', 'complex-numbers',
     'pregnancy-calculator', 'retirement-planner', 'capital-gains-tax', 'car-finance-lease',
-    'scientific-unit-engine', 'purchasing-power',
+    'scientific-unit-engine', 'purchasing-power', 'household-budget',
   ];
   if (knownDynamic.includes(clean)) {
     return <Navigate to={`../calculators/${clean}`} replace />;

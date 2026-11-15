@@ -36,6 +36,7 @@ export default function CalculatorGuide({ guideKey, category, onApplyPreset }: C
     inflation: ['/calculators/compound-interest', '/salary-calculator', '/calculators/goal-savings'],
     'freelance-net-income': ['/salary-calculator', '/calculators/vat', '/calculators/break-even'],
     'debt-snowball': ['/calculators/credit-card-payoff', '/mortgage-calculator', '/calculators/auto-loan'],
+    'household-budget': ['/calculators/goal-savings', '/salary-calculator', '/calculators/mortgage-affordability', '/calculators/inflation'],
   };
 
   const relatedPaths = contextualLinksMap[guideKey] || [];

@@ -178,6 +178,7 @@
   - `calculators/retirement-planner`: Pension nest egg, monthly annuity benefits, management fees.
   - `calculators/capital-gains-tax`: Real & nominal capital gains tax (25%), inflation adjustments, loss carryforward.
   - `calculators/car-finance-lease`: Auto loans vs leasing vs cash purchase with depreciation.
+  - `calculators/household-budget`: Monthly income, housing, groceries, utilities, transportation, and savings budget planner with visual chart.
   - `calculators/scientific-unit-engine`: High-precision conversions for Pressure, Energy, Power, Force, Torque, Flow Rate, Viscosity, Bandwidth.
   - `salary-calculator`: Net take-home salary, tax, pension & deductions.
   - `bmi-calculator`: Body Mass Index, health category & target weight range.

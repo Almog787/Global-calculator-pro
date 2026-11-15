@@ -254,6 +254,26 @@
         }
       ]
     },
+    "household-budget": {
+      "guideTitle": "Comment établir un budget familial mensuel et calculer le reste à vivre",
+      "guideDesc": "Un budget équilibré déduit le logement, les courses, les charges, le transport et l'épargne du revenu mensuel net.",
+      "formulaHeading": "Formule du Budget Familial",
+      "formulaLines": [
+        "Dépenses Courantes = Logement + Courses + Charges + Transport",
+        "Total Alloué = Dépenses Courantes + Épargne",
+        "Reste à Vivre = Revenu Mensuel Net - Total Alloué"
+      ],
+      "faq": [
+        {
+          "question": "Comment calculer le reste à vivre mensuel ?",
+          "answer": "On soustrait le total du logement, de l'alimentation, des charges, du transport et de l'épargne du revenu mensuel net."
+        },
+        {
+          "question": "Qu'est-ce que la règle 50/30/20 ?",
+          "answer": "Consacrer au maximum 50 % aux besoins essentiels, 30 % aux dépenses flexibles et au moins 20 % à l'épargne."
+        }
+      ]
+    },
     "download-time": {
       "guideTitle": "Comment calculer le temps de téléchargement selon la vitesse",
       "guideDesc": "La durée de téléchargement dépend de la taille du fichier et du débit réel de votre connexion.",

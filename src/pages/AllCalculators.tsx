@@ -405,6 +405,10 @@ export default function AllCalculators() {
                     path: `/${lang}/calculators/severance-pay`,
                   },
                   {
+                    label: isRtl ? 'תקציב משק בית' : 'Household Budget',
+                    path: `/${lang}/calculators/household-budget`,
+                  },
+                  {
                     label: isRtl ? 'מס רכישה ושבח' : 'Purchase Tax',
                     path: `/${lang}/calculators/purchase-appreciation-tax`,
                   },
@@ -430,7 +434,7 @@ export default function AllCalculators() {
             <div className="flex flex-wrap items-center justify-center ltr:lg:justify-start rtl:lg:justify-start gap-4 sm:gap-6 text-xs text-on-surface-variant font-medium">
               <span className="flex items-center gap-1.5">
                 <span className="material-symbols-outlined text-emerald-500 text-sm">verified</span>
-                {isRtl ? '36+ מחשבונים מקצועיים' : '36+ Professional Calculators'}
+                {isRtl ? '60+ מחשבונים מקצועיים' : '60+ Professional Calculators'}
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="material-symbols-outlined text-teal-500 text-sm">bolt</span>
