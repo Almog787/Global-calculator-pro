@@ -11,7 +11,6 @@ export default tseslint.config(
       'dev-dist',
       'playwright-report',
       'test-results',
-      'flow-blueprint',
       'repomix-output',
       'public',
       'scripts',

@@ -43,7 +43,6 @@
     "index-site": "node scripts/index-site.js",
     "indexnow": "node scripts/indexnow.js",
     "ping-sitemap": "node scripts/ping-sitemap.js",
-    "flow:blueprint": "node scripts/run-flow-blueprint.js",
     "preview": "vite preview",
     "test": "tsc --noEmit && eslint . && vitest run",
     "test:unit": "vitest run",
