@@ -1,8 +1,140 @@
 import { useUrlState } from '../../hooks/useUrlState';
 import React from 'react';
 import { PiggyBank } from 'lucide-react';
+import { useI18n, Language } from '../../contexts/i18n';
+
+const dict: Record<Language, {
+  title: string;
+  currentLoan: string;
+  loanBalance: string;
+  ratePct: string;
+  remainingYears: string;
+  newLoan: string;
+  newRatePct: string;
+  newTermYears: string;
+  closingCosts: string;
+  lifetimeSavings: string;
+  monthlySavings: string;
+  breakEvenPoint: string;
+  months: string;
+  never: string;
+  oldMonthly: string;
+  newMonthly: string;
+}> = {
+  en: {
+    title: 'Mortgage Refinance Calculator',
+    currentLoan: 'Current Loan',
+    loanBalance: 'Loan Balance',
+    ratePct: 'Rate (%)',
+    remainingYears: 'Remaining Years',
+    newLoan: 'New Loan',
+    newRatePct: 'New Rate (%)',
+    newTermYears: 'New Term (Years)',
+    closingCosts: 'Closing Costs',
+    lifetimeSavings: 'Lifetime Savings',
+    monthlySavings: 'Monthly Savings',
+    breakEvenPoint: 'Break-Even Point',
+    months: 'months',
+    never: 'Never',
+    oldMonthly: 'Old Monthly',
+    newMonthly: 'New Monthly',
+  },
+  he: {
+    title: 'מחשבון מחזור משכנתא והלוואות',
+    currentLoan: 'הלוואה נוכחית',
+    loanBalance: 'יתרת הלוואה לסילוק',
+    ratePct: 'ריבית נוכחית (%)',
+    remainingYears: 'שנים שנותרו',
+    newLoan: 'הלוואה חדשה',
+    newRatePct: 'ריבית חדשה (%)',
+    newTermYears: 'תקופה חדשה (שנים)',
+    closingCosts: 'עמלות פירעון ועלויות סגירה',
+    lifetimeSavings: 'חיסכון מצטבר כולל',
+    monthlySavings: 'חיסכון חודשי',
+    breakEvenPoint: 'נקודת איזון (Break-Even)',
+    months: 'חודשים',
+    never: 'ללא חיסכון',
+    oldMonthly: 'החזר חודשי נוכחי',
+    newMonthly: 'החזר חודשי חדש',
+  },
+  es: {
+    title: 'Calculadora de Refinanciamiento Hipotecario',
+    currentLoan: 'Préstamo Actual',
+    loanBalance: 'Saldo Pendiente',
+    ratePct: 'Tasa (%)',
+    remainingYears: 'Años Restantes',
+    newLoan: 'Nuevo Préstamo',
+    newRatePct: 'Nueva Tasa (%)',
+    newTermYears: 'Nuevo Plazo (Años)',
+    closingCosts: 'Costos de Cierre',
+    lifetimeSavings: 'Ahorro Total Estimado',
+    monthlySavings: 'Ahorro Mensual',
+    breakEvenPoint: 'Punto de Equilibrio',
+    months: 'meses',
+    never: 'Nunca',
+    oldMonthly: 'Cuota Anterior',
+    newMonthly: 'Nueva Cuota',
+  },
+  fr: {
+    title: 'Calculateur de Refinancement et Rachat de Crédit',
+    currentLoan: 'Prêt Actuel',
+    loanBalance: 'Capital Restant Dû',
+    ratePct: 'Taux (%)',
+    remainingYears: 'Années Restantes',
+    newLoan: 'Nouveau Prêt',
+    newRatePct: 'Nouveau Taux (%)',
+    newTermYears: 'Nouvelle Durée (Ans)',
+    closingCosts: 'Frais de Dossier et Garantie',
+    lifetimeSavings: 'Économie Totale',
+    monthlySavings: 'Économie Mensuelle',
+    breakEvenPoint: 'Seuil de Rentabilité',
+    months: 'mois',
+    never: 'Jamais',
+    oldMonthly: 'Ancienne Mensualité',
+    newMonthly: 'Nouvelle Mensualité',
+  },
+  ar: {
+    title: 'حاسبة إعادة تمويل الرهن العقاري',
+    currentLoan: 'القرض الحالي',
+    loanBalance: 'رصيد القرض المتبقي',
+    ratePct: 'نسبة الفائدة (%)',
+    remainingYears: 'السنوات المتبقية',
+    newLoan: 'القرض الجديد',
+    newRatePct: 'الفائدة الجديدة (%)',
+    newTermYears: 'المدة الجديدة (سنوات)',
+    closingCosts: 'رسوم الإغلاق وإعادة التمويل',
+    lifetimeSavings: 'إجمالي التوفير المتوقع',
+    monthlySavings: 'التوفير الشهري',
+    breakEvenPoint: 'نقطة التعادل',
+    months: 'شهر',
+    never: 'لا يوجد توفير',
+    oldMonthly: 'القسط الحالي',
+    newMonthly: 'القسط الجديد',
+  },
+  ru: {
+    title: 'Калькулятор рефинансирования ипотеки',
+    currentLoan: 'Текущий кредит',
+    loanBalance: 'Остаток долга',
+    ratePct: 'Ставка (%)',
+    remainingYears: 'Осталось лет',
+    newLoan: 'Новый кредит',
+    newRatePct: 'Новая ставка (%)',
+    newTermYears: 'Новый срок (лет)',
+    closingCosts: 'Комиссии и расходы',
+    lifetimeSavings: 'Общая экономия',
+    monthlySavings: 'Экономия в месяц',
+    breakEvenPoint: 'Точка окупаемости',
+    months: 'мес.',
+    never: 'Не окупается',
+    oldMonthly: 'Старый платеж',
+    newMonthly: 'Новый платеж',
+  },
+};
 
 export default function Refinance() {
+  const { lang } = useI18n();
+  const t = dict[lang] || dict.en;
+
   const [currentBalance, setCurrentBalance] = useUrlState<number>('currentBalance', 300000);
   const [currentRate, setCurrentRate] = useUrlState<number>('currentRate', 5.5);
   const [remainingYears, setRemainingYears] = useUrlState<number>('remainingYears', 25);
@@ -34,67 +166,67 @@ export default function Refinance() {
           <PiggyBank className="w-6 h-6" />
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
-          Refinance Calculator
+          {t.title}
         </h1>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="space-y-6">
           <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl space-y-4">
-            <h3 className="font-semibold text-slate-900 dark:text-white">Current Loan</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white">{t.currentLoan}</h3>
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Loan Balance</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t.loanBalance}</label>
               <input type="number" value={currentBalance || ''} onChange={e => setCurrentBalance(Number(e.target.value))} className="w-full px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-500" />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Rate (%)</label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t.ratePct}</label>
                 <input type="number" step="0.1" value={currentRate || ''} onChange={e => setCurrentRate(Number(e.target.value))} className="w-full px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-500" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Remaining Years</label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t.remainingYears}</label>
                 <input type="number" value={remainingYears || ''} onChange={e => setRemainingYears(Number(e.target.value))} className="w-full px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-500" />
               </div>
             </div>
           </div>
           <div className="p-4 bg-emerald-50 dark:bg-emerald-900/10 rounded-2xl space-y-4">
-            <h3 className="font-semibold text-slate-900 dark:text-white">New Loan</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-white">{t.newLoan}</h3>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">New Rate (%)</label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t.newRatePct}</label>
                 <input type="number" step="0.1" value={newRate || ''} onChange={e => setNewRate(Number(e.target.value))} className="w-full px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-500" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">New Term (Years)</label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t.newTermYears}</label>
                 <input type="number" value={newYears || ''} onChange={e => setNewYears(Number(e.target.value))} className="w-full px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-500" />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Closing Costs</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t.closingCosts}</label>
               <input type="number" value={closingCosts || ''} onChange={e => setClosingCosts(Number(e.target.value))} className="w-full px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-500" />
             </div>
           </div>
         </div>
         <div className="bg-slate-900 dark:bg-slate-800 p-6 sm:p-8 rounded-3xl flex flex-col justify-center text-white">
-          <p className="text-sm text-slate-400 font-medium mb-2">Lifetime Savings</p>
-          <p className={`text-4xl sm:text-5xl font-bold mb-6 ${lifetimeSavings > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+          <p className="text-sm text-slate-400 font-medium mb-2">{t.lifetimeSavings}</p>
+          <p className={`text-4xl sm:text-5xl font-bold mb-6 ${lifetimeSavings > 0 ? 'text-emerald-400' : 'text-red-400'}`} dir="ltr">
             {lifetimeSavings.toLocaleString(undefined, { maximumFractionDigits: 0 })}
           </p>
           <div className="space-y-4">
             <div className="flex justify-between items-center py-3 border-b border-slate-800">
-              <span className="text-slate-400">Monthly Savings</span>
-              <span className={`font-semibold ${monthlySavings > 0 ? 'text-emerald-400' : 'text-red-400'}`}>{monthlySavings.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+              <span className="text-slate-400">{t.monthlySavings}</span>
+              <span className={`font-semibold ${monthlySavings > 0 ? 'text-emerald-400' : 'text-red-400'}`} dir="ltr">{monthlySavings.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
             </div>
             <div className="flex justify-between items-center py-3 border-b border-slate-800">
-              <span className="text-slate-400">Break-Even Point</span>
-              <span className="font-semibold">{breakEvenMonths > 0 ? `${Math.ceil(breakEvenMonths)} months` : 'Never'}</span>
+              <span className="text-slate-400">{t.breakEvenPoint}</span>
+              <span className="font-semibold">{breakEvenMonths > 0 ? `${Math.ceil(breakEvenMonths)} ${t.months}` : t.never}</span>
             </div>
             <div className="flex justify-between items-center py-3 border-b border-slate-800">
-              <span className="text-slate-400">Old Monthly</span>
-              <span className="font-semibold">{currentPayment.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+              <span className="text-slate-400">{t.oldMonthly}</span>
+              <span className="font-semibold" dir="ltr">{currentPayment.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
             </div>
             <div className="flex justify-between items-center py-3 border-b border-slate-800">
-              <span className="text-slate-400">New Monthly</span>
-              <span className="font-semibold">{newPayment.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
+              <span className="text-slate-400">{t.newMonthly}</span>
+              <span className="font-semibold" dir="ltr">{newPayment.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
             </div>
           </div>
         </div>
@@ -102,3 +234,4 @@ export default function Refinance() {
     </div>
   );
 }
+

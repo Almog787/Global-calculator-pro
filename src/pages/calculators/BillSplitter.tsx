@@ -1,8 +1,84 @@
 import { useUrlState } from '../../hooks/useUrlState';
 import React from 'react';
 import { Users } from 'lucide-react';
+import { useI18n, Language } from '../../contexts/i18n';
+
+const dict: Record<Language, {
+  title: string;
+  totalBill: string;
+  tipPct: string;
+  numPeople: string;
+  eachPersonPays: string;
+  billAmount: string;
+  tipAmount: string;
+  totalWithTip: string;
+}> = {
+  en: {
+    title: 'Restaurant Bill & Tip Splitter',
+    totalBill: 'Total Bill Amount',
+    tipPct: 'Tip Percentage (%)',
+    numPeople: 'Number of People',
+    eachPersonPays: 'Each Person Pays',
+    billAmount: 'Bill Amount',
+    tipAmount: 'Tip Amount',
+    totalWithTip: 'Total with Tip',
+  },
+  he: {
+    title: 'מחשבון פיצול חשבון וטיפ במסעדה',
+    totalBill: 'סכום החשבון הכולל',
+    tipPct: 'אחוז טיפ (%)',
+    numPeople: 'מספר סועדים',
+    eachPersonPays: 'תשלום לסועד',
+    billAmount: 'סכום החשבון',
+    tipAmount: 'סכום הטיפ',
+    totalWithTip: 'סה"כ לתשלום כולל טיפ',
+  },
+  es: {
+    title: 'Divisor de Cuenta y Propina',
+    totalBill: 'Monto Total de la Cuenta',
+    tipPct: 'Porcentaje de Propina (%)',
+    numPeople: 'Número de Personas',
+    eachPersonPays: 'Cada Persona Paga',
+    billAmount: 'Importe de la Cuenta',
+    tipAmount: 'Importe de Propina',
+    totalWithTip: 'Total con Propina',
+  },
+  fr: {
+    title: 'Partage d\'Addition et Pourboire',
+    totalBill: 'Montant Total de l\'Addition',
+    tipPct: 'Pourcentage de Pourboire (%)',
+    numPeople: 'Nombre de Convives',
+    eachPersonPays: 'Part par Personne',
+    billAmount: 'Montant de l\'Addition',
+    tipAmount: 'Montant du Pourboire',
+    totalWithTip: 'Total avec Pourboire',
+  },
+  ar: {
+    title: 'حاسبة تقسيم الفاتورة والإكرامية',
+    totalBill: 'إجمالي مبلغ الفاتورة',
+    tipPct: 'نسبة الإكرامية (%)',
+    numPeople: 'عدد الأشخاص',
+    eachPersonPays: 'حصة كل شخص',
+    billAmount: 'مبلغ الفاتورة',
+    tipAmount: 'قيمة الإكرامية',
+    totalWithTip: 'الإجمالي مع الإكرامية',
+  },
+  ru: {
+    title: 'Калькулятор разделения счета и чаевых',
+    totalBill: 'Общая сумма счета',
+    tipPct: 'Процент чаевых (%)',
+    numPeople: 'Количество человек',
+    eachPersonPays: 'Сумма на человека',
+    billAmount: 'Сумма счета',
+    tipAmount: 'Сумма чаевых',
+    totalWithTip: 'Итого с чаевыми',
+  },
+};
 
 export default function BillSplitter() {
+  const { lang } = useI18n();
+  const t = dict[lang] || dict.en;
+
   const [totalBill, setTotalBill] = useUrlState<number>('totalBill', 250);
   const [tipPercentage, setTipPercentage] = useUrlState<number>('tipPercentage', 15);
   const [numPeople, setNumPeople] = useUrlState<number>('numPeople', 4);
@@ -18,17 +94,17 @@ export default function BillSplitter() {
           <Users className="w-6 h-6" />
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
-          Bill Splitter
+          {t.title}
         </h1>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Total Bill Amount</label>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t.totalBill}</label>
             <input type="number" value={totalBill || ''} onChange={e => setTotalBill(Number(e.target.value))} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-amber-500" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Tip Percentage (%)</label>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t.tipPct}</label>
             <input type="number" value={tipPercentage || ''} onChange={e => setTipPercentage(Number(e.target.value))} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-amber-500" />
             <div className="flex gap-2 mt-3">
               {[10, 12, 15, 18, 20].map(r => (
@@ -39,31 +115,31 @@ export default function BillSplitter() {
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Number of People</label>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t.numPeople}</label>
             <div className="flex items-center">
-              <button onClick={() => setNumPeople(Math.max(1, numPeople - 1))} className="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-l-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">-</button>
+              <button onClick={() => setNumPeople(Math.max(1, numPeople - 1))} className="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-s-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">-</button>
               <input type="number" value={numPeople || ''} onChange={e => setNumPeople(Number(e.target.value))} className="w-full h-12 px-4 bg-slate-50 dark:bg-slate-800 border-y border-slate-200 dark:border-slate-700 focus:ring-0 text-center" />
-              <button onClick={() => setNumPeople(numPeople + 1)} className="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-r-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">+</button>
+              <button onClick={() => setNumPeople(numPeople + 1)} className="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-e-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">+</button>
             </div>
           </div>
         </div>
         <div className="bg-amber-50 dark:bg-amber-900/10 p-6 sm:p-8 rounded-3xl flex flex-col justify-center">
-          <p className="text-sm text-amber-600 dark:text-amber-400 font-medium mb-2">Each Person Pays</p>
-          <p className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+          <p className="text-sm text-amber-600 dark:text-amber-400 font-medium mb-2">{t.eachPersonPays}</p>
+          <p className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6" dir="ltr">
             {perPerson.toFixed(2)}
           </p>
           <div className="space-y-4 pt-4 border-t border-amber-200 dark:border-amber-900/30">
             <div className="flex justify-between items-center">
-              <span className="text-slate-600 dark:text-slate-400">Bill Amount</span>
-              <span className="font-medium text-slate-900 dark:text-white">{totalBill.toFixed(2)}</span>
+              <span className="text-slate-600 dark:text-slate-400">{t.billAmount}</span>
+              <span className="font-medium text-slate-900 dark:text-white" dir="ltr">{totalBill.toFixed(2)}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-slate-600 dark:text-slate-400">Tip Amount</span>
-              <span className="font-medium text-slate-900 dark:text-white">{tipAmount.toFixed(2)}</span>
+              <span className="text-slate-600 dark:text-slate-400">{t.tipAmount}</span>
+              <span className="font-medium text-slate-900 dark:text-white" dir="ltr">{tipAmount.toFixed(2)}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-amber-900 dark:text-amber-200 font-bold">Total with Tip</span>
-              <span className="font-bold text-amber-600 dark:text-amber-400">{grandTotal.toFixed(2)}</span>
+              <span className="text-amber-900 dark:text-amber-200 font-bold">{t.totalWithTip}</span>
+              <span className="font-bold text-amber-600 dark:text-amber-400" dir="ltr">{grandTotal.toFixed(2)}</span>
             </div>
           </div>
         </div>
@@ -71,3 +147,4 @@ export default function BillSplitter() {
     </div>
   );
 }
+

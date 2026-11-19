@@ -1,7 +1,7 @@
 import { useUrlState } from '../../hooks/useUrlState';
 import React from 'react';
 import { Flame, Clock } from 'lucide-react';
-import { useI18n } from '../../contexts/i18n';
+import { useI18n, Language } from '../../contexts/i18n';
 import ShareActions from '../../components/ShareActions';
 import MeasurementToggle from '../../components/MeasurementToggle';
 import { useMeasurementSystem } from '../../hooks/useMeasurementSystem';
@@ -33,20 +33,155 @@ const COOKING_DATA: Record<MeatType, Record<string, CookingRule>> = {
   }
 };
 
+const dict: Record<Language, {
+  title: string;
+  meatType: string;
+  beef: string;
+  chicken: string;
+  pork: string;
+  doneness: string;
+  rare: string;
+  mediumRare: string;
+  medium: string;
+  wellDone: string;
+  meatWeight: string;
+  kg: string;
+  lbs: string;
+  estimatedTime: string;
+  h: string;
+  m: string;
+  recommendedTemp: string;
+}> = {
+  en: {
+    title: 'Meat Roasting & Cooking Timer',
+    meatType: 'Meat Type',
+    beef: 'Beef',
+    chicken: 'Chicken',
+    pork: 'Pork',
+    doneness: 'Doneness',
+    rare: 'Rare',
+    mediumRare: 'Medium Rare',
+    medium: 'Medium',
+    wellDone: 'Well Done',
+    meatWeight: 'Meat Weight',
+    kg: 'kg',
+    lbs: 'lbs',
+    estimatedTime: 'Estimated Cooking Time',
+    h: 'h',
+    m: 'm',
+    recommendedTemp: 'Recommended Oven Temp',
+  },
+  he: {
+    title: 'מחשבון זמני צלייה ובישול',
+    meatType: 'סוג בשר',
+    beef: 'בקר',
+    chicken: 'עוף',
+    pork: 'חזיר',
+    doneness: 'מידת עשייה',
+    rare: 'רייר (נא)',
+    mediumRare: 'מדיום רייר',
+    medium: 'מדיום',
+    wellDone: 'וול דאן (עשוי היטב)',
+    meatWeight: 'משקל הנתח',
+    kg: 'ק"ג',
+    lbs: 'ליברות',
+    estimatedTime: 'זמן צלייה משוער',
+    h: 'ש׳',
+    m: 'ד׳',
+    recommendedTemp: 'טמפרטורת תנור מומלצת',
+  },
+  es: {
+    title: 'Calculadora de Tiempo de Horneado y Asado',
+    meatType: 'Tipo de Carne',
+    beef: 'Res / Ternera',
+    chicken: 'Pollo',
+    pork: 'Cerdo',
+    doneness: 'Punto de Cocción',
+    rare: 'Poco hecho',
+    mediumRare: 'Al punto menos',
+    medium: 'Al punto',
+    wellDone: 'Bien cocido',
+    meatWeight: 'Peso de la Pieza',
+    kg: 'kg',
+    lbs: 'lb',
+    estimatedTime: 'Tiempo Estimado de Cocción',
+    h: 'h',
+    m: 'm',
+    recommendedTemp: 'Temperatura de Horno Recomendada',
+  },
+  fr: {
+    title: 'Minuteur de Cuisson et Rôtissage au Four',
+    meatType: 'Type de Viande',
+    beef: 'Bœuf',
+    chicken: 'Poulet',
+    pork: 'Porc',
+    doneness: 'Cuisson',
+    rare: 'Saignant',
+    mediumRare: 'À point rosé',
+    medium: 'À point',
+    wellDone: 'Bien cuit',
+    meatWeight: 'Poids de la Pièce',
+    kg: 'kg',
+    lbs: 'lb',
+    estimatedTime: 'Temps de Cuisson Estimé',
+    h: 'h',
+    m: 'min',
+    recommendedTemp: 'Température du Four Recommandée',
+  },
+  ar: {
+    title: 'حاسبة وقت الطهي والشواء في الفرن',
+    meatType: 'نوع اللحم',
+    beef: 'لحم بقري',
+    chicken: 'دجاج',
+    pork: 'لحم ضأن / آخر',
+    doneness: 'درجة الاستواء',
+    rare: 'نصف مطهو (رير)',
+    mediumRare: 'متوسط قليل',
+    medium: 'متوسط الاستواء',
+    wellDone: 'ناضج تماماً',
+    meatWeight: 'وزن القطعة',
+    kg: 'كجم',
+    lbs: 'رطل',
+    estimatedTime: 'وقت الطهي المقدر',
+    h: 'س',
+    m: 'د',
+    recommendedTemp: 'درجة حرارة الفرن الموصى بها',
+  },
+  ru: {
+    title: 'Калькулятор времени запекания и готовки',
+    meatType: 'Вид мяса',
+    beef: 'Говядина',
+    chicken: 'Курица',
+    pork: 'Свинина',
+    doneness: 'Степень прожарки',
+    rare: 'С кровью (Rare)',
+    mediumRare: 'Слабая (Medium Rare)',
+    medium: 'Средняя (Medium)',
+    wellDone: 'Полная (Well Done)',
+    meatWeight: 'Вес куска',
+    kg: 'кг',
+    lbs: 'фунты',
+    estimatedTime: 'Расчетное время запекания',
+    h: 'ч',
+    m: 'м',
+    recommendedTemp: 'Рекомендуемая температура духовки',
+  },
+};
+
 export default function CookingTimer() {
   const { lang } = useI18n();
+  const t = dict[lang] || dict.en;
   const { system, setSystem } = useMeasurementSystem();
   
   const [meatType, setMeatType] = useUrlState<MeatType>('meatType', 'beef');
   const [doneness, setDoneness] = useUrlState<Doneness>('doneness', 'medium');
-  const [weight, setWeight] = useUrlState<number>('weight', 1.5); // Stored as kg initially
+  const [weight, setWeight] = useUrlState<number>('weight', 1.5);
 
   const displayWeight = system === 'metric' ? weight : weight * 2.20462;
   const handleWeightChange = (val: number) => {
     setWeight(system === 'metric' ? val : val / 2.20462);
   };
 
-  // Safe fallback if doneness doesn't exist for a meat type
   const currentRule = COOKING_DATA[meatType][doneness] || COOKING_DATA[meatType]['well_done'] || Object.values(COOKING_DATA[meatType])[0];
   const totalMinutes = system === 'metric' 
     ? (weight * currentRule.minutesPerKg) + currentRule.baseMinutes
@@ -57,9 +192,9 @@ export default function CookingTimer() {
 
   const renderMeatOptions = () => {
     return [
-      { id: 'beef', he: 'בקר', en: 'Beef' },
-      { id: 'chicken', he: 'עוף', en: 'Chicken' },
-      { id: 'pork', he: 'חזיר', en: 'Pork' },
+      { id: 'beef', label: t.beef },
+      { id: 'chicken', label: t.chicken },
+      { id: 'pork', label: t.pork },
     ].map(opt => (
       <button
         key={opt.id}
@@ -73,26 +208,26 @@ export default function CookingTimer() {
             : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high'
         }`}
       >
-        {lang === 'he' ? opt.he : opt.en}
+        {opt.label}
       </button>
     ));
   };
 
   const renderDonenessOptions = () => {
-    if (meatType === 'chicken') return null; // Chicken is always well done
+    if (meatType === 'chicken') return null;
     
-    let options: { id: string; he: string; en: string }[] = [];
+    let options: { id: string; label: string }[] = [];
     if (meatType === 'beef') {
       options = [
-        { id: 'rare', he: 'רייר (נא)', en: 'Rare' },
-        { id: 'medium_rare', he: 'מדיום רייר', en: 'Medium Rare' },
-        { id: 'medium', he: 'מדיום', en: 'Medium' },
-        { id: 'well_done', he: 'וול דאן (עשוי היטב)', en: 'Well Done' },
+        { id: 'rare', label: t.rare },
+        { id: 'medium_rare', label: t.mediumRare },
+        { id: 'medium', label: t.medium },
+        { id: 'well_done', label: t.wellDone },
       ];
     } else if (meatType === 'pork') {
       options = [
-        { id: 'medium', he: 'מדיום', en: 'Medium' },
-        { id: 'well_done', he: 'וול דאן', en: 'Well Done' },
+        { id: 'medium', label: t.medium },
+        { id: 'well_done', label: t.wellDone },
       ];
     }
 
@@ -106,7 +241,7 @@ export default function CookingTimer() {
             : 'bg-surface-container border border-border-subtle text-on-surface hover:bg-surface-container-high'
         }`}
       >
-        {lang === 'he' ? opt.he : opt.en}
+        {opt.label}
       </button>
     ));
   };
@@ -120,7 +255,7 @@ export default function CookingTimer() {
           </div>
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold text-on-surface">
-              {lang === 'he' ? 'מחשבון זמני צלייה' : 'Meat Roasting Timer'}
+              {t.title}
             </h1>
           </div>
         </div>
@@ -131,7 +266,7 @@ export default function CookingTimer() {
         <div className="space-y-6">
           <div>
             <label className="block text-sm font-medium text-on-surface-variant mb-3">
-              {lang === 'he' ? 'סוג בשר' : 'Meat Type'}
+              {t.meatType}
             </label>
             <div className="flex gap-2">
               {renderMeatOptions()}
@@ -141,7 +276,7 @@ export default function CookingTimer() {
           {meatType !== 'chicken' && (
             <div>
               <label className="block text-sm font-medium text-on-surface-variant mb-3">
-                {lang === 'he' ? 'מידת עשייה' : 'Doneness'}
+                {t.doneness}
               </label>
               <div className="flex flex-wrap gap-2">
                 {renderDonenessOptions()}
@@ -151,7 +286,7 @@ export default function CookingTimer() {
 
           <div>
             <label className="block text-sm font-medium text-on-surface-variant mb-2">
-              {lang === 'he' ? 'משקל הנתח' : 'Meat Weight'} ({system === 'metric' ? 'kg' : 'lbs'})
+              {t.meatWeight} ({system === 'metric' ? t.kg : t.lbs})
             </label>
             <input
               type="number"
@@ -167,18 +302,18 @@ export default function CookingTimer() {
         <div className="bg-surface-container-low rounded-2xl p-6 flex flex-col items-center justify-center text-center border border-border-subtle">
           <Clock className="w-10 h-10 text-secondary mb-4 opacity-80" />
           <p className="text-sm font-medium text-on-surface-variant uppercase tracking-wider mb-2">
-            {lang === 'he' ? 'זמן צלייה משוער' : 'Estimated Cooking Time'}
+            {t.estimatedTime}
           </p>
-          <div className="text-4xl sm:text-5xl font-bold text-primary mb-6 flex items-baseline gap-2">
-            {hours > 0 && <span>{hours}<span className="text-xl sm:text-2xl text-on-surface-variant font-normal ml-1 rtl:mr-1">h</span></span>}
-            <span>{minutes}<span className="text-xl sm:text-2xl text-on-surface-variant font-normal ml-1 rtl:mr-1">m</span></span>
+          <div className="text-4xl sm:text-5xl font-bold text-primary mb-6 flex items-baseline gap-2" dir="ltr">
+            {hours > 0 && <span>{hours}<span className="text-xl sm:text-2xl text-on-surface-variant font-normal ms-1">{t.h}</span></span>}
+            <span>{minutes}<span className="text-xl sm:text-2xl text-on-surface-variant font-normal ms-1">{t.m}</span></span>
           </div>
           
           <div className="w-full bg-surface-container-lowest rounded-xl p-4 border border-border-subtle/50">
             <p className="text-sm text-on-surface-variant mb-1">
-              {lang === 'he' ? 'טמפרטורת תנור מומלצת' : 'Recommended Oven Temp'}
+              {t.recommendedTemp}
             </p>
-            <p className="text-xl font-bold text-on-surface">
+            <p className="text-xl font-bold text-on-surface" dir="ltr">
               {system === 'metric' ? `${currentRule.tempC}°C` : `${currentRule.tempF}°F`}
             </p>
           </div>
@@ -189,3 +324,4 @@ export default function CookingTimer() {
     </div>
   );
 }
+

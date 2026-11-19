@@ -106,15 +106,7 @@ export default function PrivacyPolicy() {
         title={t.privacyTitle}
         description={t.privacyDesc}
         canonicalUrl={`/${lang}/privacy-policy`}
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: t.privacyTitle,
-          description: t.privacyDesc,
-          applicationCategory: 'CalculatorApplication',
-          operatingSystem: 'Any',
-          url: `https://globalcalcpro.com/${lang}/privacy-policy`
-        }}
+        type="website"
       />
 
       <h1 className="text-3xl md:text-4xl font-headline text-stone-900 tracking-tight font-bold">

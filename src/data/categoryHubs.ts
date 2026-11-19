@@ -15,6 +15,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Calculadoras Financieras, Inversiones y Ahorro",
       fr: "Calculatrices Financières, Investissements et Épargne",
       ar: "حاسبات مالية، استثمار وادخار",
+      ru: "Финансовые, инвестиционные и сберегательные калькуляторы",
     },
     subtitle: {
       he: "כלים מתקדמים לתכנון פרישה, ניתוח ריבית דריבית, החזרי הלוואות ומינוף פיננסי בדיוק אקטוארי.",
@@ -22,6 +23,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Herramientas de alta precisión para planificación de jubilación, interés compuesto y amortización.",
       fr: "Outils précis pour préparer sa retraite, calculer les intérêts composés et amortir ses emprunts.",
       ar: "أدوات دقيقة للتخطيط المالي، حساب الفائدة المركبة، وجداول سداد القروض.",
+      ru: "Точные инструменты для планирования пенсии, сложных процентов, графика погашения кредитов и роста капитала.",
     },
     introText: {
       he: "תכנון פיננסי מושכל מבוסס על מתמטיקה מדויקת ולא על תחושות בטן. מחשבוני הכספים וההשקעות של GlobalCalc Pro פותחו על פי לוחות סילוקין סטנדרטיים ונוסחאות ריבית דריבית מתקדמות, תוך שימוש במנוע חישוב עשרוני בעל דיוק גבוה (Arbitrary Precision) למניעת שגיאות עיגול. בין אם אתם מתכננים הפקדות חודשיות לקרן השתלמות או קופת גמל להשקעה, בוחנים כדאיות פירעון מוקדם של הלוואה, או מעריכים את שווי התיק בעוד 20 שנה – חישוב מדויק של עמלות, ריביות ואינפלציה מאפשר לקבל החלטות מושכלות שחוסכות עשרות אלפי שקלים וממקסמות את התשואה המצטברת לאורך זמן.",
@@ -29,6 +31,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "La toma de decisiones financieras inteligentes requiere rigor matemático. Nuestras herramientas calculan el interés compuesto, la amortización de deudas y la rentabilidad de inversiones con máxima precisión decimal.",
       fr: "Une gestion financière optimale repose sur des calculs rigoureux. Nos simulateurs utilisent des formules actuarielles reconnues pour projeter vos rendements et amortir vos crédits sans approximations.",
       ar: "الإدارة المالية السليمة تعتمد على الدقة الحسابية العالية. تقدم حاسباتنا المالية نماذج دقيقة لحساب الفائدة المركبة، وجداول سداد القروض، وتخطيط الثروة على المدى الطويل.",
+      ru: "Грамотное управление финансами начинается с точных математических расчетов. Финансовые калькуляторы GlobalCalc Pro используют актуарные алгоритмы амортизации и модели сложных процентов на базе десятичной арифметики высокой точности, помогая оптимизировать бюджет и приумножать капитал.",
     },
     keyBenefits: {
       he: [
@@ -42,15 +45,23 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
         "Instant real-time scenario comparison with live charts",
         "One-click Excel export for financial and amortization reports",
         "Standard banking and institutional mathematical compliance"
+      ],
+      ru: [
+        "Высокая десятичная точность без ошибок округления (Decimal.js)",
+        "Мгновенное сравнение сценариев с интерактивными графиками",
+        "Экспорт финансовых отчетов и графиков платежей в Excel",
+        "Соответствие стандартным банковским формулам расчета"
       ]
     },
     recommendedWorkflow: {
       he: "מומלץ להתחיל בבדיקת מחשבון ריבית דריבית להגדרת יעד חיסכון, לשלב עם מחשבון אינפלציה לבדיקת כוח הקנייה הריאלי, ולהשתמש במחשבון החזר חובות לחיסול מהיר של התחייבויות יקרות.",
-      en: "Recommended workflow: Start with Compound Interest to define savings goals, factor in purchasing power with the Inflation Calculator, and clear high-interest liabilities using Debt Snowball."
+      en: "Recommended workflow: Start with Compound Interest to define savings goals, factor in purchasing power with the Inflation Calculator, and clear high-interest liabilities using Debt Snowball.",
+      ru: "Рекомендуемый порядок: начните с калькулятора сложных процентов для постановки цели, учтите инфляцию и ускорьте закрытие дорогих долгов."
     },
     expertQuote: {
       he: "״ריבית דריבית היא הפלא השמיני בתבל. מי שמבין אותה – מרוויח אותה; מי שלא – משלם אותה.״ — אלברט איינשטיין",
-      en: "\"Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it.\" — Albert Einstein"
+      en: "\"Compound interest is the eighth wonder of the world. He who understands it, earns it; he who doesn't, pays it.\" — Albert Einstein",
+      ru: "«Сложный процент — восьмое чудо света. Кто понимает его — зарабатывает; кто не понимает — платит.» — Альберт Эйнштейн"
     }
   },
   'real-estate': {
@@ -60,6 +71,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Calculadoras de Bienes Raíces e Hipotecas",
       fr: "Calculatrices Immobilières, Prêts et Fiscalité",
       ar: "حاسبات العقارات، الرهن العقاري والضرائب",
+      ru: "Калькуляторы недвижимости, ипотеки и налогов",
     },
     subtitle: {
       he: "בדיקת החזר חודשי, מדרגות מס רכישה עדכניות, תשואת Cap Rate והשוואת קנייה מול שכירות.",
@@ -67,6 +79,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Simulación de hipotecas, impuestos de transmisiones patrimoniales y rentabilidad inmobiliaria.",
       fr: "Simulateurs de crédit immobilier, frais de notaire et rentabilité locative.",
       ar: "حساب أقساط الرهن العقاري، شرائح الضرائب العقارية، ومقارنة الشراء مقابل الإيجار.",
+      ru: "Расчет ежемесячного платежа по ипотеке, налога на покупку, доходности аренды (Cap Rate) и сравнение покупки с арендой.",
     },
     introText: {
       he: "רכישת דירה היא בדרך כלל העסקה הכלכלית המשמעותית ביותר בחייו של אדם או משפחה. כדי להימנע מטעויות קריטיות בעלות של מאות אלפי שקלים, פיתחנו מרכז מחשבוני נדל״ן מקיף הכולל את נוסחת שפיצר למשכנתאות, סימולטור מדרגות מס רכישה מעודכן (כולל הבחנה בין דירה יחידה לדירה נוספת), מחשבון תשואת שכירות (Cap Rate) ומחשבון שכירות מול קנייה. שימוש בכלים אלו מעניק תמונה מלאה על יכולת ההחזר החודשית, עלויות נלוות (עו״ד, תיווך, מסים ושיפוץ) ושווי הנכס לאורך 10 עד 30 שנה.",
@@ -74,6 +87,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "La compra de vivienda requiere un análisis exhaustivo. Nuestras herramientas calculan cuotas hipotecarias, impuestos vigentes y la rentabilidad neta de tus inversiones.",
       fr: "L'investissement immobilier demande une précision sans faille. Calculez vos mensualités, frais d'acquisition et rentabilités locatives en toute simplicité.",
       ar: "شراء العقارات يتطلب تخطيطاً دقيقاً. تتيح حاسباتنا العقارية تقدير الأقساط الشهرية، الضرائب، والعائد الاستثماري لمساعدتك في اتخاذ القرار الأمثل.",
+      ru: "Покупка недвижимости — одно из важнейших финансовых решений. Калькуляторы GlobalCalc Pro охватывают аннуитетный график ипотеки, налоги на сделку, чистую арендную доходность и долгосрочное сравнение покупки и аренды.",
     },
     keyBenefits: {
       he: [
@@ -87,15 +101,23 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
         "Full 30-year Spitzer amortization schedule with visual breakdown",
         "Debt-to-income and loan-to-value (LTV) affordability compliance",
         "Direct real estate ROI vs. stock index fund compounding comparisons"
+      ],
+      ru: [
+        "Актуальные налоговые ставки и расчет сопутствующих расходов на сделку",
+        "Полный график ипотечных платежей на срок до 30 лет",
+        "Оценка доступности ипотеки и долговой нагрузки (DTI)",
+        "Сравнение доходности недвижимости с фондовым рынком"
       ]
     },
     recommendedWorkflow: {
       he: "בדקו תחילה את 'מחשבון יכולת החזר משכנתא' לקביעת תקציב היעד, המשיכו ל'מחשבון מס רכישה' לחישוב עלויות העסקה, והשוו ב'מחשבון שכירות מול קנייה'.",
-      en: "Recommended workflow: Check Mortgage Affordability to establish your budget ceiling, compute closing taxes with the Purchase Tax Calculator, and compare long-term wealth in Rent vs. Buy."
+      en: "Recommended workflow: Check Mortgage Affordability to establish your budget ceiling, compute closing taxes with the Purchase Tax Calculator, and compare long-term wealth in Rent vs. Buy.",
+      ru: "Рекомендуемый порядок: оцените доступный бюджет в калькуляторе ипотеки, рассчитайте налоги и сравните покупку с арендой."
     },
     expertQuote: {
       he: "״ההבדל בין משכנתא טובה למשכנתא לא מתאימה יכול להסתכם במאות אלפי שקלים של ריביות מיותרות.״",
-      en: "\"The difference between an optimized mortgage structure and a generic loan can easily exceed tens of thousands in avoided interest.\""
+      en: "\"The difference between an optimized mortgage structure and a generic loan can easily exceed tens of thousands in avoided interest.\"",
+      ru: "«Разница между продуманной структурой ипотеки и стандартным предложением может составлять десятки тысяч в переплате по процентам.»"
     }
   },
   health: {
@@ -105,6 +127,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Calculadoras de Salud, Embarazo y Bienestar",
       fr: "Calculatrices de Santé, Grossesse et Métabolisme",
       ar: "حاسبات الصحة، الحمل والأيض",
+      ru: "Калькуляторы здоровья, беременности и метаболизма",
     },
     subtitle: {
       he: "מעקב שבועות הריון, מדדי BMI לפי ארגון הבריאות העולמי, שריפת קלוריות BMR/TDEE וצריכת מים יומית.",
@@ -112,6 +135,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Seguimiento de embarazo, índice de masa corporal según la OMS, gasto calórico TMB y consumo de agua.",
       fr: "Suivi de grossesse, classification IMC OMS, calcul du métabolisme de base et hydratation quotidienne.",
       ar: "متابعة أسابيع الحمل، مؤشر كتلة الجسم، السعرات الحرارية اليومية واستهلاك الماء المثالي.",
+      ru: "Календарь беременности по неделям, ИМТ по нормам ВОЗ, расчет калорий BMR/TDEE и дневная норма воды.",
     },
     introText: {
       he: "שמירה על אורח חיים בריא ומעקב קליני מבוססים על מדדים פיזיולוגיים מוכחים. מחשבוני הבריאות באתר מבוססים על פרוטוקולים בינלאומיים של ארגון הבריאות העולמי (WHO), איגוד הגינקולוגים האמריקאי (ACOG) ומשוואות חילוף חומרים מתקדמות דוגמת Mifflin-St Jeor. בין אם את עוקבת אחר התפתחות העובר ותאריך הלידה המשוער, מנטר את מדד מסת הגוף (BMI) ויעד המשקל התקין, או מחשב את הוצאת האנרגיה היומית (TDEE) לתפריט חיטוב או מסה – הכלים מספקים תובנות מדעיות ברורות ומובנות.",
@@ -119,6 +143,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "El bienestar óptimo se basa en datos científicos contrastados. Nuestras calculadoras de salud implementan protocolos oficiales de la OMS y fórmulas metabólicas estándar.",
       fr: "La santé au quotidien s'appuie sur des indicateurs scientifiques fiables. Découvrez nos simulateurs validés selon les critères médicaux internationaux.",
       ar: "الحفاظ على الصحة السليمة يبدأ من القياسات الدقيقة. تعتمد حاسباتنا الصحية على معايير منظمة الصحة العالمية والبروتوكولات الطبية المعتمدة.",
+      ru: "Забота о здоровье опирается на научно обоснованные физиологические показатели. Калькуляторы здоровья GlobalCalc Pro используют стандарты ВОЗ, акушерские протоколы и формулу Миффлина — Сан-Жеора для точного расчета метаболизма, ИМТ, гидратации и срока беременности.",
     },
     keyBenefits: {
       he: [
@@ -132,15 +157,23 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
         "Clinical gestational age and EDD calculation via Naegele's rule",
         "Mifflin-St Jeor Basal Metabolic Rate (BMR) and TDEE estimation",
         "Personalized daily hydration volume based on body mass and activity"
+      ],
+      ru: [
+        "Классификация ИМТ по официальным таблицам ВОЗ и идеальный вес",
+        "Расчет срока беременности и ПДР по правилу Негеле",
+        "Расчет базового метаболизма (BMR) и суточного расхода калорий (TDEE)",
+        "Персональная норма потребления воды с учетом веса и активности"
       ]
     },
     recommendedWorkflow: {
       he: "מומלץ לבדוק את מחשבון ה-BMI לקבלת תמונת מצב ראשונית, לעבור למחשבון BMR לקביעת תפריט קלורי יומי, ולהשתמש במחשבון צריכת מים לשמירה על הידרציה מיטבית.",
-      en: "Recommended workflow: Check BMI for overall body mass classification, calculate daily caloric balance with BMR/TDEE, and ensure optimal hydration with the Water Intake Calculator."
+      en: "Recommended workflow: Check BMI for overall body mass classification, calculate daily caloric balance with BMR/TDEE, and ensure optimal hydration with the Water Intake Calculator.",
+      ru: "Рекомендуемый порядок: проверьте ИМТ для оценки базовых показателей, рассчитайте суточную норму калорий (BMR/TDEE) и определите оптимальный водный баланс."
     },
     expertQuote: {
       he: "״גוף האדם הוא המכונה המתוחכמת ביותר בעולם – ניהול מושכל של תזונה, שינה ומים הוא המפתח לאריכות ימים.״",
-      en: "\"Tracking baseline metabolic and physiological indicators is the foundational step toward sustainable health and longevity.\""
+      en: "\"Tracking baseline metabolic and physiological indicators is the foundational step toward sustainable health and longevity.\"",
+      ru: "«Отслеживание базовых метаболических показателей — первый шаг к устойчивому здоровью и долголетию.»"
     }
   },
   math: {
@@ -150,6 +183,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Calculadoras Matemáticas, Porcentajes y Conversión",
       fr: "Calculatrices Mathématiques, Pourcentages et Conversions",
       ar: "حاسبات الرياضيات، النسب المئوية والتحويلات",
+      ru: "Калькуляторы математики, процентов и конвертации величин",
     },
     subtitle: {
       he: "חישוב הנחות ואחוזים, המרת יחידות מידה מטריות ואימפריאליות, משוואות ריבועיות ואלגברה.",
@@ -157,6 +191,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Cálculos instantáneos de porcentajes, descuentos, conversiones métricas y álgebra.",
       fr: "Calculs rapides de pourcentages, remises, conversion d'unités et résolutions d'équations.",
       ar: "حساب سريع للنسب المئوية والخصومات، تحويل الوحدات القياسية، وحل المعادلات الرياضية.",
+      ru: "Мгновенный расчет процентов и скидок, конвертер метрических и имперских единиц, решение уравнений и матриц.",
     },
     introText: {
       he: "מתמטיקה יומיומית מקיפה אותנו בכל פעולה – החל מחישוב הנחות בקניות ועד לחישוב שינוי באחוזים, המרת יחידות משקל ומרחק, או פתרון משוואות מדעיות מורכבות. מחשבוני המתמטיקה של האתר מבצעים את כל הפעולות באופן מיידי עם פירוט דרך החישוב והסבר מנטלי מהיר. בעזרת מנוע Decimal.js המונע סטיות נקודה עשרונית, תוכלו ליהנות מתוצאות מדויקות ואמינות לכל צורך לימודי, עסקי או יומיומי.",
@@ -164,6 +199,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Herramientas matemáticas rápidas y exactas para calcular porcentajes, convertir unidades y resolver ecuaciones complejas con facilidad.",
       fr: "Des outils mathématiques précis pour calculer vos remises, convertir des unités de mesure et résoudre des problèmes algébriques.",
       ar: "حلول رياضية فورية ودقيقة لحساب النسب المئوية، تحويل الوحدات، وحل المعادلات الهندسية والجبرية بسهولة.",
+      ru: "Математическая точность важна в торговле, науке и учебе. Инструменты GlobalCalc Pro выполняют вычисления мгновенно и с пошаговым разбором формул, устраняя погрешности округления благодаря движку Decimal.js.",
     },
     keyBenefits: {
       he: [
@@ -177,15 +213,23 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
         "Comprehensive unit converter: length, mass, temperature, volume, and area",
         "Quadratic and linear system equation solvers with step-by-step proofs",
         "Instant one-click copy and share functionality"
+      ],
+      ru: [
+        "Многофункциональный калькулятор процентов: скидки, наценки и динамика",
+        "Полный конвертер величин: длина, масса, температура, объем и площадь",
+        "Решение квадратных уравнений и линейных систем с разбором шагов",
+        "Копирование и отправка результатов в один клик"
       ]
     },
     recommendedWorkflow: {
       he: "השתמשו במחשבון האחוזים לחישוב הנחות ומבצעים, במחשבון המע״מ לחישוב מחיר לפני ואחרי מס, ובממיר היחידות לכל מעבר בין שיטה מטרית לאימפריאלית.",
-      en: "Use Percentage Finder for instant shopping discounts, VAT Calculator for net/gross pricing, and Unit Converter for cross-system engineering standards."
+      en: "Use Percentage Finder for instant shopping discounts, VAT Calculator for net/gross pricing, and Unit Converter for cross-system engineering standards.",
+      ru: "Используйте калькулятор процентов для расчета скидок, калькулятор НДС для цен с налогом и конвертер величин для перевода систем мер."
     },
     expertQuote: {
       he: "״מתמטיקה היא השפה שבה נכתב היקום.״ — גלילאו גליליי",
-      en: "\"Mathematics is the language in which the universe is written.\" — Galileo Galilei"
+      en: "\"Mathematics is the language in which the universe is written.\" — Galileo Galilei",
+      ru: "«Математика — это язык, на котором написана книга природы.» — Галилео Галилей"
     }
   },
   tech: {
@@ -195,6 +239,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Calculadoras de Tecnología, Redes e Ingeniería",
       fr: "Calculatrices Technologiques, Réseaux et Ingénierie",
       ar: "حاسبات التكنولوجيا، الشبكات والهندسة",
+      ru: "Калькуляторы технологий, сетей и инженерии",
     },
     subtitle: {
       he: "זמני הורדה ורוחב פס, ממירי בסיסים בינאריים/הקסדצימליים, אלגברה בינארית וקירור תרמואלקטרי.",
@@ -202,6 +247,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Cálculo de tiempos de descarga, conversión binaria/hexadecimal y lógica digital.",
       fr: "Estimation des temps de téléchargement, conversion binaire/hexadécimale et physique thermique.",
       ar: "حساب سرعة ووقت التحميل، تحويل الأنظمة الثنائية والست عشرية، وتطبيقات الهندسة الإلكترونية.",
+      ru: "Время загрузки и пропускная способность, конвертер систем счисления (BIN/HEX), побитовые операции и охлаждение Пельтье.",
     },
     introText: {
       he: "בעולם הדיגיטלי והטכנולוגי, מהנדסים, מפתחי תוכנה ואנשי IT זקוקים לכלים מהירים ומדויקים לחישובי רוחב פס, זמני העברת קבצים, והמרות בין בסיסי ספירה בינאריים (Binary), הקסדצימליים (Hex) ואוקטליים. מחשבוני הטכנולוגיה של GlobalCalc Pro כוללים גם מודלים תרמודינמיים מתקדמים כגון מחשבון קירור פלטייה (Peltier Element) ואלגוריתמים לבדיקת פעולות Bitwise, ומאפשרים לתכנן מערכות חומרה ותוכנה ביעילות מרבית.",
@@ -209,6 +255,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Herramientas de ingeniería y software para calcular transferencias de datos, lógica binaria y modelos termoeléctricos.",
       fr: "Simulateurs dédiés aux ingénieurs et développeurs pour les débits réseaux, la logique binaire et les conversions de bases.",
       ar: "أدوات مخصصة للمطورين ومهندسي الشبكات لحساب سرعات النقل، العمليات الثنائية، والأنظمة الرقمية بدقة عالية.",
+      ru: "Разработчикам, сетевым инженерам и специалистам по электронике необходимы быстрые и точные вычисления. Инженерные калькуляторы GlobalCalc Pro охватывают скорость передачи данных, перевод между системами счисления, побитовую логику и термоэлектрические модули Пельтье.",
     },
     keyBenefits: {
       he: [
@@ -222,15 +269,23 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
         "Multi-base radix converter: Binary, Hex, Octal, and Decimal",
         "Bitwise operations simulator (AND, OR, XOR, NOT, Bit-shifts)",
         "Thermoelectric Peltier module cooling coefficient simulation"
+      ],
+      ru: [
+        "Точный расчет времени загрузки и передачи файлов по реальной скорости канала",
+        "Мгновенный конвертер систем счисления: Binary, Hex, Octal и Decimal",
+        "Калькулятор побитовых операций (AND, OR, XOR, NOT, сдвиги)",
+        "Симулятор термоэлектрического охлаждения Пельтье"
       ]
     },
     recommendedWorkflow: {
       he: "השתמשו במחשבון זמני ההורדה להערכת גיבויים והעברת נתונים בענן, ובממיר הבסיסים לניפוח שגיאות ופיתוח תוכנה ברמת ה-Low-Level.",
-      en: "Utilize Download Time to model cloud backup transfer windows, and Base Converter for low-level protocol development."
+      en: "Utilize Download Time to model cloud backup transfer windows, and Base Converter for low-level protocol development.",
+      ru: "Используйте калькулятор времени загрузки для оценки резервного копирования и конвертер оснований для низкоуровневой отладки."
     },
     expertQuote: {
       he: "״קיימים 10 סוגי אנשים בעולם: אלו שמבינים בינארית, ואלו שלא.״",
-      en: "\"There are only 10 types of people in the world: those who understand binary, and those who don't.\""
+      en: "\"There are only 10 types of people in the world: those who understand binary, and those who don't.\"",
+      ru: "«В мире есть 10 типов людей: те, кто понимает двоичную систему, и те, кто нет.»"
     }
   },
   lifestyle: {
@@ -240,6 +295,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Calculadoras de Estilo de Vida y Uso Diario",
       fr: "Calculatrices Quotidiennes et Art de Vivre",
       ar: "حاسبات الحياة اليومية والضيافة",
+      ru: "Повседневные калькуляторы для дома, поездок и отдыха",
     },
     subtitle: {
       he: "חישוב טיפ ופיצול חשבון במסעדות, חישוב גיל מדויק, מחשבון שינה ומחזורי מנוחה, ומחשבון דלק לנסיעות.",
@@ -247,6 +303,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "División de cuentas y propinas, cálculo de edad exacta, ciclos de sueño y consumo de combustible.",
       fr: "Partage d'addition et pourboires, calcul d'âge exact, cycles de sommeil et budget carburant.",
       ar: "تقسيم فواتير المطاعم والإكراميات، حساب العمر الدقيق، دورات النوم، ومصاريف الوقود للرحلات.",
+      ru: "Расчет чаевых и деление счета в ресторане, точный возраст, оптимизатор циклов сна и стоимость топлива в поездке.",
     },
     introText: {
       he: "ניהול משימות היום-יום וההוצאות המשותפות הופך לפשוט ונעים בעזרת מחשבוני הלייפסטייל של האתר. בין אם אתם יושבים במסעדה עם חברים וצריכים לחשב טיפ ולפצל את החשבון בצורה הוגנת, מתכננים נסיעה ארוכה ורוצים לחלק את עלויות הדלק והאגרות, רוצים לחשב את גילכם המדויק בשנים, חודשים וימים, או לתכנן שעת שינה מושלמת לפי מחזורי שינה (Sleep Cycles) של 90 דקות – הכלים שלנו מותאמים לשימוש מהיר ואינטואיטיבי מהטלפון הנייד.",
@@ -254,6 +311,7 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
       es: "Facilita tu día a día con herramientas para dividir gastos de restaurantes, calcular combustible, conocer tu edad exacta y optimizar tus ciclos de sueño.",
       fr: "Optimisez votre quotidien : partagez facilement les additions, suivez vos cycles de sommeil et calculez vos dépenses de trajet entre amis.",
       ar: "أدوات مريحة وسريعة لتسهيل حياتك اليومية: تقسيم مصاريف السفر والمطاعم، حساب دورات النوم المثالية، وتتبع العمر الدقيق.",
+      ru: "Повседневные расчеты и общие расходы становятся проще с инструментами GlobalCalc Pro. Быстро делите счет в ресторане, оценивайте затраты на топливо в поездках, узнавайте точный возраст или планируйте сон по 90-минутным циклам.",
     },
     keyBenefits: {
       he: [
@@ -267,15 +325,23 @@ export const categoryHubsData: Record<string, CategoryHubInfo> = {
         "REM 90-minute sleep cycle scheduler for optimal waking alertness",
         "Shared ride fuel expense division by mileage, consumption, and passenger count",
         "Exact chronological age calculator with upcoming milestone countdowns"
+      ],
+      ru: [
+        "Гибкий расчет чаевых и разделение общего счета на компанию",
+        "Планировщик 90-минутных циклов сна для бодрого пробуждения",
+        "Разделение расходов на бензин в совместных поездках по пробегу",
+        "Калькулятор точного хронологического возраста до дня"
       ]
     },
     recommendedWorkflow: {
       he: "פתחו את מחשבון הטיפ בסיום ארוחה משותפת לחלוקה מהירה, והשתמשו במחשבון השינה לפני השינה לקביעת שעת היקיצה האופטימלית.",
-      en: "Use Tip Calculator at dinner for effortless tab splitting, and consult Sleep Calculator before bedtime for optimal alarm scheduling."
+      en: "Use Tip Calculator at dinner for effortless tab splitting, and consult Sleep Calculator before bedtime for optimal alarm scheduling.",
+      ru: "Используйте калькулятор чаевых для быстрого расчета в кафе и калькулятор сна для выбора лучшего времени пробуждения."
     },
     expertQuote: {
       he: "״ההצלחה בחיים נבנית מהרגלים קטנים ומדויקים שאנו מיישמים בכל יום.״",
-      en: "\"Quality of life improves dramatically through small, optimized daily decisions.\""
+      en: "\"Quality of life improves dramatically through small, optimized daily decisions.\"",
+      ru: "«Качество жизни складывается из небольших, но точных ежедневных решений.»"
     }
   }
 };

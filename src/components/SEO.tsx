@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { calculators, dynamicTranslations } from '../data/calculators';
 import { SeoOverrideContext } from '../contexts/SeoOverrideContext';
+import { Language, useOptionalI18n } from '../contexts/i18n';
+import { buildCalculatorFallbackFaqs, FaqEntry, resolveGuideKey } from '../lib/seo/calculatorFallbackGuide';
 
 interface BreadcrumbEntry {
   name: string;
@@ -58,19 +60,35 @@ const SEO: React.FC<SEOProps> = ({
   const baseUrl = 'https://globalcalcpro.com';
   const notifyChildSeo = useContext(SeoOverrideContext);
 
+  const i18n = useOptionalI18n();
+
   useEffect(() => {
     if (notifyChildSeo) {
       notifyChildSeo();
     }
   }, [notifyChildSeo]);
 
-  // Remove static prerendered JSON-LD script once React Helmet manages the canonical schema graph
+  // Remove static prerendered head tags and JSON-LD script once React Helmet manages them with data-rh="true"
   useEffect(() => {
     const prerenderScript = document.getElementById('prerender-ld-json');
     if (prerenderScript) {
       prerenderScript.remove();
     }
-  }, []);
+
+    const staticSelectors = [
+      'link[rel="canonical"]:not([data-rh="true"])',
+      'link[rel="alternate"][hreflang]:not([data-rh="true"])',
+      'meta[name="title"]:not([data-rh="true"])',
+      'meta[name="description"]:not([data-rh="true"])',
+      'meta[name="keywords"]:not([data-rh="true"])',
+      'meta[name="robots"]:not([data-rh="true"])',
+      'meta[name="googlebot"]:not([data-rh="true"])',
+      'meta[name="bingbot"]:not([data-rh="true"])',
+      'meta[property^="og:"]:not([data-rh="true"])',
+      'meta[name^="twitter:"]:not([data-rh="true"])',
+    ];
+    document.head.querySelectorAll(staticSelectors.join(',')).forEach((el) => el.remove());
+  }, [location?.pathname, location?.search]);
 
   // Determine current pathname safely
   const currentPath = location ? location.pathname : '/en/all';
@@ -314,11 +332,32 @@ const SEO: React.FC<SEOProps> = ({
     itemListElement: breadcrumbItemsList
   };
 
+  // Auto-resolve FAQPage schema for calculator routes if caller omitted faq prop
+  const resolvedGuideKey = resolveGuideKey(matchedCalc);
+  const guideFaq: FaqEntry[] =
+    resolvedGuideKey && Array.isArray(i18n?.guides?.[resolvedGuideKey]?.faq)
+      ? (i18n.guides[resolvedGuideKey].faq as FaqEntry[])
+      : [];
+  const effectiveFaq: FaqEntry[] =
+    faq && faq.length > 0
+      ? faq
+      : isCalculatorApp && matchedCalc
+        ? guideFaq.length > 0
+          ? guideFaq
+          : buildCalculatorFallbackFaqs(
+              matchedCalc,
+              currentLang as Language,
+              cleanPageTitle,
+              effectiveDescription,
+              effectiveKeywords
+            )
+        : [];
+
   // FAQ Schema
-  const faqSchema = faq && faq.length > 0 ? {
+  const faqSchema = effectiveFaq.length > 0 ? {
     '@type': 'FAQPage',
     '@id': `${finalCanonicalUrl}#faq`,
-    mainEntity: faq.map(item => ({
+    mainEntity: effectiveFaq.map((item: FaqEntry) => ({
       '@type': 'Question',
       name: item.question,
       acceptedAnswer: {
@@ -392,7 +431,13 @@ const SEO: React.FC<SEOProps> = ({
 
   return (
     <Helmet>
-      {isNoIndex && <meta name="robots" content="noindex, follow" />}
+      {isNoIndex && (
+        <>
+          <meta name="robots" content="noindex, follow" />
+          <meta name="googlebot" content="noindex, follow" />
+          <meta name="bingbot" content="noindex, follow" />
+        </>
+      )}
       {!isNoIndex && (
         <>
           <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />

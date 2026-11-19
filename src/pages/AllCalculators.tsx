@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useUrlState } from '../hooks/useUrlState';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { calculators, getCalculatorTitle, getCalculatorDescription, searchCalculators } from "../data/calculators";
@@ -17,12 +16,15 @@ export default function AllCalculators() {
   const { t, lang } = useI18n();
   const location = useLocation();
   const navigate = useNavigate();
-  const [activeCategory, setActiveCategory] = useUrlState<string>('activeCategory', "all");
   const { categoryId } = useParams<{ categoryId: string }>();
+  const [activeCategory, setActiveCategory] = useState<string>(() => {
+    if (categoryId) return categoryId;
+    return new URLSearchParams(location.search).get("category") || "all";
+  });
 
-  // Interactive Mortgage Mini-Card State in Bento Grid
-  const [mortgageAmount, setMortgageAmount] = useUrlState<number>('mortgageAmount', 1200000);
-  const [mortgageRate, setMortgageRate] = useUrlState<number>('mortgageRate', 4.5);
+  // Interactive Mortgage Mini-Card State in Bento Grid (local state avoids polluting canonical URLs)
+  const [mortgageAmount, setMortgageAmount] = useState<number>(1200000);
+  const [mortgageRate, setMortgageRate] = useState<number>(4.5);
   const mortgageYears = 25;
 
   // Interactive 3D Glassmorphism Parallax Motion Values (Proposal 1)
@@ -65,8 +67,8 @@ export default function AllCalculators() {
       : mortgageAmount / totalMonths
   );
 
-  // PWA Promo State
-  const [isPwaPromoCollapsed, setIsPwaPromoCollapsed] = useUrlState('isPwaPromoCollapsed', false);
+  // PWA Promo State (local state prevents ?isPwaPromoCollapsed=true URL pollution)
+  const [isPwaPromoCollapsed, setIsPwaPromoCollapsed] = useState(false);
 
   useEffect(() => {
     const hiddenUntil = localStorage.getItem("pwaPromoHiddenUntil");
@@ -338,6 +340,16 @@ export default function AllCalculators() {
     ? Array.from(new Set([seoTitle, ...filtered.map((c) => getCalculatorTitle(c, t, lang))].filter(Boolean))).slice(0, 15)
     : ['calculators', 'finance', 'mortgage', 'health', 'math', 'tools'];
 
+  const hubUiLabels: Record<string, { workflow: string; insight: string; toolsCount: string }> = {
+    en: { workflow: 'Recommended Calculation Workflow:', insight: 'Expert Insight:', toolsCount: 'Tools in this category' },
+    he: { workflow: 'זרימת עבודה מומלצת:', insight: 'ציטוט מומחה:', toolsCount: 'כלים בקטגוריה זו' },
+    es: { workflow: 'Flujo de trabajo recomendado:', insight: 'Consejo de experto:', toolsCount: 'Herramientas en esta categoría' },
+    fr: { workflow: 'Parcours recommandé :', insight: 'Avis d’expert :', toolsCount: 'Outils dans cette catégorie' },
+    ar: { workflow: 'مسار العمل الموصى به:', insight: 'رأي الخبراء:', toolsCount: 'أداة في هذا القسم' },
+    ru: { workflow: 'Рекомендуемый порядок расчетов:', insight: 'Мнение эксперта:', toolsCount: 'Инструментов в разделе' },
+  };
+  const currHubUi = hubUiLabels[lang] || hubUiLabels.en;
+
   return (
     <div className="w-full">
       <SEO
@@ -348,30 +360,110 @@ export default function AllCalculators() {
         breadcrumbs={activeHub ? [{ name: seoTitle, url: seoCanonical }] : undefined}
       />
 
-      {/* Proposal 1: 3D Glassmorphism & Parallax Mesh Hero Section */}
-      <section 
-        onMouseMove={handleHeroMouseMove}
-        onMouseLeave={handleHeroMouseLeave}
-        className="mb-12 sm:mb-16 relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-border-subtle/80 p-6 sm:p-10 lg:p-12 shadow-xl transition-all"
-      >
-        {/* Interactive Background Mesh Grid */}
-        <Squares 
-          direction="diagonal"
-          speed={0.4}
-          borderColor="rgba(0, 107, 91, 0.07)"
-          hoverFillColor="rgba(0, 107, 91, 0.15)"
-          squareSize={48}
-        />
+      {/* Category Hub View (Unique H1 & Topic Hub Content above the fold for /category/:id routes) */}
+      {activeHub ? (
+        <div className="mb-8 space-y-6">
+          <Breadcrumbs
+            items={[
+              {
+                label: activeHub.title[lang] || activeHub.title.en || activeCategory,
+                path: `/${lang}/category/${activeCategory}`
+              }
+            ]}
+          />
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Text & Search Column (7 Cols on LG) */}
-          <div className="lg:col-span-7 text-center ltr:lg:text-left rtl:lg:text-right flex flex-col items-center ltr:lg:items-start rtl:lg:items-start">
-            <h1 className="font-display-xl text-3xl sm:text-4xl md:text-5xl text-primary-container mb-4 font-extrabold tracking-tight leading-tight pt-2">
-              {currText.heroTitle}
-            </h1>
-            <p className="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-xl mb-8 leading-relaxed font-normal">
-              {currText.heroSubtitle}
-            </p>
+          <section className="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 md:p-10 border border-border-subtle shadow-sm space-y-6">
+            <div className="border-b border-border-subtle/80 pb-5">
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-secondary/10 text-secondary border border-secondary/20">
+                  <span className="material-symbols-outlined text-[16px]">hub</span>
+                  <span>{activeHub.title[lang] || activeHub.title.en}</span>
+                </div>
+                <span className="text-xs font-bold text-text-muted">
+                  {filtered.length} {currHubUi.toolsCount}
+                </span>
+              </div>
+              <h1 className="text-3xl sm:text-4xl font-display-xl font-extrabold text-primary-container tracking-tight mb-3">
+                {activeHub.title[lang] || activeHub.title.en}
+              </h1>
+              <p className="text-on-surface-variant text-base sm:text-lg leading-relaxed max-w-3xl">
+                {activeHub.subtitle[lang] || activeHub.subtitle.en}
+              </p>
+            </div>
+
+            <div className="text-stone-700 dark:text-stone-300 text-sm sm:text-base leading-relaxed space-y-4">
+              <p>
+                {activeHub.introText[lang] || activeHub.introText.en}
+              </p>
+            </div>
+
+            {(activeHub.keyBenefits[lang] || activeHub.keyBenefits.en) && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {(activeHub.keyBenefits[lang] || activeHub.keyBenefits.en).map((benefit: string, idx: number) => (
+                  <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-surface-container-low/70 border border-border-subtle text-xs sm:text-sm text-on-surface">
+                    <span className="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">check_circle</span>
+                    <span className="font-medium">{benefit}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-2">
+              {(activeHub.recommendedWorkflow?.[lang] || activeHub.recommendedWorkflow?.en) && (
+                <div className="p-4 rounded-2xl bg-blue-50/60 dark:bg-blue-950/20 border border-blue-200/70 text-xs sm:text-sm text-blue-950 dark:text-blue-200 flex items-start gap-3">
+                  <span className="material-symbols-outlined text-blue-600 text-[22px] shrink-0 mt-0.5">route</span>
+                  <div>
+                    <span className="font-bold block mb-1 text-blue-900 dark:text-blue-300">
+                      {currHubUi.workflow}
+                    </span>
+                    <p className="leading-relaxed text-stone-700 dark:text-stone-300">
+                      {activeHub.recommendedWorkflow[lang] || activeHub.recommendedWorkflow.en}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {(activeHub.expertQuote?.[lang] || activeHub.expertQuote?.en) && (
+                <div className="p-4 rounded-2xl bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200/70 text-xs sm:text-sm text-amber-950 dark:text-amber-200 flex items-start gap-3">
+                  <span className="material-symbols-outlined text-amber-600 text-[22px] shrink-0 mt-0.5">format_quote</span>
+                  <div>
+                    <span className="font-bold block mb-1 text-amber-900 dark:text-amber-300">
+                      {currHubUi.insight}
+                    </span>
+                    <p className="leading-relaxed text-stone-700 dark:text-stone-300 italic font-serif">
+                      {activeHub.expertQuote[lang] || activeHub.expertQuote.en}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        </div>
+      ) : (
+        /* Proposal 1: 3D Glassmorphism & Parallax Mesh Hero Section (Main Library /all view) */
+        <section 
+          onMouseMove={handleHeroMouseMove}
+          onMouseLeave={handleHeroMouseLeave}
+          className="mb-12 sm:mb-16 relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-border-subtle/80 p-6 sm:p-10 lg:p-12 shadow-xl transition-all"
+        >
+          {/* Interactive Background Mesh Grid */}
+          <Squares 
+            direction="diagonal"
+            speed={0.4}
+            borderColor="rgba(0, 107, 91, 0.07)"
+            hoverFillColor="rgba(0, 107, 91, 0.15)"
+            squareSize={48}
+          />
+
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Text & Search Column (7 Cols on LG) */}
+            <div className="lg:col-span-7 text-center ltr:lg:text-left rtl:lg:text-right flex flex-col items-center ltr:lg:items-start rtl:lg:items-start">
+              <h1 className="font-display-xl text-3xl sm:text-4xl md:text-5xl text-primary-container mb-4 font-extrabold tracking-tight leading-tight pt-2">
+                {currText.heroTitle}
+              </h1>
+              <p className="font-body-lg text-base sm:text-lg text-on-surface-variant max-w-xl mb-8 leading-relaxed font-normal">
+                {currText.heroSubtitle}
+              </p>
 
             {/* Search Hero Box with Enhanced Glass Shell */}
             <div className="w-full max-w-xl mb-6">
@@ -495,9 +587,10 @@ export default function AllCalculators() {
                 <span>{isRtl ? '100% דיוק מתמטי' : '100% Precision'}</span>
               </motion.div>
             </motion.div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Interactive Bento Grid Showcase */}
       {activeCategory === "all" && (
@@ -744,139 +837,62 @@ export default function AllCalculators() {
         </section>
       )}
 
-      {/* PWA Promotion Banner */}
-      {isPwaPromoCollapsed ? (
-        <section 
-          className="mb-8 bg-surface-container-lowest text-on-surface rounded-2xl p-4 flex items-center justify-between shadow-xs border border-border-subtle hover:border-secondary transition-colors cursor-pointer" 
-          onClick={handleExpandPwa}
-          title={isRtl ? 'הרחב' : 'Expand'}
-        >
-           <div className="flex items-center gap-3">
-             <span className="material-symbols-outlined text-secondary text-2xl">apps</span>
-             <h2 className="font-headline-md text-primary m-0 text-sm md:text-base font-bold">{t.pwaPromoTitle}</h2>
-           </div>
-           <span className="material-symbols-outlined text-on-surface-variant">expand_more</span>
-        </section>
-      ) : (
-        <section className="mb-10 bg-surface-container-lowest text-on-surface rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 shadow-sm border border-border-subtle hover:border-secondary/50 transition-colors relative overflow-hidden">
-          <button 
-            onClick={handleCollapsePwa}
-            className="absolute top-4 right-4 rtl:right-auto rtl:left-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-surface hover:bg-surface-container text-on-surface-variant transition-colors border border-border-subtle shadow-xs cursor-pointer"
-            title={isRtl ? 'צמצם' : 'Collapse'}
+      {/* PWA Promotion Banner (shown on main /all hub) */}
+      {!activeHub && (
+        isPwaPromoCollapsed ? (
+          <section 
+            className="mb-8 bg-surface-container-lowest text-on-surface rounded-2xl p-4 flex items-center justify-between shadow-xs border border-border-subtle hover:border-secondary transition-colors cursor-pointer" 
+            onClick={handleExpandPwa}
+            title={isRtl ? 'הרחב' : 'Expand'}
           >
-            <span className="material-symbols-outlined text-lg">close</span>
-          </button>
+             <div className="flex items-center gap-3">
+               <span className="material-symbols-outlined text-secondary text-2xl">apps</span>
+               <h2 className="font-headline-md text-primary m-0 text-sm md:text-base font-bold">{t.pwaPromoTitle}</h2>
+             </div>
+             <span className="material-symbols-outlined text-on-surface-variant">expand_more</span>
+          </section>
+        ) : (
+          <section className="mb-10 bg-surface-container-lowest text-on-surface rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 shadow-sm border border-border-subtle hover:border-secondary/50 transition-colors relative overflow-hidden">
+            <button 
+              onClick={handleCollapsePwa}
+              className="absolute top-4 right-4 rtl:right-auto rtl:left-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-surface hover:bg-surface-container text-on-surface-variant transition-colors border border-border-subtle shadow-xs cursor-pointer"
+              title={isRtl ? 'צמצם' : 'Collapse'}
+            >
+              <span className="material-symbols-outlined text-lg">close</span>
+            </button>
 
-          <div className="flex-grow z-10 text-center md:text-left rtl:md:text-right">
-            <h2 className="font-headline-lg-mobile sm:font-headline-lg mb-2 text-primary-container font-extrabold">{t.pwaPromoTitle}</h2>
-            <p className="font-body-md text-on-surface-variant mb-4 max-w-xl text-sm sm:text-base">{t.pwaPromoDesc}</p>
-            
-            <ul className="flex flex-col md:flex-row gap-3 md:gap-6 font-label-bold text-sm text-on-surface-variant mb-6">
-              <li className="flex items-center justify-center md:justify-start gap-2">
-                <span className="material-symbols-outlined text-secondary text-lg">bolt</span>
-                {(t as any).pwaPromoBen1 || 'Fast loading & offline'}
-              </li>
-              <li className="flex items-center justify-center md:justify-start gap-2">
-                <span className="material-symbols-outlined text-secondary text-lg">no_sim</span>
-                {(t as any).pwaPromoBen2 || 'No app store needed'}
-              </li>
-              <li className="flex items-center justify-center md:justify-start gap-2">
-                <span className="material-symbols-outlined text-secondary text-lg">sd_storage</span>
-                {(t as any).pwaPromoBen3 || 'Minimal storage'}
-              </li>
-            </ul>
-            
-            <div className="bg-secondary/5 border border-secondary/15 rounded-xl p-4 md:inline-block text-right rtl:text-right ltr:text-left">
-              <p className="font-label-bold text-secondary text-sm mb-1.5 flex items-center justify-center md:justify-start gap-1.5 font-bold">
-                <span className="material-symbols-outlined text-base">download</span>
-                {isRtl ? 'איך מתקינים?' : 'How to install?'}
-              </p>
-              <ol className="font-body-md text-xs sm:text-sm list-decimal list-inside text-on-surface-variant space-y-1">
-                <li>{(t as any).pwaPromoStep1 || 'Tap browser menu (⋮)'}</li>
-                <li>{(t as any).pwaPromoStep2 || 'Select "Add to Home Screen"'}</li>
-              </ol>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Category Hub Breadcrumbs & Rich Educational Topic Hub for SEO */}
-      {activeCategory !== 'all' && categoryHubsData[activeCategory] && (
-        <div className="mb-8 space-y-6">
-          <Breadcrumbs
-            items={[
-              {
-                label: categoryHubsData[activeCategory].title[lang] || categoryHubsData[activeCategory].title.en || activeCategory,
-                path: `/${lang}/category/${activeCategory}`
-              }
-            ]}
-          />
-
-          <section className="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 md:p-10 border border-border-subtle shadow-xs space-y-6">
-            <div className="border-b border-border-subtle/80 pb-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-secondary/10 text-secondary border border-secondary/20 mb-3">
-                <span className="material-symbols-outlined text-[16px]">hub</span>
-                <span>{categoryHubsData[activeCategory].title[lang] || categoryHubsData[activeCategory].title.en}</span>
+            <div className="flex-grow z-10 text-center md:text-left rtl:md:text-right">
+              <h2 className="font-headline-lg-mobile sm:font-headline-lg mb-2 text-primary-container font-extrabold">{t.pwaPromoTitle}</h2>
+              <p className="font-body-md text-on-surface-variant mb-4 max-w-xl text-sm sm:text-base">{t.pwaPromoDesc}</p>
+              
+              <ul className="flex flex-col md:flex-row gap-3 md:gap-6 font-label-bold text-sm text-on-surface-variant mb-6">
+                <li className="flex items-center justify-center md:justify-start gap-2">
+                  <span className="material-symbols-outlined text-secondary text-lg">bolt</span>
+                  {(t as any).pwaPromoBen1 || 'Fast loading & offline'}
+                </li>
+                <li className="flex items-center justify-center md:justify-start gap-2">
+                  <span className="material-symbols-outlined text-secondary text-lg">no_sim</span>
+                  {(t as any).pwaPromoBen2 || 'No app store needed'}
+                </li>
+                <li className="flex items-center justify-center md:justify-start gap-2">
+                  <span className="material-symbols-outlined text-secondary text-lg">sd_storage</span>
+                  {(t as any).pwaPromoBen3 || 'Minimal storage'}
+                </li>
+              </ul>
+              
+              <div className="bg-secondary/5 border border-secondary/15 rounded-xl p-4 md:inline-block text-right rtl:text-right ltr:text-left">
+                <p className="font-label-bold text-secondary text-sm mb-1.5 flex items-center justify-center md:justify-start gap-1.5 font-bold">
+                  <span className="material-symbols-outlined text-base">download</span>
+                  {isRtl ? 'איך מתקינים?' : 'How to install?'}
+                </p>
+                <ol className="font-body-md text-xs sm:text-sm list-decimal list-inside text-on-surface-variant space-y-1">
+                  <li>{(t as any).pwaPromoStep1 || 'Tap browser menu (⋮)'}</li>
+                  <li>{(t as any).pwaPromoStep2 || 'Select "Add to Home Screen"'}</li>
+                </ol>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-headline font-extrabold text-primary-container tracking-tight mb-2">
-                {categoryHubsData[activeCategory].title[lang] || categoryHubsData[activeCategory].title.en}
-              </h2>
-              <p className="text-on-surface-variant text-sm sm:text-base leading-relaxed">
-                {categoryHubsData[activeCategory].subtitle[lang] || categoryHubsData[activeCategory].subtitle.en}
-              </p>
-            </div>
-
-            {/* 100-150 Word Rich SEO Educational Content */}
-            <div className="text-stone-700 dark:text-stone-300 text-sm sm:text-base leading-relaxed space-y-4">
-              <p>
-                {categoryHubsData[activeCategory].introText[lang] || categoryHubsData[activeCategory].introText.en}
-              </p>
-            </div>
-
-            {/* Key Mathematical & Regulatory Benefits */}
-            {categoryHubsData[activeCategory].keyBenefits[lang] && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                {categoryHubsData[activeCategory].keyBenefits[lang].map((benefit: string, idx: number) => (
-                  <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-surface-container-low/70 border border-border-subtle text-xs sm:text-sm text-on-surface">
-                    <span className="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">check_circle</span>
-                    <span className="font-medium">{benefit}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Recommended Workflow & Expert Quote */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-2">
-              {categoryHubsData[activeCategory].recommendedWorkflow?.[lang] && (
-                <div className="p-4 rounded-2xl bg-blue-50/60 dark:bg-blue-950/20 border border-blue-200/70 text-xs sm:text-sm text-blue-950 dark:text-blue-200 flex items-start gap-3">
-                  <span className="material-symbols-outlined text-blue-600 text-[22px] shrink-0 mt-0.5">route</span>
-                  <div>
-                    <span className="font-bold block mb-1 text-blue-900 dark:text-blue-300">
-                      {lang === 'he' ? 'זרימת עבודה מומלצת:' : 'Recommended Calculation Workflow:'}
-                    </span>
-                    <p className="leading-relaxed text-stone-700 dark:text-stone-300">
-                      {categoryHubsData[activeCategory].recommendedWorkflow[lang]}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {categoryHubsData[activeCategory].expertQuote?.[lang] && (
-                <div className="p-4 rounded-2xl bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200/70 text-xs sm:text-sm text-amber-950 dark:text-amber-200 flex items-start gap-3">
-                  <span className="material-symbols-outlined text-amber-600 text-[22px] shrink-0 mt-0.5">format_quote</span>
-                  <div>
-                    <span className="font-bold block mb-1 text-amber-900 dark:text-amber-300">
-                      {lang === 'he' ? 'ציטוט מומחה:' : 'Expert Insight:'}
-                    </span>
-                    <p className="leading-relaxed text-stone-700 dark:text-stone-300 italic font-serif">
-                      {categoryHubsData[activeCategory].expertQuote[lang]}
-                    </p>
-                  </div>
-                </div>
-              )}
             </div>
           </section>
-        </div>
+        )
       )}
 
       {/* Category Filter Pills */}

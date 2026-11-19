@@ -148,15 +148,7 @@ export default function TermsOfService() {
         title={t.termsTitle}
         description={t.termsDesc}
         canonicalUrl={`/${lang}/terms-of-service`}
-        structuredData={{
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: t.termsTitle,
-          description: t.termsDesc,
-          applicationCategory: 'CalculatorApplication',
-          operatingSystem: 'Any',
-          url: `https://globalcalcpro.com/${lang}/terms-of-service`
-        }}
+        type="website"
       />
 
       <h1 className="text-3xl md:text-4xl font-headline text-stone-900 tracking-tight font-bold">

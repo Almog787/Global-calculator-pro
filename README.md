@@ -178,12 +178,11 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 - **[Age & Milestone Birthday Calculator](https://globalcalcpro.com/age-calculator)** - Calculate exact chronological age in years, months, days, hours, and next birthday.
 - **[Age Calculator Calculator](https://globalcalcpro.com/calculators/age-calculator)** - Free online age calculator calculator for precise calculations.
 - **[Auto Loan Calculator](https://globalcalcpro.com/calculators/auto-loan)** - Calculate your monthly car loan payment, total interest, and total cost precisely.
-- **[Bill Splitter Calculator](https://globalcalcpro.com/calculators/bill-splitter)** - Free online bill splitter calculator for precise calculations.
 - **[Binary, Hex, Octal & Base Converter](https://globalcalcpro.com/calculators/base-converter)** - Free number system converter. Easily convert between Binary, Hexadecimal, Octal, and Decimal integers with bit length representations and step-by-step conversion.
 - **[Bitwise Calculator & Binary Logic Operators](https://globalcalcpro.com/calculators/bitwise-calculator)** - Free online bitwise calculator. Perform AND (&), OR (|), XOR (^), NOT (~), Left Shift (<<), and Right Shift (>>) on 8-bit, 16-bit, or 32-bit integers with binary visualizer.
 - **[BMI (Body Mass Index) & Healthy Weight](https://globalcalcpro.com/bmi-calculator)** - Calculate Body Mass Index and find recommended healthy weight ranges.
 - **[Bmi Calculator Calculator](https://globalcalcpro.com/calculators/bmi-calculator)** - Free online bmi calculator calculator for precise calculations.
-- **[Bmr Calculator](https://globalcalcpro.com/calculators/bmr)** - Free online bmr calculator for precise calculations.
+- **[BMR & Daily Calorie Needs (TDEE)](https://globalcalcpro.com/calculators/bmr)** - Free online bmr & daily calorie needs (tdee) for precise calculations.
 - **[Break-Even Calculator](https://globalcalcpro.com/calculators/break-even)** - Calculate your exact break-even point in units and revenue. Discover contribution margins, safety margins, and model profitability across various pricing strategies.
 - **[Cap Rate Calculator](https://globalcalcpro.com/calculators/cap-rate)** - Calculate the Capitalization Rate and Net Operating Income (NOI) for real estate investments.
 - **[Capital Gains Tax Calculator](https://globalcalcpro.com/calculators/capital-gains-tax)** - Calculate real and nominal capital gains tax on stocks, crypto, real estate, and investments with inflation indexation adjustment and tax loss carryforward.
@@ -192,9 +191,9 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 - **[Complex Numbers Calculator](https://globalcalcpro.com/calculators/complex-numbers)** - Comprehensive complex numbers calculator. Convert between rectangular, polar, and exponential Euler forms. Calculate modulus, argument, conjugate, square roots, powers, addition, subtraction, multiplication, and division with step-by-step solutions.
 - **[Compound Interest & Wealth Planner](https://globalcalcpro.com/compound-interest)** - Forecast investment growth, monthly DCA compounding, and retirement targets.
 - **[Compound Interest Calculator](https://globalcalcpro.com/calculators/compound-interest)** - Free online compound interest calculator for precise calculations.
-- **[Cooking Timer Calculator](https://globalcalcpro.com/calculators/cooking-timer)** - Free online cooking timer calculator for precise calculations.
 - **[Credit Card Payoff Calculator](https://globalcalcpro.com/calculators/credit-card-payoff)** - Calculate your exact credit card payoff timeline, total interest charges, and see how extra monthly payments can save thousands of dollars.
 - **[Currency Converter Calculator](https://globalcalcpro.com/calculators/currency-converter)** - Free online currency converter calculator for precise calculations.
+- **[Daily Water Intake Calculator](https://globalcalcpro.com/calculators/water-intake)** - Free online daily water intake calculator for precise calculations.
 - **[Date Difference Calculator](https://globalcalcpro.com/calculators/date-difference)** - Free online date difference calculator for precise calculations.
 - **[Debt Snowball & Avalanche Calculator](https://globalcalcpro.com/calculators/debt-snowball)** - Compare Debt Snowball (lowest balance first) and Debt Avalanche (highest APR first). See how fast you become debt-free and calculate total interest savings.
 - **[Download & Upload Time Calculator](https://globalcalcpro.com/calculators/download-time)** - Calculate how long it takes to download or upload files, games, 4K movies, or backups based on internet connection speed and network overhead.
@@ -206,9 +205,11 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 - **[Linear Regression & Correlation Calculator](https://globalcalcpro.com/calculators/linear-regression)** - Free online linear regression calculator. Enter bivariate data points (X, Y) to find the best fit line equation y = mx + b, Pearson correlation coefficient (r), coefficient of determination (R²), and scatter plot graph.
 - **[Margin & Markup Calculator](https://globalcalcpro.com/calculators/margin)** - Quickly calculate your gross profit margin and markup from cost and revenue. Or calculate target selling price based on your desired profit margin.
 - **[Matrix Calculator & Linear Algebra](https://globalcalcpro.com/calculators/matrix-calculator)** - Solve 2x2 and 3x3 matrices with step-by-step solutions. Calculate determinant, inverse, transpose, rank, trace, matrix addition, subtraction, and multiplication.
+- **[Meat Roasting & Cooking Timer](https://globalcalcpro.com/calculators/cooking-timer)** - Free online meat roasting & cooking timer for precise calculations.
 - **[Mortgage & Loan Amortization Calculator](https://globalcalcpro.com/mortgage-calculator)** - Calculate home loan payments, interest breakdowns, and amortization schedules.
 - **[Mortgage Affordability Calculator](https://globalcalcpro.com/calculators/mortgage-affordability)** - Free online mortgage affordability calculator for precise calculations.
 - **[Mortgage Calculator Calculator](https://globalcalcpro.com/calculators/mortgage-calculator)** - Free online mortgage calculator calculator for precise calculations.
+- **[Mortgage Refinance Calculator](https://globalcalcpro.com/calculators/refinance)** - Free online mortgage refinance calculator for precise calculations.
 - **[Peltier Cooling & TEC Calculator](https://globalcalcpro.com/calculators/peltier-cooling)** - Calculate the expected heat pumping capacity, power consumption, and Coefficient of Performance (COP) of a Peltier module (TEC1-12706, TEC1-12710, etc.) under real temperature differentials.
 - **[Percentage & Discount Calculator](https://globalcalcpro.com/percentage-finder)** - Solve complex percentage calculations, discounts, price markups, and differences.
 - **[Percentage Finder Calculator](https://globalcalcpro.com/calculators/percentage-finder)** - Free online percentage finder calculator for precise calculations.
@@ -216,15 +217,15 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 - **[Purchasing Power Calculator](https://globalcalcpro.com/calculators/purchasing-power)** - Free online purchasing power calculator for precise calculations.
 - **[Quadratic Equation Solver (ax² + bx + c = 0)](https://globalcalcpro.com/calculators/quadratic-equation)** - Free quadratic formula calculator. Solves quadratic equations step-by-step with real or complex numbers, discriminant analysis, factored form, and interactive parabola curve graph.
 - **[Real Estate Purchase & Appreciation Tax Calculator](https://globalcalcpro.com/calculators/purchase-appreciation-tax)** - Calculate official Israel real estate purchase tax brackets (single home vs additional investor home) and linear property appreciation tax with deductible expenses and exemptions.
-- **[Refinance Calculator](https://globalcalcpro.com/calculators/refinance)** - Free online refinance calculator for precise calculations.
 - **[Rent vs Buy Calculator](https://globalcalcpro.com/calculators/rent-vs-buy)** - Compare the financial costs of renting versus buying a home over 10 years.
+- **[Restaurant Bill & Tip Splitter](https://globalcalcpro.com/calculators/bill-splitter)** - Free online restaurant bill & tip splitter for precise calculations.
 - **[Retirement & Pension Planner](https://globalcalcpro.com/calculators/retirement-planner)** - Calculate your retirement nest egg and estimated monthly pension benefit based on current age, salary contributions, expected market return, and annuity conversion factors.
 - **[ROI (Return on Investment) Calculator](https://globalcalcpro.com/calculators/roi)** - Calculate your exact return on investment (ROI) and annualized growth rate (CAGR). Compare real estate, stocks, venture capital, and business investments.
 - **[Salary Calculator Calculator](https://globalcalcpro.com/calculators/salary-calculator)** - Free online salary calculator calculator for precise calculations.
 - **[Salary Gross-to-Net Take-Home Calculator](https://globalcalcpro.com/salary-calculator)** - Convert gross salary to net pay with income tax, social security, and health deductions.
 - **[Scientific & Engineering Unit Converter](https://globalcalcpro.com/calculators/scientific-unit-engine)** - Convert complex engineering and scientific units including Pressure (Pa, Bar, PSI), Energy (Joules, kWh, BTU), Power, Data Storage, Force, and Thermodynamics with high numerical precision.
 - **[Severance Pay & Section 14 Calculator](https://globalcalcpro.com/calculators/severance-pay)** - Calculate employee severance pay based on tenure and last salary, Section 14 pension deposits, statutory tax-exempt severance limits (13,750 NIS/year), taxable portion, and employer completion payments.
-- **[Sleep Calculator Calculator](https://globalcalcpro.com/calculators/sleep-calculator)** - Free online sleep calculator calculator for precise calculations.
+- **[Sleep Cycle Calculator](https://globalcalcpro.com/calculators/sleep-calculator)** - Free online sleep cycle calculator for precise calculations.
 - **[Stock Options & RSU Calculator](https://globalcalcpro.com/calculators/stock-options-rsu)** - Calculate net proceeds, 4-year vesting schedule, capital gains tax under Section 102, dilution impact, and exit scenarios for startup equity and tech compensation.
 - **[System of Linear Equations Solver (2x2)](https://globalcalcpro.com/calculators/linear-system)** - Solve 2x2 systems of simultaneous linear equations step-by-step using Cramer’s rule (D, Dx, Dy). Visualizes both linear equations and their intersection point.
 - **[Tip & Fair Bill Splitter](https://globalcalcpro.com/tip-calculator)** - Calculate restaurant gratuity and split bills equally among diners.
@@ -233,7 +234,6 @@ export const CalculatorWidget: React.FC<CalculatorWidgetProps> = ({
 - **[Unit Converter Calculator](https://globalcalcpro.com/calculators/unit-converter)** - Free online unit converter calculator for precise calculations.
 - **[Universal Unit Converter](https://globalcalcpro.com/unit-converter)** - High-precision conversion across length, weight, volume, temperature, and speed.
 - **[VAT & Sales Tax Calculator](https://globalcalcpro.com/calculators/vat)** - Calculate Value Added Tax (VAT) online: Add VAT to net amount, remove VAT from gross price, batch invoice itemization, and official tax rates for Israel (18%), UK, EU, and US.
-- **[Water Intake Calculator](https://globalcalcpro.com/calculators/water-intake)** - Free online water intake calculator for precise calculations.
 - **[Z-Score & Normal Distribution Calculator](https://globalcalcpro.com/calculators/zscore)** - Free online Z-score calculator. Compute standard scores (Z), cumulative normal probabilities P(Z < z), two-tailed p-values, percentiles, and inverse raw scores with an interactive Gaussian bell curve.
 - **[מחשבון תקציב משק בית](https://globalcalcpro.com/calculators/household-budget)** - מחשבון תקציב משק בית פשוט ואינטראקטיבי: הזינו הכנסה חודשית, דיור, מצרכים, שירותים, תחבורה וחסכונות וקבלו מיד את הסכום שנותר לאחר הוצאות עם גרף חלוקה והשוואה לכלל 50/30/20.
 

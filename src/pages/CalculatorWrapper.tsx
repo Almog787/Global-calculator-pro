@@ -9,9 +9,15 @@ import SkeletonLoader from '../components/SkeletonLoader';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { useI18n } from '../contexts/i18n';
 import SEO from '../components/SEO';
-import { SeoOverrideContext } from '../contexts/SeoOverrideContext';
+import { SeoOverrideContext, FaqOverrideContext } from '../contexts/SeoOverrideContext';
 import DisclaimerNotice, { DisclaimerType } from '../components/DisclaimerNotice';
 import EmbedCtaBanner from '../components/EmbedCtaBanner';
+import FAQ from '../components/FAQ';
+import {
+  buildCalculatorFallbackFaqs,
+  buildCalculatorOverview,
+  resolveGuideKey,
+} from '../lib/seo/calculatorFallbackGuide';
 
 // Using Vite's import.meta.glob to dynamically discover all calculators in the folder.
 const modules = import.meta.glob('./calculators/*.tsx');
@@ -23,17 +29,25 @@ Object.keys(modules).forEach((path) => {
   calculatorComponents[filename] = lazy(modules[path] as any);
 });
 
+const INLINE_FAQ_CALC_IDS = new Set(['stock-options-rsu', 'triangle-solver', 'z-score']);
+
 export default function CalculatorWrapper() {
   const { slug } = useParams<{ slug: string }>();
   const { t, lang, guides } = useI18n();
   const [hasChildSeo, setHasChildSeo] = useState(false);
+  const [hasChildFaq, setHasChildFaq] = useState(false);
 
   useEffect(() => {
     setHasChildSeo(false);
+    setHasChildFaq(false);
   }, [slug]);
 
   const registerChildSeo = useCallback(() => {
     setHasChildSeo(true);
+  }, []);
+
+  const registerChildFaq = useCallback(() => {
+    setHasChildFaq(true);
   }, []);
 
   const cleanSlug = slug ? slug.replace(/-/g, '').toLowerCase() : '';
@@ -83,8 +97,18 @@ export default function CalculatorWrapper() {
     { label: title }
   ];
 
-  const guideKey = calcData?.id || slug || cleanSlug;
+  const guideKey = resolveGuideKey(calcData || slug || cleanSlug);
   const guideFaq = Array.isArray(guides?.[guideKey]?.faq) ? guides[guideKey].faq : [];
+  const effectiveFaq =
+    guideFaq.length > 0
+      ? guideFaq
+      : buildCalculatorFallbackFaqs(calcData, lang, title, description, calcData?.tags || []);
+
+  const hasInlineFaq = INLINE_FAQ_CALC_IDS.has(calcData?.id || slug || '');
+  const shouldRenderFallbackContent = !hasChildFaq && !hasInlineFaq;
+  const overviewContent = shouldRenderFallbackContent
+    ? buildCalculatorOverview(calcData, lang, title, description)
+    : null;
 
   return (
     <div className="w-full">
@@ -96,7 +120,7 @@ export default function CalculatorWrapper() {
           canonicalUrl={canonicalUrl}
           type="SoftwareApplication"
           applicationCategory="CalculatorApplication"
-          faq={guideFaq}
+          faq={effectiveFaq}
           breadcrumbs={breadcrumbItems.map((b) => ({ name: b.label, url: b.path }))}
         />
       )}
@@ -104,12 +128,44 @@ export default function CalculatorWrapper() {
       <Breadcrumbs items={breadcrumbItems} />
       
       <SeoOverrideContext.Provider value={registerChildSeo}>
-        <ErrorBoundary>
-          <Suspense fallback={<SkeletonLoader />}>
-            <Component />
-          </Suspense>
-        </ErrorBoundary>
+        <FaqOverrideContext.Provider value={registerChildFaq}>
+          <ErrorBoundary>
+            <Suspense fallback={<SkeletonLoader />}>
+              <Component />
+            </Suspense>
+          </ErrorBoundary>
+        </FaqOverrideContext.Provider>
       </SeoOverrideContext.Provider>
+
+      {overviewContent && (
+        <section className="max-w-4xl mx-auto mt-8 bg-surface-container-lowest border border-border-subtle rounded-3xl p-6 sm:p-8 shadow-xs space-y-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-on-surface">
+            {overviewContent.heading}
+          </h2>
+          <p className="text-sm sm:text-base text-on-surface-variant leading-relaxed">
+            {overviewContent.summary}
+          </p>
+          <div className="pt-2">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-secondary mb-2.5">
+              {overviewContent.pointsTitle}
+            </h3>
+            <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {overviewContent.points.map((pt, idx) => (
+                <li
+                  key={idx}
+                  className="flex items-start gap-2 p-3 rounded-xl bg-surface-container-low border border-border-subtle/70 text-xs sm:text-sm text-on-surface"
+                >
+                  <span className="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">
+                    check_circle
+                  </span>
+                  <span>{pt}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <FAQ items={effectiveFaq} />
+        </section>
+      )}
 
       <div className="mt-6 mb-6">
         <DisclaimerNotice type={disclaimerType} />
@@ -128,3 +184,4 @@ export default function CalculatorWrapper() {
     </div>
   );
 }
+

@@ -400,8 +400,8 @@ function getRouteMetadata(route, lang) {
         desc: hubSub || `استكشف جميع حاسبات وأدوات ${localizedCat} المعتمدة على Global Calc Pro مجاناً وبدقة عالية.`,
       },
       ru: {
-        title: `Калькуляторы: ${localizedCat} | ${siteName}`,
-        desc: `Все проверенные онлайн-калькуляторы категории «${localizedCat}» на Global Calc Pro. Бесплатно, быстро и точно.`,
+        title: `${hubTitle || `Калькуляторы: ${localizedCat}`} | ${siteName}`,
+        desc: hubSub || `Все проверенные онлайн-калькуляторы категории «${localizedCat}» на Global Calc Pro. Бесплатно, быстро и точно.`,
       },
     };
     const tmpl = catTemplates[lang] || catTemplates.en;
