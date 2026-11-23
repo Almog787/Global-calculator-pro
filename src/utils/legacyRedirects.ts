@@ -144,6 +144,11 @@ export function getCanonicalRedirect(pathname: string, currentLang: string = 'en
     }
   }
 
+  // 5b. Bare language roots (/en, /en/, /he, /he/) should resolve to canonical /<lang>/all (avoids GitHub Pages /en <-> /en/ loop)
+  if (parts.length === 1 && VALID_LANGS.includes(parts[0] as ValidLang)) {
+    return `/${lang}/all`;
+  }
+
   // 6. Trailing slash cleanup on already localized routes (e.g. /en/percentage-finder/ -> /en/percentage-finder)
   if (pathname.endsWith('/') && pathname !== '/') {
     const cleaned = pathname.replace(/\/+$/, '');
