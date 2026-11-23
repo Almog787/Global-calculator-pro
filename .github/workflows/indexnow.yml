@@ -1,4 +1,4 @@
-name: Bing & IndexNow Submission (Auto + Manual)
+name: Bing & IndexNow Streaming (Auto + Manual)
 
 on:
   workflow_run:
@@ -7,8 +7,17 @@ on:
       - completed
   workflow_dispatch:
     inputs:
+      submission_mode:
+        description: 'Streaming Mode (changed = recommended, recent = last 7 days, all = paced full stream)'
+        required: true
+        default: 'changed'
+        type: choice
+        options:
+          - 'changed'
+          - 'recent'
+          - 'all'
       target_engine:
-        description: 'Target Search Engine API'
+        description: 'Target Search Engine API (all = api.indexnow.org shared hub)'
         required: true
         default: 'all'
         type: choice
@@ -17,6 +26,10 @@ on:
           - 'bing'
           - 'yandex'
           - 'naver'
+      custom_urls:
+        description: 'Optional comma/space-separated URLs to stream immediately'
+        required: false
+        default: ''
 
 concurrency:
   group: 'indexnow'
@@ -24,23 +37,26 @@ concurrency:
 
 jobs:
   indexnow-submission:
-    name: Submit URLs to Bing & IndexNow API
+    name: Stream Changed URLs to IndexNow API
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Checkout Repository
+      - name: Checkout Repository (Full History for Accurate Change Detection)
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Generate Sitemap
-        run: node scripts/generate-sitemap.js
-
-      - name: Submit URLs to IndexNow (Bing, Yandex, Seznam, Naver)
+      - name: Stream Updated URLs to IndexNow (Bing, Yandex, Seznam, Naver)
         run: npm run indexnow
         env:
+          INDEXNOW_MODE: ${{ github.event.inputs.submission_mode || 'changed' }}
           INDEXNOW_TARGET: ${{ github.event.inputs.target_engine || 'all' }}
+          INDEXNOW_URLS: ${{ github.event.inputs.custom_urls || '' }}
+          INDEXNOW_DELAY_MS: '250'
+          INDEXNOW_RECENT_DAYS: '7'

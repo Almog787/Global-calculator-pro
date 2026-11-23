@@ -136,10 +136,12 @@ describe('SEO & AI Knowledge Discovery Suite', () => {
       expect(content).toBe(key);
     });
 
-    it('scripts/indexnow.js should use the verified IndexNow key', () => {
+    it('scripts/indexnow.js should use the verified IndexNow key and streaming GET mode', () => {
       const scriptContent = fs.readFileSync(path.join(rootDir, 'scripts/indexnow.js'), 'utf8');
       expect(scriptContent).toContain(`const INDEXNOW_KEY = '${key}';`);
       expect(scriptContent).toContain('https://api.indexnow.org/indexnow');
+      expect(scriptContent).toContain('detectChangedUrls');
+      expect(scriptContent).toContain('streamUrlGet');
     });
   });
 
