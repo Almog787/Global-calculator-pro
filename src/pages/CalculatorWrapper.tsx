@@ -119,7 +119,6 @@ export default function CalculatorWrapper() {
           keywords={calcData?.tags || []}
           canonicalUrl={canonicalUrl}
           type="SoftwareApplication"
-          applicationCategory="CalculatorApplication"
           faq={effectiveFaq}
           breadcrumbs={breadcrumbItems.map((b) => ({ name: b.label, url: b.path }))}
         />

@@ -318,7 +318,7 @@ ${lang === 'he' ? 'הפרש ורווח עודף' : 'Difference & Extra Returns'}
         description={t.compoundDesc}
         canonicalUrl={`/${lang}/compound-interest`}
         type="SoftwareApplication"
-        applicationCategory="CalculatorApplication"
+        applicationCategory="FinanceApplication"
       />
       
       <div className="flex-1 flex flex-col">

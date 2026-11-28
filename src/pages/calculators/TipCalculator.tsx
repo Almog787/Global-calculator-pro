@@ -68,7 +68,7 @@ export default function TipCalculator() {
           '@type': 'WebApplication',
           name: t.tipTitle,
           description: t.tipDesc,
-          applicationCategory: 'CalculatorApplication',
+          applicationCategory: 'LifestyleApplication',
           operatingSystem: 'Any',
           url: `https://globalcalcpro.com/${lang}/tip-calculator`
         }}

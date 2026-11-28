@@ -134,6 +134,15 @@ for (const m of locMatches) {
       if ((relPath.endsWith("/privacy-policy") || relPath.endsWith("/terms-of-service")) && types.includes("WebApplication")) {
         errors.push(`Legal page should not emit WebApplication schema: ${relPath}`);
       }
+      const webApp = (json["@graph"] || []).find((x) => x["@type"] === "WebApplication");
+      if (webApp) {
+        if (!webApp.license || !webApp.license.endsWith("/terms-of-service")) {
+          errors.push(`WebApplication missing valid license URL on ${relPath}`);
+        }
+        if (webApp.applicationCategory === "CalculatorApplication" || webApp.applicationCategory === "UtilityApplication") {
+          errors.push(`WebApplication uses unsupported applicationCategory "${webApp.applicationCategory}" on ${relPath}`);
+        }
+      }
     } catch (e) {
       errors.push(`Invalid JSON-LD on ${relPath}: ${e.message}`);
     }

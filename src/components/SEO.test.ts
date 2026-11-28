@@ -29,10 +29,11 @@ describe('SEO Schema & Graph Generator Suite', () => {
       name: defaultTitle,
       description,
       url: finalCanonicalUrl,
-      applicationCategory: 'CalculatorApplication',
+      applicationCategory: 'FinanceApplication',
       operatingSystem: 'All',
       browserRequirements: 'Requires JavaScript. Requires HTML5.',
       isAccessibleForFree: true,
+      license: `${baseUrl}/${currentLang}/terms-of-service`,
       inLanguage: currentLang,
       offers: {
         '@type': 'Offer',
@@ -43,6 +44,8 @@ describe('SEO Schema & Graph Generator Suite', () => {
 
     expect(softwareSchema.offers.price).toBe('0');
     expect(softwareSchema.isAccessibleForFree).toBe(true);
+    expect(softwareSchema.applicationCategory).toBe('FinanceApplication');
+    expect(softwareSchema.license).toBe('https://globalcalcpro.com/en/terms-of-service');
   });
 
   it('should generate complete FAQPage schema when items are present', () => {

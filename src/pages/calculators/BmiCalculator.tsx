@@ -133,7 +133,7 @@ export default function BmiCalculator() {
         description={t.bmiDesc}
         canonicalUrl={`/${lang}/bmi-calculator`}
         type="SoftwareApplication"
-        applicationCategory="CalculatorApplication"
+        applicationCategory="HealthApplication"
       />
       
       {/* Input Form */}

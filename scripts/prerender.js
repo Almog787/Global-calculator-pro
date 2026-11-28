@@ -587,6 +587,15 @@ function createSchemaJsonLd(
     },
   ];
 
+  const googleAppCategoryMap = {
+    finance: "FinanceApplication",
+    "real-estate": "FinanceApplication",
+    health: "HealthApplication",
+    math: "EducationalApplication",
+    tech: "DeveloperApplication",
+    lifestyle: "LifestyleApplication",
+  };
+
   if (isApp) {
     graph.push({
       "@type": "WebApplication",
@@ -594,11 +603,12 @@ function createSchemaJsonLd(
       name: cleanTitle,
       description: description,
       url: canonicalUrl,
-      applicationCategory: "CalculatorApplication",
+      applicationCategory: (category && googleAppCategoryMap[category]) || "UtilitiesApplication",
       applicationSubCategory: (category && categorySubMap[category]) || "UtilitiesApplication",
       operatingSystem: "All",
       browserRequirements: "Requires JavaScript. Requires HTML5.",
       isAccessibleForFree: true,
+      license: `${baseUrl}/${lang}/terms-of-service`,
       inLanguage: lang,
       ...(keywords.length > 0 ? { keywords: keywords.join(", ") } : {}),
       offers: {

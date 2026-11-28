@@ -21,8 +21,6 @@ interface SEOProps {
   image?: string;
   noindex?: boolean;
   applicationCategory?: string;
-  ratingValue?: number | string;
-  ratingCount?: number | string;
   breadcrumbs?: BreadcrumbEntry[];
   faq?: Array<{ question: string; answer: string }>;
   dataset?: {
@@ -47,9 +45,7 @@ const SEO: React.FC<SEOProps> = ({
   structuredData,
   image = 'https://globalcalcpro.com/og-image.jpg',
   noindex = false,
-  applicationCategory = 'CalculatorApplication',
-  ratingValue: _ratingValue = '4.9',
-  ratingCount: _ratingCount = '1480',
+  applicationCategory,
   breadcrumbs,
   faq = [],
   dataset,
@@ -158,6 +154,15 @@ const SEO: React.FC<SEOProps> = ({
   const normalizedTitleBase = effectiveRawTitle.replace(/\s*\|\s*Global\s*Calc\s*Pro/gi, '').trim();
   const defaultTitle = `${normalizedTitleBase} | ${siteName}`;
 
+  const googleAppCategoryMap: Record<string, string> = {
+    finance: 'FinanceApplication',
+    'real-estate': 'FinanceApplication',
+    health: 'HealthApplication',
+    math: 'EducationalApplication',
+    tech: 'DeveloperApplication',
+    lifestyle: 'LifestyleApplication',
+  };
+
   const categorySubMap: Record<string, string> = {
     finance: 'FinancialCalculator',
     'real-estate': 'RealEstateCalculator',
@@ -222,7 +227,14 @@ const SEO: React.FC<SEOProps> = ({
 
   // Determine if this route is an interactive calculator / software tool
   const isStaticInfoPage = ['/all', '/contact', '/privacy-policy', '/terms-of-service', '/about', '/suggest', '/widgets'].includes(normalizedPath);
-  const isCalculatorApp = (type === 'SoftwareApplication' || Boolean(applicationCategory)) && !isStaticInfoPage;
+  const isCalculatorApp = (type === 'SoftwareApplication' || Boolean(applicationCategory) || Boolean(matchedCalc)) && !isStaticInfoPage;
+  const resolvedAppCategory =
+    applicationCategory &&
+    applicationCategory !== 'CalculatorApplication' &&
+    applicationCategory !== 'UtilityApplication'
+      ? applicationCategory
+      : (matchedCalc?.category && googleAppCategoryMap[matchedCalc.category]) || 'UtilitiesApplication';
+  const licenseUrl = `${baseUrl}/${currentLang}/terms-of-service`;
 
   // WebApplication / Software Schema (Only for actual calculator tools)
   const softwareSchema = isCalculatorApp ? {
@@ -231,11 +243,12 @@ const SEO: React.FC<SEOProps> = ({
     name: cleanPageTitle,
     description: effectiveDescription,
     url: finalCanonicalUrl,
-    applicationCategory: applicationCategory || 'CalculatorApplication',
+    applicationCategory: resolvedAppCategory,
     applicationSubCategory: (matchedCalc?.category && categorySubMap[matchedCalc.category]) || 'UtilitiesApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires JavaScript. Requires HTML5.',
     isAccessibleForFree: true,
+    license: licenseUrl,
     inLanguage: currentLang,
     ...(effectiveKeywords.length > 0 ? { keywords: effectiveKeywords.join(', ') } : {}),
     softwareVersion: '2.0.0',
@@ -376,6 +389,7 @@ const SEO: React.FC<SEOProps> = ({
     url: finalCanonicalUrl,
     inLanguage: currentLang,
     isAccessibleForFree: true,
+    license: licenseUrl,
     creator: {
       '@id': `${baseUrl}/#organization`
     },

@@ -55,6 +55,7 @@ export function generateStructuredData(
   if (type === 'WebApplication' || type === 'SoftwareApplication') {
     baseSchema.applicationCategory = 'UtilitiesApplication';
     baseSchema.operatingSystem = 'All';
+    baseSchema.license = buildCanonicalUrl(lang, '/terms-of-service');
     baseSchema.offers = {
       '@type': 'Offer',
       price: '0',

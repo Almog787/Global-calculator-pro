@@ -651,8 +651,9 @@ export default function WidgetsHub() {
       {
         '@type': 'WebApplication',
         name: 'GlobalCalc Pro Widgets Hub',
-        applicationCategory: 'UtilityApplication',
+        applicationCategory: 'UtilitiesApplication',
         operatingSystem: 'All',
+        license: `https://globalcalcpro.com/${lang}/terms-of-service`,
         url: `https://globalcalcpro.com/${lang}/widgets`,
         description: uiText.pageDesc,
         offers: {
@@ -781,7 +782,7 @@ export default function WidgetsHub() {
         description={uiText.pageDesc}
         canonicalUrl={`/${lang}/widgets`}
         type="SoftwareApplication"
-        applicationCategory="UtilityApplication"
+        applicationCategory="UtilitiesApplication"
         structuredData={structuredData}
       />
 

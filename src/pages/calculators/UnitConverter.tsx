@@ -71,7 +71,7 @@ export default function UnitConverter() {
           '@type': 'WebApplication',
           name: t.unitConvTitle,
           description: t.unitConvDesc,
-          applicationCategory: 'CalculatorApplication',
+          applicationCategory: 'UtilitiesApplication',
           operatingSystem: 'Any',
           url: `https://globalcalcpro.com/${lang}/unit-converter`
         }}

@@ -344,7 +344,7 @@ ${lang === 'he' ? 'הפרש וחיסכון' : 'Difference & Savings'}:
         canonicalUrl={`/${lang}/mortgage-calculator`}
         faq={getProgrammaticFaqs('mortgage')}
         type="SoftwareApplication"
-        applicationCategory="CalculatorApplication"
+        applicationCategory="FinanceApplication"
       />
       
       {/* Input Form */}

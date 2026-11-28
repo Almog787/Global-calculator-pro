@@ -29,6 +29,8 @@ describe('Prerendering & Metadata Registry Unit Tests', () => {
     expect(schema.url).toBe('https://globalcalcpro.com/en/mortgage-calculator');
     expect(schema.offers.price).toBe('0');
     expect(schema.inLanguage).toBe('en');
+    expect(schema.applicationCategory).toBe('UtilitiesApplication');
+    expect(schema.license).toBe('https://globalcalcpro.com/en/terms-of-service');
   });
 
   it('should cover all key static pages in STATIC_ROUTES', () => {
@@ -47,5 +49,7 @@ describe('Prerendering & Metadata Registry Unit Tests', () => {
     expect(prerenderScript).toContain('rel="canonical"');
     expect(prerenderScript).toContain('hreflang=');
     expect(prerenderScript).toContain('localizedHeader');
+    expect(prerenderScript).toContain('googleAppCategoryMap');
+    expect(prerenderScript).toContain('/terms-of-service');
   });
 });

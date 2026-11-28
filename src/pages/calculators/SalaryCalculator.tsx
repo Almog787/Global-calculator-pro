@@ -228,7 +228,7 @@ export default function SalaryCalculator() {
         description={t.salaryDesc}
         canonicalUrl={`/${lang}/salary-calculator`}
         type="SoftwareApplication"
-        applicationCategory="CalculatorApplication"
+        applicationCategory="FinanceApplication"
       />
       
       {/* Input Form */}

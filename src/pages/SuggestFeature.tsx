@@ -33,7 +33,7 @@ export default function SuggestFeature() {
           '@type': 'WebApplication',
           name: t.suggestionsTitle || 'Suggest a Feature',
           description: t.suggestionsDesc || 'Submit feature ideas and calculator requests for GlobalCalc Pro.',
-          applicationCategory: 'CalculatorApplication',
+          applicationCategory: 'UtilitiesApplication',
           operatingSystem: 'Any',
           url: `https://globalcalcpro.com${"/suggest"}`
         }}

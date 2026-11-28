@@ -72,7 +72,7 @@ export default function AgeCalculator() {
         description={t.ageDesc}
         canonicalUrl={`/${lang}/age-calculator`}
         type="SoftwareApplication"
-        applicationCategory="CalculatorApplication"
+        applicationCategory="UtilitiesApplication"
       />
       
       {/* Input Form */}
