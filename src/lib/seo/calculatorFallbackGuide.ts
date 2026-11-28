@@ -1,16 +1,33 @@
 import { CalculatorMeta } from '../../data/calculators';
 import { Language } from '../../contexts/i18n';
+import calculatorCapabilities from '../../data/calculatorCapabilities.json';
+
+interface CapabilityRecord {
+  bestFor?: Record<string, string>;
+  features?: Record<string, string[]>;
+}
+const capabilitiesRegistry = calculatorCapabilities as Record<string, CapabilityRecord>;
 
 export interface FaqEntry {
   question: string;
   answer: string;
 }
 
+export interface GuideOverviewInput {
+  guideTitle?: string;
+  guideDesc?: string;
+  formulaHeading?: string;
+  formulaLines?: string[];
+}
+
 export interface CalculatorOverviewContent {
   heading: string;
   summary: string;
+  bestFor: string;
   pointsTitle: string;
   points: string[];
+  formulaHeading?: string;
+  formulaLines?: string[];
 }
 
 const categoryLabels: Record<string, Record<Language, string>> = {
@@ -191,73 +208,77 @@ export function buildCalculatorFallbackFaqs(
 }
 
 export function buildCalculatorOverview(
-  calc: Pick<CalculatorMeta, 'category' | 'tags'> | null | undefined,
+  calc: Pick<CalculatorMeta, 'id' | 'category' | 'tags'> | null | undefined,
   lang: Language,
   cleanTitle: string,
-  description: string
+  description: string,
+  guide?: GuideOverviewInput | null
 ): CalculatorOverviewContent {
   const catName =
     calc?.category && categoryLabels[calc.category]
       ? categoryLabels[calc.category][lang] || categoryLabels[calc.category].en
       : '';
   const desc = description || cleanTitle;
+  const calcCaps = calc?.id ? capabilitiesRegistry[calc.id] : undefined;
+  const specificBestFor = calcCaps?.bestFor?.[lang] || calcCaps?.bestFor?.en || '';
+  const specificFeatures = calcCaps?.features?.[lang] || calcCaps?.features?.en || [];
 
-  const content: Record<Language, CalculatorOverviewContent> = {
+  const labels: Record<Language, { heading: string; summary: string; pointsTitle: string; fallbackPoints: string[] }> = {
     en: {
-      heading: `About the ${cleanTitle}`,
-      summary: `${desc} Designed as part of our ${catName || 'Online Tools'} collection, this tool computes results instantaneously in your browser with consistent decimal precision.`,
-      pointsTitle: 'Key Capabilities',
-      points: [
+      heading: guide?.guideTitle || `About the ${cleanTitle}`,
+      summary: guide?.guideDesc || `${desc} Designed as part of our ${catName || 'Online Tools'} collection, this tool computes results instantaneously in your browser with consistent decimal precision.`,
+      pointsTitle: 'What This Calculator Can Do & Key Capabilities',
+      fallbackPoints: [
         'Instant client-side calculation with zero data sent to external servers',
         'Shareable URL parameters so you can bookmark or send exact scenarios',
         'Mobile-ready responsive layout with automatic locale formatting',
       ],
     },
     he: {
-      heading: `אודות ${cleanTitle}`,
-      summary: `${desc} הכלי פותח כחלק ממרכז המחשבונים בקטגוריית ${catName || 'כלים שימושיים'}, ומבצע חישוב מיידי ומדויק בדפדפן ללא עיגולי נקודה צפה.`,
-      pointsTitle: 'יתרונות עיקריים',
-      points: [
+      heading: guide?.guideTitle || `אודות ${cleanTitle}`,
+      summary: guide?.guideDesc || `${desc} הכלי פותח כחלק ממרכז המחשבונים בקטגוריית ${catName || 'כלים שימושיים'}, ומבצע חישוב מיידי ומדויק בדפדפן ללא עיגולי נקודה צפה.`,
+      pointsTitle: 'מה המחשבון הזה יודע לעשות ויכולות מרכזיות',
+      fallbackPoints: [
         'חישוב מיידי 100% בצד הלקוח תוך שמירה מלאה על פרטיות המשתמש',
         'קישורים לשיתוף ושמירת תרחישים באמצעות פרמטרים בכתובת ה-URL',
         'התאמה מלאה למובייל, טאבלט ומחשב עם תמיכה בשפות ופורמט מקומי',
       ],
     },
     es: {
-      heading: `Acerca de ${cleanTitle}`,
-      summary: `${desc} Parte de nuestra suite de ${catName || 'Calculadoras'}, esta herramienta realiza cálculos instantáneos directamente en su navegador con alta precisión.`,
-      pointsTitle: 'Características principales',
-      points: [
+      heading: guide?.guideTitle || `Acerca de ${cleanTitle}`,
+      summary: guide?.guideDesc || `${desc} Parte de nuestra suite de ${catName || 'Calculadoras'}, esta herramienta realiza cálculos instantáneos directamente en su navegador con alta precisión.`,
+      pointsTitle: 'Capacidades clave de esta calculadora',
+      fallbackPoints: [
         'Cálculo inmediato en el navegador sin enviar datos personales a servidores',
         'Enlaces compartibles mediante parámetros URL para guardar escenarios',
         'Interfaz adaptable a dispositivos móviles y múltiples idiomas',
       ],
     },
     fr: {
-      heading: `À propos de l'outil ${cleanTitle}`,
-      summary: `${desc} Intégré à notre collection ${catName || 'Calculatrices'}, cet outil calcule vos résultats instantanément dans votre navigateur avec une précision fiable.`,
-      pointsTitle: 'Points clés',
-      points: [
+      heading: guide?.guideTitle || `À propos de l'outil ${cleanTitle}`,
+      summary: guide?.guideDesc || `${desc} Intégré à notre collection ${catName || 'Calculatrices'}, cet outil calcule vos résultats instantanément dans votre navigateur avec une précision fiable.`,
+      pointsTitle: 'Fonctionnalités clés de cette calculatrice',
+      fallbackPoints: [
         'Calcul instantané en local sans transmission de données personnelles',
         'Liens de partage intégrant les paramètres de votre simulation',
         'Interface responsive optimisée pour ordinateur, tablette et mobile',
       ],
     },
     ar: {
-      heading: `حول أداة ${cleanTitle}`,
-      summary: `${desc} تم تصميم هذه الأداة ضمن قسم ${catName || 'الحاسبات'} لتنفيذ الحسابات فوراً داخل المتصفح بدقة رقمية عالية وسهولة استخدام.`,
-      pointsTitle: 'المزايا الرئيسية',
-      points: [
+      heading: guide?.guideTitle || `حول أداة ${cleanTitle}`,
+      summary: guide?.guideDesc || `${desc} تم تصميم هذه الأداة ضمن قسم ${catName || 'الحاسبات'} لتنفيذ الحسابات فوراً داخل المتصفح بدقة رقمية عالية وسهولة استخدام.`,
+      pointsTitle: 'القدرات والمزايا الرئيسية للأداة',
+      fallbackPoints: [
         'حساب فوري بالكامل داخل المتصفح مع حماية تامة لخصوصية بياناتك',
         'إمكانية نسخ رابط المشاركة مع حفظ القيم المدخلة في الرابط',
         'تصميم متجاوب وسريع يعمل بكفاءة على الهواتف وأجهزة الحاسوب',
       ],
     },
     ru: {
-      heading: `О калькуляторе «${cleanTitle}»`,
-      summary: `${desc} Инструмент входит в раздел «${catName || 'Калькуляторы'}» и выполняет точные вычисления в реальном времени прямо в вашем браузере.`,
-      pointsTitle: 'Ключевые возможности',
-      points: [
+      heading: guide?.guideTitle || `О калькуляторе «${cleanTitle}»`,
+      summary: guide?.guideDesc || `${desc} Инструмент входит в раздел «${catName || 'Калькуляторы'}» и выполняет точные вычисления в реальном времени прямо в вашем браузере.`,
+      pointsTitle: 'Ключевые возможности калькулятора',
+      fallbackPoints: [
         'Мгновенные локальные расчеты без передачи персональных данных на сервер',
         'Поддержка ссылок с параметрами для сохранения и отправки сценариев',
         'Адаптивный интерфейс для компьютеров, планшетов и смартфонов',
@@ -265,5 +286,15 @@ export function buildCalculatorOverview(
     },
   };
 
-  return content[lang] || content.en;
+  const localized = labels[lang] || labels.en;
+
+  return {
+    heading: localized.heading,
+    summary: localized.summary,
+    bestFor: specificBestFor,
+    pointsTitle: localized.pointsTitle,
+    points: specificFeatures.length > 0 ? specificFeatures : localized.fallbackPoints,
+    formulaHeading: guide?.formulaHeading,
+    formulaLines: guide?.formulaLines,
+  };
 }

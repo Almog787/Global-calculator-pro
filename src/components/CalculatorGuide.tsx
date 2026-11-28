@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useI18n } from '../contexts/i18n';
 import { benchmarkTables } from '../data/benchmarks';
 import { Link } from 'react-router-dom';
 import { calculators, getCalculatorTitle } from '../data/calculators';
 import ExpertReviewBox from './ExpertReviewBox';
+import CalculatorCapabilities from './CalculatorCapabilities';
+import { GuideOverrideContext } from '../contexts/SeoOverrideContext';
+import { resolveGuideKey } from '../lib/seo/calculatorFallbackGuide';
 
 interface CalculatorGuideProps {
   guideKey: string;
@@ -13,8 +16,16 @@ interface CalculatorGuideProps {
 
 export default function CalculatorGuide({ guideKey, category, onApplyPreset }: CalculatorGuideProps) {
   const { lang, guides, t } = useI18n();
+  const notifyChildGuide = useContext(GuideOverrideContext);
   const guide = guides?.[guideKey] || null;
   const benchmark = benchmarkTables[guideKey] || null;
+  const matchedCalc = calculators.find((c) => resolveGuideKey(c) === guideKey) || null;
+
+  useEffect(() => {
+    if (notifyChildGuide) {
+      notifyChildGuide();
+    }
+  }, [notifyChildGuide]);
 
   const effectiveCategory = category || benchmark?.category || 'finance';
 
@@ -44,7 +55,7 @@ export default function CalculatorGuide({ guideKey, category, onApplyPreset }: C
     .map(p => calculators.find(c => c.path === p))
     .filter(Boolean);
 
-  if (!guide && !benchmark && relatedCalcs.length === 0) {
+  if (!guide && !benchmark && relatedCalcs.length === 0 && !matchedCalc) {
     return null;
   }
 
@@ -169,6 +180,9 @@ export default function CalculatorGuide({ guideKey, category, onApplyPreset }: C
 
       {/* Expert Review & Freshness Verification Box (E-E-A-T Seal) */}
       <ExpertReviewBox category={effectiveCategory} />
+
+      {/* Tool-Specific Capabilities & Ideal Use Cases */}
+      {matchedCalc && <CalculatorCapabilities calcId={matchedCalc.id} variant="embedded" />}
 
       {/* Direct Answer / AI Snippet Box */}
       {directAnswerText && (

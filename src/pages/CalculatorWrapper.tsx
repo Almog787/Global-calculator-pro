@@ -9,10 +9,11 @@ import SkeletonLoader from '../components/SkeletonLoader';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { useI18n } from '../contexts/i18n';
 import SEO from '../components/SEO';
-import { SeoOverrideContext, FaqOverrideContext } from '../contexts/SeoOverrideContext';
+import { SeoOverrideContext, FaqOverrideContext, GuideOverrideContext } from '../contexts/SeoOverrideContext';
 import DisclaimerNotice, { DisclaimerType } from '../components/DisclaimerNotice';
 import EmbedCtaBanner from '../components/EmbedCtaBanner';
 import FAQ from '../components/FAQ';
+import CalculatorCapabilities from '../components/CalculatorCapabilities';
 import {
   buildCalculatorFallbackFaqs,
   buildCalculatorOverview,
@@ -36,10 +37,12 @@ export default function CalculatorWrapper() {
   const { t, lang, guides } = useI18n();
   const [hasChildSeo, setHasChildSeo] = useState(false);
   const [hasChildFaq, setHasChildFaq] = useState(false);
+  const [hasChildGuide, setHasChildGuide] = useState(false);
 
   useEffect(() => {
     setHasChildSeo(false);
     setHasChildFaq(false);
+    setHasChildGuide(false);
   }, [slug]);
 
   const registerChildSeo = useCallback(() => {
@@ -48,6 +51,10 @@ export default function CalculatorWrapper() {
 
   const registerChildFaq = useCallback(() => {
     setHasChildFaq(true);
+  }, []);
+
+  const registerChildGuide = useCallback(() => {
+    setHasChildGuide(true);
   }, []);
 
   const cleanSlug = slug ? slug.replace(/-/g, '').toLowerCase() : '';
@@ -98,7 +105,8 @@ export default function CalculatorWrapper() {
   ];
 
   const guideKey = resolveGuideKey(calcData || slug || cleanSlug);
-  const guideFaq = Array.isArray(guides?.[guideKey]?.faq) ? guides[guideKey].faq : [];
+  const guideEntry = guides?.[guideKey] || null;
+  const guideFaq = Array.isArray(guideEntry?.faq) ? guideEntry.faq : [];
   const effectiveFaq =
     guideFaq.length > 0
       ? guideFaq
@@ -107,7 +115,7 @@ export default function CalculatorWrapper() {
   const hasInlineFaq = INLINE_FAQ_CALC_IDS.has(calcData?.id || slug || '');
   const shouldRenderFallbackContent = !hasChildFaq && !hasInlineFaq;
   const overviewContent = shouldRenderFallbackContent
-    ? buildCalculatorOverview(calcData, lang, title, description)
+    ? buildCalculatorOverview(calcData, lang, title, description, guideEntry)
     : null;
 
   return (
@@ -128,42 +136,73 @@ export default function CalculatorWrapper() {
       
       <SeoOverrideContext.Provider value={registerChildSeo}>
         <FaqOverrideContext.Provider value={registerChildFaq}>
-          <ErrorBoundary>
-            <Suspense fallback={<SkeletonLoader />}>
-              <Component />
-            </Suspense>
-          </ErrorBoundary>
+          <GuideOverrideContext.Provider value={registerChildGuide}>
+            <ErrorBoundary>
+              <Suspense fallback={<SkeletonLoader />}>
+                <Component />
+              </Suspense>
+            </ErrorBoundary>
+          </GuideOverrideContext.Provider>
         </FaqOverrideContext.Provider>
       </SeoOverrideContext.Provider>
 
       {overviewContent && (
-        <section className="max-w-4xl mx-auto mt-8 bg-surface-container-lowest border border-border-subtle rounded-3xl p-6 sm:p-8 shadow-xs space-y-4">
+        <section className="max-w-4xl mx-auto mt-8 bg-surface-container-lowest border border-border-subtle rounded-3xl p-6 sm:p-8 shadow-xs space-y-5">
           <h2 className="text-xl sm:text-2xl font-bold text-on-surface">
             {overviewContent.heading}
           </h2>
           <p className="text-sm sm:text-base text-on-surface-variant leading-relaxed">
             {overviewContent.summary}
           </p>
-          <div className="pt-2">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-secondary mb-2.5">
-              {overviewContent.pointsTitle}
-            </h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {overviewContent.points.map((pt, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-start gap-2 p-3 rounded-xl bg-surface-container-low border border-border-subtle/70 text-xs sm:text-sm text-on-surface"
-                >
-                  <span className="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">
-                    check_circle
-                  </span>
-                  <span>{pt}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {!hasChildGuide && overviewContent.bestFor && (
+            <div className="p-3.5 sm:p-4 rounded-xl bg-teal-50/70 border border-teal-200/80 text-xs sm:text-sm text-teal-950 leading-relaxed">
+              {overviewContent.bestFor}
+            </div>
+          )}
+          {!hasChildGuide && (
+            <div className="pt-1">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-secondary mb-2.5">
+                {overviewContent.pointsTitle}
+              </h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {overviewContent.points.map((pt, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-start gap-2 p-3 rounded-xl bg-surface-container-low border border-border-subtle/70 text-xs sm:text-sm text-on-surface"
+                  >
+                    <span className="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">
+                      check_circle
+                    </span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {!hasChildGuide && overviewContent.formulaLines && overviewContent.formulaLines.length > 0 && (
+            <div className="pt-2 space-y-2.5">
+              {overviewContent.formulaHeading && (
+                <h3 className="text-base sm:text-lg font-bold text-on-surface flex items-center gap-2">
+                  <span className="material-symbols-outlined text-emerald-600 text-[20px]">functions</span>
+                  <span>{overviewContent.formulaHeading}</span>
+                </h3>
+              )}
+              <div className="bg-surface-container-low p-4 rounded-xl border border-border-subtle/70 text-xs sm:text-sm text-on-surface space-y-1.5">
+                {overviewContent.formulaLines.map((line, idx) => (
+                  <div key={idx} className="flex items-start gap-2 leading-relaxed">
+                    <span className="text-emerald-600 font-mono font-bold">•</span>
+                    <span>{line}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
           <FAQ items={effectiveFaq} />
         </section>
+      )}
+
+      {!overviewContent && !hasChildGuide && calcData?.id && (
+        <CalculatorCapabilities calcId={calcData.id} />
       )}
 
       <div className="mt-6 mb-6">

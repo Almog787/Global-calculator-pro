@@ -459,6 +459,807 @@
           "answer": "Reste el valor original del nuevo, divida el resultado entre el valor original y multiplique por 100."
         }
       ]
+    },
+    "mortgage-affordability": {
+      "guideTitle": "Cómo calculan los bancos la capacidad hipotecaria y el ratio DTI",
+      "guideDesc": "La asequibilidad combina tus ingresos mensuales, ahorro inicial, tipo de interés y deudas activas bajo la regla financiera del 28%/36%.",
+      "formulaHeading": "Fórmulas de límite DTI y precio máximo",
+      "formulaLines": [
+        "Límite de vivienda = Ingreso mensual bruto × 0.28",
+        "Límite total de deuda = (Ingreso mensual × 0.36) - Deudas mensuales actuales",
+        "Cuota máxima (M) = mín(Límite vivienda, Límite total)",
+        "Precio máximo de casa = Capital máximo (P) + Entrada inicial"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué significa la regla 28/36 en una hipoteca?",
+          "answer": "Establece que la cuota hipotecaria no debe superar el 28% de los ingresos brutos y la suma de todas las deudas no debe exceder el 36%."
+        },
+        {
+          "question": "¿Cómo afecta tener un préstamo de coche a la hipoteca?",
+          "answer": "Cada 300 € mensuales en otros préstamos reduce directamente tu margen de deuda total y puede recortar tu préstamo máximo entre 45.000 y 55.000 €."
+        },
+        {
+          "question": "¿Qué gastos adicionales debo reservar aparte de la entrada?",
+          "answer": "Conviene guardar entre un 8% y un 12% extra para impuestos de transmisión, notaría, registro y tasación."
+        }
+      ]
+    },
+    "refinance": {
+      "guideTitle": "Cuándo compensa refinanciar la hipoteca: punto de equilibrio y ahorro",
+      "guideDesc": "Refinanciar sustituye el saldo pendiente por un nuevo préstamo a menor interés. Medir los meses de retorno frente a comisiones evita pérdidas si vendes pronto.",
+      "formulaHeading": "Fórmulas de punto de equilibrio y ahorro neto",
+      "formulaLines": [
+        "Ahorro mensual = Cuota actual - Nueva cuota refinanciada",
+        "Meses de equilibrio = Gastos y comisiones de cancelación ÷ Ahorro mensual",
+        "Ahorro neto total = Interés restante actual - (Nuevo interés total + Gastos)"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué es el punto de equilibrio al refinanciar?",
+          "answer": "Es el número de meses necesarios para recuperar los gastos de apertura, tasación y cancelación mediante el ahorro mensual de la nueva cuota."
+        },
+        {
+          "question": "¿Cuánta bajada de interés hace rentable subrogar o refinanciar?",
+          "answer": "Suele compensar a partir de una rebaja de 0,75 a 1 punto porcentual, o incluso 0,5% en capitales altos con bajas comisiones."
+        },
+        {
+          "question": "¿Conviene ampliar de nuevo el plazo a 30 años?",
+          "answer": "Alargar el plazo baja la cuota mensual, pero puede aumentar los intereses totales; mantener el plazo restante maximiza el ahorro."
+        }
+      ]
+    },
+    "vat": {
+      "guideTitle": "Cómo añadir y desglosar el IVA de un importe bruto sin errores",
+      "guideDesc": "Para sumar el IVA se multiplica la base por (1 + tipo), pero para extraerlo de un precio final hay que dividir entre (1 + tipo) y nunca restar el porcentaje directo.",
+      "formulaHeading": "Fórmulas de IVA añadido y desglosado",
+      "formulaLines": [
+        "Añadir IVA: Total con IVA = Base Imponible × (1 + Tipo IVA)",
+        "Desglosar IVA: Base Imponible = Total con IVA ÷ (1 + Tipo IVA)",
+        "Cuota de IVA = Total con IVA - Base Imponible"
+      ],
+      "faq": [
+        {
+          "question": "¿Por qué no puedo restar el 21% directo a un precio con IVA incluido?",
+          "answer": "Porque el precio final equivale al 121% de la base. Para hallar la base exacta de 121 €, debes dividir 121 ÷ 1,21 = 100 € de base y 21 € de IVA."
+        },
+        {
+          "question": "¿Cuál es el tipo general de IVA en España, México y UE?",
+          "answer": "En España es del 21% (10% reducido), en México del 16% y en la mayoría de Europa oscila entre el 19% y el 25%."
+        },
+        {
+          "question": "¿Qué diferencia hay entre IVA repercutido e IVA soportado?",
+          "answer": "El repercutido se cobra en tus facturas de venta y el soportado se paga en gastos deducibles; la liquidación es la diferencia entre ambos."
+        }
+      ]
+    },
+    "break-even": {
+      "guideTitle": "Cómo calcular el punto de equilibrio y el margen de contribución",
+      "guideDesc": "El punto de equilibrio indica exactamente cuántas unidades o ingresos necesitas vender para cubrir gastos fijos y variables sin generar pérdidas.",
+      "formulaHeading": "Fórmulas de punto de equilibrio empresarial",
+      "formulaLines": [
+        "Margen de contribución unitario = Precio de venta - Coste variable unitario",
+        "Punto de equilibrio (unidades) = Costes fijos ÷ Margen de contribución unitario",
+        "Ratio de margen = Margen de contribución ÷ Precio de venta",
+        "Punto de equilibrio (ingresos) = Costes fijos ÷ Ratio de margen"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué diferencia hay entre costes fijos y variables?",
+          "answer": "Los fijos (alquiler, nóminas base, software) se pagan aunque vendas cero unidades; los variables (mercancía, envío, comisiones) crecen por cada unidad vendida."
+        },
+        {
+          "question": "¿Qué ocurre si el margen de contribución es negativo?",
+          "answer": "Significa que cada venta genera pérdidas y nunca alcanzarás rentabilidad sin subir precios o reducir costes variables."
+        },
+        {
+          "question": "¿Cómo calculo las ventas necesarias para ganar un beneficio objetivo?",
+          "answer": "Suma el beneficio deseado a los costes fijos: (Costes fijos + Beneficio objetivo) ÷ Margen de contribución unitario."
+        }
+      ]
+    },
+    "inflation": {
+      "guideTitle": "Cómo la inflación reduce el poder adquisitivo del dinero",
+      "guideDesc": "La inflación actúa como un interés compuesto negativo: con un 3% anual los precios se duplican aproximadamente cada 24 años, reduciendo a la mitad el valor del efectivo parado.",
+      "formulaHeading": "Fórmulas de coste futuro y valor real",
+      "formulaLines": [
+        "Coste futuro equivalente = Importe actual × (1 + r)^t",
+        "Poder adquisitivo real = Importe nominal ÷ (1 + r)^t",
+        "Inflación acumulada (%) = [ (1 + r)^t - 1 ] × 100"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué diferencia hay entre valor nominal y valor real?",
+          "answer": "El valor nominal es la cifra exacta de dinero en cuenta; el valor real ajusta esa cifra por el IPC para reflejar cuántos bienes puedes comprar realmente."
+        },
+        {
+          "question": "¿Cuánto tarda una inflación del 4% en reducir a la mitad tus ahorros?",
+          "answer": "Según la regla del 72 (72 ÷ 4), el poder de compra del efectivo sin rendimiento cae aproximadamente a la mitad en 18 años."
+        },
+        {
+          "question": "¿Cómo proteger el ahorro frente a la inflación?",
+          "answer": "Buscando activos cuya rentabilidad neta después de impuestos supere la tasa anual de inflación."
+        }
+      ]
+    },
+    "credit-card-payoff": {
+      "guideTitle": "Cómo se acumula el interés de tarjetas de crédito y cómo liquidarlas",
+      "guideDesc": "Las tarjetas de crédito aplican intereses mensuales sobre el saldo pendiente. Aumentar la cuota por encima del pago mínimo recorta años de deuda y cientos en intereses.",
+      "formulaHeading": "Fórmulas de amortización de tarjeta",
+      "formulaLines": [
+        "Tasa mensual (r) = TAE ÷ 12",
+        "Meses para liquidar (n) = -ln(1 - (r × B) ÷ M) ÷ ln(1 + r)",
+        "Cuota necesaria (M) = (r × B) ÷ (1 - (1 + r)^(-n))"
+      ],
+      "faq": [
+        {
+          "question": "¿Por qué pagar el mínimo alarga tanto la deuda?",
+          "answer": "El pago mínimo suele rondar el 2%–3% del saldo, destinando la mayor parte a pagar intereses y apenas reduciendo el capital."
+        },
+        {
+          "question": "¿Qué pasa si mi cuota es menor al interés mensual?",
+          "answer": "El saldo crece mes a mes en lugar de bajar; es obligatorio pagar por encima del interés mensual para avanzar."
+        },
+        {
+          "question": "¿Cuándo usar esta calculadora frente a Bola de Nieve?",
+          "answer": "Usa esta herramienta para una sola tarjeta con cuota o plazo meta, y Bola de Nieve si coordinas múltiples deudas a la vez."
+        }
+      ]
+    },
+    "bmr": {
+      "guideTitle": "Diferencia entre TMB (BMR) y TDEE para calcular tus calorías diarias",
+      "guideDesc": "La Tasa Metabólica Basal (BMR) mide las calorías quemadas en reposo total, mientras el TDEE multiplica ese valor por tu nivel real de ejercicio y movimiento semanal.",
+      "formulaHeading": "Ecuación de Mifflin-St Jeor y factores TDEE",
+      "formulaLines": [
+        "BMR Hombres = (10 × Peso kg) + (6.25 × Altura cm) - (5 × Edad) + 5",
+        "BMR Mujeres = (10 × Peso kg) + (6.25 × Altura cm) - (5 × Edad) - 161",
+        "TDEE = BMR × Factor de actividad (1.2 a 1.9)",
+        "Déficit recomendado ≈ TDEE - 500 kcal/día"
+      ],
+      "faq": [
+        {
+          "question": "¿Debo comer por debajo de mi BMR para adelgazar?",
+          "answer": "No es recomendable comer por debajo del BMR; el déficit saludable se calcula restando 300–500 kcal a tu TDEE de mantenimiento."
+        },
+        {
+          "question": "¿Por qué se usa la fórmula Mifflin-St Jeor?",
+          "answer": "Porque ofrece mayor precisión estadística actual que fórmulas clásicas como Harris-Benedict."
+        },
+        {
+          "question": "¿Cuándo usar IMC frente a BMR/TDEE?",
+          "answer": "El IMC clasifica tu peso respecto a la estatura, mientras que BMR/TDEE define cuántas calorías consumir cada día."
+        }
+      ]
+    },
+    "water-intake": {
+      "guideTitle": "Cómo calcular tu consumo diario de agua según peso, ejercicio y clima",
+      "guideDesc": "La hidratación óptima varía con la masa corporal, el sudor perdido al entrenar y la temperatura ambiental, superando la regla fija de 8 vasos diarios.",
+      "formulaHeading": "Fórmulas de hidratación diaria",
+      "formulaLines": [
+        "Agua base (litros) = Peso corporal (kg) × 0.033",
+        "Extra por ejercicio = +0.35 litros por cada 30 min de entrenamiento",
+        "Ajuste por calor = +0.50 litros en clima cálido o húmedo",
+        "Vasos de 250 ml = Total litros × 4"
+      ],
+      "faq": [
+        {
+          "question": "¿Por qué es mejor calcular por peso que seguir la regla de 2 litros?",
+          "answer": "Las necesidades de una persona de 55 kg y otra de 95 kg son muy distintas; multiplicar por 0,033 L/kg personaliza tu objetivo real."
+        },
+        {
+          "question": "¿Cuenta el agua presente en frutas y comidas?",
+          "answer": "Aproximadamente un 20% procede de alimentos ricos en agua, y el resto debe cubrirse principalmente con agua natural."
+        },
+        {
+          "question": "¿Cómo conviene repartir la ingesta durante el día?",
+          "answer": "Beber cantidades moderadas de forma constante durante la jornada mejora la absorción frente a beber mucho de golpe."
+        }
+      ]
+    },
+    "date-difference": {
+      "guideTitle": "Cómo calcular días naturales frente a días hábiles entre dos fechas",
+      "guideDesc": "La duración natural cuenta todos los días del calendario incluyendo bisiestos, mientras que los días hábiles excluyen fines de semana para contratos, envíos y plazos legales.",
+      "formulaHeading": "Fórmulas de duración entre fechas",
+      "formulaLines": [
+        "Días naturales = (Fecha fin UTC - Fecha inicio UTC) ÷ 86.400.000 ms",
+        "Semanas = Días naturales ÷ 7 | Años aprox. = Días ÷ 365,25",
+        "Días hábiles = Recuento de días de lunes a viernes dentro del rango"
+      ],
+      "faq": [
+        {
+          "question": "¿Se incluyen los años bisiestos en el cálculo?",
+          "answer": "Sí, el cálculo usa marcas horarias UTC exactas para incluir correctamente cada 29 de febrero sin errores por cambios de horario."
+        },
+        {
+          "question": "¿Para qué sirven los días hábiles frente a los naturales?",
+          "answer": "Los hábiles excluyen sábados y domingos y son el estándar en contratos mercantiles, plazos administrativos y entregas."
+        },
+        {
+          "question": "¿Qué ocurre si invierto la fecha inicial y la final?",
+          "answer": "La diferencia devuelve igualmente el intervalo absoluto exacto entre ambas fechas."
+        }
+      ]
+    },
+    "bill-splitter": {
+      "guideTitle": "Cómo dividir cuentas de restaurante y propinas sin errores",
+      "guideDesc": "Calcular primero el importe de la propina y dividir el total entre el número de comensales garantiza que no falte dinero al pagar en grupo.",
+      "formulaHeading": "Fórmulas para dividir cuenta y propina",
+      "formulaLines": [
+        "Propina total = Importe cuenta × (Porcentaje ÷ 100)",
+        "Total final = Importe cuenta + Propina total",
+        "Pago por persona = Total final ÷ Número de personas"
+      ],
+      "faq": [
+        {
+          "question": "¿Se calcula la propina antes o después de impuestos?",
+          "answer": "Tradicionalmente se calcula sobre el subtotal sin impuestos, aunque muchas personas aplican el porcentaje directamente al total del ticket."
+        },
+        {
+          "question": "¿Cuál es la propina habitual según el país?",
+          "answer": "En EE. UU. ronda el 15%–20%, en Latinoamérica suele ser 10%–15% y en España u Europa basta el 5%–10% por buen servicio."
+        },
+        {
+          "question": "¿Qué diferencia hay frente a la calculadora básica de propinas?",
+          "answer": "El divisor está optimizado para mesas compartidas y botones rápidos de porcentaje por persona."
+        }
+      ]
+    },
+    "currency-converter": {
+      "guideTitle": "Cómo funciona el tipo de cambio medio y la conversión de divisas",
+      "guideDesc": "La conversión multiplica el importe por la tasa media interbancaria. Conocer el cambio real te ayuda a detectar comisiones ocultas de bancos o casas de cambio.",
+      "formulaHeading": "Fórmulas de cambio directo e inverso",
+      "formulaLines": [
+        "Importe convertido = Importe origen × Tipo de cambio",
+        "Tipo inverso = 1 ÷ Tipo de cambio directo",
+        "Comisión implícita (%) = [ (Tasa aplicada - Tasa media) ÷ Tasa media ] × 100"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué es el tipo de cambio medio del mercado?",
+          "answer": "Es el punto medio entre oferta y demanda en el mercado interbancario global, sin los recargos del 2% al 6% que suelen aplicar bancos y aeropuertos."
+        },
+        {
+          "question": "¿Conviene pagar en moneda local al viajar?",
+          "answer": "Sí, pagar en la divisa local evita la Conversión Dinámica de Divisa (DCC) del TPV, que encarece la compra."
+        },
+        {
+          "question": "¿Sirve este conversor para comparar salarios entre ciudades?",
+          "answer": "Para cambio nominal sí; para comparar coste real de vida y alquiler entre países, utiliza nuestra calculadora de Poder Adquisitivo Global."
+        }
+      ]
+    },
+    "sleep-calculator": {
+      "guideTitle": "Cómo los ciclos de sueño de 90 minutos mejoran tu despertar",
+      "guideDesc": "Dormimos en bloques de ~90 minutos entre sueño ligero, profundo y REM. Despertar justo al cerrar un ciclo reduce drásticamente la pesadez matutina.",
+      "formulaHeading": "Fórmulas de ciclos y latencia del sueño",
+      "formulaLines": [
+        "Duración de ciclo = 90 min | Tiempo para dormirse = 15 min",
+        "Hora de despertar = Hora de acostarse + 15 min + (N × 90 min)",
+        "Hora de acostarse = Alarma - 15 min - (N × 90 min) para N ∈ {4, 5, 6}"
+      ],
+      "faq": [
+        {
+          "question": "¿Por qué 7,5 horas descansan a veces más que 8 horas?",
+          "answer": "Porque 7,5 horas completan exactamente 5 ciclos de 90 minutos, mientras que 8 horas pueden interrumpir el sexto ciclo en fase profunda."
+        },
+        {
+          "question": "¿Por qué se suman 15 minutos al cálculo?",
+          "answer": "Es el promedio natural que tarda una persona en conciliar el sueño tras acostarse."
+        },
+        {
+          "question": "¿Cuántos ciclos de sueño se recomiendan a diario?",
+          "answer": "Lo óptimo para adultos es completar 5 o 6 ciclos por noche (7,5 a 9 horas)."
+        }
+      ]
+    },
+    "cooking-timer": {
+      "guideTitle": "Guía de tiempos de asado al horno y temperatura interna de carnes",
+      "guideDesc": "El tiempo óptimo de horneado depende del peso del corte y del punto deseado, complementado con termómetro de cocina y reposo previo al corte.",
+      "formulaHeading": "Fórmulas de tiempo y temperatura interna",
+      "formulaLines": [
+        "Minutos totales = Tiempo base + (Peso kg × Minutos por kg según punto)",
+        "Ternera: Poco hecha 52°C | Al punto 57–63°C | Muy hecha 71°C+",
+        "Aves seguras: 74°C (165°F) | Cerdo seguro: 63°C (145°F)"
+      ],
+      "faq": [
+        {
+          "question": "¿Por qué hay que dejar reposar el asado tras sacarlo del horno?",
+          "answer": "El reposo de 10–15 minutos redistribuye los jugos internos y evita que se pierdan al cortar."
+        },
+        {
+          "question": "¿Dónde se inserta el termómetro de carne?",
+          "answer": "En el centro de la zona más gruesa, sin tocar hueso ni grasa."
+        },
+        {
+          "question": "¿Cómo afecta el modo ventilador del horno?",
+          "answer": "Con aire circulante conviene bajar la temperatura del horno unos 15°C–20°C."
+        }
+      ]
+    },
+    "severance-pay": {
+      "guideTitle": "Cómo se calcula el finiquito y la indemnización por despido",
+      "guideDesc": "La indemnización laboral combina el salario regulador diario o mensual con la antigüedad exacta en años y meses, sumando preaviso y vacaciones no disfrutadas.",
+      "formulaHeading": "Fórmulas de indemnización y liquidación",
+      "formulaLines": [
+        "Indemnización = Salario mensual regulador × (Años + Meses ÷ 12) × Factor legal",
+        "Provisión mensual equivalente (8,33%) = 1 ÷ 12 del salario bruto mensual",
+        "Liquidación neta = Indemnización + Días preaviso + Vacaciones pendientes"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué conceptos entran en el salario regulador?",
+          "answer": "Incluye salario base, pagas extra prorrateadas y complementos fijos; excluye dietas reales y reembolsos de gastos."
+        },
+        {
+          "question": "¿Se cobran las vacaciones no disfrutadas en el finiquito?",
+          "answer": "Sí, los días devengados y no gozados durante el año en curso deben abonarse íntegramente en la liquidación."
+        },
+        {
+          "question": "¿Cambia la indemnización si la baja es voluntaria frente a despido?",
+          "answer": "En baja voluntaria suele liquidarse salario pendiente y vacaciones, mientras que el despido improcedente u objetivo añade indemnización por antigüedad."
+        }
+      ]
+    },
+    "stock-options-rsu": {
+      "guideTitle": "Cómo valorar Stock Options y RSU: vesting, dilución e impuestos",
+      "guideDesc": "El valor neto real de tu paquete de acciones depende del calendario de consolidación (vesting), precio de ejercicio, dilución futura y fiscalidad sobre plusvalías.",
+      "formulaHeading": "Fórmulas de vesting, dilución y salida neta",
+      "formulaLines": [
+        "Acciones consolidadas = Total × (Meses ≥ Cliff ? Meses ÷ 48 : 0)",
+        "Precio diluido = Precio de salida × (1 - % Dilución ÷ 100)",
+        "Ganancia bruta Opciones = máx(0, Precio diluido - Strike) × Opciones",
+        "Valor RSU = Precio diluido × RSU | Neto = Bruto × (1 - Tasa fiscal)"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué es el periodo cliff de 1 año en un vesting de 4 años?",
+          "answer": "Durante los primeros 12 meses no consolidas acciones; al cumplir el mes 12 desbloqueas el 25% y el resto se consolida mensual o trimestralmente."
+        },
+        {
+          "question": "¿Cómo afecta una ronda de financiación por dilución?",
+          "answer": "Al emitirse nuevas acciones preferentes para inversores, tu porcentaje de participación disminuye según la tasa de dilución acumulada."
+        },
+        {
+          "question": "¿Cuál es la ventaja de las RSU frente a las opciones?",
+          "answer": "Las RSU no tienen precio de ejercicio y mantienen valor siempre que la acción valga más de cero."
+        }
+      ]
+    },
+    "purchase-appreciation-tax": {
+      "guideTitle": "Cómo funcionan los tramos de impuesto de compra y plusvalía lineal",
+      "guideDesc": "Los impuestos inmobiliarios se calculan por tramos marginales según sea vivienda habitual o segunda propiedad, deduciendo gastos notariales y reformas en la plusvalía.",
+      "formulaHeading": "Fórmulas de compra por tramos y plusvalía",
+      "formulaLines": [
+        "Impuesto compra = Suma de cada tramo (Porción de precio × Tipo del tramo)",
+        "Ganancia neta = Precio venta - Precio compra - Gastos deducibles",
+        "Plusvalía fiscal = Ganancia neta × Ratio temporal gravable × 25%"
+      ],
+      "faq": [
+        {
+          "question": "¿Se aplica el tramo máximo a todo el precio de la vivienda?",
+          "answer": "No, cada tramo se aplica solo a la fracción del precio comprendida dentro de ese escalón."
+        },
+        {
+          "question": "¿Qué gastos reducen el impuesto de plusvalía al vender?",
+          "answer": "Notaría, registro, agencia inmobiliaria, impuestos pagados en la compra y obras de mejora con factura."
+        },
+        {
+          "question": "¿Qué cambia entre primera vivienda y propiedad de inversión?",
+          "answer": "La residencia habitual suele disfrutar de tramos exentos iniciales o bonificaciones frente a tasas más altas en segundas propiedades."
+        }
+      ]
+    },
+    "employer-cost": {
+      "guideTitle": "Coste total para la empresa frente a salario bruto y sueldo neto",
+      "guideDesc": "Al salario bruto se suman cotizaciones patronales, fondos de pensión e indemnización, mientras que al trabajador se le retienen IRPF y seguridad social para obtener el sueldo neto.",
+      "formulaHeading": "Fórmulas de coste empresa y salario neto",
+      "formulaLines": [
+        "Coste total empresa = Salario bruto + Pensión empresa + Previsión despido + Seguridad social patronal",
+        "Multiplicador patronal = Coste total empresa ÷ Salario bruto",
+        "Salario neto = Bruto - IRPF - Cotizaciones trabajador - Aportación pensión empleado"
+      ],
+      "faq": [
+        {
+          "question": "¿Cuánto cuesta realmente contratar un empleado sobre su sueldo bruto?",
+          "answer": "Entre cotizaciones sociales, pensiones y fondos, el coste real suele ser un 24%–32% superior al bruto pactado."
+        },
+        {
+          "question": "¿En qué se diferencia de la calculadora de ingresos de autónomo?",
+          "answer": "Esta herramienta modela nóminas por cuenta ajena con aportaciones de empresa, frente al cálculo de gastos deducibles de trabajadores independientes."
+        },
+        {
+          "question": "¿Qué son los beneficios diferidos en el paquete salarial?",
+          "answer": "Son las aportaciones patronales a pensión y fondos de ahorro que forman parte de tu patrimonio aunque no entren en la nómina mensual líquida."
+        }
+      ]
+    },
+    "z-score": {
+      "guideTitle": "Puntuación Z, distribución normal y probabilidades de la campana de Gauss",
+      "guideDesc": "La puntuación Z indica cuántas desviaciones estándar se aleja un dato respecto a la media, permitiendo hallar percentiles y valores p en cualquier distribución normal.",
+      "formulaHeading": "Fórmulas de puntuación Z e inversa",
+      "formulaLines": [
+        "Puntuación Z estándar: Z = (X - μ) ÷ σ",
+        "Valor inverso desde percentil: X = μ + (Z × σ)",
+        "Regla empírica: ±1σ ≈ 68,27% | ±2σ ≈ 95,45% | ±3σ ≈ 99,73%"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué significa obtener un Z-score de +2?",
+          "answer": "Indica que el valor supera la media en dos desviaciones estándar, situándose aproximadamente en el percentil 97,7%."
+        },
+        {
+          "question": "¿Cómo pasar de un percentil al valor original X?",
+          "answer": "En el modo inverso introduce el percentil deseado para obtener su Z correspondiente y calcular X = μ + Z·σ."
+        },
+        {
+          "question": "¿Cuándo usar probabilidad de una cola frente a dos colas?",
+          "answer": "Usa una cola si buscas superar o quedar bajo un umbral concreto, y dos colas para medir desviación extrema en ambos sentidos."
+        }
+      ]
+    },
+    "linear-regression": {
+      "guideTitle": "Regresión lineal por mínimos cuadrados, r de Pearson y R²",
+      "guideDesc": "La regresión lineal halla la recta y = mx + b que minimiza los errores cuadráticos verticales entre puntos experimentales, evaluando el ajuste mediante r y R².",
+      "formulaHeading": "Fórmulas MCO, r de Pearson y R²",
+      "formulaLines": [
+        "Pendiente (m) = Σ[(x_i - x̄)(y_i - ȳ)] ÷ Σ[(x_i - x̄)²]",
+        "Ordenada en origen (b) = ȳ - m × x̄  |  Recta: ŷ = mx + b",
+        "Correlación r = Cov(X,Y) ÷ (σ_x · σ_y) | Determinación R² = r²"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué diferencia hay entre r de Pearson y R²?",
+          "answer": "r varía de -1 a +1 e indica signo y fuerza lineal, mientras que R² (de 0 a 1) indica qué proporción de la varianza explica la recta."
+        },
+        {
+          "question": "¿Cuántos pares de puntos necesito como mínimo?",
+          "answer": "Mínimo 2 puntos distintos para trazar la recta, y al menos 4–5 pares para analizar correlación."
+        },
+        {
+          "question": "¿Un R² alto demuestra causalidad directa?",
+          "answer": "No; indica correlación lineal y capacidad predictiva dentro del rango observado, no causalidad física automática."
+        }
+      ]
+    },
+    "quadratic-equation": {
+      "guideTitle": "Resolver ecuaciones cuadráticas: discriminante, vértice y raíces complejas",
+      "guideDesc": "El discriminante Δ = b² - 4ac determina si la parábola ax² + bx + c corta al eje X en dos puntos reales, en uno tangente o tiene raíces complejas conjugadas.",
+      "formulaHeading": "Fórmula general, discriminante y vértice",
+      "formulaLines": [
+        "Discriminante: Δ = b² - 4ac",
+        "Raíces: x = [ -b ± √Δ ] ÷ (2a)  (si Δ < 0: parte imaginaria ± (√|Δ| ÷ 2a)i)",
+        "Vértice (h, k): h = -b ÷ (2a),  k = a·h² + b·h + c"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué indica el discriminante Δ > 0, = 0 o < 0?",
+          "answer": "Mayor que cero da 2 raíces reales distintas; igual a cero una raíz real doble; menor que cero 2 raíces complejas conjugadas."
+        },
+        {
+          "question": "¿Cómo saber si el vértice es máximo o mínimo?",
+          "answer": "Si a > 0 la parábola abre hacia arriba (mínimo); si a < 0 abre hacia abajo (máximo)."
+        },
+        {
+          "question": "¿Cuál es el corte con el eje vertical Y?",
+          "answer": "Siempre ocurre en el punto (0, c)."
+        }
+      ]
+    },
+    "linear-system": {
+      "guideTitle": "Cómo resolver sistemas lineales 2×2 por la Regla de Cramer",
+      "guideDesc": "Un sistema lineal 2×2 busca el punto de corte (x, y) de dos rectas mediante determinantes D, Dx y Dy, detectando si son secantes, paralelas o coincidentes.",
+      "formulaHeading": "Fórmulas de determinantes de Cramer",
+      "formulaLines": [
+        "Sistema: a₁x + b₁y = c₁  y  a₂x + b₂y = c₂",
+        "Determinante principal: D = a₁b₂ - a₂b₁",
+        "Dx = c₁b₂ - c₂b₁  |  Dy = a₁c₂ - a₂c₁  →  x = Dx ÷ D, y = Dy ÷ D"
+      ],
+      "faq": [
+        {
+          "question": "¿Qué ocurre si D = 0?",
+          "answer": "Si Dx ≠ 0 o Dy ≠ 0, las rectas son paralelas (sistema incompatible sin solución); si D = Dx = Dy = 0, son la misma recta (infinitas soluciones)."
+        },
+        {
+          "question": "¿Por qué usar la Regla de Cramer?",
+          "answer": "Aplica aritmética directa de determinantes paso a paso evitando errores de despeje."
+        },
+        {
+          "question": "¿Sirve también para matrices 3×3?",
+          "answer": "Para determinantes e inversas 3×3 utiliza nuestra Calculadora de Matrices."
+        }
+      ]
+    },
+    "base-converter": {
+      "guideTitle": "Sistemas posicionales: binario, octal, decimal, hexadecimal y base 36",
+      "guideDesc": "Cada base numérica representa cantidades mediante potencias de la base b. En informática destacan base 2, base 8 y base 16 porque cada dígito hexadecimal agrupa 4 bits exactos.",
+      "formulaHeading": "Fórmulas de conversión entre bases",
+      "formulaLines": [
+        "Valor = Σ [ d_i × b^i ] (ej. 1011₂ = 1×8 + 0×4 + 1×2 + 1×1 = 11₁₀)",
+        "1 dígito Hex (0–F) = 4 bits exactos | 2 dígitos Hex = 1 Byte (8 bits)",
+        "1 dígito Octal (0–7) = 3 bits exactos"
+      ],
+      "faq": [
+        {
+          "question": "¿Por qué se usa hexadecimal en programación y colores CSS?",
+          "answer": "Porque cada carácter hexadecimal condensa exactamente 4 bits binarios, simplificando direcciones de memoria y canales RGB."
+        },
+        {
+          "question": "¿Cómo funcionan las letras en base 16 hasta base 36?",
+          "answer": "Se usan 0–9 para valores 0–9 y A–Z para valores del 10 al 35."
+        },
+        {
+          "question": "¿Pierde precisión con enteros de 64 bits?",
+          "answer": "No, emplea aritmética BigInt de precisión arbitraria."
+        }
+      ]
+    },
+    "bitwise-calculator": {
+      "guideTitle": "Operadores bitwise AND, OR, XOR, NOT y desplazamientos de bits",
+      "guideDesc": "Las operaciones bit a bit actúan en paralelo sobre cada 0 y 1 dentro de enteros de 8, 16 o 32 bits para gestionar máscaras, permisos y registros de hardware.",
+      "formulaHeading": "Reglas de compuertas lógicas binarias",
+      "formulaLines": [
+        "AND (&): 1 solo si ambos bits son 1 (filtrar o limpiar máscaras)",
+        "OR (|): 1 si al menos un bit es 1 (activar banderas)",
+        "XOR (^): 1 si los bits son distintos (alternar estados)",
+        "NOT (~): Invierte todos los bits del ancho | Desplazamiento << k ≈ × 2ᵏ"
+      ],
+      "faq": [
+        {
+          "question": "¿Para qué se combinan AND, OR y XOR en programación?",
+          "answer": "OR activa bits, AND con máscara comprueba o apaga bits concretos, y XOR conmuta el estado de una bandera."
+        },
+        {
+          "question": "¿Por qué cambia NOT (~) entre 8, 16 y 32 bits?",
+          "answer": "Porque invierte todos los ceros a la izquierda hasta completar la anchura de palabra elegida."
+        },
+        {
+          "question": "¿Qué hace el desplazamiento de bits << y >>?",
+          "answer": "Desplazar k posiciones a la izquierda multiplica por 2ᵏ y a la derecha divide entre 2ᵏ."
+        }
+      ]
+    },
+    "triangle-solver": {
+      "guideTitle": "Resolver triángulos: Teorema del Coseno, Fórmula de Herón y radios",
+      "guideDesc": "Conociendo tres lados (LLL) o dos lados y el ángulo comprendido (LAL), la trigonometría determina todos los ángulos, alturas, área y radios inscrito y circunscrito.",
+      "formulaHeading": "Fórmulas trigonométricas y de Herón",
+      "formulaLines": [
+        "Teorema del Coseno: c² = a² + b² - 2ab·cos(C)",
+        "Semiperímetro: s = (a + b + c) ÷ 2 | Área (Herón) = √[ s(s-a)(s-b)(s-c) ]",
+        "Inradio: r = Área ÷ s | Circunradio: R = (abc) ÷ (4 × Área)"
+      ],
+      "faq": [
+        {
+          "question": "¿Cuándo es inválido un triángulo según la desigualdad triangular?",
+          "answer": "Cuando la suma de dos lados es menor o igual que el tercer lado, impidiendo que la figura cierre."
+        },
+        {
+          "question": "¿Qué diferencia al inradio r del circunradio R?",
+          "answer": "El inradio r corresponde a la circunferencia tangente interior a los lados, y R a la circunferencia que pasa por los tres vértices."
+        },
+        {
+          "question": "¿Cómo se obtienen las tres alturas del triángulo?",
+          "answer": "Cada altura es h = 2 × Área ÷ lado base correspondiente."
+        }
+      ]
+    },
+    "circle-sector": {
+      "guideTitle": "Geometría circular: arco, sector, cuerda y segmento circular",
+      "guideDesc": "Un sector circular abarca dos radios hasta el centro como una porción de tarta, mientras que el segmento circular es el área comprendida únicamente entre el arco y su cuerda.",
+      "formulaHeading": "Fórmulas de sector y segmento (θ en radianes)",
+      "formulaLines": [
+        "Conversión a radianes: θ_rad = θ_deg × (π ÷ 180)",
+        "Longitud de arco: s = r × θ_rad | Área sector: A = ½ × r² × θ_rad",
+        "Cuerda: c = 2r × sin(θ_rad ÷ 2) | Área segmento = ½r²(θ_rad - sin θ_rad)"
+      ],
+      "faq": [
+        {
+          "question": "¿En qué se diferencian un sector y un segmento circular?",
+          "answer": "El sector llega al centro del círculo; el segmento excluye el triángulo central y queda limitado solo por el arco y la cuerda recta."
+        },
+        {
+          "question": "¿Cuándo alcanza la cuerda su longitud máxima?",
+          "answer": "Cuando el ángulo central es de 180° (π rad), coincidiendo con el diámetro 2r."
+        },
+        {
+          "question": "¿Puedo introducir el ángulo tanto en grados como en radianes?",
+          "answer": "Sí, el calculador convierte entre ambos sistemas al instante."
+        }
+      ]
+    },
+    "matrix-calculator": {
+      "guideTitle": "Álgebra Matricial: Multiplicación, Determinantes, Inversa y Rango",
+      "guideDesc": "Las transformaciones lineales, la resolución de sistemas y los gráficos 3D dependen de operaciones matriciales exactas como el producto matricial, determinantes e inversión.",
+      "formulaHeading": "Fórmulas principales de matrices",
+      "formulaLines": [
+        "Producto (A × B)[i,j] = Σ (A[i,k] × B[k,j])",
+        "Determinante 2×2: det(A) = (a × d) - (b × c)",
+        "Inversa 2×2: A⁻¹ = (1 ÷ det(A)) × [[d, -b], [-c, a]] si det(A) ≠ 0",
+        "Determinante 3×3: Desarrollo por cofactores de la primera fila"
+      ],
+      "faq": [
+        {
+          "question": "¿Cuándo no existe la matriz inversa?",
+          "answer": "Una matriz cuadrada no es invertible (es singular) cuando su determinante es igual a cero, indicando filas o columnas linealmente dependientes."
+        },
+        {
+          "question": "¿Por qué A×B exige que columnas de A coincidan con filas de B?",
+          "answer": "Porque cada entrada del producto es el producto escalar entre una fila de A y una columna de B."
+        },
+        {
+          "question": "¿Qué indica el determinante de una matriz?",
+          "answer": "Mide el factor de escala de área o volumen de la transformación lineal asociada y si invierte la orientación."
+        }
+      ]
+    },
+    "complex-numbers": {
+      "guideTitle": "Aritmética de Números Complejos: Forma Cartesiana, Polar y de Euler",
+      "guideDesc": "Los números complejos combinan parte real e imaginaria (i² = −1) para modelar impedancia eléctrica, señales, ondas y rotaciones en el plano.",
+      "formulaHeading": "Fórmulas cartesianas y polares",
+      "formulaLines": [
+        "Forma cartesiana: z = a + bi (con i² = -1)",
+        "Módulo: |z| = √(a² + b²) | Argumento: θ = atan2(b, a)",
+        "Forma polar y de Euler: z = r(cos θ + i sen θ) = r · e^(iθ)",
+        "División: multiplicar numerador y denominador por el conjugado (c - di)"
+      ],
+      "faq": [
+        {
+          "question": "¿Cómo se dividen dos números complejos?",
+          "answer": "Multiplicando el numerador y el denominador por el conjugado del denominador (c − di) para obtener el denominador real c² + d²."
+        },
+        {
+          "question": "¿Cuándo conviene usar la forma polar en lugar de la cartesiana?",
+          "answer": "La forma cartesiana facilita sumas y restas, mientras que la forma polar agiliza multiplicaciones, divisiones y potencias."
+        },
+        {
+          "question": "¿Qué es el conjugado de a + bi?",
+          "answer": "Es a − bi, manteniendo la parte real e invirtiendo el signo de la parte imaginaria."
+        }
+      ]
+    },
+    "pregnancy": {
+      "guideTitle": "Cómo se Calculan las Semanas de Embarazo y la Fecha Probable de Parto",
+      "guideDesc": "La fecha probable de parto (FPP) sigue la regla de Naegele: 280 días (40 semanas) desde la última menstruación, ajustada por duración del ciclo o fecha de concepción.",
+      "formulaHeading": "Regla de Naegele y edad gestacional",
+      "formulaLines": [
+        "FPP por FUM = Fecha Última Menstruación + 280 días + (Ciclo − 28 días)",
+        "FPP por Concepción = Fecha de concepción + 266 días",
+        "Edad gestacional = Semanas completas + Días adicionales"
+      ],
+      "faq": [
+        {
+          "question": "¿Por qué la edad gestacional empieza dos semanas antes de la concepción?",
+          "answer": "La fecha obstétrica se cuenta desde el primer día de la última regla porque es un dato comprobable frente al momento exacto de ovulación."
+        },
+        {
+          "question": "¿Cómo afecta un ciclo irregular al cálculo?",
+          "answer": "Un ciclo más largo de 28 días retrasa la ovulación estimada y suma esos días adicionales a la fecha probable de parto."
+        },
+        {
+          "question": "¿Qué semanas abarca cada trimestre?",
+          "answer": "Primer trimestre: semanas 1 a 13; segundo trimestre: semanas 14 a 27; tercer trimestre: semana 28 hasta el nacimiento."
+        }
+      ]
+    },
+    "retirement-planner": {
+      "guideTitle": "Planificación de Jubilación, Independencia Financiera (FIRE) y Regla del 4%",
+      "guideDesc": "Una jubilación sostenible combina crecimiento compuesto previo al retiro con retiradas ajustadas a la inflación durante más de 30 años.",
+      "formulaHeading": "Fórmulas de capital objetivo y retiro seguro",
+      "formulaLines": [
+        "Capital FIRE = Gasto anual deseado ÷ Tasa de retiro (0,04 = 25× gastos)",
+        "Capital acumulado = Ahorro(1+r)^n + Aporte mensual × [((1+r)^n − 1) ÷ r]",
+        "Rentabilidad real = [(1 + Nominal) ÷ (1 + Inflación)] − 1"
+      ],
+      "faq": [
+        {
+          "question": "¿En qué consiste la regla del 4%?",
+          "answer": "Permite retirar el 4% del capital inicial el primer año de jubilación y ajustarlo por inflación cada año con alta probabilidad de durar 30 años."
+        },
+        {
+          "question": "¿Por qué ajustar las proyecciones por inflación?",
+          "answer": "Garantiza que la renta estimada refleje el poder adquisitivo real futuro y no cifras nominales engañosas."
+        },
+        {
+          "question": "¿Cómo influye una pensión pública en el cálculo?",
+          "answer": "Se resta del gasto mensual objetivo, reduciendo el capital privado necesario para retirarse."
+        }
+      ]
+    },
+    "capital-gains-tax": {
+      "guideTitle": "Impuesto a las Ganancias de Capital: Base Imponible, Inflación y Compensación",
+      "guideDesc": "La rentabilidad neta depende del coste de adquisición ajustado por comisiones, la compensación de pérdidas patrimoniales y el tipo impositivo nominal o real.",
+      "formulaHeading": "Fórmulas de ganancia patrimonial neta",
+      "formulaLines": [
+        "Ganancia bruta = Valor de venta − Precio de compra − Comisiones",
+        "Ganancia real = Venta − (Coste base × Índice acumulado de inflación)",
+        "Impuesto = máx(0, Ganancia neta − Pérdidas compensables) × Tipo impositivo"
+      ],
+      "faq": [
+        {
+          "question": "¿Se pueden deducir las comisiones de compra y venta?",
+          "answer": "Sí, los gastos y comisiones de corretaje se suman al valor de compra o se restan del de transmisión para reducir la ganancia gravable."
+        },
+        {
+          "question": "¿Cómo compenso pérdidas bursátiles con ganancias?",
+          "answer": "Las pérdidas materializadas en el ejercicio se restan de las ganancias del mismo periodo y el exceso suele poder compensarse en años posteriores."
+        },
+        {
+          "question": "¿Qué diferencia hay entre ganancia nominal y real?",
+          "answer": "La ganancia real descuenta el efecto de la inflación sobre el capital invertido antes de aplicar el porcentaje de impuesto."
+        }
+      ]
+    },
+    "car-finance-lease": {
+      "guideTitle": "Financiar Coche vs Renting y Leasing: Depreciación y Coste Real",
+      "guideDesc": "Elegir entre préstamo de vehículo, cuota final o renting exige comparar el flujo total pagado menos el valor residual de reventa al finalizar el plazo.",
+      "formulaHeading": "Fórmulas de coste neto por financiación o renting",
+      "formulaLines": [
+        "Cuota del préstamo = P × [r(1+r)^n ÷ ((1+r)^n − 1)]",
+        "Coste total renting = Entrada + (Cuota mensual × Meses)",
+        "Coste neto real = Total desembolsado − Valor estimado de reventa"
+      ],
+      "faq": [
+        {
+          "question": "¿Cuándo resulta más barato comprar que contratar un renting?",
+          "answer": "Si planeas conservar el coche más de 4 o 5 años, financiar y mantener el vehículo suele ser mucho más económico a largo plazo."
+        },
+        {
+          "question": "¿Qué ventajas incluye el renting frente al préstamo?",
+          "answer": "Suele integrar seguro, mantenimiento, impuestos y asistencia en una sola cuota fija sin riesgo de depreciación."
+        },
+        {
+          "question": "¿Qué es el valor residual?",
+          "answer": "Es el valor estimado de mercado del vehículo al término del contrato, clave para calcular la depreciación."
+        }
+      ]
+    },
+    "scientific-unit-engine": {
+      "guideTitle": "Conversión de Unidades Científicas e Ingeniería (SI e Imperial)",
+      "guideDesc": "El cálculo técnico requiere convertir con precisión exacta magnitudes de presión, energía, potencia, par motor, caudal y temperatura.",
+      "formulaHeading": "Equivalencias físicas fundamentales",
+      "formulaLines": [
+        "Presión: 1 bar = 100.000 Pa = 14,5038 psi = 0,9869 atm",
+        "Energía y Potencia: 1 kWh = 3,6 MJ = 3.412,14 BTU | 1 HP = 745,7 W",
+        "Par y Fuerza: 1 N·m = 0,73756 lb-ft | 1 lbf = 4,44822 N",
+        "Temperatura: K = °C + 273,15 | °F = (°C × 9/5) + 32"
+      ],
+      "faq": [
+        {
+          "question": "¿Cuál es la diferencia entre kW y kWh?",
+          "answer": "El kilovatio (kW) mide potencia instantánea y el kilovatio-hora (kWh) mide energía acumulada durante una hora."
+        },
+        {
+          "question": "¿Cuántos pascales equivale 1 bar?",
+          "answer": "Exactamente 100.000 pascales (100 kPa)."
+        },
+        {
+          "question": "¿Por qué son importantes las constantes exactas en ingeniería?",
+          "answer": "Evitan desviaciones acumulativas en tolerancias mecánicas, presión hidráulica y balances térmicos."
+        }
+      ]
+    },
+    "purchasing-power": {
+      "guideTitle": "Paridad de Poder Adquisitivo (PPA) y Salario Equivalente por Ciudad",
+      "guideDesc": "Evaluar una oferta laboral en otra ciudad implica ajustar el salario según el alquiler local, alimentación, transporte, impuestos y el índice de coste de vida.",
+      "formulaHeading": "Fórmulas de salario equivalente y ahorro real",
+      "formulaLines": [
+        "Salario equivalente = Ingreso actual × (Índice ciudad destino ÷ Índice ciudad origen)",
+        "Impacto de vivienda = Alquiler estimado en destino − Alquiler actual",
+        "Ahorro disponible real = Sueldo neto en destino − Cesta mensual local"
+      ],
+      "faq": [
+        {
+          "question": "¿Por qué un sueldo nominal más alto puede ofrecer menor nivel de vida?",
+          "answer": "Si el alquiler y los impuestos locales crecen más rápido que el salario, el dinero libre para ahorrar disminuye."
+        },
+        {
+          "question": "¿Qué abarca el índice de coste de vida?",
+          "answer": "Compara vivienda, supermercado, transporte, suministros, restaurantes y servicios básicos."
+        },
+        {
+          "question": "¿Cómo usar este cálculo al negociar un traslado internacional?",
+          "answer": "Calcula el sueldo necesario para igualar tu capacidad de ahorro actual antes de fijar la cifra de negociación."
+        }
+      ]
     }
   },
   "assistant": {

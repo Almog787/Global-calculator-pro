@@ -1,0 +1,2546 @@
+{
+  "mortgage-affordability": {
+    "bestFor": {
+      "en": "Best before house-hunting to set a realistic maximum property price based on income, existing debt, and down payment.",
+      "he": "מתאים במיוחד לפני חיפוש דירה לקביעת תקציב רכישה ריאלי לפי הכנסה פנויה, הון עצמי והתחייבויות קיימות.",
+      "es": "Ideal antes de buscar vivienda para fijar un precio máximo realista según ingresos, deudas y entrada.",
+      "fr": "Idéal avant une recherche immobilière pour fixer un budget d'achat réaliste selon revenus, dettes et apport.",
+      "ar": "مثالي قبل البحث عن منزل لتحديد السعر الأقصى الواقعي وفق الدخل والالتزامات والدفعة الأولى.",
+      "ru": "Подходит перед поиском жилья для оценки максимального бюджета покупки с учетом дохода, долгов и первого взноса."
+    },
+    "features": {
+      "en": [
+        "Applies 28%/36% front-end and back-end Debt-to-Income (DTI) lending ratios",
+        "Combines down payment, loan term, and interest rate into max home budget",
+        "Separates maximum loan principal from total purchasing power",
+        "Instant monthly payment safety check against existing monthly debts"
+      ],
+      "he": [
+        "חישוב יחס החזר מהכנסה (DTI 28%/36%) המקובל בבנקים למשכנתאות",
+        "שקלול הון עצמי, תקופת הלוואה וריבית לקביעת תקרת מחיר דירה",
+        "הפרדה בין גובה המשכנתא המקסימלי לתקציב הרכישה הכולל",
+        "בדיקת עומס חודשי כולל התחייבויות והלוואות קיימות"
+      ],
+      "es": [
+        "Aplica la regla bancaria 28%/36% de relación deuda-ingresos (DTI)",
+        "Combina ahorro inicial, plazo y tasa para estimar el precio máximo",
+        "Distingue entre préstamo máximo y presupuesto total de compra",
+        "Evalúa la cuota mensual segura descontando deudas vigentes"
+      ],
+      "fr": [
+        "Applique les ratios bancaires d'endettement (DTI 28 % / 36 %)",
+        "Combine apport personnel, durée et taux pour calculer le budget maximal",
+        "Distingue le capital empruntable du prix d'achat total du bien",
+        "Vérifie la mensualité supportable selon vos crédits en cours"
+      ],
+      "ar": [
+        "تطبيق نسب الدين إلى الدخل المعتمدة مصرفياً (28% / 36% DTI)",
+        "دمج الدفعة الأولى ومدة التمويل وسعر الفائدة لحساب أقصى ميزانية شراء",
+        "فصل أصل التمويل الأقصى عن إجمالي القدرة الشرائية للعقار",
+        "فحص الأمان للقسط الشهري مع احتساب الالتزامات المالية القائمة"
+      ],
+      "ru": [
+        "Учет банковских коэффициентов долговой нагрузки (DTI 28% / 36%)",
+        "Расчет предельной стоимости жилья из дохода, ставки и срока кредита",
+        "Разделение максимальной суммы ипотеки и общего бюджета сделки",
+        "Оценка безопасного ежемесячного платежа с учетом текущих кредитов"
+      ]
+    }
+  },
+  "refinance": {
+    "bestFor": {
+      "en": "Best when interest rates drop and you want to verify how many months closing costs take to break even.",
+      "he": "מתאים לבעלי משכנתא קיימת הבודקים כדאיות מיחזור לפי נקודת האיזון מול קנסות ועמלות פתיחת תיק.",
+      "es": "Ideal cuando bajan los tipos para calcular en cuántos meses amortizas los gastos de refinanciación.",
+      "fr": "Idéal lorsque les taux baissent pour savoir en combien de mois les frais de rachat sont amortis.",
+      "ar": "مناسب عند انخفاض الفائدة لحساب نقطة التعادل بالشهور واسترداد رسوم إعادة التمويل.",
+      "ru": "Подходит при снижении ставок для расчета срока окупаемости комиссий за рефинансирование."
+    },
+    "features": {
+      "en": [
+        "Calculates closing-cost break-even point in exact months",
+        "Compares current remaining mortgage vs new refinanced interest rate",
+        "Computes net lifetime interest savings after refinancing fees",
+        "Shows monthly cash-flow reduction side by side"
+      ],
+      "he": [
+        "חישוב נקודת איזון מדויקת בחודשים להחזר עלויות המיחזור",
+        "השוואת יתרת המשכנתא הנוכחית מול ריבית ותקופת מיחזור חדשה",
+        "חישוב חיסכון נטו בריבית לכל אורך חיי ההלוואה בניכוי עמלות",
+        "הצגת הקטנת ההחזר החודשי מול השינוי בתקופת הפריסה"
+      ],
+      "es": [
+        "Calcula el punto de equilibrio exacto en meses frente a los gastos",
+        "Compara tu hipoteca actual con el nuevo tipo y plazo",
+        "Estima el ahorro neto total en intereses tras comisiones",
+        "Muestra el alivio mensual en el flujo de caja"
+      ],
+      "fr": [
+        "Calcule le seuil de rentabilité exact en mois face aux frais de dossier",
+        "Compare le prêt restant dû avec le nouveau taux et la nouvelle durée",
+        "Évalue l'économie nette totale d'intérêts après pénalités",
+        "Affiche la baisse de mensualité en parallèle"
+      ],
+      "ar": [
+        "حساب نقطة التعادل الدقيقة بالأشهر لتغطية رسوم إعادة التمويل",
+        "مقارنة الرصيد المتبقي من الرهن الحالي بسعر الفائدة والمدة الجديدة",
+        "احتساب صافي الوفر في الفوائد الإجمالية بعد خصم التكاليف",
+        "عرض انخفاض القسط الشهري بشكل فوري ومباشر"
+      ],
+      "ru": [
+        "Расчет точного срока окупаемости расходов на переоформление в месяцах",
+        "Сравнение остатка текущей ипотеки с новой ставкой и сроком",
+        "Оценка чистой экономии на процентах за вычетом комиссий",
+        "Наглядное сравнение снижения ежемесячного платежа"
+      ]
+    }
+  },
+  "vat": {
+    "bestFor": {
+      "en": "Best for invoices, receipts, and international pricing when switching cleanly between net (ex-VAT) and gross (inc-VAT) totals.",
+      "he": "מיועד להפקת חשבוניות, הצעות מחיר ובדיקת קבלות במעבר מהיר בין מחיר לפני מע״מ למחיר כולל מע״מ.",
+      "es": "Perfecto para facturas y presupuestos al pasar rápidamente de importe neto sin IVA a total con IVA.",
+      "fr": "Idéal pour factures et devis afin de basculer instantanément entre montants HT, TVA et TTC.",
+      "ar": "مخصص للفواتير وعروض الأسعار للتحويل الفوري بين المبلغ الصافي والمبلغ شامل الضريبة.",
+      "ru": "Удобен для счетов, чеков и прайс-листов при быстром выделении и начислении НДС."
+    },
+    "features": {
+      "en": [
+        "One-click toggle between adding VAT (Net to Gross) and extracting VAT (Gross to Net)",
+        "Country rate presets including 17%, 18%, 20%, and custom sales tax rates",
+        "Exact tax component breakdown for business invoicing and bookkeeping",
+        "Multi-currency formatting with high-precision decimal rounding"
+      ],
+      "he": [
+        "מעבר בלחיצת כפתור בין הוספת מע״מ (נטו לברוטו) לחילוץ מע״מ (ברוטו לנטו)",
+        "קיצורי דרך לשיעורי מס נפוצים כולל מע״מ 17%, 18%, 20% ואחוז מותאם",
+        "פיצול מדויק של סכום הבסיס ורכיב המס לחשבוניות והנהלת חשבונות",
+        "עיגול חשבונאי מדויק למניעת סטיות של אגורות"
+      ],
+      "es": [
+        "Cambio directo entre añadir IVA (neto a bruto) y desglosar IVA (bruto a neto)",
+        "Preajustes rápidos de tasas habituales (16%, 18%, 21%) o porcentaje libre",
+        "Desglose exacto de base imponible y cuota tributaria para facturas",
+        "Redondeo decimal preciso sin errores de céntimos"
+      ],
+      "fr": [
+        "Bascule en un clic entre ajout de TVA (HT vers TTC) et extraction (TTC vers HT)",
+        "Préréglages des taux courants (5,5 %, 10 %, 18 %, 20 %) ou taux personnalisé",
+        "Ventilation précise du montant HT et de la taxe pour la facturation",
+        "Arrondi décimal exact pour la comptabilité"
+      ],
+      "ar": [
+        "تبديل فوري بين إضافة الضريبة (صافي إلى إجمالي) واستخراج الضريبة (إجمالي إلى صافي)",
+        "نسب ضريبة جاهزة مثل 5% و15% و17% و18% و20% أو نسبة مخصصة",
+        "تفصيل دقيق للمبلغ الأساسي وقيمة الضريبة المضافة للفواتير والمحاسبة",
+        "تقريب عشري دقيق يمنع فروق الهللات أو السنتات"
+      ],
+      "ru": [
+        "Мгновенное переключение между начислением НДС сверху и выделением НДС из суммы",
+        "Готовые ставки 10%, 18%, 20% и произвольный процент налога с продаж",
+        "Точная разбивка на сумму без налога и сумму НДС для бухгалтерии",
+        "Точное десятичное округление до копеек без погрешностей"
+      ]
+    }
+  },
+  "break-even": {
+    "bestFor": {
+      "en": "Best for founders and product managers determining minimum unit sales needed before fixed overhead is covered.",
+      "he": "מתאים ליזמים ומנהלי מוצר לחישוב כמות המכירות והפדיון המינימלי לכיסוי הוצאות קבועות ומעבר לרווח.",
+      "es": "Ideal para emprendedores que necesitan saber cuántas unidades vender para cubrir costes fijos.",
+      "fr": "Conçu pour les fondateurs souhaitant connaître le volume minimal de ventes pour couvrir les charges fixes.",
+      "ar": "مخصص لرواد الأعمال لتحديد الحد الأدنى من المبيعات اللازم لتغطية التكاليف الثابتة والوصول للربح.",
+      "ru": "Подходит предпринимателям для определения минимального объема продаж, покрывающего постоянные издержки."
+    },
+    "features": {
+      "en": [
+        "Calculates break-even volume in both units sold and total revenue",
+        "Computes contribution margin per unit and contribution margin ratio",
+        "Interactive cost-volume-profit line chart showing profit and loss zones",
+        "Includes SaaS, e-commerce, cafe, and consulting presets for fast modeling"
+      ],
+      "he": [
+        "חישוב נקודת האיזון הן בכמות יחידות והן במחזור הכנסות (פדיון)",
+        "חישוב מרווח התרומה ליחידה ושיעור התרומה מהמחיר",
+        "גרף הכנסות מול הוצאות קבועות ומשתנות לזיהוי אזור הרווח וההפסד",
+        "תרחישים מוכנים ל-SaaS, חנות אונליין, מסעדה ושירותי ייעוץ"
+      ],
+      "es": [
+        "Calcula el punto de equilibrio tanto en unidades como en ingresos totales",
+        "Determina el margen de contribución unitario y porcentual",
+        "Gráfico interactivo de ingresos frente a costes fijos y variables",
+        "Incluye plantillas rápidas para SaaS, e-commerce, hostelería y consultoría"
+      ],
+      "fr": [
+        "Calcule le seuil de rentabilité en volume d'unités et en chiffre d'affaires",
+        "Détermine la marge sur coût variable unitaire et en pourcentage",
+        "Graphique coût-volume-profit illustrant les zones de perte et de bénéfice",
+        "Préréglages SaaS, e-commerce, restauration et conseil intégrés"
+      ],
+      "ar": [
+        "حساب نقطة التعادل بعدد الوحدات المباعة وإجمالي الإيرادات المطلوبة",
+        "حساب هامش المساهمة للوحدة ونسبة المساهمة من السعر",
+        "رسم بياني تفاعلي للإيرادات مقابل التكاليف الثابتة والمتغيرة",
+        "قوالب جاهزة لنماذج SaaS والتجارة الإلكترونية والمطاعم والاستشارات"
+      ],
+      "ru": [
+        "Расчет точки безубыточности в натуральных единицах и денежной выручке",
+        "Вычисление маржинального дохода на единицу и коэффициента маржинальности",
+        "Интерактивный график выручки, постоянных и переменных затрат",
+        "Готовые пресеты для SaaS, интернет-магазина, кафе и консалтинга"
+      ]
+    }
+  },
+  "inflation": {
+    "bestFor": {
+      "en": "Best for estimating how annual CPI inflation erodes cash savings or what salary raise is needed to preserve real purchasing power.",
+      "he": "מתאים למדידת שחיקת מזומנים וחסכונות לאורך זמן וחישוב הסכום העתידי הנדרש לשמירה על כוח הקנייה.",
+      "es": "Ideal para medir cuánto reduce el IPC el valor de tus ahorros y cuánto necesitas para igualar precios futuros.",
+      "fr": "Idéal pour mesurer l'érosion monétaire liée à l'inflation et calculer le capital futur équivalent.",
+      "ar": "مناسب لقياس تآكل قيمة المدخرات بسبب التضخم وتحديد المبلغ المستقبلي للحفاظ على القوة الشرائية.",
+      "ru": "Подходит для оценки обесценивания наличных и расчета суммы, необходимой для сохранения покупательной способности."
+    },
+    "features": {
+      "en": [
+        "Projects both future equivalent cost and eroded real purchasing power today",
+        "Calculates cumulative inflation percentage across custom multi-year horizons",
+        "Visualizes nominal vs inflation-adjusted value curves year by year",
+        "Supports low, moderate, and high-inflation sensitivity scenarios"
+      ],
+      "he": [
+        "מחשב הן עלות עתידית שוות ערך והן את כוח הקנייה הריאלי שנשחק",
+        "חישוב אינפלציה מצטברת באחוזים על פני טווח שנים גמיש",
+        "גרף השוואה בין ערך נומינלי לערך ריאלי מותאם למדד שנה אחר שנה",
+        "בחינת תרחישי מדד שונים מיעד בנק מרכזי ועד אינפלציה גבוהה"
+      ],
+      "es": [
+        "Proyecta el coste futuro equivalente y el poder adquisitivo real perdido",
+        "Calcula la inflación acumulada exacta en horizontes de varios años",
+        "Gráfica anual comparando valor nominal frente a valor real ajustado",
+        "Permite simular escenarios de inflación baja, moderada o elevada"
+      ],
+      "fr": [
+        "Projette à la fois le coût futur équivalent et la perte réelle de pouvoir d'achat",
+        "Calcule l'inflation cumulée sur des horizons pluriannuels personnalisés",
+        "Courbe comparative entre valeur nominale et valeur réelle corrigée",
+        "Simule différents régimes d'inflation pour protéger votre épargne"
+      ],
+      "ar": [
+        "حساب التكلفة المستقبلية المكافئة وتآكل القوة الشرائية الحقيقية للنقود",
+        "احتساب التضخم التراكمي بدقة على مدى سنوات متعددة",
+        "رسم بياني سنوي يقارن القيمة الاسمية بالقيمة الحقيقية المعدلة للتضخم",
+        "اختبار سيناريوهات تضخم منخفضة ومرتفعة لحماية المدخرات"
+      ],
+      "ru": [
+        "Расчет будущей эквивалентной цены и потери реальной покупательной способности",
+        "Вычисление накопленной инфляции за произвольный горизонт лет",
+        "Погодный график сравнения номинальной и реальной стоимости денег",
+        "Моделирование сценариев низкой, умеренной и высокой инфляции"
+      ]
+    }
+  },
+  "credit-card-payoff": {
+    "bestFor": {
+      "en": "Best for paying off a single high-APR credit card either by choosing a fixed monthly budget or a target payoff deadline.",
+      "he": "מתאים לסגירת חוב בכרטיס אשראי אחד: חישוב מתי תסתיים ההלוואה או כמה לשלם כדי לסיים ביעד חודשים מוגדר.",
+      "es": "Ideal para liquidar una tarjeta de crédito eligiendo entre cuota fija mensual o fecha límite de pago.",
+      "fr": "Parfait pour solder une carte de crédit en choisissant soit une mensualité fixe, soit une échéance cible.",
+      "ar": "مناسب لسداد بطاقة ائتمان واحدة إما بتحديد قسط شهري ثابت أو اختيار مدة زمنية مستهدفة للسداد.",
+      "ru": "Подходит для закрытия долга по одной кредитной карте при заданном платеже или желаемом сроке погашения."
+    },
+    "features": {
+      "en": [
+        "Dual-mode solver: Payoff Months by Budget OR Required Payment by Target Date",
+        "Exposes true APR compounding cost and compares against minimum-payment traps",
+        "Generates month-by-month remaining balance and cumulative interest curve",
+        "Flags negative amortization when payment fails to cover monthly interest"
+      ],
+      "he": [
+        "מצב כפול: חישוב זמן סיום לפי החזר חודשי או חישוב החזר נדרש לתאריך יעד",
+        "חשיפת עלות הריבית המצטברת לעומת החזר מינימלי איטי",
+        "תרשים ירידת יתרת החוב והריבית חודש אחר חודש",
+        "התראה מיידית כשהתשלום החודשי אינו מכסה את הריבית השוטפת"
+      ],
+      "es": [
+        "Modo dual: meses para liquidar según cuota o cuota necesaria para fecha límite",
+        "Muestra el coste real de la TAE frente al pago mínimo mensual",
+        "Evolución mensual del saldo pendiente e intereses acumulados",
+        "Alerta automática si la cuota no cubre los intereses del mes"
+      ],
+      "fr": [
+        "Double mode : durée selon mensualité OU mensualité requise pour une date cible",
+        "Révèle le coût réel des intérêts annuels par rapport au paiement minimum",
+        "Courbe mensuelle de réduction du solde et des intérêts cumulés",
+        "Alerte immédiate si la mensualité ne couvre pas les intérêts mensuels"
+      ],
+      "ar": [
+        "وضعان للحساب: مدة السداد حسب القسط أو القسط المطلوب لإنهاء الدين في موعد محدد",
+        "إظهار التكلفة الحقيقية للفائدة السنوية مقارنة بالسداد بالحد الأدنى",
+        "منحنى شهري لانخفاض الرصيد والفوائد المتراكمة",
+        "تنبيه فوري عندما لا يغطي القسط الشهري قيمة الفائدة الشهرية"
+      ],
+      "ru": [
+        "Два режима: расчет срока по бюджету ИЛИ расчет платежа к нужной дате",
+        "Расчет реальной переплаты по APR по сравнению с минимальными платежами",
+        "Помесячный график уменьшения долга и накопленных процентов",
+        "Предупреждение, если платеж меньше начисленных за месяц процентов"
+      ]
+    }
+  },
+  "bmr": {
+    "bestFor": {
+      "en": "Best for setting daily calorie targets for fat loss, maintenance, or muscle gain based on metabolism and weekly training.",
+      "he": "מתאים לקביעת יעד קלורי יומי לחיטוב, שמירה על משקל או עלייה במסה על סמך חילוף חומרים ורמת פעילות.",
+      "es": "Ideal para fijar objetivos diarios de calorías para perder grasa, mantener peso o ganar músculo.",
+      "fr": "Idéal pour définir vos besoins caloriques quotidiens (perte de poids, maintien ou prise de masse).",
+      "ar": "مثالي لتحديد السعرات الحرارية اليومية للتنشيف أو الحفاظ على الوزن أو بناء العضلات.",
+      "ru": "Подходит для расчета дневной нормы калорий под похудение, удержание веса или набор мышечной массы."
+    },
+    "features": {
+      "en": [
+        "Uses clinically validated Mifflin-St Jeor equation for Basal Metabolic Rate (BMR)",
+        "Applies 5 activity multipliers to compute Total Daily Energy Expenditure (TDEE)",
+        "Outputs cutting (-500 kcal), maintenance, and lean bulking calorie targets",
+        "Supports metric (kg/cm) and imperial inputs with gender and age precision"
+      ],
+      "he": [
+        "חישוב קצב חילוף חומרים בסיסי (BMR) לפי נוסחת Mifflin-St Jeor המדויקת",
+        "שקלול 5 רמות פעילות גופנית לחישוב ההוצאה הקלורית היומית (TDEE)",
+        "המלצות קלוריות מוכנות לירידה במשקל, תחזוקה ועלייה נקייה במסה",
+        "התאמה לפי גיל, מין, גובה ומשקל לדיוק מרבי"
+      ],
+      "es": [
+        "Aplica la ecuación clínica Mifflin-St Jeor para calcular la tasa metabólica basal",
+        "Multiplica por 5 niveles de actividad física para obtener el gasto total (TDEE)",
+        "Muestra objetivos diarios para déficit calórico, mantenimiento y volumen",
+        "Ajuste personalizado según edad, sexo, estatura y peso"
+      ],
+      "fr": [
+        "Utilise l'équation de référence Mifflin-St Jeor pour le métabolisme de base",
+        "Applique 5 facteurs d'activité physique pour obtenir la dépense totale (TDEE)",
+        "Propose des cibles caloriques pour sèche, maintien et prise de masse",
+        "Paramétrage selon l'âge, le sexe, la taille et le poids"
+      ],
+      "ar": [
+        "يعتمد معادلة Mifflin-St Jeor السريرية لحساب معدل الأيض الأساسي (BMR)",
+        "يطبق 5 مستويات للنشاط البدني لاستخراج إجمالي الطاقة اليومية (TDEE)",
+        "يعرض أهداف السعرات للتخسيس والثبات وبناء العضلات",
+        "يدعم الجنس والعمر والوزن والطول بدقة عالية"
+      ],
+      "ru": [
+        "Использует клинически точную формулу Миффлина — Сан Жеора для BMR",
+        "Учитывает 5 уровней физической активности для расчета общего расхода (TDEE)",
+        "Готовые целевые калории для похудения, поддержания веса и набора массы",
+        "Учет пола, возраста, роста и веса пользователя"
+      ]
+    }
+  },
+  "water-intake": {
+    "bestFor": {
+      "en": "Best for estimating personalized daily hydration needs in liters, cups, and fluid ounces when exercising or in hot weather.",
+      "he": "מתאים לקביעת יעד שתייה יומי אישי בליטרים ובכוסות בהתאם למשקל הגוף, משך האימון ומזג האוויר.",
+      "es": "Ideal para calcular tu hidratación diaria en litros y vasos según peso, ejercicio y clima.",
+      "fr": "Idéal pour estimer votre besoin quotidien en eau (litres et verres) selon poids, sport et climat.",
+      "ar": "مناسب لتقدير احتياجك اليومي من الماء باللترات والأكواب حسب الوزن ومستوى التمرين والمناخ.",
+      "ru": "Подходит для расчета индивидуальной дневной нормы воды в литрах и стаканах с учетом веса и тренировок."
+    },
+    "features": {
+      "en": [
+        "Computes baseline hydration from body weight plus exercise sweat adjustments",
+        "Adds hot/humid climate hydration buffers automatically",
+        "Displays results simultaneously in liters, milliliters, ounces, and 250ml glasses",
+        "Helps pace fluid intake evenly across waking hours"
+      ],
+      "he": [
+        "חישוב בסיס לפי משקל גוף בתוספת השלמת נוזלים לפי דקות אימון",
+        "התאמה אוטומטית לתנאי אקלים חמים ולחות גבוהה",
+        "תצוגה משולבת בליטרים, מיליליטרים, אונקיות וכוסות של 250 מ״ל",
+        "חלוקה נוחה של כמות השתייה המומלצת לאורך שעות היום"
+      ],
+      "es": [
+        "Calcula la base por peso corporal más reposición por minutos de ejercicio",
+        "Ajusta automáticamente el consumo para climas cálidos o húmedos",
+        "Muestra equivalencias en litros, mililitros, onzas y vasos de 250 ml",
+        "Facilita distribuir la hidratación durante toda la jornada"
+      ],
+      "fr": [
+        "Calcule le besoin de base selon le poids plus l'effort physique quotidien",
+        "Intègre un correctif pour les climats chauds ou humides",
+        "Convertit le total en litres, millilitres, onces et verres de 250 ml",
+        "Aide à répartir l'hydratation sur l'ensemble de la journée"
+      ],
+      "ar": [
+        "حساب الاحتياج الأساسي حسب الوزن مع إضافة تعويض السوائل للتمارين",
+        "تعديل تلقائي للأجواء الحارة أو الرطبة لزيادة الترطيب",
+        "عرض النتائج باللتر والملليلتر والأونصة وبعدد أكواب 250 مل",
+        "توزيع عملي للكمية اليومية على ساعات اليقظة"
+      ],
+      "ru": [
+        "Базовая норма по весу тела плюс добавка на длительность тренировок",
+        "Корректировка нормы потребления жидкости для жаркого климата",
+        "Вывод результата в литрах, миллилитрах, унциях и стаканах по 250 мл",
+        "Удобный ориентир для равномерного питьевого режима в течение дня"
+      ]
+    }
+  },
+  "date-difference": {
+    "bestFor": {
+      "en": "Best for project deadlines, contracts, and visas when counting exact calendar days versus Mon–Fri working business days.",
+      "he": "מיועד לחישוב לוחות זמנים לפרויקטים, חוזים וטיולים עם הפרדה ברורה בין ימים קלנדריים לימי עבודה.",
+      "es": "Ideal para plazos de proyectos, contratos y viajes diferenciando días naturales de días hábiles.",
+      "fr": "Conçu pour délais de projets et contrats en distinguant jours calendaires et jours ouvrés.",
+      "ar": "مناسب لمواعيد المشاريع والعقود والعمل مع التمييز الدقيق بين الأيام التقويمية وأيام العمل.",
+      "ru": "Подходит для подсчета сроков проектов, договоров и отпусков с разделением календарных и рабочих дней."
+    },
+    "features": {
+      "en": [
+        "Counts exact total calendar days, weeks, months, and fractional years",
+        "Separates weekday business days by excluding Saturdays and Sundays",
+        "Handles leap years and varying month lengths (28–31 days) automatically",
+        "Bidirectional date span calculation with instant swap"
+      ],
+      "he": [
+        "ספירה מדויקת של ימים קלנדריים, שבועות, חודשים ושנים בין שני תאריכים",
+        "חישוב ימי עבודה ועסקים תוך ניכוי ימי סוף שבוע",
+        "התחשבות אוטומטית בשנים מעוברות ואורכי חודשים משתנים",
+        "חישוב מיידי קדימה ואחורה לכל טווח תאריכים"
+      ],
+      "es": [
+        "Cuenta con precisión días naturales, semanas, meses y años",
+        "Separa los días laborables excluyendo fines de semana",
+        "Gestiona automáticamente años bisiestos y meses de distinta duración",
+        "Cálculo bidireccional instantáneo entre cualquier par de fechas"
+      ],
+      "fr": [
+        "Compte exactement jours calendaires, semaines, mois et années",
+        "Calcule les jours ouvrés en excluant samedis et dimanches",
+        "Prend en charge années bissextiles et longueurs de mois variables",
+        "Calcul instantané entre deux dates dans n'importe quel ordre"
+      ],
+      "ar": [
+        "عدّ دقيق للأيام الكاملة والأسابيع والأشهر والسنوات بين أي تاريخين",
+        "حساب أيام العمل الفعلية باستثناء عطلات نهاية الأسبوع",
+        "معالجة تلقائية للسنوات الكبيسة واختلاف عدد أيام الأشهر",
+        "حساب فوري في الاتجاهين لأي نطاق زمني"
+      ],
+      "ru": [
+        "Точный подсчет календарных дней, недель, месяцев и лет между датами",
+        "Отдельный подсчет рабочих дней без суббот и воскресений",
+        "Автоматический учет високосных лет и разной длины месяцев",
+        "Мгновенный расчет интервала в любом направлении"
+      ]
+    }
+  },
+  "bill-splitter": {
+    "bestFor": {
+      "en": "Best for group dinners and shared tabs when you need clean per-person totals including tip and optional rounding.",
+      "he": "מתאים ליציאות קבוצתיות ומסעדות לחלוקת חשבון הוגנת עם הוספת טיפ ועיגול הסכום לכל סועד.",
+      "es": "Ideal para cenas en grupo para dividir la cuenta exacta con propina incluida por persona.",
+      "fr": "Idéal pour dîners de groupe afin de partager l'addition avec pourboire par convive.",
+      "ar": "مناسب لعزائم المطاعم الجماعية لتقسيم الفاتورة والإكرامية بالتساوي على كل شخص.",
+      "ru": "Подходит для компаний в кафе и ресторанах, чтобы быстро разделить общий счет с учетом чаевых."
+    },
+    "features": {
+      "en": [
+        "Splits subtotal plus customizable tip percentage across any party size",
+        "Shows both tip per person and final all-in amount per diner",
+        "Quick preset gratuity buttons (10%, 12%, 15%, 18%, 20%) and custom input",
+        "Instant live recalculation as diners or tip percentages change"
+      ],
+      "he": [
+        "פיצול החשבון כולל אחוז טיפ מותאם אישית בין כל מספר סועדים",
+        "מציג בנפרד את חלק הטיפ ואת הסכום הסופי לתשלום לכל אדם",
+        "כפתורי טיפ מהירים (10%, 12%, 15%, 18%, 20%) לצד הזנה ידנית",
+        "עדכון מיידי של החישוב בכל שינוי במספר המשתתפים"
+      ],
+      "es": [
+        "Divide el subtotal más el porcentaje de propina entre cualquier número de personas",
+        "Desglosa la propina individual y el total final por comensal",
+        "Atajos rápidos de propina (10%, 12%, 15%, 18%, 20%) y porcentaje manual",
+        "Recálculo instantáneo en vivo al cambiar asistentes o porcentaje"
+      ],
+      "fr": [
+        "Répartit le sous-total et le pourboire entre tous les convives",
+        "Affiche séparément le pourboire par personne et le total individuel",
+        "Boutons rapides (10 %, 12 %, 15 %, 18 %, 20 %) et saisie libre",
+        "Recalcul instantané en temps réel"
+      ],
+      "ar": [
+        "تقسيم الفاتورة مع نسبة الإكرامية القابلة للتخصيص على أي عدد من الأشخاص",
+        "عرض قيمة الإكرامية والمبلغ النهائي المستحق على كل فرد بوضوح",
+        "أزرار سريعة لنسب الإكرامية الشائعة (10%–20%) مع إدخال مخصص",
+        "تحديث فوري للنتائج عند تعديل عدد الأشخاص أو النسبة"
+      ],
+      "ru": [
+        "Деление счета с учетом произвольного процента чаевых на любое число гостей",
+        "Отдельный показ доли чаевых и итоговой суммы с каждого человека",
+        "Быстрые кнопки чаевых (10%, 12%, 15%, 18%, 20%) и ручной ввод",
+        "Мгновенный пересчет при изменении состава компании"
+      ]
+    }
+  },
+  "currency-converter": {
+    "bestFor": {
+      "en": "Best for travelers, freelancers billing abroad, and shoppers checking live cross-currency exchange values.",
+      "he": "מתאים למטיילים, פרילנסרים ורוכשים מחו״ל להמרת מטבעות מהירה לפי שערי חליפין עדכניים.",
+      "es": "Ideal para viajeros, freelancers y compras internacionales con tipos de cambio actualizados.",
+      "fr": "Idéal pour voyageurs, freelances et achats à l'étranger avec taux de change actualisés.",
+      "ar": "مناسب للمسافرين والمستقلين والمتسوقين دولياً لتحويل العملات وفق أحدث أسعار الصرف.",
+      "ru": "Подходит путешественникам, фрилансерам и покупателям за рубежом для быстрого пересчета курсов валют."
+    },
+    "features": {
+      "en": [
+        "Supports major world currencies including USD, EUR, ILS, GBP, JPY, CHF, CAD",
+        "One-click currency swap button with inverse exchange rate readout",
+        "Live mid-market FX conversion with transparent unit rate display",
+        "Precision decimal calculation suitable for invoices and travel budgeting"
+      ],
+      "he": [
+        "תמיכה במטבעות מרכזיים כולל דולר, יורו, שקל, ליש״ט, ין, פרנק שוויצרי ועוד",
+        "היפוך כיוון המרה בלחיצת כפתור כולל הצגת שער יחידה הפוך",
+        "חישוב לפי שערי שוק עדכניים עם שקיפות מלאה של שער ההמרה",
+        "דיוק עשרוני מתאים לתמחור חשבוניות ותקציבי נסיעות"
+      ],
+      "es": [
+        "Admite las principales divisas globales: USD, EUR, ILS, GBP, JPY, CHF, CAD",
+        "Botón de inversión rápida con lectura del tipo de cambio recíproco",
+        "Conversión actualizada a tasa media de mercado con desglose unitario",
+        "Alta precisión decimal ideal para presupuestos y facturación"
+      ],
+      "fr": [
+        "Prend en charge USD, EUR, ILS, GBP, JPY, CHF, CAD et autres grandes devises",
+        "Inversion instantanée des devises avec affichage du taux réciproque",
+        "Conversion basée sur les taux de marché actualisés",
+        "Précision décimale adaptée aux voyages et à la facturation"
+      ],
+      "ar": [
+        "يدعم العملات العالمية الرئيسية مثل الدولار واليورو والشيكل والجنيه والين",
+        "زر تبديل فوري بين العملتين مع عرض سعر الصرف العكسي",
+        "تحويل فوري وفق أسعار الصرف الجارية مع عرض سعر الوحدة الواحدة",
+        "دقة عشرية ملائمة للفواتير وميزانيات السفر"
+      ],
+      "ru": [
+        "Поддержка основных валют: USD, EUR, ILS, GBP, JPY, CHF, CAD и др.",
+        "Переключение направления конвертации в один клик с обратным курсом",
+        "Актуальные рыночные курсы обмена с отображением цены за единицу",
+        "Высокая точность расчетов для поездок и международных счетов"
+      ]
+    }
+  },
+  "sleep-calculator": {
+    "bestFor": {
+      "en": "Best for avoiding morning grogginess by aligning bedtime or alarm times with full 90-minute REM/NREM sleep cycles.",
+      "he": "מתאים למניעת עייפות בבוקר באמצעות תזמון שעת שינה או השכמה לסיום מחזור שינה של 90 דקות.",
+      "es": "Ideal para evitar despertar aturdido alineando el sueño con ciclos completos de 90 minutos.",
+      "fr": "Idéal pour se réveiller reposé en calant le coucher ou le réveil sur des cycles de 90 minutes.",
+      "ar": "مناسب لتجنب الخمول الصباحي عبر ضبط وقت النوم أو الاستيقاظ مع اكتمال دورات 90 دقيقة.",
+      "ru": "Помогает просыпаться бодрым, синхронизируя время сна и будильника с 90-минутными циклами сна."
+    },
+    "features": {
+      "en": [
+        "Computes optimal wake-up times from bedtime OR bedtimes from wake-up alarm",
+        "Accounts for average 14–15 minute sleep onset latency automatically",
+        "Highlights 4, 5, and 6 complete 90-minute cycles (6h, 7.5h, 9h total sleep)",
+        "Clear quality badges separating minimum vs optimal restorative rest"
+      ],
+      "he": [
+        "חישוב כפול: מתי להתעורר אם הולכים לישון עכשיו או מתי לישון לפי שעת יקיצה",
+        "מוסיף אוטומטית כ-15 דקות ממוצעות של זמן הירדמות",
+        "מדגיש 4, 5 ו-6 מחזורי שינה מלאים של 90 דקות (6, 7.5 ו-9 שעות)",
+        "סימון ברור בין שינה מינימלית לשינה מיטבית להתאוששות מלאה"
+      ],
+      "es": [
+        "Calcula horas de despertar desde ahora o de acostarse según tu alarma",
+        "Incluye automáticamente ~15 minutos de latencia para conciliar el sueño",
+        "Destaca 4, 5 y 6 ciclos completos de 90 minutos (6 h, 7,5 h y 9 h)",
+        "Indica opciones mínimas y óptimas para despertar con energía"
+      ],
+      "fr": [
+        "Calcule l'heure de réveil idéale ou l'heure de coucher selon votre alarme",
+        "Intègre automatiquement ~15 minutes de délai d'endormissement",
+        "Met en évidence 4, 5 et 6 cycles complets de 90 minutes (6 h, 7 h 30, 9 h)",
+        "Distingue repos minimal et récupération optimale"
+      ],
+      "ar": [
+        "يحسب أوقات الاستيقاظ المثالية أو وقت النوم المناسب حسب موعد المنبه",
+        "يحتسب تلقائياً حوالي 15 دقيقة لوقت الاستغراق في النوم",
+        "يوضح خيارات 4 و5 و6 دورات نوم كاملة مدة كل منها 90 دقيقة (6 إلى 9 ساعات)",
+        "تصنيف واضح بين الحد الأدنى والراحة المثالية لتفادي خمول الاستيقاظ"
+      ],
+      "ru": [
+        "Два режима: расчет времени пробуждения или оптимального времени отхода ко сну",
+        "Автоматически добавляет около 15 минут на засыпание",
+        "Показывает 4, 5 и 6 полных 90-минутных циклов (6, 7.5 и 9 часов сна)",
+        "Пометки минимальной и оптимальной продолжительности восстановления"
+      ]
+    }
+  },
+  "cooking-timer": {
+    "bestFor": {
+      "en": "Best for home cooks and BBQ hosts calculating exact oven roasting minutes and core temperatures by cut and weight.",
+      "he": "מתאים למארחים וחובבי בישול לחישוב זמן צלייה מדויק בתנור וטמפרטורת ליבה לפי סוג נתח ומשקל.",
+      "es": "Ideal para asados al horno calculando minutos exactos y temperatura interna por corte y peso.",
+      "fr": "Conçu pour réussir rôtis et volailles au four selon le poids, la pièce et la cuisson souhaitée.",
+      "ar": "مناسب لتحضير المشويات واللحوم في الفرن بحساب الدقائق ودرجة الحرارة الدقيقة حسب الوزن.",
+      "ru": "Подходит для точного расчета времени запекания мяса и птицы в духовке по весу и степени прожарки."
+    },
+    "features": {
+      "en": [
+        "Covers beef, chicken/poultry, lamb, and pork cuts by exact weight",
+        "Adjusts roasting duration for Rare, Medium-Rare, Medium, and Well-Done",
+        "Provides target internal core thermometer temperatures (°C and °F)",
+        "Includes recommended resting time before carving to retain juices"
+      ],
+      "he": [
+        "חישוב מותאם לבקר, עוף והודו, כבש ונתחי צלייה לפי משקל מדויק",
+        "התאמת משך הצלייה למידת עשייה (Rare, Medium-Rare, Medium, Well-Done)",
+        "הצגת טמפרטורת תנור וטמפרטורת ליבה פנימית במעלות צלזיוס ופרנהייט",
+        "המלצה לזמן מנוחה אחרי ההוצאה מהתנור לשמירת עסיסיות הבשר"
+      ],
+      "es": [
+        "Cubre ternera, aves, cordero y cerdo según peso exacto",
+        "Ajusta minutos por punto de cocción: poco hecho, al punto o muy hecho",
+        "Indica temperatura recomendada de horno y centro térmico (°C y °F)",
+        "Incluye tiempo de reposo recomendado antes de trinchar"
+      ],
+      "fr": [
+        "Couvre bœuf, volaille, agneau et porc selon le poids exact",
+        "Adapte la durée de cuisson : saignant, à point ou bien cuit",
+        "Affiche température du four et température à cœur (°C et °F)",
+        "Indique le temps de repos recommandé avant découpe"
+      ],
+      "ar": [
+        "يشمل اللحم البقري والدواجن والضأن حسب الوزن الفعلي بدقة",
+        "ضبط مدة الشواء حسب درجة النضج المطلوبة (متوسط أو كامل النضج)",
+        "تحديد حرارة الفرن ودرجة الحرارة الداخلية المطلوبة بالمئوية والفهرنهايت",
+        "يتضمن وقت الراحة الموصى به قبل التقطيع للحفاظ على العصارة"
+      ],
+      "ru": [
+        "Поддерживает говядину, птицу, баранину и свинину с точным расчетом по весу",
+        "Корректировка времени под степень прожарки: Rare, Medium или Well-Done",
+        "Рекомендации по температуре духовки и внутренней температуре мяса (°C/°F)",
+        "Указывает время отдыха готового блюда перед нарезкой"
+      ]
+    }
+  },
+  "severance-pay": {
+    "bestFor": {
+      "en": "Best for employees and HR estimating statutory severance entitlement, Section 14 pension gaps, and notice pay.",
+      "he": "מתאים לעובדים ולמחלקות משאבי אנוש לבדיקת זכאות לפיצויי פיטורים, פערים מול סעיף 14 ותמורת הודעה מוקדמת.",
+      "es": "Ideal para empleados y RRHH para estimar indemnización por despido, antigüedad y preaviso.",
+      "fr": "Idéal pour salariés et RH pour estimer l'indemnité de licenciement selon salaire et ancienneté.",
+      "ar": "مناسب للموظفين والموارد البشرية لتقدير مكافأة نهاية الخدمة ومستحقات الإخطار حسب سنوات العمل.",
+      "ru": "Подходит сотрудникам и HR для оценки выходного пособия, компенсации за стаж и выплат за уведомление."
+    },
+    "features": {
+      "en": [
+        "Calculates statutory severance based on final qualifying salary × tenure years",
+        "Models Section 14 (8.33% monthly pension deposits) vs full severance top-ups",
+        "Accounts for resignation vs termination eligibility and partial year months",
+        "Estimates notice period compensation and unused vacation day payouts"
+      ],
+      "he": [
+        "חישוב פיצויים לפי שכר קובע אחרון כפול שנות ותק וחלקי שנה",
+        "השוואה בין צבירה בקופת הפיצויים (סעיף 14 / 8.33%) להשלמת מעסיק",
+        "הבחנה בין פיטורים, התפטרות בדין מפוטר והסדר סעיף 14",
+        "כולל חישוב דמי הודעה מוקדמת ופדיון ימי חופשה צבורים"
+      ],
+      "es": [
+        "Calcula indemnización según salario regulador por años y meses trabajados",
+        "Evalúa fondos acumulados frente a complementos obligatorios de empresa",
+        "Distingue entre despido improcedente, objetivo y baja voluntaria",
+        "Estima liquidación de preaviso y días de vacaciones no disfrutados"
+      ],
+      "fr": [
+        "Calcule l'indemnité selon le salaire de référence et l'ancienneté exacte",
+        "Compare les provisions acquises et le solde légal dû par l'employeur",
+        "Distingue licenciement, rupture conventionnelle et démission",
+        "Estime l'indemnité compensatrice de préavis et de congés payés"
+      ],
+      "ar": [
+        "احتساب مكافأة نهاية الخدمة على أساس الراتب الأخير وسنوات وأشهر العمل",
+        "حساب الفارق بين مخصصات صندوق التقاعد والمكافأة الكاملة",
+        "يميز بين إنهاء الخدمة والاستقالة وحساب كسور السنة",
+        "يقدر بدل فترة الإشعار ورصيد الإجازات السنوية غير المستخدمة"
+      ],
+      "ru": [
+        "Расчет пособия по последнему окладу с учетом полных лет и месяцев стажа",
+        "Сравнение накоплений в фонде (правило 8.33%) с полной суммой выплаты",
+        "Учет основания увольнения: сокращение, увольнение или соглашение сторон",
+        "Оценка компенсации за период уведомления и неиспользованный отпуск"
+      ]
+    }
+  },
+  "mortgage": {
+    "bestFor": {
+      "en": "Best for comparing full 15–30 year amortization schedules, extra monthly principal payments, and side-by-side loan tracks.",
+      "he": "מתאים לבדיקת לוח סילוקין מלא, השפעת פירעון מוקדם על סך הריבית והשוואה בין שתי הצעות משכנתא.",
+      "es": "Ideal para analizar tablas de amortización completas, abonos extra a capital y comparar dos hipotecas.",
+      "fr": "Idéal pour simuler un tableau d'amortissement complet, des remboursements anticipés et deux offres.",
+      "ar": "مثالي لمراجعة جدول السداد الكامل وأثر السداد المبكر ومقارنة عرضي رهن عقاري جنباً إلى جنب.",
+      "ru": "Подходит для детального графика аннуитета, досрочного погашения и сравнения двух ипотечных программ."
+    },
+    "features": {
+      "en": [
+        "Generates full year-by-year & month-by-month amortization schedule",
+        "Side-by-side Scenario A vs Scenario B mortgage comparison",
+        "Supports Excel (.xlsx) multi-sheet export with complete payment breakdown",
+        "Models principal vs interest split and total interest saved with extra payments"
+      ],
+      "he": [
+        "הפקת לוח סילוקין מלא בחלוקה חודשית ושנתית בין קרן לריבית",
+        "השוואת תרחיש א׳ מול תרחיש ב׳ לבחינת שני מסלולים במקביל",
+        "ייצוא מלא לקובץ אקסל (.xlsx) עם פירוט כל התשלומים",
+        "חישוב סך הריבית המצטברת והחיסכון בעקבות קיצור תקופה או תוספת החזר"
+      ],
+      "es": [
+        "Genera tabla de amortización completa mes a mes y año a año",
+        "Comparativa directa entre Escenario A y Escenario B",
+        "Exportación multipestaña a Excel (.xlsx) con cuadro de pagos",
+        "Desglosa capital frente a intereses totales durante todo el préstamo"
+      ],
+      "fr": [
+        "Génère un tableau d'amortissement complet mensuel et annuel",
+        "Comparaison côte à côte de deux offres de prêt (Scénario A vs B)",
+        "Export Excel (.xlsx) multi-feuilles avec échéancier détaillé",
+        "Détaille la part de capital et d'intérêts sur toute la durée"
+      ],
+      "ar": [
+        "توليد جدول إطفاء كامل شهر بشهر وسنة بسنة",
+        "مقارنة مباشرة بين سيناريو التمويل الأول والثاني جنباً إلى جنب",
+        "تصدير كامل إلى Excel (.xlsx) مع جدول الدفعات التفصيلي",
+        "تفصيل حصة الأصل مقابل إجمالي الفوائد طوال فترة القرض"
+      ],
+      "ru": [
+        "Формирует полный помесячный и годовой график погашения ипотеки",
+        "Сравнение двух вариантов кредита (Сценарий A и B) рядом на экране",
+        "Экспорт детальной таблицы выплат в Excel (.xlsx)",
+        "Разбивка каждого платежа на тело долга и начисленные проценты"
+      ]
+    }
+  },
+  "compound": {
+    "bestFor": {
+      "en": "Best for long-term wealth building by combining initial capital, recurring monthly deposits, and compounding frequency.",
+      "he": "מתאים לתכנון השקעות וחיסכון ארוך טווח עם הפקדות חודשיות שוטפות ובדיקת אפקט הריבית דריבית.",
+      "es": "Ideal para planificar riqueza a largo plazo combinando capital inicial y aportaciones mensuales.",
+      "fr": "Idéal pour projeter un capital à long terme en combinant versement initial et épargne mensuelle.",
+      "ar": "مناسب لتخطيط نمو الثروة على المدى الطويل بدمج رأس المال الأولي والإيداعات الشهرية المتكررة.",
+      "ru": "Подходит для долгосрочного инвестиционного планирования с учетом регулярных пополнений и капитализации."
+    },
+    "features": {
+      "en": [
+        "Supports daily, monthly, quarterly, and annual compounding frequencies",
+        "Models recurring monthly deposits alongside lump-sum starting principal",
+        "Exports full annual growth schedule to Excel (.xlsx) & compares two portfolios",
+        "Separates total cash contributed from pure compound interest earned"
+      ],
+      "he": [
+        "תמיכה בתדירות צבירה יומית, חודשית, רבעונית ושנתית",
+        "משלב הפקדה חד-פעמית ראשונית עם הפקדה חודשית קבועה",
+        "ייצוא לוח צמיחה שנתי לאקסל (.xlsx) והשוואת שני תיקי השקעה",
+        "הפרדה ברורה בין סך ההפקדות מהכיס לבין רווחי הריבית דריבית"
+      ],
+      "es": [
+        "Admite capitalización diaria, mensual, trimestral y anual",
+        "Combina capital inicial con aportaciones periódicas mensuales",
+        "Exporta proyección anual a Excel (.xlsx) y compara dos carteras",
+        "Separa claramente dinero aportado frente a intereses compuestos ganados"
+      ],
+      "fr": [
+        "Gère la capitalisation quotidienne, mensuelle, trimestrielle et annuelle",
+        "Combine capital de départ et versements mensuels réguliers",
+        "Exporte la projection annuelle vers Excel (.xlsx) et compare deux plans",
+        "Distingue le capital versé des intérêts composés générés"
+      ],
+      "ar": [
+        "يدعم التكرار اليومي والشهري والربع سنوي والسنوي لحساب الفائدة المركبة",
+        "يدمج المبلغ الأولي مع الإيداعات الشهرية المنتظمة",
+        "تصدير جدول النمو السنوي إلى Excel (.xlsx) ومقارنة خطتين استثماريتين",
+        "يفصل بوضوح بين إجمالي المبالغ المودعة وأرباح العائد المركب"
+      ],
+      "ru": [
+        "Поддерживает ежедневную, ежемесячную, квартальную и годовую капитализацию",
+        "Учитывает стартовый капитал и регулярные ежемесячные пополнения",
+        "Экспорт графика роста по годам в Excel (.xlsx) и сравнение двух стратегий",
+        "Наглядно разделяет внесенные средства и чистый сложный процент"
+      ]
+    }
+  },
+  "percentage": {
+    "bestFor": {
+      "en": "Best for everyday discounts, tax markups, percentage change between two numbers, and reverse ratio checks.",
+      "he": "מתאים לחישוב הנחות, תוספות מחיר, שיעור שינוי בין שני מספרים ומציאת אחוז מתוך סכום שלם.",
+      "es": "Ideal para descuentos, variaciones porcentuales entre dos valores y cálculos rápidos de proporciones.",
+      "fr": "Parfait pour calculer remises, évolutions en pourcentage et proportions entre deux valeurs.",
+      "ar": "مناسب لحساب الخصومات ونسبة التغير بين قيمتين واستخراج النسب المئوية اليومية.",
+      "ru": "Удобен для расчета скидок, процентного изменения между числами и поиска доли от целого."
+    },
+    "features": {
+      "en": [
+        "3-in-1 solver: X% of Y, X is what % of Y, and % Increase/Decrease",
+        "Highlights positive vs negative percentage deltas with exact multipliers",
+        "Handles fractional and decimal inputs cleanly without floating-point errors",
+        "Includes step-by-step arithmetic breakdown for every answer"
+      ],
+      "he": [
+        "מחשבון 3 ב-1: כמה זה X% מתוך Y, איזה אחוז X מתוך Y ושינוי באחוזים",
+        "מציג עלייה או ירידה באחוזים בין ערך קודם לערך חדש",
+        "דיוק עשרוני מלא גם בשברים ואחוזים קטנים משלם",
+        "הצגת דרך החישוב שלב אחר שלב לכל שאלה"
+      ],
+      "es": [
+        "3 herramientas en 1: X% de Y, qué % es X de Y y variación porcentual",
+        "Distingue incrementos y descuentos porcentuales con el valor exacto",
+        "Soporta decimales finos sin errores de redondeo",
+        "Muestra la operación matemática paso a paso"
+      ],
+      "fr": [
+        "3 outils en 1 : X % de Y, quel % représente X de Y et variation en %",
+        "Indique hausse ou baisse en pourcentage entre deux valeurs",
+        "Gère les nombres décimaux avec une précision exacte",
+        "Affiche le détail de la formule appliquée"
+      ],
+      "ar": [
+        "3 حاسبات في أداة واحدة: X% من Y، نسبة X إلى Y، ونسبة الزيادة أو النقصان",
+        "يوضح فرق الارتفاع أو الانخفاض بالنسبة المئوية بدقة",
+        "يدعم الكسور العشرية الدقيقة دون أخطاء تقريب",
+        "يعرض خطوات الحل الرياضي لكل نتيجة"
+      ],
+      "ru": [
+        "3 режима в одном: X% от Y, какую долю % составляет X от Y и изменение в %",
+        "Четко показывает процентный рост или снижение между двумя величинами",
+        "Точная работа с дробными и десятичными значениями",
+        "Пошаговая формула расчета для быстрого понимания результата"
+      ]
+    }
+  },
+  "unit": {
+    "bestFor": {
+      "en": "Best for quick everyday Metric-to-Imperial conversions across length, weight, and temperature.",
+      "he": "מתאים להמרות יומיומיות מהירות של מרחק, משקל וטמפרטורה בין השיטה המטרית לשיטה האימפריאלית.",
+      "es": "Ideal para conversiones cotidianas rápidas entre sistema métrico e imperial en longitud, peso y temperatura.",
+      "fr": "Idéal pour convertir rapidement longueur, poids et température entre systèmes métrique et impérial.",
+      "ar": "مناسب للتحويلات اليومية السريعة للطول والوزن والحرارة بين النظام المتري والإمبراطوري.",
+      "ru": "Подходит для быстрых повседневных переводов длины, веса и температуры между метрической и имперской системами."
+    },
+    "features": {
+      "en": [
+        "Instant bidirectional conversion across Length, Weight/Mass, and Temperature",
+        "Covers meters, feet, inches, miles, km, kg, lbs, ounces, °C, °F, and Kelvin",
+        "Live one-click unit swap without losing your entered value",
+        "Exact scientific conversion constants (1 in = 2.54 cm, 1 lb = 0.45359237 kg)"
+      ],
+      "he": [
+        "המרה דו-כיוונית מיידית של אורך, משקל/מסה וטמפרטורה",
+        "כולל מטרים, אינצ׳ים, רגל, מיילים, ק״מ, ק״ג, פאונד, אונקיות, צלזיוס, פרנהייט וקלווין",
+        "כפתור היפוך יחידות מהיר תוך שמירת הערך המוזן",
+        "שימוש במקדמי המרה תקניים מדויקים (1 אינץ׳ = 2.54 ס״מ)"
+      ],
+      "es": [
+        "Conversión bidireccional instantánea de longitud, masa y temperatura",
+        "Incluye metros, pulgadas, pies, millas, km, kg, libras, onzas, °C, °F y Kelvin",
+        "Intercambio rápido de unidades conservando la cifra introducida",
+        "Factores de conversión exactos estandarizados internacionalmente"
+      ],
+      "fr": [
+        "Conversion bidirectionnelle immédiate de longueur, masse et température",
+        "Prend en charge mètres, pouces, pieds, miles, km, kg, livres, onces, °C, °F, Kelvin",
+        "Bouton d'inversion directe des unités en un clic",
+        "Facteurs de conversion officiels exacts"
+      ],
+      "ar": [
+        "تحويل ثنائي الاتجاه فوراً للطول والوزن/الكتلة ودرجة الحرارة",
+        "يشمل المتر والبوصة والقدم والميل والكيلومتر والكيلوجرام والرطل والأونصة والمئوية والفهرنهايت",
+        "زر تبديل سريع بين الوحدات دون إعادة كتابة الرقم",
+        "يعتمد ثوابت التحويل الدولية المعتمدة بدقة"
+      ],
+      "ru": [
+        "Мгновенная двусторонняя конвертация длины, веса и температуры",
+        "Поддерживает метры, дюймы, футы, мили, км, кг, фунты, унции, °C, °F и Кельвины",
+        "Быстрая смена направления единиц в один клик",
+        "Точные международные коэффициенты пересчета"
+      ]
+    }
+  },
+  "bmi": {
+    "bestFor": {
+      "en": "Best for a fast Body Mass Index screening check against standard WHO weight categories and healthy weight range.",
+      "he": "מתאים לבדיקה מהירה של מדד מסת הגוף (BMI) לפי טבלאות ארגון הבריאות העולמי ומציאת טווח משקל תקין.",
+      "es": "Ideal para evaluar rápidamente tu Índice de Masa Corporal (IMC) y rango de peso saludable OMS.",
+      "fr": "Idéal pour vérifier votre Indice de Masse Corporelle (IMC) et votre fourchette de poids santé OMS.",
+      "ar": "مناسب لفحص سريع لمؤشر كتلة الجسم (BMI) ومقارنته بنطاقات الوزن الصحي لمنظمة الصحة العالمية.",
+      "ru": "Подходит для быстрой проверки индекса массы тела (ИМТ) по нормативам ВОЗ и расчета здорового диапазона веса."
+    },
+    "features": {
+      "en": [
+        "Computes exact BMI from height (cm) and weight (kg) in real time",
+        "Classifies result across WHO tiers: Underweight, Normal, Overweight, Obese",
+        "Displays personalized healthy weight range (BMI 18.5–24.9) for your height",
+        "Visual BMI gauge highlighting where your score sits on the spectrum"
+      ],
+      "he": [
+        "חישוב BMI מדויק בזמן אמת לפי גובה בס״מ ומשקל בק״ג",
+        "סיווג מיידי לקטגוריות ארגון הבריאות העולמי (תת-משקל, תקין, עודף, השמנה)",
+        "מציג את טווח המשקל התקין המומלץ (BMI 18.5–24.9) עבור הגובה שלך",
+        "מד ויזואלי הממקם את התוצאה על גבי סקאלת הבריאות"
+      ],
+      "es": [
+        "Calcula el IMC exacto en tiempo real a partir de estatura (cm) y peso (kg)",
+        "Clasifica según rangos OMS: bajo peso, normal, sobrepeso y obesidad",
+        "Indica tu rango de peso saludable personalizado (IMC 18,5–24,9)",
+        "Indicador visual claro para situar tu resultado"
+      ],
+      "fr": [
+        "Calcule l'IMC exact en temps réel selon la taille (cm) et le poids (kg)",
+        "Classe selon les seuils OMS : maigreur, normal, surpoids, obésité",
+        "Affiche la fourchette de poids santé adaptée à votre taille (IMC 18,5–24,9)",
+        "Jauge visuelle claire de positionnement"
+      ],
+      "ar": [
+        "يحسب مؤشر كتلة الجسم بدقة فورية اعتماداً على الطول (سم) والوزن (كجم)",
+        "يصنف النتيجة حسب معايير منظمة الصحة العالمية (نحافة، طبيعي، زيادة وزن، سمنة)",
+        "يوضح نطاق الوزن الصحي المثالي لطولك (18.5–24.9)",
+        "مؤشر بصري يحدد موقعك الدقيق على مقياس الكتلة"
+      ],
+      "ru": [
+        "Рассчитывает точный ИМТ в реальном времени по росту (см) и весу (кг)",
+        "Определяет категорию ВОЗ: дефицит, норма, избыточный вес, ожирение",
+        "Показывает индивидуальный диапазон здорового веса (ИМТ 18.5–24.9)",
+        "Наглядная шкала с положением вашего показателя"
+      ]
+    }
+  },
+  "tip": {
+    "bestFor": {
+      "en": "Best for quickly computing restaurant gratuity and splitting the total bill evenly with zero mental math.",
+      "he": "מתאים לחישוב מהיר של תשר (טיפ) במסעדות וחלוקת החשבון הכולל שווה בשווה בין הסועדים.",
+      "es": "Ideal para calcular la propina en segundos y repartir la cuenta entre amigos sin esfuerzo.",
+      "fr": "Parfait pour calculer le pourboire et diviser l'addition entre convives en quelques secondes.",
+      "ar": "مناسب لحساب الإكرامية بسرعة وتقسيم إجمالي الفاتورة بالتساوي بين الحاضرين.",
+      "ru": "Подходит для быстрого расчета чаевых в ресторане и равного деления суммы между гостями."
+    },
+    "features": {
+      "en": [
+        "Instant tip amount, grand total, and exact per-person split calculations",
+        "Interactive tip percentage slider plus quick presets (10%, 15%, 18%, 20%)",
+        "Handles groups from 1 diner up to large dinner parties",
+        "Clear split showing tip portion vs base bill per person"
+      ],
+      "he": [
+        "חישוב מיידי של סכום הטיפ, הסכום הכולל והתשלום המדויק לכל סועד",
+        "סליידר גמיש לבחירת אחוז טיפ לצד כפתורים מהירים (10%, 15%, 18%, 20%)",
+        "תמיכה בכל גודל קבוצה מיחיד ועד שולחנות גדולים",
+        "פיצול שקוף בין חלק החשבון הבסיסי לחלק התשר"
+      ],
+      "es": [
+        "Calcula al instante propina, total final y cuota exacta por persona",
+        "Control deslizante y botones rápidos (10%, 15%, 18%, 20%)",
+        "Admite desde cuentas individuales hasta grupos numerosos",
+        "Muestra por separado el importe base y la propina individual"
+      ],
+      "fr": [
+        "Calcule instantanément pourboire, total général et part par personne",
+        "Curseur précis et raccourcis rapides (10 %, 15 %, 18 %, 20 %)",
+        "Adapté aussi bien en solo qu'aux grandes tablées",
+        "Distingue la part d'addition et la part de pourboire par convive"
+      ],
+      "ar": [
+        "حساب فوري لقيمة الإكرامية والإجمالي النهائي وحصة كل شخص",
+        "شريط تمرير مرن وأزرار جاهزة لنسب 10% و15% و18% و20%",
+        "يدعم من شخص واحد حتى المجموعات الكبيرة",
+        "توضيح منفصل لقيمة الفاتورة وقيمة الإكرامية لكل فرد"
+      ],
+      "ru": [
+        "Мгновенный расчет суммы чаевых, общего счета и доли на человека",
+        "Удобный ползунок процента и быстрые кнопки (10%, 15%, 18%, 20%)",
+        "Подходит как для одного гостя, так и для большой компании",
+        "Раздельное отображение базовой суммы и чаевых на каждого"
+      ]
+    }
+  },
+  "salary": {
+    "bestFor": {
+      "en": "Best for comparing job offers expressed in different pay periods (hourly wage vs monthly paycheck vs annual salary).",
+      "he": "מתאים להשוואת הצעות עבודה וחוזי העסקה בין שכר שעתי, יומי, חודשי ושנתי על בסיס שעות עבודה קבועות.",
+      "es": "Ideal para comparar ofertas laborales convirtiendo salario por hora, semanal, mensual y anual.",
+      "fr": "Idéal pour comparer des offres d'emploi entre taux horaire, salaire mensuel et rémunération annuelle.",
+      "ar": "مناسب لمقارنة عروض العمل عبر تحويل الأجر بين الساعة والأسبوع والشهر والسنة بدقة.",
+      "ru": "Подходит для сравнения предложений о работе с пересчетом почасовой ставки в месячный и годовой доход."
+    },
+    "features": {
+      "en": [
+        "Converts effortlessly between Hourly, Weekly, Monthly, and Annual pay",
+        "Uses standard 40-hour week / 2,080 annual work hours baseline",
+        "Updates all 4 pay frequencies simultaneously from a single input",
+        "Ideal for comparing contractor hourly rates against salaried roles"
+      ],
+      "he": [
+        "המרה מיידית בין שכר שעתי, שבועי, חודשי ושנתי",
+        "חישוב לפי תקן עבודה של 40 שעות שבועיות (2,080 שעות בשנה)",
+        "מציג במקביל את כל 4 תדירויות השכר מהזנת נתון אחד",
+        "כלי נוח להשוואה בין תעריף שעתי של יועץ למשכורת חודשית קבועה"
+      ],
+      "es": [
+        "Convierte al instante entre sueldo por hora, semanal, mensual y anual",
+        "Basado en jornada estándar de 40 h semanales (2.080 h anuales)",
+        "Muestra los 4 períodos salariales en pantalla a la vez",
+        "Útil para comparar tarifas por hora frente a contratos fijos anuales"
+      ],
+      "fr": [
+        "Convertit instantanément entre salaire horaire, hebdomadaire, mensuel et annuel",
+        "Repose sur une base standard de 40 h/semaine (2 080 h/an)",
+        "Actualise simultanément les 4 fréquences à partir d'une seule saisie",
+        "Pratique pour comparer un tarif horaire freelance et un salaire fixe"
+      ],
+      "ar": [
+        "تحويل فوري للأجر بين الساعة والأسبوع والشهر والسنة",
+        "يعتمد معيار 40 ساعة عمل أسبوعياً (2,080 ساعة سنوياً)",
+        "يعرض جميع فترات الراتب الأربع معاً من إدخال واحد",
+        "مثالي لمقارنة الأجر بالساعة مع عقود الراتب الشهري أو السنوي"
+      ],
+      "ru": [
+        "Мгновенный перевод между почасовой, недельной, месячной и годовой ставкой",
+        "Стандартная база 40 рабочих часов в неделю (2 080 часов в год)",
+        "Одновременный вывод всех 4 форматов дохода из одного поля",
+        "Удобно для сравнения почасовых ставок и годовых окладов"
+      ]
+    }
+  },
+  "age": {
+    "bestFor": {
+      "en": "Best for finding your exact chronological age in years, months, and days plus upcoming milestone countdowns.",
+      "he": "מתאים לבדיקת גיל כרונולוגי מדויק בשנים, חודשים וימים וספירת ימים ליום ההולדת הקרוב.",
+      "es": "Ideal para conocer tu edad cronológica exacta en años, meses y días hasta la fecha actual.",
+      "fr": "Idéal pour connaître votre âge exact en années, mois et jours avec précision calendaire.",
+      "ar": "مناسب لحساب العمر الزمني الدقيق بالسنوات والأشهر والأيام حتى تاريخ اليوم.",
+      "ru": "Подходит для точного расчета возраста в годах, месяцах и днях с учетом календарных особенностей."
+    },
+    "features": {
+      "en": [
+        "Computes exact years, remaining months, and days from date of birth",
+        "Accounts accurately for leap years (Feb 29) and 28/30/31-day months",
+        "Shows total months, total weeks, and total days lived",
+        "Instant date-picker calculation for official forms, visas, and milestones"
+      ],
+      "he": [
+        "חישוב מדויק של שנים, חודשים וימים מתאריך הלידה",
+        "התחשבות מדויקת בשנים מעוברות (29 בפברואר) ואורכי חודשים שונים",
+        "תצוגת סך חודשים, שבועות וימים מאז הלידה",
+        "חישוב מהיר לטפסים רשמיים, ויזות ואירועי חיים"
+      ],
+      "es": [
+        "Calcula años, meses y días exactos desde tu fecha de nacimiento",
+        "Tiene en cuenta años bisiestos y la duración real de cada mes",
+        "Muestra totales acumulados en meses, semanas y días",
+        "Resultado instantáneo útil para trámites oficiales y cumpleaños"
+      ],
+      "fr": [
+        "Calcule années, mois et jours exacts depuis la date de naissance",
+        "Prend en compte les années bissextiles et les mois de 28 à 31 jours",
+        "Affiche également l'âge total en mois, semaines et jours",
+        "Calcul instantané utile pour démarches administratives et anniversaires"
+      ],
+      "ar": [
+        "يحسب السنوات والأشهر والأيام الدقيقة من تاريخ الميلاد",
+        "يراعي بدقة السنوات الكبيسة واختلاف أيام الأشهر (28–31 يوماً)",
+        "يعرض إجمالي الأشهر والأسابيع والأيام منذ الميلاد",
+        "نتائج فورية مفيدة للمعاملات الرسمية وجوازات السفر"
+      ],
+      "ru": [
+        "Вычисляет точный возраст в годах, месяцах и днях от даты рождения",
+        "Учитывает високосные годы и разное число дней в месяцах",
+        "Показывает общее количество прожитых месяцев, недель и дней",
+        "Удобно для заполнения анкет, виз и памятных дат"
+      ]
+    }
+  },
+  "auto-loan": {
+    "bestFor": {
+      "en": "Best when you have already decided to buy with a loan and want to calculate your exact car payment and interest cost.",
+      "he": "מתאים לאחר שכבר החלטת לרכוש רכב במימון ואתה רוצה לחשב החזר חודשי וריבית לפי מקדמה ותקופה.",
+      "es": "Ideal cuando ya decidiste financiar un vehículo y quieres calcular cuota exacta e intereses.",
+      "fr": "Idéal lorsque vous achetez à crédit et voulez connaître votre mensualité auto et le coût total.",
+      "ar": "مناسب عندما تقرر شراء سيارة بقرض وترغب في حساب القسط الشهري وإجمالي الفوائد بدقة.",
+      "ru": "Подходит, когда вы решили брать авто в кредит и нужно быстро рассчитать платеж и переплату."
+    },
+    "features": {
+      "en": [
+        "Subtracts down payment / trade-in equity automatically from vehicle price",
+        "Computes exact monthly payment and lifetime interest cost across 12–84 months",
+        "Shows percentage breakdown of loan principal vs financing charges",
+        "Fast sensitivity adjustment for comparing shorter 48-mo vs 72-mo terms"
+      ],
+      "he": [
+        "מפחית מקדמה או שווי טרייד-אין אוטומטית ממחיר הרכב",
+        "חישוב החזר חודשי וסך ריבית מצטברת לתקופות מימון שונות",
+        "מציג יחס קרן מול ריבית בעלות הכוללת של הרכב",
+        "השוואה מהירה בין הלוואה קצרה ל-48 חודשים לפריסה ל-72 חודשים"
+      ],
+      "es": [
+        "Descuenta automáticamente el enganche o vehículo a cambio del precio total",
+        "Calcula cuota mensual exacta e intereses totales del préstamo",
+        "Muestra proporción entre capital financiado y coste financiero",
+        "Permite comparar rápidamente plazos de 48 frente a 72 meses"
+      ],
+      "fr": [
+        "Déduit automatiquement l'apport ou la reprise du prix du véhicule",
+        "Calcule la mensualité exacte et le coût total des intérêts",
+        "Affiche la répartition entre capital emprunté et coût du crédit",
+        "Comparaison instantanée entre durées courtes (48 mois) et longues (72 mois)"
+      ],
+      "ar": [
+        "يخصم الدفعة الأولى تلقائياً من سعر السيارة لتحديد مبلغ التمويل",
+        "يحسب القسط الشهري الدقيق وإجمالي تكلفة الفائدة طوال المدة",
+        "يوضح نسبة أصل القرض مقابل تكلفة التمويل",
+        "مقارنة سريعة بين مدة 48 شهراً و72 شهراً"
+      ],
+      "ru": [
+        "Автоматически вычитает первоначальный взнос из цены автомобиля",
+        "Вычисляет ежемесячный платеж и полную переплату по процентам",
+        "Показывает долю тела кредита и стоимости финансирования",
+        "Быстрое сравнение сроков на 48 и 72 месяца"
+      ]
+    }
+  },
+  "roi": {
+    "bestFor": {
+      "en": "Best for measuring net profit efficiency and annualized CAGR across business projects, campaigns, or single investments.",
+      "he": "מתאים למדידת רווחיות פרויקטים, קמפיינים שיווקיים והשקעות הון כולל שיעור תשואה שנתי מנוכה זמן (CAGR).",
+      "es": "Ideal para evaluar la rentabilidad neta y anualizada (CAGR) de proyectos, campañas o inversiones.",
+      "fr": "Idéal pour mesurer la rentabilité nette et annualisée (TCAC) de projets, campagnes ou placements.",
+      "ar": "مناسب لقياس كفاءة صافي الربح والعائد السنوي المركب للمشاريع والحملات والاستثمارات.",
+      "ru": "Подходит для оценки окупаемости бизнес-проектов, маркетинговых кампаний и разовых инвестиций (включая CAGR)."
+    },
+    "features": {
+      "en": [
+        "Computes both total Return on Investment (%) and net dollar profit",
+        "Calculates Annualized ROI (CAGR) to compare multi-year deals fairly",
+        "Flags positive gains vs capital-loss scenarios cleanly",
+        "Includes presets for real estate, stock portfolio, and marketing campaigns"
+      ],
+      "he": [
+        "חישוב תשואה כוללת (ROI %) לצד הרווח הנקי בכסף",
+        "חישוב תשואה שנתית ממוצעת (Annualized ROI / CAGR) להשוואת עסקאות",
+        "זיהוי ברור של רווח מול הפסד הון ביחס להשקעה הראשונית",
+        "כולל תרחישי בדיקה להשקעות הון, נדל״ן וקמפיינים שיווקיים"
+      ],
+      "es": [
+        "Calcula tanto el ROI total (%) como el beneficio neto monetario",
+        "Obtiene el ROI anualizado (CAGR) para comparar distintos plazos",
+        "Distingue claramente rentabilidad positiva frente a pérdidas",
+        "Útil para proyectos empresariales, marketing o inversiones puntuales"
+      ],
+      "fr": [
+        "Calcule à la fois le ROI total (%) et le bénéfice net financier",
+        "Fournit le ROI annualisé (TCAC) pour comparer des durées différentes",
+        "Distingue immédiatement gains nets et scénarios de perte",
+        "Adapté aux campagnes marketing, projets d'entreprise et placements"
+      ],
+      "ar": [
+        "يحسب العائد الإجمالي على الاستثمار (%) وصافي الربح النقدي",
+        "يستخرج العائد السنوي المركب (CAGR) للمقارنة العادلة بين مدد مختلفة",
+        "يوضح بوضوح حالات الربح الصافي مقابل الخسارة الرأسمالية",
+        "ملائم لتقييم المشاريع التجارية والحملات التسويقية والاستثمارات"
+      ],
+      "ru": [
+        "Вычисляет общий ROI (%) и чистую прибыль в деньгах",
+        "Рассчитывает годовой ROI (CAGR) для сравнения сделок разной длительности",
+        "Четко отображает прибыльные и убыточные сценарии",
+        "Полезен для оценки маркетинга, бизнес-проектов и инвестиций"
+      ]
+    }
+  },
+  "margin": {
+    "bestFor": {
+      "en": "Best for e-commerce sellers, retailers, and agencies setting profitable prices without confusing Margin and Markup.",
+      "he": "מתאים לבעלי חנויות, יבואנים ונותני שירותים לתמחור מוצרים נכון והבחנה בין שולי רווח לתוספת מחיר (Markup).",
+      "es": "Ideal para tiendas y agencias que fijan precios evitando confundir Margen comercial con Markup.",
+      "fr": "Idéal pour commerçants et agences souhaitant fixer leurs prix sans confondre marge et taux de marque.",
+      "ar": "مناسب لأصحاب المتاجر والشركات لتسعير المنتجات بدقة وتجنب الخلط بين هامش الربح ونسبة الزيادة.",
+      "ru": "Подходит магазинам и агентствам для правильного ценообразования без путаницы между маржой и наценкой."
+    },
+    "features": {
+      "en": [
+        "Simultaneously computes Gross Profit ($), Profit Margin (%), and Markup (%)",
+        "Eliminates the costly pricing confusion between cost-based markup and revenue-based margin",
+        "Visualizes Cost of Goods Sold (COGS) share vs Gross Profit share of sale price",
+        "Fast what-if pricing sensitivity for wholesale and retail bundles"
+      ],
+      "he": [
+        "מחשב במקביל רווח גולמי בכסף, אחוז שולי רווח (Margin) ואחוז תוספת (Markup)",
+        "מונע את הטעות הנפוצה בתמחור בין חישוב על בסיס עלות לחישוב מתוך מחיר מכירה",
+        "פירוק חזותי של נתח העלות מול נתח הרווח מכל שקל מכירה",
+        "כלי מהיר לקביעת מחיר מומלץ למוצרים וסיטונאות"
+      ],
+      "es": [
+        "Calcula simultáneamente beneficio bruto, margen comercial (%) y markup (%)",
+        "Evita confundir el recargo sobre coste con el margen sobre ventas",
+        "Muestra la proporción de coste frente a ganancia dentro del precio final",
+        "Permite simular precios minoristas y mayoristas al instante"
+      ],
+      "fr": [
+        "Calcule simultanément marge brute (€), taux de marque (%) et taux de marge (%)",
+        "Évite la confusion fréquente entre majoration sur coût et marge sur prix de vente",
+        "Visualise la part du coût d'achat face au profit dans le prix final",
+        "Idéal pour tarifer produits retail, e-commerce ou prestations"
+      ],
+      "ar": [
+        "يحسب في وقت واحد إجمالي الربح وهامش الربح (%) ونسبة الزيادة على التكلفة (%)",
+        "يمنع الخطأ الشائع في التسعير بين نسبة الإضافة على التكلفة والهامش من المبيعات",
+        "يوضح حصة التكلفة مقابل حصة الربح من سعر البيع النهائي",
+        "مناسب لتسعير منتجات التجزئة والجملة بسرعة"
+      ],
+      "ru": [
+        "Одновременно рассчитывает валовую прибыль, маржу (%) и наценку (%)",
+        "Помогает избежать частой ошибки в ценообразовании между маржой и наценкой",
+        "Показывает долю себестоимости и прибыли в цене продажи",
+        "Удобен для быстрого расчета оптовых и розничных цен"
+      ]
+    }
+  },
+  "cap-rate": {
+    "bestFor": {
+      "en": "Best for landlords and real estate investors evaluating unleveraged annual rental yield (NOI / Property Value).",
+      "he": "מתאים למשקיעי נדל״ן להערכת תשואת השכירות התפעולית נטו (NOI חלקי מחיר הנכס) לפני מינוף משכנתא.",
+      "es": "Ideal para inversores inmobiliarios que evalúan la rentabilidad neta operativa anual (NOI / Valor).",
+      "fr": "Idéal pour investisseurs immobiliers évaluant le rendement locatif net d'exploitation avant crédit.",
+      "ar": "مناسب لمستثمري العقارات لتقييم العائد التشغيلي الصافي السنوي مقارنة بقيمة العقار قبل التمويل.",
+      "ru": "Подходит инвесторам в недвижимость для оценки чистой операционной доходности (NOI / цена объекта) без учета ипотеки."
+    },
+    "features": {
+      "en": [
+        "Computes Net Operating Income (NOI) after property taxes, maintenance, and vacancy",
+        "Calculates unleveraged Capitalization Rate (Cap Rate %) for property comparisons",
+        "Breaks down annual gross rent vs operating expense ratio",
+        "Helps screen commercial, multifamily, and residential rental deals quickly"
+      ],
+      "he": [
+        "מחשב הכנסה תפעולית נטו (NOI) בניכוי ארנונה, תחזוקה, ביטוח ואי-תפוסה",
+        "מחשב שיעור תשואה שנתית נטו (Cap Rate %) להשוואה אובייקטיבית בין נכסים",
+        "מציג יחס הוצאות תפעול מול הכנסות שכירות ברוטו",
+        "כלי סינון מהיר לעסקאות נדל״ן למגורים, מסחר והשקעה"
+      ],
+      "es": [
+        "Calcula el Ingreso Operativo Neto (NOI) tras impuestos, mantenimiento y vacancia",
+        "Determina la tasa de capitalización (Cap Rate %) sin apalancamiento",
+        "Desglosa ingresos brutos anuales frente a ratio de gastos operativos",
+        "Facilita comparar rápidamente propiedades residenciales o comerciales"
+      ],
+      "fr": [
+        "Calcule le Revenu Net d'Exploitation (NOI) après charges, taxes et vacance",
+        "Détermine le taux de capitalisation (Cap Rate %) hors financement",
+        "Compare loyers bruts annuels et ratio de charges opérationnelles",
+        "Permet de filtrer rapidement des opportunités locatives ou commerciales"
+      ],
+      "ar": [
+        "يحسب صافي الدخل التشغيلي (NOI) بعد خصم الضرائب والصيانة والشغور",
+        "يستخرج معدل الرسملة السنوي (Cap Rate %) للمقارنة الموضوعية بين العقارات",
+        "يوضح نسبة المصاريف التشغيلية من إجمالي الإيجار السنوي",
+        "أداة فرز سريعة لتقييم العقارات السكنية والتجارية"
+      ],
+      "ru": [
+        "Вычисляет чистый операционный доход (NOI) за вычетом налогов, ремонта и простоя",
+        "Рассчитывает ставку капитализации (Cap Rate %) для сравнения объектов",
+        "Показывает долю операционных расходов в валовой аренде",
+        "Позволяет быстро оценивать жилые и коммерческие объекты"
+      ]
+    }
+  },
+  "freelance-net-income": {
+    "bestFor": {
+      "en": "Best for independent contractors and self-employed workers estimating true take-home pay after taxes and deductible expenses.",
+      "he": "מתאים לעצמאים, עוסקים מורשים ופרילנסרים לחישוב הנטו האמיתי בכיס אחרי הוצאות מוכרות, מס הכנסה וביטוח לאומי.",
+      "es": "Ideal para autónomos y freelancers para calcular el ingreso neto real tras gastos deducibles e impuestos.",
+      "fr": "Conçu pour freelances et indépendants afin d'estimer leur revenu net après charges et impôts.",
+      "ar": "مناسب للمستقلين وأصحاب العمل الحر لتقدير صافي الدخل الفعلي بعد خصم المصاريف والضرائب والتأمينات.",
+      "ru": "Подходит фрилансерам и самозанятым для оценки чистого дохода после вычета рабочих расходов и налогов."
+    },
+    "features": {
+      "en": [
+        "Deducts allowable business expenses before computing taxable net profit",
+        "Separates income tax, social security contributions, and net take-home pay",
+        "Calculates effective overall tax rate on gross freelance revenue",
+        "Helps set hourly or retainer rates that hit a target monthly net income"
+      ],
+      "he": [
+        "מנכה הוצאות עסקיות מוכרות לפני חישוב הרווח החייב במס",
+        "מפצל בין מס הכנסה, ביטוח לאומי לבין ההכנסה הפנויה נטו",
+        "מציג שיעור מס אפקטיבי מההכנסה השוטפת",
+        "מסייע לתמחר תעריף שעתי או ריטיינר שישאיר נטו רצוי"
+      ],
+      "es": [
+        "Deduce gastos profesionales antes de calcular el beneficio imponible",
+        "Separa impuestos sobre la renta, cotizaciones sociales y neto final",
+        "Calcula el tipo impositivo efectivo sobre la facturación bruta",
+        "Ayuda a fijar tarifas por hora o proyectos para alcanzar un sueldo neto objetivo"
+      ],
+      "fr": [
+        "Déduit les frais professionnels avant calcul du bénéfice imposable",
+        "Distingue impôt sur le revenu, cotisations sociales et revenu net disponible",
+        "Calcule le taux de prélèvement effectif sur le chiffre d'affaires",
+        "Aide à fixer un TJM ou tarif horaire rentable"
+      ],
+      "ar": [
+        "يخصم المصروفات التشغيلية قبل احتساب صافي الربح الخاضع للضريبة",
+        "يفصل ضريبة الدخل والتأمينات الاجتماعية عن صافي الدخل المتبقي",
+        "يحسب معدل الضريبة الفعلي من إجمالي إيرادات العمل الحر",
+        "يساعد في تسعير الساعة أو العقود الشهرية لتحقيق صافي دخل مستهدف"
+      ],
+      "ru": [
+        "Вычитает деловые расходы до расчета налогооблагаемой прибыли",
+        "Разделяет подоходный налог, социальные взносы и чистый доход на руки",
+        "Показывает эффективную налоговую нагрузку от валовой выручки",
+        "Помогает выбрать ставку часа или проекта для желаемого чистого дохода"
+      ]
+    }
+  },
+  "debt-snowball": {
+    "bestFor": {
+      "en": "Best when juggling multiple loans or credit cards and rolling freed payments from smallest to largest balance.",
+      "he": "מתאים למי שמתמודד עם כמה הלוואות וכרטיסי אשראי ורוצה להאיץ סגירת חובות מהיתרה הקטנה לגדולה.",
+      "es": "Ideal cuando tienes varias deudas y quieres eliminarlas en cadena empezando por el saldo menor.",
+      "fr": "Idéal lorsque vous cumulez plusieurs crédits et souhaitez les solder du plus petit au plus grand.",
+      "ar": "مناسب عند تعدد الديون والبطاقات والعمل على سدادها بالتدريج من الأصغر رصيداً إلى الأكبر.",
+      "ru": "Подходит при нескольких кредитах и картах для ускоренного закрытия долгов от меньшего остатка к большему."
+    },
+    "features": {
+      "en": [
+        "Orders multiple debts from smallest balance to largest with automatic payment rollover",
+        "Compares Debt Snowball vs Debt Avalanche payoff timeline and total interest saved",
+        "Models extra monthly acceleration payments and month-by-month debt-free dates",
+        "Visualizes total remaining multi-debt balance trajectory until zero"
+      ],
+      "he": [
+        "מסדר מספר הלוואות מהיתרה הקטנה לגדולה ומגלגל החזרים שהתפנו",
+        "משווה בין שיטת כדור השלג לשיטת המפולת (ריבית גבוהה תחילה) בחיסכון וזמן",
+        "בוחן תוספת תקציב חודשית להאצת תאריך היציאה מהחובות",
+        "תרשים מסלול ירידת סך החובות חודש אחר חודש עד לאיפוס"
+      ],
+      "es": [
+        "Ordena múltiples deudas de menor a mayor saldo con efecto cascada automático",
+        "Compara método Bola de Nieve frente a Avalancha en meses e intereses",
+        "Simula pagos extra mensuales para adelantar la fecha libre de deudas",
+        "Gráfica de evolución conjunta de todas tus deudas hasta cero"
+      ],
+      "fr": [
+        "Classe plusieurs dettes de la plus petite à la plus grande avec report des mensualités",
+        "Compare méthode Boule de Neige et Avalanche en durée et intérêts économisés",
+        "Intègre un effort mensuel supplémentaire pour accélérer le désendettement",
+        "Visualise la courbe combinée de remboursement jusqu'à zéro"
+      ],
+      "ar": [
+        "يرتب عدة ديون من الأصغر رصيداً إلى الأكبر مع ترحيل الأقساط المحررة تلقائياً",
+        "يقارن استراتيجية كرة الثلج مع الانهيار في المدة الزمنية وتوفير الفوائد",
+        "يحاكي أثر الدفعة الإضافية الشهرية لتسريع تاريخ التحرر من الديون",
+        "يرسم المسار التنازلي لإجمالي الديون حتى الوصول للصفر"
+      ],
+      "ru": [
+        "Сортирует несколько долгов от меньшего остатка к большему с переносом платежей",
+        "Сравнивает метод снежного кома и лавины по сроку и экономии на процентах",
+        "Учитывает дополнительный ежемесячный платеж для ускорения выхода из долгов",
+        "Строит график общего остатка задолженности до полного погашения"
+      ]
+    }
+  },
+  "fuel-split": {
+    "bestFor": {
+      "en": "Best for road trips and shared commutes to split exact gas consumption and fuel cost fairly per passenger.",
+      "he": "מתאים לנסיעות משותפות וטיולים לחישוב מדויק של צריכת הדלק וחלוקת העלות הוגנת בין הנוסעים.",
+      "es": "Ideal para viajes en coche compartidos calculando consumo exacto y gasto justo por pasajero.",
+      "fr": "Idéal pour le covoiturage et road-trips afin de calculer et répartir le coût exact du carburant.",
+      "ar": "مناسب للرحلات المشتركة ومشاركة السيارة لحساب استهلاك الوقود وتقسيم التكلفة بعدالة بين الركاب.",
+      "ru": "Подходит для совместных поездок и путешествий с точным расчетом расхода топлива и доли каждого пассажира."
+    },
+    "features": {
+      "en": [
+        "Calculates total fuel liters/gallons from trip distance and vehicle fuel economy",
+        "Supports L/100km, km/L, and MPG efficiency units with local pump prices",
+        "Divides total trip fuel expense evenly across driver and passengers",
+        "Shows cost per kilometer/mile for quick ride-share reimbursement"
+      ],
+      "he": [
+        "חישוב כמות ליטרים או גלונים לפי מרחק נסיעה וצריכת דלק ממוצעת",
+        "תמיכה ביחידות ק״מ לליטר, ליטר ל-100 ק״מ ו-MPG לפי מחיר ליטר עדכני",
+        "פיצול אוטומטי והוגן של עלות הנסיעה בין הנהג והנוסעים",
+        "מציג עלות לקילומטר להתחשבנות מהירה בטיולים וקרפול"
+      ],
+      "es": [
+        "Calcula litros o galones consumidos según distancia y consumo medio del coche",
+        "Admite L/100 km, km/L y MPG con el precio local del combustible",
+        "Reparte el gasto total equitativamente entre conductor y acompañantes",
+        "Muestra el coste por kilómetro para liquidar trayectos compartidos"
+      ],
+      "fr": [
+        "Calcule les litres ou gallons nécessaires selon distance et consommation",
+        "Compatible L/100 km, km/L et MPG avec le prix réel à la pompe",
+        "Partage équitablement la note de carburant entre tous les passagers",
+        "Indique le coût au kilomètre pour vos trajets en covoiturage"
+      ],
+      "ar": [
+        "يحسب كمية الوقود المطلوبة من مسافة الرحلة ومعدل استهلاك السيارة",
+        "يدعم وحدات لتر/100كم وكم/لتر والميل للغالون مع سعر الوقود المحلي",
+        "يقسم تكلفة الوقود بالتساوي بين السائق والركاب",
+        "يعرض التكلفة لكل كيلومتر لتسهيل المحاسبة بين الأصدقاء"
+      ],
+      "ru": [
+        "Рассчитывает объем топлива по дистанции и среднему расходу автомобиля",
+        "Поддерживает л/100км, км/л и MPG при актуальной цене за литр",
+        "Делит общие расходы на бензин поровну между всеми пассажирами",
+        "Показывает стоимость одного километра пути"
+      ]
+    }
+  },
+  "goal-savings": {
+    "bestFor": {
+      "en": "Best when working backward from a fixed cash target (home down payment, wedding, car) to find the required monthly deposit.",
+      "he": "מתאים לתכנון יעד כספי מוגדר (דירה, חתונה, רכב) וחישוב ההפקדה החודשית הנדרשת להשגתו בזמן.",
+      "es": "Ideal cuando partes de una meta concreta (casa, boda, coche) para saber cuánto ahorrar cada mes.",
+      "fr": "Idéal en partant d'un objectif précis (apport, mariage, projet) pour déterminer l'épargne mensuelle requise.",
+      "ar": "مثالي عند التخطيط لهدف مالي محدد مثل الدفعة الأولى أو الزواج لمعرفة القسط الشهري اللازم للادخار.",
+      "ru": "Подходит при наличии конкретной финансовой цели для расчета необходимого ежемесячного пополнения."
+    },
+    "features": {
+      "en": [
+        "Solves backward for exact required monthly savings deposit to hit your target amount",
+        "Factors in existing starting savings and expected annual compound yield",
+        "Splits final goal balance into starting capital, monthly deposits, and interest earned",
+        "Includes interactive timeline presets for emergency fund, down payment, and education"
+      ],
+      "he": [
+        "חישוב הפוך של ההפקדה החודשית המדויקת הדרושה להגעה לסכום היעד",
+        "משקלל חיסכון התחלתי קיים ותשואה שנתית צפויה בריבית דריבית",
+        "מפצל את הסכום הסופי בין הון התחלתי, הפקדות חודשיות ורווחי תשואה",
+        "תרחישים מהירים לקרן חירום, הון עצמי לדירה וחיסכון ללימודים"
+      ],
+      "es": [
+        "Calcula de forma inversa la aportación mensual exacta para alcanzar tu meta",
+        "Integra ahorros iniciales existentes y rentabilidad anual compuesta",
+        "Desglosa el capital final entre ahorro propio e intereses ganados",
+        "Incluye escenarios rápidos para fondo de emergencia, vivienda o estudios"
+      ],
+      "fr": [
+        "Calcule à rebours le versement mensuel exact pour atteindre votre objectif",
+        "Intègre votre épargne déjà constituée et le rendement annuel composé",
+        "Sépare le capital initial, les versements cumulés et les intérêts générés",
+        "Préréglages pratiques pour fonds d'urgence, apport ou études"
+      ],
+      "ar": [
+        "يحسب عكسياً مبلغ الإيداع الشهري المطلوب للوصول إلى الهدف في الموعد المحدد",
+        "يدمج المدخرات الحالية المتوفرة مع العائد السنوي المركب المتوقع",
+        "يفصل الرصيد النهائي بين رأس المال والإيداعات الشهرية وأرباح الفائدة",
+        "أمثلة جاهزة لصندوق الطوارئ والدفعة الأولى والادخار التعليمي"
+      ],
+      "ru": [
+        "Обратный расчет точного ежемесячного взноса для достижения целевой суммы",
+        "Учитывает стартовые накопления и ожидаемую годовую доходность",
+        "Разбивает итог на начальный капитал, регулярные взносы и начисленные проценты",
+        "Удобные сценарии для подушки безопасности, первого взноса и обучения"
+      ]
+    }
+  },
+  "download-time": {
+    "bestFor": {
+      "en": "Best for estimating exact file transfer duration across Mbps/Gbps broadband, cloud backups, and game downloads.",
+      "he": "מתאים לחישוב מדויק של זמן הורדה או העלאה של קבצים גדולים, גיבויי ענן ומשחקים לפי מהירות האינטרנט.",
+      "es": "Ideal para calcular el tiempo exacto de descarga o subida de archivos grandes según tu ancho de banda.",
+      "fr": "Parfait pour estimer la durée exacte de téléchargement ou d'envoi de gros fichiers selon le débit.",
+      "ar": "مناسب لتقدير وقت تنزيل أو رفع الملفات الضخمة والألعاب والنسخ الاحتياطية حسب سرعة الإنترنت.",
+      "ru": "Подходит для точного расчета времени загрузки или выгрузки крупных файлов, игр и бэкапов по скорости сети."
+    },
+    "features": {
+      "en": [
+        "Eliminates the common MB/GB vs Mbps/Gbps (8-bit-per-byte) confusion",
+        "Supports file sizes from KB/MB up to multi-terabyte backups",
+        "Includes speed presets from 4G/LTE and fiber broadband to 10GbE servers",
+        "Breaks duration cleanly into days, hours, minutes, and seconds"
+      ],
+      "he": [
+        "פותר את הבלבול הנפוץ בין מגה-בייט (MB) למגה-ביט לשנייה (Mbps, יחס של 8)",
+        "תמיכה בגדלי קבצים מ-KB ו-MB ועד גיבויים של טרה-בייט (TB)",
+        "קיצורי מהירות נפוצים מ-4G וסיבים אופטיים ועד רשתות 10GbE",
+        "תצוגת זמן מפורטת בימים, שעות, דקות ושניות"
+      ],
+      "es": [
+        "Evita la confusión habitual entre megabytes (MB) y megabits por segundo (Mbps)",
+        "Admite tamaños desde KB y MB hasta copias de varios terabytes (TB)",
+        "Atajos de velocidad para 4G, fibra doméstica y enlaces de 10 Gbps",
+        "Muestra la duración exacta en días, horas, minutos y segundos"
+      ],
+      "fr": [
+        "Évite la confusion courante entre mégaoctets (Mo/MB) et mégabits/s (Mbps)",
+        "Gère les fichiers du Ko au To pour sauvegardes cloud et jeux",
+        "Préréglages pour 4G/5G, fibre optique et liaisons 10 Gbps",
+        "Affiche la durée précise en jours, heures, minutes et secondes"
+      ],
+      "ar": [
+        "يزيل الالتباس الشائع بين الميجابايت (MB) والميجابت في الثانية (Mbps)",
+        "يدعم أحجام الملفات من كيلوبايت وميجابايت حتى عدة تيرابايت (TB)",
+        "خيارات سرعة جاهزة من 4G والألياف البصرية حتى شبكات 10GbE",
+        "يعرض المدة الدقيقة بالأيام والساعات والدقائق والثواني"
+      ],
+      "ru": [
+        "Устраняет путаницу между мегабайтами (МБ) и мегабитами в секунду (Мбит/с)",
+        "Поддерживает файлы от КБ и МБ до резервных копий на терабайты (ТБ)",
+        "Готовые пресеты скорости для LTE, оптоволокна и 10GbE каналов",
+        "Точный вывод времени в днях, часах, минутах и секундах"
+      ]
+    }
+  },
+  "peltier-cooling": {
+    "bestFor": {
+      "en": "Best for hardware engineers and DIY thermal designers sizing TEC1 Peltier modules, heat sinks, and power supplies.",
+      "he": "מתאים למהנדסי חומרה ומפתחים לתכנון מערכות קירור תרמואלקטריות (TEC), חישוב Qc, הספק ומקדם COP.",
+      "es": "Ideal para ingenieros electrónicos que dimensionan módulos Peltier TEC, disipadores y fuentes.",
+      "fr": "Conçu pour ingénieurs thermiques dimensionnant des modules Peltier TEC, dissipateurs et alimentations.",
+      "ar": "مناسب لمهندسي الإلكترونيات لتصميم أنظمة التبريد الكهروحراري وحساب القدرة ومعامل الأداء (COP).",
+      "ru": "Подходит инженерам-схемотехникам для подбора элементов Пельтье (TEC), радиаторов и блоков питания."
+    },
+    "features": {
+      "en": [
+        "Computes net cooling capacity (Qc), electrical input power (Pin), and hot-side heat load (Qh)",
+        "Calculates thermoelectric Coefficient of Performance (COP = Qc / Pin) across ΔT",
+        "Helps verify heatsink dissipation margin (Qh = Qc + Pin) to prevent thermal runaway",
+        "Models Seebeck voltage, Peltier effect, Joule heating, and Fourier thermal conduction"
+      ],
+      "he": [
+        "חישוב תפוקת הקירור נטו (Qc), הספק החשמלי (Pin) ופליטת החום לצד החם (Qh)",
+        "חישוב מקדם היעילות התרמואלקטרי (COP) בהתאם להפרש הטמפרטורות ΔT",
+        "בדיקת עומס החום הכולל על צלעות הקירור (Qh = Qc + Pin) למניעת התחממות יתר",
+        "מבוסס על משוואות Seebeck, אפקט פלטייה, חום ג׳ול והולכת חום"
+      ],
+      "es": [
+        "Calcula capacidad frigorífica neta (Qc), potencia eléctrica (Pin) y calor total (Qh)",
+        "Determina el Coeficiente de Rendimiento (COP = Qc / Pin) según salto térmico ΔT",
+        "Permite dimensionar el disipador del lado caliente evitando sobrecarga térmica",
+        "Modela efecto Peltier, calentamiento Joule y conducción térmica"
+      ],
+      "fr": [
+        "Calcule puissance frigorifique nette (Qc), puissance électrique (Pin) et chaleur rejetée (Qh)",
+        "Évalue le Coefficient de Performance (COP = Qc / Pin) selon l'écart ΔT",
+        "Dimensionne le radiateur côté chaud (Qh = Qc + Pin) pour éviter la surchauffe",
+        "Intègre effet Peltier, effet Joule et conduction thermique"
+      ],
+      "ar": [
+        "يحسب سعة التبريد الصافية (Qc) والقدرة الكهربائية (Pin) والحرارة المطروحة (Qh)",
+        "يحسب معامل الأداء الكهروحراري (COP) عبر فرق درجات الحرارة ΔT",
+        "يساعد في تحديد حجم المشتت الحراري المطلوب لمنع فشل التبريد",
+        "ينمذج تأثير بيلتير وفقد جول والتوصيل الحراري بدقة هندسية"
+      ],
+      "ru": [
+        "Рассчитывает холодопроизводительность (Qc), потребляемую мощность (Pin) и тепловыделение (Qh)",
+        "Вычисляет термоэлектрический коэффициент эффективности (COP) при заданном ΔT",
+        "Помогает рассчитать нагрузку на радиатор горячей стороны (Qh = Qc + Pin)",
+        "Учитывает эффект Пельтье, джоулев нагрев и теплопроводность"
+      ]
+    }
+  },
+  "rent-vs-buy": {
+    "bestFor": {
+      "en": "Best for long-term homebuyers weighing mortgage equity & appreciation against investing a down payment in markets while renting.",
+      "he": "מתאים למתלבטים בין קניית דירה להשקעת ההון העצמי בשוק ההון במקביל לשכירות לטווח של 5–30 שנה.",
+      "es": "Ideal para decidir entre comprar vivienda o alquilar invirtiendo la entrada en mercados financieros.",
+      "fr": "Idéal pour comparer achat immobilier et location avec placement financier de l'apport sur 5 à 30 ans.",
+      "ar": "مناسب للمقارنة طويلة الأجل بين شراء عقار وبناء حقوق الملكية مقابل الاستئجار واستثمار الدفعة الأولى.",
+      "ru": "Подходит для долгосрочного сравнения покупки квартиры с ипотекой и аренды с инвестированием первого взноса."
+    },
+    "features": {
+      "en": [
+        "Models net wealth at horizon after selling costs, property appreciation, and closing fees",
+        "Compares opportunity cost of investing down payment + monthly cash-flow savings",
+        "Includes property tax, maintenance costs, rent inflation, and home value growth",
+        "Identifies the financial break-even year where buying overtakes renting"
+      ],
+      "he": [
+        "מחשב הון נקי בסוף התקופה בניכוי הוצאות רכישה, תחזוקה ועליית ערך הנכס",
+        "בוחן עלות אלטרנטיבית של השקעת ההון העצמי והפער החודשי בשוק ההון",
+        "משקלל ארנונה, תחזוקה, התייקרות שכר דירה שנתית וריבית משכנתא",
+        "מזהה את שנת האיזון הכלכלית שבה רכישה הופכת משתלמת משכירות"
+      ],
+      "es": [
+        "Proyecta el patrimonio neto final tras gastos de compraventa, mantenimiento y plusvalía",
+        "Calcula el coste de oportunidad de invertir la entrada y el ahorro mensual",
+        "Incluye impuestos inmobiliarios, inflación del alquiler y revalorización del inmueble",
+        "Determina el año de equilibrio donde comprar supera financieramente a alquilar"
+      ],
+      "fr": [
+        "Compare le patrimoine net à terme après frais de notaire, entretien et plus-value",
+        "Intègre le coût d'opportunité de l'apport placé en bourse et de l'épargne mensuelle",
+        "Prend en compte taxe foncière, revalorisation des loyers et hausse immobilière",
+        "Identifie l'année charnière où l'achat dépasse la location"
+      ],
+      "ar": [
+        "يحسب صافي الثروة النهائية بعد تكاليف الشراء والصيانة ونمو قيمة العقار",
+        "يدمج تكلفة الفرصة البديلة لاستثمار الدفعة الأولى والفائض الشهري بالأسواق",
+        "يشمل ضريبة العقار والتضخم السنوي للإيجار ومعدل نمو الأسعار",
+        "يحدد سنة التعادل التي يتفوق فيها الشراء مالياً على الاستئجار"
+      ],
+      "ru": [
+        "Считает чистый капитал на горизонте с учетом налогов, ремонта и роста цены жилья",
+        "Учитывает альтернативную доходность инвестирования первого взноса и разницы платежей",
+        "Моделирует индексацию аренды, налог на имущество и ставку ипотеки",
+        "Находит год безубыточности, когда покупка становится выгоднее аренды"
+      ]
+    }
+  },
+  "stock-options-rsu": {
+    "bestFor": {
+      "en": "Best for startup and tech employees evaluating RSU vs ISO/ESOP packages, cliff vesting, funding dilution, and Section 102 tax.",
+      "he": "מתאים לעובדי הייטק וסטארטאפים לחישוב שווי אופציות ו-RSU, מס סעיף 102 (25%), מדרגות הבשלה ודילול גיוסים.",
+      "es": "Ideal para empleados tech evaluando RSUs y opciones, vesting, dilución por rondas e impuestos.",
+      "fr": "Conçu pour salariés tech évaluant RSU et stock-options, calendrier de vesting, dilution et fiscalité.",
+      "ar": "مناسب لموظفي التكنولوجيا والشركات الناشئة لتقييم الأسهم المقيدة وخيارات الأسهم وجدول الاستحقاق والتخارج.",
+      "ru": "Подходит IT-специалистам и сотрудникам стартапов для оценки RSU и опционов с учетом вестинга, размытия и налогов."
+    },
+    "features": {
+      "en": [
+        "Models both Stock Options (strike price spread) and RSU full-share grants",
+        "Computes 4-year vesting schedule with 1-year cliff and monthly progression chart",
+        "Applies funding round dilution (%) and Section 102 Capital Gains (25%) vs Marginal Income Tax",
+        "Generates multi-multiplier Exit Sensitivity Matrix (1x–10x valuation outcomes)"
+      ],
+      "he": [
+        "תמיכה הן באופציות (מול מחיר מימוש) והן במניות חסומות (RSU)",
+        "חישוב לוח הבשלה ל-4 שנים עם שנת Cliff והתקדמות חודשית בגרף",
+        "שקלול דילול מסבבי גיוס והשוואת מס רווח הון סעיף 102 (25%) מול מס פירותי",
+        "טבלת רגישות לתרחישי אקזיט שונים והשפעתם על הנטו בכיס"
+      ],
+      "es": [
+        "Modela tanto Stock Options (precio de ejercicio) como concesiones RSU",
+        "Calcula calendario de vesting a 4 años con cliff de 12 meses y gráfico mensual",
+        "Aplica dilución por futuras rondas y compara fiscalidad sobre plusvalías vs renta",
+        "Incluye matriz de sensibilidad de valoración en posibles escenarios de salida"
+      ],
+      "fr": [
+        "Modélise à la fois stock-options (avec prix d'exercice) et actions gratuites RSU",
+        "Calcule le calendrier d'acquisition sur 4 ans avec cliff d'un an et graphique",
+        "Intègre la dilution des levées de fonds et le régime fiscal plus-values vs revenu",
+        "Produit une matrice de sensibilité selon différents multiples de sortie"
+      ],
+      "ar": [
+        "ينمذج كلاً من خيارات الأسهم (مع سعر التنفيذ) والأسهم المقيدة (RSU)",
+        "يحسب جدول الاستحقاق على 4 سنوات مع فترة حظر سنة واحدة ورسم بياني شهري",
+        "يدمج نسبة التخفيف في جولات التمويل ومقارنة ضريبة الأرباح الرأسمالية (25%) بضريبة الدخل",
+        "يولد مصفوفة حساسية لمضاعفات التخارج المختلفة"
+      ],
+      "ru": [
+        "Рассчитывает как опционы (с учетом страйк-цены), так и гранты акций RSU",
+        "Строит график 4-летнего вестинга с 1-годовым клиффом по месяцам",
+        "Учитывает размытие долей в раундах и сравнение ставок налога на прирост и доход",
+        "Формирует матрицу чувствительности чистой прибыли к сценариям экзита"
+      ]
+    }
+  },
+  "purchase-appreciation-tax": {
+    "bestFor": {
+      "en": "Best for homebuyers and real estate investors calculating tiered Israeli purchase tax brackets and linear appreciation tax.",
+      "he": "מתאים לרוכשי ומוכרי דירות בישראל לחישוב מדויק של מדרגות מס רכישה (יחידה/נוספת) ומס שבח ליניארי מוטב.",
+      "es": "Ideal para compradores e inversores calculando tramos de impuesto de compra y plusvalía lineal.",
+      "fr": "Conçu pour acquéreurs et vendeurs calculant droits d'acquisition progressifs et plus-value linéaire.",
+      "ar": "مناسب لمشتري وبائعي العقارات لحساب شرائح ضريبة الشراء المتدرجة وضريبة التحسين العقاري الخطية.",
+      "ru": "Подходит покупателям и продавцам недвижимости для расчета ступенчатого налога на покупку и налога на прирост стоимости."
+    },
+    "features": {
+      "en": [
+        "Computes progressive single-home vs additional-investment-property purchase tax tiers",
+        "Calculates linear capital appreciation tax (Mas Shevach) between pre-2014 and post-2014 periods",
+        "Deducts brokerage, legal fees, purchase tax paid, and documented renovation expenses",
+        "Displays effective tax percentage and itemized bracket-by-bracket breakdown"
+      ],
+      "he": [
+        "חישוב מדרגות מס רכישה מעודכנות לדירה יחידה מול דירה נוספת להשקעה",
+        "חישוב מס שבח ליניארי מוטב (הפרדה בין תקופה פטורה לפני 2014 לתקופה חייבת)",
+        "ניכוי הוצאות מוכרות: עו״ד, תיווך, מס רכישה ששולם ושיפוצים",
+        "פירוט שקוף מדרגה אחר מדרגה ושיעור המס האפקטיבי בעסקה"
+      ],
+      "es": [
+        "Calcula tramos progresivos de impuesto de compra para primera o segunda vivienda",
+        "Determina impuesto lineal sobre plusvalía descontando años históricos exentos",
+        "Deduce gastos de notaría, agencia, reformas e impuestos previos pagados",
+        "Muestra desglose detallado por tramos y tipo efectivo de la operación"
+      ],
+      "fr": [
+        "Calcule les tranches progressives d'acquisition pour résidence principale ou investissement",
+        "Évalue la plus-value immobilière linéaire avec prise en compte de la période exonérée",
+        "Déduit frais d'agence, notaire, travaux justifiés et taxes déjà acquittées",
+        "Affiche le détail tranche par tranche et le taux d'imposition effectif"
+      ],
+      "ar": [
+        "يحسب الشرائح التصاعدية لضريبة الشراء للمسكن الأول مقابل العقار الاستثماري الإضافي",
+        "يحسب ضريبة التحسين العقاري الخطية مع احتساب الفترات المعفاة",
+        "يخصم نفقات المحاماة والسمسرة والترميم والضرائب المدفوعة مسبقاً",
+        "يعرض تفصيلاً دقيقاً لكل شريحة ومعدل الضريبة الفعلي"
+      ],
+      "ru": [
+        "Рассчитывает прогрессивные ставки налога на покупку первого и второго жилья",
+        "Вычисляет линейный налог на прирост стоимости с учетом льготных периодов",
+        "Вычитает расходы на юристов, риелторов, ремонт и ранее уплаченные налоги",
+        "Показывает подробную разбивку по налоговым ступеням"
+      ]
+    }
+  },
+  "employer-cost": {
+    "bestFor": {
+      "en": "Best for employers budgeting total payroll cost and employees translating gross salary into true take-home pay plus benefits.",
+      "he": "מתאים למעסיקים לחישוב עלות העסקה הכוללת (שכר + סוציאליות) ולעובדים לבדיקת הנטו מול התנאים הסוציאליים.",
+      "es": "Ideal para empresas que presupuestan costes salariales totales y empleados que calculan su sueldo neto.",
+      "fr": "Idéal pour employeurs budgétant le coût total du travail et salariés estimant leur net réel.",
+      "ar": "مناسب لأصحاب العمل لحساب التكلفة الإجمالية للموظف وللموظفين لفهم الراتب الصافي ومخصصات التقاعد.",
+      "ru": "Подходит работодателям для оценки полной стоимости найма и сотрудникам для понимания чистой зарплаты и соцпакета."
+    },
+    "features": {
+      "en": [
+        "Adds employer pension (6.5%), severance (8.33%), study fund (7.5%), and National Insurance",
+        "Deducts employee pension, study fund, income tax brackets, and health/social security",
+        "Separates direct cash take-home pay from total deferred compensation value",
+        "Calculates exact Cost-to-Employer multiplier relative to gross base salary"
+      ],
+      "he": [
+        "מוסיף עלויות מעסיק מלאות: תגמולי פנסיה (6.5%), פיצויים (8.33%), השתלמות (7.5%) וביטוח לאומי",
+        "מחשב ניכויי עובד: מס הכנסה, ביטוח לאומי, מס בריאות, פנסיה וקרן השתלמות",
+        "מפריד בין השכר הנכנס לבנק (נטו) לשווי התגמול הכולל כולל הפרשות",
+        "מציג את מכפיל עלות המעביד ביחס לשכר הברוטו המוצע"
+      ],
+      "es": [
+        "Suma aportaciones patronales de pensión, indemnización, fondo y seguridad social",
+        "Descuenta retenciones salariales, IRPF y cotizaciones del trabajador",
+        "Distingue salario líquido mensual del paquete de compensación total",
+        "Muestra el multiplicador real de coste de empresa sobre el bruto"
+      ],
+      "fr": [
+        "Ajoute cotisations patronales de retraite, prévoyance, épargne salariale et charges sociales",
+        "Déduit impôt sur le revenu et cotisations salariales pour obtenir le net en poche",
+        "Distingue salaire net immédiat et rémunération différée totale",
+        "Calcule le coefficient multiplicateur du coût employeur sur le salaire brut"
+      ],
+      "ar": [
+        "يضيف مساهمات صاحب العمل في التقاعد ومخصص نهاية الخدمة وصندوق الاستكمال والتأمينات",
+        "يخصم ضريبة الدخل والتأمينات واشتراكات الموظف للوصول إلى الراتب الصافي",
+        "يفصل بين صافي النقد الشهري وإجمالي حزمة المزايا والتعويضات",
+        "يحسب معامل التكلفة الإجمالية على صاحب العمل مقارنة بالراتب الأساسي"
+      ],
+      "ru": [
+        "Учитывает взносы работодателя в пенсионный фонд, резерв выходного пособия и соцстрах",
+        "Рассчитывает подоходный налог и удержания из зарплаты сотрудника",
+        "Разделяет чистую выплату на руки и общую стоимость соцпакета",
+        "Показывает итоговый коэффициент затрат компании к окладу брутто"
+      ]
+    }
+  },
+  "z-score": {
+    "bestFor": {
+      "en": "Best for students, researchers, and analysts converting between raw values, Z-scores, percentiles, and bell-curve p-values.",
+      "he": "מתאים לסטודנטים וחוקרים להמרה דו-כיוונית בין ערך גולמי, ציון תקן Z, אחוזון והסתברויות בהתפלגות נורמלית.",
+      "es": "Ideal para estudiantes y analistas para convertir entre valores brutos, puntuación Z, percentiles y valores p.",
+      "fr": "Parfait pour étudiants et statisticiens convertissant valeurs brutes, score Z, percentiles et probabilités.",
+      "ar": "مناسب للطلاب والباحثين للتحويل بين القيمة الخام والدرجة المعيارية Z والرتب المئينية واحتمالات التوزيع الطبيعي.",
+      "ru": "Подходит студентам и аналитикам для перевода между сырыми баллами, Z-оценкой, процентилями и p-value."
+    },
+    "features": {
+      "en": [
+        "Two-way solver: Raw Score (X) to Z-Score/Percentile OR Percentile to Inverse Raw Score",
+        "Computes left-tail P(Z < z), right-tail P(Z > z), and two-tailed p-value",
+        "Plots interactive Standard Normal Gaussian Bell Curve with shaded cumulative area",
+        "Displays distance from population mean in standard deviation units"
+      ],
+      "he": [
+        "חישוב דו-כיווני: מציון גולמי X לציון תקן ואחוזון, או מאחוזון חזרה לערך X",
+        "מחשב הסתברות זנב שמאלי P(Z < z), ימני P(Z > z) וערך דו-צדדי (Two-tailed)",
+        "גרף עקומת פעמון גאוס עם הצללה דינמית של השטח המצטבר",
+        "הצגת המרחק מהממוצע ביחידות סטיית תקן ונוסחת ההצבה המלאה"
+      ],
+      "es": [
+        "Modo bidireccional: de valor X a puntuación Z/percentil o de percentil a valor inverso",
+        "Calcula probabilidad acumulada P(Z < z), cola superior P(Z > z) y valor p bilateral",
+        "Gráfica interactiva de campana de Gauss con área sombreada bajo la curva",
+        "Indica la distancia exacta respecto a la media poblacional"
+      ],
+      "fr": [
+        "Double mode : de la valeur brute X au score Z/percentile, ou calcul inverse",
+        "Fournit probabilités P(Z < z), P(Z > z) et intervalle bilatéral",
+        "Trace la courbe de Gauss standard avec zone cumulée ombrée",
+        "Affiche l'écart exact à la moyenne en unités d'écart-type"
+      ],
+      "ar": [
+        "حل ثنائي الاتجاه: من القيمة الخام X إلى درجة Z والرتبة المئينية، أو العكس",
+        "يحسب احتمال الذيل الأيسر والأيمن والقيمة الاحتمالية ذات الطرفين",
+        "يرسم منحنى الجرس للتوزيع الطبيعي مع تظليل المساحة التراكمية",
+        "يوضح المسافة عن المتوسط الحسابي بوحدات الانحراف المعياري"
+      ],
+      "ru": [
+        "Двусторонний расчет: из значения X в Z-оценку/процентиль или обратно из процентиля в X",
+        "Вычисляет левый хвост P(Z < z), правый хвост P(Z > z) и двусторонний p-value",
+        "Строит график нормального распределения Гаусса с заштрихованной областью",
+        "Показывает отклонение от среднего в стандартных отклонениях"
+      ]
+    }
+  },
+  "linear-regression": {
+    "bestFor": {
+      "en": "Best for fitting an OLS trendline (y = mx + b) to paired datasets and measuring correlation strength (r and R²).",
+      "he": "מתאים למציאת קו מגמה לינארי (y = mx + b) לסדרת נקודות מדידה וחישוב חוזק המתאם r ו-R².",
+      "es": "Ideal para ajustar una recta de regresión (y = mx + b) a datos reales y medir correlación r y R².",
+      "fr": "Idéal pour ajuster une droite des moindres carrés (y = mx + b) et mesurer corrélation r et R².",
+      "ar": "مناسب لمطابقة خط الاتجاه الخطي (y = mx + b) مع مجموعات البيانات وقياس قوة الارتباط r وR².",
+      "ru": "Подходит для построения линии тренда (y = mx + b) методом наименьших квадратов и оценки корреляции r и R²."
+    },
+    "features": {
+      "en": [
+        "Fits Ordinary Least Squares (OLS) equation y = mx + b with slope and y-intercept",
+        "Computes Pearson correlation coefficient (r), R-squared (R²), and means (x̄, ȳ)",
+        "Plots interactive scatter diagram overlaid with the fitted best-fit trendline",
+        "Predicts new Y outputs for custom X test values from the fitted model"
+      ],
+      "he": [
+        "חישוב משוואת קו ישר y = mx + b בשיטת הריבועים הפחותים (שיפוע וחותך)",
+        "חישוב מקדם מתאם פירסון (r), מקדם הסבר (R²) וממוצעי מדגם",
+        "תרשים פיזור אינטראקטיבי עם קו המגמה המותאם על גבי הנקודות",
+        "חיזוי ערכי Y עתידיים או חדשים עבור כל ערך X מוזן"
+      ],
+      "es": [
+        "Ajusta la recta y = mx + b mediante mínimos cuadrados ordinarios (MCO)",
+        "Calcula correlación de Pearson (r), coeficiente R² y medias muestrales",
+        "Representa nube de puntos interactiva junto con la línea de tendencia",
+        "Permite predecir valores Y para nuevas entradas X"
+      ],
+      "fr": [
+        "Ajuste l'équation y = mx + b par méthode des moindres carrés ordinaires",
+        "Calcule le coefficient de corrélation r de Pearson, R² et les moyennes",
+        "Trace un nuage de points interactif accompagné de la droite de régression",
+        "Prédit la valeur de Y pour toute nouvelle coordonnée X"
+      ],
+      "ar": [
+        "إيجاد معادلة خط الانحدار y = mx + b بطريقة المربعات الصغرى",
+        "حساب معامل ارتباط بيرسون (r) ومعامل التحديد (R²) ومتوسطات العينات",
+        "عرض مخطط التشتت التفاعلي مع خط الاتجاه المطابق للبيانات",
+        "التنبؤ بقيم Y الجديدة عند إدخال أي قيمة اختبارية لـ X"
+      ],
+      "ru": [
+        "Вычисляет уравнение прямой y = mx + b методом наименьших квадратов (МНК)",
+        "Находит коэффициент корреляции Пирсона (r), детерминацию (R²) и средние",
+        "Строит интерактивную диаграмму рассеяния с линией тренда",
+        "Позволяет прогнозировать значения Y по произвольному X"
+      ]
+    }
+  },
+  "quadratic-equation": {
+    "bestFor": {
+      "en": "Best for algebra students and engineers solving ax² + bx + c = 0 with both real and imaginary roots plus parabola graphs.",
+      "he": "מתאים לתלמידים, סטודנטים ומהנדסים לפתרון ax² + bx + c = 0 כולל שורשים מרוכבים, קודקוד וגרף פרבולה.",
+      "es": "Ideal para resolver ax² + bx + c = 0 con raíces reales o complejas, vértice y gráfica de parábola.",
+      "fr": "Parfait pour résoudre ax² + bx + c = 0 avec racines réelles ou complexes, sommet et graphe.",
+      "ar": "مناسب للطلاب والمهندسين لحل المعادلات التربيعية بجذور حقيقية أو تخيلية مع رسم القطع المكافئ.",
+      "ru": "Подходит школьникам, студентам и инженерам для решения ax² + bx + c = 0 с графиком параболы и комплексными корнями."
+    },
+    "features": {
+      "en": [
+        "Evaluates discriminant Δ = b² - 4ac to classify two real, one repeated, or complex roots",
+        "Calculates exact vertex apex (h, k), axis of symmetry, and y-intercept",
+        "Plots responsive interactive parabola curve highlighting roots and extremum",
+        "Displays step-by-step substitution into the quadratic formula"
+      ],
+      "he": [
+        "חישוב הדיסקרימיננטה Δ = b² - 4ac לזיהוי 2 שורשים ממשיים, שורש יחיד או מרוכבים",
+        "מציאת נקודת קודקוד הפרבולה (מינימום/מקסימום), ציר סימטריה וחיתוך ציר Y",
+        "גרף פרבולה אינטראקטיבי הממחיש את נקודות החיתוך והקודקוד",
+        "פירוט הצבת המקדמים בנוסחת השורשים צעד אחר צעד"
+      ],
+      "es": [
+        "Evalúa el discriminante Δ = b² - 4ac para hallar raíces reales o complejas",
+        "Calcula el vértice (h, k), eje de simetría y corte con el eje Y",
+        "Dibuja la parábola interactiva destacando raíces y punto extremo",
+        "Muestra la sustitución paso a paso en la fórmula cuadrática"
+      ],
+      "fr": [
+        "Évalue le discriminant Δ = b² - 4ac (racines réelles distinctes, double ou complexes)",
+        "Détermine le sommet de la parabole, l'axe de symétrie et l'ordonnée à l'origine",
+        "Trace la parabole interactive avec mise en évidence des solutions",
+        "Affiche les étapes détaillées de résolution"
+      ],
+      "ar": [
+        "حساب المميز Δ = b² - 4ac لتحديد الجذور الحقيقية أو المكررة أو المركبة",
+        "استخراج إحداثيات رأس القطع المكافئ ومحور التماثل ونقطة التقاطع",
+        "رسم تفاعلي لمنحنى القطع المكافئ يوضح الجذور والرأس",
+        "عرض خطوات التعويض التفصيلية في القانون العام"
+      ],
+      "ru": [
+        "Вычисляет дискриминант Δ = b² - 4ac для поиска действительных или комплексных корней",
+        "Находит координаты вершины параболы, ось симметрии и пересечение с осью Y",
+        "Строит интерактивный график параболы с выделением корней и вершины",
+        "Показывает пошаговую подстановку в формулу корней"
+      ]
+    }
+  },
+  "linear-system": {
+    "bestFor": {
+      "en": "Best for solving 2×2 simultaneous equations using Cramer's rule determinants and spotting parallel or coincident lines.",
+      "he": "מתאים לפתרון מערכת 2 משוואות ב-2 נעלמים לפי כלל קרמר (דטרמיננטות), כולל זיהוי ישרים מקבילים וגרף חיתוך.",
+      "es": "Ideal para resolver sistemas 2×2 por regla de Cramer detectando rectas paralelas o coincidentes.",
+      "fr": "Idéal pour résoudre des systèmes 2×2 par règle de Cramer avec tracé des droites sécantes.",
+      "ar": "مناسب لحل أنظمة المعادلات الخطية (2×2) بقاعدة كرامر ورسم تقاطع المستقيمين بيانياً.",
+      "ru": "Подходит для решения систем линейных уравнений 2×2 по правилу Крамера с графиком пересечения прямых."
+    },
+    "features": {
+      "en": [
+        "Solves a₁x + b₁y = c₁ and a₂x + b₂y = c₂ using Cramer's determinants D, Dx, Dy",
+        "Detects unique intersection, parallel no-solution lines (D = 0), and infinite solutions",
+        "Graphs both linear equations interactively and marks the exact (x, y) intersection",
+        "Outputs full step-by-step determinant arithmetic"
+      ],
+      "he": [
+        "פתרון מערכת משוואות באמצעות דטרמיננטות כלל קרמר (D, Dx, Dy)",
+        "מזהה פתרון יחיד, ישרים מקבילים ללא פתרון או אינסוף פתרונות",
+        "מצייר את שני הישרים במערכת צירים ומסמן את נקודת החיתוך (x, y)",
+        "מפרט את כל שלבי חישוב הדטרמיננטות"
+      ],
+      "es": [
+        "Resuelve sistemas 2×2 mediante determinantes de Cramer D, Dx y Dy",
+        "Detecta solución única, rectas paralelas sin solución o infinitas soluciones",
+        "Grafica ambas rectas señalando el punto exacto de intersección (x, y)",
+        "Presenta el desarrollo completo paso a paso"
+      ],
+      "fr": [
+        "Résout tout système 2×2 via les déterminants de Cramer D, Dx et Dy",
+        "Détecte solution unique, droites parallèles (aucune solution) ou confondues",
+        "Trace les deux droites et pointe l'intersection exacte (x, y)",
+        "Détaille chaque étape du calcul matriciel"
+      ],
+      "ar": [
+        "يحل نظام المعادلات الخطية باستخدام محددات قاعدة كرامر D وDx وDy",
+        "يكتشف الحل الوحيد أو المستقيمات المتوازية عديمة الحل أو المتطابقة",
+        "يرسم المستقيمين على المحاور ويحدد نقطة التقاطع الدقيقة (x, y)",
+        "يعرض خطوات حساب المحددات بالتفصيل"
+      ],
+      "ru": [
+        "Решает систему 2×2 через определители Крамера D, Dx и Dy",
+        "Распознает единственное решение, параллельные прямые (нет решений) и совпадение",
+        "Строит графики обеих прямых и отмечает точку их пересечения (x, y)",
+        "Выводит пошаговый разбор вычисления определителей"
+      ]
+    }
+  },
+  "base-converter": {
+    "bestFor": {
+      "en": "Best for programmers and CS students converting integers instantly across Binary, Octal, Decimal, Hex, and Base-36.",
+      "he": "מתאים למתכנתים וסטודנטים למדעי המחשב להמרה מיידית בין בינארי, אוקטלי, עשרוני, הקסדצימלי ובסיסים 2–36.",
+      "es": "Ideal para programadores y estudiantes convirtiendo enteros entre binario, octal, decimal, hex y base 36.",
+      "fr": "Conçu pour développeurs et étudiants convertissant instantanément binaire, octal, décimal, hex et base 36.",
+      "ar": "مناسب للمبرمجين وطلاب علوم الحاسوب لتحويل الأعداد فوراً بين الثنائي والثماني والعشري والست عشري وأي أساس حتى 36.",
+      "ru": "Подходит программистам и студентам для мгновенного перевода чисел между 2-, 8-, 10-, 16-ричной и любой системой до base-36."
+    },
+    "features": {
+      "en": [
+        "Simultaneously displays Binary (Base 2), Octal (Base 8), Decimal (Base 10), and Hex (Base 16)",
+        "Supports any arbitrary custom radix from Base 2 up to Base 36",
+        "Uses JavaScript BigInt for exact precision on huge 64-bit+ integers",
+        "Visualizes nibble/byte bit-grouping and positional power-of-base expansion"
+      ],
+      "he": [
+        "מציג במקביל ייצוג בינארי (בסיס 2), אוקטלי (8), עשרוני (10) והקסדצימלי (16)",
+        "תמיכה בהמרה לכל בסיס מותאם אישית מטווח בסיס 2 עד בסיס 36",
+        "משתמש ב-BigInt לדיוק מוחלט במספרים שלמים ענקיים של 64 ביט ומעלה",
+        "פירוק ביטים לפי בתים (Bytes/Nibbles) והצגת חזקות המיקום"
+      ],
+      "es": [
+        "Muestra simultáneamente Binario (2), Octal (8), Decimal (10) y Hexadecimal (16)",
+        "Admite cualquier base personalizada desde base 2 hasta base 36",
+        "Usa precisión exacta BigInt para enteros grandes de 64 bits o más",
+        "Agrupa bits en nibbles/bytes para lectura rápida en depuración"
+      ],
+      "fr": [
+        "Affiche simultanément Binaire (2), Octal (8), Décimal (10) et Hexadécimal (16)",
+        "Prend en charge toute base personnalisée de la base 2 à la base 36",
+        "Utilise BigInt pour conserver une précision exacte sur grands entiers",
+        "Regroupe les bits par octets et quartets pour faciliter le débogage"
+      ],
+      "ar": [
+        "يعرض في وقت واحد النظام الثنائي (2) والثماني (8) والعشري (10) والسداسي عشر (16)",
+        "يدعم التحويل إلى أي أساس عددي مخصص من الأساس 2 حتى الأساس 36",
+        "يستخدم BigInt لضمان دقة تامة للأعداد الصحيحة الكبيرة جداً (64 بت فأكثر)",
+        "ينظم البتات في مجموعات لتسهيل قراءة وفهم التمثيل الثنائي"
+      ],
+      "ru": [
+        "Одновременно выводит значения в 2-, 8-, 10- и 16-ричной системах счисления",
+        "Поддерживает произвольное основание системы от 2 до 36",
+        "Использует BigInt для точной работы с большими целыми числами (64+ бит)",
+        "Группирует биты по тетрадам и байтам для удобной отладки кода"
+      ]
+    }
+  },
+  "bitwise-calculator": {
+    "bestFor": {
+      "en": "Best for embedded, systems, and graphics developers inspecting bitmasks, flags, and shifts bit by bit.",
+      "he": "מתאים למפתחי אמבדד, קרנל וגרפיקה לבדיקת מסיכות ביטים (Bitmasks), דגלים והזזות סיביות ברמת הביט הבודד.",
+      "es": "Ideal para desarrolladores de sistemas y embebidos depurando máscaras de bits, banderas y desplazamientos.",
+      "fr": "Idéal pour développeurs systèmes et embarqués testant masques de bits, drapeaux et décalages binaires.",
+      "ar": "مناسب لمطوري الأنظمة المدمجة لاختبار البوابات المنطقية وأقنعة البتات وإزاحاتها بتاً ببت.",
+      "ru": "Подходит системным и embedded-разработчикам для отладки битовых масок, флагов и сдвигов по каждому биту."
+    },
+    "features": {
+      "en": [
+        "Evaluates AND (&), OR (|), XOR (^), NOT (~), Left Shift (<<), and Right Shift (>>)",
+        "Interactive bit-width modes across 8-bit, 16-bit, and 32-bit unsigned/signed integers",
+        "Renders aligned bit-by-bit truth grid comparing Operand A, Operand B, and Result",
+        "Outputs simultaneous Binary, Decimal, and Hexadecimal readouts for C/Rust/JS debugging"
+      ],
+      "he": [
+        "מבצע פעולות AND (&), OR (|), XOR (^), NOT (~) והזזות סיביות שמאלה וימינה (<<, >>)",
+        "בחירה בין רוחב 8-bit, 16-bit ו-32-bit לבדיקת גלישה ומסיכות",
+        "טבלת השוואת סיביות מיושרת המציגה כל ביט של A, B והתוצאה",
+        "תצוגה משולבת בבינארי, עשרוני והקסדצימלי לדיבאג מהיר בקוד"
+      ],
+      "es": [
+        "Evalúa operadores AND (&), OR (|), XOR (^), NOT (~) y desplazamientos << y >>",
+        "Permite elegir ancho de palabra de 8, 16 o 32 bits",
+        "Muestra cuadrícula bit a bit alineada comparando Operando A, B y Resultado",
+        "Resultados simultáneos en Binario, Decimal y Hexadecimal"
+      ],
+      "fr": [
+        "Évalue AND (&), OR (|), XOR (^), NOT (~) ainsi que les décalages << et >>",
+        "Sélection de largeur 8 bits, 16 bits ou 32 bits",
+        "Grille binaire alignée bit par bit comparant Opérande A, B et Résultat",
+        "Lecture simultanée en binaire, décimal et hexadécimal"
+      ],
+      "ar": [
+        "ينفذ عمليات AND وOR وXOR وNOT وإزاحة البتات يميناً ويساراً (<<, >>)",
+        "يدعم أوضاع 8 بت و16 بت و32 بت",
+        "يعرض شبكة مقارنة بتاً ببت بين المعامل A والمعامل B والنتيجة",
+        "يخرج النتائج بالثنائي والعشري والسداسي عشر في آنٍ واحد"
+      ],
+      "ru": [
+        "Выполняет операции AND (&), OR (|), XOR (^), NOT (~) и битовые сдвиги << и >>",
+        "Поддерживает разрядность 8, 16 и 32 бита",
+        "Отображает побитовую таблицу сравнения операндов A, B и результата",
+        "Одновременный вывод в двоичном, десятичном и шестнадцатеричном виде"
+      ]
+    }
+  },
+  "triangle-solver": {
+    "bestFor": {
+      "en": "Best for geometry, trigonometry, and CAD checks solving any SSS or SAS triangle into angles, heights, and radii.",
+      "he": "מתאים לגיאומטריה, טריגונומטריה ושרטוט הנדסי לפתרון כל משולש (SSS או SAS) לזוויות, גבהים ורדיוסי מעגל.",
+      "es": "Ideal para geometría y trigonometría resolviendo triángulos LLL o LAL con ángulos, alturas y radios.",
+      "fr": "Idéal en géométrie et trigonométrie pour résoudre tout triangle CCC ou CAC avec hauteurs et rayons.",
+      "ar": "مناسب للهندسة وحساب المثلثات لحل أي مثلث وإيجاد الزوايا والارتفاعات ونصف قطر الدائرة الداخلية والخارجية.",
+      "ru": "Подходит для геометрии, тригонометрии и инженерных расчетов треугольников (SSS и SAS) с высотами и радиусами."
+    },
+    "features": {
+      "en": [
+        "Solves Side-Side-Side (SSS) and Side-Angle-Side (SAS) triangles via Laws of Cosines & Sines",
+        "Computes Area via Heron's Formula, perimeter, inradius (r), and circumradius (R)",
+        "Calculates all three interior angles, altitudes (ha, hb, hc), and side/angle classification",
+        "Renders dynamic scaled SVG triangle diagram with labeled vertices"
+      ],
+      "he": [
+        "פותר משולשים לפי צלע-צלע-צלע (SSS) או צלע-זווית-צלע (SAS) במשפטי הסינוסים והקוסינוסים",
+        "מחשב שטח בנוסחת הרון, היקף, רדיוס מעגל חסום (r) ורדיוס מעגל חוסם (R)",
+        "מציג את שלוש הזוויות, שלושת הגבהים (ha, hb, hc) וסיווג המשולש",
+        "שרטוט SVG דינמי בקנה מידה עם סימון זוויות הקודקודים"
+      ],
+      "es": [
+        "Resuelve triángulos LLL y LAL aplicando teoremas del seno y del coseno",
+        "Calcula área con fórmula de Herón, perímetro, inradio (r) y circunradio (R)",
+        "Obtiene los tres ángulos, alturas (ha, hb, hc) y clasificación geométrica",
+        "Dibuja diagrama SVG dinámico proporcional con etiquetas de ángulos"
+      ],
+      "fr": [
+        "Résout triangles CCC et CAC via les théorèmes d'Al-Kashi et des sinus",
+        "Calcule aire (formule de Héron), périmètre, rayon inscrit (r) et circonscrit (R)",
+        "Détermine les trois angles, les hauteurs et la classification du triangle",
+        "Affiche un schéma SVG dynamique proportionnel"
+      ],
+      "ar": [
+        "يحل المثلثات بطريقتي (ضلع-ضلع-ضلع) و(ضلع-زاوية-ضلع) بقانوني الجيب وجيب التمام",
+        "يحسب المساحة بصيغة هيرون والمحيط ونصف قطر الدائرة الداخلية والخارجية",
+        "يستخرج الزوايا الثلاث والارتفاعات وتصنيف المثلث حسب الأضلاع والزوايا",
+        "يرسم شكلاً هندسياً تفاعلياً (SVG) يعكس أبعاد المثلث وزواياه"
+      ],
+      "ru": [
+        "Решает треугольники по трем сторонам (SSS) и двум сторонам с углом (SAS)",
+        "Вычисляет площадь по формуле Герона, периметр, радиусы вписанной и описанной окружностей",
+        "Находит все углы, высоты (ha, hb, hc) и классифицирует вид треугольника",
+        "Строит динамический SVG-чертеж с точными пропорциями и углами"
+      ]
+    }
+  },
+  "circle-sector": {
+    "bestFor": {
+      "en": "Best for architecture, machining, and geometry problems requiring exact arc length, chord span, and circular segment area.",
+      "he": "מתאים לאדריכלות, עיבוד שבבי וגיאומטריה לחישוב אורך קשת, אורך מיתר, שטח גזרה ושטח מקטע מעגל.",
+      "es": "Ideal para arquitectura, mecanizado y geometría calculando arco, cuerda, sector y segmento circular.",
+      "fr": "Idéal pour architecture, usinage et géométrie : longueur d'arc, corde, secteur et segment circulaire.",
+      "ar": "مناسب للهندسة المعمارية والتصنيع لحساب طول القوس والوتر ومساحة القطاع والقطعة الدائرية بدقة.",
+      "ru": "Подходит для архитектуры, черчения и геометрии при расчете длины дуги, хорды, сектора и сегмента круга."
+    },
+    "features": {
+      "en": [
+        "Accepts central angle in either Degrees or Radians with automatic cross-conversion",
+        "Calculates Arc Length (s = rθ), Sector Area (½r²θ), Chord Length, and Segment Area",
+        "Includes full circle area, circumference, and sector percentage readout",
+        "Renders live SVG sector preview showing radius, arc, and chord geometry"
+      ],
+      "he": [
+        "תומך בהזנת זווית מרכזית במעלות או ברדיאנים עם המרה אוטומטית ביניהם",
+        "מחשב אורך קשת, שטח גזרה, אורך מיתר (2r·sin(θ/2)) ושטח מקטע מעגלי",
+        "מציג גם היקף ושטח מעגל שלם ואת החלק היחסי של הגזרה",
+        "תצוגת SVG חיה של הגזרה, הרדיוס, הקשת והמיתר"
+      ],
+      "es": [
+        "Admite ángulo central en grados o radianes con conversión automática",
+        "Calcula longitud de arco, área de sector, cuerda y segmento circular",
+        "Incluye circunferencia total, área del círculo y porcentaje del sector",
+        "Vista previa SVG interactiva de arco, radio y cuerda"
+      ],
+      "fr": [
+        "Accepte l'angle au centre en degrés ou en radians avec conversion directe",
+        "Calcule longueur d'arc, aire du secteur, longueur de corde et segment circulaire",
+        "Indique circonférence totale, aire du disque et proportion du secteur",
+        "Aperçu graphique SVG en temps réel du secteur et de sa corde"
+      ],
+      "ar": [
+        "يدعم إدخال الزاوية المركزية بالدرجات أو الراديان مع التحويل التلقائي",
+        "يحسب طول القوس ومساحة القطاع الدائري وطول الوتر ومساحة القطعة الدائرية",
+        "يعرض محيط الدائرة الكاملة ومساحتها والنسبة المئوية للقطاع",
+        "معاينة رسومية SVG تفاعلية توضح القوس والوتر ونصف القطر"
+      ],
+      "ru": [
+        "Принимает центральный угол в градусах или радианах с автоконвертацией",
+        "Вычисляет длину дуги, площадь сектора, длину хорды и площадь сегмента",
+        "Дополнительно показывает длину окружности, площадь круга и долю сектора",
+        "Отображает наглядную SVG-схему радиуса, дуги и хорды"
+      ]
+    }
+  },
+  "matrix-calculator": {
+    "bestFor": {
+      "en": "Best for linear algebra coursework, computer graphics, and physics solving 2×2 or 3×3 matrix operations and inverses.",
+      "he": "מתאים לקורסי אלגברה לינארית, גרפיקה ממוחשבת ופיזיקה לחישוב דטרמיננטה, הופכית, שחלוף וכפל מטריצות.",
+      "es": "Ideal para álgebra lineal, gráficos 3D y física resolviendo determinantes, inversas y productos matriciales.",
+      "fr": "Idéal pour algèbre linéaire et 3D : déterminant, matrice inverse, transposée, rang et produit.",
+      "ar": "مناسب لمساقات الجبر الخطي والرسوميات لحساب المحدد والمصفوفة العكسية والمنقول والضرب لمصفوفات 2×2 و3×3.",
+      "ru": "Подходит для линейной алгебры, 3D-графики и физики: определитель, обратная матрица, ранг и умножение матриц."
+    },
+    "features": {
+      "en": [
+        "Supports 2×2 and 3×3 matrices for A + B, A - B, and A × B multiplication",
+        "Computes Determinant (det A), Inverse Matrix (A⁻¹), Transpose (Aᵀ), Rank, and Trace",
+        "Flags singular non-invertible matrices automatically when det(A) = 0",
+        "Clean grid inputs with instant recalculation and fractional/decimal precision"
+      ],
+      "he": [
+        "תומך במטריצות 2×2 ו-3×3 לפעולות חיבור A+B, חיסור A-B וכפל A×B",
+        "מחשב דטרמיננטה (det A), מטריצה הופכית (A⁻¹), שחלוף (Aᵀ), דרגה (Rank) ועקבה (Trace)",
+        "מזהה אוטומטית מטריצה סינגולרית שאינה הפיכה כאשר det(A) = 0",
+        "הזנה נוחה בתאים עם חישוב מיידי ברמת דיוק עשרונית"
+      ],
+      "es": [
+        "Opera matrices 2×2 y 3×3 para suma A+B, resta A-B y multiplicación A×B",
+        "Calcula determinante, matriz inversa (A⁻¹), traspuesta (Aᵀ), rango y traza",
+        "Detecta automáticamente matrices singulares no invertibles (det = 0)",
+        "Celdas editables rápidas con precisión decimal inmediata"
+      ],
+      "fr": [
+        "Prend en charge matrices 2×2 et 3×3 pour A+B, A-B et produit A×B",
+        "Calcule déterminant, matrice inverse (A⁻¹), transposée (Aᵀ), rang et trace",
+        "Signale automatiquement les matrices singulières non inversibles (det = 0)",
+        "Saisie matricielle intuitive avec calcul instantané"
+      ],
+      "ar": [
+        "يدعم المصفوفات 2×2 و3×3 لعمليات الجمع والطرح والضرب A×B",
+        "يحسب المحدد والمعكوس (A⁻¹) والمنقول (Aᵀ) والرتبة والأثر",
+        "يكتشف تلقائياً المصفوفات المنفردة غير القابلة للعكس عندما يساوي المحدد صفراً",
+        "شبكة إدخال واضحة مع تحديث فوري للنتائج بدقة عشرية"
+      ],
+      "ru": [
+        "Поддерживает матрицы 2×2 и 3×3 для операций A+B, A-B и умножения A×B",
+        "Вычисляет определитель, обратную матрицу (A⁻¹), транспонирование (Aᵀ), ранг и след",
+        "Автоматически предупреждает о вырожденной матрице (det = 0)",
+        "Удобная матричная сетка с мгновенным точным пересчетом"
+      ]
+    }
+  },
+  "complex-numbers": {
+    "bestFor": {
+      "en": "Best for electrical engineering (AC phasors) and advanced math converting Rectangular (a+bi) and Polar/Euler forms.",
+      "he": "מתאים להנדסת חשמל (פאזורים) ומתמטיקה מתקדמת למעבר בין הצגה קרטזית (a+bi), קוטבית, אוילר וחזקות דה-מואבר.",
+      "es": "Ideal para ingeniería eléctrica (fasores AC) y matemáticas entre forma cartesiana, polar y Euler.",
+      "fr": "Idéal pour génie électrique (phaseurs) et maths : formes algébrique, polaire, Euler et De Moivre.",
+      "ar": "مناسب لهندسة الكهرباء والرياضيات المتقدمة للتحويل بين الصيغة الجبرية والقطبية وصيغة أويلر وقوى دي موافر.",
+      "ru": "Подходит для электротехники и высшей математики: перевод алгебраической, полярной форм и формула Муавра."
+    },
+    "features": {
+      "en": [
+        "Evaluates complex addition, subtraction, multiplication, and conjugate division (z₁ / z₂)",
+        "Converts between Rectangular (a + bi), Polar (r∠θ), and Euler (r·e^iθ) notation",
+        "Applies De Moivre's Theorem to compute integer powers zⁿ cleanly",
+        "Plots both vectors and result on an interactive Argand Complex Plane diagram"
+      ],
+      "he": [
+        "חיבור, חיסור, כפל וחילוק מספרים מרוכבים כולל כפל בצמוד (z₁ / z₂)",
+        "המרה מיידית בין הצגה קרטזית (a + bi), קוטבית (r∠θ) והצגת אוילר (r·e^iθ)",
+        "חישוב חזקות (zⁿ) באמצעות משפט דה-מואבר",
+        "שרטוט וקטורים אינטראקטיבי על מישור ארגנד המרוכב"
+      ],
+      "es": [
+        "Opera suma, resta, multiplicación y división por conjugado complejo",
+        "Convierte entre forma rectangular (a + bi), polar (r∠θ) y exponencial de Euler",
+        "Aplica el teorema de De Moivre para calcular potencias zⁿ",
+        "Representa vectores y resultado en el plano complejo de Argand"
+      ],
+      "fr": [
+        "Effectue addition, soustraction, multiplication et division conjuguée (z₁ / z₂)",
+        "Convertit entre forme algébrique (a + bi), polaire et notation d'Euler (r·e^iθ)",
+        "Applique la formule de De Moivre pour calculer zⁿ",
+        "Visualise les vecteurs sur un diagramme d'Argand interactif"
+      ],
+      "ar": [
+        "ينفذ الجمع والطرح والضرب والقسمة بالمرافق للأعداد المركبة",
+        "يحول بين الصيغة المستطيلة (a + bi) والقطبية وأويلر (r·e^iθ)",
+        "يطبق نظرية دي موافر لحساب القوى الصحيحة zⁿ بسهولة",
+        "يمثل المتجهات والنتيجة على مخطط أرغاند التفاعلي"
+      ],
+      "ru": [
+        "Выполняет сложение, вычитание, умножение и деление комплексных чисел",
+        "Переводит между алгебраической (a + bi), полярной (r∠θ) и формой Эйлера",
+        "Вычисляет степени zⁿ по формуле Муавра",
+        "Отображает векторы чисел на интерактивной комплексной плоскости Аргана"
+      ]
+    }
+  },
+  "pregnancy-calculator": {
+    "bestFor": {
+      "en": "Best for expectant parents tracking exact gestational week+day, due date by LMP/IVF/ultrasound, and screening windows.",
+      "he": "מתאים להריוניות והורים לעתיד למעקב שבועות וימים, חישוב תל״מ לפי וסת/IVF/אולטרסאונד ולוח בדיקות הריון.",
+      "es": "Ideal para embarazadas siguiendo semana exacta, fecha probable de parto (FUR/FIV/eco) y trimestres.",
+      "fr": "Idéal pour futures mamans suivant semaine exacte, DPA (DDR/FIV/écho) et examens prénataux.",
+      "ar": "مناسب للحوامل لتتبع أسبوع ويوم الحمل الدقيق وحساب موعد الولادة حسب الدورة أو أطفال الأنابيب أو السونار.",
+      "ru": "Подходит будущим мамам для точного расчета недели беременности, ПДР (по ПДМ, ЭКО или УЗИ) и календаря скринингов."
+    },
+    "features": {
+      "en": [
+        "Calculates due date via Last Menstrual Period (custom cycle length), Conception, IVF (Day 3/5), or Ultrasound",
+        "Displays exact gestational age (Weeks + Days), trimester progress bar, and fetal size milestone",
+        "Generates personalized prenatal checkup & screening calendar (NT scan, anatomy scan, GTT)",
+        "Includes pregnancy weight-gain benchmark guide and exportable milestone summary"
+      ],
+      "he": [
+        "חישוב תאריך לידה משוער לפי וסת אחרונה (עם אורך מחזור), התעברות, הפריה (IVF יום 3/5) או אולטרסאונד",
+        "מציג גיל הריון מדויק (שבועות + ימים), מד התקדמות טרימסטרים וגודל העובר",
+        "מפיק לוח זמנים אישי לבדיקות מעקב מומלצות (שקיפות, סקירות, העמסת סוכר)",
+        "כולל טבלאות עלייה מומלצת במשקל וסיכום מעקב להדפסה"
+      ],
+      "es": [
+        "Calcula fecha de parto por última regla, concepción, FIV (día 3/5) o ecografía",
+        "Muestra edad gestacional exacta (semanas + días), trimestre y tamaño del bebé",
+        "Genera calendario personalizado de pruebas y ecografías prenatales",
+        "Incluye referencia de aumento de peso saludable por trimestre"
+      ],
+      "fr": [
+        "Calcule la DPA selon dernières règles, conception, FIV (J3/J5) ou échographie",
+        "Affiche âge gestationnel exact (semaines + jours), trimestre et taille du fœtus",
+        "Génère le calendrier des examens prénataux clés (T1, morphologique, diabète)",
+        "Intègre un tableau repère de prise de poids pendant la grossesse"
+      ],
+      "ar": [
+        "يحسب موعد الولادة حسب آخر دورة شهرية أو التلقيح أو أطفال الأنابيب (يوم 3/5) أو السونار",
+        "يعرض عمر الحمل الدقيق (أسابيع + أيام) وتقدم الثلث ومقارنة حجم الجنين",
+        "ينشئ جدولاً شخصياً لمواعيد الفحوصات الدورية والسونار",
+        "يتضمن دليلاً استرشادياً لزيادة الوزن الصحية خلال الحمل"
+      ],
+      "ru": [
+        "Рассчитывает ПДР по последней менструации, дате зачатия, ЭКО (3/5 день) или УЗИ",
+        "Показывает точный акушерский срок (недели + дни), триместр и размер плода",
+        "Формирует персональный календарь скринингов и анализов по неделям",
+        "Включает ориентир нормальной прибавки веса при беременности"
+      ]
+    }
+  },
+  "retirement-planner": {
+    "bestFor": {
+      "en": "Best for long-term pension planning, testing how management fees erode wealth, and converting savings into monthly income.",
+      "he": "מתאים לתכנון פנסיוני ארוך טווח, בדיקת השפעת דמי הניהול על הצבירה ותרגום החיסכון לקצבה חודשית ברוטו.",
+      "es": "Ideal para planificar jubilación midiendo cómo las comisiones reducen tu fondo y estimando pensión mensual.",
+      "fr": "Conçu pour planifier votre retraite en mesurant l'impact des frais de gestion et votre rente mensuelle.",
+      "ar": "مناسب للتخطيط طويل الأمد للتقاعد وقياس أثر رسوم الإدارة وتحويل رأس المال المتوقع إلى راتب تقاعدي شهري.",
+      "ru": "Подходит для планирования пенсии с учетом комиссий фондов, доходности и расчета ежемесячной ренты."
+    },
+    "features": {
+      "en": [
+        "Projects retirement corpus combining current balance, monthly contributions, and investment return",
+        "Separates nominal return from real net yield after annual asset & deposit management fees",
+        "Converts final nest egg into estimated gross monthly pension via customizable annuity factor",
+        "Quantifies exact currency lost to fees vs pure compound growth"
+      ],
+      "he": [
+        "מחשב צבירה בפרישה משילוב יתרה קיימת, הפקדות חודשיות ותשואה שנתית",
+        "מנכה דמי ניהול מצבירה ומהפקדה להצגת התשואה הריאלית נטו",
+        "מתרגם את החיסכון הצבור לקצבה חודשית ברוטו לפי מקדם המרה מותאם",
+        "ממחיש כמה כסף נאכל בדמי ניהול לאורך השנים מול התרחיש המוזל"
+      ],
+      "es": [
+        "Proyecta fondo final combinando saldo actual, aportaciones mensuales y retorno anual",
+        "Descuenta comisiones de gestión sobre patrimonio y aportaciones",
+        "Convierte el capital acumulado en pensión mensual estimada mediante factor actuarial",
+        "Cuantifica el impacto acumulado de las comisiones frente al interés compuesto"
+      ],
+      "fr": [
+        "Projette le capital à la retraite avec épargne actuelle, versements et rendement",
+        "Déduit frais de gestion sur encours et sur versements pour mesurer le net réel",
+        "Estime la rente mensuelle brute selon le coefficient de conversion choisi",
+        "Chiffre l'érosion cumulée due aux frais de gestion"
+      ],
+      "ar": [
+        "يتوقع رأس مال التقاعد عبر دمج الرصيد الحالي والاشتراكات الشهرية وعائد الاستثمار",
+        "يخصم رسوم الإدارة السنوية ورسوم الإيداع لإظهار العائد الصافي الحقيقي",
+        "يحول المبلغ المتراكم إلى معاش شهري تقديري وفق معامل التحويل",
+        "يوضح المبلغ المفقود بسبب الرسوم مقابل النمو المركب الصافي"
+      ],
+      "ru": [
+        "Прогнозирует пенсионный капитал с учетом текущих накоплений, взносов и доходности",
+        "Вычитает комиссии фонда за управление активами и с новых взносов",
+        "Переводит итоговые накопления в ежемесячную пенсию через коэффициент дожития",
+        "Показывает реальные потери капитала на комиссиях за весь срок"
+      ]
+    }
+  },
+  "capital-gains-tax": {
+    "bestFor": {
+      "en": "Best for stock, ETF, and crypto investors computing real inflation-adjusted gains, loss offsets, and net profit after tax.",
+      "he": "מתאים למשקיעי מניות, מדדים וקריפטו לחישוב מס רווחי הון ריאלי (25%), ניכוי אינפלציה וקיזוז הפסדים משנים קודמות.",
+      "es": "Ideal para inversores en bolsa y cripto calculando plusvalía real ajustada a inflación y compensación de pérdidas.",
+      "fr": "Conçu pour investisseurs en bourse et crypto calculant plus-value réelle, inflation et report de pertes.",
+      "ar": "مناسب لمستثمري الأسهم والعملات الرقمية لحساب ضريبة الأرباح الرأسمالية المعدلة للتضخم ومقاصة الخسائر السابقة.",
+      "ru": "Подходит инвесторам в акции, ETF и криптовалюту для расчета налога на реальный доход с учетом инфляции и убытков."
+    },
+    "features": {
+      "en": [
+        "Separates Real (inflation-adjusted) capital gain from Nominal paper gain",
+        "Deducts brokerage commissions and prior-year capital loss carryforwards automatically",
+        "Supports 25% real tax rate, custom brackets, and short-term vs long-term holdings",
+        "Calculates net post-tax investment proceeds and effective tax burden"
+      ],
+      "he": [
+        "מבדיל בין רווח הון נומינלי לרווח הון ריאלי בניכוי השפעת האינפלציה",
+        "מקזז אוטומטית עמלות קנייה/מכירה והפסדי הון מועברים משנים קודמות",
+        "תמיכה במס רווח הון 25% ושיעורי מס מותאמים להשקעות שונות",
+        "מציג סכום נטו סופי ביד ואת שיעור המס האפקטיבי מהעסקה"
+      ],
+      "es": [
+        "Distingue ganancia nominal frente a ganancia real ajustada por inflación",
+        "Deduce comisiones de bróker y compensa pérdidas fiscales de años anteriores",
+        "Admite tipo estándar (25% o personalizado) según activos y plazo",
+        "Calcula rendimiento neto final después de impuestos"
+      ],
+      "fr": [
+        "Distingue plus-value nominale et plus-value réelle corrigée de l'inflation",
+        "Déduit frais de courtage et impute les moins-values antérieures reportables",
+        "Supporte prélèvement forfaitaire (25 %, 30 %) ou taux personnalisé",
+        "Calcule le produit net encaissé après impôt"
+      ],
+      "ar": [
+        "يفصل بين الربح الرأسمالي الاسمي والربح الحقيقي المعدل حسب التضخم",
+        "يخصم عمولات التداول وخسائر رأس المال المرحلة من سنوات سابقة",
+        "يدعم نسبة الضريبة 25% أو أي معدل مخصص للأصول المختلفة",
+        "يستخرج صافي العائد الاستثماري بعد الضريبة ومعدل الضريبة الفعلي"
+      ],
+      "ru": [
+        "Отделяет номинальный прирост капитала от реального за вычетом инфляции",
+        "Автоматически вычитает брокерские комиссии и перенесенные убытки прошлых лет",
+        "Поддерживает ставку 25% и произвольную налоговую ставку для разных активов",
+        "Рассчитывает чистую прибыль на руки после уплаты налога"
+      ]
+    }
+  },
+  "car-finance-lease": {
+    "bestFor": {
+      "en": "Best before choosing a vehicle acquisition path — comparing Auto Loan vs Operational/Private Lease vs Cash side by side.",
+      "he": "מתאים לפני בחירת מסלול לרכב: השוואה כלכלית מלאה בין מימון בנקאי, עסקת ליסינג פרטי או תשלום במזומן.",
+      "es": "Ideal antes de adquirir coche: compara Préstamo frente a Renting/Leasing y Compra al Contado.",
+      "fr": "Idéal avant d'acquérir un véhicule : compare Crédit Auto, Leasing (LOA/LLD) et Achat Comptant.",
+      "ar": "مناسب قبل اختيار طريقة امتلاك السيارة عبر مقارنة التمويل البنكي مع التأجير التمويلي والشراء النقدي.",
+      "ru": "Подходит перед покупкой автомобиля для сравнения чистой стоимости автокредита, лизинга и покупки за наличные."
+    },
+    "features": {
+      "en": [
+        "Compares 3 options head-to-head: Auto Financing vs Car Lease vs All-Cash Purchase",
+        "Factors in vehicle depreciation, residual resale equity, and investment opportunity cost",
+        "Reveals true net 3–5 year ownership cost rather than misleading monthly payments alone",
+        "Highlights the lowest-cost acquisition winner automatically"
+      ],
+      "he": [
+        "השוואה משולשת ראש-בראש: הלוואת מימון לרכב מול ליסינג מול קנייה במזומן",
+        "משקלל ירידת ערך, שווי הרכב שנותר בבעלותך במכירה ועלות אלטרנטיבית להון",
+        "חושף את העלות הכלכלית האמיתית נטו לתקופה מעבר לגובה התשלום החודשי",
+        "מסמן אוטומטית את המסלול החסכוני ביותר"
+      ],
+      "es": [
+        "Compara 3 vías frente a frente: Financiación, Leasing/Renting y Pago al Contado",
+        "Incluye depreciación, valor residual de reventa y coste de oportunidad del efectivo",
+        "Muestra el coste neto real a 3–5 años más allá de la cuota mensual",
+        "Destaca automáticamente la alternativa financieramente ganadora"
+      ],
+      "fr": [
+        "Compare 3 options face à face : Crédit Auto, Leasing (LOA/LLD) et Paiement Comptant",
+        "Intègre décote du véhicule, valeur de revente résiduelle et coût d'opportunité",
+        "Révèle le coût net réel sur 3 à 5 ans au-delà de la simple mensualité",
+        "Met automatiquement en avant la formule la plus avantageuse"
+      ],
+      "ar": [
+        "يقارن 3 خيارات مباشرة: القرض البنكي مقابل التأجير التمويلي مقابل الشراء النقدي",
+        "يدمج إهلاك السيارة والقيمة المتبقية عند إعادة البيع وتكلفة الفرصة البديلة للنقد",
+        "يكشف التكلفة الصافية الحقيقية لـ 3–5 سنوات وليس القسط الشهري فقط",
+        "يحدد تلقائياً الخيار الأكثر توفيراً مالياً"
+      ],
+      "ru": [
+        "Сравнивает 3 варианта на одном экране: автокредит, лизинг и покупка за наличные",
+        "Учитывает амортизацию, остаточную стоимость авто и доходность свободных денег",
+        "Показывает реальную чистую стоимость владения, а не только ежемесячный взнос",
+        "Автоматически выделяет самый выгодный способ приобретения"
+      ]
+    }
+  },
+  "scientific-unit-engine": {
+    "bestFor": {
+      "en": "Best for engineers, physicists, and labs converting specialized metrics like Pressure, Torque, Flow Rate, Viscosity, and Energy.",
+      "he": "מתאים למהנדסים, פיזיקאים ומעבדות להמרות מדעיות מתקדמות: לחץ, אנרגיה, הספק, כוח, מומנט, ספיקה, צמיגות ורוחב פס.",
+      "es": "Ideal para ingenieros y laboratorios convirtiendo presión, par motor, caudal, viscosidad, energía y potencia.",
+      "fr": "Conçu pour ingénieurs et laboratoires convertissant pression, couple, débit, viscosité, énergie et puissance.",
+      "ar": "مناسب للمهندسين والفيزيائيين والمختبرات لتحويل الوحدات المتخصصة مثل الضغط والطاقة والعزم والتدفق واللزوجة.",
+      "ru": "Подходит инженерам, физикам и лабораториям для конвертации давления, энергии, момента, расхода и вязкости."
+    },
+    "features": {
+      "en": [
+        "Covers 9+ engineering domains: Pressure (Pa/Bar/PSI), Energy, Power, Force, Torque, Flow, Viscosity, Bandwidth, Typography",
+        "Maintains scientific floating-point and exponential notation precision across 12 orders of magnitude",
+        "Allows instant cross-unit lookup across all units within the active physical category",
+        "Built for mechanical, HVAC, fluid-dynamics, electrical, and UI engineering workflows"
+      ],
+      "he": [
+        "מנוע המרה ל-9 תחומים הנדסיים: לחץ (Pa/Bar/PSI), אנרגיה, הספק, כוח, מומנט, ספיקה, צמיגות, רוחב פס וטיפוגרפיה",
+        "דיוק מדעי גבוה כולל כתיב מדעי עבור פערי סדרי גודל קיצוניים",
+        "מציג טבלת המרה מלאה לכל היחידות המקבילות באותה קטגוריה בו-זמנית",
+        "מיועד להנדסת מכונות, זרימה, חשמל, פיזיקה ותכן מוצר"
+      ],
+      "es": [
+        "Cubre 9 dominios científicos: Presión (Pa/Bar/PSI), Energía, Potencia, Fuerza, Par, Caudal, Viscosidad, Ancho de Banda y Tipografía",
+        "Mantiene alta precisión científica y notación exponencial en escalas extremas",
+        "Muestra equivalencias simultáneas con todas las unidades de la categoría activa",
+        "Orientado a ingeniería mecánica, hidráulica, física y diseño técnico"
+      ],
+      "fr": [
+        "Couvre 9 domaines techniques : Pression (Pa/Bar/PSI), Énergie, Puissance, Force, Couple, Débit, Viscosité, Bande Passante, Typographie",
+        "Conserve une haute précision scientifique et notation exponentielle",
+        "Convertit instantanément vers toutes les unités de la grandeur choisie",
+        "Conçu pour mécanique, thermodynamique, hydraulique et ingénierie logicielle"
+      ],
+      "ar": [
+        "يغطي 9 مجالات هندسية: الضغط والطاقة والقدرة والقوة والعزم والتدفق واللزوجة والنطاق الترددي والطباعة",
+        "يحافظ على الدقة العلمية والترميز الأسي عبر 12 رتبة مقدار",
+        "يعرض التحويل الفوري لجميع الوحدات المقابلة داخل الفئة الفيزيائية النشطة",
+        "مصمم للهندسة الميكانيكية والديناميكا الحرارية والكهرباء والفيزياء"
+      ],
+      "ru": [
+        "Охватывает 9 инженерных разделов: давление, энергия, мощность, сила, крутящий момент, поток, вязкость, трафик и типографика",
+        "Сохраняет научную точность и экспоненциальную запись при больших порядках величин",
+        "Мгновенно переводит значение сразу во все единицы выбранной категории",
+        "Создан для инженеров-механиков, физиков, гидравликов и разработчиков"
+      ]
+    }
+  },
+  "purchasing-power": {
+    "bestFor": {
+      "en": "Best for remote workers and expats comparing what a salary buys across global cities (Tel Aviv, NYC, London, Singapore, Berlin).",
+      "he": "מתאים לעובדי רימוט ומועמדים לרילוקיישן להשוואת יוקר מחייה, שכירות ושכר נטו שווה-ערך בין ערים מובילות בעולם.",
+      "es": "Ideal para trabajadores remotos y expatriados comparando salario equivalente y coste de vida entre ciudades globales.",
+      "fr": "Idéal pour expatriés et télétravailleurs comparant salaire équivalent et coût de la vie entre métropoles.",
+      "ar": "مناسب للعاملين عن بُعد والمغتربين لمقارنة تكلفة المعيشة والإيجار والراتب المكافئ بين كبرى مدن العالم.",
+      "ru": "Подходит удаленным специалистам и экспатам для сравнения стоимости жизни, аренды и эквивалентной зарплаты в мегаполисах."
+    },
+    "features": {
+      "en": [
+        "Compares Purchasing Power Parity (PPP) across major hubs like Tel Aviv, New York, London, Singapore, Paris, Berlin, Dubai",
+        "Breaks down city-by-city indices for Rent, Groceries, Dining Out, and Local Purchasing Power",
+        "Computes exact required salary in Destination City to match your current standard of living",
+        "Highlights percentage cost differential for fast relocation offer negotiation"
+      ],
+      "he": [
+        "השוואת כוח קנייה (PPP) בין ערים מובילות: תל אביב, ניו יורק, לונדון, סינגפור, פריז, ברלין, דובאי ועוד",
+        "פירוק מדדים לפי שכירות, סל מזון, מסעדות וכוח קנייה מקומי",
+        "חישוב השכר הנדרש בעיר היעד כדי לשמור על רמת החיים הנוכחית",
+        "כלי עזר מדויק למשא ומתן על שכר בחוזי רילוקיישן ועבודה גלובלית"
+      ],
+      "es": [
+        "Compara paridad de poder adquisitivo entre Tel Aviv, Nueva York, Londres, Singapur, París, Berlín y Dubái",
+        "Desglosa índices de alquiler, alimentación, restaurantes y poder de compra local",
+        "Calcula el salario exacto equivalente necesario en la ciudad de destino",
+        "Muestra la diferencia porcentual de coste para negociar ofertas de traslado"
+      ],
+      "fr": [
+        "Compare la parité de pouvoir d'achat entre Tel-Aviv, New York, Londres, Singapour, Paris, Berlin et Dubaï",
+        "Détaille les indices de loyer, alimentation, restauration et pouvoir d'achat",
+        "Calcule le salaire équivalent exact nécessaire dans la ville d'accueil",
+        "Facilite la négociation salariale lors d'une mobilité internationale"
+      ],
+      "ar": [
+        "يقارن تعادل القوة الشرائية بين مدن عالمية مثل تل أبيب ونيويورك ولندن وسنغافورة وباريس وبرلين ودبي",
+        "يفصل مؤشرات الإيجار والبقالة والمطاعم والقدرة الشرائية المحلية لكل مدينة",
+        "يحسب الراتب المكافئ الدقيق المطلوب في مدينة الانتقال للحفاظ على نفس مستوى المعيشة",
+        "يوضح فارق التكلفة المئوي لتسهيل التفاوض على عروض العمل الدولية"
+      ],
+      "ru": [
+        "Сравнивает паритет покупательной способности (PPP) в Тель-Авиве, Нью-Йорке, Лондоне, Сингапуре, Париже, Берлине и Дубае",
+        "Разделяет индексы аренды жилья, продуктов, ресторанов и покупательной способности",
+        "Вычисляет эквивалентную зарплату в городе переезда для сохранения уровня жизни",
+        "Показывает процентную разницу затрат для переговоров по офферу релокации"
+      ]
+    }
+  },
+  "household-budget": {
+    "bestFor": {
+      "en": "Best for organizing monthly net income across fixed needs, discretionary spending, and savings using the 50/30/20 framework.",
+      "he": "מתאים לתכנון תקציב משפחתי חודשי, בדיקת יתרה פנויה והשוואת חלוקת ההוצאות לכלל 50/30/20.",
+      "es": "Ideal para organizar ingresos mensuales netos entre gastos fijos, ocio y ahorro según la regla 50/30/20.",
+      "fr": "Idéal pour structurer votre budget mensuel entre besoins essentiels, envies et épargne selon la règle 50/30/20.",
+      "ar": "مناسب لتنظيم الدخل الشهري الصافي بين المصاريف الأساسية والكماليات والادخار وفق قاعدة 50/30/20.",
+      "ru": "Подходит для планирования семейного бюджета по доходам, обязательным расходам и сбережениям по правилу 50/30/20."
+    },
+    "features": {
+      "en": [
+        "Tracks net income against housing, groceries, utilities, transport, debt, and savings",
+        "Benchmarks your allocations live against the classic 50% Needs / 30% Wants / 20% Savings rule",
+        "Computes monthly cash surplus or deficit plus annualized savings rate (%)",
+        "Renders an interactive visual expense breakdown chart for instant budget adjustments"
+      ],
+      "he": [
+        "ניהול הכנסה פנויה מול דיור, מזון, חשבונות, תחבורה, החזרי הלוואות וחיסכון",
+        "משווה בזמן אמת את התקציב שלך לכלל 50% צרכים / 30% רצונות / 20% חיסכון",
+        "מחשב יתרה חודשית או גירעון לצד שיעור החיסכון השנתי באחוזים",
+        "תרשים התפלגות הוצאות אינטראקטיבי לזיהוי מהיר של סעיפים חריגים"
+      ],
+      "es": [
+        "Controla ingresos netos frente a vivienda, comida, suministros, transporte y ahorro",
+        "Compara en vivo tu distribución con la regla 50% Necesidades / 30% Ocio / 20% Ahorro",
+        "Calcula superávit o déficit mensual y tasa anual de ahorro (%)",
+        "Incluye gráfico visual de distribución de gastos para detectar excesos"
+      ],
+      "fr": [
+        "Suit revenus nets face au logement, courses, charges, transport, crédits et épargne",
+        "Compare en direct votre budget à la règle 50 % Besoins / 30 % Envies / 20 % Épargne",
+        "Calcule le reste à vivre mensuel et le taux d'épargne annuel (%)",
+        "Graphique visuel de répartition pour identifier immédiatement les postes à optimiser"
+      ],
+      "ar": [
+        "يتتبع الدخل الصافي مقابل السكن والغذاء والفواتير والمواصلات والادخار",
+        "يقارن توزيعك الفعلي بقاعدة 50% أساسيات / 30% رغبات / 20% ادخار",
+        "يحسب الفائض أو العجز الشهري ومعدل الادخار السنوي (%)",
+        "يعرض رسماً بيانياً تفاعلياً لتوزيع النفقات لاكتشاف فرص التوفير"
+      ],
+      "ru": [
+        "Учитывает чистый доход и траты на жилье, продукты, ЖКУ, транспорт и накопления",
+        "Сравнивает распределение с классическим правилом 50% нужды / 30% желания / 20% сбережения",
+        "Рассчитывает ежемесячный профицит/дефицит и годовую норму сбережений (%)",
+        "Строит наглядную диаграмму расходов для быстрой оптимизации бюджета"
+      ]
+    }
+  }
+}

@@ -33,6 +33,7 @@ function distPathExists(href) {
 
 const seenTitles = new Map();
 const seenDescs = new Map();
+const seenFeatureLists = new Map();
 const expectedHreflangs = ["en", "he", "es", "fr", "ar", "ru", "x-default"];
 
 for (const m of locMatches) {
@@ -141,6 +142,23 @@ for (const m of locMatches) {
         }
         if (webApp.applicationCategory === "CalculatorApplication" || webApp.applicationCategory === "UtilityApplication") {
           errors.push(`WebApplication uses unsupported applicationCategory "${webApp.applicationCategory}" on ${relPath}`);
+        }
+        if (isCalc) {
+          if (!Array.isArray(webApp.featureList) || webApp.featureList.length < 3) {
+            errors.push(`WebApplication missing calculator-specific featureList (>=3 items) on ${relPath}`);
+          } else {
+            const featureKey = `${lang}:${webApp.featureList.join("|")}`;
+            if (seenFeatureLists.has(featureKey)) {
+              errors.push(`Duplicate featureList between ${relPath} and ${seenFeatureLists.get(featureKey)}`);
+            } else {
+              seenFeatureLists.set(featureKey, relPath);
+            }
+          }
+        }
+      }
+      if (isCalc) {
+        if (/Is the .+ accurate and private\?/i.test(html) || /האם החישוב ב-.+ מדויק ושומר על פרטיות/.test(html)) {
+          errors.push(`Calculator route still contains generic fallback FAQ on ${relPath}`);
         }
       }
     } catch (e) {

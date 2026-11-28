@@ -51,5 +51,28 @@ describe('Prerendering & Metadata Registry Unit Tests', () => {
     expect(prerenderScript).toContain('localizedHeader');
     expect(prerenderScript).toContain('googleAppCategoryMap');
     expect(prerenderScript).toContain('/terms-of-service');
+    expect(prerenderScript).toContain('calculatorCapabilities.json');
+    expect(prerenderScript).toContain('featureList');
+  });
+
+  it('every calculator resolves a complete localized guide and FAQ in all 6 languages', async () => {
+    const { calculators } = await import('../../data/calculators');
+    const { resolveGuideKey } = await import('./calculatorFallbackGuide');
+
+    for (const lang of SUPPORTED_LANGUAGES) {
+      const localeJson = JSON.parse(
+        fs.readFileSync(path.resolve(process.cwd(), `src/locales/${lang}.json`), 'utf8')
+      );
+      for (const calc of calculators) {
+        const gKey = resolveGuideKey(calc);
+        const guide = localeJson.guides?.[gKey];
+        expect(guide, `Missing guide "${gKey}" for ${calc.id} in ${lang}.json`).toBeDefined();
+        expect(guide.guideTitle?.trim().length).toBeGreaterThan(5);
+        expect(guide.guideDesc?.trim().length).toBeGreaterThan(15);
+        expect(guide.formulaHeading?.trim().length).toBeGreaterThan(3);
+        expect(Array.isArray(guide.formulaLines) && guide.formulaLines.length).toBeGreaterThanOrEqual(2);
+        expect(Array.isArray(guide.faq) && guide.faq.length).toBeGreaterThanOrEqual(1);
+      }
+    }
   });
 });

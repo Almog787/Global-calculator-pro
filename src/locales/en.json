@@ -475,6 +475,821 @@
           "answer": "Divide the specific part by the total whole, then multiply by 100. For example, if you got 45 questions right out of 60 on a test: (45 ÷ 60) × 100 = 0.75 × 100 = 75%."
         }
       ]
+    },
+    "mortgage-affordability": {
+      "guideTitle": "How Lenders Calculate Mortgage Affordability & DTI Limits",
+      "guideDesc": "Mortgage affordability combines your gross monthly income, down payment cash, interest rate, and existing monthly debts using the banking 28%/36% Debt-to-Income (DTI) framework.",
+      "formulaHeading": "28%/36% DTI & Maximum Loan Formulas",
+      "formulaLines": [
+        "Front-End Housing Cap = Gross Monthly Income × 0.28",
+        "Back-End Total Debt Cap = (Gross Monthly Income × 0.36) - Existing Monthly Debts",
+        "Max Monthly Principal & Interest (M) = min(Front-End Cap, Back-End Cap)",
+        "Max Loan (P) = M × [ (1 - (1 + r)^(-n)) ÷ r ], Max Home Price = P + Down Payment"
+      ],
+      "faq": [
+        {
+          "question": "What is the 28/36 rule in mortgage affordability?",
+          "answer": "Lenders typically cap housing costs (principal, interest, taxes, insurance) at 28% of gross monthly income and total debt payments (housing plus car loans, student loans, and credit cards) at 36%."
+        },
+        {
+          "question": "How much does paying off a $400/month car loan increase home budget?",
+          "answer": "Under the 36% back-end DTI rule, eliminating $400 in monthly debt frees $400 of mortgage capacity—roughly $60,000 to $67,000 in additional buying power at 6%–7% over 30 years."
+        },
+        {
+          "question": "Should I put 20% down or buy sooner with less down?",
+          "answer": "A 20% down payment eliminates Private Mortgage Insurance (PMI) and lowers monthly payments, while a smaller down payment preserves emergency cash reserves."
+        }
+      ]
+    },
+    "refinance": {
+      "guideTitle": "When Mortgage Refinancing Pays Off: Break-Even & Net Savings",
+      "guideDesc": "Refinancing replaces your existing mortgage balance with a new interest rate and term. Calculating the closing-cost break-even month prevents overpaying if you plan to move soon.",
+      "formulaHeading": "Refinance Break-Even & Savings Formulas",
+      "formulaLines": [
+        "Monthly Savings = Current Monthly Payment - New Monthly Payment",
+        "Break-Even Point (Months) = Closing Costs & Prepayment Fees ÷ Monthly Savings",
+        "Net Lifetime Savings = Remaining Current Interest - (New Total Interest + Closing Costs)"
+      ],
+      "faq": [
+        {
+          "question": "What is the refinance break-even point?",
+          "answer": "It is the number of months required for your monthly payment reduction to repay upfront closing costs and prepayment penalties. For example, $3,000 in fees divided by $150/month savings equals a 20-month break-even."
+        },
+        {
+          "question": "How much lower should the new interest rate be to refinance?",
+          "answer": "Traditionally a 0.75% to 1.0% drop made sense, though on large loan balances even a 0.50% reduction can pay off quickly if fees are low."
+        },
+        {
+          "question": "Does resetting to a new 30-year term always save money?",
+          "answer": "Extending back to 30 years lowers monthly cash outflow, but can increase total interest paid unless you keep the remaining term equal or make extra principal payments."
+        }
+      ]
+    },
+    "vat": {
+      "guideTitle": "How to Add or Extract VAT & Sales Tax Without Rounding Errors",
+      "guideDesc": "Adding VAT multiplies the net price by (1 + rate), while extracting VAT from a tax-inclusive gross total requires dividing by (1 + rate)—not multiplying by the rate directly.",
+      "formulaHeading": "Net-to-Gross & Gross-to-Net VAT Formulas",
+      "formulaLines": [
+        "Add VAT: Gross Price = Net Price × (1 + VAT Rate)",
+        "Add VAT: Tax Amount = Net Price × VAT Rate",
+        "Remove VAT: Net Price = Gross Price ÷ (1 + VAT Rate)",
+        "Remove VAT: Tax Included = Gross Price - Net Price"
+      ],
+      "faq": [
+        {
+          "question": "Why can't I subtract 18% from a VAT-inclusive price to get the net amount?",
+          "answer": "Because 18% VAT was added on top of 100%, making the gross price 118%. To reverse it accurately, divide the gross amount by 1.18—for example, 118 ÷ 1.18 = 100 net (18 VAT), whereas subtracting 18% of 118 would wrongly give 96.76."
+        },
+        {
+          "question": "What is the standard VAT rate in Israel, EU, and the UK?",
+          "answer": "Israel's VAT is 18% (increased from 17% in 2025), the UK standard rate is 20%, and most EU countries range between 19% and 25%."
+        },
+        {
+          "question": "How do businesses reclaim input VAT?",
+          "answer": "VAT-registered businesses subtract input VAT paid on supplier invoices from output VAT collected on customer sales when filing periodic returns."
+        }
+      ]
+    },
+    "break-even": {
+      "guideTitle": "How Break-Even Analysis & Contribution Margin Work",
+      "guideDesc": "The break-even point tells you exactly how many units or dollars of revenue are required to cover fixed overhead and variable unit costs so profit reaches zero.",
+      "formulaHeading": "Break-Even Units, Revenue & Contribution Margin",
+      "formulaLines": [
+        "Contribution Margin per Unit = Selling Price - Variable Cost per Unit",
+        "Break-Even Units = Fixed Costs ÷ Contribution Margin per Unit",
+        "Contribution Margin Ratio = Contribution Margin per Unit ÷ Selling Price",
+        "Break-Even Revenue = Fixed Costs ÷ Contribution Margin Ratio"
+      ],
+      "faq": [
+        {
+          "question": "What is Contribution Margin and why does it drive break-even?",
+          "answer": "Contribution margin is the money left over from each unit sold after paying variable costs (materials, shipping, fees). Every unit contributes that amount toward paying off fixed rent, payroll, and software costs."
+        },
+        {
+          "question": "What happens if Variable Cost exceeds Selling Price?",
+          "answer": "Contribution margin becomes negative, meaning every additional sale loses money and the business can never break even without raising price or cutting per-unit cost."
+        },
+        {
+          "question": "How do I calculate break-even for a target profit?",
+          "answer": "Add your desired monthly profit directly to Fixed Costs in the numerator: (Fixed Costs + Target Profit) ÷ Contribution Margin per Unit."
+        }
+      ]
+    },
+    "inflation": {
+      "guideTitle": "How Inflation Erodes Purchasing Power Over Time",
+      "guideDesc": "Even modest annual inflation compounds relentlessly: at 3% inflation per year, prices double roughly every 24 years and idle cash loses almost half its real buying power.",
+      "formulaHeading": "Future Cost & Real Purchasing Power Formulas",
+      "formulaLines": [
+        "Future Equivalent Cost = Today's Cost × (1 + r)^t",
+        "Real Purchasing Power = Nominal Amount ÷ (1 + r)^t",
+        "Cumulative Inflation (%) = [ (1 + r)^t - 1 ] × 100",
+        "Real Investment Return ≈ [ (1 + Nominal Return) ÷ (1 + r) ] - 1"
+      ],
+      "faq": [
+        {
+          "question": "What is the difference between Nominal Value and Real Purchasing Power?",
+          "answer": "Nominal value is the face dollar amount on your statement, whereas real purchasing power adjusts for CPI price increases to show what those dollars actually buy in today's goods."
+        },
+        {
+          "question": "How fast does 4% annual inflation halve the value of cash?",
+          "answer": "Using the Rule of 72 (72 ÷ 4), purchasing power drops roughly in half in just 18 years if money earns zero interest."
+        },
+        {
+          "question": "How do I beat inflation when saving long term?",
+          "answer": "Your investments must achieve a nominal return above the annual inflation rate (plus taxes) so that your real inflation-adjusted return stays positive."
+        }
+      ]
+    },
+    "credit-card-payoff": {
+      "guideTitle": "How Credit Card APR Compounds & How to Escape Minimum Payments",
+      "guideDesc": "Credit card interest accrues on your daily or monthly revolving balance. Paying slightly more than the minimum dramatically shrinks both payoff months and total interest paid.",
+      "formulaHeading": "Revolving Balance Payoff Formulas",
+      "formulaLines": [
+        "Monthly Rate (r) = APR ÷ 12",
+        "Months to Payoff (n) = -ln(1 - (r × B) ÷ M) ÷ ln(1 + r)",
+        "Required Monthly Payment (M) = (r × B) ÷ (1 - (1 + r)^(-n))",
+        "Total Interest Paid = (M × n) - Starting Balance (B)"
+      ],
+      "faq": [
+        {
+          "question": "Why does paying only the minimum keep credit card debt alive for years?",
+          "answer": "Because minimum payments are often just 2%–3% of the balance, so most of the early payment goes purely to APR interest rather than reducing principal."
+        },
+        {
+          "question": "What happens if my monthly payment is less than one month of interest?",
+          "answer": "Negative amortization occurs: your balance actually grows every month instead of shrinking, making payoff impossible without raising the monthly payment."
+        },
+        {
+          "question": "When should I use Credit Card Payoff vs Debt Snowball?",
+          "answer": "Use this calculator to model one card with a fixed payment or deadline; use Debt Snowball when coordinating payoff order across multiple loans and cards simultaneously."
+        }
+      ]
+    },
+    "bmr": {
+      "guideTitle": "BMR vs TDEE Explained: Calculating Your Daily Calorie Target",
+      "guideDesc": "Basal Metabolic Rate (BMR) is the energy your body burns at complete rest, while Total Daily Energy Expenditure (TDEE) multiplies BMR by your weekly movement and workout intensity.",
+      "formulaHeading": "Mifflin-St Jeor BMR & TDEE Formulas",
+      "formulaLines": [
+        "Men BMR = (10 × Weight kg) + (6.25 × Height cm) - (5 × Age) + 5",
+        "Women BMR = (10 × Weight kg) + (6.25 × Height cm) - (5 × Age) - 161",
+        "TDEE = BMR × Activity Factor (1.2 Sedentary to 1.9 Very Active)",
+        "Weight Loss Target ≈ TDEE - 500 kcal/day (~0.45 kg/week)"
+      ],
+      "faq": [
+        {
+          "question": "Should I eat at my BMR or my TDEE to lose weight safely?",
+          "answer": "Never consistently eat below your BMR without medical supervision. Instead, subtract 300–500 kcal from your TDEE (maintenance calories) for sustainable fat loss."
+        },
+        {
+          "question": "Why does Mifflin-St Jeor replace the older Harris-Benedict formula?",
+          "answer": "Clinical nutrition studies show Mifflin-St Jeor estimates resting energy expenditure within 10% more accurately for modern body compositions."
+        },
+        {
+          "question": "How should I pick between BMI Calculator and BMR / TDEE Calculator?",
+          "answer": "Use BMI for a quick weight-for-height health category screening; use BMR/TDEE to plan daily food calories and macro budgets."
+        }
+      ]
+    },
+    "water-intake": {
+      "guideTitle": "How Daily Hydration Needs Scale With Body Weight, Exercise & Heat",
+      "guideDesc": "Daily fluid needs depend heavily on body mass, sweat loss during physical training, and ambient temperature or humidity rather than a single flat '8 glasses' rule.",
+      "formulaHeading": "Weight & Activity Hydration Formulas",
+      "formulaLines": [
+        "Baseline Water (Liters) = Weight (kg) × 0.033",
+        "Exercise Adjustment = +0.35 Liters per 30 minutes of moderate/intense workout",
+        "Hot / Humid Climate Buffer = +0.50 Liters/day",
+        "250ml Glasses = Total Daily Liters × 4"
+      ],
+      "faq": [
+        {
+          "question": "Why is weight × 0.033 more accurate than drinking 8 glasses for everyone?",
+          "answer": "A 55 kg person and a 95 kg athlete have very different blood volume and metabolic heat; weight-based dosing adjusts baseline hydration proportionally."
+        },
+        {
+          "question": "Does coffee or food water count toward daily hydration?",
+          "answer": "Roughly 20% of daily fluid intake comes from water-rich foods like fruit and vegetables, while pure water and herbal teas fulfill the remaining 80% directly."
+        },
+        {
+          "question": "Can drinking too much water at once be harmful?",
+          "answer": "Yes, spacing hydration steadily through the day avoids diluting blood sodium (hyponatremia) compared to chugging several liters rapidly."
+        }
+      ]
+    },
+    "date-difference": {
+      "guideTitle": "Calculating Exact Calendar Days vs Working Business Days",
+      "guideDesc": "Calendar duration counts every day between two dates including leap days, whereas business-day counting filters out weekends (Saturdays and Sundays) for SLA, payroll, and legal deadlines.",
+      "formulaHeading": "Calendar Duration & Business-Day Logic",
+      "formulaLines": [
+        "Total Calendar Days = (End UTC Date - Start UTC Date) ÷ 86,400,000 ms",
+        "Total Weeks = Total Days ÷ 7, Approximate Years = Total Days ÷ 365.25",
+        "Business Days = Sum of all dates t in range where weekday(t) ∈ {Mon..Fri}"
+      ],
+      "faq": [
+        {
+          "question": "How are leap years handled in exact day counts?",
+          "answer": "Using UTC midnight calendar timestamps ensures February 29 in leap years (such as 2024 and 2028) is counted accurately as 366 days without daylight-saving hour drift."
+        },
+        {
+          "question": "What is the difference between calendar days and business days?",
+          "answer": "Calendar days include Saturdays and Sundays; business days count only Monday–Friday workdays used in shipping estimates, contracts, and legal notices."
+        },
+        {
+          "question": "Are the start and end dates counted inclusively or exclusively?",
+          "answer": "Standard duration measures elapsed days between Start Date and End Date (e.g., Jan 1 to Jan 2 = 1 day elapsed)."
+        }
+      ]
+    },
+    "bill-splitter": {
+      "guideTitle": "Splitting Group Restaurant Bills & Gratuity Fairly",
+      "guideDesc": "Adding gratuity accurately before dividing by party size prevents awkward shortfalls at the table and lets diners verify both pre-tip and total per-person shares.",
+      "formulaHeading": "Bill Split & Tip Formulas",
+      "formulaLines": [
+        "Total Tip = Bill Amount × (Tip % ÷ 100)",
+        "Grand Total = Bill Amount + Total Tip",
+        "Amount per Person = Grand Total ÷ Number of People",
+        "Tip per Person = Total Tip ÷ Number of People"
+      ],
+      "faq": [
+        {
+          "question": "Should restaurant tip be calculated before or after sales tax?",
+          "answer": "Etiquette standard calculates gratuity on the pre-tax subtotal, though many diners conveniently tip on the final tax-included check."
+        },
+        {
+          "question": "What is a standard tip percentage for dine-in service?",
+          "answer": "In the US, 15%–20% is standard; in Israel, 10%–15% (commonly 12%) is customary; in much of Europe, 5%–10% or rounding up applies when service is not included."
+        },
+        {
+          "question": "How does Bill Splitter differ from the basic Tip Calculator?",
+          "answer": "Both compute tip and split; Bill Splitter emphasizes quick multi-diner group sharing with preset gratuity buttons, while Tip Calculator uses an interactive slider."
+        }
+      ]
+    },
+    "currency-converter": {
+      "guideTitle": "How Mid-Market FX Exchange Rates & Cross-Rates Work",
+      "guideDesc": "Currency conversion multiplies your base amount by the live interbank mid-market exchange rate. Checking the inverse rate helps spot bank markups when traveling or paying international invoices.",
+      "formulaHeading": "Direct & Inverse Currency Conversion Formulas",
+      "formulaLines": [
+        "Converted Amount = Source Amount × Exchange Rate (Base → Target)",
+        "Inverse Rate (Target → Base) = 1 ÷ Exchange Rate (Base → Target)",
+        "Bank Markup (%) = [ (Quoted Rate - Mid-Market Rate) ÷ Mid-Market Rate ] × 100"
+      ],
+      "faq": [
+        {
+          "question": "What is the mid-market exchange rate vs bank tourist rate?",
+          "answer": "The mid-market rate is the midpoint between global buy and sell FX quotes. Traditional banks and airport kiosks typically add a 2%–6% spread markup on top."
+        },
+        {
+          "question": "Why should I pay in local currency instead of home currency abroad?",
+          "answer": "Choosing local currency on card terminals avoids Dynamic Currency Conversion (DCC), which often applies an unfavorable 4%–8% exchange markup."
+        },
+        {
+          "question": "How do I compare salaries across countries accurately?",
+          "answer": "FX conversion shows raw nominal exchange value, whereas our Global Purchasing Power Calculator adjusts for local rent and grocery costs."
+        }
+      ]
+    },
+    "sleep-calculator": {
+      "guideTitle": "How 90-Minute Sleep Cycles Determine Optimal Bed & Wake Times",
+      "guideDesc": "Human sleep progresses through 90-minute cycles of light, deep, and REM sleep. Waking at the boundary between cycles—rather than mid-deep-sleep—reduces morning sleep inertia.",
+      "formulaHeading": "Sleep Cycle & Onset Latency Formulas",
+      "formulaLines": [
+        "Cycle Length = 90 minutes | Average Sleep Onset Latency = 14–15 minutes",
+        "Wake-Up Time = Bedtime + 15 min + (N × 90 min), where N ∈ {4, 5, 6}",
+        "Bedtime Target = Alarm Time - 15 min - (N × 90 min)",
+        "5 Cycles = 7 hours 30 minutes of actual sleep | 6 Cycles = 9 hours"
+      ],
+      "faq": [
+        {
+          "question": "Why do I feel groggy after sleeping 8 hours but refreshed after 7.5 hours?",
+          "answer": "Eight hours frequently cuts straight through the middle of your 6th deep/REM cycle, triggering sleep inertia, whereas 7.5 hours completes 5 full 90-minute cycles cleanly."
+        },
+        {
+          "question": "Why does the calculator add 15 minutes to bedtime?",
+          "answer": "Most healthy adults require roughly 14–15 minutes to transition from lying down to stage-1 sleep, so counting cycles from lights-out prevents cutting the final cycle short."
+        },
+        {
+          "question": "How many sleep cycles do adults ideally need per night?",
+          "answer": "Most adults thrive on 5 to 6 complete cycles (7.5 to 9 hours of sleep), while 4 cycles (6 hours) serves as a short-term minimum."
+        }
+      ]
+    },
+    "cooking-timer": {
+      "guideTitle": "Roasting Time & Core Temperature Guide for Beef, Poultry, Lamb & Pork",
+      "guideDesc": "Safe and juicy oven roasting scales linearly by meat weight and cut thickness, paired with exact internal thermometer readings and carry-over resting time.",
+      "formulaHeading": "Roasting Duration & Core Temp Rules",
+      "formulaLines": [
+        "Total Roasting Minutes = Base Prep Time + (Weight in kg × Minutes per kg by Cut & Doneness)",
+        "Beef Targets: Rare 52°C (125°F) | Medium-Rare 57°C (135°F) | Medium 63°C (145°F)",
+        "Poultry Safe Core Temp: 74°C (165°F) | Pork Safe Core: 63°C (145°F)",
+        "Resting Time = 10–20 minutes tented loosely in foil (+3°C carry-over cooking)"
+      ],
+      "faq": [
+        {
+          "question": "Why should roast meat rest 10–15 minutes after leaving the oven?",
+          "answer": "Resting lets muscle fibers relax and reabsorb juices while residual heat raises the center temperature another 2°C–4°C (carry-over cooking)."
+        },
+        {
+          "question": "Is weight or an instant-read thermometer more reliable?",
+          "answer": "Weight-based timing estimates when to check the oven, while probing the thickest non-bone center with a meat thermometer confirms food safety and exact doneness."
+        },
+        {
+          "question": "Do stuffed or bone-in cuts take longer per kilogram?",
+          "answer": "Yes, stuffed poultry or thick bone-in roasts generally need an extra 15–20 minutes total compared with boneless cuts."
+        }
+      ]
+    },
+    "severance-pay": {
+      "guideTitle": "How Statutory Severance Pay & Section 14 Pension Deposits Work",
+      "guideDesc": "Severance entitlement is typically calculated as one month's qualifying salary multiplied by years of tenure. Under Section 14 arrangements, monthly employer pension deposits (8.33%) cover ongoing severance accrual.",
+      "formulaHeading": "Severance Entitlement & Employer Top-Up Formulas",
+      "formulaLines": [
+        "Full Gross Severance = Qualifying Monthly Salary × (Years + Months ÷ 12)",
+        "Annual Accrual Rate = 100% ÷ 12 = 8.333% of monthly salary",
+        "Employer Direct Top-Up = Full Severance - Accumulated Severance Fund Balance"
+      ],
+      "faq": [
+        {
+          "question": "What salary components count toward qualifying severance pay?",
+          "answer": "Base salary, fixed cost-of-living allowances, and regular seniority additions are included, while genuine overtime, car allowances, and expense reimbursements are generally excluded."
+        },
+        {
+          "question": "What is the difference between Section 14 and non-Section-14 severance?",
+          "answer": "Under Section 14, monthly 8.33% deposits satisfy the severance obligation even on resignation (leaving the fund with the employee), whereas without it, termination triggers a top-up to final salary × years."
+        },
+        {
+          "question": "How are partial years of service calculated?",
+          "answer": "Every completed month after the initial qualifying year adds 1/12 of a monthly salary proportionally."
+        }
+      ]
+    },
+    "stock-options-rsu": {
+      "guideTitle": "Startup Equity Valuation: Vesting, Dilution & Section 102 Capital Gains Tax",
+      "guideDesc": "True equity take-home value depends on vested shares, strike price spread, future funding dilution, and whether proceeds qualify for a 25% capital gains route or ordinary income tax.",
+      "formulaHeading": "Vesting, Dilution & Net Equity Exit Formulas",
+      "formulaLines": [
+        "Vested Shares = Total Grant × [ (Months Elapsed >= Cliff ? Months Elapsed : 0) ÷ Total Vesting Months ]",
+        "Diluted Share Price = Exit Price × (1 - Dilution % ÷ 100)",
+        "Options Gross Spread = max(0, Diluted Exit Price - Strike Price) × Vested Options",
+        "RSU Gross Value = Diluted Exit Price × Vested RSUs | Net = Gross × (1 - Tax Rate)"
+      ],
+      "faq": [
+        {
+          "question": "What is the 1-year cliff in a standard 4-year vesting schedule?",
+          "answer": "During the first 12 months, 0% of your grant vests; on month 12, 25% unlocks at once, followed by monthly (1/48) or quarterly installments over the remaining 3 years."
+        },
+        {
+          "question": "How does Israel Section 102 Capital Gains (25%) differ from Section 102 Income?",
+          "answer": "Under the Capital Gains Trustee route held for at least 24 months, gains above the grant-date average price are taxed at 25% (plus 3% surtax above threshold) instead of up to 47%–50% marginal income tax."
+        },
+        {
+          "question": "Why do RSUs keep value even if the stock drops, unlike options?",
+          "answer": "Options only pay the spread above the strike price (zero if underwater), whereas each RSU has full underlying share value as long as the share price exceeds $0."
+        }
+      ]
+    },
+    "purchase-appreciation-tax": {
+      "guideTitle": "Tiered Real Estate Purchase Tax & Linear Appreciation Tax Explained",
+      "guideDesc": "Israel property purchase tax (Mas Rechisha) is calculated progressively across statutory brackets that differ sharply between a sole residence and an investment home, while appreciation tax (Mas Shevach) taxes net capital profit after deductible costs.",
+      "formulaHeading": "Progressive Bracket & Linear Appreciation Formulas",
+      "formulaLines": [
+        "Purchase Tax = Sum over each bracket i of [ (min(Price, Cap_i) - Floor_i) × Rate_i ]",
+        "Net Appreciation Gain = Sale Price - Purchase Price - Legal, Brokerage & Renovation Costs",
+        "Linear Tax Ratio (post-2014) = Taxable Days after Jan 1, 2014 ÷ Total Ownership Days",
+        "Appreciation Tax = Net Gain × Linear Ratio × 25%"
+      ],
+      "faq": [
+        {
+          "question": "Why is single-home purchase tax calculated in tiers rather than one flat rate?",
+          "answer": "The tax-free threshold applies to the bottom slice of a sole home, and each higher slice pays only the marginal bracket rate (e.g., 3.5%, 5%, 8%, 10%), whereas investment apartments start taxing from the very first shekel at 8%."
+        },
+        {
+          "question": "What expenses reduce Appreciation Tax (Mas Shevach)?",
+          "answer": "Documented purchase tax paid, buyer and seller attorney fees, broker commissions, appraisal fees, and capital improvement renovations with valid tax invoices."
+        },
+        {
+          "question": "How does linear preferential appreciation tax benefit pre-2014 owners?",
+          "answer": "Days held before January 1, 2014 are tax-exempt under the linear formula, so only the proportional gain accrued after 2014 is taxed at 25%."
+        }
+      ]
+    },
+    "employer-cost": {
+      "guideTitle": "Gross Salary vs Total Employer Cost & Employee Net Take-Home Pay",
+      "guideDesc": "An employee's gross salary is only part of total payroll cost: employers contribute mandatory pension, severance, study fund, and employer National Insurance on top, while employees pay progressive income tax and social security.",
+      "formulaHeading": "Employer Overhead & Net Payroll Formulas",
+      "formulaLines": [
+        "Total Employer Cost = Gross Salary + Employer Pension (6.5%) + Severance (8.33%) + Study Fund (7.5%) + Employer NI",
+        "Employer Multiplier = Total Employer Cost ÷ Gross Salary (typically 1.24x–1.30x)",
+        "Employee Net Pay = Gross Salary - Income Tax - Employee NI/Health - Employee Pension (6%) - Employee Study Fund (2.5%)"
+      ],
+      "faq": [
+        {
+          "question": "Why does hiring an employee cost 25%–30% more than gross salary?",
+          "answer": "Mandatory statutory social contributions (pension 6.5%, severance 8.33%, employer National Insurance 3.55%–7.6%) plus optional study fund (7.5%) add roughly 24%–30% above base gross."
+        },
+        {
+          "question": "What is the difference between Salary Converter and Employer Cost?",
+          "answer": "Salary Converter translates pay frequency (hourly/monthly/annual), whereas Employer Cost breaks down full payroll taxes, pension provisions, and true net bank deposit."
+        },
+        {
+          "question": "Does pension contribution reduce taxable income?",
+          "answer": "Employee pension deposits earn statutory tax credits/deductions within legal caps, improving net take-home pay compared with un sheltered income."
+        }
+      ]
+    },
+    "z-score": {
+      "guideTitle": "Z-Scores, Standard Normal Distribution & Bell-Curve Probabilities",
+      "guideDesc": "A Z-score measures exactly how many standard deviations a raw score sits above or below the population mean, letting you compare data across completely different scales via the standard normal curve.",
+      "formulaHeading": "Standard Score & Inverse Percentile Formulas",
+      "formulaLines": [
+        "Standard Z-Score: Z = (X - μ) ÷ σ",
+        "Inverse Raw Score: X = μ + (Z × σ)",
+        "Cumulative Left-Tail Probability: Φ(z) = P(Z ≤ z) = ½ [ 1 + erf(z ÷ √2) ]",
+        "Empirical Rule: ±1σ ≈ 68.27% | ±2σ ≈ 95.45% | ±3σ ≈ 99.73%"
+      ],
+      "faq": [
+        {
+          "question": "What does a Z-score of +1.5 or -2.0 mean?",
+          "answer": "A Z-score of +1.5 means the observation is 1.5 standard deviations above the mean (approx. 93.3rd percentile), while -2.0 is 2 standard deviations below the mean (approx. 2.28th percentile)."
+        },
+        {
+          "question": "How do I convert a percentile back into a raw score?",
+          "answer": "Switch to Inverse Mode, enter your target percentile (e.g., 95%), mean μ, and standard deviation σ; the calculator finds Z ≈ 1.645 and computes X = μ + 1.645σ."
+        },
+        {
+          "question": "What is the difference between one-tailed and two-tailed p-values?",
+          "answer": "One-tailed probability checks extreme values in one direction only (Z > z or Z < z), whereas two-tailed probability doubles the tail area to test deviation in either direction."
+        }
+      ]
+    },
+    "linear-regression": {
+      "guideTitle": "Ordinary Least Squares (OLS) Linear Regression & R-Squared",
+      "guideDesc": "Linear regression fits the straight line y = mx + b that minimizes squared vertical errors across your (x, y) data points, while Pearson r and R² quantify linear correlation strength.",
+      "formulaHeading": "OLS Regression, Pearson r & R² Formulas",
+      "formulaLines": [
+        "Slope (m) = Σ[(x_i - x̄)(y_i - ȳ)] ÷ Σ[(x_i - x̄)²]",
+        "Y-Intercept (b) = ȳ - m × x̄  |  Line: ŷ = mx + b",
+        "Pearson Correlation (r) = Σ[(x_i - x̄)(y_i - ȳ)] ÷ √[ Σ(x_i - x̄)² × Σ(y_i - ȳ)² ]",
+        "Coefficient of Determination = R² = r² (fraction of variance explained)"
+      ],
+      "faq": [
+        {
+          "question": "What is the difference between Pearson r and R-squared (R²)?",
+          "answer": "Pearson r ranges from -1 to +1 and shows both direction (positive or negative) and linear strength; R² ranges from 0 to 1 and tells what percentage of Y variation is explained by X."
+        },
+        {
+          "question": "How many data points are needed for a linear regression line?",
+          "answer": "Mathematically at least 2 distinct X points define a line, though 5+ points are needed for meaningful correlation and R² diagnostics."
+        },
+        {
+          "question": "Does high R² prove X causes Y?",
+          "answer": "No—regression measures linear association and predictive fit, not causation or non-linear curved relationships."
+        }
+      ]
+    },
+    "quadratic-equation": {
+      "guideTitle": "Solving Quadratic Equations: Discriminant, Complex Roots & Parabola Vertex",
+      "guideDesc": "Every quadratic equation ax² + bx + c = 0 forms a parabola whose discriminant Δ = b² - 4ac reveals whether the curve crosses the x-axis twice, touches once, or produces complex conjugate roots.",
+      "formulaHeading": "Quadratic Formula, Discriminant & Vertex",
+      "formulaLines": [
+        "Discriminant: Δ = b² - 4ac",
+        "Roots: x = [ -b ± √Δ ] ÷ (2a)  (if Δ < 0: x = (-b ÷ 2a) ± (√|Δ| ÷ 2a)i)",
+        "Parabola Vertex (h, k): h = -b ÷ (2a),  k = a·h² + b·h + c",
+        "Axis of Symmetry: x = h  |  Y-Intercept: (0, c)"
+      ],
+      "faq": [
+        {
+          "question": "What do the three cases of the discriminant Δ = b² - 4ac mean?",
+          "answer": "Δ > 0 gives two distinct real roots; Δ = 0 gives one repeated real root sitting right at the vertex on the x-axis; Δ < 0 gives two complex conjugate roots (no real x-intercepts)."
+        },
+        {
+          "question": "How do you know if the parabola opens upward or downward?",
+          "answer": "If the leading coefficient a > 0, the parabola opens upward and the vertex is a minimum; if a < 0, it opens downward and the vertex is a maximum."
+        },
+        {
+          "question": "What happens if a = 0?",
+          "answer": "The equation is no longer quadratic—it becomes linear (bx + c = 0) with the single root x = -c ÷ b."
+        }
+      ]
+    },
+    "linear-system": {
+      "guideTitle": "Solving 2×2 Linear Equation Systems With Cramer's Rule & Determinants",
+      "guideDesc": "A 2×2 linear system seeks the point (x, y) where two lines intersect. Cramer's Rule computes determinants D, Dx, and Dy directly to give exact solutions or flag parallel lines.",
+      "formulaHeading": "Cramer's Rule 2×2 Determinant Formulas",
+      "formulaLines": [
+        "System: a₁x + b₁y = c₁  and  a₂x + b₂y = c₂",
+        "Main Determinant: D = a₁b₂ - a₂b₁",
+        "Dx = c₁b₂ - c₂b₁  |  Dy = a₁c₂ - a₂c₁",
+        "Unique Solution (when D ≠ 0): x = Dx ÷ D,  y = Dy ÷ D"
+      ],
+      "faq": [
+        {
+          "question": "What happens when the main determinant D equals 0?",
+          "answer": "If D = 0 and either Dx ≠ 0 or Dy ≠ 0, the lines are parallel and never cross (no solution). If D = Dx = Dy = 0, both equations describe the same line (infinitely many solutions)."
+        },
+        {
+          "question": "Why use Cramer's Rule instead of substitution?",
+          "answer": "Cramer's Rule works in fixed closed-form determinant arithmetic without fractions until the very final division, preventing early rounding error."
+        },
+        {
+          "question": "Can this solve 3×3 matrix operations too?",
+          "answer": "For 3×3 determinant, inverse, and matrix multiplication, switch to our Matrix Calculator."
+        }
+      ]
+    },
+    "base-converter": {
+      "guideTitle": "Positional Number Systems: Binary, Octal, Decimal & Hexadecimal",
+      "guideDesc": "Every positional numeral system represents values as sums of digit × baseᵖ. Computer systems rely on Base 2 (binary), Base 8 (octal), and Base 16 (hexadecimal) because 1 hex digit cleanly packs 4 bits.",
+      "formulaHeading": "Radix Expansion & Conversion Rules",
+      "formulaLines": [
+        "Value = Σ [ d_i × b^i ]  (e.g., 1011₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 11₁₀)",
+        "1 Hex Digit (0–9, A–F) = Exactly 4 Binary Bits (1 Nibble)",
+        "2 Hex Digits (00–FF) = 8 Bits (1 Byte, values 0–255)",
+        "1 Octal Digit (0–7) = Exactly 3 Binary Bits"
+      ],
+      "faq": [
+        {
+          "question": "Why do programmers use Hexadecimal (Base 16) instead of raw Binary?",
+          "answer": "Every single hex character maps 1-to-1 onto 4 binary bits, compressing a 32-bit memory address or RGB color (#FF5733) into just 6–8 compact characters."
+        },
+        {
+          "question": "Which characters are valid in bases above 10 (up to Base 36)?",
+          "answer": "Digits 0–9 represent values 0–9, and letters A–Z represent values 10–35 (for instance, A = 10, F = 15, Z = 35)."
+        },
+        {
+          "question": "Does this converter handle 64-bit numbers without losing precision?",
+          "answer": "Yes, it uses JavaScript BigInt rather than 53-bit floats, keeping large 64-bit and 128-bit integer conversions exact."
+        }
+      ]
+    },
+    "bitwise-calculator": {
+      "guideTitle": "Bitwise Logic Gates, Bitmasks & Shift Operators (8 / 16 / 32-Bit)",
+      "guideDesc": "Bitwise operations manipulate individual 0/1 bits inside fixed-width integers simultaneously, powering hardware registers, network subnet masks, permissions, and fast bit-flags.",
+      "formulaHeading": "Bitwise Truth Rules & Shift Operations",
+      "formulaLines": [
+        "AND (&): 1 only when BOTH bits are 1 (used to read/clear masked bits)",
+        "OR (|): 1 when AT LEAST ONE bit is 1 (used to set flag bits ON)",
+        "XOR (^): 1 when bits DIFFER (used to toggle bits or check inequality)",
+        "NOT (~): Flips every bit within active bit-width | Left Shift (<< k) ≈ × 2ᵏ"
+      ],
+      "faq": [
+        {
+          "question": "When do engineers use AND, OR, and XOR bitmasks?",
+          "answer": "Use OR (flags | MASK) to enable a feature bit, AND (flags & ~MASK) to clear a bit, AND (flags & MASK) to test if a bit is set, and XOR (flags ^ MASK) to toggle it."
+        },
+        {
+          "question": "Why does bit-width (8-bit vs 16-bit vs 32-bit) change NOT (~) results?",
+          "answer": "Bitwise NOT flips every bit in the register, so 8-bit ~0b00000101 becomes 0b11111010 (250 unsigned), whereas 16-bit flips 16 bits."
+        },
+        {
+          "question": "What is the arithmetic equivalent of << and >> bit shifts?",
+          "answer": "Shifting left by k bits multiplies by 2ᵏ (modulo bit-width), while unsigned shifting right divides by 2ᵏ and drops the remainder."
+        }
+      ]
+    },
+    "triangle-solver": {
+      "guideTitle": "Solving Any Triangle: Law of Cosines, Law of Sines & Heron's Formula",
+      "guideDesc": "Given three sides (SSS) or two sides with their included angle (SAS), classical trigonometry reconstructs every missing side, interior angle, altitude, inradius, and circumradius.",
+      "formulaHeading": "Trigonometric & Triangle Area Formulas",
+      "formulaLines": [
+        "Law of Cosines: c² = a² + b² - 2ab·cos(C)  |  cos(A) = (b² + c² - a²) ÷ 2bc",
+        "Semi-perimeter: s = (a + b + c) ÷ 2",
+        "Heron's Area Formula: Area = √[ s(s - a)(s - b)(s - c) ]",
+        "Inradius: r = Area ÷ s  |  Circumradius: R = (abc) ÷ (4 × Area)"
+      ],
+      "faq": [
+        {
+          "question": "What is the Triangle Inequality rule that makes a triangle valid?",
+          "answer": "The sum of any two side lengths must strictly exceed the third side (a + b > c, a + c > b, b + c > a); otherwise the segments cannot close into a triangle."
+        },
+        {
+          "question": "What is the difference between Inradius (r) and Circumradius (R)?",
+          "answer": "The inradius r is the radius of the largest circle fitting inside tangent to all three sides, while the circumradius R passes through all three triangle vertices."
+        },
+        {
+          "question": "How are triangle heights (altitudes) calculated?",
+          "answer": "Each altitude equals twice the area divided by its corresponding base side: h_a = 2·Area ÷ a."
+        }
+      ]
+    },
+    "circle-sector": {
+      "guideTitle": "Circle Sector Geometry: Arc Length, Sector Area, Chord & Segment",
+      "guideDesc": "A circle sector is a pizza-slice wedge bounded by two radii and an arc, whereas a circular segment is the region trapped between the curved arc and the straight chord line.",
+      "formulaHeading": "Sector, Arc, Chord & Segment Formulas (θ in Radians)",
+      "formulaLines": [
+        "Radians Conversion: θ_rad = θ_deg × (π ÷ 180)",
+        "Arc Length: s = r × θ_rad",
+        "Sector Area: A_sector = ½ × r² × θ_rad",
+        "Chord Length: c = 2r × sin(θ_rad ÷ 2)  |  Segment Area = ½ × r² × (θ_rad - sin θ_rad)"
+      ],
+      "faq": [
+        {
+          "question": "What is the difference between a Circular Sector and a Circular Segment?",
+          "answer": "A sector reaches all the way to the circle's center like a pie slice; a segment removes the inner triangle, leaving only the curved cap between the arc and the chord."
+        },
+        {
+          "question": "Why must angles be converted to radians in s = rθ?",
+          "answer": "Because radian measure is defined as arc-to-radius ratio (full circle = 2π rad), turning arc length and sector area into clean formulas without extra 360° factors."
+        },
+        {
+          "question": "When does the chord equal the circle's diameter?",
+          "answer": "At a central angle of 180° (π radians), where sin(90°) = 1 so chord length c = 2r."
+        }
+      ]
+    },
+    "matrix-calculator": {
+      "guideTitle": "Matrix Algebra: Multiplication, Determinants, Inverses & Rank",
+      "guideDesc": "Linear transformations, systems of equations, and 3D computer graphics rely on exact matrix operations such as dot-product multiplication, determinants, and Gauss-Jordan inversion.",
+      "formulaHeading": "Core Matrix Operations & Formulas",
+      "formulaLines": [
+        "Product (A × B)[i,j] = Σ (A[i,k] × B[k,j]) for matching inner dimensions",
+        "2×2 Determinant: det(A) = (a × d) - (b × c)",
+        "2×2 Inverse: A⁻¹ = (1 ÷ det(A)) × [[d, -b], [-c, a]] when det(A) ≠ 0",
+        "3×3 Determinant: Cofactor expansion along first row: a(ei−fh) − b(di−fg) + c(dh−eg)"
+      ],
+      "faq": [
+        {
+          "question": "When does a square matrix have no inverse (singular matrix)?",
+          "answer": "A square matrix has no inverse when its determinant equals zero (det(A) = 0), which happens whenever rows or columns are linearly dependent."
+        },
+        {
+          "question": "Why must columns of Matrix A equal rows of Matrix B for multiplication?",
+          "answer": "Matrix multiplication computes dot products of each row in A with each column in B, so an m×n matrix can only multiply an n×p matrix, yielding an m×p result."
+        },
+        {
+          "question": "What does the determinant tell you geometrically?",
+          "answer": "The absolute value of the determinant measures the area (2D) or volume (3D) scaling factor of the linear transformation, and its sign shows whether orientation flips."
+        }
+      ]
+    },
+    "complex-numbers": {
+      "guideTitle": "Complex Number Arithmetic: Rectangular, Polar & Euler Forms",
+      "guideDesc": "Complex numbers combine a real axis and an imaginary axis (i² = −1) to model AC electrical impedance, signal phases, resonance frequencies, and 2D rotations.",
+      "formulaHeading": "Cartesian, Polar & Euler Conversion Formulas",
+      "formulaLines": [
+        "Cartesian Form: z = a + bi (where i² = -1)",
+        "Modulus (Magnitude): |z| = √(a² + b²) | Argument Angle: θ = atan2(b, a)",
+        "Polar & Euler Forms: z = r(cos θ + i sin θ) = r · e^(iθ)",
+        "Division Rule: (a + bi) ÷ (c + di) = [(ac + bd) + (bc - ad)i] ÷ (c² + d²)"
+      ],
+      "faq": [
+        {
+          "question": "How do you divide two complex numbers manually?",
+          "answer": "Multiply both numerator and denominator by the complex conjugate of the denominator (c − di) so the denominator becomes the real number c² + d²."
+        },
+        {
+          "question": "When is polar form better than rectangular form?",
+          "answer": "Rectangular form (a + bi) simplifies addition and subtraction, while polar form (r∠θ) makes multiplication, division, and powers much faster."
+        },
+        {
+          "question": "Why do electrical engineers use j instead of i for complex impedance?",
+          "answer": "In AC circuit theory, the letter i already denotes electrical current, so engineers write Z = R + jX where j² = −1."
+        }
+      ]
+    },
+    "pregnancy": {
+      "guideTitle": "How Pregnancy Weeks, Trimesters & Estimated Due Date Are Calculated",
+      "guideDesc": "Clinical due dates use Naegele's Rule—counting 280 days (40 weeks) from the first day of your last menstrual period (LMP), with adjustments for irregular cycle lengths or conception dates.",
+      "formulaHeading": "Naegele's Rule & Gestational Age Formulas",
+      "formulaLines": [
+        "Estimated Due Date (LMP) = LMP Date + 280 days + (Cycle Length − 28 days)",
+        "Estimated Due Date (Conception / IVF) = Conception Date + 266 days (or − Embryo Age)",
+        "Gestational Week = floor(Days Since Adjusted LMP ÷ 7) + Remaining Days"
+      ],
+      "faq": [
+        {
+          "question": "Why does gestational age start two weeks before conception?",
+          "answer": "Obstetric dating starts from the Last Menstrual Period (LMP) because ovulation timing varies, making a standard 38-week embryonic timeline equal 40 gestational weeks."
+        },
+        {
+          "question": "How does cycle length change the estimated due date?",
+          "answer": "Because ovulation typically occurs 14 days before the next period, a 32-day cycle shifts ovulation and the due date 4 days later than a standard 28-day cycle."
+        },
+        {
+          "question": "What are the three trimesters by gestational week?",
+          "answer": "First trimester spans Weeks 1–13, Second trimester Weeks 14–27, and Third trimester Weeks 28–40+ until delivery."
+        }
+      ]
+    },
+    "retirement-planner": {
+      "guideTitle": "Retirement Planning, FIRE Corpus & The 4% Safe Withdrawal Rule",
+      "guideDesc": "Sustainable retirement planning balances pre-retirement compounding with inflation-adjusted portfolio drawdowns designed to outlast a 30+ year horizon.",
+      "formulaHeading": "FIRE Target & Retirement Growth Formulas",
+      "formulaLines": [
+        "Target FIRE Nest Egg = Desired Annual Retirement Spending ÷ Safe Withdrawal Rate (e.g. 0.04 = 25× Expenses)",
+        "Accumulated Corpus = Current Savings(1+r)^n + Monthly Deposit × [((1+r)^n − 1) ÷ r]",
+        "Real Return Rate = [(1 + Nominal Return) ÷ (1 + Inflation)] − 1"
+      ],
+      "faq": [
+        {
+          "question": "What is the 4% Safe Withdrawal Rule (Trinity Study)?",
+          "answer": "It estimates you can withdraw 4% of your initial portfolio in year one of retirement, then adjust that dollar amount for inflation each year with high historical odds of lasting 30 years."
+        },
+        {
+          "question": "Should I plan retirement contributions using nominal or real returns?",
+          "answer": "Using real inflation-adjusted returns (e.g., 5% instead of 7%–8%) keeps your target nest egg aligned with today's purchasing power."
+        },
+        {
+          "question": "How do pensions or Social Security change my savings target?",
+          "answer": "Guaranteed lifetime income directly reduces the annual spending gap your personal investment portfolio needs to fund."
+        }
+      ]
+    },
+    "capital-gains-tax": {
+      "guideTitle": "Capital Gains Tax: Real vs Inflationary Gains & Loss Harvesting",
+      "guideDesc": "Net investment returns depend on cost basis adjustments, tax-loss carryforwards, and whether tax law applies flat rates to real inflation-adjusted gains or nominal profits.",
+      "formulaHeading": "Taxable Capital Gain & Net Proceeds Formulas",
+      "formulaLines": [
+        "Nominal Gain = Sale Proceeds − Purchase Cost Basis − Broker Commissions",
+        "Real (Inflation-Adjusted) Gain = Sale Proceeds − (Adjusted Cost Basis × CPI Index Ratio)",
+        "Tax Payable = max(0, Taxable Gain − Offset Losses) × Capital Gains Tax Rate"
+      ],
+      "faq": [
+        {
+          "question": "What is the difference between real and nominal capital gains tax?",
+          "answer": "Nominal tax applies to the raw currency profit, while real capital gains systems (such as 25% real tax in Israel) exempt the portion of price appreciation caused strictly by inflation."
+        },
+        {
+          "question": "How does tax-loss harvesting reduce my tax bill?",
+          "answer": "Realized capital losses on losing positions can offset realized capital gains in the same tax year or carry forward to future years."
+        },
+        {
+          "question": "Can brokerage commissions be deducted from taxable capital gains?",
+          "answer": "Yes, verified buy and sell transaction commissions directly increase cost basis or reduce sale proceeds, lowering taxable profit."
+        }
+      ]
+    },
+    "car-finance-lease": {
+      "guideTitle": "Car Loan vs Auto Lease: Depreciation, Residual Value & True Net Cost",
+      "guideDesc": "Deciding between financing, operational leasing, and balloon loans requires comparing net cash outflows minus the projected resale equity at the end of ownership.",
+      "formulaHeading": "Lease vs Finance Net Cost Formulas",
+      "formulaLines": [
+        "Loan Monthly Payment = P × [r(1+r)^n ÷ ((1+r)^n − 1)]",
+        "Total Lease Outlay = Down Payment + (Monthly Lease Fee × Months) + End Fees",
+        "Net True Ownership Cost = Total Cash Paid − Projected Vehicle Resale Value"
+      ],
+      "faq": [
+        {
+          "question": "When is buying with a car loan cheaper than leasing?",
+          "answer": "Buying typically wins over 4–7+ years because once the loan finishes you own a debt-free asset with resale value, whereas leasing requires continuous monthly payments."
+        },
+        {
+          "question": "What is residual value in a car lease?",
+          "answer": "Residual value is the vehicle's projected wholesale value at the end of the lease; you pay for depreciation down to that value plus the financing factor."
+        },
+        {
+          "question": "What hidden costs should I include when comparing lease vs buy?",
+          "answer": "Account for mileage overage penalties, wear-and-tear charges, and maintenance packages included in operational leases versus out-of-warranty repairs when owning."
+        }
+      ]
+    },
+    "scientific-unit-engine": {
+      "guideTitle": "Engineering & Scientific Unit Conversions Across SI and Imperial Systems",
+      "guideDesc": "Precision engineering requires exact dimensional conversion across pressure, energy, power, torque, flow rate, and thermal scales without rounding drift.",
+      "formulaHeading": "Key Physical Conversion Identities",
+      "formulaLines": [
+        "Pressure: 1 bar = 100,000 Pa = 14.50377 psi = 0.98692 atm",
+        "Energy & Power: 1 kWh = 3.6 MJ = 3,412.14 BTU | 1 HP = 745.7 Watts",
+        "Torque & Force: 1 N·m = 0.73756 lb-ft | 1 lbf = 4.44822 Newtons",
+        "Temperature Scales: K = °C + 273.15 | °F = (°C × 9/5) + 32"
+      ],
+      "faq": [
+        {
+          "question": "What is the difference between kW and kWh?",
+          "answer": "Kilowatts (kW) measure instantaneous power draw rate, while kilowatt-hours (kWh) measure cumulative energy consumed or stored over time (1 kW × 1 hour = 3.6 MJ)."
+        },
+        {
+          "question": "How do gauge pressure (psig) and absolute pressure (psia) differ?",
+          "answer": "Absolute pressure includes atmospheric pressure (~14.7 psi at sea level), whereas gauge pressure measures only pressure above ambient air."
+        },
+        {
+          "question": "Why are exact SI conversion factors critical in CAD and lab work?",
+          "answer": "Even small rounding errors between inches, millimeters, Pascals, and PSI compound across tolerances and thermal stress calculations."
+        }
+      ]
+    },
+    "purchasing-power": {
+      "guideTitle": "Cost of Living Comparison, Purchasing Power Parity & Relocation Salary",
+      "guideDesc": "Comparing job offers across global cities requires adjusting gross pay for local rent, groceries, utilities, tax burdens, and Purchasing Power Parity (PPP) indices.",
+      "formulaHeading": "Equivalent Relocation Salary & PPP Formulas",
+      "formulaLines": [
+        "Equivalent Salary = Current Net Income × (Target City Cost Index ÷ Origin City Cost Index)",
+        "Housing-Adjusted Gap = Target Rent Share − Origin Rent Share",
+        "Real Disposable Surplus = Target Net Salary − Total Localized Monthly Living Basket"
+      ],
+      "faq": [
+        {
+          "question": "Why is a higher nominal salary in New York or Tel Aviv sometimes worth less?",
+          "answer": "High housing rents, childcare, and consumer price indices absorb a larger share of income, reducing real disposable savings compared to lower-cost cities."
+        },
+        {
+          "question": "What is included in a city Cost of Living index?",
+          "answer": "Indices combine weighted baskets for housing rent, groceries, restaurant dining, public transit, utilities, and healthcare."
+        },
+        {
+          "question": "How should remote workers evaluate Purchasing Power Parity (PPP)?",
+          "answer": "Remote professionals earning in a strong currency and living in a lower-cost hub capture higher real savings by comparing local rent plus core living costs against net pay."
+        }
+      ]
     }
   },
   "assistant": {

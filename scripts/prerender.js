@@ -16,6 +16,10 @@ const locales = {
   ru: JSON.parse(fs.readFileSync(path.resolve(__dirname, "../src/locales/ru.json"), "utf8")),
 };
 
+const calculatorCapabilities = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, "../src/data/calculatorCapabilities.json"), "utf8"),
+);
+
 const localeMap = {
   en: "en_US",
   he: "he_IL",
@@ -512,6 +516,7 @@ function createSchemaJsonLd(
   category = null,
   keywords = [],
   faqs = [],
+  featureList = [],
 ) {
   const isApp = schemaType === "WebApplication" || schemaType === "SoftwareApplication";
   const siteName = "Global Calc Pro";
@@ -611,6 +616,7 @@ function createSchemaJsonLd(
       license: `${baseUrl}/${lang}/terms-of-service`,
       inLanguage: lang,
       ...(keywords.length > 0 ? { keywords: keywords.join(", ") } : {}),
+      ...(Array.isArray(featureList) && featureList.length > 0 ? { featureList } : {}),
       offers: {
         "@type": "Offer",
         price: "0",
@@ -743,8 +749,17 @@ function buildCalculatorFallbackFaqs(meta, lang, cleanTitle) {
   return templates[lang] || templates.en;
 }
 
+const capabilityHeadings = {
+  en: { title: "What This Calculator Can Do & Ideal Use Cases", bestFor: "Best for" },
+  he: { title: "מה המחשבון הזה יודע לעשות ולמי הוא מתאים", bestFor: "מתאים במיוחד עבור" },
+  es: { title: "Qué Puede Hacer Esta Calculadora y Cuándo Usarla", bestFor: "Ideal para" },
+  fr: { title: "Capacités de Cette Calculatrice et Cas d’Usage Idéaux", bestFor: "Idéal pour" },
+  ar: { title: "ماذا تقدم هذه الحاسبة ومتى يُنصح باستخدامها", bestFor: "الأنسب لـ" },
+  ru: { title: "Возможности калькулятора и сценарии применения", bestFor: "Лучше всего подходит" },
+};
+
 // Build rich semantic HTML shell inside #root so Googlebot sees full content & internal links before hydration
-function buildSemanticShell(route, lang, meta, guide, benchmark, resolvedFaqs = []) {
+function buildSemanticShell(route, lang, meta, guide, benchmark, resolvedFaqs = [], calcCaps = null) {
   const t = locales[lang]?.ui || locales.en.ui;
   const unlocalizedPath = route.replace(new RegExp(`^\\/${lang}`), "") || "/";
   const cleanTitle = meta.title.replace(/ \| Global ?Calc Pro/gi, "").trim();
@@ -772,6 +787,17 @@ function buildSemanticShell(route, lang, meta, guide, benchmark, resolvedFaqs = 
   const directAnswer = benchmark?.directAnswer?.[lang] || benchmark?.directAnswer?.en || "";
   const formulaLines = guide?.formulaLines || benchmark?.formulaBreakdown?.variables?.[lang] || benchmark?.formulaBreakdown?.variables?.en || [];
   const faqs = Array.isArray(resolvedFaqs) ? resolvedFaqs : [];
+  const capLabels = capabilityHeadings[lang] || capabilityHeadings.en;
+  const capBestFor = calcCaps?.bestFor?.[lang] || calcCaps?.bestFor?.en || "";
+  const capFeatures = calcCaps?.features?.[lang] || calcCaps?.features?.en || [];
+  const capsHtml =
+    capBestFor || capFeatures.length > 0
+      ? `<section style="margin-top:20px;padding:16px;background:#fff;border:1px solid #e7e5e4;border-radius:12px;">
+          <h2 style="font-size:1.15rem;font-weight:700;margin:0 0 10px 0;">${escapeHtml(capLabels.title)}</h2>
+          ${capBestFor ? `<p style="margin:0 0 10px 0;padding:10px 12px;background:#f0fdfa;border:1px solid #99f6e4;border-radius:8px;color:#134e4a;line-height:1.55;"><strong>${escapeHtml(capLabels.bestFor)}:</strong> ${escapeHtml(capBestFor)}</p>` : ""}
+          ${capFeatures.length > 0 ? `<ul style="margin:0;padding-inline-start:20px;color:#292524;line-height:1.6;">${capFeatures.map((feat) => `<li style="margin-bottom:4px;">${escapeHtml(feat)}</li>`).join("")}</ul>` : ""}
+        </section>`
+      : "";
 
   const faqHtml =
     faqs.length > 0
@@ -839,7 +865,8 @@ function buildSemanticShell(route, lang, meta, guide, benchmark, resolvedFaqs = 
         ${directAnswer ? `<p style="padding:12px 14px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;color:#1e3a8a;line-height:1.6;">${escapeHtml(directAnswer)}</p>` : ""}
         ${hubIntro ? `<p style="color:#44403c;line-height:1.7;margin:14px 0;">${escapeHtml(hubIntro)}</p>` : ""}
         ${hubBenefits.length > 0 ? `<ul style="margin:12px 0;padding-inline-start:20px;color:#44403c;">${hubBenefits.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>` : ""}
-        ${guide?.guideTitle ? `<section style="margin-top:20px;padding:16px;background:#fff;border:1px solid #e7e5e4;border-radius:12px;"><h2 style="font-size:1.25rem;font-weight:700;margin:0 0 8px 0;">${escapeHtml(guide.guideTitle)}</h2><p style="margin:0;color:#44403c;line-height:1.65;">${escapeHtml(guide.guideDesc || "")}</p>${formulaLines.length > 0 ? `<ul style="margin:10px 0 0 0;padding-inline-start:20px;color:#292524;">${formulaLines.map((l) => `<li>${escapeHtml(l)}</li>`).join("")}</ul>` : ""}</section>` : ""}
+        ${capsHtml}
+        ${guide?.guideTitle ? `<section style="margin-top:20px;padding:16px;background:#fff;border:1px solid #e7e5e4;border-radius:12px;"><h2 style="font-size:1.25rem;font-weight:700;margin:0 0 8px 0;">${escapeHtml(guide.guideTitle)}</h2><p style="margin:0;color:#44403c;line-height:1.65;">${escapeHtml(guide.guideDesc || "")}</p>${guide.formulaHeading ? `<h3 style="font-size:1.05rem;font-weight:700;margin:12px 0 6px 0;color:#1c1917;">${escapeHtml(guide.formulaHeading)}</h3>` : ""}${formulaLines.length > 0 ? `<ul style="margin:8px 0 0 0;padding-inline-start:20px;color:#292524;">${formulaLines.map((l) => `<li>${escapeHtml(l)}</li>`).join("")}</ul>` : ""}</section>` : ""}
         ${faqHtml}
         ${relatedHtml}
         ${meta.keywords?.length > 0 ? `<p style="margin-top:24px;font-size:0.8rem;color:#78716c;">${escapeHtml(meta.keywords.join(" · "))}</p>` : ""}
@@ -986,6 +1013,8 @@ for (const route of allPaths) {
   }
 
   // 7. Inject or Replace Schema.org JSON-LD Structured Data
+  const calcCaps = meta.calc?.id ? calculatorCapabilities[meta.calc.id] : null;
+  const calcFeatures = calcCaps?.features?.[lang] || calcCaps?.features?.en || [];
   const jsonLdContent = createSchemaJsonLd(
     meta.title,
     meta.description,
@@ -996,6 +1025,7 @@ for (const route of allPaths) {
     meta.category,
     meta.keywords,
     faqs,
+    calcFeatures,
   );
   const jsonLdScript = `  <script id="prerender-ld-json" type="application/ld+json">\n${jsonLdContent}\n  </script>`;
 
@@ -1009,7 +1039,7 @@ for (const route of allPaths) {
   }
 
   // 8. Replace #root inner shell with rich, crawlable semantic HTML (no sr-only hiding penalty)
-  const localizedHeader = buildSemanticShell(route, lang, meta, guide, benchmark, faqs);
+  const localizedHeader = buildSemanticShell(route, lang, meta, guide, benchmark, faqs, calcCaps);
   customHtml = customHtml.replace(
     /<div id="root">[\s\S]*?<\/div>\s*(?=<script\b[^>]*type="module"|<\/body>)/i,
     `<div id="root">\n      ${localizedHeader}\n    </div>\n    `,

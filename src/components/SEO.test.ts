@@ -84,4 +84,27 @@ describe('SEO Schema & Graph Generator Suite', () => {
     expect(hreflangs.find(h => h.lang === 'ar')?.url).toBe('https://globalcalcpro.com/ar/mortgage-calculator');
     expect(hreflangs.find(h => h.lang === 'ru')?.url).toBe('https://globalcalcpro.com/ru/mortgage-calculator');
   });
+
+  it('should provide distinct localized featureList and bestFor for all 53 calculators across all 6 languages', async () => {
+    const { calculators } = await import('../data/calculators');
+    const capsModule = await import('../data/calculatorCapabilities.json');
+    const caps = capsModule.default as Record<string, { bestFor: Record<string, string>; features: Record<string, string[]> }>;
+
+    expect(calculators.length).toBe(53);
+
+    for (const lang of validLangs) {
+      const seenFeatureSignatures = new Set<string>();
+      for (const calc of calculators) {
+        const entry = caps[calc.id];
+        expect(entry, `Missing capability metadata for ${calc.id}`).toBeDefined();
+        expect(entry.bestFor[lang]?.trim().length, `Missing bestFor.${lang} for ${calc.id}`).toBeGreaterThan(10);
+        const feats = entry.features[lang];
+        expect(Array.isArray(feats), `Missing features.${lang} for ${calc.id}`).toBe(true);
+        expect(feats.length).toBeGreaterThanOrEqual(3);
+        const signature = feats.join('|');
+        expect(seenFeatureSignatures.has(signature), `Duplicate featureList in ${lang} for ${calc.id}`).toBe(false);
+        seenFeatureSignatures.add(signature);
+      }
+    }
+  });
 });

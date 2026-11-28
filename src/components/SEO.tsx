@@ -5,6 +5,13 @@ import { calculators, dynamicTranslations } from '../data/calculators';
 import { SeoOverrideContext } from '../contexts/SeoOverrideContext';
 import { Language, useOptionalI18n } from '../contexts/i18n';
 import { buildCalculatorFallbackFaqs, FaqEntry, resolveGuideKey } from '../lib/seo/calculatorFallbackGuide';
+import calculatorCapabilities from '../data/calculatorCapabilities.json';
+
+interface CapabilityRecord {
+  bestFor?: Record<string, string>;
+  features?: Record<string, string[]>;
+}
+const capabilitiesRegistry = calculatorCapabilities as Record<string, CapabilityRecord>;
 
 interface BreadcrumbEntry {
   name: string;
@@ -252,15 +259,21 @@ const SEO: React.FC<SEOProps> = ({
     inLanguage: currentLang,
     ...(effectiveKeywords.length > 0 ? { keywords: effectiveKeywords.join(', ') } : {}),
     softwareVersion: '2.0.0',
-    featureList: [
-      'High-Precision Decimal Arithmetic (Decimal.js)',
-      'Excel (.xlsx) Multi-Sheet Export with Amortization Schedule',
-      'Offline-First Progressive Web App (PWA) Capability',
-      'Side-by-Side Financial Scenario Comparison',
-      'Embeddable Responsive Widgets',
-      'Multilingual Support (EN, HE, ES, FR, AR, RU)',
-      'Real-time Animated Visualizations'
-    ],
+    featureList: (() => {
+      const calcFeatures = matchedCalc?.id
+        ? capabilitiesRegistry[matchedCalc.id]?.features?.[currentLang] ||
+          capabilitiesRegistry[matchedCalc.id]?.features?.en
+        : null;
+      if (Array.isArray(calcFeatures) && calcFeatures.length > 0) {
+        return calcFeatures;
+      }
+      return [
+        'High-Precision Decimal Arithmetic (Decimal.js)',
+        'Embeddable Responsive Calculator Widgets',
+        'Multilingual Support (EN, HE, ES, FR, AR, RU)',
+        'Client-Side Privacy-First Calculation'
+      ];
+    })(),
     offers: {
       '@type': 'Offer',
       price: '0',

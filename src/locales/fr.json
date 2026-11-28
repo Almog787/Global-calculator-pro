@@ -455,6 +455,807 @@
           "answer": "Sur une calculatrice standard : 1) Pour trouver X% de Y : tapez Y × X % (ex. 150 × 20 % = 30). 2) Pour appliquer une remise : Prix - Remise % = (ex. 80 - 25 % = 60). 3) Pour ajouter une taxe : Prix + Taux % = (ex. 100 + 15 % = 115)."
         }
       ]
+    },
+    "mortgage-affordability": {
+      "guideTitle": "Comment calculer sa capacité d'emprunt et le taux d'endettement",
+      "guideDesc": "Votre budget immobilier dépend de vos revenus mensuels, de votre apport personnel, du taux d'intérêt et de vos crédits en cours selon les seuils bancaires.",
+      "formulaHeading": "Formules d'endettement et budget maximal",
+      "formulaLines": [
+        "Plafond logement (28 %) = Revenu mensuel brut × 0,28",
+        "Plafond global (36 %) = (Revenu mensuel × 0,36) - Mensualités de crédits en cours",
+        "Mensualité maximale (M) = min(Plafond logement, Plafond global)",
+        "Budget d'achat = Capital empruntable (P) + Apport personnel"
+      ],
+      "faq": [
+        {
+          "question": "Quelle différence entre le seuil des 28 % et celui des 36 % ?",
+          "answer": "Le seuil des 28 % cible uniquement la charge de logement, tandis que celui des 36 % additionne tous vos crédits (auto, consommation, études) afin d'éviter le surendettement."
+        },
+        {
+          "question": "Comment augmenter rapidement sa capacité d'emprunt ?",
+          "answer": "Solder un crédit auto ou conso en cours libère instantanément de la capacité mensuelle et augmente le capital empruntable de plusieurs dizaines de milliers d'euros."
+        },
+        {
+          "question": "L'apport personnel doit-il couvrir les frais de notaire ?",
+          "answer": "Oui, les banques demandent généralement que l'apport couvre au moins les frais de notaire et de garantie (environ 8 % dans l'ancien)."
+        }
+      ]
+    },
+    "refinance": {
+      "guideTitle": "Quand le rachat de crédit immobilier est-il rentable ?",
+      "guideDesc": "Le refinancement remplace le capital restant dû par un nouveau taux. Calculer le délai d'amortissement des frais évite une opération non rentable en cas de revente.",
+      "formulaHeading": "Formules de seuil de rentabilité et économie nette",
+      "formulaLines": [
+        "Économie mensuelle = Mensualité actuelle - Nouvelle mensualité",
+        "Seuil de rentabilité (mois) = Frais (IRA + dossier + garantie) ÷ Économie mensuelle",
+        "Gain net total = Intérêts restants actuels - (Nouveaux intérêts + Frais)"
+      ],
+      "faq": [
+        {
+          "question": "Comment calculer le point mort d'un rachat de crédit ?",
+          "answer": "Divisez la somme des pénalités de remboursement anticipé (IRA), frais de garantie et de dossier par l'économie réalisée chaque mois."
+        },
+        {
+          "question": "Quel écart de taux justifie une renégociation ?",
+          "answer": "Un écart de 0,70 % à 1 % est généralement conseillé, surtout dans le premier tiers de la durée du prêt où la part d'intérêts est maximale."
+        },
+        {
+          "question": "Faut-il réduire la durée lors d'un rachat ?",
+          "answer": "Conserver la même mensualité en raccourcissant la durée génère l'économie totale d'intérêts la plus élevée."
+        }
+      ]
+    },
+    "vat": {
+      "guideTitle": "Comment calculer la TVA : passer du HT au TTC et du TTC au HT",
+      "guideDesc": "Ajouter la TVA consiste à multiplier le montant HT par (1 + taux), tandis qu'extraire la TVA d'un prix TTC exige de diviser par (1 + taux).",
+      "formulaHeading": "Formules HT vers TTC et TTC vers HT",
+      "formulaLines": [
+        "Passer de HT à TTC : Prix TTC = Prix HT × (1 + Taux TVA)",
+        "Passer de TTC à HT : Prix HT = Prix TTC ÷ (1 + Taux TVA)",
+        "Montant de TVA = Prix TTC - Prix HT"
+      ],
+      "faq": [
+        {
+          "question": "Pourquoi ne peut-on pas simplement retirer 20 % d'un prix TTC ?",
+          "answer": "Un prix TTC à 20 % représente 120 % du HT. Pour retrouver le HT de 120 €, il faut diviser 120 ÷ 1,20 = 100 € HT (et 20 € de TVA), et non retirer 20 % de 120 €."
+        },
+        {
+          "question": "Quels sont les principaux taux de TVA en France ?",
+          "answer": "Le taux normal est de 20 %, le taux intermédiaire de 10 %, le taux réduit de 5,5 % et le taux particulier de 2,1 %."
+        },
+        {
+          "question": "Comment fonctionne la déduction de TVA pour une entreprise ?",
+          "answer": "L'entreprise reverse au Trésor public la différence entre la TVA collectée sur ses ventes et la TVA déductible payée sur ses achats."
+        }
+      ]
+    },
+    "break-even": {
+      "guideTitle": "Comment calculer le seuil de rentabilité et la marge sur coût variable",
+      "guideDesc": "Le seuil de rentabilité indique le chiffre d'affaires ou le nombre d'unités minimal à vendre pour couvrir l'ensemble des charges fixes et variables.",
+      "formulaHeading": "Formules du seuil de rentabilité",
+      "formulaLines": [
+        "Marge sur coût variable (MCV) = Prix de vente unitaire - Coût variable unitaire",
+        "Seuil en unités = Charges fixes ÷ MCV unitaire",
+        "Taux de marge = MCV unitaire ÷ Prix de vente",
+        "Seuil en chiffre d'affaires = Charges fixes ÷ Taux de marge"
+      ],
+      "faq": [
+        {
+          "question": "Quelle différence entre charges fixes et charges variables ?",
+          "answer": "Les charges fixes (loyer, abonnements, salaires fixes) restent constantes quel que soit le volume; les charges variables (matières, livraison, commissions) sont proportionnelles aux ventes."
+        },
+        {
+          "question": "Que faire si la marge sur coût variable est négative ?",
+          "answer": "Chaque vente creuse le déficit : il faut impérativement augmenter le prix ou réduire le coût variable unitaire."
+        },
+        {
+          "question": "Comment inclure un objectif de bénéfice dans le calcul ?",
+          "answer": "Ajoutez votre bénéfice cible au numérateur : (Charges fixes + Bénéfice souhaité) ÷ MCV unitaire."
+        }
+      ]
+    },
+    "inflation": {
+      "guideTitle": "Comment l'inflation érode le pouvoir d'achat au fil du temps",
+      "guideDesc": "L'inflation agit comme une capitalisation inversée : à 3 % par an, les prix doublent environ tous les 24 ans et les liquidités non rémunérées perdent près de la moitié de leur valeur réelle.",
+      "formulaHeading": "Formules de valeur future et pouvoir d'achat réel",
+      "formulaLines": [
+        "Coût futur équivalent = Montant actuel × (1 + r)^t",
+        "Pouvoir d'achat réel = Montant nominal ÷ (1 + r)^t",
+        "Inflation cumulée (%) = [ (1 + r)^t - 1 ] × 100"
+      ],
+      "faq": [
+        {
+          "question": "Quelle différence entre rendement nominal et rendement réel ?",
+          "answer": "Le rendement nominal ignore la hausse des prix, tandis que le rendement réel mesure votre gain net de pouvoir d'achat après déduction de l'inflation."
+        },
+        {
+          "question": "En combien de temps 4 % d'inflation divisent-ils la valeur du cash par deux ?",
+          "answer": "D'après la règle des 72 (72 ÷ 4), le pouvoir d'achat d'un capital non placé diminue de moitié en environ 18 ans."
+        },
+        {
+          "question": "Pourquoi l'argent sur compte courant perd-il de la valeur ?",
+          "answer": "Parce que la somme reste identique sur le relevé alors que le panier de biens coûte plus cher chaque année."
+        }
+      ]
+    },
+    "credit-card-payoff": {
+      "guideTitle": "Comment fonctionnent les intérêts de carte de crédit et le remboursement",
+      "guideDesc": "Le crédit renouvelable capitalise des intérêts élevés sur le solde dû. Augmenter votre mensualité au-dessus du minimum réduit drastiquement la durée et le coût total.",
+      "formulaHeading": "Formules de remboursement de carte bancaire",
+      "formulaLines": [
+        "Taux mensuel (r) = TAEG ÷ 12",
+        "Durée en mois (n) = -ln(1 - (r × B) ÷ M) ÷ ln(1 + r)",
+        "Mensualité requise (M) = (r × B) ÷ (1 - (1 + r)^(-n))"
+      ],
+      "faq": [
+        {
+          "question": "Pourquoi le paiement minimum piège-t-il les emprunteurs ?",
+          "answer": "Parce qu'il absorbe surtout les intérêts mensuels en ne remboursant qu'une infime fraction du capital initial."
+        },
+        {
+          "question": "Que se passe-t-il si la mensualité est inférieure aux intérêts ?",
+          "answer": "La dette augmente chaque mois au lieu de diminuer ; il faut impérativement dépasser le montant des intérêts."
+        },
+        {
+          "question": "Quelle différence avec la méthode Boule de Neige ?",
+          "answer": "Cet outil cible une carte unique selon votre budget ou échéance, tandis que la Boule de Neige organise plusieurs crédits simultanés."
+        }
+      ]
+    },
+    "bmr": {
+      "guideTitle": "Métabolisme de base (MB) et TDEE : calculer votre besoin calorique",
+      "guideDesc": "Le métabolisme de base correspond à l'énergie dépensée au repos complet, tandis que le TDEE intègre votre activité physique quotidienne et sportive.",
+      "formulaHeading": "Formule de Mifflin-St Jeor et calcul TDEE",
+      "formulaLines": [
+        "MB Hommes = (10 × Poids kg) + (6,25 × Taille cm) - (5 × Âge) + 5",
+        "MB Femmes = (10 × Poids kg) + (6,25 × Taille cm) - (5 × Âge) - 161",
+        "TDEE = MB × Facteur d'activité (1,2 sédentaire à 1,9 très actif)",
+        "Objectif sèche ≈ TDEE - 500 kcal/jour"
+      ],
+      "faq": [
+        {
+          "question": "Faut-il manger en dessous du métabolisme de base pour maigrir ?",
+          "answer": "Non, il est préférable de retrancher 300 à 500 kcal à votre TDEE de maintien plutôt que de descendre sous votre métabolisme de base."
+        },
+        {
+          "question": "Pourquoi utiliser l'équation de Mifflin-St Jeor ?",
+          "answer": "Elle est reconnue par les diététiciens comme la plus fiable pour estimer la dépense au repos."
+        },
+        {
+          "question": "Quelle différence entre calculateur IMC et calculateur BMR/TDEE ?",
+          "answer": "L'IMC situe votre corpulence poids/taille ; le BMR/TDEE vous donne un objectif chiffré de calories journalières."
+        }
+      ]
+    },
+    "water-intake": {
+      "guideTitle": "Comment calculer votre besoin quotidien en eau selon poids et effort",
+      "guideDesc": "L'hydratation idéale dépend de la masse corporelle, de la durée d'activité sportive et du climat plutôt que d'une règle fixe universelle.",
+      "formulaHeading": "Formules d'hydratation quotidienne",
+      "formulaLines": [
+        "Base quotidienne (litres) = Poids (kg) × 0,033",
+        "Complément sport = +0,35 litre par tranche de 30 min d'effort",
+        "Correctif chaleur = +0,50 litre par jour en climat chaud",
+        "Verres de 250 ml = Total en litres × 4"
+      ],
+      "faq": [
+        {
+          "question": "Pourquoi adapter l'eau au poids corporel plutôt qu'à 1,5 L fixe ?",
+          "answer": "Le volume sanguin et les pertes métaboliques varient fortement entre un gabarit de 55 kg et un sportif de 90 kg."
+        },
+        {
+          "question": "L'eau contenue dans les aliments compte-t-elle ?",
+          "answer": "Environ 20 % des apports proviennent des fruits, légumes et soupes, le reste devant provenir des boissons."
+        },
+        {
+          "question": "Vaut-il mieux boire régulièrement dans la journée ?",
+          "answer": "Oui, répartir les prises par petites gorgées évite l'inconfort gastrique et maintient une hydratation stable."
+        }
+      ]
+    },
+    "date-difference": {
+      "guideTitle": "Calculer l'écart exact entre deux dates : jours calendaires et ouvrés",
+      "guideDesc": "Les jours calendaires incluent tous les jours de l'année et les années bissextiles, tandis que les jours ouvrés excluent les week-ends pour les contrats et délais professionnels.",
+      "formulaHeading": "Formules de durée entre deux dates",
+      "formulaLines": [
+        "Jours calendaires = (Date fin UTC - Date début UTC) ÷ 86 400 000 ms",
+        "Semaines = Jours calendaires ÷ 7 | Années ≈ Jours ÷ 365,25",
+        "Jours ouvrés = Nombre de jours du lundi au vendredi sur la période"
+      ],
+      "faq": [
+        {
+          "question": "Les années bissextiles sont-elles prises en compte ?",
+          "answer": "Oui, le calcul UTC intègre automatiquement les 29 février (comme 2024 ou 2028) sans décalage dû au changement d'heure."
+        },
+        {
+          "question": "Quelle différence entre jours calendaires et jours ouvrés ?",
+          "answer": "Les jours calendaires comptent chaque jour du calendrier, alors que les jours ouvrés excluent samedis et dimanches."
+        },
+        {
+          "question": "Comment calculer l'âge exact en années, mois et jours ?",
+          "answer": "Utilisez notre Calculateur d'Âge dédié pour obtenir la décomposition calendaire complète depuis une date de naissance."
+        }
+      ]
+    },
+    "bill-splitter": {
+      "guideTitle": "Comment partager équitablement une addition et le pourboire",
+      "guideDesc": "Additionner le pourboire puis diviser par le nombre de convives évite les écarts de caisse à la fin du repas et détaille la part de chacun.",
+      "formulaHeading": "Formules de partage d'addition",
+      "formulaLines": [
+        "Pourboire total = Montant addition × (Pourcentage ÷ 100)",
+        "Total à payer = Montant addition + Pourboire total",
+        "Part par personne = Total à payer ÷ Nombre de convives"
+      ],
+      "faq": [
+        {
+          "question": "Quel pourcentage de pourboire laisser selon les pays ?",
+          "answer": "En France le service est inclus (5 % pour un geste apprécié), contre 15 % à 20 % en Amérique du Nord et 10 %–12 % dans plusieurs pays."
+        },
+        {
+          "question": "Faut-il calculer le pourboire sur le montant TTC ou HT ?",
+          "answer": "En Amérique du Nord le calcul se fait généralement avant taxes, tandis qu'en Europe on applique le pourcentage au total TTC."
+        },
+        {
+          "question": "Puis-je afficher séparément la part de pourboire individuelle ?",
+          "answer": "Oui, l'outil détaille la part d'addition et la part de pourboire pour chaque personne."
+        }
+      ]
+    },
+    "currency-converter": {
+      "guideTitle": "Comprendre les taux de change interbancaires et frais cachés",
+      "guideDesc": "La conversion applique le taux moyen du marché (mid-market). Comparer ce cours réel au tarif de votre banque révèle la marge prélevée sur vos paiements ou virements.",
+      "formulaHeading": "Formules de change et taux réciproque",
+      "formulaLines": [
+        "Montant converti = Montant initial × Taux de change",
+        "Taux réciproque = 1 ÷ Taux de change direct",
+        "Marge appliquée (%) = [ (Taux facturé - Taux marché) ÷ Taux marché ] × 100"
+      ],
+      "faq": [
+        {
+          "question": "Quelle différence entre taux moyen du marché et taux bancaire ?",
+          "answer": "Le taux moyen du marché est le cours brut sans commission, alors que les banques et bureaux de change ajoutent souvent 2 % à 6 % de marge."
+        },
+        {
+          "question": "Pourquoi payer en devise locale à l'étranger ?",
+          "answer": "Accepter une facturation en euros sur terminal étranger déclenche une conversion dynamique souvent majorée de 4 % à 8 %."
+        },
+        {
+          "question": "Comment comparer le pouvoir d'achat d'un salaire à l'étranger ?",
+          "answer": "Utilisez notre calculateur de Pouvoir d'Achat Mondial qui pondère loyers et coût de la vie."
+        }
+      ]
+    },
+    "sleep-calculator": {
+      "guideTitle": "Comment les cycles de 90 minutes optimisent l'heure du réveil",
+      "guideDesc": "Une nuit se compose de cycles successifs de 90 minutes (sommeil léger, profond, paradoxal). Se réveiller en fin de cycle évite l'inertie et la fatigue au lever.",
+      "formulaHeading": "Formules des cycles de sommeil",
+      "formulaLines": [
+        "Durée d'un cycle = 90 min | Délai d'endormissement moyen = 15 min",
+        "Heure de réveil = Coucher + 15 min + (N × 90 min)",
+        "Heure de coucher = Réveil - 15 min - (N × 90 min), N ∈ {4, 5, 6}"
+      ],
+      "faq": [
+        {
+          "question": "Pourquoi se réveiller plus frais après 7 h 30 qu'après 8 h ?",
+          "answer": "7 h 30 correspondent à 5 cycles complets de 90 minutes, alors qu'une alarme à 8 h sonne souvent en plein sommeil profond."
+        },
+        {
+          "question": "Pourquoi ajouter 15 minutes avant le premier cycle ?",
+          "answer": "Cela reflète le temps moyen d'endormissement après extinction des feux."
+        },
+        {
+          "question": "Combien de cycles faut-il viser chaque nuit ?",
+          "answer": "La majorité des adultes récupère optimalement avec 5 à 6 cycles (7 h 30 à 9 h de sommeil)."
+        }
+      ]
+    },
+    "cooking-timer": {
+      "guideTitle": "Guide des temps de cuisson au four et températures à cœur",
+      "guideDesc": "La durée de rôtissage varie selon le poids exact, le type de viande et l'appoint souhaité, avec un temps de repos essentiel avant découpe.",
+      "formulaHeading": "Calcul de cuisson et seuils à cœur",
+      "formulaLines": [
+        "Durée totale = Temps de saisie + (Poids kg × Minutes par kg)",
+        "Bœuf : Saignant 52°C | À point 58–63°C | Bien cuit 71°C+",
+        "Volaille : 74°C à cœur | Porc : 63°C à cœur"
+      ],
+      "faq": [
+        {
+          "question": "Pourquoi laisser reposer la viande après cuisson ?",
+          "answer": "10 à 15 minutes sous papier alu détendu permettent aux jus de se répartir uniformément."
+        },
+        {
+          "question": "Où mesurer la température avec la sonde ?",
+          "answer": "Au centre de la partie la plus épaisse, sans toucher d'os."
+        },
+        {
+          "question": "Faut-il ajuster la température en chaleur tournante ?",
+          "answer": "Oui, baissez d'environ 15°C à 20°C par rapport à la convection naturelle."
+        }
+      ]
+    },
+    "severance-pay": {
+      "guideTitle": "Comment calculer l'indemnité légale de licenciement et le solde de tout compte",
+      "guideDesc": "L'indemnité dépend du salaire de référence et de l'ancienneté acquise en années et mois, complétée le cas échéant par les indemnités de préavis et de congés payés.",
+      "formulaHeading": "Formules d'indemnité selon ancienneté",
+      "formulaLines": [
+        "Indemnité = Salaire de référence × (Années + Mois ÷ 12) × Taux applicable",
+        "Dotation mensuelle équivalente = 8,33 % du salaire mensuel brut",
+        "Solde final = Indemnité + Préavis non effectué + Congés payés restants"
+      ],
+      "faq": [
+        {
+          "question": "Comment est calculé le salaire de référence ?",
+          "answer": "On retient la moyenne la plus favorable entre les 12 derniers mois et les 3 derniers mois primes proratisées comprises."
+        },
+        {
+          "question": "Les mois incomplets comptent-ils dans l'ancienneté ?",
+          "answer": "Oui, au prorata du nombre de mois complets travaillés."
+        },
+        {
+          "question": "Quelle différence entre démission et rupture conventionnelle ?",
+          "answer": "La rupture conventionnelle ouvre droit à une indemnité au moins égale à l'indemnité légale de licenciement, contrairement à la démission classique."
+        }
+      ]
+    },
+    "stock-options-rsu": {
+      "guideTitle": "Évaluer stock-options et RSU : vesting, dilution et fiscalité de sortie",
+      "guideDesc": "La valeur nette encaissée dépend du calendrier d'acquisition (vesting), du prix d'exercice, de la dilution liée aux levées de fonds et du régime fiscal applicable.",
+      "formulaHeading": "Formules de vesting, dilution et gain net",
+      "formulaLines": [
+        "Titres acquis = Dotation × (Mois ≥ Cliff ? Mois ÷ 48 : 0)",
+        "Prix dilué = Prix de sortie × (1 - % Dilution ÷ 100)",
+        "Plus-value Options = max(0, Prix dilué - Prix exercice) × Options acquises",
+        "Valeur RSU = Prix dilué × RSU acquises | Net = Brut × (1 - Taux impôt)"
+      ],
+      "faq": [
+        {
+          "question": "À quoi correspond le cliff d'un an sur un plan de 4 ans ?",
+          "answer": "Aucune action n'est acquise avant 12 mois ; au 12e mois, 25 % sont acquis d'un coup puis le reste chaque mois ou trimestre."
+        },
+        {
+          "question": "Pourquoi intégrer un taux de dilution dans les simulations ?",
+          "answer": "Chaque nouvelle levée de fonds émet de nouvelles actions qui réduisent la valeur relative par titre des plans existants."
+        },
+        {
+          "question": "Quelle différence entre stock-options et actions gratuites RSU ?",
+          "answer": "Les options ne génèrent du gain qu'au-dessus du prix d'exercice (strike), tandis que les RSU valent le cours complet de l'action dès acquisition."
+        }
+      ]
+    },
+    "purchase-appreciation-tax": {
+      "guideTitle": "Barème des droits d'acquisition immobilière et plus-value linéaire",
+      "guideDesc": "Les droits de mutation s'appliquent par tranches progressives selon qu'il s'agisse d'une résidence principale ou secondaire, tandis que la plus-value déduit travaux et frais.",
+      "formulaHeading": "Formules progressives et plus-value nette",
+      "formulaLines": [
+        "Droits d'acquisition = Somme sur chaque tranche (Part du prix × Taux)",
+        "Plus-value nette = Prix vente - Prix achat - Frais et travaux justifiés",
+        "Impôt linéaire = Plus-value nette × Ratio période imposable × 25 %"
+      ],
+      "faq": [
+        {
+          "question": "Le taux marginal s'applique-t-il à la totalité du prix d'achat ?",
+          "answer": "Non, chaque taux ne frappe que la fraction du prix située dans sa tranche respective."
+        },
+        {
+          "question": "Quels frais déduire lors du calcul de plus-value ?",
+          "answer": "Les frais d'acquisition, honoraires d'agence, frais d'avocat/notaire et travaux d'amélioration facturés."
+        },
+        {
+          "question": "Pourquoi la fiscalité diffère-t-elle pour un logement locatif ?",
+          "answer": "Les résidences uniques bénéficient de tranches d'exonération à l'achat dont sont exclus les investissements locatifs."
+        }
+      ]
+    },
+    "employer-cost": {
+      "guideTitle": "Coût total employeur, salaire brut et salaire net réel",
+      "guideDesc": "Le coût réel d'un salarié dépasse le brut via les cotisations patronales de retraite, prévoyance et sécurité sociale, tandis que le net résulte des retenues salariales et de l'impôt.",
+      "formulaHeading": "Formules coût employeur et net à payer",
+      "formulaLines": [
+        "Coût employeur = Brut + Retraite patronale + Provision indemnités + Charges patronales",
+        "Coefficient employeur = Coût total ÷ Salaire brut (souvent 1,25× à 1,42×)",
+        "Net à payer = Brut - Impôt sur le revenu - Cotisations salariales - Part épargne salariale"
+      ],
+      "faq": [
+        {
+          "question": "Pourquoi le coût employeur dépasse-t-il largement le brut ?",
+          "answer": "Parce que l'entreprise finance en plus les cotisations patronales sociales, la retraite et la prévoyance obligatoire."
+        },
+        {
+          "question": "Quelle différence avec le simulateur de revenu freelance ?",
+          "answer": "Cet outil calcule la fiche de paie d'un salarié et le budget patronal, et non le bénéfice imposable d'un indépendant."
+        },
+        {
+          "question": "Comment évaluer la rémunération globale du salarié ?",
+          "answer": "Additionnez le salaire net versé et les versements employeur sur les plans de retraite ou d'épargne salariale."
+        }
+      ]
+    },
+    "z-score": {
+      "guideTitle": "Score Z, loi normale centrée réduite et calcul de percentiles",
+      "guideDesc": "Le score Z mesure l'écart à la moyenne en nombre d'écarts-types, permettant de lire immédiatement probabilités cumulées, p-values et rangs centiles sur la courbe de Gauss.",
+      "formulaHeading": "Formules du score Z et calcul inverse",
+      "formulaLines": [
+        "Score Z standard : Z = (X - μ) ÷ σ",
+        "Score brut inverse : X = μ + (Z × σ)",
+        "Règle empirique : ±1σ ≈ 68,27 % | ±2σ ≈ 95,45 % | ±3σ ≈ 99,73 %"
+      ],
+      "faq": [
+        {
+          "question": "Comment interpréter un score Z égal à -1,5 ?",
+          "answer": "La donnée se situe 1,5 écart-type sous la moyenne, soit environ au 6,68e percentile."
+        },
+        {
+          "question": "Comment convertir un percentile en valeur brute X ?",
+          "answer": "Utilisez le mode Inverse avec votre percentile cible pour calculer automatiquement X = μ + Z·σ."
+        },
+        {
+          "question": "Quelle différence entre probabilité unilatérale et bilatérale ?",
+          "answer": "L'unilatérale ne considère qu'une extrémité de la courbe, tandis que la bilatérale additionne les deux queues symétriques."
+        }
+      ]
+    },
+    "linear-regression": {
+      "guideTitle": "Régression linéaire par moindres carrés (MCO), corrélation r et R²",
+      "guideDesc": "La régression ajuste la droite y = mx + b qui minimise la somme des carrés des écarts verticaux et mesure la qualité d'ajustement via r et R².",
+      "formulaHeading": "Formules MCO, Pearson r et R²",
+      "formulaLines": [
+        "Pente (m) = Σ[(x_i - x̄)(y_i - ȳ)] ÷ Σ[(x_i - x̄)²]",
+        "Ordonnée à l'origine (b) = ȳ - m × x̄  |  Droite : ŷ = mx + b",
+        "Corrélation r ∈ [-1, +1] | Coefficient de détermination R² = r²"
+      ],
+      "faq": [
+        {
+          "question": "Quelle différence entre le coefficient r et le R² ?",
+          "answer": "r indique le sens (positif/négatif) et la force du lien linéaire, alors que R² mesure la part de variance de Y expliquée par X."
+        },
+        {
+          "question": "Puis-je prédire une valeur Y à partir d'un nouveau X ?",
+          "answer": "Oui, remplacez X dans l'équation calculée ŷ = mx + b directement dans l'outil."
+        },
+        {
+          "question": "Une forte corrélation implique-t-elle une causalité ?",
+          "answer": "Non, elle confirme une relation linéaire statistique sur l'échantillon étudié, sans prouver de lien causal."
+        }
+      ]
+    },
+    "quadratic-equation": {
+      "guideTitle": "Résoudre une équation du second degré : discriminant Δ et parabole",
+      "guideDesc": "Le discriminant Δ = b² - 4ac détermine immédiatement si la parabole ax² + bx + c admet deux racines réelles, une racine double ou deux solutions complexes.",
+      "formulaHeading": "Formules du discriminant, des racines et du sommet",
+      "formulaLines": [
+        "Discriminant : Δ = b² - 4ac",
+        "Solutions : x = [ -b ± √Δ ] ÷ (2a)  (si Δ < 0 : (-b ÷ 2a) ± (√|Δ| ÷ 2a)i)",
+        "Sommet : x_s = -b ÷ (2a),  y_s = a·x_s² + b·x_s + c"
+      ],
+      "faq": [
+        {
+          "question": "Comment interpréter Δ > 0, Δ = 0 et Δ < 0 ?",
+          "answer": "Δ > 0 donne deux racines réelles ; Δ = 0 une racine double au sommet ; Δ < 0 deux racines complexes conjuguées."
+        },
+        {
+          "question": "Comment connaître le sens d'ouverture de la parabole ?",
+          "answer": "La parabole est tournée vers le haut si a > 0 (minimum) et vers le bas si a < 0 (maximum)."
+        },
+        {
+          "question": "Où la courbe coupe-t-elle l'axe des ordonnées ?",
+          "answer": "Toujours au point (0, c)."
+        }
+      ]
+    },
+    "linear-system": {
+      "guideTitle": "Résoudre un système linéaire 2×2 par la règle de Cramer",
+      "guideDesc": "Un système de deux équations à deux inconnues détermine le point d'intersection (x, y) de deux droites via les déterminants D, Dx et Dy.",
+      "formulaHeading": "Formules des déterminants de Cramer",
+      "formulaLines": [
+        "Système : a₁x + b₁y = c₁  et  a₂x + b₂y = c₂",
+        "Déterminant D = a₁b₂ - a₂b₁",
+        "Dx = c₁b₂ - c₂b₁  |  Dy = a₁c₂ - a₂c₁  →  x = Dx ÷ D, y = Dy ÷ D"
+      ],
+      "faq": [
+        {
+          "question": "Que signifie un déterminant D égal à zéro ?",
+          "answer": "Si Dx ou Dy est non nul, les droites sont strictement parallèles (aucune solution) ; si tous sont nuls, les droites sont confondues (infinité de solutions)."
+        },
+        {
+          "question": "Quel est l'avantage de Cramer face à la substitution ?",
+          "answer": "La formule directe évite les erreurs intermédiaires de fractions avant la division finale."
+        },
+        {
+          "question": "Où calculer des déterminants de matrices 3×3 ?",
+          "answer": "Rendez-vous sur notre Calculateur de Matrices dédié aux matrices 2×2 et 3×3."
+        }
+      ]
+    },
+    "base-converter": {
+      "guideTitle": "Bases numériques : binaire, octal, décimal, hexadécimal et base 36",
+      "guideDesc": "Chaque système positionnel décompose un entier en puissances de sa base. Le binaire (2), l'octal (8) et l'hexadécimal (16) dominent l'informatique grâce à la correspondance directe en bits.",
+      "formulaHeading": "Règles de décomposition par base",
+      "formulaLines": [
+        "Valeur = Σ [ d_i × b^i ] (ex. 1011₂ = 8 + 0 + 2 + 1 = 11₁₀)",
+        "1 chiffre Hexa (0–F) = 4 bits exacts | 2 chiffres Hexa = 1 octet (8 bits)",
+        "1 chiffre Octal (0–7) = 3 bits exacts"
+      ],
+      "faq": [
+        {
+          "question": "Pourquoi l'hexadécimal est-il si utilisé en informatique ?",
+          "answer": "Parce qu'un symbole hexadécimal représente 4 bits binaires exacts, rendant octets et adresses mémoire lisibles."
+        },
+        {
+          "question": "Quels symboles servent pour les bases jusqu'à 36 ?",
+          "answer": "Les chiffres 0–9 puis les lettres A–Z (A = 10, F = 15, Z = 35)."
+        },
+        {
+          "question": "L'outil gère-t-il les grands entiers 64 bits sans arrondi ?",
+          "answer": "Oui, grâce à l'utilisation native de BigInt."
+        }
+      ]
+    },
+    "bitwise-calculator": {
+      "guideTitle": "Opérateurs logiques bit à bit (Bitwise) et décalages binaires",
+      "guideDesc": "Les opérateurs bitwise manipulent chaque bit 0/1 indépendamment sur 8, 16 ou 32 bits pour gérer masques réseau, drapeaux de permissions et registres embarqués.",
+      "formulaHeading": "Règles AND, OR, XOR, NOT et décalages",
+      "formulaLines": [
+        "AND (&) : 1 uniquement si les deux bits valent 1 (tester ou masquer)",
+        "OR (|) : 1 si au moins un bit vaut 1 (activer un drapeau)",
+        "XOR (^) : 1 si les bits diffèrent (basculer un état)",
+        "NOT (~) : Inverse chaque bit sur la largeur choisie | << k ≈ × 2ᵏ"
+      ],
+      "faq": [
+        {
+          "question": "Comment manipuler un bit précis avec les masques ?",
+          "answer": "OR active le bit, AND avec masque lit ou efface un bit, et XOR l'inverse."
+        },
+        {
+          "question": "Pourquoi la largeur 8/16/32 bits affecte-t-elle NOT (~) ?",
+          "answer": "Car NOT inverse également tous les zéros de tête jusqu'au bit de poids fort de la largeur active."
+        },
+        {
+          "question": "À quoi correspondent les décalages << et >> ?",
+          "answer": "Un décalage à gauche de k bits multiplie par 2ᵏ, à droite il divise par 2ᵏ."
+        }
+      ]
+    },
+    "triangle-solver": {
+      "guideTitle": "Résoudre un triangle : Al-Kashi, formule de Héron et rayons",
+      "guideDesc": "À partir de trois côtés (CCC) ou de deux côtés et l'angle compris (CAC), calculez instantanément angles, hauteurs, aire et rayons inscrit et circonscrit.",
+      "formulaHeading": "Théorème d'Al-Kashi et formule de Héron",
+      "formulaLines": [
+        "Al-Kashi (Cosinus) : c² = a² + b² - 2ab·cos(C)",
+        "Demi-périmètre : s = (a + b + c) ÷ 2 | Aire = √[ s(s-a)(s-b)(s-c) ]",
+        "Rayon inscrit : r = Aire ÷ s | Rayon circonscrit : R = (abc) ÷ (4 × Aire)"
+      ],
+      "faq": [
+        {
+          "question": "Qu'est-ce que l'inégalité triangulaire ?",
+          "answer": "Chaque côté doit être strictement inférieur à la somme des deux autres ; sinon le triangle ne peut pas exister."
+        },
+        {
+          "question": "Quelle différence entre cercle inscrit (r) et circonscrit (R) ?",
+          "answer": "Le cercle inscrit touche les 3 côtés intérieurs, tandis que le cercle circonscrit passe par les 3 sommets."
+        },
+        {
+          "question": "Comment calculer les hauteurs ha, hb et hc ?",
+          "answer": "En divisant le double de l'aire par chaque base : h_a = 2·Aire ÷ a."
+        }
+      ]
+    },
+    "circle-sector": {
+      "guideTitle": "Secteur circulaire, longueur d'arc, corde et segment circulaire",
+      "guideDesc": "Un secteur circulaire relie l'arc au centre via deux rayons, tandis que le segment circulaire correspond uniquement à la zone comprise entre la corde et l'arc.",
+      "formulaHeading": "Formules du secteur et du segment (θ en radians)",
+      "formulaLines": [
+        "Conversion en radians : θ_rad = θ_deg × (π ÷ 180)",
+        "Longueur d'arc : s = r × θ_rad | Aire du secteur : A = ½ × r² × θ_rad",
+        "Corde : c = 2r × sin(θ_rad ÷ 2) | Aire segment = ½r²(θ_rad - sin θ_rad)"
+      ],
+      "faq": [
+        {
+          "question": "Quelle différence entre secteur circulaire et segment circulaire ?",
+          "answer": "Le secteur inclut le triangle reliant le centre à la corde ; le segment n'est que la calotte extérieure entre arc et corde."
+        },
+        {
+          "question": "Pourquoi passer l'angle en radians pour calculer s = rθ ?",
+          "answer": "Par définition du radian, l'arc d'un cercle complet vaut 2πr, ce qui simplifie toutes les formules."
+        },
+        {
+          "question": "Quand la corde vaut-elle le diamètre ?",
+          "answer": "Pour un angle au centre de 180° (π radians), où c = 2r."
+        }
+      ]
+    },
+    "matrix-calculator": {
+      "guideTitle": "Algèbre Matricielle : Produit, Déterminant, Inverse et Rang",
+      "guideDesc": "Les transformations linéaires, la résolution de systèmes et la 3D reposent sur le produit matriciel, le calcul de déterminants et l'inversion de matrices carrées.",
+      "formulaHeading": "Formules clés des matrices",
+      "formulaLines": [
+        "Produit (A × B)[i,j] = Σ (A[i,k] × B[k,j])",
+        "Déterminant 2×2 : det(A) = (a × d) - (b × c)",
+        "Inverse 2×2 : A⁻¹ = (1 ÷ det(A)) × [[d, -b], [-c, a]] si det(A) ≠ 0",
+        "Déterminant 3×3 : Développement par cofacteurs sur la première ligne"
+      ],
+      "faq": [
+        {
+          "question": "Quand une matrice carrée est-elle non inversible (singulière) ?",
+          "answer": "Lorsque son déterminant est nul (det(A) = 0), ce qui signifie que ses lignes ou colonnes sont linéairement dépendantes."
+        },
+        {
+          "question": "Pourquoi faut-il colonnes(A) = lignes(B) pour multiplier A × B ?",
+          "answer": "Chaque coefficient résulte du produit scalaire d'une ligne de A par une colonne de B."
+        },
+        {
+          "question": "Quelle est la signification géométrique du déterminant ?",
+          "answer": "Sa valeur absolue donne le facteur d'échelle d'aire ou de volume appliqué par la transformation linéaire."
+        }
+      ]
+    },
+    "complex-numbers": {
+      "guideTitle": "Nombres Complexes : Forme Algébrique, Trigonométrique et d'Euler",
+      "guideDesc": "Les nombres complexes associent partie réelle et imaginaire (i² = −1) pour calculer impédances électriques, phases de signaux et rotations géométriques.",
+      "formulaHeading": "Formules algébriques, polaires et d'Euler",
+      "formulaLines": [
+        "Forme algébrique : z = a + bi (avec i² = -1)",
+        "Module : |z| = √(a² + b²) | Argument : θ = atan2(b, a)",
+        "Forme polaire et d'Euler : z = r(cos θ + i sin θ) = r · e^(iθ)",
+        "Division : multiplier numérateur et dénominateur par le conjugué (c - di)"
+      ],
+      "faq": [
+        {
+          "question": "Comment diviser deux nombres complexes ?",
+          "answer": "On multiplie le numérateur et le dénominateur par le conjugué complexe du dénominateur (c − di) afin d'obtenir un dénominateur réel c² + d²."
+        },
+        {
+          "question": "Quand privilégier la forme polaire plutôt qu'algébrique ?",
+          "answer": "La forme algébrique convient aux additions et soustractions, tandis que la forme polaire simplifie produits, quotients et puissances."
+        },
+        {
+          "question": "Pourquoi les électriciens utilisent-ils j au lieu de i ?",
+          "answer": "Parce que la lettre i désigne déjà l'intensité du courant électrique en régime alternatif."
+        }
+      ]
+    },
+    "pregnancy": {
+      "guideTitle": "Comment Calculer les Semaines d'Aménorrhée et la Date d'Accouchement",
+      "guideDesc": "Le terme théorique suit la règle de Naegele : 280 jours (40 semaines d'aménorrhée) depuis les dernières règles, ajustés selon la durée du cycle ou la date de conception.",
+      "formulaHeading": "Formules de grossesse et terme estimé",
+      "formulaLines": [
+        "Terme (DDR) = Date Dernières Règles + 280 jours + (Cycle − 28 jours)",
+        "Terme (Conception / FIV) = Date de fécondation + 266 jours",
+        "Âge gestationnel = Semaines d'aménorrhée (SA) + Jours restants"
+      ],
+      "faq": [
+        {
+          "question": "Quelle différence entre semaines de grossesse (SG) et d'aménorrhée (SA) ?",
+          "answer": "Les SA commencent au premier jour des dernières règles (environ 2 semaines avant la fécondation), soit 40 SA pour 38 SG."
+        },
+        {
+          "question": "Comment la durée du cycle modifie-t-elle le terme ?",
+          "answer": "Un cycle de 32 jours décale l'ovulation de 4 jours, repoussant d'autant la date prévue d'accouchement."
+        },
+        {
+          "question": "Comment sont découpés les trois trimestres ?",
+          "answer": "1er trimestre : semaines 1–13 SA ; 2e trimestre : semaines 14–27 SA ; 3e trimestre : de la 28e SA à l'accouchement."
+        }
+      ]
+    },
+    "retirement-planner": {
+      "guideTitle": "Planification de Retraite, Indépendance Financière (FIRE) et Règle des 4 %",
+      "guideDesc": "Préparer sa retraite repose sur la capitalisation composée avant le départ puis sur un taux de retrait annuel maîtrisé face à l'inflation.",
+      "formulaHeading": "Formules de capital cible et rendement réel",
+      "formulaLines": [
+        "Capital cible = Dépense annuelle souhaitée ÷ Taux de retrait (0,04 = 25× dépenses)",
+        "Capital accumulé = Épargne(1+r)^n + Versement mensuel × [((1+r)^n − 1) ÷ r]",
+        "Rendement réel = [(1 + Rendement nominal) ÷ (1 + Inflation)] − 1"
+      ],
+      "faq": [
+        {
+          "question": "Qu'est-ce que la règle des 4 % (Trinity Study) ?",
+          "answer": "Elle indique qu'un retrait initial de 4 % du capital, indexé ensuite sur l'inflation, préserve historiquement le portefeuille sur 30 ans."
+        },
+        {
+          "question": "Faut-il raisonner en rendement réel ?",
+          "answer": "Oui, déduire l'inflation exprime votre future rente en pouvoir d'achat actuel constant."
+        },
+        {
+          "question": "Comment intégrer les pensions obligatoires ?",
+          "answer": "Elles viennent en déduction du besoin mensuel que votre épargne privée devra financer."
+        }
+      ]
+    },
+    "capital-gains-tax": {
+      "guideTitle": "Impôt sur les Plus-Values Mobilières : Calcul Brut, Net et Report des Pertes",
+      "guideDesc": "Le rendement net d'un portefeuille intègre les frais de courtage, l'imputation des moins-values antérieures et le barème ou prélèvement forfaitaire applicable.",
+      "formulaHeading": "Formules de plus-value imposable",
+      "formulaLines": [
+        "Plus-value brute = Prix de cession net de frais − Prix d'acquisition majoré des frais",
+        "Base imposable = max(0, Plus-value − Moins-values imputables)",
+        "Impôt dû = Base imposable × Taux d'imposition (ex. PFU ou taux réel)"
+      ],
+      "faq": [
+        {
+          "question": "Les frais de courtage réduisent-ils la plus-value imposable ?",
+          "answer": "Oui, ils majorent le prix d'achat et diminuent le produit net de cession."
+        },
+        {
+          "question": "Comment fonctionne l'imputation des moins-values ?",
+          "answer": "Les pertes réalisées s'imputent d'abord sur les plus-values de l'année puis sont généralement reportables sur les exercices suivants."
+        },
+        {
+          "question": "Quelle différence entre gain nominal et gain réel ?",
+          "answer": "Le gain réel neutralise l'inflation entre l'achat et la vente pour ne taxer que l'enrichissement effectif."
+        }
+      ]
+    },
+    "car-finance-lease": {
+      "guideTitle": "Crédit Auto vs LOA / LLD : Dépréciation, Valeur Résiduelle et Coût Net",
+      "guideDesc": "Arbitrer entre achat à crédit, location avec option d'achat (LOA) et location longue durée (LLD) suppose de soustraire la valeur de revente du coût total versé.",
+      "formulaHeading": "Formules de comparaison crédit vs location",
+      "formulaLines": [
+        "Mensualité crédit = K × [t(1+t)^n ÷ ((1+t)^n − 1)]",
+        "Coût total location = Apport + (Loyer mensuel × Mois) + Frais",
+        "Coût net réel = Total décaissé − Valeur de revente estimée"
+      ],
+      "faq": [
+        {
+          "question": "Quand le crédit classique bat-il la LOA ou LLD ?",
+          "answer": "Dès que vous gardez votre voiture plus de 4 à 5 ans, l'achat devient généralement nettement plus économique que la location."
+        },
+        {
+          "question": "Que désigne la valeur résiduelle ?",
+          "answer": "C'est le prix estimé du véhicule en fin de contrat ; plus il est élevé, plus la décote financée par vos loyers diminue."
+        },
+        {
+          "question": "Quels frais comparer entre LLD et achat ?",
+          "answer": "Intégrez l'assurance, l'entretien, le dépassement kilométrique et les frais de remise en état."
+        }
+      ]
+    },
+    "scientific-unit-engine": {
+      "guideTitle": "Conversions Scientifiques et d'Ingénierie : Pression, Énergie, Couple",
+      "guideDesc": "Les calculs techniques exigent des conversions dimensionnelles exactes entre le Système International (SI) et les unités impériales sans perte de précision.",
+      "formulaHeading": "Équivalences physiques principales",
+      "formulaLines": [
+        "Pression : 1 bar = 100 000 Pa = 14,5038 psi = 0,9869 atm",
+        "Énergie et Puissance : 1 kWh = 3,6 MJ = 3 412,14 BTU | 1 HP = 745,7 W",
+        "Couple et Force : 1 N·m = 0,73756 lb-ft | 1 lbf = 4,44822 N",
+        "Température : K = °C + 273,15 | °F = (°C × 9/5) + 32"
+      ],
+      "faq": [
+        {
+          "question": "Quelle est la différence entre kW et kWh ?",
+          "answer": "Le kilowatt (kW) exprime une puissance instantanée, tandis que le kilowattheure (kWh) mesure une quantité d'énergie consommée ou stockée."
+        },
+        {
+          "question": "Combien vaut 1 bar en pascals et en psi ?",
+          "answer": "Un bar équivaut exactement à 100 000 pascals (100 kPa) et environ 14,5038 psi."
+        },
+        {
+          "question": "Comment convertir correctement un écart de température ?",
+          "answer": "Contrairement à une température absolue, un écart ΔT en °C se multiplie simplement par 1,8 pour l'obtenir en °F, sans ajouter 32."
+        }
+      ]
+    },
+    "purchasing-power": {
+      "guideTitle": "Parité de Pouvoir d'Achat (PPA), Coût de la Vie et Salaire d'Expatriation",
+      "guideDesc": "Comparer deux offres d'emploi entre grandes métropoles nécessite de pondérer le revenu net par les loyers, les courses, la fiscalité et le pouvoir d'achat local.",
+      "formulaHeading": "Formules d'équivalence salariale et reste à vivre",
+      "formulaLines": [
+        "Salaire équivalent = Revenu actuel × (Indice ville cible ÷ Indice ville d'origine)",
+        "Écart logement = Loyer cible − Loyer d'origine",
+        "Capacité d'épargne réelle = Salaire net cible − Panier de vie mensuel local"
+      ],
+      "faq": [
+        {
+          "question": "Pourquoi un salaire nominal supérieur achète-t-il parfois moins ?",
+          "answer": "Lorsque les loyers, gardes d'enfants et impôts locaux absorbent une part plus forte du revenu disponible."
+        },
+        {
+          "question": "Quels postes compose l'indice du coût de la vie ?",
+          "answer": "Logement, alimentation, transport, énergie, loisirs et services essentiels."
+        },
+        {
+          "question": "Quel indicateur privilégier pour une mobilité internationale ?",
+          "answer": "Comparez le reste à épargner net mensuel après loyer et charges plutôt que le seul salaire brut."
+        }
+      ]
     }
   },
   "assistant": {

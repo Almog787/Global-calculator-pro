@@ -6,6 +6,7 @@ import RelatedCalculators from '../../components/RelatedCalculators';
 import ShareActions from '../../components/ShareActions';
 import FAQ from '../../components/FAQ';
 import DisclaimerNotice from '../../components/DisclaimerNotice';
+import CalculatorCapabilities from '../../components/CalculatorCapabilities';
 
 export default function AgeCalculator() {
   const { t, lang, guides } = useI18n();
@@ -148,6 +149,8 @@ export default function AgeCalculator() {
           </div>
         )}
       </section>
+
+      <CalculatorCapabilities calcId="age" />
 
       {/* General Estimation Disclaimer */}
       <DisclaimerNotice type="general" className="mt-8 mb-6" />
